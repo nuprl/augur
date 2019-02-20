@@ -1,0 +1,20 @@
+var a = 822;
+var c = 884;
+var d = 411;
+var e = 434;
+var f = 845;
+var g = 249;
+var h = 458;
+var i = 455;
+var z = 501;
+g = h;
+c = e;
+f = g;
+d = c;
+d = z;
+g = f;
+h = i;
+d = i;
+a = g;
+d = i;
+
