@@ -1,4 +1,4 @@
-import { Analyzer, Sandbox } from "./jalangi";
+import { Analyzer, Callbacks, Sandbox } from "./jalangi";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
@@ -12,7 +12,7 @@ export default class Analyze implements Analyzer {
         this.sandbox = sandbox;
     }
 
-    public functionEnter = (iid, func, receiver, args) => {
+    public functionEnter: Callbacks.functionEnter = (iid, func, receiver, args) => {
         this.iidToLocation.set(iid, this.sandbox.iidToLocation(iid));
 
         if (!this.callCount.has(iid)) {
