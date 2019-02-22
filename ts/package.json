@@ -1,11 +1,11 @@
 {
-  "name": "wikipedia-crawler",
+  "name": "js-taint-analysis",
   "version": "1.0.0",
-  "description": "is4200 homework 1",
+  "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "./node_modules/.bin/tsc",
-    "build:watch": "./node_modules/.bin/tsc --watch",
+    "build:watch": "./node_modules/.bin/tsc --watch"
   },
   "dependencies": {
     "@types/argparse": "^1.0.35",
