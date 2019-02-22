@@ -1,0 +1,16 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+      "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+      "no-console": false,
+      "no-unused-expression": false,
+      "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
+      "interface-name": [true, "never-prefix"],
+      "max-line-length": [true, 100],
+      "indent": [true, "spaces", 2]
+    },
+    "rulesDirectory": []
+  }

@@ -1,0 +1,7 @@
+*.pdf
+.DS_Store
+*\*temp\**
+*.zip
+*.log
+node_modules/
+dist/
