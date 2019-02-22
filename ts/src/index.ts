@@ -1,21 +1,9 @@
-import { ArgumentParser } from "argparse";
+import Analyze from "./analyze";
+import {Sandbox} from "./jalangi";
 
-const parser = new ArgumentParser({
-    addHelp: true,
-    description: "JS Taint Analysis",
-    version: "1.0.0",
-});
+// do not remove the following comment
+// JALANGI DO NOT INSTRUMENT
 
-parser.addArgument(
-    [ "--file", "-f" ],
-    {
-        help: "Path to the file to test for taint",
-        type: "string",
-    },
-);
-
-async function main() {
-    const args = parser.parseArgs();
-}
-
-main();
+((sandbox: Sandbox) => {
+    sandbox.analysis = new Analyze(sandbox);
+})(J$);
