@@ -1,4 +1,4 @@
-import { Analyzer, Callbacks, Sandbox } from "./jalangi";
+import { Analyzer, NPCallbacks, Sandbox } from "./nodeprof";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
@@ -12,7 +12,7 @@ export default class Analyze implements Analyzer {
         this.sandbox = sandbox;
     }
 
-    public functionEnter: Callbacks.functionEnter = (iid, func, receiver, args) => {
+    public functionEnter: NPCallbacks.functionEnter = (iid, func, receiver, args) => {
         this.iidToLocation.set(iid, this.sandbox.iidToLocation(iid));
 
         if (!this.callCount.has(iid)) {
@@ -22,7 +22,7 @@ export default class Analyze implements Analyzer {
         this.callCount.set(iid, this.callCount.get(iid) + 1);
     }
 
-    public endExecution = () => {
+    public endExecution: NPCallbacks.endExecution = () => {
         this.callCount.forEach((value, key) => {
             console.log(`[${key}]:\t${value}\t(${this.iidToLocation.get(key)})`);
         });
