@@ -17,5 +17,5 @@ make
 ```bash
 export JALANGI_PATH="path to nodeprof advanced installation"
 
-./run.sh [path to js file to test]
+./run.sh [path to js file relative to project directory]
 ```
