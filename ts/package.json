@@ -8,9 +8,7 @@
     "build:watch": "./node_modules/.bin/tsc --watch"
   },
   "dependencies": {
-    "@types/argparse": "^1.0.35",
     "@types/node": "10",
-    "argparse": "^1.0.10",
     "tslint": "^5.11.0",
     "typescript": "^3.1.5"
   }
