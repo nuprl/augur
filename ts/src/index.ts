@@ -1,9 +1,11 @@
 import Analyze from "./analyze";
-import {Sandbox} from "./jalangi";
+import {main} from "./jalangi";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
-((sandbox: Sandbox) => {
+const main: main = (sandbox) => {
     sandbox.analysis = new Analyze(sandbox);
-})(J$);
+};
+
+main(J$);

@@ -1,27 +1,30 @@
-/*
- * Copyright (c) 2018, Oracle and/or its affiliates. All rights reserved.
- */
+import { Analyzer, Sandbox } from "./jalangi";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
-function analyze(sandbox) {
-    const callCount = new Map();
-    const iidToLocation = new Map();
+export default class Analyze implements Analyzer {
+    private callCount = new Map();
+    private iidToLocation = new Map();
+    private sandbox: Sandbox;
 
-    this.functionEnter = (iid, func, receiver, args) => {
-    iidToLocation.set(iid, sandbox.iidToLocation(iid));
-    if (!callCount.has(iid)) {
-        callCount.set(iid, 0);
+    constructor(sandbox: Sandbox) {
+        this.sandbox = sandbox;
     }
-    callCount.set(iid, callCount.get(iid) + 1);
-    };
 
-    this.endExecution = () => {
-    callCount.forEach((value, key) => {
-        console.log(`[${key}]:\t${value}\t(${iidToLocation.get(key)})`);
-    });
-    };
+    public functionEnter = (iid, func, receiver, args) => {
+        this.iidToLocation.set(iid, this.sandbox.iidToLocation(iid));
+
+        if (!this.callCount.has(iid)) {
+            this.callCount.set(iid, 0);
+        }
+
+        this.callCount.set(iid, this.callCount.get(iid) + 1);
+    }
+
+    public endExecution = () => {
+        this.callCount.forEach((value, key) => {
+            console.log(`[${key}]:\t${value}\t(${this.iidToLocation.get(key)})`);
+        });
+    }
 }
-
-export default analyze;
