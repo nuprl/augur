@@ -1,3 +1,6 @@
+// do not remove the following comment
+// JALANGI DO NOT INSTRUMENT
+
 // tslint:disable:max-line-length
 // tslint:disable:no-namespace
 // tslint:disable:ban-types [Function]
@@ -24,6 +27,9 @@ export type Accessor = string | number;
 // for more info:
 // https://github.com/Samsung/jalangi2/blob/master/src/js/runtime/analysisCallbackTemplate.js
 
+/**
+ * Note: None of the return types are currently annotated correctly because we don't care at the moment.
+ */
 export namespace NPCallbacks {
     export type invokeFunPre = (iid: number, f: Function, receiver: Object, args: any[], isConstructor: boolean, isMethod: boolean, functionIid: number, functionSid: number) => void;
     export type invokeFun = (iid: number,  f: Function, receiver: Object, args: any[], result: any, isConstructor: boolean, isMethod: boolean, functionIid: number, functionSid: number) => void;
@@ -33,7 +39,7 @@ export namespace NPCallbacks {
     export type putFieldPre = (iid: number, receiver: Object, offset: Accessor, val: any, isComputed: boolean, isOpAssign: boolean) => void;
     export type putField = (iid: number, receiver: Object, offset: Accessor, val: any, isComputed: boolean, isOpAssign: boolean) => void;
     export type read = (iid: number, name: string, val: any, isGlobal: boolean, isScriptLocal: boolean) => void;
-    export type write = (iid: number, name: string, val: any, lhs: any, isGlobal: boolean, isScriptLocal: boolean) => void;
+    export type write = (iid: number, name: string, val: any, originalValue: any, isGlobal: boolean, isScriptLocal: boolean) => void;
     export type functionEnter = (iid: number, f: Function, receiver: Object, args: any[]) => void;
     export type functionExit = (iid: number,  returnVal: any, wrappedExceptionVal?: ExceptionVal) => void;
     export type binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => void;

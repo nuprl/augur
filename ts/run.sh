@@ -1,3 +1,3 @@
 export CUR=$(pwd)
 cd $JALANGI_PATH
-mx jalangi --analysis "$CUR/$1" "$CUR/$2"
+mx jalangi --analysis "$CUR/dist/index.js" "$CUR/$2"

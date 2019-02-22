@@ -1,30 +1,36 @@
 import { Analyzer, NPCallbacks, Sandbox } from "./nodeprof";
+import StateMachine from "./statemachine";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
 export default class Analyze implements Analyzer {
-    private callCount = new Map();
-    private iidToLocation = new Map();
     private sandbox: Sandbox;
+    private state = new StateMachine({ sources: ["a"], sinks: ["z"]});
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
 
-    public functionEnter: NPCallbacks.functionEnter = (iid, func, receiver, args) => {
-        this.iidToLocation.set(iid, this.sandbox.iidToLocation(iid));
+    public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
+        this.state.push(false);
+    }
 
-        if (!this.callCount.has(iid)) {
-            this.callCount.set(iid, 0);
-        }
+    public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
+        this.state.readvar(name);
+    }
 
-        this.callCount.set(iid, this.callCount.get(iid) + 1);
+    public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
+        this.state.writevar(name);
     }
 
     public endExecution: NPCallbacks.endExecution = () => {
-        this.callCount.forEach((value, key) => {
-            console.log(`[${key}]:\t${value}\t(${this.iidToLocation.get(key)})`);
-        });
+        const taints = this.state.getTaint();
+
+        if (taints.length) {
+            console.log("taints:\n", taints.join("\n"));
+        } else  {
+            console.log("no taints in sink");
+        }
     }
 }
