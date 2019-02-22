@@ -11,7 +11,7 @@ export interface AnalyzerOptions {
 export interface Sandbox {
     analysis: Analyzer;
     iidToLocation(iid: number): string;
-    addAnalysis(analysis: Analyzer, options: AnalyzerOptions);
+    addAnalysis(analysis: Analyzer, options?: AnalyzerOptions): void;
 }
 
 interface ExceptionVal {

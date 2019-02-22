@@ -5,7 +5,7 @@ import {main} from "./jalangi";
 // JALANGI DO NOT INSTRUMENT
 
 const main: main = (sandbox) => {
-    sandbox.analysis = new Analyze(sandbox);
+    sandbox.addAnalysis(new Analyze(sandbox));
 };
 
 main(J$);
