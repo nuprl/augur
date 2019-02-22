@@ -13,8 +13,8 @@ export default class StateMachine {
     private sinks: Set<string>;
 
     constructor({ sources, sinks }: Options) {
-        this.sources = new Set(sources);
-        this.sinks = new Set(sinks);
+        this.sources = new Set(sources || ["a"]);
+        this.sinks = new Set(sinks || ["z"]);
     }
 
     public push(v: boolean) {

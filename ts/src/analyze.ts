@@ -1,15 +1,18 @@
 import { Analyzer, NPCallbacks, Sandbox } from "./nodeprof";
 import StateMachine from "./statemachine";
+import { Spec } from "./types";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
 export default class Analyze implements Analyzer {
     private sandbox: Sandbox;
-    private state = new StateMachine({ sources: ["a"], sinks: ["z"]});
+    private state: StateMachine;
 
-    constructor(sandbox: Sandbox) {
+    constructor(sandbox: Sandbox, { sinks, sources }: Spec) {
         this.sandbox = sandbox;
+        // console.log("sinks", sinks, "sources", sources);
+        this.state = new StateMachine({ sinks, sources });
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
@@ -26,11 +29,10 @@ export default class Analyze implements Analyzer {
 
     public endExecution: NPCallbacks.endExecution = () => {
         const taints = this.state.getTaint();
+        const output = {
+            taints,
+        };
 
-        if (taints.length) {
-            console.log("taints:\n", taints.join("\n"));
-        } else  {
-            console.log("no taints in sink");
-        }
+        console.log(output);
     }
 }
