@@ -5,7 +5,7 @@ import {main} from "./nodeprof";
 // JALANGI DO NOT INSTRUMENT
 
 const main: main = (sandbox) => {
-    console.log("initializing...");
+    // console.log("initializing...");
     sandbox.addAnalysis(new Analyze(sandbox));
 };
 
