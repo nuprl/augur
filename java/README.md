@@ -8,6 +8,8 @@ Currently, this taint analysis only works on a very small subset of JavaScript: 
 
 As this Java implementation actually *modifies* the code of NodeProf itself, the entire NodeProf repository is in this subdirectory. The directory structure is set up such that a NodeProf installation can be created in the `java` folder, if you pretend the `workspace-nodeprof` folder has already been created, and NodeProf already cloned inside it.
 
+This directory structure is very complicated, but the actual analysis is located at `workspace-nodeprof/nodeprof.js/src/ch.usi.inf.nodeprof.test/src/ch/usi/inf/nodeprof/test/examples/TaintAnalysis.java`. The stack machine is located in that same directory, and the JUnit test class is located under the `tests` subdirectory in that directory.
+
 ## Building
 
 Navigating to the `nodeprof.js` folder and running the usual `mx sforceimports; mx build` will build NodeProf with our custom analysis.
