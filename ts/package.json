@@ -6,7 +6,8 @@
   "scripts": {
     "build": "./node_modules/.bin/tsc",
     "build:watch": "./node_modules/.bin/tsc --watch",
-    "test": "NODE_PATH=. && jest"
+    "test": "NODE_PATH=. && jest",
+    "test:generate": "node dist/generateTests.js"
   },
   "dependencies": {
     "@types/node": "10",
