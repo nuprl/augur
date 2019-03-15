@@ -20,6 +20,7 @@ export default class Analyze implements Analyzer {
         if (typeof val === "object") {
             const keys = Object.keys(val);
 
+            // This works as long as there's no number keys
             for (let i = keys.length - 1; i >= 0; i--) {
                 this.state.writeProperty(val, keys[i]);
             }

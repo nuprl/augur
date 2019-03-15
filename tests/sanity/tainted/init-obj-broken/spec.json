@@ -1,0 +1,6 @@
+{
+    "main": "",
+    "sources": ["a"],
+    "sinks": ["z"],
+    "expectedTaints": ["z"]
+}

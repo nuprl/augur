@@ -50,13 +50,12 @@ export default class StateMachine {
     }
 
     public writeProperty(o: any, s: Accessor) {
-        console.log("writeprop", s);
-
         if (!this.objects.has(o)) {
             this.objects.set(o, {});
         }
 
         this.objects.get(o)[s] = this.sources.has(s.toString()) || this.state.pop();
+        console.log("writeprop", s, this.objects.get(o)[s]);
     }
 
     public getTaint(): string[] {
