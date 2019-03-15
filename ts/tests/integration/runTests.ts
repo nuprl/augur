@@ -43,6 +43,10 @@ function runTests(source) {
                     expectedTaints,
                 } = JSON.parse(fs.readFileSync(`${testDir}/spec.json`).toString());
 
+                if (!main) {
+                    continue;
+                }
+
                 // tslint:disable-next-line:max-line-length
                 const testRunCommand = `${process.env.PWD}/runTest.sh ${testDir}/${main} ${sources.join(",")} ${sinks.join(",")}`;
 

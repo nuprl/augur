@@ -16,6 +16,7 @@ export default class Analyze implements Analyzer {
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
+        console.log("literal", val, hasGetterSetter);
         this.state.push(false);
     }
 
@@ -29,6 +30,16 @@ export default class Analyze implements Analyzer {
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, rec, args, isC, isM, funId, funSid) => {
         // console.log(f);
+    }
+
+    public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
+        this.state.readProperty(receiver, offset);
+        // if (offset === "log") {
+        // }
+    }
+
+    public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
+        this.state.writeProperty(receiver, offset);
     }
 
     public endExecution: NPCallbacks.endExecution = () => {
