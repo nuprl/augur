@@ -25,16 +25,12 @@ export default class Analyze implements Analyzer {
     }
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, rec, args, isC, isM, funId, funSid) => {
-        console.log(f);
+        // console.log(f);
     }
 
     public endExecution: NPCallbacks.endExecution = () => {
-        const taints = this.state.getTaint();
-
-        if (taints.length) {
-            console.log("taints:\n", taints.join("\n"));
-        } else  {
-            console.log("no taints in sink");
-        }
+        const taints = this.state.getTaint()
+            .sort((a, b) => a.localeCompare(b));
+        process.stdout.write(JSON.stringify(taints, null, 2));
     }
 }

@@ -18,30 +18,26 @@ export default class StateMachine {
     }
 
     public push(v: boolean) {
-        console.log("push", v);
+        // console.log("push", v);
         this.state.push(v);
     }
 
     public readvar(s: string) {
         const r = this.sources.has(s) || this.varTaintMap.get(s);
         this.state.push(r);
-        console.log("read", s, r);
+        // console.log("read", s, r);
         return r;
     }
 
     public writevar(s: string) {
         const v = this.sources.has(s) || this.state.pop();
-        console.log("write", s, v);
+        // console.log("write", s, v);
         this.varTaintMap.set(s, v);
         // console.log("wrote", this.varTaintMap.get(s));
     }
 
     public getTaint(): string[] {
         return [...this.sinks]
-            .map((s) => ({ name: s, value: this.varTaintMap.get(s) }))
-            .reduce(
-                (prev: string[], {name, value}) => value ? prev.concat(name) : prev,
-                [],
-            );
+            .filter((s) => this.varTaintMap.get(s));
     }
 }
