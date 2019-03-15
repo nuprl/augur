@@ -24,6 +24,10 @@ export default class Analyze implements Analyzer {
         this.state.writevar(name);
     }
 
+    public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, rec, args, isC, isM, funId, funSid) => {
+        console.log(f);
+    }
+
     public endExecution: NPCallbacks.endExecution = () => {
         const taints = this.state.getTaint();
 
