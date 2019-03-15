@@ -6,7 +6,10 @@ import StateMachine from "./statemachine";
 
 export default class Analyze implements Analyzer {
     private sandbox: Sandbox;
-    private state = new StateMachine({ sources: ["a"], sinks: ["z"]});
+    private state = new StateMachine({
+        sinks: process.env.SINKS.split(","),
+        sources: process.env.SOURCES.split(","),
+    });
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
@@ -31,6 +34,6 @@ export default class Analyze implements Analyzer {
     public endExecution: NPCallbacks.endExecution = () => {
         const taints = this.state.getTaint()
             .sort((a, b) => a.localeCompare(b));
-        process.stdout.write(JSON.stringify(taints, null, 2));
+        process.stderr.write(JSON.stringify(taints, null, 2));
     }
 }

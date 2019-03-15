@@ -7,7 +7,7 @@ const exec = (command: string) => new Promise((resolve, reject) => {
         if (error) {
             reject(error);
         } else {
-            resolve(stdout);
+            resolve(stderr);
         }
     });
 });
@@ -42,7 +42,10 @@ function runTests(source) {
                     sinks,
                     expectedTaints,
                 } = JSON.parse(fs.readFileSync(`${testDir}/spec.json`).toString());
-                const testRunCommand = `${process.env.PWD}/runTest.sh ${testDir}/${main}`;
+
+                // tslint:disable-next-line:max-line-length
+                const testRunCommand = `${process.env.PWD}/runTest.sh ${testDir}/${main} ${sources.join(",")} ${sinks.join(",")}`;
+
                 test(testDir, async () => {
                     const result = await exec(testRunCommand);
                     expect(result).toBe(

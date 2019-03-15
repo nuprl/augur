@@ -13,6 +13,7 @@ export default class StateMachine {
     private sinks: Set<string>;
 
     constructor({ sources, sinks }: Options) {
+        // console.log(sources, sinks);
         this.sources = new Set(sources);
         this.sinks = new Set(sinks);
     }
