@@ -1,6 +1,8 @@
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
+import { Accessor } from "./nodeprof";
+
 export interface Options {
     sources: string[];
     sinks: string[];
@@ -11,10 +13,14 @@ export default class StateMachine {
     private varTaintMap: Map<string, boolean> = new Map();
     private sources: Set<string>;
     private sinks: Set<string>;
+    private objects: Map<any, {}>;
 
     constructor({ sources, sinks }: Options) {
+        // console.log(sources, sinks);
         this.sources = new Set(sources);
         this.sinks = new Set(sinks);
+        this.objects = new Map();
+        this.getTaint = this.getTaint.bind(this);
     }
 
     public push(v: boolean) {
@@ -36,12 +42,25 @@ export default class StateMachine {
         // console.log("wrote", this.varTaintMap.get(s));
     }
 
+    public readProperty(o: any, s: Accessor) {
+        const r = this.sources.has(s.toString()) || this.objects.get(o)[s];
+        console.log("readprop", s, r);
+        this.state.push(r);
+        return r;
+    }
+
+    public writeProperty(o: any, s: Accessor) {
+        if (!this.objects.has(o)) {
+            this.objects.set(o, {});
+        }
+
+        this.objects.get(o)[s] = this.sources.has(s.toString()) || this.state.pop();
+        console.log("writeprop", s, this.objects.get(o)[s]);
+    }
+
     public getTaint(): string[] {
-        return [...this.sinks]
-            .map((s) => ({ name: s, value: this.varTaintMap.get(s) }))
-            .reduce(
-                (prev: string[], {name, value}) => value ? prev.concat(name) : prev,
-                [],
-            );
+        const self = this;
+        return [...self.sinks]
+            .filter((s) => self.varTaintMap.get(s));
     }
 }

@@ -6,13 +6,28 @@ import StateMachine from "./statemachine";
 
 export default class Analyze implements Analyzer {
     private sandbox: Sandbox;
-    private state = new StateMachine({ sources: ["a"], sinks: ["z"]});
+    private state = new StateMachine({
+        sinks: process.env.SINKS.split(","),
+        sources: process.env.SOURCES.split(","),
+    });
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
+        console.log("literal", val, hasGetterSetter);
+        if (typeof val === "object") {
+            const keys = Object.keys(val);
+
+            // This works as long as there's no number keys
+            for (let i = keys.length - 1; i >= 0; i--) {
+                this.state.writeProperty(val, keys[i]);
+            }
+
+            this.state.push(false);
+        }
+
         this.state.push(false);
     }
 
@@ -24,13 +39,23 @@ export default class Analyze implements Analyzer {
         this.state.writevar(name);
     }
 
-    public endExecution: NPCallbacks.endExecution = () => {
-        const taints = this.state.getTaint();
+    public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, rec, args, isC, isM, funId, funSid) => {
+        // console.log(f);
+    }
 
-        if (taints.length) {
-            console.log("taints:\n", taints.join("\n"));
-        } else  {
-            console.log("no taints in sink");
-        }
+    public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
+        this.state.readProperty(receiver, offset);
+        // if (offset === "log") {
+        // }
+    }
+
+    public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
+        this.state.writeProperty(receiver, offset);
+    }
+
+    public endExecution: NPCallbacks.endExecution = () => {
+        const taints = this.state.getTaint()
+            .sort((a, b) => a.localeCompare(b));
+        process.stderr.write(JSON.stringify(taints, null, 2));
     }
 }
