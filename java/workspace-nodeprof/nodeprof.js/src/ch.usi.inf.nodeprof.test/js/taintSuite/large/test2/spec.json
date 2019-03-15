@@ -1,0 +1,6 @@
+{
+    "main": "test2.js",
+    "sources": ["a"],
+    "sinks": ["z"],
+    "expectedTaints": []
+}

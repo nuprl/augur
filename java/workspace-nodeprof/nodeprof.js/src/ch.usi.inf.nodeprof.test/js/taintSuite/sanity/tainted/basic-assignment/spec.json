@@ -1,0 +1,6 @@
+{
+    "main": "assignment.js",
+    "sources": ["a"],
+    "sinks": ["z"],
+    "expectedTaints": ["z"]
+}
