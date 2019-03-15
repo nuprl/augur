@@ -1,3 +1,3 @@
 var a = 3;
-var b = [1, 2, a];
+var b = [9, 9, a];
 var z = b[2];

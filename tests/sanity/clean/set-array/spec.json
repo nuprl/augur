@@ -2,5 +2,5 @@
     "main": "test.js",
     "sources": ["a"],
     "sinks": ["z"],
-    "expectedTaints": ["z"]
+    "expectedTaints": []
 }
