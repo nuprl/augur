@@ -17,16 +17,16 @@ export default class Analyze implements Analyzer {
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
         // console.log("literal", val, hasGetterSetter);
-        // if (typeof val === "object") {
-        //     const keys = Object.keys(val);
+        if (typeof val === "object") {
+            const keys = Object.keys(val);
 
-        //     // This works as long as there's no number keys
-        //     for (let i = keys.length - 1; i >= 0; i--) {
-        //         this.state.writeProperty(val, keys[i]);
-        //     }
+            // This works as long as there's no number keys
+            for (let i = keys.length - 1; i >= 0; i--) {
+                this.state.writeProperty(val, keys[i]);
+            }
 
-        //     this.state.push(false);
-        // }
+            this.state.push(false);
+        }
 
         this.state.push(false);
     }

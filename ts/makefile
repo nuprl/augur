@@ -5,4 +5,4 @@ test:
 	npm run test:generate
 
 clean:
-	rm -rf node_modules dist tests/generated
+	rm -rf node_modules dist tests/generated test_results
