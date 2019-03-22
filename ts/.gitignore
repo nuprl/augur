@@ -7,3 +7,5 @@ node_modules/
 dist/
 */generated/*
 */test_results/*
+*/test_jalangi_.js
+*/test_jalangi_.json
