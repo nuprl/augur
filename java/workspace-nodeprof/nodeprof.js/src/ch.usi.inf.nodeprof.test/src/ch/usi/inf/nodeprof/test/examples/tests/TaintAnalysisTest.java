@@ -21,6 +21,7 @@ import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.FileVisitOption;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -158,7 +159,7 @@ public class TaintAnalysisTest extends BasicAnalysisTest {
 	@Parameterized.Parameters
 	public static Collection<Object> data() {
 		try {
-			return Files.walk(Paths.get(basePath + suitePath)) // Get all files in test suite directory
+		    return Files.walk(Paths.get(basePath + suitePath), FileVisitOption.FOLLOW_LINKS) // Get all files in test suite directory
 					.filter(Files::isRegularFile) // Filter to just files (no directories)
 					.filter(p -> p.toString().endsWith(".json")) // Filter to just test specPath files
 					.collect(Collectors.toList());
