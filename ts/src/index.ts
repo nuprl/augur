@@ -7,6 +7,7 @@ import {main} from "./nodeprof";
 const main: main = (sandbox) => {
     // console.log("initializing...");
     sandbox.addAnalysis(new Analyze(sandbox));
+    // console.log(sandbox);
 };
 
 main(J$);

@@ -18,16 +18,23 @@ export default class Analyze implements Analyzer {
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
         // console.log("literal", val, hasGetterSetter);
         if (typeof val === "object") {
-            const keys = Object.keys(val);
+            const keys = [];
 
             // This works as long as there's no number keys
-            for (let i = keys.length - 1; i >= 0; i--) {
-                this.state.writeProperty(val, keys[i]);
+            // tslint:disable-next-line:forin
+            for (const k in val) {
+                keys.push(k);
             }
 
-            this.state.push(false);
-        }
+            keys.reverse();
 
+            console.log("keys", keys);
+
+            for (const k of keys) {
+                this.state.writeProperty(val, k);
+            }
+        }
+        console.log("val", val);
         this.state.push(false);
     }
 
@@ -51,6 +58,15 @@ export default class Analyze implements Analyzer {
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
         this.state.writeProperty(receiver, offset);
+    }
+
+    public builtinEnter: NPCallbacks.builtinEnter = (name, f, receiver, args) => {
+        if (name.indexOf("of") > -1) {
+            console.log(name, args);
+        }
+    }
+    public functionEnter: NPCallbacks.functionEnter = (iid, f, receiver, args) => {
+        console.log(iid, f, receiver, args);
     }
 
     public endExecution: NPCallbacks.endExecution = () => {

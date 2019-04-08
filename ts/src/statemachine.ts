@@ -54,7 +54,9 @@ export default class StateMachine {
             this.objects.set(o, {});
         }
 
-        this.objects.get(o)[s] = this.sources.has(s.toString()) || this.state.pop();
+        const storedTaint = this.state.pop();
+        this.objects.get(o)[s] = this.sources.has(s.toString()) || storedTaint;
+
         console.log("writeprop", s, this.objects.get(o)[s]);
     }
 
