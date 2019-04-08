@@ -1,9 +1,3 @@
-// do not remove the following comment
-// JALANGI DO NOT INSTRUMENT
-
-// tslint:disable:max-line-length
-// tslint:disable:no-namespace
-// tslint:disable:ban-types [Function]
 declare global {
     const J$: Sandbox;
 }
