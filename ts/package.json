@@ -8,7 +8,8 @@
     "build:watch": "./node_modules/.bin/tsc --watch",
     "test": "NODE_PATH=. && jest",
     "test:watch": "NODE_PATH=. && jest --watch",
-    "test:generate": "node dist/generateTests.js"
+    "test:generate": "node dist/generateTests.js",
+    "lint": "tslint ./src/*[^d].ts"
   },
   "dependencies": {
     "@types/node": "10",
