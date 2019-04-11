@@ -15,6 +15,10 @@ export default class Analyze implements Analyzer {
         this.sandbox = sandbox;
     }
 
+    public declare: NPCallbacks.declare = (iid, name, val, isArgument, argumentIndex, isCatchParam) => {
+        console.log("declare", iid, name, val, isArgument, argumentIndex, isCatchParam);
+    }
+
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
         // console.log("literal", val, hasGetterSetter);
         if (typeof val === "object") {
@@ -60,14 +64,14 @@ export default class Analyze implements Analyzer {
         this.state.writeProperty(receiver, offset);
     }
 
-    public builtinEnter: NPCallbacks.builtinEnter = (name, f, receiver, args) => {
-        if (name.indexOf("of") > -1) {
-            console.log(name, args);
-        }
-    }
-    public functionEnter: NPCallbacks.functionEnter = (iid, f, receiver, args) => {
-        console.log(iid, f, receiver, args);
-    }
+    // public builtinEnter: NPCallbacks.builtinEnter = (name, f, receiver, args) => {
+    //     if (name.indexOf("of") > -1) {
+    //         console.log(name, args);
+    //     }
+    // }
+    // public functionEnter: NPCallbacks.functionEnter = (iid, f, receiver, args) => {
+    //     console.log(iid, f, receiver, args);
+    // }
 
     public endExecution: NPCallbacks.endExecution = () => {
         const taints = this.state.getTaint()

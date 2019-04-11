@@ -6,7 +6,7 @@
     "jsRules": {},
     "rules": {
       "no-console": false,
-      "no-unused-expression": false,
+      "no-unused-expression": true,
       "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
       "interface-name": [true, "never-prefix"],
       "max-line-length": [false, 100],
