@@ -1,26 +1,24 @@
+import logger from "../logger";
 import { Analyzer, NPCallbacks, Sandbox } from "../nodeprof";
-import StateMachine from "../statemachine";
+import StateMachine from "./statemachine";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
 export default class Analyze implements Analyzer {
     private sandbox: Sandbox;
-    private state = new StateMachine({
-        sinks: process.env.SINKS.split(","),
-        sources: process.env.SOURCES.split(","),
-    });
+    private state = new StateMachine();
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
 
     public declare: NPCallbacks.declare = (iid, name, val, isArgument, argumentIndex, isCatchParam) => {
-        console.log("declare", iid, name, val, isArgument, argumentIndex, isCatchParam);
+        logger.info("declare", iid, name, val, isArgument, argumentIndex, isCatchParam);
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
-        // console.log("literal", val, hasGetterSetter);
+        // logger.info("literal", val, hasGetterSetter);
         if (typeof val === "object") {
             const keys = [];
 
@@ -32,26 +30,26 @@ export default class Analyze implements Analyzer {
 
             keys.reverse();
 
-            console.log("keys", keys);
+            logger.info("keys", keys);
 
             for (const k of keys) {
                 this.state.writeProperty(val, k);
             }
         }
-        console.log("val", val);
+        logger.info("val", val);
         this.state.push(false);
     }
 
     public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
-        this.state.readvar(name);
+        this.state.readVar(name);
     }
 
     public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
-        this.state.writevar(name);
+        this.state.writeVar(name);
     }
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, rec, args, isC, isM, funId, funSid) => {
-        // console.log(f);
+        // logger.info(f);
     }
 
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
@@ -66,16 +64,15 @@ export default class Analyze implements Analyzer {
 
     // public builtinEnter: NPCallbacks.builtinEnter = (name, f, receiver, args) => {
     //     if (name.indexOf("of") > -1) {
-    //         console.log(name, args);
+    //         logger.info(name, args);
     //     }
     // }
     // public functionEnter: NPCallbacks.functionEnter = (iid, f, receiver, args) => {
-    //     console.log(iid, f, receiver, args);
+    //     logger.info(iid, f, receiver, args);
     // }
 
     public endExecution: NPCallbacks.endExecution = () => {
-        const taints = this.state.getTaint()
-            .sort((a, b) => a.localeCompare(b));
-        process.stderr.write(JSON.stringify(taints, null, 2));
+        const taints = this.state.generate();
+        process.stderr.write(taints);
     }
 }

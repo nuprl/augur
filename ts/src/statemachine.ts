@@ -28,14 +28,14 @@ export default class StateMachine {
         this.state.push(v);
     }
 
-    public readvar(s: string) {
+    public readVar(s: string) {
         const r = this.sources.has(s) || this.varTaintMap.get(s);
         this.state.push(r);
         console.log("read", s, r);
         return r;
     }
 
-    public writevar(s: string) {
+    public writeVar(s: string) {
         const v = this.sources.has(s) || this.state.pop();
         console.log("write", s, v);
         this.varTaintMap.set(s, v);

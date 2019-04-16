@@ -1,68 +1,59 @@
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
-
+import { v4 as uuidv4 } from "uuid";
 import { Accessor } from "../nodeprof";
-
-export interface Options {
-    sources: string[];
-    sinks: string[];
+interface SM {
+    push: (v: boolean) => void;
+    readVar: (s: string) => void;
+    writeVar: (s: string) => void;
+    readProperty: (o: any, s: Accessor) => void;
+    writeProperty: (o: any, s: Accessor) => void;
 }
 
-export default class StateMachine {
-    private state: boolean[] = [];
-    private varTaintMap: Map<string, boolean> = new Map();
-    private sources: Set<string>;
-    private sinks: Set<string>;
-    private objects: Map<any, {}>;
+type Command = keyof SM;
 
-    constructor({ sources, sinks }: Options) {
-        // console.log(sources, sinks);
-        this.sources = new Set(sources);
-        this.sinks = new Set(sinks);
-        this.objects = new Map();
-        this.getTaint = this.getTaint.bind(this);
-    }
+interface Instruction {
+    command: Command;
+    args: string[];
+}
+
+export default class StateMachine implements SM {
+    private instructions: Instruction[] = [];
+    private objIdMap: Map<{}, string> = new Map();
 
     public push(v: boolean) {
-        console.log("push", v);
-        this.state.push(v);
+        this.instructions.push({ command: "push", args: [v + ""] });
     }
 
-    public readvar(s: string) {
-        const r = this.sources.has(s) || this.varTaintMap.get(s);
-        this.state.push(r);
-        console.log("read", s, r);
-        return r;
+    public readVar(s: string) {
+        this.instructions.push({ command: "readVar", args: [s] });
     }
 
-    public writevar(s: string) {
-        const v = this.sources.has(s) || this.state.pop();
-        console.log("write", s, v);
-        this.varTaintMap.set(s, v);
-        // console.log("wrote", this.varTaintMap.get(s));
+    public writeVar(s: string) {
+        this.instructions.push({ command: "writeVar", args: [s] });
     }
 
-    public readProperty(o: any, s: Accessor) {
-        const r = this.sources.has(s.toString()) || this.objects.get(o)[s];
-        console.log("readprop", s, r);
-        this.state.push(r);
-        return r;
-    }
-
-    public writeProperty(o: any, s: Accessor) {
-        if (!this.objects.has(o)) {
-            this.objects.set(o, {});
+    public readProperty(o: {}, s: Accessor) {
+        if (!this.objIdMap.has(o)) {
+            this.objIdMap.set(o, uuidv4());
         }
-
-        const storedTaint = this.state.pop();
-        this.objects.get(o)[s] = this.sources.has(s.toString()) || storedTaint;
-
-        console.log("writeprop", s, this.objects.get(o)[s]);
+        this.instructions.push({ command: "readProperty", args: [this.objIdMap.get(o), s + ""] });
     }
 
-    public getTaint(): string[] {
-        const self = this;
-        return [...self.sinks]
-            .filter((s) => self.varTaintMap.get(s));
+    public writeProperty(o: {}, s: Accessor) {
+        if (!this.objIdMap.has(o)) {
+            this.objIdMap.set(o, uuidv4());
+        }
+        this.instructions.push({ command: "writeProperty", args: [this.objIdMap.get(o), s + ""] });
+    }
+
+    public generate() {
+        const stateMachine = "$StateMachine";
+        const instrs = this.instructions
+            .map(({ command, args }) => `${stateMachine}.${command}(${args.join(",")})`)
+            .join("\n");
+        return `(function run() {
+${instrs}
+})()`;
     }
 }
