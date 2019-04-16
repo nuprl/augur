@@ -6,3 +6,4 @@ test:
 
 clean:
 	rm -rf node_modules dist tests/generated test_results
+	find ../tests -type f -name '__output_instructions.json' -delete
