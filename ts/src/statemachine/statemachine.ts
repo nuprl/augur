@@ -62,9 +62,11 @@ export default class InstructionRunner implements StateMachine {
         logger.info("writeprop", s, this.objects.get(o)[s]);
     }
 
-    public getTaint(): string[] {
+    public getTaint(): string {
         const self = this;
-        return [...self.sinks]
+        const taints = [...self.sinks]
             .filter((s) => self.varTaintMap.get(s));
+
+        return JSON.stringify(taints, null, 2);
     }
 }

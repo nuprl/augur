@@ -9,7 +9,8 @@
     "test": "NODE_PATH=. && jest",
     "test:watch": "NODE_PATH=. && jest --watch",
     "test:generate": "node dist/generateTests.js",
-    "lint": "tslint ./src/*[^d].ts"
+    "lint": "tslint ./src/*[^d].ts",
+    "run:instrs": "node dist/statemachine/index.js"
   },
   "dependencies": {
     "@types/bunyan": "^1.8.6",

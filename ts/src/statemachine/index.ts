@@ -31,7 +31,7 @@ async function main() {
         }
     }
 
-    console.error(stateMachine.getTaint());
+    process.stderr.write(stateMachine.getTaint());
 }
 
 main();
