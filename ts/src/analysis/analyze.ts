@@ -1,5 +1,5 @@
-import { Analyzer, NPCallbacks, Sandbox } from "./nodeprof";
-import StateMachine from "./statemachine";
+import { Analyzer, NPCallbacks, Sandbox } from "../nodeprof";
+import StateMachine from "../statemachine";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT

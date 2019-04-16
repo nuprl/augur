@@ -1,5 +1,5 @@
+import {main} from "../nodeprof";
 import Analyze from "./analyze";
-import {main} from "./nodeprof";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
