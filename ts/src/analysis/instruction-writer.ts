@@ -2,23 +2,11 @@
 // JALANGI DO NOT INSTRUMENT
 import { v4 as uuidv4 } from "uuid";
 import { Accessor } from "../nodeprof";
-interface SM {
-    push: (v: boolean) => void;
-    readVar: (s: string) => void;
-    writeVar: (s: string) => void;
-    readProperty: (o: any, s: Accessor) => void;
-    writeProperty: (o: any, s: Accessor) => void;
-}
+import { Instruction, StateMachine } from "../types";
 
-type Command = keyof SM;
-
-interface Instruction {
-    command: Command;
-    args: string[];
-}
-
-export default class StateMachine implements SM {
+export default class InstructionWriter implements StateMachine {
     private instructions: Instruction[] = [];
+    // TODO: Replace with shadow id
     private objIdMap: Map<{}, string> = new Map();
 
     public push(v: boolean) {
@@ -48,12 +36,6 @@ export default class StateMachine implements SM {
     }
 
     public generate() {
-        const stateMachine = "$StateMachine";
-        const instrs = this.instructions
-            .map(({ command, args }) => `${stateMachine}.${command}(${args.join(",")})`)
-            .join("\n");
-        return `(function run() {
-${instrs}
-})()`;
+        return JSON.stringify(this.instructions, null, 2);
     }
 }

@@ -1,14 +1,16 @@
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
-import { Accessor } from "./nodeprof";
+import logger from "../logger";
+import { Accessor } from "../nodeprof";
+import { StateMachine } from "../types";
 
 export interface Options {
     sources: string[];
     sinks: string[];
 }
 
-export default class StateMachine {
+export default class InstructionRunner implements StateMachine {
     private state: boolean[] = [];
     private varTaintMap: Map<string, boolean> = new Map();
     private sources: Set<string>;
@@ -16,7 +18,7 @@ export default class StateMachine {
     private objects: Map<any, {}>;
 
     constructor({ sources, sinks }: Options) {
-        // console.log(sources, sinks);
+        // logger.info(sources, sinks);
         this.sources = new Set(sources);
         this.sinks = new Set(sinks);
         this.objects = new Map();
@@ -24,27 +26,27 @@ export default class StateMachine {
     }
 
     public push(v: boolean) {
-        console.log("push", v);
+        logger.info("push", v);
         this.state.push(v);
     }
 
     public readVar(s: string) {
         const r = this.sources.has(s) || this.varTaintMap.get(s);
         this.state.push(r);
-        console.log("read", s, r);
+        logger.info("read", s, r);
         return r;
     }
 
     public writeVar(s: string) {
         const v = this.sources.has(s) || this.state.pop();
-        console.log("write", s, v);
+        logger.info("write", s, v);
         this.varTaintMap.set(s, v);
-        // console.log("wrote", this.varTaintMap.get(s));
+        // logger.info("wrote", this.varTaintMap.get(s));
     }
 
     public readProperty(o: any, s: Accessor) {
         const r = this.sources.has(s.toString()) || this.objects.get(o)[s];
-        console.log("readprop", s, r);
+        logger.info("readprop", s, r);
         this.state.push(r);
         return r;
     }
@@ -57,7 +59,7 @@ export default class StateMachine {
         const storedTaint = this.state.pop();
         this.objects.get(o)[s] = this.sources.has(s.toString()) || storedTaint;
 
-        console.log("writeprop", s, this.objects.get(o)[s]);
+        logger.info("writeprop", s, this.objects.get(o)[s]);
     }
 
     public getTaint(): string[] {
