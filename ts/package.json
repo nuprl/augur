@@ -2,15 +2,15 @@
   "name": "js-taint-analysis",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "build": "./node_modules/.bin/tsc",
     "build:watch": "./node_modules/.bin/tsc --watch",
     "test": "NODE_PATH=. && jest",
     "test:watch": "NODE_PATH=. && jest --watch",
-    "test:generate": "node dist/generateTests.js",
+    "test:generate": "node dist/src/generateTests.js",
     "lint": "tslint ./src/*[^d].ts",
-    "run:instrs": "node dist/statemachine/index.js"
+    "run:instrs": "node dist/src/statemachine/index.js"
   },
   "dependencies": {
     "@types/bunyan": "^1.8.6",
