@@ -1,4 +1,6 @@
+#!/usr/bin/env sh
+
 export SOURCES="$2"
 export SINKS="$3"
 
-cat "$1" | npm run run:instrs
+npm run run:instrs < "$1"
