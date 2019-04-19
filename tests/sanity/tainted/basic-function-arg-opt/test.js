@@ -4,4 +4,4 @@ function identity(x, y) {
     return x;
 }
 
-var z = identity(identity(1), identity(a));
+var z = identity(identity(a), identity(2));
