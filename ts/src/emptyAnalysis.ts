@@ -3,6 +3,16 @@ import { Analyzer, main, NPCallbacks, Sandbox } from "./nodeprof";
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
+const interestingBuiltins = new Set([
+    "Promise.prototype.then",
+]);
+
+function shouldPrintBuiltin(name: string) {
+    // return name.indexOf("then") > 0;
+    return interestingBuiltins.has(name);
+    // return true;
+}
+
 export default class Analyze implements Analyzer {
     public sandbox: Sandbox;
 
@@ -80,6 +90,28 @@ export default class Analyze implements Analyzer {
     }
     public endExpression: NPCallbacks.endExpression = (iid) => {
         console.log("endExpression");
+    }
+    public builtinEnter: NPCallbacks.builtinEnter = (name, f, receiver, args) => {
+        if (shouldPrintBuiltin(name)) {
+            console.log("builtinEnter", name, f, receiver, args);
+        }
+    }
+    public builtinExit: NPCallbacks.builtinExit = (name, returnVal) => {
+        if (shouldPrintBuiltin(name)) {
+            console.log("builtinExit", name, returnVal);
+        }
+    }
+    public evalFunctionPre: NPCallbacks.evalFunctionPre = (iid, f, receiver, args) => {
+        console.log("evalFunctionPre", f, receiver, args);
+    }
+    public evalFunctionPost: NPCallbacks.evalFunctionPost = (iid, f, receiver, args, ret) => {
+        console.log("evalFunctionPost", f, receiver, args, ret);
+    }
+    public evalPre: NPCallbacks.evalPre = (iid, str) => {
+        console.log("evalPre", str);
+    }
+    public evalPost: NPCallbacks.evalPost = (iid, str) => {
+        console.log("evalPost", str);
     }
 }
 
