@@ -63,9 +63,12 @@ export default class Analyze implements Analyzer {
     public forinObject: NPCallbacks.forinObject = (iid, val) => {
         console.log("forinObject", val);
     }
-    public declare: NPCallbacks.declare = (iid, name, val, isArgument, argumentIndex, isCatchParam) => {
-        console.log("declare", name, val, isArgument, argumentIndex, isCatchParam);
+    public declare: NPCallbacks.declare = (iid, name, type) => {
+        console.log("declare", name, type);
     }
+    // public declare: NPCallbacks.declare = (iid, name, val, isArgument, argumentIndex, isCatchParam) => {
+    //     console.log("declare", name, val, isArgument, argumentIndex, isCatchParam);
+    // }
     public _return: NPCallbacks._return = (iid, val) => {
         console.log("_return", val);
     }
