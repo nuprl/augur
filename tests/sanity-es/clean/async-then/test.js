@@ -5,5 +5,5 @@ async function identity(x) {
 }
 
 identity(1).then((v) => {
-    const z = a;
+    const z = v;
 })
