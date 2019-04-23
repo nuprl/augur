@@ -1,5 +1,5 @@
 import * as bunyan from "bunyan";
 export default bunyan.createLogger({
-    level: "fatal",
-    name: "taint-analysis",
+    level: "info",
+    name: "execute-instrs",
 });

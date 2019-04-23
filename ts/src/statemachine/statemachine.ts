@@ -1,21 +1,27 @@
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
-import logger from "../logger";
 import { Accessor } from "../nodeprof";
 import { StateMachine } from "../types";
+import logger from "./logger";
 
 export interface Options {
     sources: string[];
     sinks: string[];
 }
 
+enum States {
+    FunctionCall,
+    None,
+}
+
 export default class InstructionRunner implements StateMachine {
-    private state: boolean[] = [];
+    private taintStack: boolean[] = [];
     private varTaintMap: Map<string, boolean> = new Map();
     private sources: Set<string>;
     private sinks: Set<string>;
     private objects: Map<any, {}>;
+    private state: States = States.None;
 
     constructor({ sources, sinks }: Options) {
         // logger.info(sources, sinks);
@@ -26,48 +32,84 @@ export default class InstructionRunner implements StateMachine {
     }
 
     public push(v: boolean) {
+        this.resetState();
         logger.info("push", v);
-        this.state.push(v);
+        this.taintStack.push(v);
     }
 
     public readVar(s: string) {
+        this.resetState();
         const r = this.sources.has(s) || this.varTaintMap.get(s);
-        this.state.push(r);
+        this.taintStack.push(r);
         logger.info("read", s, r);
         return r;
     }
 
     public writeVar(s: string) {
-        const v = this.sources.has(s) || this.state.pop();
+        this.resetState();
+        const v = this.sources.has(s) || this.taintStack.pop();
         logger.info("write", s, v);
         this.varTaintMap.set(s, v);
         // logger.info("wrote", this.varTaintMap.get(s));
     }
 
     public readProperty(o: any, s: Accessor) {
+        this.resetState();
         const r = this.sources.has(s.toString()) || this.objects.get(o)[s];
         logger.info("readprop", s, r);
-        this.state.push(r);
+        this.taintStack.push(r);
         return r;
     }
 
     public writeProperty(o: any, s: Accessor) {
+        this.resetState();
         if (!this.objects.has(o)) {
             this.objects.set(o, {});
         }
 
-        const storedTaint = this.state.pop();
+        const storedTaint = this.taintStack.pop();
         this.objects.get(o)[s] = this.sources.has(s.toString()) || storedTaint;
 
         logger.info("writeprop", s, this.objects.get(o)[s]);
     }
 
     public initVar(s: string) {
-        // todo
+        if (this.state === States.FunctionCall) {
+            const v = this.taintStack.pop();
+            logger.info("init function arg", s, v);
+            this.varTaintMap.set(s, v);
+        }
     }
 
     public functionCall(expectedArgs: number, actualArgs: number)  {
-        // todo
+        logger.info("funcall, cur stack:", this.taintStack);
+        const tempStack = [];
+
+        for (let i = 0; i < actualArgs; i++) {
+            tempStack.push(this.taintStack.pop());
+        }
+
+        if (expectedArgs > actualArgs) {
+            const diff = expectedArgs - actualArgs;
+
+            for (let i = 0; i < diff; i++) {
+                tempStack.push(false);
+            }
+        }
+
+        if (expectedArgs < actualArgs) {
+            const diff = actualArgs - expectedArgs;
+
+            for (let i = 0; i < diff; i++) {
+                this.taintStack.pop();
+            }
+        }
+
+        logger.info("funcall, temp stack:", tempStack);
+        // tempStack.reverse();
+        tempStack.forEach((v) => this.taintStack.push(v));
+        logger.info("funcall, new stack:", this.taintStack);
+        this.state = States.FunctionCall;
     }
 
     public getTaint(): string {
@@ -76,5 +118,9 @@ export default class InstructionRunner implements StateMachine {
             .filter((s) => self.varTaintMap.get(s));
 
         return JSON.stringify(taints, null, 2);
+    }
+
+    private resetState() {
+        this.state = States.None;
     }
 }

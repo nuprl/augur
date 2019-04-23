@@ -1,6 +1,6 @@
 import * as readline from "readline";
-import logger from "../logger";
 import { Instruction, StateMachine } from "../types";
+import logger from "./logger";
 import InstructionRunner from "./statemachine";
 
 function dispatchInstr(stateMachine: StateMachine, command: string, args: string[]) {
@@ -35,7 +35,7 @@ async function main() {
     });
 
     rl.on("line", (line) => {
-        const [command, ...args] = line.split("-*-");
+        const [command, ...args] = line.split(" ");
         dispatchInstr(stateMachine, command, args);
     });
 

@@ -44,8 +44,7 @@ export default class InstructionWriter implements StateMachine {
     }
 
     private writeInstruction(instr: Instruction) {
-        // this delim is weird af because it needs to be something that can't be a variable name or obj id
-        const delim = "-*-";
+        const delim = " ";
         process.stdout.write(`${instr.command}${delim}${instr.args.join(delim)}\n`);
     }
 }

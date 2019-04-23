@@ -1,7 +1,7 @@
-import logger from "../logger";
 import { Analyzer, NPCallbacks, Sandbox } from "../nodeprof";
 import { StateMachine } from "../types";
 import InstructionWriter from "./instruction-writer";
+import logger from "./logger";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
