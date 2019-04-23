@@ -22,6 +22,7 @@ export default class InstructionRunner implements StateMachine {
     private sinks: Set<string>;
     private objects: Map<any, {}>;
     private state: States = States.None;
+    private stateCounter: number = 0;
 
     constructor({ sources, sinks }: Options) {
         // logger.info(sources, sinks);
@@ -74,15 +75,20 @@ export default class InstructionRunner implements StateMachine {
     }
 
     public initVar(s: string) {
-        if (this.state === States.FunctionCall) {
+        if (this.state === States.FunctionCall && this.stateCounter > 0) {
             const v = this.taintStack.pop();
             logger.info("init function arg", s, v);
             this.varTaintMap.set(s, v);
+            this.stateCounter -= 1;
+        } else {
+            logger.info("initVar called but not an argument");
+            this.resetState();
         }
     }
 
     public functionCall(expectedArgs: number, actualArgs: number)  {
-        logger.info("funcall, cur stack:", this.taintStack);
+        logger.info("funcall", expectedArgs, actualArgs);
+        logger.debug("funcall, cur stack:", this.taintStack);
         const tempStack = [];
 
         for (let i = 0; i < actualArgs; i++) {
@@ -105,11 +111,12 @@ export default class InstructionRunner implements StateMachine {
             }
         }
 
-        logger.info("funcall, temp stack:", tempStack);
+        logger.debug("funcall, temp stack:", tempStack);
         // tempStack.reverse();
         tempStack.forEach((v) => this.taintStack.push(v));
-        logger.info("funcall, new stack:", this.taintStack);
+        logger.debug("funcall, new stack:", this.taintStack);
         this.state = States.FunctionCall;
+        this.stateCounter = expectedArgs;
     }
 
     public getTaint(): string {
@@ -122,5 +129,6 @@ export default class InstructionRunner implements StateMachine {
 
     private resetState() {
         this.state = States.None;
+        this.stateCounter = 0;
     }
 }
