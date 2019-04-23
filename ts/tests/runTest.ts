@@ -20,7 +20,7 @@ function runTest(testDir) {
         expectedTaints,
     } = JSON.parse(fs.readFileSync(`${testDir}/spec.json`).toString());
 
-    const instrsPath = `${testDir}/__output_instructions.json`;
+    const instrsPath = `${testDir}/__output_instructions.txt`;
 
     describe(testDir, () => {
         test("generate instrs", async () => {
