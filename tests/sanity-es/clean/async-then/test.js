@@ -4,4 +4,6 @@ async function identity(x) {
     return x;
 }
 
-const z = await identity(a);
+identity(1).then((v) => {
+    const z = a;
+})

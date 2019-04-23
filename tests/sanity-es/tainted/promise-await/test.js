@@ -4,4 +4,4 @@ function identity(x) {
     return new Promise((resolve) => resolve(x));
 }
 
-const x = await identity(a);
+const z = await identity(a);

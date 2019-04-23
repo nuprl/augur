@@ -4,4 +4,4 @@ async function identity(x) {
     return x;
 }
 
-const x = await identity(1);
+const z = await identity(1);
