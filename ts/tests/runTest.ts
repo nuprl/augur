@@ -18,18 +18,20 @@ function runTest(testDir) {
         sources,
         sinks,
         expectedTaints,
+        skip,
     } = JSON.parse(fs.readFileSync(`${testDir}/spec.json`).toString());
 
     const instrsPath = `${testDir}/__output_instructions.txt`;
+    const testFun = skip ? xtest : test;
 
     describe(testDir, () => {
-        test("generate instrs", async () => {
+        testFun("generate instrs", async () => {
             const generateInstrsCommand = `${process.env.PWD}/generate-instrs-test.sh ${testDir}/${main}`;
             const { stdout } = await exec(generateInstrsCommand);
             expect(stdout).toBeTruthy();
             await fs.promises.writeFile(instrsPath, stdout);
         });
-        test("detect taint", async () => {
+        testFun("detect taint", async () => {
             // tslint:disable-next-line:max-line-length
             const testRunCommand = `${process.env.PWD}/runTest.sh ${instrsPath} ${sources.join(",")} ${sinks.join(",")}`;
             const { stderr } = await exec(testRunCommand);
