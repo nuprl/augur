@@ -10,32 +10,42 @@ export default class InstructionWriter implements StateMachine {
     private objIdMap: Map<{}, string> = new Map();
 
     public push(v: boolean) {
-        this.instructions.push({ command: "push", args: [v + ""] });
+        this.writeInstruction({ command: "push", args: [v + ""] });
     }
 
     public readVar(s: string) {
-        this.instructions.push({ command: "readVar", args: [s] });
+        this.writeInstruction({ command: "readVar", args: [s] });
     }
 
     public writeVar(s: string) {
-        this.instructions.push({ command: "writeVar", args: [s] });
+        this.writeInstruction({ command: "writeVar", args: [s] });
     }
 
     public readProperty(o: {}, s: Accessor) {
         if (!this.objIdMap.has(o)) {
             this.objIdMap.set(o, uuidv4());
         }
-        this.instructions.push({ command: "readProperty", args: [this.objIdMap.get(o), s + ""] });
+        this.writeInstruction({ command: "readProperty", args: [this.objIdMap.get(o), s + ""] });
     }
 
     public writeProperty(o: {}, s: Accessor) {
         if (!this.objIdMap.has(o)) {
             this.objIdMap.set(o, uuidv4());
         }
-        this.instructions.push({ command: "writeProperty", args: [this.objIdMap.get(o), s + ""] });
+        this.writeInstruction({ command: "writeProperty", args: [this.objIdMap.get(o), s + ""] });
     }
 
-    public generate() {
-        return JSON.stringify(this.instructions, null, 2);
+    public initVar(s: string) {
+        this.writeInstruction({ command: "initVar", args: [s]});
+    }
+
+    public functionCall(expectedNumArgs: number, actualNumArgs: number) {
+        this.writeInstruction({ command: "functionCall", args: [expectedNumArgs + "", actualNumArgs + ""]});
+    }
+
+    private writeInstruction(instr: Instruction) {
+        // this delim is weird af because it needs to be something that can't be a variable name or obj id
+        const delim = "-*-";
+        process.stdout.write(`${instr.command}${delim}${instr.args.join(delim)}`);
     }
 }

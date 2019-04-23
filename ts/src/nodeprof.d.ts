@@ -52,10 +52,12 @@ export namespace NPCallbacks {
     export type evalFunctionPost = (iid: number, f: Invoked, receiver: Receiver, args: any[], ret: any) => void;
     export type evalPre = (iid: number, str: string) => void;
     export type evalPost = (iid: number, str: string) => void;
+    // different than jalangi
+    export type declare = (iid: number, name: string, type: string) => void;
 
     // Not yet supported by Nodeprof
     export type forinObject = (iid: number, val: any) => void;
-    export type declare = (iid: number, name: string, val: any, isArgument: boolean, argumentIndex: number, isCatchParam: boolean) => void;
+    // export type declare = (iid: number, name: string, val: any, isArgument: boolean, argumentIndex: number, isCatchParam: boolean) => void;
     export type _return = (iid: number, val: any) => void;
     export type _throw = (iid: number, val: any) => void;
     export type _with = (iid: number, val: any) => void;

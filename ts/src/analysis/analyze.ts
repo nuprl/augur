@@ -1,5 +1,6 @@
 import logger from "../logger";
 import { Analyzer, NPCallbacks, Sandbox } from "../nodeprof";
+import { StateMachine } from "../types";
 import InstructionWriter from "./instruction-writer";
 
 // do not remove the following comment
@@ -7,14 +8,14 @@ import InstructionWriter from "./instruction-writer";
 
 export default class Analyze implements Analyzer {
     private sandbox: Sandbox;
-    private state = new InstructionWriter();
+    private state: StateMachine = new InstructionWriter();
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
 
-    public declare: NPCallbacks.declare = (iid, name, val, isArgument, argumentIndex, isCatchParam) => {
-        logger.info("declare", iid, name, val, isArgument, argumentIndex, isCatchParam);
+    public declare: NPCallbacks.declare = (iid, name, type) => {
+        this.state.initVar(name);
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
@@ -23,9 +24,10 @@ export default class Analyze implements Analyzer {
             const keys = [];
 
             // This works as long as there's no number keys
-            // tslint:disable-next-line:forin
             for (const k in val) {
-                keys.push(k);
+                if (val.hasOwnProperty(k)) {
+                    keys.push(k);
+                }
             }
 
             keys.reverse();
@@ -48,30 +50,15 @@ export default class Analyze implements Analyzer {
         this.state.writeVar(name);
     }
 
-    public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, rec, args, isC, isM, funId, funSid) => {
-        // logger.info(f);
-    }
-
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
         this.state.readProperty(receiver, offset);
-        // if (offset === "log") {
-        // }
     }
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
         this.state.writeProperty(receiver, offset);
     }
 
-    // public builtinEnter: NPCallbacks.builtinEnter = (name, f, receiver, args) => {
-    //     if (name.indexOf("of") > -1) {
-    //         logger.info(name, args);
-    //     }
-    // }
-    // public functionEnter: NPCallbacks.functionEnter = (iid, f, receiver, args) => {
-    //     logger.info(iid, f, receiver, args);
-    // }
-
-    public endExecution: NPCallbacks.endExecution = () => {
-        process.stdout.write(this.state.generate());
+    public functionEnter: NPCallbacks.functionEnter = (iid, f, receiver, args) => {
+        this.state.functionCall(f.length, args.length);
     }
 }

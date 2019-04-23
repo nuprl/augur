@@ -62,6 +62,14 @@ export default class InstructionRunner implements StateMachine {
         logger.info("writeprop", s, this.objects.get(o)[s]);
     }
 
+    public initVar(s: string) {
+        // todo
+    }
+
+    public functionCall(expectedArgs: number, actualArgs: number)  {
+        // todo
+    }
+
     public getTaint(): string {
         const self = this;
         const taints = [...self.sinks]

@@ -1,7 +1,28 @@
-import * as getStdin from "get-stdin";
+import * as readline from "readline";
 import logger from "../logger";
-import { Instruction } from "../types";
+import { Instruction, StateMachine } from "../types";
 import InstructionRunner from "./statemachine";
+
+function dispatchInstr(stateMachine: StateMachine, command: string, args: string[]) {
+    switch (command as Instruction["command"]) {
+        case "push":
+            return stateMachine.push(args[0] === "true");
+        case "readProperty":
+            return stateMachine.readProperty(args[0], args[1]);
+        case "readVar":
+            return stateMachine.readVar(args[0]);
+        case "writeProperty":
+            return stateMachine.writeProperty(args[0], args[1]);
+        case "writeVar":
+            return stateMachine.writeVar(args[0]);
+        case "functionCall":
+            return stateMachine.functionCall(Number(args[0]), Number(args[1]));
+        case "initVar":
+            return stateMachine.initVar(args[0]);
+        default:
+            return process.stderr.write("Unrecognized command " + command);
+    }
+}
 
 async function main() {
     const stateMachine = new InstructionRunner({
@@ -9,29 +30,18 @@ async function main() {
         sources: (process.env.SOURCES || "a").split(","),
     });
 
-    const instrs: Instruction[] = JSON.parse(await getStdin());
+    const rl = readline.createInterface({
+        input: process.stdin,
+    });
 
-    for (const { command, args } of instrs) {
-        switch (command) {
-            case "push":
-                stateMachine.push(args[0] === "true");
-                break;
-            case "readProperty":
-                stateMachine.readProperty(args[0], args[1]);
-                break;
-            case "readVar":
-                stateMachine.readVar(args[0]);
-                break;
-            case "writeProperty":
-                stateMachine.writeProperty(args[0], args[1]);
-                break;
-            case "writeVar":
-                stateMachine.writeVar(args[0]);
-                break;
-        }
-    }
+    rl.on("line", (line) => {
+        const [command, ...args] = line.split("-*-");
+        dispatchInstr(stateMachine, command, args);
+    });
 
-    process.stderr.write(stateMachine.getTaint());
+    rl.on("close", () => {
+        process.stderr.write(stateMachine.getTaint());
+    });
 }
 
 main();
