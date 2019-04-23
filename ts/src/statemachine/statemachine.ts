@@ -56,7 +56,9 @@ export default class InstructionRunner implements StateMachine {
 
     public readProperty(o: any, s: Accessor) {
         this.resetState();
-        const r = this.sources.has(s.toString()) || this.objects.get(o)[s];
+        const isSource = this.sources.has(s.toString());
+        const storedTaint = this.objects.get(o);
+        const r = isSource || (storedTaint && storedTaint[s]);
         logger.info("readprop", s, r);
         this.taintStack.push(r);
         return r;
