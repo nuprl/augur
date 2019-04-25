@@ -19,3 +19,20 @@ export NODEPROF_PATH="path to nodeprof advanced installation"
 
 ./run.sh [path to js file relative to project directory]
 ```
+
+## Docker
+
+A Docker container has been created to automate the setup and execution of NodeProf. Currently, only the public version of NodeProf is supported; the private versions of NodeProf and GraalJS will be supported soon.
+
+Instead of installing NodeProf, Graal, GraalJS, and the modified JVM all on your local machine, Docker automates this process by creating an extremely lightweight virtual machine with a predictable build environment. Then, instead of executing NodeProf directly by setting lots of environment variables in your shell, the files are simply mounted in the Docker container and executed inside.
+
+### Using Docker
+
+To use the Docker container:
+
+1. Install Docker. On Linux, install it with your package manager. On Mac, download it [here](https://download.docker.com/mac/stable/Docker.dmg).
+2. Make sure Docker is in your path by running `docker run hello-world` in a shell.
+3. Build the Docker container by running `./docker-build.sh` in a shell. I'd recommend getting some other work done during this step; this took me 12 minutes from a clean start on an Intel quad-core i7.
+4. Run `make` to build our TypeScript analysis (requires Node.js >=v10).
+5. Simply use the `docker-run.sh` and `docker-run-callbacks.sh` scripts, instead of `run.sh` and `run-callbacks.sh`, respectively. There is no need to set environment variables pointing to Java installations or NodeProf installations.
+
