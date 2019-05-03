@@ -1,7 +1,11 @@
 #!/usr/bin/env sh
 
 # Used to run the analysis on a JavaScript file, just to receive information about the callbacks.
-# Usage: ./docker-run-callbacks.sh <path to file>
+
+if [ "$#" -lt 1 ] || [ "$#" -gt 3 ]; then
+    echo "Usage: ./docker-run-callbacks.sh <JS file to instrument> <optional comma-separated sources list> <optional comma-separated sinks list>"
+    exit 1
+fi
 
 CUR=$(pwd)
 export CUR
