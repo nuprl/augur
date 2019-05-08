@@ -47,6 +47,6 @@ describe('unit-tests', function() {
 
   // note: need to keep the "describe" here so that the WebStorm IDE will let us re-run individual tests.
   describe('callMeMaybe', () => runTest('callMeMaybe'));
-  describe('foo', () => runTest('foo'));
+  describe('test.js', () => runTest('test.js'));
 
 });

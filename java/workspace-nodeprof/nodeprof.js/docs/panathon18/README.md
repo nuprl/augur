@@ -121,7 +121,7 @@ this.endExecution = function() {
 The complete, executable dynamic call graph analysis can be found in `nodeprof.js/panathon18/sample-analyses/dynCallGraph.js`
 
 ### Running the dynamic call graph analysis
-We will now run the dynamic call graph analysis on the `nodeprof.js/panathon18/tests/callMeMaybe.js` file.
+We will now run the dynamic call graph analysis on the `nodeprof.js/panathon18/tests/test.js` file.
 
 If you followed the [basic installation](#basic-installation---running-a-pre-built-version-of-nodeprof-on-graalvm-linux-and-macos) instructions, you can run the dynamic call graph analysis with the following command:
 ```
