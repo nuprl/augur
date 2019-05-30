@@ -3,7 +3,7 @@
 # Used to run the analysis on a JavaScript file.
 
 if [ "$#" -lt 1 ] || [ "$#" -gt 4 ]; then
-    echo "Usage: ./docker-run.sh <JS file to instrument> <optional comma-separated sources list> <optional comma-separated sinks list> <--private>"
+    echo "Usage: ./docker-run.sh <JS file to instrument> [optional comma-separated sources list] [optional comma-separated sinks list] [--private]"
     exit 1
 fi
 
