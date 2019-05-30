@@ -36,3 +36,9 @@ To use the Docker container:
 4. Run `make` to build our TypeScript analysis (requires Node.js >=v10).
 5. Simply use the `docker-run.sh` and `docker-run-callbacks.sh` scripts, instead of `run.sh` and `run-callbacks.sh`, respectively. There is no need to set environment variables pointing to Java installations or NodeProf installations.
 
+#### Private version of NodeProf
+
+We also support using the internal development version of NodeProf, which may implement features not yet available to the public. Both the `docker-build.sh` and `docker-run.sh` scripts support an optional argument, `--private`, which will either build or use a separate Docker container for the private version of NodeProf.
+
+As the internal development version of NodeProf is a private Github repo, authentication is required when using `--private` with `docker-build.sh`.
+
