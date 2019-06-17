@@ -4,7 +4,10 @@ import * as fs from 'fs';
 // JALANGI DO NOT INSTRUMENT
 
 export default class MyLogger {
-  constructor(fileName){
+
+  private fileName: fs.PathLike;
+
+  constructor(fileName: fs.PathLike){
     this.fileName = fileName;
     fs.openSync(fileName, "w"); // create empty file
   }
