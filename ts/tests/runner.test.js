@@ -13,7 +13,7 @@ const TAINT_ANALYSIS_HOME =
 
 const NODEPROF_HOME = shell.env['NODEPROF_HOME'];
 // If no NODEPROF_HOME was specified, Docker will be used instead.
-const DOCKER = NODEPROF_HOME === undefined;
+const SHOULD_USE_DOCKER = NODEPROF_HOME === undefined;
 
 const INPUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/input/";
 const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual/";
@@ -40,7 +40,7 @@ function runTest(testName, done){
 
     const command =
         "rm -f " + outputFile + "; " +
-        (DOCKER
+        (SHOULD_USE_DOCKER
             // Run test using Docker
             ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --inputFile " + inputFile + " --outputFile " + outputFile
             // Run test using local NodeProf installation
