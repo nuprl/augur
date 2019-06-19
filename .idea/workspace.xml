@@ -2,19 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a5eb670-3d76-4fa0-9e19-64baabbc0612" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-exported-files.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/workspace-nodeprof/nodeprof.js/docs/panathon18/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/java/workspace-nodeprof/nodeprof.js/docs/panathon18/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/workspace-nodeprof/nodeprof.js/src/ch.usi.inf.nodeprof.test/js/minitests/invoke.js" beforeDir="false" afterPath="$PROJECT_DIR$/java/workspace-nodeprof/nodeprof.js/src/ch.usi.inf.nodeprof.test/js/minitests/invoke.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/src/testrunner.js" beforeDir="false" afterPath="$PROJECT_DIR$/temp/src/testrunner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/tests-unit/output-actual/callMeMaybe_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/temp/tests-unit/output-actual/callMeMaybe_out.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/tests-unit/output-actual/foo_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/temp/tests-unit/output-actual/foo_out.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/tests-unit/output-expected/callMeMaybe_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/temp/tests-unit/output-expected/callMeMaybe_out.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/tests-unit/output-expected/foo_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/temp/tests-unit/output-expected/foo_out.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ts/src/analysis/instruction-writer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ts/src/analysis/instruction-writer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ts/tests/sum.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/mx/javadoc/jdk/package-list" beforeDir="false" afterPath="$PROJECT_DIR$/java/mx/javadoc/jdk/package-list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/mx/mx_benchplot.py" beforeDir="false" afterPath="$PROJECT_DIR$/java/mx/mx_benchplot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/mx/tag_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/java/mx/tag_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/bar_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/bar_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/basic-assignment_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/basic-assignment_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/basic-condition_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/basic-condition_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/basic-function-arg-opt_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/basic-function-arg-opt_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/basic-function-arg_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/basic-function-arg_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/basic-function-args-more_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/basic-function-args-more_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/basic-function-args_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/basic-function-args_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/basic-function_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/basic-function_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/basic-ternary_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/basic-ternary_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/callMeMaybe_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/callMeMaybe_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/foo_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/foo_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/for-loop-assign_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/for-loop-assign_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/for-loop_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/for-loop_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/init-array_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/init-array_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/init-obj_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/init-obj_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/set-array_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/set-array_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests-unit/output-actual/set-obj_out.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests-unit/output-actual/set-obj_out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ts/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ts/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ts/docker-run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ts/docker-run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ts/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/ts/jest.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ts/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ts/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ts/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ts/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ts/src/testrunner/runner.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/ts/tests/runner.test.js" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,60 +42,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ts/jest.config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ts/docker-run.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1100">
+              <caret line="108" column="18" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ts/src/analysis/mylogger.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ts/src/testrunner/runner.test.js">
+        <entry file="file://$PROJECT_DIR$/ts/tests/runner.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="59" column="43" selection-start-line="59" selection-start-column="43" selection-end-line="59" selection-end-column="43" />
+            <state relative-caret-position="286">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests-unit/output-expected/for-loop-assign_out.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests-unit/output-expected/for-loop_out.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests-unit/output-expected/basic-assignment_out.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests-unit/input/basic-assignment/test.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/sanity/clean/basic-condition/spec.json">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests-unit/input/bar/spec.json">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests-unit/input/callMeMaybe/spec.json">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests-unit/input/foo/spec.json">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -86,19 +96,36 @@
         <option value="$PROJECT_DIR$/ts/src/analysis/dynCallGraph.ts" />
         <option value="$PROJECT_DIR$/ts/src/analysis/instruction-writer.ts" />
         <option value="$PROJECT_DIR$/ts/src/testrunner/runner.test.js" />
+        <option value="$PROJECT_DIR$/ts/src/analysis/mylogger.ts" />
+        <option value="$PROJECT_DIR$/ts/package.json" />
+        <option value="$PROJECT_DIR$/ts/sum.test.js" />
+        <option value="$PROJECT_DIR$/ts/runner.test.js" />
+        <option value="$PROJECT_DIR$/ts/jest.config.js" />
+        <option value="$PROJECT_DIR$/ts/Dockerfile" />
+        <option value="$PROJECT_DIR$/ts/tests/runner.test.js" />
+        <option value="$PROJECT_DIR$/ts/docker-run.sh" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="800" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="2592" />
+    <option name="y" value="78" />
+    <option name="width" value="2624" />
+    <option name="height" value="1402" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -109,53 +136,62 @@
             <path>
               <item name="TaintAnalysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="TaintAnalysis" type="462c0819:PsiDirectoryNode" />
-              <item name="tests-unit" type="462c0819:PsiDirectoryNode" />
+              <item name="ts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TaintAnalysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="TaintAnalysis" type="462c0819:PsiDirectoryNode" />
-              <item name="tests-unit" type="462c0819:PsiDirectoryNode" />
-              <item name="input" type="462c0819:PsiDirectoryNode" />
+              <item name="ts" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TaintAnalysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="TaintAnalysis" type="462c0819:PsiDirectoryNode" />
-              <item name="tests-unit" type="462c0819:PsiDirectoryNode" />
-              <item name="output-actual" type="462c0819:PsiDirectoryNode" />
+              <item name="ts" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="analysis" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TaintAnalysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="TaintAnalysis" type="462c0819:PsiDirectoryNode" />
-              <item name="tests-unit" type="462c0819:PsiDirectoryNode" />
-              <item name="output-expected" type="462c0819:PsiDirectoryNode" />
+              <item name="ts" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="statemachine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TaintAnalysis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TaintAnalysis" type="462c0819:PsiDirectoryNode" />
+              <item name="ts" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests-unit/output-expected" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/ts/node_modules/jest" />
-    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/ts/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tests-unit/input/foo" />
-      <recent name="$PROJECT_DIR$/tests-unit/input/callMeMaybe" />
-      <recent name="$PROJECT_DIR$/tests-unit/input/bar" />
-      <recent name="$PROJECT_DIR$/tests-unit" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests-unit/output-expected" />
       <recent name="$PROJECT_DIR$/tests-unit/input" />
       <recent name="$PROJECT_DIR$/tests-unit/input/foo" />
       <recent name="$PROJECT_DIR$/tests-unit/input/callMeMaybe" />
       <recent name="$PROJECT_DIR$/tests-unit/input/bar" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ts/tests" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/ts" />
+      <recent name="$PROJECT_DIR$/tests-unit/input/foo" />
+      <recent name="$PROJECT_DIR$/tests-unit/input/callMeMaybe" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -171,6 +207,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Jest.unit tests">
+    <configuration name="basic-assignment" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/ts/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/ts" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/ts/tests/runner.test.js" />
+      <test-names>
+        <test-name value="basic-assignment" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="callMeMaybe" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -178,7 +227,20 @@
       <working-dir value="$PROJECT_DIR$/ts" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/ts/src/testrunner/runner.test.js" />
+      <test-file value="$PROJECT_DIR$/ts/tests/runner.test.js" />
+      <test-names>
+        <test-name value="callMeMaybe" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="callMeMaybe" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/ts/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/ts/tests/runner.test.js" />
       <test-names>
         <test-name value="callMeMaybe" />
       </test-names>
@@ -187,20 +249,26 @@
     <configuration name="unit tests" type="JavaScriptTestRunnerJest">
       <node-interpreter value="project" />
       <node-options value="" />
-      <jest-package value="$USER_HOME$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST_FILE" />
-      <test-file value="$PROJECT_DIR$/ts/src/testrunner/runner.test.js" />
-      <method v="2" />
+      <jest-package value="$PROJECT_DIR$/ts/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/ts" />
+      <envs>
+        <env name="TAINT_ANALYSIS_HOME" value="$PROJECT_DIR$" />
+        <env name="NODEPROF_HOME" value="$PROJECT_DIR$/../../19-02-21-clean/nodeprof-workspace" />
+      </envs>
+      <scope-kind value="ALL" />
+      <method v="2">
+        <option name="TypeScript.Before.Run" enabled="true" FAIL_ON_ERROR="true" CONFIG_PATH="$PROJECT_DIR$/ts/tsconfig.json" />
+      </method>
     </configuration>
     <list>
       <item itemvalue="Jest.unit tests" />
       <item itemvalue="Jest.callMeMaybe" />
+      <item itemvalue="Jest.basic-assignment" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Jest.callMeMaybe" />
+        <item itemvalue="Jest.basic-assignment" />
       </list>
     </recent_temporary>
   </component>
@@ -208,182 +276,106 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2a5eb670-3d76-4fa0-9e19-64baabbc0612" name="Default Changelist" comment="" />
+      <created>1560783987842</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1560783987842</updated>
+      <workItem from="1560783991142" duration="156000" />
+      <workItem from="1560784172969" duration="5741000" />
+      <workItem from="1560794500631" duration="4730000" />
+      <workItem from="1560805024107" duration="9406000" />
+      <workItem from="1560871514186" duration="793000" />
+      <workItem from="1560872333168" duration="2517000" />
+      <workItem from="1560875291307" duration="13882000" />
+      <workItem from="1560951857458" duration="878000" />
+      <workItem from="1560957652656" duration="3516000" />
+    </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="unit_tests - 2019.05.07 at 14h 44m 09s.xml">
+    <history-entry file="unit_tests - 2019.06.19 at 12h 01m 56s.xml">
       <configuration name="unit tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="unit_tests - 2019.05.07 at 14h 56m 40s.xml">
+    <history-entry file="unit_tests - 2019.06.19 at 12h 02m 48s.xml">
       <configuration name="unit tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="unit_tests - 2019.05.07 at 14h 57m 29s.xml">
+    <history-entry file="unit_tests - 2019.06.19 at 12h 02m 51s.xml">
       <configuration name="unit tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="unit_tests - 2019.05.07 at 14h 58m 10s.xml">
+    <history-entry file="unit_tests - 2019.06.19 at 12h 07m 23s.xml">
       <configuration name="unit tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="unit_tests - 2019.05.07 at 14h 59m 13s.xml">
+    <history-entry file="unit_tests - 2019.06.19 at 12h 08m 16s.xml">
       <configuration name="unit tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="unit_tests - 2019.05.08 at 08h 08m 09s.xml">
+    <history-entry file="unit_tests - 2019.06.19 at 12h 14m 06s.xml">
       <configuration name="unit tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="unit_tests - 2019.05.08 at 08h 09m 18s.xml">
+    <history-entry file="unit_tests - 2019.06.19 at 12h 15m 29s.xml">
       <configuration name="unit tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="unit_tests - 2019.05.08 at 08h 12m 07s.xml">
+    <history-entry file="unit_tests - 2019.06.19 at 12h 19m 59s.xml">
       <configuration name="unit tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="unit_tests - 2019.05.08 at 08h 14m 29s.xml">
+    <history-entry file="unit_tests - 2019.06.19 at 12h 21m 54s.xml">
       <configuration name="unit tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="unit_tests - 2019.05.08 at 08h 16m 14s.xml">
+    <history-entry file="unit_tests - 2019.06.19 at 12h 24m 03s.xml">
       <configuration name="unit tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4193000" />
+    <option name="totallyTimeSpent" value="45812000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="800" extended-state="6" />
+    <frame x="2592" y="78" width="2624" height="1402" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27554616" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27244583" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3291506" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32909605" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32908547" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33095238" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39939713" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3298351" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32909605" />
-      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Docker" order="10" weight="0.3292683" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ts/src/analysis/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ts/src/analysis/dynCallGraph.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ts/package.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ts/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ts/dist/src/analysis/dynCallGraph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="41" selection-start-line="2" selection-end-line="2" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ts/dist/src/analysis/mylogger.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ts/src/analysis/analyze.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ts/node_modules/@types/uuid/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ts/src/analysis/instruction-writer.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="e#68#104#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/node_modules/jest-config/build/resolveConfigPath.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="101" column="10" selection-start-line="101" selection-start-column="10" selection-end-line="101" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ts/jest.config.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests-unit/output-actual/bar_out.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests-unit/output-actual/callMeMaybe_out.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tests-unit/output-actual/callMeMaybe_out.js" />
     <entry file="file://$PROJECT_DIR$/tests-unit/output-expected/bar_out.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/sanity/clean/basic-assignment/test.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests-unit/input/bar/test.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/sanity/clean/basic-assignment/spec.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/sanity/clean/basic-condition/spec.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests-unit/input/bar/spec.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests-unit/input/callMeMaybe/spec.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests-unit/input/foo/spec.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/large-assignments/test2/test2.js">
@@ -395,7 +387,7 @@
     <entry file="file://$PROJECT_DIR$/tests/sanity-es/clean/async-await/test.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests-unit/input/basic-assignment/test.js">
+    <entry file="file://$PROJECT_DIR$/tests/sanity-es/clean/async-await/spec.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/tests-unit/output-expected/for-loop-assign_out.js">
@@ -403,21 +395,198 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests-unit/output-expected/for-loop_out.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        <state relative-caret-position="308">
+          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/sanity-es/clean/async-await/spec.json">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/tests-unit/output-expected/basic-assignment_out.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/ts/src/testrunner/runner.test.js">
+    <entry file="file://$PROJECT_DIR$/tests-unit/input/basic-assignment/test.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/sanity/clean/basic-condition/spec.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests-unit/input/callMeMaybe/spec.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests-unit/input/foo/spec.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests-unit/output-actual/bar_out.js" />
+    <entry file="file://$PROJECT_DIR$/tests-unit/input/bar/spec.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/tests/generated/tests/sanity/clean/basic-assignment.test.ts" />
+    <entry file="file://$PROJECT_DIR$/ts/src/emptyAnalysis.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/src/generateTests.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="59" column="43" selection-start-line="59" selection-start-column="43" selection-end-line="59" selection-end-column="43" />
+        <state relative-caret-position="418">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/makefile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/tests/runTest.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+          <folding>
+            <element signature="n#child_process#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/tests-unit/input/bar/test.js" />
+    <entry file="file://$PROJECT_DIR$/ts/sum.test.js" />
+    <entry file="file://$PROJECT_DIR$/ts/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="216" column="5" selection-start-line="216" selection-start-column="5" selection-end-line="216" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/dist/src/analysis/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/node_modules/@types/node/fs.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="1492" column="13" selection-start-line="1492" selection-start-column="13" selection-end-line="1492" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/src/testrunner.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/runner.test.js" />
+    <entry file="file://$PROJECT_DIR$/ts/src/analysis/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/docker-run-callbacks.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/docker-build.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/tests/setup.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests-unit/output-actual/test.js_out.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/tests/sum.test.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests-unit/output-actual/basic-function-args_out.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/src/analysis/analyze.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-675">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/src/analysis/instruction-writer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-352">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#68#104#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/src/statemachine/statemachine.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests-unit/input/bar/test.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/src/statemachine/logger.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/src/analysis/logger.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/jest.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/src/analysis/mylogger.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/docker-run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1100">
+          <caret line="108" column="18" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ts/tests/runner.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>

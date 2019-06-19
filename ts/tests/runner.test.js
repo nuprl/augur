@@ -8,9 +8,9 @@ const NODEPROF_HOME = shell.env['NODEPROF_HOME'];
 if (TAINT_ANALYSIS_HOME === undefined){
     throw new Error("TAINT_ANALYSIS_HOME not set");
 }
-if (NODEPROF_HOME === undefined){
-    throw new Error("NODEPROF_HOME not set");
-}
+// if (NODEPROF_HOME === undefined){
+//     throw new Error("NODEPROF_HOME not set");
+// }
 
 const INPUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/input/";
 const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual/";
@@ -23,21 +23,22 @@ function getFileContents(fileName){
 }
 
 function compareOutput(testName, actualOutputDir, expectedOutputDir){
-    const actualOutput = getFileContents(actualOutputDir + '/' + testName + '_out.js');
-    const expectedOutput = getFileContents(expectedOutputDir + '/' + testName + '_out.js');
+    const actualOutput = getFileContents(actualOutputDir + testName + '_out.js');
+    const expectedOutput = getFileContents(expectedOutputDir + testName + '_out.js');
     expect(actualOutput).toEqual(expectedOutput);
 }
 
 function runTest(testName, done){
     const outputFile = ACTUAL_OUT_DIR + testName + '_out.js';
-    if (!fs.existsSync(ANALYSIS)){
-        throw new Error("analysis not found: " + ANALYSIS);
-    }
+    const inputFile = INPUT_DIR + testName + "/test.js";
+    // if (!fs.existsSync(ANALYSIS)){
+    //     throw new Error("analysis not found: " + ANALYSIS);
+    // }
 
     const command =
-      "rm -f " + outputFile + ";" +
-      "cd " + NODEPROF_HOME + ";" +
-      "mx jalangi --initParam outputFile:" + outputFile + " --analysis " + ANALYSIS + " " + INPUT_DIR + testName + "/test.js";
+      "rm -f " + outputFile + "; " +
+      // "cd " + NODEPROF_HOME + ";" +
+      TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --inputFile " + inputFile + " --outputFile " + outputFile;
 
     exec(command, function(error, stdout, stderr){
         if (error) {

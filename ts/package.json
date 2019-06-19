@@ -19,6 +19,7 @@
     "@types/uuid": "^3.4.4",
     "bunyan": "^1.8.12",
     "get-stdin": "^7.0.0",
+    "shelljs": "^0.8.3",
     "tslint": "^5.11.0",
     "typescript": "^3.1.5",
     "uuid": "^3.3.2"

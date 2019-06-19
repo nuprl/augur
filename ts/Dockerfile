@@ -23,6 +23,6 @@ ENV PATH="${PATH}:/root/mx" JAVA_HOME="/root/openjdk1.8.0_172-jvmci-0.46"
 # the TypeScript compilation likely brought in other packages that need to be
 # present.
 CMD (cd /root/ts; \
-     /root/mx/mx -p /root/workspace-nodeprof/nodeprof.js/ jalangi \
+     /root/mx/mx -p /root/nodeprof/ jalangi \
        --analysis /root/ts/dist/src/analysis/index.js /root/program.js  \
      | npm run run:instrs)
