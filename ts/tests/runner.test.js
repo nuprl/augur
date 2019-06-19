@@ -31,9 +31,9 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 function runTest(testName, done){
     const outputFile = ACTUAL_OUT_DIR + testName + '_out.js';
     const inputFile = INPUT_DIR + testName + "/test.js";
-    // if (!fs.existsSync(ANALYSIS)){
-    //     throw new Error("analysis not found: " + ANALYSIS);
-    // }
+    if (!fs.existsSync(ANALYSIS)){
+        throw new Error("analysis not found: " + ANALYSIS);
+    }
 
     const command =
       "rm -f " + outputFile + "; " +
