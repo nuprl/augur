@@ -4,13 +4,12 @@ const fs = require('fs');
 
 const TAINT_ANALYSIS_HOME = shell.env['TAINT_ANALYSIS_HOME'];
 const NODEPROF_HOME = shell.env['NODEPROF_HOME'];
+// If no NODEPROF_HOME was specified, Docker will be used instead.
+const DOCKER = NODEPROF_HOME === undefined;
 
 if (TAINT_ANALYSIS_HOME === undefined){
     throw new Error("TAINT_ANALYSIS_HOME not set");
 }
-// if (NODEPROF_HOME === undefined){
-//     throw new Error("NODEPROF_HOME not set");
-// }
 
 const INPUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/input/";
 const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual/";
@@ -36,9 +35,15 @@ function runTest(testName, done){
     }
 
     const command =
-      "rm -f " + outputFile + "; " +
-      // "cd " + NODEPROF_HOME + ";" +
-      TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --inputFile " + inputFile + " --outputFile " + outputFile;
+        "rm -f " + outputFile + "; " +
+        (DOCKER
+            // Run test using Docker
+            ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --inputFile " + inputFile + " --outputFile " + outputFile
+            // Run test using local NodeProf installation
+            : "cd " + NODEPROF_HOME + "; "
+            + "mx jalangi --initParam outputFile:" + outputFile
+            + " --analysis " + ANALYSIS + " "
+            + INPUT_DIR + testName + "/test.js");
 
     exec(command, function(error, stdout, stderr){
         if (error) {
