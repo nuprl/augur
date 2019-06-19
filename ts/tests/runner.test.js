@@ -2,14 +2,18 @@ const { exec } = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
 
-const TAINT_ANALYSIS_HOME = shell.env['TAINT_ANALYSIS_HOME'];
+// If the user does not explicitly specify TAINT_ANALYSIS_HOME, assume it to
+// be what it *should* be.
+const USER_SUPPLIED_TAINT_ANALYSIS_HOME = shell.env['TAINT_ANALYSIS_HOME'];
+const TAINT_ANALYSIS_HOME =
+    (USER_SUPPLIED_TAINT_ANALYSIS_HOME === undefined
+        ? "../"
+        : USER_SUPPLIED_TAINT_ANALYSIS_HOME);
+
+
 const NODEPROF_HOME = shell.env['NODEPROF_HOME'];
 // If no NODEPROF_HOME was specified, Docker will be used instead.
 const DOCKER = NODEPROF_HOME === undefined;
-
-if (TAINT_ANALYSIS_HOME === undefined){
-    throw new Error("TAINT_ANALYSIS_HOME not set");
-}
 
 const INPUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/input/";
 const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual/";
