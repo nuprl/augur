@@ -95,7 +95,7 @@ else
     DOCKER_OPTIONS="-v $OUTPUT_FILE:/root/output.js"
 fi
 
-echo docker run --rm \
+docker run --rm \
        -v $CUR:/root/ts \
        -v $INPUT_FILE:/root/program.js \
        ${DOCKER_OPTIONS} \
