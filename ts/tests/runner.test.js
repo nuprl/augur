@@ -3,18 +3,25 @@ const shell = require('shelljs');
 const fs = require('fs');
 
 // If the user does not explicitly specify TAINT_ANALYSIS_HOME, assume it to
-// be what it *should* be.
+// be "..", because the working directory *should* be the "ts" directory.
 const USER_SUPPLIED_TAINT_ANALYSIS_HOME = shell.env['TAINT_ANALYSIS_HOME'];
 const TAINT_ANALYSIS_HOME =
     (USER_SUPPLIED_TAINT_ANALYSIS_HOME === undefined
-        ? "."
+        ? process.cwd() + "/.."
         : USER_SUPPLIED_TAINT_ANALYSIS_HOME);
 
-
+// Should we be using Docker or a local NodeProf installation?
 const NODEPROF_HOME = shell.env['NODEPROF_HOME'];
+const MX_HOME = shell.env['MX_HOME'];
 // If no NODEPROF_HOME was specified, Docker will be used instead.
-const SHOULD_USE_DOCKER = NODEPROF_HOME === undefined;
+const SHOULD_USE_DOCKER = (NODEPROF_HOME === undefined) || (MX_HOME === undefined);
+// Tell the user that Docker is being used because they did not specify
+// the necessary environment variables.
+if (SHOULD_USE_DOCKER) {
+    console.error("You did not set the 'NODEPROF_HOME' and 'MX_HOME' environment variables. Docker will be used instead.");
+}
 
+// Calculate paths
 const INPUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/input/";
 const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual/";
 const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected/";
@@ -45,7 +52,7 @@ function runTest(testName, done){
             ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --inputFile " + inputFile + " --outputFile " + outputFile
             // Run test using local NodeProf installation
             : "cd " + NODEPROF_HOME + "; "
-            + "mx jalangi --initParam outputFile:" + outputFile
+            + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
             + " --analysis " + ANALYSIS + " "
             + INPUT_DIR + testName + "/test.js");
 

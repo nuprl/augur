@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 usage() {
-    echo "Usage: ./docker-run.sh [-h|--help] --inputFile <file to instrument> --outputFile <path to desired analysis output> [--sources <comma-separated sources list>] [--sinks <comma-separated sinks list]"
+    >&2 echo "Usage: ./docker-run.sh [-h|--help] --inputFile <file to instrument> --outputFile <path to desired analysis output> [--sources <comma-separated sources list>] [--sinks <comma-separated sinks list]"
 }
 
 CUR=""
@@ -11,6 +11,7 @@ PRIVATE=false
 SOURCES=""
 SINKS=""
 DOCKER_OPTIONS=""
+DOCKER_IMAGE_NAME=""
 MX_OPTIONS=""
 
 # Used to run the analysis on a JavaScript file.
@@ -76,10 +77,18 @@ canonicalize() {
 INPUT_FILE=`canonicalize "$INPUT_FILE"`
 OUTPUT_FILE=`canonicalize "$OUTPUT_FILE"`
 
-# Ensure the Docker container exists before we attempt to use it.
-if ! (docker images | grep -q "jsanalysis")
+# Figure out which Docker image we should use.
+if $PRIVATE
 then
-    echo "The NodeProf Docker image has not yet been built. Please run docker-build.sh in a shell and re-try this command after."
+    DOCKER_IMAGE_NAME=jsanalysis-private
+else
+    DOCKER_IMAGE_NAME=jsanalysis
+fi
+
+# Ensure the Docker container exists before we attempt to use it.
+if ! (docker images | grep -q "$DOCKER_IMAGE_NAME")
+then
+    >&2 echo "The NodeProf Docker image '$DOCKER_IMAGE_NAME' has not yet been built. Please run docker-build.sh in a shell and re-try this command after."
     exit 1
 fi
 
@@ -87,20 +96,13 @@ fi
 # Docker container.
 touch "$OUTPUT_FILE"
 
-if $PRIVATE
-then
-    DOCKER_IMAGE_NAME=jsanalysis-private:latest
-else
-    DOCKER_IMAGE_NAME=jsanalysis:latest
-fi
-
 docker run --rm \
        -v $CUR:/root/ts \
        -v $INPUT_FILE:/root/program.js \
        -v $OUTPUT_FILE:/root/output.js \
        -e SOURCES="$SINKS" \
        -e SINKS="$SOURCES" \
-       $DOCKER_IMAGE_NAME \
+       ${DOCKER_IMAGE_NAME}:latest \
        bash -c \
        "(cd /root/ts; \
        /root/mx/mx -p /root/nodeprof/ jalangi \
