@@ -9,18 +9,14 @@
     <scope-kind value="ALL" />
     <method v="2">
       <option name="NpmBeforeRunTask" enabled="true">
-        <package-json value="$PROJECT_DIR$/package.json" />
-        <command value="install" />
+        <package-json value="$PROJECT_DIR$/ts/package.json" />
+        <command value="run" />
+        <scripts>
+          <script value="build" />
+        </scripts>
         <node-interpreter value="project" />
         <envs />
       </option>
-      <option name="NpmBeforeRunTask" enabled="true">
-        <package-json value="$PROJECT_DIR$/package.json" />
-        <command value="build" />
-        <node-interpreter value="project" />
-        <envs />
-      </option>
-      <option name="TypeScript.Before.Run" enabled="true" FAIL_ON_ERROR="true" CONFIG_PATH="$PROJECT_DIR$/ts/tsconfig.json" />
     </method>
   </configuration>
 </component>
