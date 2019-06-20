@@ -7,6 +7,7 @@ usage() {
 CUR=""
 INPUT_FILE=""
 OUTPUT_FILE=""
+PRIVATE=false
 SOURCES=""
 SINKS=""
 DOCKER_OPTIONS=""
@@ -43,11 +44,13 @@ case $key in
     shift
     shift
     ;;
+    --private)
+    PRIVATE=true
+    shift
+    ;;
     # Unknown argument
     *)
     usage
-    exit 1
-    ;;
 esac
 done
 
@@ -84,13 +87,20 @@ fi
 # Docker container.
 touch "$OUTPUT_FILE"
 
+if $PRIVATE
+then
+    DOCKER_IMAGE_NAME=jsanalysis-private:latest
+else
+    DOCKER_IMAGE_NAME=jsanalysis:latest
+fi
+
 docker run --rm \
        -v $CUR:/root/ts \
        -v $INPUT_FILE:/root/program.js \
        -v $OUTPUT_FILE:/root/output.js \
        -e SOURCES="$SINKS" \
        -e SINKS="$SOURCES" \
-       jsanalysis:latest \
+       $DOCKER_IMAGE_NAME \
        bash -c \
        "(cd /root/ts; \
        /root/mx/mx -p /root/nodeprof/ jalangi \
