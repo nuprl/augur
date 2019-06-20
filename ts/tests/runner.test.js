@@ -7,7 +7,7 @@ const fs = require('fs');
 const USER_SUPPLIED_TAINT_ANALYSIS_HOME = shell.env['TAINT_ANALYSIS_HOME'];
 const TAINT_ANALYSIS_HOME =
     (USER_SUPPLIED_TAINT_ANALYSIS_HOME === undefined
-        ? "../"
+        ? "."
         : USER_SUPPLIED_TAINT_ANALYSIS_HOME);
 
 

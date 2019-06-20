@@ -76,8 +76,8 @@ OUTPUT_FILE=`canonicalize "$OUTPUT_FILE"`
 # Ensure the Docker container exists before we attempt to use it.
 if ! (docker images | grep -q "jsanalysis")
 then
-    echo "The analysis Docker image has not yet been built. Building now..."
-    ./docker-build.sh
+    echo "The NodeProf Docker image has not yet been built. Please run docker-build.sh in a shell and re-try this command after."
+    exit 1
 fi
 
 # Ensure the output file exists before we attempt to mount it inside the
