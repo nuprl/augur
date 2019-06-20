@@ -1,0 +1,28 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="unit tests" type="JavaScriptTestRunnerJest">
+    <config-file value="$PROJECT_DIR$/ts/jest.config.js" />
+    <node-interpreter value="project" />
+    <node-options value="" />
+    <jest-package value="$PROJECT_DIR$/ts/node_modules/jest" />
+    <working-dir value="$PROJECT_DIR$/ts" />
+    <envs />
+    <scope-kind value="ALL" />
+    <method v="2">
+      <option name="NpmBeforeRunTask" enabled="true">
+        <package-json value="$PROJECT_DIR$/ts/package.json" />
+        <command value="install" />
+        <node-interpreter value="project" />
+        <envs />
+      </option>
+      <option name="NpmBeforeRunTask" enabled="true">
+        <package-json value="$PROJECT_DIR$/ts/package.json" />
+        <command value="run" />
+        <scripts>
+          <script value="build" />
+        </scripts>
+        <node-interpreter value="project" />
+        <envs />
+      </option>
+    </method>
+  </configuration>
+</component>

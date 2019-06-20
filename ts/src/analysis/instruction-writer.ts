@@ -3,10 +3,16 @@
 import { v4 as uuidv4 } from "uuid";
 import { Accessor } from "../nodeprof";
 import { Instruction, StateMachine } from "../types";
+import MyLogger from "./mylogger";
 
 export default class InstructionWriter implements StateMachine {
     private instructions: Instruction[] = [];
+
+    // @ts-ignore
+    private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
+
     // TODO: Replace with shadow id
+    private objCnt: number = 0;
     private objIdMap: Map<{}, string> = new Map();
 
     public push(v: boolean) {
@@ -23,14 +29,14 @@ export default class InstructionWriter implements StateMachine {
 
     public readProperty(o: {}, s: Accessor) {
         if (!this.objIdMap.has(o)) {
-            this.objIdMap.set(o, uuidv4());
+            this.objIdMap.set(o, "obj" + this.objCnt++);
         }
         this.writeInstruction({ command: "readProperty", args: [this.objIdMap.get(o), s + ""] });
     }
 
     public writeProperty(o: {}, s: Accessor) {
         if (!this.objIdMap.has(o)) {
-            this.objIdMap.set(o, uuidv4());
+            this.objIdMap.set(o, "obj" + this.objCnt++);
         }
         this.writeInstruction({ command: "writeProperty", args: [this.objIdMap.get(o), s + ""] });
     }
@@ -45,6 +51,6 @@ export default class InstructionWriter implements StateMachine {
 
     private writeInstruction(instr: Instruction) {
         const delim = " ";
-        process.stdout.write(`${instr.command}${delim}${instr.args.join(delim)}\n`);
+        this.logger.log(`${instr.command}${delim}${instr.args.join(delim)}\n`);
     }
 }

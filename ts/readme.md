@@ -1,5 +1,14 @@
 # Javascript Taint Analysis (implemented in typescript)
 
+## WebStorm project
+
+This project will integrate well in Jetbrain's WebStorm IDE. Simply clone this repo, run the `ts/docker-build.sh` script, open it in WebStorm, and run the unit tests.
+
+If you do not wish to use Docker, you must follow the [follow the advanced installation instructions](https://github.com/Haiyang-Sun/nodeprof.js/tree/master/docs/panathon18#advanced-installation---building-nodeprof-and-graalvm-from-source-linux-and-macos), create a copy of the run configuration, and modify it to set the following environment variables:
+- `NODEPROF_HOME`: pointing to your NodeProf advanced installation
+- `JAVA_HOME`: pointing to your JVM CI directory (not the `bin` subdirectory)
+- `MX_HOME`: pointing to your `mx` installation
+
 ## Installation
 
 You will need `node.js` installed. We recommend >=v10.

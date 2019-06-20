@@ -14,4 +14,4 @@
  * limitations under the License.
  *******************************************************************************/
 function foo() { }
-foo(42, "bar");
+foo(42, "test.js");
