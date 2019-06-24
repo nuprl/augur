@@ -33,14 +33,22 @@ function getFileContents(fileName){
 }
 
 function compareOutput(testName, actualOutputDir, expectedOutputDir){
-    const actualOutput = getFileContents(actualOutputDir + testName + '_out.js');
-    const expectedOutput = getFileContents(expectedOutputDir + testName + '_out.js');
+    const actualOutputPath = actualOutputDir + testName + '_out.js';
+    const expectedOutputPath = expectedOutputDir + testName + '_out.js';
+
+    console.error("Actual output: \t" + actualOutputPath);
+    console.error("Expected output: \t" + expectedOutputPath);
+
+    const actualOutput = getFileContents(actualOutputPath);
+    const expectedOutput = getFileContents(expectedOutputPath);
+
     expect(actualOutput).toEqual(expectedOutput);
 }
 
 function runTest(testName, done){
     const outputFile = ACTUAL_OUT_DIR + testName + '_out.js';
     const inputFile = INPUT_DIR + testName + "/test.js";
+
     if (!fs.existsSync(ANALYSIS)){
         throw new Error("analysis not found: " + ANALYSIS);
     }
@@ -57,6 +65,8 @@ function runTest(testName, done){
             + INPUT_DIR + testName + "/test.js");
 
     exec(command, function(error, stdout, stderr){
+        console.error("Source file: \t" + inputFile);
+
         if (error) {
             console.error(`${error}`);
             return;
