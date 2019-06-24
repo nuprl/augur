@@ -1,6 +1,6 @@
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
-import { v4 as uuidv4 } from "uuid";
+
 import { Accessor } from "../nodeprof";
 import { Instruction, StateMachine } from "../types";
 import MyLogger from "./mylogger";
