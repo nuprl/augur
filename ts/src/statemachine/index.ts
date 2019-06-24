@@ -40,7 +40,7 @@ async function main() {
     });
 
     rl.on("close", () => {
-        process.stderr.write(stateMachine.getTaint());
+        process.stderr.write(JSON.stringify(stateMachine.getTaint(), null, 2));
     });
 }
 
