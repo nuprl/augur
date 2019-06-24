@@ -1,6 +1,7 @@
 const { exec } = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
+const {executeInstructions} = require('../dist/src/statemachine/statemachine');
 
 // If the user does not explicitly specify TAINT_ANALYSIS_HOME, assume it to
 // be "..", because the working directory *should* be the "ts" directory.
@@ -46,8 +47,11 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 }
 
 function runTest(testName, done){
+    // Calculate input and output instruction file paths
     const outputFile = ACTUAL_OUT_DIR + testName + '_out.js';
     const inputFile = INPUT_DIR + testName + "/test.js";
+    // Parse the spec to know the sources, sinks, and expected taints
+    const spec = JSON.parse(fs.readFileSync(INPUT_DIR + testName + "/spec.json").toString());
 
     if (!fs.existsSync(ANALYSIS)){
         throw new Error("analysis not found: " + ANALYSIS);
@@ -74,7 +78,12 @@ function runTest(testName, done){
         if (stdout) console.log(stdout);
         if (stderr) console.error(stderr);
 
+        // Compare compiled instructions
         compareOutput(testName, ACTUAL_OUT_DIR, EXPECTED_OUT_DIR);
+
+        // Compare the result of executing the compiled instructions
+        expect(executeInstructions(outputFile, spec)).toEqual(spec.expectedTaints);
+
         done();
     });
 

@@ -121,16 +121,29 @@ export default class InstructionRunner implements StateMachine {
         this.stateCounter = expectedArgs;
     }
 
-    public getTaint(): string {
+    public endExecution() {
+        // do nothing.
+    }
+
+    public getTaint(): string[] {
         const self = this;
         const taints = [...self.sinks]
             .filter((s) => self.varTaintMap.get(s));
 
-        return JSON.stringify(taints, null, 2);
+        return taints;
     }
 
     private resetState() {
         this.state = States.None;
         this.stateCounter = 0;
     }
+}
+
+export function executeInstructions(path, options) {
+    console.log(path, options);
+    const abstractMachine = new InstructionRunner(options);
+    const compiledOutput = require(path);
+    console.log(JSON.stringify(compiledOutput));
+    compiledOutput.drive(abstractMachine);
+    return abstractMachine.getTaint();
 }

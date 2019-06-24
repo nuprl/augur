@@ -8,6 +8,7 @@ export interface StateMachine {
     writeProperty: (o: any, s: Accessor) => void;
     initVar: (s: string) => void;
     functionCall: (expectedNumArgs: number, actualNumArgs: number) => void;
+    endExecution: () => void;
 }
 
 export type Command = keyof StateMachine;

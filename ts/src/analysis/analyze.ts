@@ -61,4 +61,8 @@ export default class Analyze implements Analyzer {
     public functionEnter: NPCallbacks.functionEnter = (iid, f, receiver, args) => {
         this.state.functionCall(f.length, args.length);
     }
+
+    public endExecution: NPCallbacks.endExecution = () => {
+        this.state.endExecution();
+    }
 }

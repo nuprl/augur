@@ -6,6 +6,10 @@ import { Instruction, StateMachine } from "../types";
 import MyLogger from "./mylogger";
 
 export default class InstructionWriter implements StateMachine {
+
+    private preamble: string =  "exports.drive = (m) => {\n";
+    private postamble: string = "}\n";
+
     private instructions: Instruction[] = [];
 
     // @ts-ignore
@@ -14,6 +18,10 @@ export default class InstructionWriter implements StateMachine {
     // TODO: Replace with shadow id
     private objCnt: number = 0;
     private objIdMap: Map<{}, string> = new Map();
+
+    constructor() {
+        this.logger.log(this.preamble);
+    }
 
     public push(v: boolean) {
         this.writeInstruction({ command: "push", args: [v + ""] });
@@ -49,8 +57,12 @@ export default class InstructionWriter implements StateMachine {
         this.writeInstruction({ command: "functionCall", args: [expectedNumArgs + "", actualNumArgs + ""]});
     }
 
+    public endExecution() {
+        this.logger.log(this.postamble);
+    }
+
     private writeInstruction(instr: Instruction) {
-        const delim = " ";
-        this.logger.log(`${instr.command}${delim}${instr.args.join(delim)}\n`);
+        const delim = ", ";
+        this.logger.log(`    m.${instr.command}(${instr.args.map(s => `"${s}"`).join(delim)});\n`);
     }
 }
