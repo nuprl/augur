@@ -59,6 +59,7 @@ export default class InstructionWriter implements StateMachine {
     }
 
     public endExecution() {
+        this.writeInstruction({ command: "endExecution", args: [] });
         this.logger.log(this.postamble);
     }
 
