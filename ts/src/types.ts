@@ -15,5 +15,5 @@ export type Command = keyof StateMachine;
 
 export interface Instruction {
     command: Command;
-    args: string[];
+    args: any[];
 }

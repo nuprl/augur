@@ -23,8 +23,9 @@ export default class InstructionWriter implements StateMachine {
         this.logger.log(this.preamble);
     }
 
+    // wrap strings in quotes
     public push(v: boolean) {
-        this.writeInstruction({ command: "push", args: [v + ""] });
+        this.writeInstruction({ command: "push", args: [v] });
     }
 
     public readVar(s: string) {
@@ -39,14 +40,14 @@ export default class InstructionWriter implements StateMachine {
         if (!this.objIdMap.has(o)) {
             this.objIdMap.set(o, "obj" + this.objCnt++);
         }
-        this.writeInstruction({ command: "readProperty", args: [this.objIdMap.get(o), s + ""] });
+        this.writeInstruction({ command: "readProperty", args: [this.objIdMap.get(o), s] });
     }
 
     public writeProperty(o: {}, s: Accessor) {
         if (!this.objIdMap.has(o)) {
             this.objIdMap.set(o, "obj" + this.objCnt++);
         }
-        this.writeInstruction({ command: "writeProperty", args: [this.objIdMap.get(o), s + ""] });
+        this.writeInstruction({ command: "writeProperty", args: [this.objIdMap.get(o), s] });
     }
 
     public initVar(s: string) {
@@ -54,15 +55,24 @@ export default class InstructionWriter implements StateMachine {
     }
 
     public functionCall(expectedNumArgs: number, actualNumArgs: number) {
-        this.writeInstruction({ command: "functionCall", args: [expectedNumArgs + "", actualNumArgs + ""]});
+        this.writeInstruction({ command: "functionCall", args: [expectedNumArgs, actualNumArgs]});
     }
 
     public endExecution() {
         this.logger.log(this.postamble);
     }
 
+    private prepareArg(arg: any): string {
+        // Wrap strings in quotes
+        if (typeof arg == "string") {
+            return `"${arg}"`;
+        } else {
+            return arg.toString();
+        }
+    }
+
     private writeInstruction(instr: Instruction) {
         const delim = ", ";
-        this.logger.log(`    m.${instr.command}(${instr.args.map(s => `"${s}"`).join(delim)});\n`);
+        this.logger.log(`    m.${instr.command}(${instr.args.map(this.prepareArg).join(delim)});\n`);
     }
 }
