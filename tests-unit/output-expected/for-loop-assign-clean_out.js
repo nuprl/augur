@@ -1,100 +1,106 @@
-functionCall 0 0
+exports.drive = (m) => {
 
-push false
+    m.functionCall(0, 0);
 
-functionCall 5 5
+    m.push(false);
 
-push false
+    m.functionCall(5, 5);
 
-writeVar a
+    m.push(false);
 
-push false
+    m.writeVar("a");
 
-push false
+    m.push(false);
 
-readVar a
+    m.push(false);
 
-push false
+    m.readVar("a");
 
-push false
+    m.push(false);
 
-writeProperty obj0 4
+    m.push(false);
 
-writeProperty obj0 3
+    m.writeProperty("obj0", "4");
 
-writeProperty obj0 2
+    m.writeProperty("obj0", "3");
 
-writeProperty obj0 1
+    m.writeProperty("obj0", "2");
 
-writeProperty obj0 0
+    m.writeProperty("obj0", "1");
 
-push false
+    m.writeProperty("obj0", "0");
 
-writeVar b
+    m.push(false);
 
-push false
+    m.writeVar("b");
 
-writeVar c
+    m.push(false);
 
-push false
+    m.writeVar("c");
 
-writeVar z
+    m.push(false);
 
-readVar z
+    m.writeVar("z");
 
-readVar c
+    m.readVar("z");
 
-readVar z
+    m.readVar("c");
 
-readVar a
+    m.readVar("z");
 
-writeVar z
+    m.readVar("a");
 
-readVar z
+    m.writeVar("z");
 
-readVar c
+    m.readVar("z");
 
-readVar z
+    m.readVar("c");
 
-readVar a
+    m.readVar("z");
 
-writeVar z
+    m.readVar("a");
 
-readVar z
+    m.writeVar("z");
 
-readVar c
+    m.readVar("z");
 
-readVar z
+    m.readVar("c");
 
-readVar a
+    m.readVar("z");
 
-writeVar z
+    m.readVar("a");
 
-readVar z
+    m.writeVar("z");
 
-readVar c
+    m.readVar("z");
 
-readVar z
+    m.readVar("c");
 
-readVar a
+    m.readVar("z");
 
-writeVar z
+    m.readVar("a");
 
-readVar z
+    m.writeVar("z");
 
-readVar c
+    m.readVar("z");
 
-readVar z
+    m.readVar("c");
 
-readVar a
+    m.readVar("z");
 
-writeVar z
+    m.readVar("a");
 
-readVar z
+    m.writeVar("z");
 
-readVar c
+    m.readVar("z");
 
-readVar c
+    m.readVar("c");
 
-writeVar z
+    m.readVar("c");
+
+    m.writeVar("z");
+
+    m.endExecution();
+
+}
 

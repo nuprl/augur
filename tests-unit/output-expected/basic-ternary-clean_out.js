@@ -1,24 +1,30 @@
-functionCall 0 0
+exports.drive = (m) => {
 
-push false
+    m.functionCall(0, 0);
 
-functionCall 5 5
+    m.push(false);
 
-push false
+    m.functionCall(5, 5);
 
-writeVar a
+    m.push(false);
 
-push false
+    m.writeVar("a");
 
-writeVar b
+    m.push(false);
 
-push false
+    m.writeVar("b");
 
-readVar b
+    m.push(false);
 
-writeVar c
+    m.readVar("b");
 
-readVar c
+    m.writeVar("c");
 
-writeVar z
+    m.readVar("c");
+
+    m.writeVar("z");
+
+    m.endExecution();
+
+}
 

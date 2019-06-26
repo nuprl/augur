@@ -1,38 +1,44 @@
-functionCall 0 0
+exports.drive = (m) => {
 
-push false
+    m.functionCall(0, 0);
 
-functionCall 5 5
+    m.push(false);
 
-push false
+    m.functionCall(5, 5);
 
-writeVar identity
+    m.push(false);
 
-push false
+    m.writeVar("identity");
 
-writeVar a
+    m.push(false);
 
-readVar identity
+    m.writeVar("a");
 
-readVar identity
+    m.readVar("identity");
 
-push false
+    m.readVar("identity");
 
-functionCall 2 1
+    m.readVar("a");
 
-readVar x
+    m.functionCall(2, 1);
 
-readVar identity
+    m.readVar("x");
 
-readVar a
+    m.readVar("identity");
 
-functionCall 2 1
+    m.push(false);
 
-readVar x
+    m.functionCall(2, 1);
 
-functionCall 2 2
+    m.readVar("x");
 
-readVar x
+    m.functionCall(2, 2);
 
-writeVar z
+    m.readVar("x");
+
+    m.writeVar("z");
+
+    m.endExecution();
+
+}
 

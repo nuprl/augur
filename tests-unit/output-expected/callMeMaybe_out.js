@@ -1,112 +1,110 @@
-functionCall 0 0
+exports.drive = (m) => {
 
-push false
+    m.functionCall(0, 0);
 
-functionCall 5 5
+    m.push(false);
 
-push false
+    m.functionCall(5, 5);
 
-writeVar foo
+    m.push(false);
 
-push false
+    m.writeVar("foo");
 
-writeVar bar
+    m.push(false);
 
-push false
+    m.writeVar("bar");
 
-writeVar baz
+    m.push(false);
 
-push false
+    m.writeVar("baz");
 
-writeVar T
+    m.push(false);
 
-readVar T
+    m.writeVar("T");
 
-functionCall 0 0
+    m.readVar("T");
 
-readVar foo
+    m.functionCall(0, 0);
 
-writeProperty obj0 f
+    m.readVar("foo");
 
-readVar baz
+    m.writeProperty("obj0", "f");
 
-writeProperty obj0 r
+    m.readVar("baz");
 
-writeVar t
+    m.writeProperty("obj0", "r");
 
-push false
+    m.writeVar("t");
 
-writeVar i
+    m.push(false);
 
-readVar i
+    m.writeVar("i");
 
-push false
+    m.readVar("i");
 
-readVar t
+    m.push(false);
 
-readProperty obj0 r
+    m.readProperty("obj0", "r");
 
-functionCall 1 0
+    m.functionCall(1, 0);
 
-readProperty obj0 f
+    m.readProperty("obj0", "f");
 
-functionCall 1 0
+    m.functionCall(1, 0);
 
-readVar a
+    m.readVar("a");
 
-readVar t
+    m.readProperty("obj0", "f");
 
-readProperty obj0 f
+    m.functionCall(1, 0);
 
-functionCall 1 0
+    m.readVar("a");
 
-readVar a
+    m.readVar("t");
 
-readVar t
+    m.readVar("bar");
 
-readVar bar
+    m.writeProperty("obj0", "f");
 
-writeProperty obj0 f
+    m.readVar("i");
 
-readVar i
+    m.writeVar("i");
 
-writeVar i
+    m.readVar("i");
 
-readVar i
+    m.push(false);
 
-push false
+    m.readProperty("obj0", "r");
 
-readVar t
+    m.functionCall(1, 0);
 
-readProperty obj0 r
+    m.readProperty("obj0", "f");
 
-functionCall 1 0
+    m.functionCall(1, 0);
 
-readProperty obj0 f
+    m.readVar("b");
 
-functionCall 1 0
+    m.readProperty("obj0", "f");
 
-readVar b
+    m.functionCall(1, 0);
 
-readVar t
+    m.readVar("b");
 
-readProperty obj0 f
+    m.readVar("t");
 
-functionCall 1 0
+    m.readVar("bar");
 
-readVar b
+    m.writeProperty("obj0", "f");
 
-readVar t
+    m.readVar("i");
 
-readVar bar
+    m.writeVar("i");
 
-writeProperty obj0 f
+    m.readVar("i");
 
-readVar i
+    m.push(false);
 
-writeVar i
+    m.endExecution();
 
-readVar i
-
-push false
+}
 

@@ -1,130 +1,104 @@
-functionCall 0 0
+exports.drive = (m) => {
 
-push false
+    m.functionCall(0, 0);
 
-functionCall 5 5
+    m.push(false);
 
-push false
+    m.functionCall(5, 5);
 
-writeVar a
+    m.push(false);
 
-push false
+    m.writeVar("a");
 
-push false
+    m.push(false);
 
-readVar a
+    m.push(false);
 
-push false
+    m.readVar("a");
 
-push false
+    m.push(false);
 
-writeProperty obj0 4
+    m.push(false);
 
-writeProperty obj0 3
+    m.writeProperty("obj0", "4");
 
-writeProperty obj0 2
+    m.writeProperty("obj0", "3");
 
-writeProperty obj0 1
+    m.writeProperty("obj0", "2");
 
-writeProperty obj0 0
+    m.writeProperty("obj0", "1");
 
-push false
+    m.writeProperty("obj0", "0");
 
-writeVar b
+    m.push(false);
 
-push false
+    m.writeVar("b");
 
-writeVar c
+    m.push(false);
 
-push false
+    m.writeVar("c");
 
-writeVar z
+    m.push(false);
 
-push false
+    m.writeVar("z");
 
-writeVar i
+    m.push(false);
 
-readVar i
+    m.writeVar("i");
 
-readVar c
+    m.readVar("i");
 
-readVar b
+    m.readVar("c");
 
-readVar i
+    m.readVar("b");
 
-readProperty obj0 0
+    m.readVar("i");
 
-writeVar z
+    m.readProperty("obj0", 0);
 
-readVar i
+    m.writeVar("z");
 
-writeVar i
+    m.readVar("i");
 
-readVar i
+    m.writeVar("i");
 
-readVar c
+    m.readVar("i");
 
-readVar b
+    m.readVar("c");
 
-readVar i
+    m.readVar("b");
 
-readProperty obj0 1
+    m.readVar("i");
 
-writeVar z
+    m.readProperty("obj0", 1);
 
-readVar i
+    m.writeVar("z");
 
-writeVar i
+    m.readVar("i");
 
-readVar i
+    m.writeVar("i");
 
-readVar c
+    m.readVar("i");
 
-readVar b
+    m.readVar("c");
 
-readVar i
+    m.readVar("b");
 
-readProperty obj0 2
+    m.readVar("i");
 
-writeVar z
+    m.readProperty("obj0", 2);
 
-readVar i
+    m.writeVar("z");
 
-writeVar i
+    m.readVar("i");
 
-readVar i
+    m.writeVar("i");
 
-readVar c
+    m.readVar("i");
 
-readVar b
+    m.readVar("c");
 
-readVar i
+    m.endExecution();
 
-readProperty obj0 3
-
-writeVar z
-
-readVar i
-
-writeVar i
-
-readVar i
-
-readVar c
-
-readVar b
-
-readVar i
-
-readProperty obj0 4
-
-writeVar z
-
-readVar i
-
-writeVar i
-
-readVar i
-
-readVar c
+}
 
