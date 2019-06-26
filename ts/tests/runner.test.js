@@ -72,7 +72,7 @@ function runTest(testName, done){
         "rm -f " + outputFile + "; " +
         (SHOULD_USE_DOCKER
             // Run test using Docker
-            ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --private --inputFile " + inputFile + " --outputFile " + outputFile
+            ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --inputFile " + inputFile + " --outputFile " + outputFile
             // Run test using local NodeProf installation
             : "cd " + NODEPROF_HOME + "; "
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
