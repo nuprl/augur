@@ -1,3 +1,5 @@
+// NodeProf type definitions.
+
 declare global {
     const J$: Sandbox;
 }

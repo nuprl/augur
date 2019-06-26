@@ -3,6 +3,9 @@ import { Analyzer, main, NPCallbacks, Sandbox } from "./nodeprof";
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
+// An empty NodeProf analysis for the purpose of instrumenting a JS file to
+// observe NodeProf's callbacks.
+
 const interestingBuiltins = new Set([
     "Promise.prototype.then",
 ]);

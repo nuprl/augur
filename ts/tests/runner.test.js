@@ -3,6 +3,8 @@ const shell = require('shelljs');
 const fs = require('fs');
 const {executeInstructions} = require('../dist/src/statemachine/statemachine');
 
+// The Jest test file.
+
 // If the user does not explicitly specify TAINT_ANALYSIS_HOME, assume it to
 // be "..", because the working directory *should* be the "ts" directory.
 const USER_SUPPLIED_TAINT_ANALYSIS_HOME = shell.env['TAINT_ANALYSIS_HOME'];
@@ -33,6 +35,8 @@ function getFileContents(fileName){
     return result.map((s)=>s.trim());
 }
 
+// Make Jest compare the actual and expected generated abstract machine
+// instructions given a test name
 function compareOutput(testName, actualOutputDir, expectedOutputDir){
     const actualOutputPath = actualOutputDir + testName + '_out.js';
     const expectedOutputPath = expectedOutputDir + testName + '_out.js';
@@ -46,6 +50,12 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
     expect(actualOutput).toEqual(expectedOutput);
 }
 
+// Given a test name:
+// - instrument its JS code;
+// - compare the generated instructions with its expected instructions
+// - execute these instructions
+// - compare the result of executing these instructions with the taints
+//   specified in the tests' `spec.json`.
 function runTest(testName, done){
     // Calculate input and output instruction file paths
     const outputFile = ACTUAL_OUT_DIR + testName + '_out.js';
@@ -57,11 +67,12 @@ function runTest(testName, done){
         throw new Error("analysis not found: " + ANALYSIS);
     }
 
+    // The command to instrument the test's JS code
     const command =
         "rm -f " + outputFile + "; " +
         (SHOULD_USE_DOCKER
             // Run test using Docker
-            ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --inputFile " + inputFile + " --outputFile " + outputFile
+            ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --private --inputFile " + inputFile + " --outputFile " + outputFile
             // Run test using local NodeProf installation
             : "cd " + NODEPROF_HOME + "; "
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
@@ -88,6 +99,8 @@ function runTest(testName, done){
     });
 
 }
+
+// Register all tests with Jest
 
 test('callMeMaybe', (done) => runTest('callMeMaybe', done));
 test('foo', (done) => runTest('foo', done));

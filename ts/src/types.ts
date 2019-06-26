@@ -1,5 +1,7 @@
 import { Accessor } from "./nodeprof";
 
+// Various types used throughout the analysis.
+
 export interface StateMachine {
     push: (v: boolean) => void;
     readVar: (s: string) => void;

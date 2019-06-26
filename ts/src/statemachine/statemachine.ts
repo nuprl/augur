@@ -93,10 +93,13 @@ export default class InstructionRunner implements StateMachine {
         logger.debug("funcall, cur stack:", this.taintStack);
         const tempStack = [];
 
+        // Pop off the actual arguments given to this function from taintStack
         for (let i = 0; i < actualArgs; i++) {
             tempStack.push(this.taintStack.pop());
         }
 
+        // If not enough arguments were supplied, they will be "undefined".
+        // This value is *untainted*, so push the untainted marker.
         if (expectedArgs > actualArgs) {
             const diff = expectedArgs - actualArgs;
 
@@ -105,16 +108,21 @@ export default class InstructionRunner implements StateMachine {
             }
         }
 
+        // If too many arguments were supplied, pop their taint markers off
+        // the stack.
         if (expectedArgs < actualArgs) {
             const diff = actualArgs - expectedArgs;
 
             for (let i = 0; i < diff; i++) {
+                // TODO: should this be tempStack?
                 this.taintStack.pop();
             }
         }
 
         logger.debug("funcall, temp stack:", tempStack);
         // tempStack.reverse();
+
+        // Push the actual arguments to taintStack
         tempStack.forEach((v) => this.taintStack.push(v));
         logger.debug("funcall, new stack:", this.taintStack);
         this.state = States.FunctionCall;
@@ -139,7 +147,7 @@ export default class InstructionRunner implements StateMachine {
     }
 }
 
-export function executeInstructions(path, options) {
+export function executeInstructions(path: string, options: Options) {
     console.log(path, options);
     const abstractMachine = new InstructionRunner(options);
     const compiledOutput = require(path);

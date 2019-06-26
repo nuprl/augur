@@ -6,6 +6,10 @@ import logger from "./logger";
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
+// The actual "analysis" registered with NodeProf. This is the first stop for
+// all instrumentation callbacks. Most of these callbacks are passed literally
+// to an abstract machine, which is responsible for performing any actual
+// analysis.
 export default class Analyze implements Analyzer {
     private sandbox: Sandbox;
     private state: StateMachine = new InstructionWriter();

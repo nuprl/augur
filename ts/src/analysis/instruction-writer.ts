@@ -5,13 +5,24 @@ import { Accessor } from "../nodeprof";
 import { Instruction, StateMachine } from "../types";
 import MyLogger from "./mylogger";
 
+// An implementation of an abstract machine that produces JavaScript code.
+// The JavaScript code produced will not actually execute the instructions,
+// but will reproduce the original callbacks to a machine that *will*, such
+// as the JS implementation of this machine: "src/statemachine/statemachine.ts".
+//
+// This implementation provides an easy way to *delay* the execution of
+// instructions, for the purposes of examining the generated callbacks and
+// later execution.
+//
+// The generated JS code will export a function, `drive`, that, given an
+// abstract machine, will drive it with the original callbacks.
 export default class InstructionWriter implements StateMachine {
 
+    // JS code that should appear before and after the callbacks, respectively.
     private preamble: string =  "exports.drive = (m) => {\n";
     private postamble: string = "}\n";
 
-    private instructions: Instruction[] = [];
-
+    // The logger connected to the intended output file.
     // @ts-ignore
     private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
 
@@ -63,8 +74,11 @@ export default class InstructionWriter implements StateMachine {
         this.logger.log(this.postamble);
     }
 
+    // Prepares an argument to a callback to appear in JS code. At the moment,
+    // this only requires correctly quoting strings.
     private prepareArg(arg: any): string {
         // Wrap strings in quotes
+        // TODO: this should also sanitize the argument
         if (typeof arg == "string") {
             return `"${arg}"`;
         } else {
@@ -72,6 +86,7 @@ export default class InstructionWriter implements StateMachine {
         }
     }
 
+    // Actually write the instruction to the output file.
     private writeInstruction(instr: Instruction) {
         const delim = ", ";
         this.logger.log(`    m.${instr.command}(${instr.args.map(this.prepareArg).join(delim)});\n`);
