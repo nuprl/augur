@@ -2,7 +2,7 @@ import { Accessor } from "./nodeprof";
 
 // Various types used throughout the analysis.
 
-export interface StateMachine {
+export interface AbstractMachine {
     push: (v: boolean) => void;
     readVar: (s: string) => void;
     writeVar: (s: string) => void;
@@ -13,7 +13,7 @@ export interface StateMachine {
     endExecution: () => void;
 }
 
-export type Command = keyof StateMachine;
+export type Command = keyof AbstractMachine;
 
 export interface Instruction {
     command: Command;

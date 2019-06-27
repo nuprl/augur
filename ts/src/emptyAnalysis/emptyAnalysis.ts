@@ -1,4 +1,4 @@
-import { Analyzer, main, NPCallbacks, Sandbox } from "./nodeprof";
+import { Analyzer, main, NPCallbacks, Sandbox } from "../nodeprof";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
@@ -117,10 +117,3 @@ export default class Analyze implements Analyzer {
         console.log("evalPost", str);
     }
 }
-
-const main: main = (sandbox) => {
-    // console.log("initializing...");
-    sandbox.analysis = (new Analyze(sandbox));
-};
-
-main(J$);

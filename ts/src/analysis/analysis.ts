@@ -1,6 +1,6 @@
 import { Analyzer, NPCallbacks, Sandbox } from "../nodeprof";
-import { StateMachine } from "../types";
-import InstructionWriter from "./instruction-writer";
+import { AbstractMachine } from "../types";
+import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
 
 // do not remove the following comment
@@ -10,9 +10,9 @@ import logger from "./logger";
 // all instrumentation callbacks. Most of these callbacks are passed literally
 // to an abstract machine, which is responsible for performing any actual
 // analysis.
-export default class Analyze implements Analyzer {
+export default class Analysis implements Analyzer {
     private sandbox: Sandbox;
-    private state: StateMachine = new InstructionWriter();
+    private state: AbstractMachine = new JSWriter();
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;

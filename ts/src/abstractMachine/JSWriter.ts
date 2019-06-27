@@ -2,13 +2,13 @@
 // JALANGI DO NOT INSTRUMENT
 
 import { Accessor } from "../nodeprof";
-import { Instruction, StateMachine } from "../types";
-import MyLogger from "./mylogger";
+import { Instruction, AbstractMachine } from "../types";
+import MyLogger from "../analysis/mylogger";
 
 // An implementation of an abstract machine that produces JavaScript code.
 // The JavaScript code produced will not actually execute the instructions,
 // but will reproduce the original callbacks to a machine that *will*, such
-// as the JS implementation of this machine: "src/statemachine/statemachine.ts".
+// as the JS implementation of this machine: "src/abstractMachine/JSMachine.ts".
 //
 // This implementation provides an easy way to *delay* the execution of
 // instructions, for the purposes of examining the generated callbacks and
@@ -16,7 +16,7 @@ import MyLogger from "./mylogger";
 //
 // The generated JS code will export a function, `drive`, that, given an
 // abstract machine, will drive it with the original callbacks.
-export default class InstructionWriter implements StateMachine {
+export default class JSWriter implements AbstractMachine {
 
     // JS code that should appear before and after the callbacks, respectively.
     private preamble: string =  "exports.drive = (m) => {\n";

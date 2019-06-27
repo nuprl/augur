@@ -1,8 +1,6 @@
-import * as readline from "readline";
-import { Instruction, StateMachine } from "../types";
-import * as stateMachine from "./statemachine";
+import {executeInstructionsFromFile} from "./JSMachine";
 
-// This function is responsible for executing JS abstract machine instructions
+// This script is responsible for executing JS abstract machine instructions
 // from the command line.
 async function main() {
     const instructionsPath = process.argv[2];
@@ -13,7 +11,7 @@ async function main() {
 
     process.stderr.write(
         JSON.stringify(
-            stateMachine.executeInstructions(instructionsPath, options)));
+            executeInstructionsFromFile(instructionsPath, options)));
 }
 
 main();

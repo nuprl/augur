@@ -2,7 +2,7 @@
 // JALANGI DO NOT INSTRUMENT
 
 import { Accessor } from "../nodeprof";
-import { StateMachine } from "../types";
+import { AbstractMachine } from "../types";
 import logger from "./logger";
 
 export interface Options {
@@ -15,7 +15,7 @@ enum States {
     None,
 }
 
-export default class InstructionRunner implements StateMachine {
+export default class JSMachine implements AbstractMachine {
     private taintStack: boolean[] = [];
     private varTaintMap: Map<string, boolean> = new Map();
     private sources: Set<string>;
@@ -147,9 +147,9 @@ export default class InstructionRunner implements StateMachine {
     }
 }
 
-export function executeInstructions(path: string, options: Options) {
+export function executeInstructionsFromFile(path: string, options: Options) {
     console.log(path, options);
-    const abstractMachine = new InstructionRunner(options);
+    const abstractMachine = new JSMachine(options);
     const compiledOutput = require(path);
     console.log(JSON.stringify(compiledOutput));
     compiledOutput.drive(abstractMachine);

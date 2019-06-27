@@ -1,7 +1,7 @@
 const { exec } = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
-const {executeInstructions} = require('../dist/src/statemachine/statemachine');
+const {executeInstructionsFromFile} = require('../dist/src/abstractMachine/JSMachine');
 
 // The Jest test file.
 
@@ -28,7 +28,7 @@ if (SHOULD_USE_DOCKER) {
 const INPUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/input/";
 const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual/";
 const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected/";
-const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/index.js";
+const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
 
 function getFileContents(fileName){
     let result = fs.readFileSync(fileName).toString().split('\n'); // hack: use .split('\n') to ensure that the differences viewer shows line breaks
@@ -93,7 +93,7 @@ function runTest(testName, done){
         compareOutput(testName, ACTUAL_OUT_DIR, EXPECTED_OUT_DIR);
 
         // Compare the result of executing the compiled instructions
-        expect(executeInstructions(outputFile, spec)).toEqual(spec.expectedTaints);
+        expect(executeInstructionsFromFile(outputFile, spec)).toEqual(spec.expectedTaints);
 
         done();
     });
