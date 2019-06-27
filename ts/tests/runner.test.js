@@ -102,6 +102,8 @@ function runTest(testName, done){
 
 // Register all tests with Jest
 
+test('chained-assignment-clean', (done) => runTest('chained-assignment-clean', done));
+test('chained-assignment-tainted', (done) => runTest('chained-assignment-tainted', done));
 test('callMeMaybe', (done) => runTest('callMeMaybe', done));
 test('foo', (done) => runTest('foo', done));
 test('bar', (done) => runTest('bar', done));
@@ -147,3 +149,4 @@ test('for-in-tainted', (done) => runTest('for-in-tainted', done));
 test('init-destructure-obj-tainted', (done) => runTest('init-destructure-obj-tainted', done));
 test('promise-await-tainted', (done) => runTest('promise-await-tainted', done));
 test('promise-then-tainted', (done) => runTest('promise-then-tainted', done));
+

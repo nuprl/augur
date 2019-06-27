@@ -54,6 +54,10 @@ export default class Analysis implements Analyzer {
         this.state.writeVar(name);
     }
 
+    // public endExpression: NPCallbacks.endExpression = (iid) => {
+    //     this.state.pop();
+    // }
+
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
         this.state.readProperty(receiver, offset);
     }

@@ -38,6 +38,12 @@ export default class JSMachine implements AbstractMachine {
         this.taintStack.push(v);
     }
 
+    public pop() {
+        this.resetState();
+        logger.info("pop");
+        this.taintStack.pop();
+    }
+
     public readVar(s: string) {
         this.resetState();
         const r = this.sources.has(s) || this.varTaintMap.get(s);
@@ -48,7 +54,8 @@ export default class JSMachine implements AbstractMachine {
 
     public writeVar(s: string) {
         this.resetState();
-        const v = this.sources.has(s) || this.taintStack.pop();
+        // Do not pop off the stack for a write
+        const v = this.sources.has(s) || this.taintStack[this.taintStack.length - 1];
         logger.info("write", s, v);
         this.varTaintMap.set(s, v);
         // logger.info("wrote", this.varTaintMap.get(s));

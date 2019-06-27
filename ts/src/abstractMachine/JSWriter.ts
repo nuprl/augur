@@ -34,9 +34,12 @@ export default class JSWriter implements AbstractMachine {
         this.logger.log(this.preamble);
     }
 
-    // wrap strings in quotes
     public push(v: boolean) {
         this.writeInstruction({ command: "push", args: [v] });
+    }
+
+    public pop() {
+        this.writeInstruction({ command: "pop", args: [] });
     }
 
     public readVar(s: string) {

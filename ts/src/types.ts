@@ -4,6 +4,7 @@ import { Accessor } from "./nodeprof";
 
 export interface AbstractMachine {
     push: (v: boolean) => void;
+    pop: () => void;
     readVar: (s: string) => void;
     writeVar: (s: string) => void;
     readProperty: (o: any, s: Accessor) => void;
