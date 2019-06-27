@@ -8,27 +8,17 @@ exports.drive = (m) => {
 
     m.push(false);
 
-    m.writeVar("foo");
+    m.writeVar("a");
 
     m.push(false);
 
-    m.writeVar("bar");
-
-    m.readVar("bar");
-
-    m.functionCall(0, 0);
-
-    m.readVar("foo");
-
-    m.functionCall(0, 0);
+    m.writeVar("z");
 
     m.push(false);
 
-    m.readVar("foo");
-
-    m.functionCall(0, 0);
-
     m.push(false);
+
+    m.writeVar("z");
 
     m.endExecution();
 

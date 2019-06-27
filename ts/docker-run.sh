@@ -107,4 +107,4 @@ docker run --rm \
        "(cd /root/ts; \
        /root/mx/mx -p /root/nodeprof/ jalangi \
          --initParam outputFile:/root/output.js \
-         --analysis /root/ts/dist/src/analysis/index.js /root/program.js)"
+         --analysis /root/ts/dist/src/analysis/nodeprofAnalysis.js /root/program.js)"
