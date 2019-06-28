@@ -102,6 +102,9 @@ function runTest(testName, done){
 
 // Register all tests with Jest
 
+
+test('stack-alignment-clean', (done) => runTest('stack-alignment-clean', done));
+
 test('chained-assignment-clean', (done) => runTest('chained-assignment-clean', done));
 test('chained-assignment-tainted', (done) => runTest('chained-assignment-tainted', done));
 test('callMeMaybe', (done) => runTest('callMeMaybe', done));
