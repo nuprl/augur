@@ -102,9 +102,11 @@ function runTest(testName, done){
 
 // Register all tests with Jest
 
-
+test('binary-op-tainted', (done) => runTest('binary-op-tainted', done));
+test('binary-op-clean', (done) => runTest('binary-op-clean', done));
+test('method-call-clean', (done) => runTest('method-call-clean', done));
+test('method-call-tainted', (done) => runTest('method-call-tainted', done));
 test('stack-alignment-clean', (done) => runTest('stack-alignment-clean', done));
-
 test('chained-assignment-clean', (done) => runTest('chained-assignment-clean', done));
 test('chained-assignment-tainted', (done) => runTest('chained-assignment-tainted', done));
 test('callMeMaybe', (done) => runTest('callMeMaybe', done));

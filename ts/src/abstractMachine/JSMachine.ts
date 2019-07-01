@@ -83,6 +83,21 @@ export default class JSMachine implements AbstractMachine {
         logger.info("writeprop", s, this.objects.get(o)[s]);
     }
 
+    public unaryOp(): void {
+        this.resetState();
+
+        // no-op. Unary operations on values do not change their taint status.
+    }
+
+    public binaryOp(): void {
+        this.resetState();
+
+        // Combine the taint markings of the two operands
+        this.taintStack.push(
+            this.taintStack.pop() || this.taintStack.pop()
+        );
+    }
+
     public initVar(s: string) {
         if (this.state === States.FunctionCall && this.stateCounter > 0) {
             const v = this.taintStack.pop();
@@ -152,6 +167,7 @@ export default class JSMachine implements AbstractMachine {
         this.state = States.None;
         this.stateCounter = 0;
     }
+
 }
 
 export function executeInstructionsFromFile(path: string, options: Options) {

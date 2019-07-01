@@ -64,6 +64,14 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "writeProperty", args: [this.objIdMap.get(o), s] });
     }
 
+    public binaryOp(): void {
+        this.writeInstruction({ command: "binaryOp", args: []});
+    }
+
+    public unaryOp(): void {
+        this.writeInstruction({ command: "unaryOp", args: []});
+    }
+
     public initVar(s: string) {
         this.writeInstruction({ command: "initVar", args: [s]});
     }
@@ -94,4 +102,5 @@ export default class JSWriter implements AbstractMachine {
         const delim = ", ";
         this.logger.log(`    m.${instr.command}(${instr.args.map(this.prepareArg).join(delim)});\n`);
     }
+
 }

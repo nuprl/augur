@@ -7,6 +7,8 @@ export interface AbstractMachine {
     pop: () => void;
     readVar: (s: string) => void;
     writeVar: (s: string) => void;
+    binaryOp(): void;
+    unaryOp(): void;
     readProperty: (o: any, s: Accessor) => void;
     writeProperty: (o: any, s: Accessor) => void;
     initVar: (s: string) => void;

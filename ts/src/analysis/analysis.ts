@@ -58,6 +58,14 @@ export default class Analysis implements Analyzer {
     //     this.state.pop();
     // }
 
+    public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {
+        this.state.binaryOp();
+    }
+
+    public unaryPre: NPCallbacks.unaryPre = (iid: number, op: string, left: any) => {
+        this.state.unaryOp();
+    }
+
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
         this.state.readProperty(receiver, offset);
     }
