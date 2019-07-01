@@ -1,7 +1,12 @@
-const a = 3;
+const a = 10;
+var z = 0;
 
-async function identity(x) {
+async function id(x) {
     return x;
 }
 
-const z = await identity(1);
+async function assignToZ(x) {
+    z = await id(x);
+}
+
+assignToZ(5);
