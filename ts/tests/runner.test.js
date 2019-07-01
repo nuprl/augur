@@ -102,6 +102,8 @@ function runTest(testName, done){
 
 // Register all tests with Jest
 
+test('string-concat-tainted', (done) => runTest('string-concat-tainted', done));
+test('string-concat-clean', (done) => runTest('string-concat-clean', done));
 test('binary-op-tainted', (done) => runTest('binary-op-tainted', done));
 test('binary-op-clean', (done) => runTest('binary-op-clean', done));
 test('method-call-clean', (done) => runTest('method-call-clean', done));
