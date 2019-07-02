@@ -20,7 +20,7 @@ export default class JSWriter implements AbstractMachine {
 
     // JS code that should appear before and after the callbacks, respectively.
     private preamble: string =  "exports.drive = (m) => {\n";
-    private postamble: string = "}\n";
+    private postamble: string = "};\n";
 
     // The logger connected to the intended output file.
     // @ts-ignore
