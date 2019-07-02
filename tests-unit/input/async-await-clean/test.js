@@ -1,5 +1,5 @@
 const a = 10;
-var z = 0;
+let z = 0;
 
 async function id(x) {
     return x;

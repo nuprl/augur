@@ -6,6 +6,28 @@ exports.drive = (m) => {
 
     m.functionCall(5, 5);
 
+    m.initVar("exports");
+
+    m.initVar("require");
+
+    m.initVar("module");
+
+    m.initVar("__filename");
+
+    m.initVar("__dirname");
+
+    m.initVar("foo");
+
+    m.initVar("bar");
+
+    m.initVar("baz");
+
+    m.initVar("T");
+
+    m.initVar("t");
+
+    m.initVar("i");
+
     m.push(false);
 
     m.writeVar("foo");
@@ -44,19 +66,31 @@ exports.drive = (m) => {
 
     m.push(false);
 
+    m.binaryOp();
+
+    m.readVar("t");
+
     m.readProperty("obj0", "r");
 
     m.functionCall(1, 0);
 
+    m.initVar("c");
+
     m.readProperty("obj0", "f");
 
     m.functionCall(1, 0);
+
+    m.initVar("a");
 
     m.readVar("a");
 
+    m.readVar("t");
+
     m.readProperty("obj0", "f");
 
     m.functionCall(1, 0);
+
+    m.initVar("a");
 
     m.readVar("a");
 
@@ -68,25 +102,41 @@ exports.drive = (m) => {
 
     m.readVar("i");
 
+    m.push(false);
+
+    m.binaryOp();
+
     m.writeVar("i");
 
     m.readVar("i");
 
     m.push(false);
 
+    m.binaryOp();
+
+    m.readVar("t");
+
     m.readProperty("obj0", "r");
 
     m.functionCall(1, 0);
 
+    m.initVar("c");
+
     m.readProperty("obj0", "f");
 
     m.functionCall(1, 0);
+
+    m.initVar("b");
 
     m.readVar("b");
 
+    m.readVar("t");
+
     m.readProperty("obj0", "f");
 
     m.functionCall(1, 0);
+
+    m.initVar("b");
 
     m.readVar("b");
 
@@ -98,13 +148,19 @@ exports.drive = (m) => {
 
     m.readVar("i");
 
+    m.push(false);
+
+    m.binaryOp();
+
     m.writeVar("i");
 
     m.readVar("i");
 
     m.push(false);
+
+    m.binaryOp();
 
     m.endExecution();
 
-}
+};
 

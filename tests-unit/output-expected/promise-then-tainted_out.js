@@ -6,6 +6,20 @@ exports.drive = (m) => {
 
     m.functionCall(5, 5);
 
+    m.initVar("exports");
+
+    m.initVar("require");
+
+    m.initVar("module");
+
+    m.initVar("__filename");
+
+    m.initVar("__dirname");
+
+    m.initVar("identity");
+
+    m.initVar("a");
+
     m.push(false);
 
     m.writeVar("identity");
@@ -20,11 +34,17 @@ exports.drive = (m) => {
 
     m.functionCall(1, 1);
 
+    m.initVar("x");
+
     m.readVar("Promise");
 
     m.push(false);
 
-    m.functionCall(1, 2);
+    m.functionCall(2, 2);
+
+    m.initVar("resolve");
+
+    m.initVar("reject");
 
     m.readVar("resolve");
 
@@ -36,11 +56,15 @@ exports.drive = (m) => {
 
     m.functionCall(1, 1);
 
+    m.initVar("v");
+
+    m.initVar("z");
+
     m.readVar("v");
 
     m.writeVar("z");
 
     m.endExecution();
 
-}
+};
 

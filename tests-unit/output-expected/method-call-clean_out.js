@@ -18,19 +18,43 @@ exports.drive = (m) => {
 
     m.initVar("a");
 
+    m.initVar("obj");
+
     m.initVar("z");
 
     m.push(false);
 
     m.writeVar("a");
 
-    m.readVar("a");
+    m.push(false);
 
-    m.writeProperty("obj0", "z");
+    m.writeProperty("obj0", "id");
 
     m.push(false);
 
-    m.readProperty("obj0", "z");
+    m.writeVar("obj");
+
+    m.readVar("obj");
+
+    m.readProperty("obj0", "id");
+
+    m.readVar("obj");
+
+    m.readProperty("obj0", "id");
+
+    m.push(false);
+
+    m.functionCall(1, 1);
+
+    m.initVar("x");
+
+    m.readVar("x");
+
+    m.functionCall(1, 1);
+
+    m.initVar("x");
+
+    m.readVar("x");
 
     m.writeVar("z");
 

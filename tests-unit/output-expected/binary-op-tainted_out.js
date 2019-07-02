@@ -16,35 +16,21 @@ exports.drive = (m) => {
 
     m.initVar("__dirname");
 
-    m.initVar("foo");
+    m.initVar("a");
 
-    m.initVar("bar");
-
-    m.push(false);
-
-    m.writeVar("foo");
+    m.initVar("z");
 
     m.push(false);
 
-    m.writeVar("bar");
+    m.writeVar("a");
 
-    m.readVar("bar");
-
-    m.functionCall(0, 0);
-
-    m.unaryOp();
-
-    m.readVar("foo");
-
-    m.functionCall(0, 0);
+    m.readVar("a");
 
     m.push(false);
 
-    m.readVar("foo");
+    m.binaryOp();
 
-    m.functionCall(0, 0);
-
-    m.push(false);
+    m.writeVar("z");
 
     m.endExecution();
 

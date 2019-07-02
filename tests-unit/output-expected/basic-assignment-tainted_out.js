@@ -6,6 +6,20 @@ exports.drive = (m) => {
 
     m.functionCall(5, 5);
 
+    m.initVar("exports");
+
+    m.initVar("require");
+
+    m.initVar("module");
+
+    m.initVar("__filename");
+
+    m.initVar("__dirname");
+
+    m.initVar("a");
+
+    m.initVar("z");
+
     m.push(false);
 
     m.writeVar("a");
@@ -16,5 +30,5 @@ exports.drive = (m) => {
 
     m.endExecution();
 
-}
+};
 

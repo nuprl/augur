@@ -1,7 +1,12 @@
 const a = 3;
+let z = 0;
 
-function identity(x) {
+function id(x) {
     return new Promise((resolve) => resolve(x));
 }
 
-const z = await identity(a);
+async function assignToZ(x) {
+    z = await id(x);
+}
+
+assignToZ(a);

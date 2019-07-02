@@ -16,31 +16,25 @@ exports.drive = (m) => {
 
     m.initVar("__dirname");
 
-    m.initVar("id");
+    m.initVar("MyPromise");
 
-    m.initVar("assignToZ");
+    m.initVar("identity");
 
     m.initVar("a");
 
-    m.initVar("z");
+    m.push(false);
+
+    m.writeVar("MyPromise");
 
     m.push(false);
 
-    m.writeVar("id");
-
-    m.push(false);
-
-    m.writeVar("assignToZ");
+    m.writeVar("identity");
 
     m.push(false);
 
     m.writeVar("a");
 
-    m.push(false);
-
-    m.writeVar("z");
-
-    m.readVar("assignToZ");
+    m.readVar("identity");
 
     m.readVar("a");
 
@@ -48,31 +42,47 @@ exports.drive = (m) => {
 
     m.initVar("x");
 
-    m.unaryOp();
-
-    m.readVar("id");
-
-    m.readVar("x");
-
-    m.functionCall(1, 1);
-
-    m.initVar("x");
-
-    m.readVar("Promise");
+    m.readVar("MyPromise");
 
     m.push(false);
 
-    m.functionCall(1, 2);
+    m.functionCall(1, 1);
+
+    m.initVar("executor");
+
+    m.readVar("executor");
+
+    m.push(false);
+
+    m.push(false);
+
+    m.functionCall(2, 2);
 
     m.initVar("resolve");
+
+    m.initVar("reject");
 
     m.readVar("resolve");
 
     m.readVar("x");
 
-    m.unaryOp();
+    m.functionCall(1, 1);
 
-    m.writeVar("z");
+    m.initVar("val");
+
+    m.readVar("val");
+
+    m.push(false);
+
+    m.writeProperty("obj0", "then");
+
+    m.readProperty("obj0", "then");
+
+    m.push(false);
+
+    m.functionCall(1, 1);
+
+    m.initVar("onfulfilled");
 
     m.endExecution();
 

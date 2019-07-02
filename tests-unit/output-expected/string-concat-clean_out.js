@@ -16,41 +16,37 @@ exports.drive = (m) => {
 
     m.initVar("__dirname");
 
-    m.initVar("identity");
+    m.initVar("sendToThirdParty");
 
-    m.initVar("a");
-
-    m.push(false);
-
-    m.writeVar("identity");
+    m.initVar("input");
 
     m.push(false);
 
-    m.writeVar("a");
-
-    m.readVar("identity");
+    m.writeVar("sendToThirdParty");
 
     m.push(false);
+
+    m.writeVar("input");
+
+    m.readVar("sendToThirdParty");
+
+    m.readVar("input");
 
     m.functionCall(1, 1);
 
-    m.initVar("x");
+    m.initVar("data");
 
-    m.readVar("x");
+    m.initVar("message");
 
-    m.readProperty("obj0", "then");
+    m.initVar("output");
 
     m.push(false);
 
-    m.functionCall(1, 1);
+    m.writeVar("message");
 
-    m.initVar("v");
+    m.readVar("message");
 
-    m.initVar("z");
-
-    m.readVar("v");
-
-    m.writeVar("z");
+    m.writeVar("output");
 
     m.endExecution();
 
