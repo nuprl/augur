@@ -102,6 +102,15 @@ function runTest(testName, done){
 
 // Register all tests with Jest
 
+test('computed-property-name-tainted', (done) => runTest('computed-property-name-tainted', done));
+test('computed-property-name-clean', (done) => runTest('computed-property-name-clean', done));
+test('function-declaration-tainted', (done) => runTest('function-declaration-tainted', done));
+test('function-declaration-clean', (done) => runTest('function-declaration-clean', done));
+test('implicit-this-declaration-clean', (done) => runTest('implicit-this-declaration-clean', done));
+test('function-literal-clean', (done) => runTest('function-literal-clean', done));
+test('unary-tainted', (done) => runTest('unary-tainted', done));
+test('unary-clean', (done) => runTest('unary-clean', done));
+test('literal-clean', (done) => runTest('literal-clean', done));
 test('user-closures-tainted', (done) => runTest('user-closures-tainted', done));
 test('string-concat-tainted', (done) => runTest('string-concat-tainted', done));
 test('string-concat-clean', (done) => runTest('string-concat-clean', done));
@@ -144,6 +153,8 @@ test('for-loop-tainted', (done) => runTest('for-loop-tainted', done));
 test('for-loop-assign-tainted', (done) => runTest('for-loop-assign-tainted', done));
 test('init-array-tainted', (done) => runTest('init-array-tainted', done));
 test('init-obj-tainted', (done) => runTest('init-obj-tainted', done));
+test('init-obj-number-key-tainted', (done) => runTest('init-obj-number-key-tainted', done));
+test('init-obj-number-key-clean', (done) => runTest('init-obj-number-key-clean', done));
 test('set-array-tainted', (done) => runTest('set-array-tainted', done));
 test('set-obj-tainted', (done) => runTest('set-obj-tainted', done));
 test('async-await-clean', (done) => runTest('async-await-clean', done));
