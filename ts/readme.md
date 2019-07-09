@@ -60,7 +60,7 @@ As the internal development version of NodeProf is a private Github repo, authen
 | Property read                  |      |             | x    |         |
 | Property write                 |      |             | x    |         |
 | Unary expression               |      |             | x    |         |
-| Binary expression              |      |             |      |         |
+| Binary expression              |      |             | x    |         |
 | Implicit declaration of `this` | x    |             |      | see #19 |
 | Function declaration           |      |             | x    |         |
 | Function arguments             |      |             | x    |         |
