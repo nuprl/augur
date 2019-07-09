@@ -102,29 +102,6 @@ function runTest(testName, done){
 
 // Register all tests with Jest
 
-test('computed-property-name-tainted', (done) => runTest('computed-property-name-tainted', done));
-test('computed-property-name-clean', (done) => runTest('computed-property-name-clean', done));
-test('function-declaration-tainted', (done) => runTest('function-declaration-tainted', done));
-test('function-declaration-clean', (done) => runTest('function-declaration-clean', done));
-test('implicit-this-declaration-clean', (done) => runTest('implicit-this-declaration-clean', done));
-test('function-literal-clean', (done) => runTest('function-literal-clean', done));
-test('unary-tainted', (done) => runTest('unary-tainted', done));
-test('unary-clean', (done) => runTest('unary-clean', done));
-test('literal-clean', (done) => runTest('literal-clean', done));
-test('user-closures-tainted', (done) => runTest('user-closures-tainted', done));
-test('string-concat-tainted', (done) => runTest('string-concat-tainted', done));
-test('string-concat-clean', (done) => runTest('string-concat-clean', done));
-test('binary-op-tainted', (done) => runTest('binary-op-tainted', done));
-test('binary-op-clean', (done) => runTest('binary-op-clean', done));
-test('method-call-clean', (done) => runTest('method-call-clean', done));
-test('method-call-tainted', (done) => runTest('method-call-tainted', done));
-test('stack-alignment-clean', (done) => runTest('stack-alignment-clean', done));
-test('stack-alignment-tainted', (done) => runTest('stack-alignment-tainted', done));
-test('chained-assignment-clean', (done) => runTest('chained-assignment-clean', done));
-test('chained-assignment-tainted', (done) => runTest('chained-assignment-tainted', done));
-test('callMeMaybe', (done) => runTest('callMeMaybe', done));
-test('foo', (done) => runTest('foo', done));
-test('bar', (done) => runTest('bar', done));
 
 // existing tests that have been moved over
 test('basic-assignment-clean', (done) => runTest('basic-assignment-clean', done));
@@ -170,3 +147,29 @@ test('async-then-tainted', (done) => runTest('async-then-tainted', done));
 test('init-destructure-obj-tainted', (done) => runTest('init-destructure-obj-tainted', done));
 test('promise-then-tainted', (done) => runTest('promise-then-tainted', done))
 
+// New tests
+test('computed-property-name-tainted', (done) => runTest('computed-property-name-tainted', done));
+test('computed-property-name-clean', (done) => runTest('computed-property-name-clean', done));
+test('function-declaration-tainted', (done) => runTest('function-declaration-tainted', done));
+test('function-declaration-clean', (done) => runTest('function-declaration-clean', done));
+test('implicit-this-declaration-clean', (done) => runTest('implicit-this-declaration-clean', done));
+test('function-literal-clean', (done) => runTest('function-literal-clean', done));
+test('unary-tainted', (done) => runTest('unary-tainted', done));
+test('unary-clean', (done) => runTest('unary-clean', done));
+test('literal-clean', (done) => runTest('literal-clean', done));
+test('user-closures-tainted', (done) => runTest('user-closures-tainted', done));
+test('string-concat-tainted', (done) => runTest('string-concat-tainted', done));
+test('string-concat-clean', (done) => runTest('string-concat-clean', done));
+test('binary-op-tainted', (done) => runTest('binary-op-tainted', done));
+test('binary-op-clean', (done) => runTest('binary-op-clean', done));
+test('method-call-clean', (done) => runTest('method-call-clean', done));
+test('method-call-tainted', (done) => runTest('method-call-tainted', done));
+test('stack-alignment-clean', (done) => runTest('stack-alignment-clean', done));
+test('stack-alignment-tainted', (done) => runTest('stack-alignment-tainted', done));
+test('chained-assignment-clean', (done) => runTest('chained-assignment-clean', done));
+test('chained-assignment-tainted', (done) => runTest('chained-assignment-tainted', done));
+test('callMeMaybe', (done) => runTest('callMeMaybe', done));
+test('foo', (done) => runTest('foo', done));
+test('bar', (done) => runTest('bar', done));
+test('native-array-reduce-clean', (done) => runTest('native-array-reduce-clean', done));
+test('native-array-reduce-tainted', (done) => runTest('native-array-reduce-tainted', done));
