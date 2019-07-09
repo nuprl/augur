@@ -1,4 +1,4 @@
-# Javascript Taint Analysis (implemented in typescript)
+# JavaScript Taint Analysis (implemented in TypeScript)
 
 ## WebStorm project
 
@@ -51,3 +51,19 @@ We also support using the internal development version of NodeProf, which may im
 
 As the internal development version of NodeProf is a private Github repo, authentication is required when using `--private` with `docker-build.sh`.
 
+## JavaScript Feature Support
+|                                | None | In Progress | Done | Notes   |
+|--------------------------------+------+-------------+------+---------|
+| Literal expression             |      | x           |      | see #18 |
+| Variable read                  |      |             | x    |         |
+| Variable write                 |      |             | x    |         |
+| Property read                  |      |             | x    |         |
+| Property write                 |      |             | x    |         |
+| Unary expression               |      |             | x    |         |
+| Binary expression              |      |             |      |         |
+| Implicit declaration of `this` | x    |             |      | see #19 |
+| Function declaration           |      |             | x    |         |
+| Function arguments             |      |             | x    |         |
+| Variable assignment            |      | x           |      | see #20 |
+| Function call                  |      | x           |      | see #21 |
+| Native functions               | x    |             |      | see #22 |
