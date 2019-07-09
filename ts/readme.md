@@ -53,7 +53,7 @@ As the internal development version of NodeProf is a private Github repo, authen
 
 ## JavaScript Feature Support
 |                                | None | In Progress | Done | Notes   |
-|--------------------------------+------+-------------+------+---------|
+|--------------------------------|------|-------------|------|---------|
 | Literal expression             |      | x           |      | see #18 |
 | Variable read                  |      |             | x    |         |
 | Variable write                 |      |             | x    |         |
