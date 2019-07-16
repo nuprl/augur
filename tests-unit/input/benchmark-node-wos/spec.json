@@ -1,0 +1,16 @@
+{
+	"main": "node-wos.js",
+	"sources": [
+		{"type": "function",
+			"name": "dummySource",
+			"fileName": "node-wos.js"}
+	],
+	"sinks": [
+		{"type": "function",
+			"name": "exec"}
+	],
+	"expectedFlows": [
+		{"type": "function",
+			"name": "exec"}
+	]
+}

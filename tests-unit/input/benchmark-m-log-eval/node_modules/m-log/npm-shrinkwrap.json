@@ -1,0 +1,16 @@
+{
+  "name": "m-log",
+  "version": "0.0.1",
+  "dependencies": {
+    "colors": {
+      "version": "1.1.2",
+      "from": "colors@>=1.1.2 <2.0.0",
+      "resolved": "https://registry.npmjs.org/colors/-/colors-1.1.2.tgz"
+    },
+    "date-format": {
+      "version": "0.0.2",
+      "from": "date-format@0.0.2",
+      "resolved": "https://registry.npmjs.org/date-format/-/date-format-0.0.2.tgz"
+    }
+  }
+}

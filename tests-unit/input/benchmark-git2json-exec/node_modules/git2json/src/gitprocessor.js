@@ -1,0 +1,12 @@
+/* 
+	processor. only processes all processor plugins
+*/
+module.exports = function(commits, plugins) { 
+	// Apply any processing plugins on the value
+	if(plugins) plugins.forEach(function(f) { value = f(commits)});
+
+  Object.keys(commits).forEach(function(hash) {
+                var commit = commits[hash];
+	})
+};
+

@@ -1,0 +1,35 @@
+
+- git logger -> load history into json model
+	{
+	'commit-hash': 'H', 
+	'parent-hash': 'T',
+	'author-name': 'an',
+	'author-email': 'ae',
+	'author-date': 'at',
+	'committer-name': 'cn',
+	'committer-email': 'ce',
+	'committer-date': 'ct',
+	'encoding': 'e',
+	'subject': 's',
+	'sanitized-subject': 'f',
+	'body': 'b',
+	}
+
+
+
+
+- git parser -> parse history and figure out branches, relations
+	- serverside
+
+
+- renderer - render history
+	- render branches
+		- add button to checkout
+	- render commit
+		- plugin able. add button for merge, 
+	- render relation
+	
+
+
+https://github.com/nickola/web-console
+https://github.com/jcubic/jquery.terminal

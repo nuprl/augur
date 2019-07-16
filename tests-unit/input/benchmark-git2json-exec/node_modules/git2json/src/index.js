@@ -1,0 +1,34 @@
+
+var gitlogger = require('./gitlogger.js')
+var gitparser = require('./gitparser.js')
+var gitprocessor = require('./gitprocessor.js')
+var defaultParserplugins = [ 
+	require('./gitparser-plugin-refnames.js'), 
+	require('./gitparser-plugin-parents.js') ]
+
+var defaultProcessorplugins = [ 
+	require('./gitprocessor-plugin-relations.js'), 
+	require('./gitprocessor-plugin-heads.js'), 
+	require('./gitprocessor-plugin-index.js') ]
+
+module.exports = {
+	logger : gitlogger,
+	parser : gitparser,
+	processor : gitprocessor,
+	parserplugins : defaultParserplugins,
+	processorplugins : defaultProcessorplugins, 
+
+	run : function(callback, maxCommits) {
+		var parserplugins = this.parserplugins;
+		var processorplugins = this.processorplugins;
+		var loggerCallback = function(text) {
+			var commits = gitparser(text, parserplugins)
+			gitprocessor(commits, processorplugins);
+
+			callback(commits);
+		}
+
+		gitlogger.retrieve(maxCommits || 300, loggerCallback)
+	}
+}
+

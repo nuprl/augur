@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="397a143a-f4ba-4e4e-804a-eadde67eb688" name="Default" comment="" />
+    <ignored path="cocos-utils.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="node_modules/" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="cocos-utils" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.5386041">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="genJsRes.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/plugins/genJsRes.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="283" max-vertical-offset="810">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="install.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/plugins/install.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="13" column="0" selection-start="625" selection-end="625" vertical-scroll-proportion="0.0" vertical-offset="896" max-vertical-offset="1410">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="help.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/plugins/help.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="403" max-vertical-offset="930">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="genRes.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/plugins/genRes.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="223" max-vertical-offset="750">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="new.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/plugins/new.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="581" max-vertical-offset="1095">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="update.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/plugins/update.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="821" max-vertical-offset="1335">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="version.js" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/lib/plugins/version.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="11" column="14" selection-start="332" selection-end="332" vertical-scroll-proportion="0.31309298" vertical-offset="0" max-vertical-offset="527">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="publish.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/plugins/publish.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="2141" max-vertical-offset="2655">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="core4cc.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/core/core4cc.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="10" column="3" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4440">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="delCode.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/core/delCode.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="9" column="17" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0" vertical-offset="2820" max-vertical-offset="3390">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="fileFmt.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/core/fileFmt.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="80" max-vertical-offset="630">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pluginRunner.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/core/pluginRunner.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="555">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/obj/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="3" column="0" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="OptCfg.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/obj/OptCfg.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PluginCfg.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/obj/PluginCfg.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="build.js" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/lib/plugins/build.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ResGen.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/core/ResGen.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="74" column="6" selection-start="2798" selection-end="2798" vertical-scroll-proportion="0.0" vertical-offset="320" max-vertical-offset="1275">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="cfgSearcher.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/core/cfgSearcher.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="3245" max-vertical-offset="3795">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/templates/projects/project/cocos2d.js" />
+        <option value="$PROJECT_DIR$/templates/projects/project/cfg/resCfg.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/cfg/consts.js" />
+        <option value="$PROJECT_DIR$/lib/plugins/update.js" />
+        <option value="$PROJECT_DIR$/lib/plugins/install.js" />
+        <option value="$PROJECT_DIR$/templates/install/package.json" />
+        <option value="$PROJECT_DIR$/lib/plugins/genJsRes.js" />
+        <option value="$PROJECT_DIR$/cfg/msgCode.js" />
+        <option value="$PROJECT_DIR$/lib/plugins/new.js" />
+        <option value="$PROJECT_DIR$/lib/core/core4cc.js" />
+        <option value="$PROJECT_DIR$/lib/core/argvParser.js" />
+        <option value="$PROJECT_DIR$/lib/core/ResGen.js" />
+        <option value="$PROJECT_DIR$/lib/plugins/publish.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/npm-debug.log" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1961" />
+    <option name="y" value="28" />
+    <option name="width" value="1895" />
+    <option name="height" value="993" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cocos-utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cocos-utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cocos-utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Ignored.Files" />
+    <property name="last_opened_file_path" value="$USER_HOME$/WebstormProjects/cocos2d-html5" />
+    <property name="FullScreen" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets" />
+      <recent name="$PROJECT_DIR$/templates/projects/project/res/Audio" />
+      <recent name="$PROJECT_DIR$/lib/plugins" />
+      <recent name="$PROJECT_DIR$/templates/install" />
+      <recent name="$PROJECT_DIR$/lib/jar" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/plugins" />
+      <recent name="$PROJECT_DIR$/templates/projects/project/res" />
+      <recent name="$PROJECT_DIR$/lib/bak" />
+      <recent name="$PROJECT_DIR$/templates/compile" />
+      <recent name="$PROJECT_DIR$/templates/projects" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.publish.js">
+    <configuration default="false" name="help.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="help.js" working-dir="$PROJECT_DIR$/src/plugins">
+      <browser start="false" url="" with-js-debugger="false" />
+      <RunnerSettings RunnerId="NodeJS.debug" />
+      <RunnerSettings RunnerId="NodeJS.run" />
+      <ConfigurationWrapper RunnerId="NodeJS.debug" />
+      <ConfigurationWrapper RunnerId="NodeJS.run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="version.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="version.js" working-dir="$PROJECT_DIR$/src/plugins">
+      <browser start="false" url="" with-js-debugger="false" />
+      <RunnerSettings RunnerId="NodeJS.run" />
+      <ConfigurationWrapper RunnerId="NodeJS.run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="searchJs.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="../lib/cfgSearcher.js" working-dir="$PROJECT_DIR$/src">
+      <browser start="false" url="" with-js-debugger="false" />
+      <RunnerSettings RunnerId="NodeJS.run" />
+      <ConfigurationWrapper RunnerId="NodeJS.run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="index.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="index.js" working-dir="$PROJECT_DIR$">
+      <browser start="false" url="" with-js-debugger="false" />
+      <RunnerSettings RunnerId="NodeJS.run" />
+      <ConfigurationWrapper RunnerId="NodeJS.run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="publish.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="publish.js" working-dir="$PROJECT_DIR$/lib/plugins">
+      <browser start="false" url="" with-js-debugger="false" />
+      <RunnerSettings RunnerId="NodeJS.run" />
+      <ConfigurationWrapper RunnerId="NodeJS.run" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="name" value="Dart" />
+      <option name="saveOutputToFile" value="false" />
+      <option name="showConsoleOnStdErr" value="false" />
+      <option name="showConsoleOnStdOut" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <browser start="false" url="" with-js-debugger="false" />
+      <method />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.help.js" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.version.js" />
+      <item index="2" class="java.lang.String" itemvalue="Node.js.searchJs.js" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.index.js" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.publish.js" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.publish.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.index.js" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.searchJs.js" />
+        <item index="3" class="java.lang.String" itemvalue="Node.js.version.js" />
+        <item index="4" class="java.lang.String" itemvalue="Node.js.help.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="397a143a-f4ba-4e4e-804a-eadde67eb688" name="Default" comment="" />
+      <created>1385445035399</created>
+      <updated>1385445035399</updated>
+    </task>
+    <task id="LOCAL-00001" summary="version 0.0.11">
+      <created>1385603736818</created>
+      <updated>1385603736818</updated>
+    </task>
+    <task id="LOCAL-00002" summary="version 0.0.12">
+      <created>1385631549201</created>
+      <updated>1385631549201</updated>
+    </task>
+    <task id="LOCAL-00003" summary="更改模板结构">
+      <created>1385632318703</created>
+      <updated>1385632318703</updated>
+    </task>
+    <task id="LOCAL-00004" summary="添加cocos.json的配置说明">
+      <created>1385633619751</created>
+      <updated>1385633619751</updated>
+    </task>
+    <task id="LOCAL-00005" summary="更新版本为0.0.13，使用closure compiler，而没有使用uglifyjs。并且将npm install 功能从cocos install中移出来。">
+      <created>1385979833932</created>
+      <updated>1385979833932</updated>
+    </task>
+    <task id="LOCAL-00006" summary="0.0.14版本，对build.xml目录的改变，以及对ccConfig.js重命名为cocos2d.js">
+      <created>1386215711168</created>
+      <updated>1386215711168</updated>
+    </task>
+    <task id="LOCAL-00007" summary="0.0.14版本，修改了模板，并且添加了-full指令">
+      <created>1386225998096</created>
+      <updated>1386225998096</updated>
+    </task>
+    <task id="LOCAL-00008" summary="0.0.15版本，添加了去除log的功能。会再temp4publish/build中生成所有的js文件，并去除log。">
+      <created>1386294578946</created>
+      <updated>1386294578946</updated>
+    </task>
+    <task id="LOCAL-00009" summary="README修改了一些，未完整。">
+      <created>1386325566548</created>
+      <updated>1386325566548</updated>
+    </task>
+    <task id="LOCAL-00010" summary="添加了对输入参数的简单校验。&#10;模板进行了改动。&#10;添加了delLog的开关，默认为关。&#10;">
+      <created>1386574783802</created>
+      <updated>1386574783802</updated>
+    </task>
+    <task id="LOCAL-00011" summary="对信息提示进行改进中。。。。">
+      <created>1387276136167</created>
+      <updated>1387276136167</updated>
+    </task>
+    <task id="LOCAL-00012" summary="改造">
+      <created>1387448136120</created>
+      <updated>1387448136120</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Update">
+      <created>1387767568642</created>
+      <updated>1387767568642</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Update">
+      <created>1387768051544</created>
+      <updated>1387768051544</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Change structure.">
+      <created>1387798211697</created>
+      <updated>1387798211697</updated>
+    </task>
+    <task id="LOCAL-00016" summary="update version">
+      <created>1387798243163</created>
+      <updated>1387798243163</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update version">
+      <created>1388039773052</created>
+      <updated>1388039773052</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update readme&#10;">
+      <created>1388040023292</created>
+      <updated>1388040023292</updated>
+    </task>
+    <task id="LOCAL-00019" summary="update functions&#10;">
+      <created>1388052931880</created>
+      <updated>1388052931880</updated>
+    </task>
+    <task id="LOCAL-00020" summary="update help&#10;">
+      <created>1388061277951</created>
+      <updated>1388061277951</updated>
+    </task>
+    <task id="LOCAL-00021" summary="update readme&#10;">
+      <created>1388061506697</created>
+      <updated>1388061506697</updated>
+    </task>
+    <task id="LOCAL-00022" summary="update readme&#10;">
+      <created>1388061611753</created>
+      <updated>1388061611753</updated>
+    </task>
+    <task id="LOCAL-00023" summary="update readme&#10;">
+      <created>1388061668930</created>
+      <updated>1388061668930</updated>
+    </task>
+    <task id="LOCAL-00024" summary="update readme&#10;">
+      <created>1388061746510</created>
+      <updated>1388061746510</updated>
+    </task>
+    <task id="LOCAL-00025" summary="update msgCode&#10;">
+      <created>1388062674427</created>
+      <updated>1388062674427</updated>
+    </task>
+    <task id="LOCAL-00026" summary="update msgCode&#10;">
+      <created>1388063094913</created>
+      <updated>1388063094913</updated>
+    </task>
+    <task id="LOCAL-00027" summary="update functions&#10;">
+      <created>1388065447619</created>
+      <updated>1388065447619</updated>
+    </task>
+    <task id="LOCAL-00028" summary="update version&#10;">
+      <created>1388065472544</created>
+      <updated>1388065472544</updated>
+    </task>
+    <task id="LOCAL-00029" summary="update readme">
+      <created>1388113486975</created>
+      <updated>1388113486975</updated>
+    </task>
+    <task id="LOCAL-00030" summary="update readme">
+      <created>1388114010774</created>
+      <updated>1388114010774</updated>
+    </task>
+    <task id="LOCAL-00031" summary="update readme">
+      <created>1388115056071</created>
+      <updated>1388115056071</updated>
+    </task>
+    <task id="LOCAL-00032" summary="update readme">
+      <created>1388115712519</created>
+      <updated>1388115712519</updated>
+    </task>
+    <task id="LOCAL-00033" summary="update readme">
+      <created>1388133305019</created>
+      <updated>1388133305019</updated>
+    </task>
+    <task id="LOCAL-00034" summary="update readme">
+      <created>1388133328794</created>
+      <updated>1388133328794</updated>
+    </task>
+    <task id="LOCAL-00035" summary="update version">
+      <created>1388133673536</created>
+      <updated>1388133673536</updated>
+    </task>
+    <task id="LOCAL-00036" summary="update version">
+      <created>1388153506785</created>
+      <updated>1388153506785</updated>
+    </task>
+    <task id="LOCAL-00037" summary="update version">
+      <created>1388379776534</created>
+      <updated>1388379776534</updated>
+    </task>
+    <task id="LOCAL-00038" summary="update readme">
+      <created>1388382193082</created>
+      <updated>1388382193083</updated>
+    </task>
+    <task id="LOCAL-00039" summary="update readme">
+      <created>1388655609063</created>
+      <updated>1388655609063</updated>
+    </task>
+    <task id="LOCAL-00040" summary="update readme">
+      <created>1388656134072</created>
+      <updated>1388656134072</updated>
+    </task>
+    <task id="LOCAL-00041" summary="update readme">
+      <created>1388667509287</created>
+      <updated>1388667509287</updated>
+    </task>
+    <task id="LOCAL-00042" summary="update readme">
+      <created>1388669251616</created>
+      <updated>1388669251617</updated>
+    </task>
+    <task id="LOCAL-00043" summary="update readme">
+      <created>1388669500482</created>
+      <updated>1388669500482</updated>
+    </task>
+    <task id="LOCAL-00044" summary="update readme">
+      <created>1388670136768</created>
+      <updated>1388670136768</updated>
+    </task>
+    <task id="LOCAL-00045" summary="update readme">
+      <created>1388739168048</created>
+      <updated>1388739168048</updated>
+    </task>
+    <task id="LOCAL-00046" summary="update readme">
+      <created>1388739777310</created>
+      <updated>1388739777310</updated>
+    </task>
+    <task id="LOCAL-00047" summary="update template">
+      <created>1388741914208</created>
+      <updated>1388741914208</updated>
+    </task>
+    <task id="LOCAL-00048" summary="update readme">
+      <created>1388750274213</created>
+      <updated>1388750274213</updated>
+    </task>
+    <task id="LOCAL-00049" summary="add update plugin">
+      <created>1389004478034</created>
+      <updated>1389004478034</updated>
+    </task>
+    <task id="LOCAL-00050" summary="update">
+      <created>1389017191577</created>
+      <updated>1389017191577</updated>
+    </task>
+    <task id="LOCAL-00051" summary="update version">
+      <created>1389018580093</created>
+      <updated>1389018580093</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1961" y="28" width="1895" height="993" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32912844" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33791524" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16239317" sideWeight="0.66208476" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39976957" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760596" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30584192" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21764033" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760596" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="version 0.0.11" />
+    <MESSAGE value="version 0.0.12" />
+    <MESSAGE value="更改模板结构" />
+    <MESSAGE value="添加cocos.json的配置说明" />
+    <MESSAGE value="更新版本为0.0.13，使用closure compiler，而没有使用uglifyjs。并且将npm install 功能从cocos install中移出来。" />
+    <MESSAGE value="0.0.14版本，对build.xml目录的改变，以及对ccConfig.js重命名为cocos2d.js" />
+    <MESSAGE value="0.0.14版本，修改了模板，并且添加了-full指令" />
+    <MESSAGE value="0.0.15版本，添加了去除log的功能。会再temp4publish/build中生成所有的js文件，并去除log。" />
+    <MESSAGE value="README修改了一些，未完整。" />
+    <MESSAGE value="添加了对输入参数的简单校验。&#10;模板进行了改动。&#10;添加了delLog的开关，默认为关。&#10;" />
+    <MESSAGE value="对信息提示进行改进中。。。。" />
+    <MESSAGE value="改造" />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Change structure." />
+    <MESSAGE value="update help&#10;" />
+    <MESSAGE value="update readme&#10;" />
+    <MESSAGE value="update msgCode&#10;" />
+    <MESSAGE value="update functions&#10;" />
+    <MESSAGE value="update version&#10;" />
+    <MESSAGE value="update template" />
+    <MESSAGE value="update readme" />
+    <MESSAGE value="add update plugin" />
+    <MESSAGE value="update" />
+    <MESSAGE value="update version" />
+    <option name="LAST_COMMIT_MESSAGE" value="update version" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="26" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/cfg/cocos.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="645">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plugins/help.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cfg/msgCode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="1744" selection-end="1744" vertical-scroll-proportion="0.0" vertical-offset="335" max-vertical-offset="1995">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plugins/genRes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cfg/consts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="23" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="825">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plugins/install.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="625" selection-end="625" vertical-scroll-proportion="0.0" vertical-offset="896" max-vertical-offset="1410">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/projects/project/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="165">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plugins/new.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/projects/project/mini.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plugins/publish.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2655">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/projects/project/release.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="495">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plugins/update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1335">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/core/argvParser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="40" selection-start="978" selection-end="978" vertical-scroll-proportion="0.0" vertical-offset="283" max-vertical-offset="810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plugins/version.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="14" selection-start="332" selection-end="332" vertical-scroll-proportion="0.31309298" vertical-offset="0" max-vertical-offset="527">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plugins/genBaseCfg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1020">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
