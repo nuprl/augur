@@ -80,6 +80,10 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "functionCall", args: [name, expectedNumArgs, actualNumArgs]});
     }
 
+    public builtin(name: string, actualArgs: number) {
+        this.writeInstruction({ command: "builtin", args: [name, actualArgs]});
+    }
+
     public endExecution() {
         this.writeInstruction({ command: "endExecution", args: [] });
         this.logger.log(this.postamble);

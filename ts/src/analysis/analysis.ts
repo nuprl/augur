@@ -78,7 +78,14 @@ export default class Analysis implements Analyzer {
         this.state.functionCall(f.name, f.length, args.length);
     }
 
+    public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
+        this.state.builtin("eval", 1); // eval always takes a single arg
+    }
+
     public builtinEnter: NPCallbacks.builtinEnter = (name: string, f: Invoked, receiver: Receiver, args: any[]) => {
+        if (name.includes("eval")) {
+            console.log("built in encountered: " + name);
+        }
         if (name === "exec" || name === "eval") {
             this.state.functionCall(name, f.length, args.length);
         }
