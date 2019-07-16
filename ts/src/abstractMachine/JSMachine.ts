@@ -2,13 +2,9 @@
 // JALANGI DO NOT INSTRUMENT
 
 import { Accessor } from "../nodeprof";
-import { AbstractMachine } from "../types";
+import {AbstractMachine, TaintDescription, RunSpecification} from "../types";
 import logger from "./logger";
-
-export interface Options {
-    sources: string[];
-    sinks: string[];
-}
+import {sameDescription} from "../utils";
 
 enum States {
     FunctionCall,
@@ -18,16 +14,15 @@ enum States {
 export default class JSMachine implements AbstractMachine {
     private taintStack: boolean[] = [];
     private varTaintMap: Map<string, boolean> = new Map();
-    private sources: Set<string>;
-    private sinks: Set<string>;
+    private spec: RunSpecification;
     private objects: Map<any, {}>;
     private state: States = States.None;
     private stateCounter: number = 0;
+    private flows: Set<TaintDescription> = new Set();
 
-    constructor({ sources, sinks }: Options) {
+    constructor(spec: RunSpecification) {
         // logger.info(sources, sinks);
-        this.sources = new Set(sources);
-        this.sinks = new Set(sinks);
+        this.spec = spec;
         this.objects = new Map();
         this.getTaint = this.getTaint.bind(this);
     }
@@ -46,7 +41,8 @@ export default class JSMachine implements AbstractMachine {
 
     public readVar(s: string) {
         this.resetState();
-        const r = this.sources.has(s) || this.varTaintMap.get(s);
+        let description: TaintDescription = {name: s, type: "variable"};
+        const r = this.isSource(description) || this.varTaintMap.get(s);
         this.taintStack.push(r);
         logger.info("read", s, r);
         return r;
@@ -54,16 +50,18 @@ export default class JSMachine implements AbstractMachine {
 
     public writeVar(s: string) {
         this.resetState();
+        let description: TaintDescription = {name: s, type: "variable"};
         // Do not pop off the stack for a write
-        const v = this.sources.has(s) || this.taintStack[this.taintStack.length - 1];
+        const v = this.isSource(description) || this.taintStack[this.taintStack.length - 1];
         logger.info("write", s, v);
         this.varTaintMap.set(s, v);
+        this.reportPossibleFlow(description, v);
         // logger.info("wrote", this.varTaintMap.get(s));
     }
 
     public readProperty(o: any, s: Accessor) {
         this.resetState();
-        const isSource = this.sources.has(s.toString());
+        const isSource = this.isSource({name: s.toString()});
         const storedTaint = this.objects.get(o);
         const r = isSource || (storedTaint && storedTaint[s]);
         logger.info("readprop", s, r);
@@ -78,9 +76,12 @@ export default class JSMachine implements AbstractMachine {
         }
 
         const storedTaint = this.taintStack.pop();
-        this.objects.get(o)[s] = this.sources.has(s.toString()) || storedTaint;
+        let objectMap = this.objects.get(o);
+        objectMap[s] = this.isSource({name: s.toString()}) || storedTaint;
 
-        logger.info("writeprop", s, this.objects.get(o)[s]);
+        this.reportPossibleFlow({name: s.toString()}, objectMap[s]);
+
+        logger.info("writeprop", s, objectMap[s]);
     }
 
     public unaryOp(): void {
@@ -105,14 +106,16 @@ export default class JSMachine implements AbstractMachine {
             this.varTaintMap.set(s, v);
             this.stateCounter -= 1;
         } else {
-            logger.info("initVar called but not an argument");
+            logger.info("initVar called but not an argument: " + s);
+            this.varTaintMap.set(s, this.isSource({name: s}));
             this.resetState();
         }
     }
 
-    public functionCall(expectedArgs: number, actualArgs: number)  {
-        logger.info("funcall", expectedArgs, actualArgs);
+    public functionCall(name: string, expectedArgs: number, actualArgs: number) {
+        logger.info("funcall", name, expectedArgs, actualArgs);
         logger.debug("funcall, cur stack:", this.taintStack);
+        let description: TaintDescription = {name: name, type: "function"};
         const tempStack = [];
 
         // Pop off the actual arguments given to this function from taintStack
@@ -130,22 +133,16 @@ export default class JSMachine implements AbstractMachine {
             }
         }
 
-        // If too many arguments were supplied, pop their taint markers off
-        // the stack.
-        if (expectedArgs < actualArgs) {
-            const diff = actualArgs - expectedArgs;
-
-            for (let i = 0; i < diff; i++) {
-                // TODO: should this be tempStack?
-                this.taintStack.pop();
-            }
-        }
-
         logger.debug("funcall, temp stack:", tempStack);
         // tempStack.reverse();
 
+        // Is this function a sink, and did any tainted values flow into it?
+        tempStack.forEach(
+            (mark) => this.reportPossibleFlow(description, mark));
+
         // Push the actual arguments to taintStack
-        tempStack.forEach((v) => this.taintStack.push(v));
+        tempStack.forEach((v) =>
+            this.taintStack.push(v || this.isSource(description)));
         logger.debug("funcall, new stack:", this.taintStack);
         this.state = States.FunctionCall;
         this.stateCounter = expectedArgs;
@@ -155,12 +152,22 @@ export default class JSMachine implements AbstractMachine {
         // do nothing.
     }
 
-    public getTaint(): string[] {
-        const self = this;
-        const taints = [...self.sinks]
-            .filter((s) => self.varTaintMap.get(s));
+    public getTaint(): TaintDescription[] {
+        return [...this.flows];
+    }
 
-        return taints;
+    private reportPossibleFlow(description: TaintDescription, taintMarking: boolean): void {
+        // Check taint marking *first*
+        if (taintMarking) {
+            // If it's tainted, then check to see if this is a sink
+            let sinkDescription = this.getSink(description);
+            if (sinkDescription !== undefined) {
+                console.log("tainted value flowed into sink "
+                    + JSON.stringify(description)
+                    + "!");
+                this.flows.add(sinkDescription);
+            }
+        }
     }
 
     private resetState() {
@@ -168,9 +175,21 @@ export default class JSMachine implements AbstractMachine {
         this.stateCounter = 0;
     }
 
+    private getSink(description: TaintDescription): TaintDescription {
+        return this.spec.sinks.find((sink) => sameDescription(sink, description));
+    }
+
+    private isSource(description: TaintDescription): boolean {
+        return this.spec.sources.some((source) => sameDescription(source, description));
+    }
+
+    private isSink(description: TaintDescription): boolean {
+        return this.spec.sinks.some((sink) => sameDescription(sink, description));
+    }
+
 }
 
-export function executeInstructionsFromFile(path: string, options: Options) {
+export function executeInstructionsFromFile(path: string, options: RunSpecification) {
     console.log(path, options);
     const abstractMachine = new JSMachine(options);
     const compiledOutput = require(path);

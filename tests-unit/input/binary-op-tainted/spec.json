@@ -1,6 +1,24 @@
 {
-  "main": "test.js",
-  "sources": ["a"],
-  "sinks": ["z"],
-  "expectedTaints": ["z"]
+    "main": "test.js",
+    "sources": [
+        {
+            "type": "variable",
+            "name": "a",
+            "fileName": "test.js"
+        }
+    ],
+    "sinks": [
+        {
+            "type": "variable",
+            "name": "z",
+            "fileName": "test.js"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "variable",
+            "name": "z",
+            "fileName": "test.js"
+        }
+    ]
 }

@@ -1,0 +1,1 @@
+wc -l ./node_modules/office-converter/tests/xl2pdf.spec.js ./node_modules/office-converter/tests/doc2html.spec.js ./node_modules/office-converter/tests/doc2pdf.spec.js ./node_modules/office-converter/index.js ./office-converter.js

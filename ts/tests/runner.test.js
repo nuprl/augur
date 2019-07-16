@@ -57,11 +57,13 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
 function runTest(testName, done){
+    // Parse the spec to know the program to instrument, sources, sinks, and
+    // expected taints
+    const spec = JSON.parse(fs.readFileSync(INPUT_DIR + testName + "/spec.json").toString());
+
     // Calculate input and output instruction file paths
     const outputFile = ACTUAL_OUT_DIR + testName + '_out.js';
-    const inputFile = INPUT_DIR + testName + "/test.js";
-    // Parse the spec to know the sources, sinks, and expected taints
-    const spec = JSON.parse(fs.readFileSync(INPUT_DIR + testName + "/spec.json").toString());
+    const inputFile = INPUT_DIR + testName + "/" + spec.main;
 
     if (!fs.existsSync(ANALYSIS)){
         throw new Error("analysis not found: " + ANALYSIS);
@@ -77,7 +79,7 @@ function runTest(testName, done){
             : "cd " + NODEPROF_HOME + "; "
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
             + " --analysis " + ANALYSIS + " "
-            + INPUT_DIR + testName + "/test.js");
+            + inputFile);
 
     exec(command, function(error, stdout, stderr){
         console.error("Source file: \t" + inputFile);
@@ -93,7 +95,7 @@ function runTest(testName, done){
         compareOutput(testName, ACTUAL_OUT_DIR, EXPECTED_OUT_DIR);
 
         // Compare the result of executing the compiled instructions
-        expect(executeInstructionsFromFile(outputFile, spec)).toEqual(spec.expectedTaints);
+        expect(executeInstructionsFromFile(outputFile, spec)).toEqual(spec.expectedFlows);
 
         done();
     });
@@ -173,3 +175,13 @@ test('foo', (done) => runTest('foo', done));
 test('bar', (done) => runTest('bar', done));
 test('native-array-reduce-clean', (done) => runTest('native-array-reduce-clean', done));
 test('native-array-reduce-tainted', (done) => runTest('native-array-reduce-tainted', done));
+test('benchmark-office-converter', (done) => runTest('benchmark-office-converter', done));
+test('benchmark-dns-sync-exec', (done) => runTest('benchmark-dns-sync-exec', done));
+test('benchmark-gm-attack', (done) => runTest('benchmark-gm-attack', done));
+test('benchmark-osenv', (done) => runTest('benchmark-osenv', done));
+test('native-exec-clean', (done) => runTest('native-exec-clean', done));
+test('native-exec-tainted', (done) => runTest('native-exec-tainted', done));
+test('precision-variable-function-clean', (done) => runTest('precision-variable-function-clean', done));
+test('precision-variable-function-tainted', (done) => runTest('precision-variable-function-tainted', done));
+test('for-loop-update-clean', (done) => runTest('for-loop-update-clean', done));
+test('for-loop-update-tainted', (done) => runTest('for-loop-update-tainted', done));

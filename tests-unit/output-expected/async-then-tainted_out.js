@@ -1,10 +1,6 @@
 exports.drive = (m) => {
 
-    m.functionCall(0, 0);
-
     m.push(false);
-
-    m.functionCall(5, 5);
 
     m.initVar("exports");
 
@@ -32,7 +28,7 @@ exports.drive = (m) => {
 
     m.readVar("a");
 
-    m.functionCall(1, 1);
+    m.functionCall("identity", 1, 1);
 
     m.initVar("x");
 
@@ -42,7 +38,7 @@ exports.drive = (m) => {
 
     m.push(false);
 
-    m.functionCall(1, 1);
+    m.functionCall("then", 2, 1);
 
     m.initVar("v");
 

@@ -1,10 +1,6 @@
 exports.drive = (m) => {
 
-    m.functionCall(0, 0);
-
     m.push(false);
-
-    m.functionCall(5, 5);
 
     m.initVar("exports");
 
@@ -46,7 +42,7 @@ exports.drive = (m) => {
 
     m.readVar("T");
 
-    m.functionCall(0, 0);
+    m.functionCall("T", 0, 0);
 
     m.readVar("foo");
 
@@ -72,13 +68,13 @@ exports.drive = (m) => {
 
     m.readProperty("obj0", "r");
 
-    m.functionCall(1, 0);
+    m.functionCall("baz", 1, 0);
 
     m.initVar("c");
 
     m.readProperty("obj0", "f");
 
-    m.functionCall(1, 0);
+    m.functionCall("foo", 1, 0);
 
     m.initVar("a");
 
@@ -88,7 +84,7 @@ exports.drive = (m) => {
 
     m.readProperty("obj0", "f");
 
-    m.functionCall(1, 0);
+    m.functionCall("foo", 1, 0);
 
     m.initVar("a");
 
@@ -118,13 +114,13 @@ exports.drive = (m) => {
 
     m.readProperty("obj0", "r");
 
-    m.functionCall(1, 0);
+    m.functionCall("baz", 1, 0);
 
     m.initVar("c");
 
     m.readProperty("obj0", "f");
 
-    m.functionCall(1, 0);
+    m.functionCall("bar", 1, 0);
 
     m.initVar("b");
 
@@ -134,7 +130,7 @@ exports.drive = (m) => {
 
     m.readProperty("obj0", "f");
 
-    m.functionCall(1, 0);
+    m.functionCall("bar", 1, 0);
 
     m.initVar("b");
 
