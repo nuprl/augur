@@ -1,0 +1,16 @@
+{
+	"main": "m-log-eval.js",
+	"sources": [
+		{"type": "function",
+			"name": "dummySource",
+			"fileName": "m-log-eval.js"}
+	],
+	"sinks": [
+		{"type": "function",
+			"name": "exec"}
+	],
+	"expectedFlows": [
+		{"type": "function",
+			"name": "exec"}
+	]
+}

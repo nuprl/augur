@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<project name="Javascript compress project" basedir="[%projDir%]" default="compile">
+
+    <taskdef name="jscomp" classname="com.google.javascript.jscomp.ant.CompileTask"
+             classpath="[%utilsDir%]lib/jar/compiler.jar"/>
+
+    <target name="compile">
+        <jscomp compilationLevel="advanced"
+                warning="quiet"
+                debug="false"
+                output="[%output%]"
+                sourceMapOutputFile="[%sourceMapOutputFile%]"
+                sourceMapFormat="[%sourceMapFormat%]">
+
+            <externs dir="${basedir}">
+                <file name="[%engineDir%]cocos2d-html5/lib/cocos2d_externs.js"/>
+            </externs>
+            <sources dir="${basedir}">
+                [%jsList%]
+            </sources>
+        </jscomp>
+    </target>
+</project>

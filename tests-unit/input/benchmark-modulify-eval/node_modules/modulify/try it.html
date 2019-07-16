@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>
+            Modulify in the Browser
+        </title>
+        <script type="text/javascript"
+              src="./node_modules/esprima/esprima.js">
+</script>
+        <script type="text/javascript"
+              src="./src/modulify.js">
+</script>
+        <script type="text/javascript">
+            var btn, inp, result;
+            function aLoad () {
+                btn = document.getElementById('btn');
+                inp = document.getElementById('input');
+                results = document.getElementById('results');
+            }
+            function show () {
+                btn.parentNode.removeChild(btn);
+                var src = inp.value;
+                var ast = esprima.parse(src, {tolerant: true});
+                var result = modulify.utils.generateModuleString(ast, src, '\r\n');
+                results.textContent = result;
+            }
+        </script>
+    </head>
+    <body onload="aLoad()">
+        <h1>
+            Modulify in the Browser
+        </h1>
+        
+        <textarea id="input" style="height: 250px; width: 100%; border: solid 2px black;"></textarea></br>
+        <button id="btn" onclick="show();">modulify</button>
+        <pre id="results"></pre>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+{
+	"main": "paper-example.js",
+	"sources": [
+		{"type": "function",
+			"name": "dummySource",
+			"fileName": "paper-example.js"}
+	],
+	"sinks": [
+		{"type": "function",
+			"name": "exec"}
+	],
+	"expectedFlows": [
+		{"type": "function",
+			"name": "exec"}
+	]
+}

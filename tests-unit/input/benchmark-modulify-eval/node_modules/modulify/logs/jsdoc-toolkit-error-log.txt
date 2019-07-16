@@ -1,0 +1,23 @@
+ > JsDoc Toolkit main() running at Fri Sep 06 2013 04:59:59 GMT-0400 (EDT).
+ > With options: 
+ >     d: C:\Users\kastor\Documents\GitHub\modulify\src\..\docs\jsdoc
+ >     o: C:\Users\kastor\Documents\GitHub\modulify\src\..\logs\jsdoc-toolkit-error-log.txt
+ >     p: true
+ >     r: 10
+ >     t: C:\Users\kastor\Documents\applications\javascript related\tools\jsdoc_toolkit-2.4.0\templates\jsdoc\
+ >     _: C:\Users\kastor\Documents\GitHub\modulify\src
+ >     a: true
+ > Output directory set to 'C:\Users\kastor\Documents\GitHub\modulify\src\..\docs\jsdoc/'.
+ > JsDoc Toolkit main() running at Fri Sep 06 2013 05:00:00 GMT-0400 (EDT).
+ > With options: 
+ >     d: C:\Users\kastor\Documents\GitHub\modulify\src\..\docs\vsdoc
+ >     o: C:\Users\kastor\Documents\GitHub\modulify\src\..\logs\jsdoc-toolkit-error-log.txt
+ >     p: true
+ >     r: 10
+ >     t: C:\Users\kastor\Documents\applications\javascript related\tools\jsdoc_toolkit-2.4.0\templates\vsdoc\
+ >     _: C:\Users\kastor\Documents\GitHub\modulify\src
+ >     a: true
+ > Output directory set to 'C:\Users\kastor\Documents\GitHub\modulify\src\..\docs\vsdoc/'.
+ > Saving file for symbol _global_
+ > Saving file for symbol modulify
+ > Saving file for symbol modulify.utils

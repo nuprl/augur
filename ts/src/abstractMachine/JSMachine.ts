@@ -112,6 +112,18 @@ export default class JSMachine implements AbstractMachine {
         }
     }
 
+    public builtin(name: string, actualArgs: number) {
+        logger.info("builtin", name, actualArgs);
+        let description: TaintDescription = {name: name, type: "builtin"};
+        let args = [];
+
+        for (let i = 0; i < actualArgs; i++) {
+            args.push(this.taintStack.pop());
+        }
+
+        args.forEach((v) => this.reportPossibleFlow(description, v));
+    }
+
     public functionCall(name: string, expectedArgs: number, actualArgs: number) {
         logger.info("funcall", name, expectedArgs, actualArgs);
         logger.debug("funcall, cur stack:", this.taintStack);

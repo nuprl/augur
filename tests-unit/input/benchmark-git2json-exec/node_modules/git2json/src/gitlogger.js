@@ -1,0 +1,37 @@
+// Compatibility to browser js without node
+if(module == undefined) { var exports = {}}
+
+
+exports.retrieve = function(limit, callback) { 
+	var exec = require('child_process').exec;
+	var git_params = {
+	'sha': 'H',
+	'ssha': 'h', // abbreviated hash
+	'parenthashes': 'P',
+	'authorname': 'an',
+	'authoremail': 'ae',
+	'authordate': 'at',
+	'committername': 'cn',
+	'committeremail': 'ce',
+	'committerdate': 'ct',
+	'encoding': 'e',
+	'subject': 's',
+	'ssubject': 'f',
+	'body': 'b',
+	'refnames': 'd'
+	};
+
+	var pattern = "";
+
+	// Build git log format.
+	Object.keys(git_params).forEach(function(key) {
+		var val = git_params[key];
+		pattern += "%H-"+key+" %"+val+ "/%H%n"
+	});	
+
+	// Run git log and push output to callback - TODO: streaming
+	exec('git log --all -n '+limit+' --pretty="'+pattern+'"', function (error, stdout, stderr) {
+		callback(stdout)
+	});
+};
+

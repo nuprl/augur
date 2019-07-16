@@ -1,0 +1,38 @@
+{
+    "engineDir" : "../node_modules/",
+    "dependencies" : [
+        "cocos2d-html5"
+    ],
+
+    "genRes" : {
+        "output" : "cfg/res.js",
+        "fileTypes" : [
+            "png", "jpg", "bmp", "jpeg", "gif", "mp3", "ogg", "wav", "mp4", "plist",
+            "xml", "fnt", "tmx", "tsx", "ccbi", "font", "txt", "vsh", "fsh", "json", "ExportJson"
+        ],
+        "dirCfgs" : ["res"]
+    },
+
+    "genJsRes" : {
+        "output" : "cfg/jsRes.js",
+        "fileTypes" : ["js"],
+        "dirCfgs" : ["src", "test"]
+    },
+
+    "genBaseCfg" : {
+        "output" : "baseCfg.js",
+        "delTemp" : true
+    },
+
+    "publish" : {
+        "output" : "mini.js",
+        "compilationLevel" : "advanced",
+        "warning" : "quiet",
+        "useSourceMap" : true,
+        "sourceMapOutputFile" : "sourcemap",
+        "sourceMapFormat" : "V3",
+        "debug" : false,
+        "delLog" : false,
+        "delTemp" : true
+    }
+}

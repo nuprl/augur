@@ -1,0 +1,16 @@
+{
+	"main": "npm-programmatic.js",
+	"sources": [
+		{"type": "function",
+			"name": "dummySource",
+			"fileName": "npm-programmatic.js"}
+	],
+	"sinks": [
+		{"type": "function",
+			"name": "exec"}
+	],
+	"expectedFlows": [
+		{"type": "function",
+			"name": "exec"}
+	]
+}

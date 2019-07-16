@@ -1,0 +1,16 @@
+{
+	"main": "cocos-utils.js",
+	"sources": [
+		{"type": "function",
+			"name": "dummySource",
+			"fileName": "cocos-utils.js"}
+	],
+	"sinks": [
+		{"type": "function",
+			"name": "exec"}
+	],
+	"expectedFlows": [
+		{"type": "function",
+			"name": "exec"}
+	]
+}

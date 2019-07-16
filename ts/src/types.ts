@@ -13,6 +13,7 @@ export interface AbstractMachine {
     writeProperty: (o: any, s: Accessor) => void;
     initVar: (s: string) => void;
     functionCall: (name: string, expectedNumArgs: number, actualNumArgs: number) => void;
+    builtin: (name: string, actualArgs: number) => void;
     endExecution: () => void;
 }
 
@@ -24,7 +25,7 @@ export interface Instruction {
 }
 
 // Possible types of taint sources/sinks.
-export type TaintType = "function" | "variable";
+export type TaintType = "function" | "variable" | "builtin";
 
 // A description of a taint source/sink. All fields are optional.
 export interface TaintDescription extends Object {

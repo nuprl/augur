@@ -1,0 +1,1 @@
+wc -l ./node_modules/node-wos/Gruntfile.js ./node_modules/node-wos/dist/bin/wos.js ./node_modules/node-wos/dist/index.js ./node_modules/node-wos/src/bin/wos.js ./node_modules/node-wos/src/index.js ./node-wos.js

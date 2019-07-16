@@ -1,0 +1,10 @@
+{
+  "name": "mongo-parse",
+  "version": "0.0.1",
+  "dependencies": {
+    "proto": {
+      "version": "1.0.11",
+      "from": "proto@"
+    }
+  }
+}

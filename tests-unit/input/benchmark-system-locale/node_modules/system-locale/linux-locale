@@ -1,0 +1,4 @@
+#!/bin/sh
+
+locale | grep LANG= | eval
+echo $LANG

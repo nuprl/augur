@@ -1,0 +1,9 @@
+#! /usr/bin/env node
+
+var path = require("path");
+process.on('uncaughtException', function(err){
+    console.error(err);
+});
+
+var argvParser = require("../lib/core/argvParser.js");
+require(path.join(__dirname, "../lib/core/pluginRunner")).run(argvParser.getArgv());

@@ -1,0 +1,37 @@
+/* 
+	Simple parser for the log created by the gitlogger module.
+	Entries are in format "HASH-key value/HASH". this is used to make the parser immune to any special characters in the commit message.
+*/
+
+module.exports = function(text, plugins) { 
+	var commits = {}
+	var index = 0
+	var length = text.length
+	var HL=40
+	
+	while(text.length > 10) {
+		// find hash
+		var hash = text.substring(0, HL);
+		var end = text.indexOf("/"+hash);
+		var kvsep = text.indexOf(" ");
+
+		var key = text.substring(HL+1, kvsep);
+		var value = text.substring(kvsep+1, end);
+
+		var commit = commits[hash];
+		if(commit == undefined) {
+			commit = commits[hash] = {};
+		}
+
+		// Apply any transformation plugins on the value
+		if(plugins) plugins.forEach(function(f) { value = f(key, value)});
+		commit[key] = value;
+
+		// move pointer to the next entry
+		var index = end + HL + 1;
+		text = text.substring(index).trim();
+	}
+
+	return commits
+}
+

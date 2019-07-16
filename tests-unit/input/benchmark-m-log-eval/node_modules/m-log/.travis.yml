@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - "0.10"
+
+before_install:
+
+before_script:
+  - npm install
+
+script:
+  - npm test
+
+notifications:
+  emails:
+    - misaki.pink@gmail.com
+  on_success: always
+  on_failure: always

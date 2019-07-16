@@ -1,0 +1,37 @@
+env:
+  matrix:
+    - export NODE_VERSION="5.9"
+    - export NODE_VERSION="4.4"
+    - export NODE_VERSION="0.10"
+matrix:
+  fast_finish: true
+  allow_failures:
+    - env: NODE_VERSION="0.10"
+    - env: NODE_VERSION="iojs"
+before_install:
+  - git clone https://github.com/creationix/nvm.git ./.nvm
+  - source ./.nvm/nvm.sh
+  - nvm install $NODE_VERSION
+  - echo $NODE_VERSION
+  - nvm use $NODE_VERSION
+  - if [ $TRAVIS_OS_NAME == "linux" ]; then
+      sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test;
+      sudo apt-get -qq update;
+      sudo apt-get -qq install g++-4.8;
+      export CXX='g++-4.8';
+      sudo apt-get install -qq debhelper autotools-dev cups-ppdc libcups2-dev cups imagemagick ghostscript;
+    fi
+  - "export JOBS=4"
+  - BUILD_ONLY=true npm install
+before_script:
+  - git config --global user.name "Ion Lupascu"
+  - git config --global user.email ionlupascu@gmail.com
+git:
+  depth: 1
+branches:
+  only:
+    - master
+os:
+  - linux
+  - osx
+script: npm test

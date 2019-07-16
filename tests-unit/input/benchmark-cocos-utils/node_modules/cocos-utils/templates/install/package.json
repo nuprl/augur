@@ -1,0 +1,9 @@
+{
+    "name": "[%name%]",
+    "version": "0.0.1",
+    "description": "package for cocos command",
+    "dependencies": {
+    },
+    "repository" : {},
+    "readme" : {}
+}
