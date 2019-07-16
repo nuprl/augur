@@ -1,0 +1,13 @@
+{
+    "main": "test.js",
+    "sources": [
+        {"type": "variable",
+            "name": "a",
+            "fileName": "test.js"}
+    ],
+    "sinks": [
+        {"type": "function",
+            "name": "exec"}
+    ],
+    "expectedFlows": []
+}

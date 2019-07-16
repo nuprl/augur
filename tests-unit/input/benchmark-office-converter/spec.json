@@ -1,0 +1,16 @@
+{
+	"main": "office-converter.js",
+	"sources": [
+		{"type": "function",
+			"name": "dummySource",
+			"fileName": "office-converter.js"}
+	],
+	"sinks": [
+		{"type": "function",
+			"name": "exec"}
+	],
+	"expectedFlows": [
+		{"type": "function",
+			"name": "exec"}
+	]
+}

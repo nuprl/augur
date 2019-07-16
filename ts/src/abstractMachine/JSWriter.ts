@@ -76,8 +76,8 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "initVar", args: [s]});
     }
 
-    public functionCall(expectedNumArgs: number, actualNumArgs: number) {
-        this.writeInstruction({ command: "functionCall", args: [expectedNumArgs, actualNumArgs]});
+    public functionCall(name: string, expectedNumArgs: number, actualNumArgs: number) {
+        this.writeInstruction({ command: "functionCall", args: [name, expectedNumArgs, actualNumArgs]});
     }
 
     public endExecution() {

@@ -1,0 +1,13 @@
+{
+  "main": "osenv.js",
+  "sources": [
+    {"type": "function",
+      "name": "dummySource",
+      "fileName": "osenv.js"}
+  ],
+  "sinks": [
+    {"type": "function",
+      "name": "exec"}
+  ],
+  "expectedFlows": []
+}

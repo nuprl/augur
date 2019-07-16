@@ -1,10 +1,6 @@
 exports.drive = (m) => {
 
-    m.functionCall(0, 0);
-
     m.push(false);
-
-    m.functionCall(5, 5);
 
     m.initVar("exports");
 
@@ -62,7 +58,7 @@ exports.drive = (m) => {
 
     m.push(false);
 
-    m.functionCall(2, 4);
+    m.functionCall("reduce", 1, 1);
 
     m.initVar("x");
 
@@ -74,8 +70,6 @@ exports.drive = (m) => {
 
     m.binaryOp();
 
-    m.functionCall(2, 4);
-
     m.initVar("x");
 
     m.initVar("y");
@@ -86,8 +80,6 @@ exports.drive = (m) => {
 
     m.binaryOp();
 
-    m.functionCall(2, 4);
-
     m.initVar("x");
 
     m.initVar("y");
@@ -97,8 +89,6 @@ exports.drive = (m) => {
     m.readVar("y");
 
     m.binaryOp();
-
-    m.functionCall(2, 4);
 
     m.initVar("x");
 

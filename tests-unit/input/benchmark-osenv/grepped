@@ -1,0 +1,1 @@
+wc -l ./node_modules/os-tmpdir/index.js ./node_modules/os-homedir/index.js ./node_modules/osenv/node_modules/os-tmpdir/index.js ./node_modules/osenv/node_modules/os-homedir/index.js ./node_modules/osenv/osenv.js ./osenv.js

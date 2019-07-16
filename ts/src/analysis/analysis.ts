@@ -1,4 +1,4 @@
-import { Analyzer, NPCallbacks, Sandbox } from "../nodeprof";
+import {Analyzer, Receiver, Invoked, NPCallbacks, Sandbox} from "../nodeprof";
 import { AbstractMachine } from "../types";
 import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
@@ -74,8 +74,14 @@ export default class Analysis implements Analyzer {
         this.state.writeProperty(receiver, offset);
     }
 
-    public functionEnter: NPCallbacks.functionEnter = (iid, f, receiver, args) => {
-        this.state.functionCall(f.length, args.length);
+    public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args) => {
+        this.state.functionCall(f.name, f.length, args.length);
+    }
+
+    public builtinEnter: NPCallbacks.builtinEnter = (name: string, f: Invoked, receiver: Receiver, args: any[]) => {
+        if (name === "exec" || name === "eval") {
+            this.state.functionCall(name, f.length, args.length);
+        }
     }
 
     public endExecution: NPCallbacks.endExecution = () => {
