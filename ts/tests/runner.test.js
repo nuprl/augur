@@ -215,3 +215,4 @@ test('benchmark-system-locale', (done) => runTest('benchmark-system-locale', don
 test('benchmark-taint-string', (done) => runTest('benchmark-taint-string', done));
 test('benchmark-test', (done) => runTest('benchmark-test', done));
 test('benchmark-write-file', (done) => runTest('benchmark-write-file', done));
+test('string-hygiene-tainted', (done) => runTest('string-hygiene-tainted', done));
