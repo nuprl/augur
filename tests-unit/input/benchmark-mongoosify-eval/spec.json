@@ -6,11 +6,11 @@
 			"fileName": "mongoosify-eval.js"}
 	],
 	"sinks": [
-		{"type": "function",
-			"name": "exec"}
+		{"type": "builtin",
+			"name": "eval"}
 	],
 	"expectedFlows": [
-		{"type": "function",
-			"name": "exec"}
+		{"type": "builtin",
+			"name": "eval"}
 	]
 }
