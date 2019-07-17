@@ -7,10 +7,7 @@
 	],
 	"sinks": [
 		{"type": "function",
-			"name": "exec"}
+			"name": "execFileSync"}
 	],
-	"expectedFlows": [
-		{"type": "function",
-			"name": "exec"}
-	]
+	"expectedFlows": []
 }
