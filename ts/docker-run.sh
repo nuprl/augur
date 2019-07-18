@@ -4,7 +4,6 @@ usage() {
     >&2 echo "Usage: ./docker-run.sh [-h|--help] --inputFile <file to instrument> --outputFile <path to desired analysis output> [--sources <comma-separated sources list>] [--sinks <comma-separated sinks list]"
 }
 
-CUR=""
 INPUT_FILE=""
 OUTPUT_FILE=""
 PRIVATE=false
@@ -52,11 +51,14 @@ case $key in
     # Unknown argument
     *)
     usage
+    exit 1
 esac
 done
 
-CUR=$(pwd)
-export CUR
+if [ -z "$ANALYSIS_PATH" ]; then
+    ANALYSIS_PATH=$(pwd)
+fi
+export ANALYSIS_PATH
 export SOURCES
 export SINKS
 
@@ -82,7 +84,7 @@ if $PRIVATE
 then
     DOCKER_IMAGE_NAME=jsanalysis-private
 else
-    DOCKER_IMAGE_NAME=jsanalysis
+    DOCKER_IMAGE_NAME=jsanalysis-private
 fi
 
 # Ensure the Docker container exists before we attempt to use it.
@@ -96,15 +98,18 @@ fi
 # Docker container.
 touch "$OUTPUT_FILE"
 
+PROGRAM_DIR=$(dirname "$INPUT_FILE")
+PROGRAM_FILE=$(basename "$INPUT_FILE")
+
 docker run --rm \
-       -v $CUR:/root/ts \
-       -v $INPUT_FILE:/root/program.js \
+       -v $ANALYSIS_PATH:/root/ts \
+       -v $PROGRAM_DIR:/root/program \
        -v $OUTPUT_FILE:/root/output.js \
        -e SOURCES="$SINKS" \
        -e SINKS="$SOURCES" \
        ${DOCKER_IMAGE_NAME}:latest \
        bash -c \
-       "(cd /root/ts; \
+       "(cd /root/program; \
        /root/mx/mx -p /root/nodeprof/ jalangi \
          --initParam outputFile:/root/output.js \
-         --analysis /root/ts/dist/src/analysis/nodeprofAnalysis.js /root/program.js)"
+         --analysis /root/ts/dist/src/analysis/nodeprofAnalysis.js /root/program/$PROGRAM_FILE)"
