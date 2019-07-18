@@ -216,3 +216,5 @@ test('benchmark-taint-string', (done) => runTest('benchmark-taint-string', done)
 test('benchmark-test', (done) => runTest('benchmark-test', done));
 test('benchmark-write-file', (done) => runTest('benchmark-write-file', done));
 test('string-hygiene-tainted', (done) => runTest('string-hygiene-tainted', done));
+test('for-loop-condition-clean', (done) => runTest('for-loop-condition-clean', done));
+test('for-loop-condition-tainted', (done) => runTest('for-loop-condition-tainted', done));
