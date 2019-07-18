@@ -3640,6 +3640,66 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
+    m.readProperty("obj63", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
     m.readProperty("obj60", "toString");
 
     m.push(false);
@@ -3700,7 +3760,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj63", "toString");
+    m.readProperty("obj64", "toString");
 
     m.push(false);
 
@@ -3820,7 +3880,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj64", "toString");
+    m.readProperty("obj60", "toString");
 
     m.push(false);
 
@@ -3940,7 +4000,67 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj64", "toString");
+    m.readProperty("obj62", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj63", "toString");
 
     m.push(false);
 
@@ -4060,7 +4180,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj62", "toString");
+    m.readProperty("obj66", "toString");
 
     m.push(false);
 
@@ -4240,66 +4360,6 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj59", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
     m.readProperty("obj68", "toString");
 
     m.push(false);
@@ -4360,127 +4420,67 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
+    m.readProperty("obj60", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
     m.readProperty("obj69", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj70", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj71", "toString");
 
     m.push(false);
 
@@ -4644,1273 +4644,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj71", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj62", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj72", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj69", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj64", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj63", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj60", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj60", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj63", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj63", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj60", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj67", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj72", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj61", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj69", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj62", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj66", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj63", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj66", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj73", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.binaryOp();
-
-    m.binaryOp();
-
-    m.functionCall("resolve", 0, 1);
-
-    m.writeVar("stdoutFile");
-
-    m.readVar("path");
-
-    m.readProperty("obj46", "resolve");
-
-    m.readVar("tempDir");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("common");
-
-    m.readProperty("obj4", "randomFileName");
-
-    m.functionCall("randomFileName", 0, 0);
-
-    m.initVar("randomHash");
-
-    m.push(false);
-
-    m.writeVar("randomHash");
-
-    m.push(false);
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.writeVar("hash");
-
-    m.push(false);
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj69", "toString");
+    m.readProperty("obj68", "toString");
 
     m.push(false);
 
@@ -6030,7 +4764,367 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj59", "toString");
+    m.readProperty("obj71", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj69", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj62", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj64", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj72", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj65", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj71", "toString");
 
     m.push(false);
 
@@ -6150,7 +5244,127 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj60", "toString");
+    m.readProperty("obj63", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj71", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj73", "toString");
 
     m.push(false);
 
@@ -6390,127 +5604,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj66", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj67", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj62", "toString");
+    m.readProperty("obj65", "toString");
 
     m.push(false);
 
@@ -6630,7 +5724,193 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj66", "toString");
+    m.readProperty("obj64", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj70", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.binaryOp();
+
+    m.binaryOp();
+
+    m.functionCall("resolve", 0, 1);
+
+    m.writeVar("stdoutFile");
+
+    m.readVar("path");
+
+    m.readProperty("obj46", "resolve");
+
+    m.readVar("tempDir");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("common");
+
+    m.readProperty("obj4", "randomFileName");
+
+    m.functionCall("randomFileName", 0, 0);
+
+    m.initVar("randomHash");
+
+    m.push(false);
+
+    m.writeVar("randomHash");
+
+    m.push(false);
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.writeVar("hash");
+
+    m.push(false);
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj67", "toString");
 
     m.push(false);
 
@@ -6750,7 +6030,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj73", "toString");
+    m.readProperty("obj59", "toString");
 
     m.push(false);
 
@@ -6810,7 +6090,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj69", "toString");
+    m.readProperty("obj67", "toString");
 
     m.push(false);
 
@@ -6870,7 +6150,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj72", "toString");
+    m.readProperty("obj65", "toString");
 
     m.push(false);
 
@@ -6930,7 +6210,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj60", "toString");
+    m.readProperty("obj62", "toString");
 
     m.push(false);
 
@@ -7050,7 +6330,727 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj64", "toString");
+    m.readProperty("obj60", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj59", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj69", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj62", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj73", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj66", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj70", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj74", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj61", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj67", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj59", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj73", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj60", "toString");
 
     m.push(false);
 
@@ -7236,67 +7236,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj62", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj74", "toString");
+    m.readProperty("obj71", "toString");
 
     m.push(false);
 
@@ -7416,547 +7356,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj74", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj63", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj72", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj72", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj67", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj59", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
     m.readProperty("obj60", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj63", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj60", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj70", "toString");
 
     m.push(false);
 
@@ -8017,66 +7417,6 @@ exports.drive = (m) => {
     m.functionCall("parseInt", 2, 2);
 
     m.readProperty("obj62", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj68", "toString");
 
     m.push(false);
 
@@ -8196,7 +7536,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj62", "toString");
+    m.readProperty("obj70", "toString");
 
     m.push(false);
 
@@ -8256,7 +7596,487 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj59", "toString");
+    m.readProperty("obj70", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj68", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj64", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj73", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj67", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj67", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj69", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj64", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj66", "toString");
 
     m.push(false);
 
@@ -8317,6 +8137,186 @@ exports.drive = (m) => {
     m.functionCall("parseInt", 2, 2);
 
     m.readProperty("obj65", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj60", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj65", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj68", "toString");
 
     m.push(false);
 
@@ -8502,7 +8502,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj59", "toString");
+    m.readProperty("obj63", "toString");
 
     m.push(false);
 
@@ -8562,7 +8562,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj60", "toString");
+    m.readProperty("obj62", "toString");
 
     m.push(false);
 
@@ -8622,7 +8622,367 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj70", "toString");
+    m.readProperty("obj68", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj68", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj62", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj71", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj67", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj68", "toString");
+
+    m.push(false);
+
+    m.functionCall("toString", 1, 1);
+
+    m.binaryOp();
+
+    m.writeVar("hash");
+
+    m.readVar("i");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.writeVar("i");
+
+    m.readVar("i");
+
+    m.readVar("count");
+
+    m.binaryOp();
+
+    m.readVar("hash");
+
+    m.readVar("randomHash");
+
+    m.push(false);
+
+    m.functionCall("randomHash", 1, 1);
+
+    m.initVar("count");
+
+    m.initVar("hash");
+
+    m.initVar("i");
+
+    m.readVar("count");
+
+    m.push(false);
+
+    m.binaryOp();
+
+    m.readVar("parseInt");
+
+    m.push(false);
+
+    m.readVar("Math");
+
+    m.readProperty("obj58", "random");
+
+    m.functionCall("random", 0, 0);
+
+    m.binaryOp();
+
+    m.push(false);
+
+    m.functionCall("parseInt", 2, 2);
+
+    m.readProperty("obj66", "toString");
 
     m.push(false);
 
@@ -8742,7 +9102,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj68", "toString");
+    m.readProperty("obj64", "toString");
 
     m.push(false);
 
@@ -8862,187 +9222,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj69", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj60", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj59", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj65", "toString");
+    m.readProperty("obj67", "toString");
 
     m.push(false);
 
@@ -9162,66 +9342,6 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj60", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
     m.readProperty("obj63", "toString");
 
     m.push(false);
@@ -9282,7 +9402,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj64", "toString");
+    m.readProperty("obj71", "toString");
 
     m.push(false);
 
@@ -9462,127 +9582,7 @@ exports.drive = (m) => {
 
     m.functionCall("parseInt", 2, 2);
 
-    m.readProperty("obj66", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj64", "toString");
-
-    m.push(false);
-
-    m.functionCall("toString", 1, 1);
-
-    m.binaryOp();
-
-    m.writeVar("hash");
-
-    m.readVar("i");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.writeVar("i");
-
-    m.readVar("i");
-
-    m.readVar("count");
-
-    m.binaryOp();
-
-    m.readVar("hash");
-
-    m.readVar("randomHash");
-
-    m.push(false);
-
-    m.functionCall("randomHash", 1, 1);
-
-    m.initVar("count");
-
-    m.initVar("hash");
-
-    m.initVar("i");
-
-    m.readVar("count");
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.readVar("parseInt");
-
-    m.push(false);
-
-    m.readVar("Math");
-
-    m.readProperty("obj58", "random");
-
-    m.functionCall("random", 0, 0);
-
-    m.binaryOp();
-
-    m.push(false);
-
-    m.functionCall("parseInt", 2, 2);
-
-    m.readProperty("obj60", "toString");
+    m.readProperty("obj72", "toString");
 
     m.push(false);
 
@@ -9919,6 +9919,6186 @@ exports.drive = (m) => {
     m.push(false);
 
     m.functionCall("exec", 0, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "existsSync");
+
+    m.readVar("codeFile");
+
+    m.functionCall("existsSync", 1, 1);
+
+    m.unaryOp();
+
+    m.readVar("updateStdout");
+
+    m.functionCall("updateStdout", 0, 0);
+
+    m.initVar("stdoutContent");
+
+    m.readVar("options");
+
+    m.readProperty("obj75", "silent");
+
+    m.readVar("fs");
+
+    m.readProperty("obj56", "writeFileSync");
+
+    m.readVar("sleepFile");
+
+    m.push(false);
+
+    m.functionCall("writeFileSync", 3, 2);
 
     m.readVar("fs");
 
