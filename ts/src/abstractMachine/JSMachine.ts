@@ -19,11 +19,13 @@ export default class JSMachine implements AbstractMachine {
     private state: States = States.None;
     private stateCounter: number = 0;
     private flows: Set<TaintDescription> = new Set();
+    private pc: boolean;
 
     constructor(spec: RunSpecification) {
         // logger.info(sources, sinks);
         this.spec = spec;
         this.objects = new Map();
+        this.pc = false;
         this.getTaint = this.getTaint.bind(this);
     }
 
@@ -56,6 +58,7 @@ export default class JSMachine implements AbstractMachine {
         logger.info("write", s, v);
         this.varTaintMap.set(s, v);
         this.reportPossibleFlow(description, v);
+        this.reportPossibleImplicitFlow(description, v);
         // logger.info("wrote", this.varTaintMap.get(s));
     }
 
@@ -79,7 +82,10 @@ export default class JSMachine implements AbstractMachine {
         let objectMap = this.objects.get(o);
         objectMap[s] = this.isSource({name: s.toString()}) || storedTaint;
 
-        this.reportPossibleFlow({name: s.toString()}, objectMap[s]);
+        const description = {name: s.toString()};
+
+        this.reportPossibleFlow(description, objectMap[s]);
+        this.reportPossibleImplicitFlow(description, objectMap[s]);
 
         logger.info("writeprop", s, objectMap[s]);
     }
@@ -128,6 +134,14 @@ export default class JSMachine implements AbstractMachine {
         args.forEach((v) => this.reportPossibleFlow(description, v));
     }
 
+    public conditional(s: any): void {
+        this.resetState();
+        logger.info("conditional", s);
+
+        // no peek operation...
+        this.pc = this.taintStack[this.taintStack.length - 1];
+    }
+
     public functionCall(name: string, expectedArgs: number, actualArgs: number) {
         logger.info("funcall", name, expectedArgs, actualArgs);
         logger.debug("funcall, cur stack:", this.taintStack);
@@ -172,6 +186,13 @@ export default class JSMachine implements AbstractMachine {
         return [...this.flows];
     }
 
+    private reportPossibleImplicitFlow(description: TaintDescription, taintMarking: boolean) {
+        // no sensitive upgrade check
+        if (this.pc && !taintMarking) {
+            console.log("implicit flow detected! previously untainted value updated from a tainted code location");
+        }
+    }
+
     private reportPossibleFlow(description: TaintDescription, taintMarking: boolean): void {
         // Check taint marking *first*
         if (taintMarking) {
@@ -202,7 +223,6 @@ export default class JSMachine implements AbstractMachine {
     private isSink(description: TaintDescription): boolean {
         return this.spec.sinks.some((sink) => sameDescription(sink, description));
     }
-
 }
 
 export function executeInstructionsFromFile(path: string, options: RunSpecification) {

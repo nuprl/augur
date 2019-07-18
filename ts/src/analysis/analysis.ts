@@ -91,6 +91,10 @@ export default class Analysis implements Analyzer {
         }
     }
 
+    public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
+        this.state.conditional(result);
+    }
+
     public endExecution: NPCallbacks.endExecution = () => {
         this.state.endExecution();
     }

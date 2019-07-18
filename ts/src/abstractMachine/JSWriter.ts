@@ -84,6 +84,10 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "builtin", args: [name, actualArgs]});
     }
 
+    public conditional(s: any): void {
+        this.writeInstruction({ command: "conditional", args: [s]});
+    }
+
     public endExecution() {
         this.writeInstruction({ command: "endExecution", args: [] });
         this.logger.log(this.postamble);
