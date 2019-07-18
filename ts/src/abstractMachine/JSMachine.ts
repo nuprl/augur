@@ -87,6 +87,7 @@ export default class JSMachine implements AbstractMachine {
     public unaryOp(): void {
         this.resetState();
 
+        logger.info("unaryOp");
         // no-op. Unary operations on values do not change their taint status.
     }
 
@@ -97,6 +98,8 @@ export default class JSMachine implements AbstractMachine {
         this.taintStack.push(
             this.taintStack.pop() || this.taintStack.pop()
         );
+
+        logger.info("binaryOp");
     }
 
     public initVar(s: string) {
@@ -113,6 +116,7 @@ export default class JSMachine implements AbstractMachine {
     }
 
     public builtin(name: string, actualArgs: number) {
+        this.resetState();
         logger.info("builtin", name, actualArgs);
         let description: TaintDescription = {name: name, type: "builtin"};
         let args = [];
