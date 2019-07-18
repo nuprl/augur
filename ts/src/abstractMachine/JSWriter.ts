@@ -89,16 +89,10 @@ export default class JSWriter implements AbstractMachine {
         this.logger.log(this.postamble);
     }
 
-    // Prepares an argument to a callback to appear in JS code. At the moment,
-    // this only requires correctly quoting strings.
+    // Prepares an argument to a callback to appear in JS code.
     private prepareArg(arg: any): string {
-        // Wrap strings in quotes
-        // TODO: this should also sanitize the argument
-        if (typeof arg == "string") {
-            return `"${arg}"`;
-        } else {
-            return arg.toString();
-        }
+        // Wrap strings in quotes, properly escape strings, etc.
+        return JSON.stringify(arg);
     }
 
     // Actually write the instruction to the output file.

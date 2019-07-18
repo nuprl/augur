@@ -2,6 +2,22 @@ exports.drive = (m) => {
 
     m.push(false);
 
+    m.initVar("exports");
+
+    m.initVar("require");
+
+    m.initVar("module");
+
+    m.initVar("__filename");
+
+    m.initVar("__dirname");
+
+    m.initVar("a");
+
+    m.initVar("obj");
+
+    m.initVar("z");
+
     m.push(false);
 
     m.writeVar("a");
@@ -14,7 +30,7 @@ exports.drive = (m) => {
 
     m.push(false);
 
-    m.readProperty("obj0", ""); /* ");
+    m.readProperty("obj0", "\"); /* ");
 
     m.readVar("a");
 
