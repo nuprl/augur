@@ -16,6 +16,7 @@ export interface AbstractMachine {
     builtin: (name: string, actualArgs: number) => void;
     endExecution: () => void;
     conditional: (s: any) => void;
+    conditionalEnd: () => void;
 }
 
 export type Command = keyof AbstractMachine;

@@ -16,6 +16,10 @@ exports.drive = (m) => {
 
     m.initVar("a");
 
+    m.initVar("b");
+
+    m.initVar("c");
+
     m.initVar("z");
 
     m.push(false);
@@ -28,49 +32,35 @@ exports.drive = (m) => {
 
     m.conditionalEnd();
 
-    m.writeVar("z");
+    m.writeVar("b");
 
-    m.readVar("a");
-
-    m.conditionalEnd();
-
-    m.conditional(true);
-
-    m.readVar("z");
+    m.readVar("b");
 
     m.conditionalEnd();
 
-    m.push(false);
+    m.writeVar("c");
 
-    m.binaryOp();
-
-    m.conditionalEnd();
-
-    m.conditionalEnd();
-
-    m.writeVar("z");
-
-    m.conditionalEnd();
-
-    m.readVar("z");
-
-    m.conditionalEnd();
-
-    m.push(false);
-
-    m.binaryOp();
-
-    m.conditionalEnd();
-
-    m.conditionalEnd();
-
-    m.writeVar("z");
+    m.readVar("b");
 
     m.conditionalEnd();
 
     m.push(false);
 
     m.conditionalEnd();
+
+    m.writeProperty("obj0", "field");
+
+    m.conditionalEnd();
+
+    m.readVar("c");
+
+    m.conditionalEnd();
+
+    m.readProperty("obj0", "field");
+
+    m.conditionalEnd();
+
+    m.writeVar("z");
 
     m.endExecution();
 

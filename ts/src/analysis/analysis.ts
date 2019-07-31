@@ -54,9 +54,10 @@ export default class Analysis implements Analyzer {
         this.state.writeVar(name);
     }
 
-    // public endExpression: NPCallbacks.endExpression = (iid) => {
-    //     this.state.pop();
-    // }
+    public endExpression: NPCallbacks.endExpression = (iid, type) => {
+        console.log("endExpression: " + type);
+        this.state.conditionalEnd();
+    }
 
     public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {
         this.state.binaryOp();

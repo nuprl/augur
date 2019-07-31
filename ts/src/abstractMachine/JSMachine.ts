@@ -67,7 +67,7 @@ export default class JSMachine implements AbstractMachine {
         const isSource = this.isSource({name: s.toString()});
         const storedTaint = this.objects.get(o);
         const r = isSource || (storedTaint && storedTaint[s]);
-        logger.info("readprop", s, r);
+        logger.info("readprop", o, s, r);
         this.taintStack.push(r);
         return r;
     }
@@ -87,7 +87,7 @@ export default class JSMachine implements AbstractMachine {
         this.reportPossibleFlow(description, objectMap[s]);
         this.reportPossibleImplicitFlow(description, objectMap[s]);
 
-        logger.info("writeprop", s, objectMap[s]);
+        logger.info("writeprop", o, s, objectMap[s]);
     }
 
     public unaryOp(): void {
@@ -142,9 +142,11 @@ export default class JSMachine implements AbstractMachine {
         this.pc = this.taintStack[this.taintStack.length - 1];
     }
 
+    public conditionalEnd(): void {
+        this.resetState();
+    }
+
     public functionCall(name: string, expectedArgs: number, actualArgs: number) {
-        logger.info("funcall", name, expectedArgs, actualArgs);
-        logger.debug("funcall, cur stack:", this.taintStack);
         let description: TaintDescription = {name: name, type: "function"};
         const tempStack = [];
 

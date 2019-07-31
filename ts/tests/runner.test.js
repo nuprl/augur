@@ -218,3 +218,7 @@ test('benchmark-write-file', (done) => runTest('benchmark-write-file', done));
 test('string-hygiene-tainted', (done) => runTest('string-hygiene-tainted', done));
 test('for-loop-condition-clean', (done) => runTest('for-loop-condition-clean', done));
 test('for-loop-condition-tainted', (done) => runTest('for-loop-condition-tainted', done));
+test('implicit-flow-clean', (done) => runTest('implicit-flow-clean', done));
+test('implicit-flow-tainted', (done) => runTest('implicit-flow-tainted', done));
+test('object-alias-clean', (done) => runTest('object-alias-clean', done));
+test('object-alias-tainted', (done) => runTest('object-alias-tainted', done));

@@ -63,7 +63,7 @@ export namespace NPCallbacks {
     export type _return = (iid: number, val: any) => void;
     export type _throw = (iid: number, val: any) => void;
     export type _with = (iid: number, val: any) => void;
-    export type endExpression = (iid: number) => void;
+    export type endExpression = (iid: number, type: string) => void;
     export type onReady = (cb: () => void) => void;
 
     // Jalangi only due to implementation

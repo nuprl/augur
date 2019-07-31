@@ -2,6 +2,8 @@ exports.drive = (m) => {
 
     m.push(false);
 
+    m.conditionalEnd();
+
     m.initVar("exports");
 
     m.initVar("require");
@@ -20,9 +22,13 @@ exports.drive = (m) => {
 
     m.push(false);
 
+    m.conditionalEnd();
+
     m.writeVar("test");
 
     m.push(false);
+
+    m.conditionalEnd();
 
     m.writeVar("a");
 
@@ -30,7 +36,13 @@ exports.drive = (m) => {
 
     m.functionCall("test", 0, 0);
 
+    m.conditionalEnd();
+
     m.push(false);
+
+    m.conditionalEnd();
+
+    m.conditionalEnd();
 
     m.writeVar("z");
 
