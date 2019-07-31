@@ -20,11 +20,9 @@ RUN (cd /root; \
 ENV JAVA_HOME="/root/openjdk1.8.0_172-jvmci-0.46"
 
 # Install NodeProf
-# TODO: maybe this wildcard is an issue; does it actually encapsulate every
-# file? if it's expanded blindly by the shell, probably not.
 COPY ${nodeprof_repo} /root/nodeprof
 RUN (cd /root/nodeprof && \
-     (mx sforceimports && mx build))
+     (mx update && mx sforceimports && mx build))
 
 # If running this container with no specific action specified, analyze the
 # given program and run its instructions.

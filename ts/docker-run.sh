@@ -84,7 +84,7 @@ if $PRIVATE
 then
     DOCKER_IMAGE_NAME=jsanalysis-private
 else
-    DOCKER_IMAGE_NAME=jsanalysis-private
+    DOCKER_IMAGE_NAME=jsanalysis
 fi
 
 # Ensure the Docker container exists before we attempt to use it.

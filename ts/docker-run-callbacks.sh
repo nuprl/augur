@@ -23,4 +23,4 @@ docker run --rm \
        -e SOURCES="$2" \
        -e SINKS="$3" \
        $DOCKER_IMAGE_NAME \
-       /root/mx/mx -p /root/workspace-nodeprof/nodeprof.js/ jalangi --analysis /root/ts/dist/src/emptyAnalysis/nodeprofAnalysis.js /root/program.js
+       /root/mx/mx -p /root/nodeprof/ jalangi --analysis /root/ts/dist/src/emptyAnalysis/nodeprofAnalysis.js /root/program.js
