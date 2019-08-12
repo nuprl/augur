@@ -1,4 +1,4 @@
-# JavaScript Taint Analysis (implemented in TypeScript)
+jjjjjjjjjj# JavaScript Taint Analysis (implemented in TypeScript)
 
 ## WebStorm project
 
@@ -68,3 +68,4 @@ As the internal development version of NodeProf is a private Github repo, authen
 | Function call                  |      | x           |      | see #21 |
 | Native functions               | x    |             |      | see #22 |
 | Async/await                    | x    |             |      | see #29 |
+| Function returns               | x    |             |      | see #30 |
