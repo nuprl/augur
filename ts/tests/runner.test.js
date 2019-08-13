@@ -222,3 +222,5 @@ test('implicit-flow-clean', (done) => runTest('implicit-flow-clean', done));
 test('implicit-flow-tainted', (done) => runTest('implicit-flow-tainted', done));
 test('object-alias-clean', (done) => runTest('object-alias-clean', done));
 test('object-alias-tainted', (done) => runTest('object-alias-tainted', done));
+test('general-clean', (done) => runTest('general-clean', done));
+test('general-tainted', (done) => runTest('general-tainted', done));

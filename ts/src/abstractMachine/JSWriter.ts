@@ -16,7 +16,7 @@ import MyLogger from "../analysis/mylogger";
 //
 // The generated JS code will export a function, `drive`, that, given an
 // abstract machine, will drive it with the original callbacks.
-export default class JSWriter implements AbstractMachine {
+export default class JSWriter<T> implements AbstractMachine<T> {
 
     // JS code that should appear before and after the callbacks, respectively.
     private preamble: string =  "exports.drive = (m) => {\n";

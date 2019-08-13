@@ -1,5 +1,5 @@
 import {Analyzer, Receiver, Invoked, NPCallbacks, Sandbox} from "../nodeprof";
-import { AbstractMachine } from "../types";
+import {AbstractMachine, TaintDescription} from "../types";
 import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
 
@@ -12,14 +12,21 @@ import logger from "./logger";
 // analysis.
 export default class Analysis implements Analyzer {
     private sandbox: Sandbox;
-    private state: AbstractMachine = new JSWriter();
+    private state: AbstractMachine<Set<TaintDescription>> = new JSWriter();
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
 
+    private join<T>(a: Set<T>, b: Set<T>): Set<T> {
+        return new Set([...a, ...b]);
+    }
+
     public declare: NPCallbacks.declare = (iid, name, type) => {
-        this.state.initVar(name);
+        this.state.initVar(name,
+            {type: "expr",
+                fileName: J$.iidToLocation(iid),
+                name: name});
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
@@ -39,7 +46,8 @@ export default class Analysis implements Analyzer {
             logger.info("keys", keys);
 
             for (const k of keys) {
-                this.state.writeProperty(val, k);
+                this.state.writeProperty(val, k,
+                    {});
             }
         }
         logger.info("val", val);
