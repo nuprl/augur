@@ -5,56 +5,83 @@ import { Accessor } from "../nodeprof";
 import {AbstractMachine, TaintDescription, RunSpecification} from "../types";
 import logger from "./logger";
 import {sameDescription} from "../utils";
+import BooleanMachine from "./BooleanMachine";
 
 enum States {
     FunctionCall,
     None,
 }
 
-export default class JSMachine implements AbstractMachine {
-    private taintStack: boolean[] = [];
-    private varTaintMap: Map<string, boolean> = new Map();
+export default abstract class JSMachine<T> implements AbstractMachine<T> {
+    private taintStack: T[] = [];
+    private varTaintMap: Map<string, T> = new Map();
     private spec: RunSpecification;
     private objects: Map<any, {}>;
     private state: States = States.None;
     private stateCounter: number = 0;
     private flows: Set<TaintDescription> = new Set();
-    private pc: boolean;
+    private pc: T;
+
+    /**
+     * Returns the taint marking associated with a completely clean value.
+     */
+    abstract getUntaintedValue(): T;
+
+    /**
+     * Join two taint labels. The resulting label should represent the union
+     * of the two given labels.
+     */
+    abstract join(a: T, b: T): T;
+
+    /**
+     * Checks a sink with a taint mark. Does the given sink accept the given taint?
+     */
+    abstract check(sink: TaintDescription, taint: T): boolean;
+
+    /**
+     * Produce an initial taint mark for a given description. This mark should
+     * describe this description's affiliation with any sinks.
+     *
+     * For example, it could return a boolean T/F to represent its status as a
+     * sink. It could also return some value to represent which sink it
+     * describes.
+     */
+    abstract produceMark(description: TaintDescription): T;
 
     constructor(spec: RunSpecification) {
         // logger.info(sources, sinks);
         this.spec = spec;
         this.objects = new Map();
-        this.pc = false;
+        this.pc = this.getUntaintedValue();
         this.getTaint = this.getTaint.bind(this);
     }
 
-    public push(v: boolean) {
+    public push(v: T, description: TaintDescription) {
         this.resetState();
         logger.info("push", v);
         this.taintStack.push(v);
     }
 
-    public pop() {
+    public pop(description: TaintDescription) {
         this.resetState();
         logger.info("pop");
         this.taintStack.pop();
     }
 
-    public readVar(s: string) {
+    public readVar(s: string, description: TaintDescription) {
         this.resetState();
-        let description: TaintDescription = {name: s, type: "variable"};
-        const r = this.isSource(description) || this.varTaintMap.get(s);
+        const r = this.join(this.produceMark(description),
+            this.varTaintMap.get(s));
         this.taintStack.push(r);
         logger.info("read", s, r);
         return r;
     }
 
-    public writeVar(s: string) {
+    public writeVar(s: string, description: TaintDescription) {
         this.resetState();
-        let description: TaintDescription = {name: s, type: "variable"};
         // Do not pop off the stack for a write
-        const v = this.isSource(description) || this.taintStack[this.taintStack.length - 1];
+        const v = this.join(this.produceMark(description),
+            this.taintStack[this.taintStack.length - 1]);
         logger.info("write", s, v);
         this.varTaintMap.set(s, v);
         this.reportPossibleFlow(description, v);
@@ -62,53 +89,61 @@ export default class JSMachine implements AbstractMachine {
         // logger.info("wrote", this.varTaintMap.get(s));
     }
 
-    public readProperty(o: any, s: Accessor) {
+    public readProperty(o: any, s: Accessor, description: TaintDescription) {
         this.resetState();
         const isSource = this.isSource({name: s.toString()});
-        const storedTaint = this.objects.get(o);
-        const r = isSource || (storedTaint && storedTaint[s]);
+        const objectTaintMap = this.objects.get(o);
+
+        // If objectTaintMap is defined, and it contains a defined taint mark
+        // for this property, this will be its value. Otherwise, it will be
+        // untainted.
+        const propertyTaint =  (objectTaintMap && objectTaintMap[s])
+            || this.getUntaintedValue();
+
+        // Then join this with its initial marking
+        let r = this.join(this.produceMark(description),
+            propertyTaint)
+
         logger.info("readprop", o, s, r);
         this.taintStack.push(r);
         return r;
     }
 
-    public writeProperty(o: any, s: Accessor) {
+    public writeProperty(o: any, s: Accessor, description: TaintDescription) {
         this.resetState();
         if (!this.objects.has(o)) {
             this.objects.set(o, {});
         }
 
         const storedTaint = this.taintStack.pop();
-        let objectMap = this.objects.get(o);
-        objectMap[s] = this.isSource({name: s.toString()}) || storedTaint;
+        let objectTaintMap = this.objects.get(o);
+        objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
 
-        const description = {name: s.toString()};
+        this.reportPossibleFlow(description, objectTaintMap[s]);
+        this.reportPossibleImplicitFlow(description, objectTaintMap[s]);
 
-        this.reportPossibleFlow(description, objectMap[s]);
-        this.reportPossibleImplicitFlow(description, objectMap[s]);
-
-        logger.info("writeprop", o, s, objectMap[s]);
+        logger.info("writeprop", o, s, objectTaintMap[s]);
     }
 
-    public unaryOp(): void {
+    public unaryOp(description: TaintDescription): void {
         this.resetState();
 
         logger.info("unaryOp");
         // no-op. Unary operations on values do not change their taint status.
     }
 
-    public binaryOp(): void {
+    public binaryOp(description: TaintDescription): void {
         this.resetState();
 
         // Combine the taint markings of the two operands
         this.taintStack.push(
-            this.taintStack.pop() || this.taintStack.pop()
+            this.join(this.taintStack.pop(), this.taintStack.pop())
         );
 
         logger.info("binaryOp");
     }
 
-    public initVar(s: string) {
+    public initVar(s: string, description: TaintDescription) {
         if (this.state === States.FunctionCall && this.stateCounter > 0) {
             const v = this.taintStack.pop();
             logger.info("init function arg", s, v);
@@ -116,15 +151,14 @@ export default class JSMachine implements AbstractMachine {
             this.stateCounter -= 1;
         } else {
             logger.info("initVar called but not an argument: " + s);
-            this.varTaintMap.set(s, this.isSource({name: s}));
+            this.varTaintMap.set(s, this.produceMark({name: s}));
             this.resetState();
         }
     }
 
-    public builtin(name: string, actualArgs: number) {
+    public builtin(name: string, actualArgs: number, description: TaintDescription) {
         this.resetState();
         logger.info("builtin", name, actualArgs);
-        let description: TaintDescription = {name: name, type: "builtin"};
         let args = [];
 
         for (let i = 0; i < actualArgs; i++) {
@@ -134,7 +168,7 @@ export default class JSMachine implements AbstractMachine {
         args.forEach((v) => this.reportPossibleFlow(description, v));
     }
 
-    public conditional(s: any): void {
+    public conditional(s: any, description: TaintDescription): void {
         this.resetState();
         logger.info("conditional", s);
 
@@ -146,8 +180,7 @@ export default class JSMachine implements AbstractMachine {
         this.resetState();
     }
 
-    public functionCall(name: string, expectedArgs: number, actualArgs: number) {
-        let description: TaintDescription = {name: name, type: "function"};
+    public functionCall(name: string, expectedArgs: number, actualArgs: number, description: TaintDescription) {
         const tempStack = [];
 
         // Pop off the actual arguments given to this function from taintStack
@@ -174,7 +207,7 @@ export default class JSMachine implements AbstractMachine {
 
         // Push the actual arguments to taintStack
         tempStack.forEach((v) =>
-            this.taintStack.push(v || this.isSource(description)));
+            this.taintStack.push(this.join(v, this.produceMark(description))));
         logger.debug("funcall, new stack:", this.taintStack);
         this.state = States.FunctionCall;
         this.stateCounter = expectedArgs;
@@ -188,24 +221,23 @@ export default class JSMachine implements AbstractMachine {
         return [...this.flows];
     }
 
-    private reportPossibleImplicitFlow(description: TaintDescription, taintMarking: boolean) {
+    private reportPossibleImplicitFlow(description: TaintDescription, taintMarking: T) {
         // no sensitive upgrade check
-        if (this.pc && !taintMarking) {
-            console.log("implicit flow detected! previously untainted value updated from a tainted code location");
-        }
+        // TODO: figure out how this should work generally
+        return;
     }
 
-    private reportPossibleFlow(description: TaintDescription, taintMarking: boolean): void {
-        // Check taint marking *first*
-        if (taintMarking) {
-            // If it's tainted, then check to see if this is a sink
-            let sinkDescription = this.getSink(description);
-            if (sinkDescription !== undefined) {
-                console.log("tainted value flowed into sink "
-                    + JSON.stringify(description)
-                    + "!");
-                this.flows.add(sinkDescription);
-            }
+    // When a value with taint marking T flows into a construct with the given
+    // description
+    private reportPossibleFlow(description: TaintDescription, taintMarking: T): void {
+        // Check to see if this is a sink, and that it accepts the given
+        // marking
+        let sinkDescription = this.getSink(description);
+        if (sinkDescription !== undefined && this.check(description, taintMarking)) {
+            console.log("tainted value flowed into sink "
+                + JSON.stringify(description)
+                + "!");
+            this.flows.add(sinkDescription);
         }
     }
 
@@ -214,7 +246,7 @@ export default class JSMachine implements AbstractMachine {
         this.stateCounter = 0;
     }
 
-    private getSink(description: TaintDescription): TaintDescription {
+    protected getSink(description: TaintDescription): TaintDescription {
         return this.spec.sinks.find((sink) => sameDescription(sink, description));
     }
 
@@ -229,7 +261,7 @@ export default class JSMachine implements AbstractMachine {
 
 export function executeInstructionsFromFile(path: string, options: RunSpecification) {
     console.log(path, options);
-    const abstractMachine = new JSMachine(options);
+    const abstractMachine = new BooleanMachine(options);
     const compiledOutput = require(path);
     console.log(JSON.stringify(compiledOutput));
     compiledOutput.drive(abstractMachine);

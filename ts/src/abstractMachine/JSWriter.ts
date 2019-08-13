@@ -2,7 +2,7 @@
 // JALANGI DO NOT INSTRUMENT
 
 import { Accessor } from "../nodeprof";
-import { Instruction, AbstractMachine } from "../types";
+import {Instruction, AbstractMachine, TaintDescription} from "../types";
 import MyLogger from "../analysis/mylogger";
 
 // An implementation of an abstract machine that produces JavaScript code.
@@ -16,6 +16,8 @@ import MyLogger from "../analysis/mylogger";
 //
 // The generated JS code will export a function, `drive`, that, given an
 // abstract machine, will drive it with the original callbacks.
+//
+// The type parameter, T, should be serializable to JSON.
 export default class JSWriter<T> implements AbstractMachine<T> {
 
     // JS code that should appear before and after the callbacks, respectively.
@@ -34,62 +36,68 @@ export default class JSWriter<T> implements AbstractMachine<T> {
         this.logger.log(this.preamble);
     }
 
-    public push(v: boolean) {
-        this.writeInstruction({ command: "push", args: [v] });
+    public push(v: T, description: TaintDescription) {
+        this.writeInstruction({ command: "push", args: [v, description] });
     }
 
-    public pop() {
-        this.writeInstruction({ command: "pop", args: [] });
+    public pop(description: TaintDescription) {
+        this.writeInstruction({ command: "pop", args: [description] });
     }
 
-    public readVar(s: string) {
-        this.writeInstruction({ command: "readVar", args: [s] });
+    public readVar(s: string, description: TaintDescription) {
+        this.writeInstruction({ command: "readVar", args: [s, description] });
     }
 
-    public writeVar(s: string) {
-        this.writeInstruction({ command: "writeVar", args: [s] });
+    public writeVar(s: string, description: TaintDescription) {
+        this.writeInstruction({ command: "writeVar", args: [s, description] });
     }
 
-    public readProperty(o: {}, s: Accessor) {
+    public readProperty(o: {}, s: Accessor, description: TaintDescription) {
         if (!this.objIdMap.has(o)) {
             this.objIdMap.set(o, "obj" + this.objCnt++);
         }
-        this.writeInstruction({ command: "readProperty", args: [this.objIdMap.get(o), s] });
+        this.writeInstruction({ command: "readProperty",
+            args: [this.objIdMap.get(o), s, description] });
     }
 
-    public writeProperty(o: {}, s: Accessor) {
+    public writeProperty(o: {}, s: Accessor, description: TaintDescription) {
         if (!this.objIdMap.has(o)) {
             this.objIdMap.set(o, "obj" + this.objCnt++);
         }
-        this.writeInstruction({ command: "writeProperty", args: [this.objIdMap.get(o), s] });
+        this.writeInstruction({ command: "writeProperty",
+            args: [this.objIdMap.get(o), s, description] });
     }
 
-    public binaryOp(): void {
-        this.writeInstruction({ command: "binaryOp", args: []});
+    public binaryOp(description: TaintDescription): void {
+        this.writeInstruction({ command: "binaryOp", args: [description]});
     }
 
-    public unaryOp(): void {
-        this.writeInstruction({ command: "unaryOp", args: []});
+    public unaryOp(description: TaintDescription): void {
+        this.writeInstruction({ command: "unaryOp", args: [description]});
     }
 
-    public initVar(s: string) {
-        this.writeInstruction({ command: "initVar", args: [s]});
+    public initVar(s: string, description: TaintDescription) {
+        this.writeInstruction({ command: "initVar", args: [s, description]});
     }
 
-    public functionCall(name: string, expectedNumArgs: number, actualNumArgs: number) {
-        this.writeInstruction({ command: "functionCall", args: [name, expectedNumArgs, actualNumArgs]});
+    public functionCall(name: string, expectedNumArgs: number, actualNumArgs: number, description: TaintDescription) {
+        this.writeInstruction({ command: "functionCall",
+            args: [name, expectedNumArgs, actualNumArgs, description]});
     }
 
-    public builtin(name: string, actualArgs: number) {
-        this.writeInstruction({ command: "builtin", args: [name, actualArgs]});
+    public builtin(name: string, actualArgs: number, description: TaintDescription) {
+        this.writeInstruction({ command: "builtin",
+            args: [name, actualArgs, description]});
     }
 
-    public conditional(s: any): void {
-        this.writeInstruction({ command: "conditional", args: [s]});
+    public conditional(s: any, description: TaintDescription): void {
+        this.writeInstruction({ command: "conditional",
+            args: [s, description]});
     }
 
-    public conditionalEnd(): void {
-        this.writeInstruction({ command: "conditionalEnd", args: []});
+    public conditionalEnd(description: TaintDescription): void {
+        this.writeInstruction({ command: "conditionalEnd",
+            args: [description]});
     };
 
     public endExecution() {
@@ -104,7 +112,7 @@ export default class JSWriter<T> implements AbstractMachine<T> {
     }
 
     // Actually write the instruction to the output file.
-    private writeInstruction(instr: Instruction) {
+    private writeInstruction(instr: Instruction<T>) {
         const delim = ", ";
         this.logger.log(`    m.${instr.command}(${instr.args.map(this.prepareArg).join(delim)});\n`);
     }
