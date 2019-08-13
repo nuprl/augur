@@ -18,18 +18,19 @@ export default class Analysis implements Analyzer {
         this.sandbox = sandbox;
     }
 
-    private join<T>(a: Set<T>, b: Set<T>): Set<T> {
-        return new Set([...a, ...b]);
-    }
-
     public declare: NPCallbacks.declare = (iid, name, type) => {
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid),
+            name: name};
+
         this.state.initVar(name,
-            {type: "expr",
-                fileName: J$.iidToLocation(iid),
-                name: name});
+            description);
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid)};
+
         // logger.info("literal", val, hasGetterSetter);
         if (typeof val === "object") {
             const keys = [];
@@ -51,44 +52,65 @@ export default class Analysis implements Analyzer {
             }
         }
         logger.info("val", val);
-        this.state.push(false);
+        this.state.push(false, description);
     }
 
     public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
-        this.state.readVar(name);
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid),
+            name: name};
+        this.state.readVar(name, description);
     }
 
     public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
-        this.state.writeVar(name);
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid),
+            name: name};
+        this.state.writeVar(name, description);
     }
 
     public endExpression: NPCallbacks.endExpression = (iid, type) => {
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid)};
         console.log("endExpression: " + type);
-        this.state.conditionalEnd();
+        this.state.conditionalEnd(description);
     }
 
     public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {
-        this.state.binaryOp();
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid)};
+        this.state.binaryOp(description);
     }
 
     public unaryPre: NPCallbacks.unaryPre = (iid: number, op: string, left: any) => {
-        this.state.unaryOp();
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid)};
+        this.state.unaryOp(description);
     }
 
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
-        this.state.readProperty(receiver, offset);
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid)};
+        this.state.readProperty(receiver, offset, description);
     }
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
-        this.state.writeProperty(receiver, offset);
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid)};
+        this.state.writeProperty(receiver, offset, description);
     }
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args) => {
-        this.state.functionCall(f.name, f.length, args.length);
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid)};
+        this.state.functionCall(f.name, f.length, args.length, description);
     }
 
     public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
-        this.state.builtin("eval", 1); // eval always takes a single arg
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid)};
+        this.state.builtin("eval", 1, description);
+        // eval always takes a single arg
     }
 
     public builtinEnter: NPCallbacks.builtinEnter = (name: string, f: Invoked, receiver: Receiver, args: any[]) => {
@@ -96,12 +118,18 @@ export default class Analysis implements Analyzer {
             console.log("built in encountered: " + name);
         }
         if (name === "exec" || name === "eval") {
-            this.state.functionCall(name, f.length, args.length);
+            let description: TaintDescription = {type: "expr",
+                fileName: J$.iidToLocation(iid),
+                name: name};
+            this.state.functionCall(name, f.length, args.length,
+                {fileName: "builtins are broken"});
         }
     }
 
     public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
-        this.state.conditional(result);
+        let description: TaintDescription = {type: "expr",
+            fileName: J$.iidToLocation(iid)};
+        this.state.conditional(result, description);
     }
 
     public endExecution: NPCallbacks.endExecution = () => {
