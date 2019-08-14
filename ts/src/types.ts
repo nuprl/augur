@@ -2,8 +2,7 @@ import { Accessor } from "./nodeprof";
 
 // Various types used throughout the analysis.
 
-export interface AbstractMachine<T> {
-    push: (v: T, description: TaintDescription) => void;
+export interface AbstractMachine {
     pop: (description: TaintDescription) => void;
     readVar: (s: string, description: TaintDescription) => void;
     writeVar: (s: string, description: TaintDescription) => void;
@@ -17,12 +16,13 @@ export interface AbstractMachine<T> {
     endExecution: () => void;
     conditional: (s: any, description: TaintDescription) => void;
     conditionalEnd: (description: TaintDescription) => void;
+    literal: (description: TaintDescription) => void;
 }
 
-export type Command<T> = keyof AbstractMachine<T>;
+export type Command = keyof AbstractMachine;
 
-export interface Instruction<T> {
-    command: Command<T>;
+export interface Instruction {
+    command: Command;
     args: any[];
 }
 

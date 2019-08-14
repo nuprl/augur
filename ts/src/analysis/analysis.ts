@@ -12,7 +12,7 @@ import logger from "./logger";
 // analysis.
 export default class Analysis implements Analyzer {
     private sandbox: Sandbox;
-    private state: AbstractMachine<Set<TaintDescription>> = new JSWriter();
+    private state: AbstractMachine = new JSWriter();
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
@@ -52,7 +52,7 @@ export default class Analysis implements Analyzer {
             }
         }
         logger.info("val", val);
-        this.state.push(false, description);
+        this.state.literal(description);
     }
 
     public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
@@ -118,9 +118,6 @@ export default class Analysis implements Analyzer {
             console.log("built in encountered: " + name);
         }
         if (name === "exec" || name === "eval") {
-            let description: TaintDescription = {type: "expr",
-                fileName: J$.iidToLocation(iid),
-                name: name};
             this.state.functionCall(name, f.length, args.length,
                 {fileName: "builtins are broken"});
         }

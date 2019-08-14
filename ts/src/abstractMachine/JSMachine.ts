@@ -5,14 +5,13 @@ import { Accessor } from "../nodeprof";
 import {AbstractMachine, TaintDescription, RunSpecification} from "../types";
 import logger from "./logger";
 import {sameDescription} from "../utils";
-import BooleanMachine from "./BooleanMachine";
 
 enum States {
     FunctionCall,
     None,
 }
 
-export default abstract class JSMachine<T> implements AbstractMachine<T> {
+export default abstract class JSMachine<T> implements AbstractMachine {
     private taintStack: T[] = [];
     private varTaintMap: Map<string, T> = new Map();
     private spec: RunSpecification;
@@ -54,6 +53,10 @@ export default abstract class JSMachine<T> implements AbstractMachine<T> {
         this.objects = new Map();
         this.pc = this.getUntaintedValue();
         this.getTaint = this.getTaint.bind(this);
+    }
+
+    public literal(description: TaintDescription): void {
+        this.push(this.produceMark(description), description);
     }
 
     public push(v: T, description: TaintDescription) {
@@ -257,13 +260,4 @@ export default abstract class JSMachine<T> implements AbstractMachine<T> {
     private isSink(description: TaintDescription): boolean {
         return this.spec.sinks.some((sink) => sameDescription(sink, description));
     }
-}
-
-export function executeInstructionsFromFile(path: string, options: RunSpecification) {
-    console.log(path, options);
-    const abstractMachine = new BooleanMachine(options);
-    const compiledOutput = require(path);
-    console.log(JSON.stringify(compiledOutput));
-    compiledOutput.drive(abstractMachine);
-    return abstractMachine.getTaint();
 }

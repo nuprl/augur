@@ -18,7 +18,7 @@ import MyLogger from "../analysis/mylogger";
 // abstract machine, will drive it with the original callbacks.
 //
 // The type parameter, T, should be serializable to JSON.
-export default class JSWriter<T> implements AbstractMachine<T> {
+export default class JSWriter implements AbstractMachine {
 
     // JS code that should appear before and after the callbacks, respectively.
     private preamble: string =  "exports.drive = (m) => {\n";
@@ -36,8 +36,8 @@ export default class JSWriter<T> implements AbstractMachine<T> {
         this.logger.log(this.preamble);
     }
 
-    public push(v: T, description: TaintDescription) {
-        this.writeInstruction({ command: "push", args: [v, description] });
+    public literal(description: TaintDescription) {
+        this.writeInstruction({ command: "literal", args: [description] });
     }
 
     public pop(description: TaintDescription) {
@@ -112,7 +112,7 @@ export default class JSWriter<T> implements AbstractMachine<T> {
     }
 
     // Actually write the instruction to the output file.
-    private writeInstruction(instr: Instruction<T>) {
+    private writeInstruction(instr: Instruction) {
         const delim = ", ";
         this.logger.log(`    m.${instr.command}(${instr.args.map(this.prepareArg).join(delim)});\n`);
     }

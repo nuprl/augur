@@ -1,4 +1,5 @@
-import {TaintDescription} from "./types";
+import {RunSpecification, TaintDescription} from "./types";
+import BooleanMachine from "./abstractMachine/BooleanMachine";
 
 // Do the given descriptions of a taint source/sink describe the same thing?
 // Two descriptions are considered equal if all of the common taint source/sink
@@ -14,4 +15,13 @@ export function sameDescription(t1: TaintDescription, t2: TaintDescription) {
         .filter((prop) => t1.hasOwnProperty(prop))
         .filter((prop) => t2.hasOwnProperty(prop))
         .every(prop => t1[prop] === t2[prop]);
+}
+
+export function executeInstructionsFromFile(path: string, options: RunSpecification) {
+    console.log(path, options);
+    const abstractMachine = new BooleanMachine(options);
+    const compiledOutput = require(path);
+    console.log(JSON.stringify(compiledOutput));
+    compiledOutput.drive(abstractMachine);
+    return abstractMachine.getTaint();
 }
