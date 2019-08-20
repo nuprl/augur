@@ -19,7 +19,7 @@ export default class Analysis implements Analyzer {
     }
 
     public declare: NPCallbacks.declare = (iid, name, type) => {
-        let description: TaintDescription = {type: "expr",
+        let description: TaintDescription = {type: "declaration",
             fileName: J$.iidToLocation(iid),
             name: name};
 
@@ -28,7 +28,7 @@ export default class Analysis implements Analyzer {
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
-        let description: TaintDescription = {type: "expr",
+        let description: TaintDescription = {type: "literal",
             fileName: J$.iidToLocation(iid)};
 
         // logger.info("literal", val, hasGetterSetter);
@@ -101,13 +101,25 @@ export default class Analysis implements Analyzer {
     }
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args) => {
-        let description: TaintDescription = {type: "expr",
+        let description: TaintDescription = {type: "functionInvocation",
             fileName: J$.iidToLocation(iid)};
+        if (f.name && f.name != "") {
+            description.name = f.name;
+        }
         this.state.functionCall(f.name, f.length, args.length, description);
     }
 
+    public invokeFun: NPCallbacks.invokeFun = (iid: number, f: Invoked) => {
+        let description: TaintDescription = {type: "functionReturn",
+        fileName: J$.iidToLocation(iid)};
+        if (f.name && f.name != "") {
+            description.name = f.name;
+        }
+        this.state.functionReturn(f.name, description);
+    }
+
     public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
-        let description: TaintDescription = {type: "expr",
+        let description: TaintDescription = {type: "builtin",
             fileName: J$.iidToLocation(iid)};
         this.state.builtin("eval", 1, description);
         // eval always takes a single arg
@@ -119,14 +131,14 @@ export default class Analysis implements Analyzer {
         }
         if (name === "exec" || name === "eval") {
             this.state.functionCall(name, f.length, args.length,
-                {fileName: "builtins are broken"});
+                {fileName: "builtins are broken", type: "builtin"});
         }
     }
 
     public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
         let description: TaintDescription = {type: "expr",
             fileName: J$.iidToLocation(iid)};
-        this.state.conditional(result, description);
+        // this.state.conditional(result, description);
     }
 
     public endExecution: NPCallbacks.endExecution = () => {

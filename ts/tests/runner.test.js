@@ -95,7 +95,15 @@ function runTest(testName, done){
         // compareOutput(testName, ACTUAL_OUT_DIR, EXPECTED_OUT_DIR);
 
         // Compare the result of executing the compiled instructions
-        expect(executeInstructionsFromFile(outputFile, spec)).toEqual(spec.expectedFlows);
+        let results = executeInstructionsFromFile(outputFile, spec);
+        let transformedResults = results.map((flow) => {
+            console.log(flow);
+            return [[...flow[0].values()], flow[1]];
+        });
+        fs.writeFile(ACTUAL_OUT_DIR + testName + "_out_graph.json",
+            JSON.stringify(transformedResults, undefined, 2));
+
+        expect(results).toEqual(spec.expectedFlows);
 
         done();
     });
@@ -187,7 +195,7 @@ test('for-loop-update-clean', (done) => runTest('for-loop-update-clean', done));
 test('for-loop-update-tainted', (done) => runTest('for-loop-update-tainted', done));
 test('benchmark-chook-growl-reporter-exec', (done) => runTest('benchmark-chook-growl-reporter-exec', done));
 test('benchmark-cocos-utils', (done) => runTest('benchmark-cocos-utils', done));
-test('benchmark-exec-cmd', (done) => runTest('benchmark-exec-cmd', done));
+test('benchmrk-exec-cmd', (done) => runTest('benchmark-exec-cmd', done));
 test('benchmark-fish-exec', (done) => runTest('benchmark-fish-exec', done));
 test('benchmark-git2json-exec', (done) => runTest('benchmark-git2json-exec', done));
 test('benchmark-growl-exec', (done) => runTest('benchmark-growl-exec', done));
@@ -224,3 +232,7 @@ test('object-alias-clean', (done) => runTest('object-alias-clean', done));
 test('object-alias-tainted', (done) => runTest('object-alias-tainted', done));
 test('general-clean', (done) => runTest('general-clean', done));
 test('general-tainted', (done) => runTest('general-tainted', done));
+test('expression-simple-clean', (done) => runTest('expression-simple-clean', done));
+test('expression-simple-tainted', (done) => runTest('expression-simple-tainted', done));
+test('expression-async-1-clean', (done) => runTest('expression-async-1-clean', done));
+test('expression-async-1-tainted', (done) => runTest('expression-async-1-tainted', done));

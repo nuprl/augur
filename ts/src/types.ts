@@ -12,6 +12,7 @@ export interface AbstractMachine {
     writeProperty: (o: any, s: Accessor, description: TaintDescription) => void;
     initVar: (s: string, description: TaintDescription) => void;
     functionCall: (name: string, expectedNumArgs: number, actualNumArgs: number, description: TaintDescription) => void;
+    functionReturn: (name: string, description: TaintDescription) => void;
     builtin: (name: string, actualArgs: number, description: TaintDescription) => void;
     endExecution: () => void;
     conditional: (s: any, description: TaintDescription) => void;
@@ -28,7 +29,7 @@ export interface Instruction {
 
 // Possible types of taint sources/sinks. JS expressions should only be
 // recorded as "expr" if they appear within a statement block.
-export type TaintType = "function" | "variable" | "builtin" | "expr";
+export type TaintType = "function" | "variable" | "builtin" | "expr" | "functionInvocation" | "functionReturn" | "literal" | "declaration";
 
 // A description of a taint source/sink. All fields are optional.
 export interface TaintDescription extends Object {

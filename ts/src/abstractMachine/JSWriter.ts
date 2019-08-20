@@ -85,6 +85,10 @@ export default class JSWriter implements AbstractMachine {
             args: [name, expectedNumArgs, actualNumArgs, description]});
     }
 
+    public functionReturn(name: string, description: TaintDescription) {
+        this.writeInstruction({ command: "functionReturn", args: [name, description]});
+    }
+
     public builtin(name: string, actualArgs: number, description: TaintDescription) {
         this.writeInstruction({ command: "builtin",
             args: [name, actualArgs, description]});
