@@ -94,7 +94,8 @@ function runTest(testName, done){
         // Compare compiled instructions
         // compareOutput(testName, ACTUAL_OUT_DIR, EXPECTED_OUT_DIR);
 
-        // Compare the result of executing the compiled instructions
+        // construct program dependence graph
+        // TODO: only do this when an ExpressionMachine was used
         let results = executeInstructionsFromFile(outputFile, spec);
         let transformedResults = results.map((flow) => {
             console.log(flow);
@@ -102,6 +103,8 @@ function runTest(testName, done){
         });
         fs.writeFile(ACTUAL_OUT_DIR + testName + "_out_graph.json",
             JSON.stringify(transformedResults, undefined, 2));
+
+        // Compare the result of executing the compiled instructions
 
         expect(results).toEqual(spec.expectedFlows);
 
