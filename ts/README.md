@@ -3,8 +3,8 @@
 This is a dynamic taint analysis implemented in TypeScript using
 [NodeProf](https://github.com/Haiyang-Sun/nodeprof.js).
 
-The structure of the source code is documented with `README`s in each folder 
-inside [`src`](./src).
+The structure and implementation of the analysis is documented with `README`s in
+folders inside [`src`](./src).
 
 ## Installation
 
