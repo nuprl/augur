@@ -138,7 +138,7 @@ export default class Analysis implements Analyzer {
     public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
         let description: TaintDescription = {type: "expr",
             fileName: J$.iidToLocation(iid)};
-        // this.state.conditional(result, description);
+        // this.state.conditional(description);
     }
 
     public endExecution: NPCallbacks.endExecution = () => {

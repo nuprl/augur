@@ -94,9 +94,9 @@ export default class JSWriter implements AbstractMachine {
             args: [name, actualArgs, description]});
     }
 
-    public conditional(s: any, description: TaintDescription): void {
+    public conditional(description: TaintDescription): void {
         this.writeInstruction({ command: "conditional",
-            args: [s, description]});
+            args: [description]});
     }
 
     public conditionalEnd(description: TaintDescription): void {

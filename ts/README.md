@@ -1,4 +1,4 @@
-jjjjjjjjjj# JavaScript Taint Analysis (implemented in TypeScript)
+# JavaScript Taint Analysis (implemented in TypeScript)
 
 ## WebStorm project
 

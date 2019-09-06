@@ -187,12 +187,15 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         args.forEach((v) => this.reportPossibleFlow(description, v));
     }
 
-    public conditional(s: any, description: TaintDescription): void {
+    public conditional(description: TaintDescription): void {
         this.resetState();
-        logger.info("conditional", s);
 
         // no peek operation...
-        this.pc = this.taintStack[this.taintStack.length - 1];
+        const abstractValue = this.taintStack[this.taintStack.length - 1];
+
+        logger.info("conditional", abstractValue);
+
+        this.pc = abstractValue;
     }
 
     public conditionalEnd(): void {

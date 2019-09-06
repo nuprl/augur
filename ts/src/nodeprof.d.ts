@@ -1,4 +1,5 @@
-// NodeProf type definitions.
+// NodeProf type definitions. These types represent NodeProf's API with our
+// analysis.
 
 declare global {
     const J$: Sandbox;
