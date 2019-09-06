@@ -7,13 +7,15 @@ It is separated into three directories, `input`, `output-expected`, and
 
 The testing process works as follows:
 1. Tests from the `input` directory are executed and instrumented. Their analysis
-   generates executable abstract machine instructions from them, and stores them
+   generates 
+   [abstract machine instructions](#abstract-machine-instructions) 
+   from them, and stores them.
    in `output-actual/<test name>_out.js`.
-2. The correctness of the instructions is checked by comparing
-   `output-actual/<test name>_out.js` to
+2. The correctness of the [instructions](#abstract-machine-instructions) is
+   checked by comparing `output-actual/<test name>_out.js` to
    `output-expected/<test name>_out.js`.
-3. The abstract machine instructions are executed to compute actual flows
-   between sources and sinks.
+3. The [abstract machine instructions](#abstract-machine-instructions) are
+   executed to compute actual flows between sources and sinks.
 4. The actual computed flows are compared to the expected flows as described in
    the test specification file.
    
@@ -70,6 +72,17 @@ and `TaintType` is of the form:
 
 For each unit test in `tests-unit/input` named `test`, there should be a
 corresponding file named `tests-unit/output-expected/test_out.js`, that contains
-the expected executable stack machine instructions.
+the expected
+[abstract machine instructions](#abstract-machine-instructions).
 
 ## `output-actual`
+
+For each unit test in `tests-unit/input` named `test`, a file named
+`tests-unit/output-actual/test_out.js` will be generated when the test is
+executed. It will contain the actual 
+[abstract machine instructions](#abstract-machine-instructions) corresponding to
+the test.
+
+## Abstract machine instructions
+
+See [the abstract machine documentation](../ts/src/abstractMachine/).
