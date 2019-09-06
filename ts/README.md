@@ -1,41 +1,38 @@
 # JavaScript Taint Analysis (implemented in TypeScript)
 
-## WebStorm project
+This is a dynamic taint analysis implemented in TypeScript using
+[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js).
 
-This project will integrate well in Jetbrain's WebStorm IDE. Simply clone this repo, run the `ts/docker-build.sh` script, open it in WebStorm, and run the unit tests.
-
-If you do not wish to use Docker, you must follow the [follow the advanced installation instructions](https://github.com/Haiyang-Sun/nodeprof.js/tree/master/docs/panathon18#advanced-installation---building-nodeprof-and-graalvm-from-source-linux-and-macos), create a copy of the run configuration, and modify it to set the following environment variables:
-- `NODEPROF_HOME`: pointing to your NodeProf advanced installation
-- `JAVA_HOME`: pointing to your JVM CI directory (not the `bin` subdirectory)
-- `MX_HOME`: pointing to your `mx` installation
+The structure of the source code is documented with `README`s in each folder 
+inside [`src`](./src).
 
 ## Installation
 
-You will need `node.js` installed. We recommend >=v10.
+You will need **Node.js** installed. We recommend >=v10.
 
-You will also need `nodeprof` installed. [Follow the advanced installation instructions.](https://github.com/Haiyang-Sun/nodeprof.js/tree/master/docs/panathon18#advanced-installation---building-nodeprof-and-graalvm-from-source-linux-and-macos)
+You will need **NodeProf** installed. You can either [use the provided Docker
+container](#docker-installation), or [install it manually](#manual-installation).
 
-Once you have both installed, run
+## Getting started
 
-```bash
-make
-```
+If you wish to use an IDE, this project provides [full integration with WebStorm](#webstorm-integration).
 
-## Running
+If you wish to use the CLI:
 
-```bash
-export NODEPROF_PATH="path to nodeprof advanced installation"
+Run `make` to build the project.
 
-./run.sh [path to js file relative to project directory]
-```
+To run the tests:
+- using Docker, run `jest`.
+- using a local NodeProf installation, run `jest` with the environment variables set as described [here](#manual-installation)
+  - ex. `NODEPROF_HOME=/home/mwaldrich/workspace-nodeprof/nodeprof.js/ MX_HOME=/home/mwaldrich/mx JAVA_HOME=/home/mwaldrich/openjdk1.8.0_172-jvmci-0.46 jest`
 
-## Docker
+### Docker installation
 
-A Docker container has been created to automate the setup and execution of NodeProf. Currently, only the public version of NodeProf is supported; the private versions of NodeProf and GraalJS will be supported soon.
+A Docker container has been created to automate the setup and execution of NodeProf.
 
 Instead of installing NodeProf, Graal, GraalJS, and the modified JVM all on your local machine, Docker automates this process by creating an extremely lightweight virtual machine with a predictable build environment. Then, instead of executing NodeProf directly by setting lots of environment variables in your shell, the files are simply mounted in the Docker container and executed inside.
 
-### Using Docker
+#### Using Docker
 
 To use the Docker container:
 
@@ -45,11 +42,36 @@ To use the Docker container:
 4. Run `make` to build our TypeScript analysis (requires Node.js >=v10).
 5. Simply use the `docker-run.sh` and `docker-run-callbacks.sh` scripts, instead of `run.sh` and `run-callbacks.sh`, respectively. There is no need to set environment variables pointing to Java installations or NodeProf installations.
 
-#### Private version of NodeProf
+#### Using the private version of NodeProf in Docker
 
-We also support using the internal development version of NodeProf, which may implement features not yet available to the public. Both the `docker-build.sh` and `docker-run.sh` scripts support an optional argument, `--private`, which will either build or use a separate Docker container for the private version of NodeProf.
+We also support using the internal development version of NodeProf in Docker, which may implement features not yet available to the public. Both the `docker-build.sh` and `docker-run.sh` scripts support an optional argument, `--private`, which will either build or use a separate Docker container for the private version of NodeProf.
 
 As the internal development version of NodeProf is a private Github repo, authentication is required when using `--private` with `docker-build.sh`.
+
+### Manual installation
+
+Follow the [advanced installation instructions](https://github.com/Haiyang-Sun/nodeprof.js/tree/master/docs/panathon18#advanced-installation---building-nodeprof-and-graalvm-from-source-linux-and-macos).
+
+When using the manual installation, you will have to set environment variables:
+- `NODEPROF_HOME`: pointing to your NodeProf advanced installation
+- `JAVA_HOME`: pointing to your JVM CI directory (not the `bin` subdirectory)
+- `MX_HOME`: pointing to your `mx` installation
+
+Example:
+- `NODEPROF_HOME=/home/mwaldrich/workspace-nodeprof/nodeprof.js/`
+- `MX_HOME=/home/mwaldrich/mx`
+- `JAVA_HOME=/home/mwaldrich/openjdk1.8.0_172-jvmci-0.46`
+
+## WebStorm integration
+
+This project will integrate well in Jetbrain's WebStorm IDE. To get the project
+fully up and running, simply:
+1. clone this repo
+2. run the `ts/docker-build.sh` script
+3. open the `TaintAnalysis` folder in WebStorm
+4. execute the Run Configuration named `unit tests`
+
+If you do not wish to use Docker, you must follow the [follow the advanced installation instructions](https://github.com/Haiyang-Sun/nodeprof.js/tree/master/docs/panathon18#advanced-installation---building-nodeprof-and-graalvm-from-source-linux-and-macos), create a copy of the run configuration, and set your environment variables as described [here](#manual-installation).
 
 ## JavaScript Feature Support
 |                                | None | In Progress | Done | Notes   |

@@ -16,12 +16,16 @@ const TAINT_ANALYSIS_HOME =
 // Should we be using Docker or a local NodeProf installation?
 const NODEPROF_HOME = shell.env['NODEPROF_HOME'];
 const MX_HOME = shell.env['MX_HOME'];
+const JAVA_HOME = shell.env['JAVA_HOME'];
 // If no NODEPROF_HOME was specified, Docker will be used instead.
-const SHOULD_USE_DOCKER = (NODEPROF_HOME === undefined) || (MX_HOME === undefined);
+const SHOULD_USE_DOCKER = (NODEPROF_HOME === undefined)
+    || (MX_HOME === undefined)
+    || (JAVA_HOME === undefined);
 // Tell the user that Docker is being used because they did not specify
 // the necessary environment variables.
 if (SHOULD_USE_DOCKER) {
-    console.error("You did not set the 'NODEPROF_HOME' and 'MX_HOME' environment variables. Docker will be used instead.");
+    console.error("You did not set the 'NODEPROF_HOME', 'MX_HOME', and" +
+        " 'JAVA_HOME' environment variables. Docker will be used instead.");
 }
 
 // Calculate paths
