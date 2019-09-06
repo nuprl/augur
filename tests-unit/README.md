@@ -3,7 +3,7 @@ This directory houses unit tests for dynamic taint analysis implementations.
 It is separated into three directories, `input`, `output-expected`, and 
 `output-actual`.
 
-# Test process
+# Testing process
 
 The testing process works as follows:
 1. Tests from the `input` directory are executed and instrumented. Their analysis
