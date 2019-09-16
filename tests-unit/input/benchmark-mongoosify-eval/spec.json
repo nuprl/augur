@@ -1,16 +1,24 @@
 {
-	"main": "mongoosify-eval.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "mongoosify-eval.js"}
-	],
-	"sinks": [
-		{"type": "builtin",
-			"name": "eval"}
-	],
-	"expectedFlows": [
-		{"type": "builtin",
-			"name": "eval"}
-	]
+    "main": "mongoosify-eval.js",
+    "sources": [
+        {
+            "type": "function",
+            "name": "dummySource",
+            "location": {
+                "fileName": "mongoosify-eval.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "builtin",
+            "name": "eval"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "builtin",
+            "name": "eval"
+        }
+    ]
 }

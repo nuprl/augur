@@ -1,16 +1,24 @@
 {
-	"main": "modulify-eval.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "modulify-eval.js"}
-	],
-	"sinks": [
-		{"type": "builtin",
-			"name": "eval"}
-	],
-	"expectedFlows": [
-		{"type": "builtin",
-			"name": "eval"}
-	]
+    "main": "modulify-eval.js",
+    "sources": [
+        {
+            "type": "function",
+            "name": "dummySource",
+            "location": {
+                "fileName": "modulify-eval.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "builtin",
+            "name": "eval"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "builtin",
+            "name": "eval"
+        }
+    ]
 }

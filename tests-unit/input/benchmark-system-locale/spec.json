@@ -1,13 +1,19 @@
 {
-	"main": "system-locale.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "system-locale.js"}
-	],
-	"sinks": [
-		{"type": "function",
-			"name": "execFileSync"}
-	],
-	"expectedFlows": []
+    "main": "system-locale.js",
+    "sources": [
+        {
+            "type": "function",
+            "name": "dummySource",
+            "location": {
+                "fileName": "system-locale.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "function",
+            "name": "execFileSync"
+        }
+    ],
+    "expectedFlows": []
 }

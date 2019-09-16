@@ -99,14 +99,16 @@ function runTest(testName, done){
         // compareOutput(testName, ACTUAL_OUT_DIR, EXPECTED_OUT_DIR);
 
         // construct program dependence graph
-        // TODO: only do this when an ExpressionMachine was used
         let results = executeInstructionsFromFile(outputFile, spec);
+        // TODO: only do this when an ExpressionMachine was used
+        /*
         let transformedResults = results.map((flow) => {
             console.log(flow);
             return [[...flow[0].values()], flow[1]];
         });
         fs.writeFile(ACTUAL_OUT_DIR + testName + "_out_graph.json",
             JSON.stringify(transformedResults, undefined, 2));
+         */
 
         // Compare the result of executing the compiled instructions
 

@@ -2,6 +2,7 @@ import {Analyzer, Receiver, Invoked, NPCallbacks, Sandbox} from "../nodeprof";
 import {AbstractMachine, TaintDescription} from "../types";
 import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
+import {parseIID} from "../utils";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
@@ -20,7 +21,7 @@ export default class Analysis implements Analyzer {
 
     public declare: NPCallbacks.declare = (iid, name, type) => {
         let description: TaintDescription = {type: "declaration",
-            fileName: J$.iidToLocation(iid),
+            location: parseIID(iid),
             name: name};
 
         this.state.initVar(name,
@@ -29,7 +30,7 @@ export default class Analysis implements Analyzer {
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
         let description: TaintDescription = {type: "literal",
-            fileName: J$.iidToLocation(iid)};
+            location: parseIID(iid)};
 
         // logger.info("literal", val, hasGetterSetter);
         if (typeof val === "object") {
@@ -56,53 +57,53 @@ export default class Analysis implements Analyzer {
     }
 
     public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
-        let description: TaintDescription = {type: "expr",
-            fileName: J$.iidToLocation(iid),
+        let description: TaintDescription = {type: "variable",
+            location: parseIID(iid),
             name: name};
         this.state.readVar(name, description);
     }
 
     public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
-        let description: TaintDescription = {type: "expr",
-            fileName: J$.iidToLocation(iid),
+        let description: TaintDescription = {type: "variable",
+            location: parseIID(iid),
             name: name};
         this.state.writeVar(name, description);
     }
 
     public endExpression: NPCallbacks.endExpression = (iid, type) => {
         let description: TaintDescription = {type: "expr",
-            fileName: J$.iidToLocation(iid)};
+            location: parseIID(iid)};
         console.log("endExpression: " + type);
         this.state.conditionalEnd(description);
     }
 
     public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {
         let description: TaintDescription = {type: "expr",
-            fileName: J$.iidToLocation(iid)};
+            location: parseIID(iid)};
         this.state.binaryOp(description);
     }
 
     public unaryPre: NPCallbacks.unaryPre = (iid: number, op: string, left: any) => {
         let description: TaintDescription = {type: "expr",
-            fileName: J$.iidToLocation(iid)};
+            location: parseIID(iid)};
         this.state.unaryOp(description);
     }
 
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
         let description: TaintDescription = {type: "expr",
-            fileName: J$.iidToLocation(iid)};
+            location: parseIID(iid)};
         this.state.readProperty(receiver, offset, description);
     }
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
         let description: TaintDescription = {type: "expr",
-            fileName: J$.iidToLocation(iid)};
+            location: parseIID(iid)};
         this.state.writeProperty(receiver, offset, description);
     }
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args) => {
         let description: TaintDescription = {type: "functionInvocation",
-            fileName: J$.iidToLocation(iid)};
+            location: parseIID(iid)};
         if (f.name && f.name != "") {
             description.name = f.name;
         }
@@ -111,7 +112,7 @@ export default class Analysis implements Analyzer {
 
     public invokeFun: NPCallbacks.invokeFun = (iid: number, f: Invoked) => {
         let description: TaintDescription = {type: "functionReturn",
-        fileName: J$.iidToLocation(iid)};
+        location: parseIID(iid)};
         if (f.name && f.name != "") {
             description.name = f.name;
         }
@@ -120,7 +121,7 @@ export default class Analysis implements Analyzer {
 
     public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
         let description: TaintDescription = {type: "builtin",
-            fileName: J$.iidToLocation(iid)};
+            location: parseIID(iid)};
         this.state.builtin("eval", 1, description);
         // eval always takes a single arg
     }
@@ -131,13 +132,13 @@ export default class Analysis implements Analyzer {
         }
         if (name === "exec" || name === "eval") {
             this.state.functionCall(name, f.length, args.length,
-                {fileName: "builtins are broken", type: "builtin"});
+                {location: {fileName: "builtins are broken"}, type: "builtin"});
         }
     }
 
     public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
         let description: TaintDescription = {type: "expr",
-            fileName: J$.iidToLocation(iid)};
+            location: parseIID(iid)};
         // this.state.conditional(description);
     }
 

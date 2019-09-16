@@ -1,16 +1,24 @@
 {
-	"main": "git2json-exec.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "git2json-exec.js"}
-	],
-	"sinks": [
-		{"type": "function",
-			"name": "exec"}
-	],
-	"expectedFlows": [
-		{"type": "function",
-			"name": "exec"}
-	]
+    "main": "git2json-exec.js",
+    "sources": [
+        {
+            "type": "function",
+            "name": "dummySource",
+            "location": {
+                "fileName": "git2json-exec.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "function",
+            "name": "exec"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "function",
+            "name": "exec"
+        }
+    ]
 }

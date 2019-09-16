@@ -73,8 +73,8 @@ export default class Analyze implements Analyzer {
     public endExecution: NPCallbacks.endExecution = () => {
         console.log("endExecution");
     }
-    public forinObject: NPCallbacks.forinObject = (iid, val) => {
-        console.log("forinObject", val);
+    public forObject: NPCallbacks.forObject = (iid, isForIn) => {
+        console.log("forinObject", isForIn);
     }
     public declare: NPCallbacks.declare = (iid, name, type) => {
         console.log("declare", name, type);

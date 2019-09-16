@@ -1,16 +1,24 @@
 {
-	"main": "m-log-eval.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "m-log-eval.js"}
-	],
-	"sinks": [
-		{"type": "builtin",
-			"name": "eval"}
-	],
-	"expectedFlows": [
-		{"type": "builtin",
-			"name": "eval"}
-	]
+    "main": "m-log-eval.js",
+    "sources": [
+        {
+            "type": "function",
+            "name": "dummySource",
+            "location": {
+                "fileName": "m-log-eval.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "builtin",
+            "name": "eval"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "builtin",
+            "name": "eval"
+        }
+    ]
 }

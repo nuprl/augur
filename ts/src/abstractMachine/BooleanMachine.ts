@@ -17,9 +17,8 @@ export default class BooleanMachine
     }
 
     produceMark(description: TaintDescription): boolean {
-        return this.getSink(description) !== undefined;
+        return this.isSource(description);
     }
-
 
     // When a value with taint marking T flows into a construct with the given
     // description

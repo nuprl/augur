@@ -7,6 +7,7 @@ import { Accessor } from "./nodeprof";
  *
  * Implementations of this abstract machine should maintain a stack of abstract
  * values.
+
  *
  * All `description` arguments to these functions describe *why* and *where* in
  * the code the action occurred.
@@ -144,10 +145,35 @@ export type TaintType = "function" | "variable" | "builtin" | "expr"
 export interface TaintDescription extends Object {
     type?: TaintType;
     name?: string;
-    fileName?: string;
+    location?: Location;
 }
 
-// The specification of a test to run. All fields are optional besides "main"
+export interface Location extends Object {
+    fileName?: string;
+    pos?: SourceSpan;
+}
+
+/**
+ * One of:
+ * - a line number
+ * - a line and column number
+ */
+export type SourcePosition =
+    number // line number
+    | [number, number]; // line and col number
+
+/**
+ * One of:
+ * - a single position in the source code
+ * - a range of text in the source code
+ */
+export type SourceSpan =
+    SourcePosition | // A single position in source
+    {start: SourcePosition, end: SourcePosition}; // a range in source
+
+/**
+ * The specification of a test to run. All fields are optional besides "main"
+ */
 export interface RunSpecification extends Object {
     // The program to instrument
     main: string;

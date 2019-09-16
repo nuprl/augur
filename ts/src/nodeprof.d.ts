@@ -57,14 +57,14 @@ export namespace NPCallbacks {
     export type evalPost = (iid: number, str: string) => void;
     // different than jalangi
     export type declare = (iid: number, name: string, type: string) => void;
+    export type forObject = (iid: number, isForIn: boolean) => void;
+    export type endExpression = (iid: number, type: string, result: any) => void;
 
     // Not yet supported by Nodeprof
-    export type forinObject = (iid: number, val: any) => void;
     // export type declare = (iid: number, name: string, val: any, isArgument: boolean, argumentIndex: number, isCatchParam: boolean) => void;
     export type _return = (iid: number, val: any) => void;
     export type _throw = (iid: number, val: any) => void;
     export type _with = (iid: number, val: any) => void;
-    export type endExpression = (iid: number, type: string) => void;
     export type onReady = (cb: () => void) => void;
 
     // Jalangi only due to implementation
@@ -100,14 +100,14 @@ export interface Analyzer {
     evalFunctionPost?: NPCallbacks.evalFunctionPost;
     evalPre?: NPCallbacks.evalPre;
     evalPost?: NPCallbacks.evalPost;
+    forObject?: NPCallbacks.forObject;
+    endExpression?: NPCallbacks.endExpression;
 
     // not yet supported
-    forinObject?: NPCallbacks.forinObject;
     declare?: NPCallbacks.declare;
     _return?: NPCallbacks._return;
     _throw?: NPCallbacks._throw;
     _with?: NPCallbacks._with;
-    endExpression?: NPCallbacks.endExpression;
     onReady?: NPCallbacks.onReady;
 }
 

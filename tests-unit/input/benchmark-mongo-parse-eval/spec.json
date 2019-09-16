@@ -1,16 +1,24 @@
 {
-	"main": "mongo-parse-eval.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "mongo-parse-eval.js"}
-	],
-	"sinks": [
-		{"type": "builtin",
-			"name": "eval"}
-	],
-	"expectedFlows": [
-		{"type": "builtin",
-			"name": "eval"}
-	]
+    "main": "mongo-parse-eval.js",
+    "sources": [
+        {
+            "type": "function",
+            "name": "dummySource",
+            "location": {
+                "fileName": "mongo-parse-eval.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "builtin",
+            "name": "eval"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "builtin",
+            "name": "eval"
+        }
+    ]
 }

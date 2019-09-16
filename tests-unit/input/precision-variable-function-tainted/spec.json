@@ -4,21 +4,27 @@
         {
             "type": "variable",
             "name": "a",
-            "fileName": "test.js"
+            "location": {
+                "fileName": "test.js"
+            }
         }
     ],
     "sinks": [
         {
             "type": "function",
             "name": "z",
-            "fileName": "test.js"
+            "location": {
+                "fileName": "test.js"
+            }
         }
     ],
     "expectedFlows": [
         {
             "type": "function",
             "name": "z",
-            "fileName": "test.js"
+            "location": {
+                "fileName": "test.js"
+            }
         }
     ]
 }

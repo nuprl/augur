@@ -108,7 +108,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public readProperty(o: any, s: Accessor, description: TaintDescription) {
         this.resetState();
-        const isSource = this.isSource({name: s.toString()});
+        const isSource = this.isSource(description);
         const objectTaintMap = this.objects.get(o);
 
         // If objectTaintMap is defined, and it contains a defined taint mark
@@ -162,17 +162,25 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     }
 
     public initVar(s: string, description: TaintDescription) {
+        let v = this.join(this.taintStack[this.taintStack.length - 1], this.produceMark(description));
+
+        // If we're currently processing function arguments
         if (this.state === States.FunctionCall && this.stateCounter > 0) {
-            const v = this.join(this.join(this.taintStack.pop(), this.produceMark(description)),
-                this.produceMark(this.currentFunction()));
-            logger.info("init function arg", s, v);
-            this.varTaintMap.set(s, v);
+            // pop the argument
+            this.taintStack.pop();
+
+            // subtract 1 from the amount of arguments left to process
             this.stateCounter -= 1;
-        } else {
-            logger.info("initVar called but not an argument: " + s);
-            this.varTaintMap.set(s, this.produceMark({name: s}));
-            this.resetState();
+
+            // track taint based on the function we are entering
+            v = this.join(v, this.produceMark(this.currentFunction()));
         }
+
+        logger.info("init var", s, v);
+
+        // actually set the taint value of the variable
+        this.varTaintMap.set(s, v);
+
     }
 
     public builtin(name: string, actualArgs: number, description: TaintDescription) {
@@ -263,11 +271,11 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         return this.spec.sinks.find((sink) => descriptionSubset(sink, description));
     }
 
-    private isSource(description: TaintDescription): boolean {
+    protected isSource(description: TaintDescription): boolean {
         return this.spec.sources.some((source) => descriptionSubset(source, description));
     }
 
-    private isSink(description: TaintDescription): boolean {
+    protected isSink(description: TaintDescription): boolean {
         return this.spec.sinks.some((sink) => descriptionSubset(sink, description));
     }
 }

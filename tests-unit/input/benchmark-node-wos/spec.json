@@ -1,13 +1,19 @@
 {
-	"main": "node-wos.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "node-wos.js"}
-	],
-	"sinks": [
-		{"type": "function",
-			"name": "execSync"}
-	],
-	"expectedFlows": []
+    "main": "node-wos.js",
+    "sources": [
+        {
+            "type": "function",
+            "name": "dummySource",
+            "location": {
+                "fileName": "node-wos.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "function",
+            "name": "execSync"
+        }
+    ],
+    "expectedFlows": []
 }
