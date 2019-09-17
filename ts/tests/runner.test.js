@@ -245,3 +245,6 @@ test('expression-simple-clean', (done) => runTest('expression-simple-clean', don
 test('expression-simple-tainted', (done) => runTest('expression-simple-tainted', done));
 test('expression-async-1-clean', (done) => runTest('expression-async-1-clean', done));
 test('expression-async-1-tainted', (done) => runTest('expression-async-1-tainted', done));
+test('for-of-tainted', (done) => runTest('for-of-tainted', done));
+test('for-in-clean', (done) => runTest('for-in-clean', done));
+test('for-in-tainted', (done) => runTest('for-in-tainted', done));
