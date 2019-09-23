@@ -104,6 +104,9 @@ export interface Analyzer {
     evalPre?: NPCallbacks.evalPre;
     evalPost?: NPCallbacks.evalPost;
     forObject?: NPCallbacks.forObject;
+    startStatement?: NPCallbacks.startStatement;
+    endStatement?: NPCallbacks.endStatement;
+    startExpression?: NPCallbacks.startExpression;
     endExpression?: NPCallbacks.endExpression;
 
     // not yet supported
