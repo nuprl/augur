@@ -1,648 +1,840 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[1,1],"end":[38,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[1,1],"end":[38,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"__filename"});
 
-    m.initVar("dummySource");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"__dirname"});
 
-    m.initVar("DUMMY_FILE");
+    m.initVar("dummySource", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"dummySource"});
 
-    m.initVar("command");
+    m.initVar("DUMMY_FILE", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"DUMMY_FILE"});
 
-    m.initVar("osenv");
+    m.initVar("command", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"command"});
 
-    m.initVar("filename");
+    m.initVar("osenv", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"osenv"});
 
-    m.initVar("hostname");
+    m.initVar("filename", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"filename"});
 
-    m.push(false);
+    m.initVar("hostname", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[1,2],"end":[38,2]}},"name":"hostname"});
 
-    m.writeVar("dummySource");
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[10,1],"end":[12,2]}}});
 
-    m.push(false);
+    m.writeVar("dummySource", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[10,1],"end":[12,2]}},"name":"dummySource"});
 
-    m.writeVar("done");
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[1,69],"end":[3,2]}}});
 
-    m.push(false);
+    m.writeVar("done", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"});
 
-    m.writeVar("DUMMY_FILE");
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[1,62],"end":[3,2]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[6,18],"end":[6,27]}}});
 
-    m.readVar("DUMMY_FILE");
+    m.writeVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[6,5],"end":[6,26]}},"name":"DUMMY_FILE"});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[6,5],"end":[6,26]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[8,15],"end":[8,25]}}});
 
-    m.binaryOp();
+    m.readVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[8,28],"end":[8,38]}},"name":"DUMMY_FILE"});
 
-    m.writeVar("command");
+    m.binaryOp({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[8,15],"end":[8,38]}}});
 
-    m.readVar("dummySource");
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[8,41],"end":[8,44]}}});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[8,15],"end":[8,44]}}});
 
-    m.functionCall("dummySource", 1, 1);
+    m.writeVar("command", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[8,5],"end":[8,43]}},"name":"command"});
 
-    m.initVar("val");
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[8,5],"end":[8,43]}}});
 
-    m.readVar("command");
+    m.readVar("dummySource", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[14,1],"end":[14,12]}},"name":"dummySource"});
 
-    m.readVar("val");
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[14,13],"end":[14,16]}}});
 
-    m.binaryOp();
+    m.functionCall("dummySource", 1, 1, {"type":"functionInvocation","location":{"fileName":"osenv.js","pos":{"start":[14,1],"end":[14,17]}},"name":"dummySource"});
 
-    m.writeVar("command");
+    m.initVar("val", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[10,1],"end":[12,2]}},"name":"val"});
 
-    m.readVar("require");
+    m.readVar("command", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[11,5],"end":[11,12]}},"name":"command"});
 
-    m.push(false);
+    m.readVar("val", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[11,16],"end":[11,19]}},"name":"val"});
 
-    m.functionCall("require", 1, 1);
+    m.binaryOp({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[11,5],"end":[11,12]}}});
 
-    m.push(false);
+    m.writeVar("command", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[11,5],"end":[11,19]}},"name":"command"});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[11,5],"end":[11,19]}}});
 
-    m.initVar("require");
+    m.functionReturn("dummySource", {"type":"functionReturn","location":{"fileName":"osenv.js","pos":{"start":[14,1],"end":[14,17]}},"name":"dummySource"});
 
-    m.initVar("module");
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[14,1],"end":[14,17]}}});
 
-    m.initVar("__filename");
+    m.readVar("require", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[16,13],"end":[16,20]}},"name":"require"});
 
-    m.initVar("__dirname");
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[16,21],"end":[16,28]}}});
 
-    m.initVar("memo");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"osenv.js","pos":{"start":[16,13],"end":[16,29]}},"name":"require"});
 
-    m.initVar("isWindows");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,1],"end":[74,3]}}});
 
-    m.initVar("path");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,1],"end":[74,3]}}});
 
-    m.initVar("exec");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"exports"});
 
-    m.initVar("osTmpdir");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"require"});
 
-    m.initVar("osHomedir");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"module"});
 
-    m.push(false);
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"__filename"});
 
-    m.writeVar("memo");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"__dirname"});
 
-    m.readVar("process");
+    m.initVar("memo", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"memo"});
 
-    m.readProperty("obj0", "platform");
+    m.initVar("isWindows", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"isWindows"});
 
-    m.push(false);
+    m.initVar("path", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"path"});
 
-    m.binaryOp();
+    m.initVar("exec", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"exec"});
 
-    m.writeVar("isWindows");
+    m.initVar("osTmpdir", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"osTmpdir"});
 
-    m.readVar("require");
+    m.initVar("osHomedir", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,2],"end":[74,2]}},"name":"osHomedir"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}}});
 
-    m.functionCall("require", 1, 1);
+    m.writeVar("memo", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"memo"});
 
-    m.writeVar("path");
+    m.readVar("process", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,78],"end":[1,85]}},"name":"process"});
 
-    m.readVar("require");
+    m.readProperty("obj0", "platform", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,78],"end":[1,94]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,78],"end":[1,106]}}});
 
-    m.functionCall("require", 1, 1);
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,78],"end":[1,106]}}});
 
-    m.readProperty("obj1", "exec");
+    m.writeVar("isWindows", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,66],"end":[1,105]}},"name":"isWindows"});
 
-    m.writeVar("exec");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[1,66],"end":[1,105]}}});
 
-    m.readVar("require");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[2,12],"end":[2,19]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[2,20],"end":[2,26]}}});
 
-    m.functionCall("require", 1, 1);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[2,12],"end":[2,27]}},"name":"require"});
 
-    m.push(false);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[2,12],"end":[2,27]}},"name":"require"});
 
-    m.initVar("exports");
+    m.writeVar("path", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[2,5],"end":[2,27]}},"name":"path"});
 
-    m.initVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[2,5],"end":[2,27]}}});
 
-    m.initVar("module");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[3,12],"end":[3,19]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[3,20],"end":[3,35]}}});
 
-    m.initVar("__dirname");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[3,12],"end":[3,36]}},"name":"require"});
 
-    m.initVar("isWindows");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[3,12],"end":[3,36]}},"name":"require"});
 
-    m.initVar("trailingSlashRe");
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[3,12],"end":[3,41]}}});
 
-    m.push(false);
+    m.writeVar("exec", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[3,5],"end":[3,41]}},"name":"exec"});
 
-    m.readVar("process");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[3,5],"end":[3,41]}}});
 
-    m.readProperty("obj0", "platform");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[4,16],"end":[4,23]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[4,24],"end":[4,35]}}});
 
-    m.binaryOp();
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[4,16],"end":[4,36]}},"name":"require"});
 
-    m.writeVar("isWindows");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,1],"end":[27,3]}}});
 
-    m.readVar("isWindows");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,1],"end":[27,3]}}});
 
-    m.push(false);
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,2],"end":[27,2]}},"name":"exports"});
 
-    m.writeVar("trailingSlashRe");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,2],"end":[27,2]}},"name":"require"});
 
-    m.readVar("module");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,2],"end":[27,2]}},"name":"module"});
 
-    m.push(false);
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,2],"end":[27,2]}},"name":"__filename"});
 
-    m.writeProperty("obj2", "exports");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,2],"end":[27,2]}},"name":"__dirname"});
 
-    m.writeVar("osTmpdir");
+    m.initVar("isWindows", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,2],"end":[27,2]}},"name":"isWindows"});
 
-    m.readVar("require");
+    m.initVar("trailingSlashRe", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,2],"end":[27,2]}},"name":"trailingSlashRe"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,62],"end":[1,74]}}});
 
-    m.functionCall("require", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[1,62],"end":[1,74]}}});
 
-    m.push(false);
+    m.readVar("process", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[2,17],"end":[2,24]}},"name":"process"});
 
-    m.initVar("exports");
+    m.readProperty("obj0", "platform", {"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[2,17],"end":[2,33]}}});
 
-    m.initVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[2,17],"end":[2,45]}}});
 
-    m.initVar("module");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[2,17],"end":[2,45]}}});
 
-    m.initVar("__filename");
+    m.writeVar("isWindows", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[2,5],"end":[2,44]}},"name":"isWindows"});
 
-    m.initVar("__dirname");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[2,5],"end":[2,44]}}});
 
-    m.initVar("homedir");
+    m.readVar("isWindows", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[3,23],"end":[3,32]}},"name":"isWindows"});
 
-    m.initVar("os");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[3,47],"end":[3,53]}}});
 
-    m.push(false);
+    m.writeVar("trailingSlashRe", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[3,5],"end":[3,53]}},"name":"trailingSlashRe"});
 
-    m.writeVar("homedir");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[3,5],"end":[3,53]}}});
 
-    m.push(false);
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[6,1],"end":[6,7]}},"name":"module"});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[6,18],"end":[25,2]}}});
 
-    m.push(false);
+    m.writeProperty("obj2", "exports", {"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[6,1],"end":[25,2]}}});
 
-    m.functionCall("require", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-tmpdir/index.js","pos":{"start":[6,1],"end":[25,2]}}});
 
-    m.writeVar("os");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[4,16],"end":[4,36]}},"name":"require"});
 
-    m.readVar("module");
+    m.writeVar("osTmpdir", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[4,5],"end":[4,36]}},"name":"osTmpdir"});
 
-    m.readVar("os");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[4,5],"end":[4,36]}}});
 
-    m.readProperty("obj3", "homedir");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[5,17],"end":[5,24]}},"name":"require"});
 
-    m.readVar("os");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[5,25],"end":[5,37]}}});
 
-    m.readProperty("obj3", "homedir");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[5,17],"end":[5,38]}},"name":"require"});
 
-    m.writeProperty("obj4", "exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,1],"end":[26,3]}}});
 
-    m.writeVar("osHomedir");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,1],"end":[26,3]}}});
 
-    m.readVar("memo");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,2],"end":[26,2]}},"name":"exports"});
 
-    m.push(false);
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,2],"end":[26,2]}},"name":"require"});
 
-    m.push(false);
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,2],"end":[26,2]}},"name":"module"});
 
-    m.push(false);
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,2],"end":[26,2]}},"name":"__filename"});
 
-    m.functionCall("memo", 3, 3);
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,2],"end":[26,2]}},"name":"__dirname"});
 
-    m.initVar("key");
+    m.initVar("homedir", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,2],"end":[26,2]}},"name":"homedir"});
 
-    m.initVar("lookup");
+    m.initVar("os", {"type":"declaration","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,2],"end":[26,2]}},"name":"os"});
 
-    m.initVar("fallback");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[4,1],"end":[22,2]}}});
 
-    m.initVar("fell");
+    m.writeVar("homedir", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[4,1],"end":[22,2]}},"name":"homedir"});
 
-    m.initVar("falling");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,62],"end":[1,74]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[1,62],"end":[1,74]}}});
 
-    m.writeVar("fell");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[2,10],"end":[2,17]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[2,18],"end":[2,22]}}});
 
-    m.writeVar("falling");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[2,10],"end":[2,23]}},"name":"require"});
 
-    m.readVar("exports");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[2,10],"end":[2,23]}},"name":"require"});
 
-    m.readVar("key");
+    m.writeVar("os", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[2,5],"end":[2,23]}},"name":"os"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[2,5],"end":[2,23]}}});
 
-    m.writeProperty("obj5", "user");
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[24,1],"end":[24,7]}},"name":"module"});
 
-    m.readVar("memo");
+    m.readVar("os", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[24,25],"end":[24,27]}},"name":"os"});
 
-    m.push(false);
+    m.readProperty("obj3", "homedir", {"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[24,25],"end":[24,35]}}});
 
-    m.push(false);
+    m.unaryOp({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[24,18],"end":[24,50]}}});
 
-    m.functionCall("memo", 3, 2);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[24,18],"end":[24,50]}}});
 
-    m.initVar("key");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[24,18],"end":[24,50]}}});
 
-    m.initVar("lookup");
+    m.readVar("os", {"type":"variable","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[24,53],"end":[24,55]}},"name":"os"});
 
-    m.initVar("fallback");
+    m.readProperty("obj3", "homedir", {"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[24,53],"end":[24,63]}}});
 
-    m.initVar("fell");
+    m.writeProperty("obj4", "exports", {"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[24,1],"end":[24,73]}}});
 
-    m.initVar("falling");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/node_modules/os-homedir/index.js","pos":{"start":[24,1],"end":[24,73]}}});
 
-    m.push(false);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[5,17],"end":[5,38]}},"name":"require"});
 
-    m.writeVar("fell");
+    m.writeVar("osHomedir", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[5,5],"end":[5,38]}},"name":"osHomedir"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[5,5],"end":[5,38]}}});
 
-    m.writeVar("falling");
+    m.readVar("memo", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[34,1],"end":[34,5]}},"name":"memo"});
 
-    m.readVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[34,6],"end":[34,12]}}});
 
-    m.readVar("key");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[34,14],"end":[39,2]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[39,4],"end":[39,12]}}});
 
-    m.writeProperty("obj5", "prompt");
+    m.functionCall("memo", 3, 3, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[34,1],"end":[39,13]}},"name":"memo"});
 
-    m.readVar("memo");
+    m.initVar("key", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"key"});
 
-    m.push(false);
+    m.initVar("lookup", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"lookup"});
 
-    m.push(false);
+    m.initVar("fallback", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fallback"});
 
-    m.push(false);
+    m.initVar("fell", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fell"});
 
-    m.functionCall("memo", 3, 3);
+    m.initVar("falling", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"falling"});
 
-    m.initVar("key");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,14],"end":[12,19]}}});
 
-    m.initVar("lookup");
+    m.writeVar("fell", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}},"name":"fell"});
 
-    m.initVar("fallback");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}}});
 
-    m.initVar("fell");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,17],"end":[13,22]}}});
 
-    m.initVar("falling");
+    m.writeVar("falling", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}},"name":"falling"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}}});
 
-    m.writeVar("fell");
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[14,10]}},"name":"exports"});
 
-    m.push(false);
+    m.readVar("key", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,11],"end":[14,14]}},"name":"key"});
 
-    m.writeVar("falling");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,18],"end":[31,4]}}});
 
-    m.readVar("exports");
+    m.writeProperty("obj5", "user", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.readVar("key");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.push(false);
+    m.functionReturn("memo", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[34,1],"end":[39,13]}},"name":"memo"});
 
-    m.writeProperty("obj5", "hostname");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[34,1],"end":[39,13]}}});
 
-    m.readVar("memo");
+    m.readVar("memo", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[41,1],"end":[41,5]}},"name":"memo"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[41,6],"end":[41,14]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[41,16],"end":[43,2]}}});
 
-    m.functionCall("memo", 3, 2);
+    m.functionCall("memo", 3, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[41,1],"end":[43,3]}},"name":"memo"});
 
-    m.initVar("key");
+    m.initVar("key", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"key"});
 
-    m.initVar("lookup");
+    m.initVar("lookup", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"lookup"});
 
-    m.initVar("fallback");
+    m.initVar("fallback", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fallback"});
 
-    m.initVar("fell");
+    m.initVar("fell", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fell"});
 
-    m.initVar("falling");
+    m.initVar("falling", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"falling"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,14],"end":[12,19]}}});
 
-    m.writeVar("fell");
+    m.writeVar("fell", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}},"name":"fell"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}}});
 
-    m.writeVar("falling");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,17],"end":[13,22]}}});
 
-    m.readVar("exports");
+    m.writeVar("falling", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}},"name":"falling"});
 
-    m.readVar("key");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}}});
 
-    m.push(false);
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[14,10]}},"name":"exports"});
 
-    m.writeProperty("obj5", "tmpdir");
+    m.readVar("key", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,11],"end":[14,14]}},"name":"key"});
 
-    m.readVar("memo");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,18],"end":[31,4]}}});
 
-    m.push(false);
+    m.writeProperty("obj5", "prompt", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.functionCall("memo", 3, 2);
+    m.functionReturn("memo", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[41,1],"end":[43,3]}},"name":"memo"});
 
-    m.initVar("key");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[41,1],"end":[43,3]}}});
 
-    m.initVar("lookup");
+    m.readVar("memo", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[45,1],"end":[45,5]}},"name":"memo"});
 
-    m.initVar("fallback");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[45,6],"end":[45,16]}}});
 
-    m.initVar("fell");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[45,18],"end":[47,2]}}});
 
-    m.initVar("falling");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[47,4],"end":[47,14]}}});
 
-    m.push(false);
+    m.functionCall("memo", 3, 3, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[45,1],"end":[47,15]}},"name":"memo"});
 
-    m.writeVar("fell");
+    m.initVar("key", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"key"});
 
-    m.push(false);
+    m.initVar("lookup", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"lookup"});
 
-    m.writeVar("falling");
+    m.initVar("fallback", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fallback"});
 
-    m.readVar("exports");
+    m.initVar("fell", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fell"});
 
-    m.readVar("key");
+    m.initVar("falling", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"falling"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,14],"end":[12,19]}}});
 
-    m.writeProperty("obj5", "home");
+    m.writeVar("fell", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}},"name":"fell"});
 
-    m.readVar("memo");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,17],"end":[13,22]}}});
 
-    m.push(false);
+    m.writeVar("falling", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}},"name":"falling"});
 
-    m.functionCall("memo", 3, 2);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}}});
 
-    m.initVar("key");
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[14,10]}},"name":"exports"});
 
-    m.initVar("lookup");
+    m.readVar("key", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,11],"end":[14,14]}},"name":"key"});
 
-    m.initVar("fallback");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,18],"end":[31,4]}}});
 
-    m.initVar("fell");
+    m.writeProperty("obj5", "hostname", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.initVar("falling");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.push(false);
+    m.functionReturn("memo", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[45,1],"end":[47,15]}},"name":"memo"});
 
-    m.writeVar("fell");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[45,1],"end":[47,15]}}});
 
-    m.push(false);
+    m.readVar("memo", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[49,1],"end":[49,5]}},"name":"memo"});
 
-    m.writeVar("falling");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[49,6],"end":[49,14]}}});
 
-    m.readVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[49,16],"end":[51,2]}}});
 
-    m.readVar("key");
+    m.functionCall("memo", 3, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[49,1],"end":[51,3]}},"name":"memo"});
 
-    m.push(false);
+    m.initVar("key", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"key"});
 
-    m.writeProperty("obj5", "path");
+    m.initVar("lookup", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"lookup"});
 
-    m.readVar("memo");
+    m.initVar("fallback", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fallback"});
 
-    m.push(false);
+    m.initVar("fell", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fell"});
 
-    m.push(false);
+    m.initVar("falling", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"falling"});
 
-    m.functionCall("memo", 3, 2);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,14],"end":[12,19]}}});
 
-    m.initVar("key");
+    m.writeVar("fell", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}},"name":"fell"});
 
-    m.initVar("lookup");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}}});
 
-    m.initVar("fallback");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,17],"end":[13,22]}}});
 
-    m.initVar("fell");
+    m.writeVar("falling", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}},"name":"falling"});
 
-    m.initVar("falling");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}}});
 
-    m.push(false);
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[14,10]}},"name":"exports"});
 
-    m.writeVar("fell");
+    m.readVar("key", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,11],"end":[14,14]}},"name":"key"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,18],"end":[31,4]}}});
 
-    m.writeVar("falling");
+    m.writeProperty("obj5", "tmpdir", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.readVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.readVar("key");
+    m.functionReturn("memo", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[49,1],"end":[51,3]}},"name":"memo"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[49,1],"end":[51,3]}}});
 
-    m.writeProperty("obj5", "editor");
+    m.readVar("memo", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[53,1],"end":[53,5]}},"name":"memo"});
 
-    m.readVar("memo");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[53,6],"end":[53,12]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[53,14],"end":[55,2]}}});
 
-    m.push(false);
+    m.functionCall("memo", 3, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[53,1],"end":[55,3]}},"name":"memo"});
 
-    m.functionCall("memo", 3, 2);
+    m.initVar("key", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"key"});
 
-    m.initVar("key");
+    m.initVar("lookup", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"lookup"});
 
-    m.initVar("lookup");
+    m.initVar("fallback", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fallback"});
 
-    m.initVar("fallback");
+    m.initVar("fell", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fell"});
 
-    m.initVar("fell");
+    m.initVar("falling", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"falling"});
 
-    m.initVar("falling");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,14],"end":[12,19]}}});
 
-    m.push(false);
+    m.writeVar("fell", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}},"name":"fell"});
 
-    m.writeVar("fell");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,17],"end":[13,22]}}});
 
-    m.writeVar("falling");
+    m.writeVar("falling", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}},"name":"falling"});
 
-    m.readVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}}});
 
-    m.readVar("key");
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[14,10]}},"name":"exports"});
 
-    m.push(false);
+    m.readVar("key", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,11],"end":[14,14]}},"name":"key"});
 
-    m.writeProperty("obj5", "shell");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,18],"end":[31,4]}}});
 
-    m.writeVar("osenv");
+    m.writeProperty("obj5", "home", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.writeVar("filename");
+    m.functionReturn("memo", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[53,1],"end":[55,3]}},"name":"memo"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[53,1],"end":[55,3]}}});
 
-    m.writeVar("command");
+    m.readVar("memo", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[57,1],"end":[57,5]}},"name":"memo"});
 
-    m.readVar("console");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[57,6],"end":[57,12]}}});
 
-    m.readProperty("obj6", "log");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[57,14],"end":[61,2]}}});
 
-    m.push(false);
+    m.functionCall("memo", 3, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[57,1],"end":[61,3]}},"name":"memo"});
 
-    m.functionCall("bound log", 0, 1);
+    m.initVar("key", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"key"});
 
-    m.readVar("osenv");
+    m.initVar("lookup", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"lookup"});
 
-    m.readProperty("obj5", "hostname");
+    m.initVar("fallback", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fallback"});
 
-    m.push(false);
+    m.initVar("fell", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fell"});
 
-    m.readVar("filename");
+    m.initVar("falling", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"falling"});
 
-    m.readVar("command");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,14],"end":[12,19]}}});
 
-    m.binaryOp();
+    m.writeVar("fell", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}},"name":"fell"});
 
-    m.functionCall("", 1, 2);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}}});
 
-    m.initVar("cb");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,17],"end":[13,22]}}});
 
-    m.initVar("val");
+    m.writeVar("falling", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}},"name":"falling"});
 
-    m.readVar("lookup");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}}});
 
-    m.functionCall("", 0, 0);
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[14,10]}},"name":"exports"});
 
-    m.readVar("isWindows");
+    m.readVar("key", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,11],"end":[14,14]}},"name":"key"});
 
-    m.readVar("process");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,18],"end":[31,4]}}});
 
-    m.readProperty("obj0", "env");
+    m.writeProperty("obj5", "path", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.readProperty("obj7", "HOSTNAME");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.writeVar("val");
+    m.functionReturn("memo", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[57,1],"end":[61,3]}},"name":"memo"});
 
-    m.readVar("val");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[57,1],"end":[61,3]}}});
 
-    m.unaryOp();
+    m.readVar("memo", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[63,1],"end":[63,5]}},"name":"memo"});
 
-    m.readVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[63,6],"end":[63,14]}}});
 
-    m.readVar("key");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[63,16],"end":[67,2]}}});
 
-    m.push(false);
+    m.functionCall("memo", 3, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[63,1],"end":[67,3]}},"name":"memo"});
 
-    m.writeProperty("obj5", "hostname");
+    m.initVar("key", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"key"});
 
-    m.readVar("cb");
+    m.initVar("lookup", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"lookup"});
 
-    m.readVar("falling");
+    m.initVar("fallback", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fallback"});
 
-    m.unaryOp();
+    m.initVar("fell", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fell"});
 
-    m.unaryOp();
+    m.initVar("falling", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"falling"});
 
-    m.readVar("process");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,14],"end":[12,19]}}});
 
-    m.readProperty("obj0", "nextTick");
+    m.writeVar("fell", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}},"name":"fell"});
 
-    m.readVar("cb");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}}});
 
-    m.readProperty("obj8", "bind");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,17],"end":[13,22]}}});
 
-    m.push(false);
+    m.writeVar("falling", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}},"name":"falling"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}}});
 
-    m.readVar("val");
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[14,10]}},"name":"exports"});
 
-    m.functionCall("bind", 1, 3);
+    m.readVar("key", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,11],"end":[14,14]}},"name":"key"});
 
-    m.functionCall("nextTick", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,18],"end":[31,4]}}});
 
-    m.readVar("val");
+    m.writeProperty("obj5", "editor", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.writeVar("hostname");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.readVar("console");
+    m.functionReturn("memo", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[63,1],"end":[67,3]}},"name":"memo"});
 
-    m.readProperty("obj6", "log");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[63,1],"end":[67,3]}}});
 
-    m.push(false);
+    m.readVar("memo", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[69,1],"end":[69,5]}},"name":"memo"});
 
-    m.readVar("hostname");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[69,6],"end":[69,13]}}});
 
-    m.binaryOp();
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[69,15],"end":[72,2]}}});
 
-    m.functionCall("bound log", 0, 1);
+    m.functionCall("memo", 3, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[69,1],"end":[72,3]}},"name":"memo"});
 
-    m.readVar("console");
+    m.initVar("key", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"key"});
 
-    m.readProperty("obj6", "log");
+    m.initVar("lookup", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"lookup"});
 
-    m.push(false);
+    m.initVar("fallback", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fallback"});
 
-    m.functionCall("bound log", 0, 1);
+    m.initVar("fell", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"fell"});
 
-    m.readVar("done");
+    m.initVar("falling", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[11,1],"end":[32,2]}},"name":"falling"});
 
-    m.functionCall("done", 0, 0);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,14],"end":[12,19]}}});
 
-    m.unaryOp();
+    m.writeVar("fell", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}},"name":"fell"});
 
-    m.readVar("console");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[12,7],"end":[12,19]}}});
 
-    m.readProperty("obj6", "log");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,17],"end":[13,22]}}});
 
-    m.push(false);
+    m.writeVar("falling", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}},"name":"falling"});
 
-    m.functionCall("bound log", 0, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[13,7],"end":[13,22]}}});
 
-    m.initVar("er");
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[14,10]}},"name":"exports"});
 
-    m.initVar("hostname");
+    m.readVar("key", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,11],"end":[14,14]}},"name":"key"});
 
-    m.readVar("er");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,18],"end":[31,4]}}});
 
-    m.unaryOp();
+    m.writeProperty("obj5", "shell", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.readVar("console");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,3],"end":[31,4]}}});
 
-    m.readProperty("obj6", "log");
+    m.functionReturn("memo", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[69,1],"end":[72,3]}},"name":"memo"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[69,1],"end":[72,3]}}});
 
-    m.readVar("hostname");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"osenv.js","pos":{"start":[16,13],"end":[16,29]}},"name":"require"});
 
-    m.functionCall("bound log", 0, 2);
+    m.writeVar("osenv", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[16,5],"end":[16,29]}},"name":"osenv"});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[16,5],"end":[16,29]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[20,16],"end":[20,28]}}});
+
+    m.writeVar("filename", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[20,5],"end":[20,27]}},"name":"filename"});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[20,5],"end":[20,27]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[21,15],"end":[21,30]}}});
+
+    m.writeVar("command", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[21,5],"end":[21,29]}},"name":"command"});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[21,5],"end":[21,29]}}});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[23,1],"end":[23,8]}},"name":"console"});
+
+    m.readProperty("obj6", "log", {"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[23,1],"end":[23,12]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[23,13],"end":[23,45]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"osenv.js","pos":{"start":[23,1],"end":[23,46]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"osenv.js","pos":{"start":[23,1],"end":[23,46]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[23,1],"end":[23,46]}}});
+
+    m.readVar("osenv", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[25,16],"end":[25,21]}},"name":"osenv"});
+
+    m.readProperty("obj5", "hostname", {"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[25,16],"end":[25,30]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[25,31],"end":[28,2]}}});
+
+    m.readVar("filename", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[28,4],"end":[28,12]}},"name":"filename"});
+
+    m.readVar("command", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[28,13],"end":[28,20]}},"name":"command"});
+
+    m.binaryOp({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[28,4],"end":[28,20]}}});
+
+    m.functionCall("", 1, 2, {"type":"functionInvocation","location":{"fileName":"osenv.js","pos":{"start":[25,16],"end":[28,21]}}});
+
+    m.initVar("cb", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,18],"end":[31,4]}},"name":"cb"});
+
+    m.initVar("val", {"type":"declaration","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[14,18],"end":[31,4]}},"name":"val"});
+
+    m.readVar("lookup", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[15,15],"end":[15,21]}},"name":"lookup"});
+
+    m.functionCall("", 0, 0, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[15,15],"end":[15,23]}}});
+
+    m.readVar("isWindows", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[46,10],"end":[46,19]}},"name":"isWindows"});
+
+    m.readVar("process", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[46,49],"end":[46,56]}},"name":"process"});
+
+    m.readProperty("obj0", "env", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[46,49],"end":[46,60]}}});
+
+    m.readProperty("obj7", "HOSTNAME", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[46,49],"end":[46,69]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[46,3],"end":[46,69]}}});
+
+    m.functionReturn("", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[15,15],"end":[15,23]}}});
+
+    m.writeVar("val", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[15,9],"end":[15,23]}},"name":"val"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[15,9],"end":[15,23]}}});
+
+    m.readVar("val", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[16,10],"end":[16,13]}},"name":"val"});
+
+    m.unaryOp({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[16,9],"end":[16,13]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[16,5],"end":[24,6]}}});
+
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[25,5],"end":[25,12]}},"name":"exports"});
+
+    m.readVar("key", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[25,13],"end":[25,16]}},"name":"key"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[25,20],"end":[28,6]}}});
+
+    m.writeProperty("obj5", "hostname", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[25,5],"end":[28,6]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[25,5],"end":[28,6]}}});
+
+    m.readVar("cb", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,9],"end":[29,11]}},"name":"cb"});
+
+    m.readVar("falling", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,16],"end":[29,23]}},"name":"falling"});
+
+    m.unaryOp({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,15],"end":[29,23]}}});
+
+    m.readVar("process", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,25],"end":[29,32]}},"name":"process"});
+
+    m.readProperty("obj0", "nextTick", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,25],"end":[29,41]}}});
+
+    m.readVar("cb", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,42],"end":[29,44]}},"name":"cb"});
+
+    m.readProperty("obj8", "bind", {"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,42],"end":[29,49]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,50],"end":[29,54]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,56],"end":[29,60]}}});
+
+    m.readVar("val", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,62],"end":[29,65]}},"name":"val"});
+
+    m.functionCall("bind", 1, 3, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,42],"end":[29,66]}},"name":"bind"});
+
+    m.functionReturn("bind", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,42],"end":[29,66]}},"name":"bind"});
+
+    m.functionCall("nextTick", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,25],"end":[29,67]}},"name":"nextTick"});
+
+    m.functionReturn("nextTick", {"type":"functionReturn","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,25],"end":[29,67]}},"name":"nextTick"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,25],"end":[29,67]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[29,5],"end":[29,67]}}});
+
+    m.readVar("val", {"type":"variable","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[30,12],"end":[30,15]}},"name":"val"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/osenv/osenv.js","pos":{"start":[30,5],"end":[30,15]}}});
+
+    m.functionReturn("", {"type":"functionReturn","location":{"fileName":"osenv.js","pos":{"start":[25,16],"end":[28,21]}}});
+
+    m.writeVar("hostname", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[25,5],"end":[28,21]}},"name":"hostname"});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[25,5],"end":[28,21]}}});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[30,1],"end":[30,8]}},"name":"console"});
+
+    m.readProperty("obj6", "log", {"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[30,1],"end":[30,12]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[30,13],"end":[30,26]}}});
+
+    m.readVar("hostname", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[30,29],"end":[30,37]}},"name":"hostname"});
+
+    m.binaryOp({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[30,13],"end":[30,37]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"osenv.js","pos":{"start":[30,1],"end":[30,38]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"osenv.js","pos":{"start":[30,1],"end":[30,38]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[30,1],"end":[30,38]}}});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[32,1],"end":[32,8]}},"name":"console"});
+
+    m.readProperty("obj6", "log", {"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[32,1],"end":[32,12]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[32,13],"end":[32,44]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"osenv.js","pos":{"start":[32,1],"end":[32,45]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"osenv.js","pos":{"start":[32,1],"end":[32,45]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[32,1],"end":[32,45]}}});
+
+    m.readVar("done", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[34,1],"end":[34,5]}},"name":"done"});
+
+    m.functionCall("done", 0, 0, {"type":"functionInvocation","location":{"fileName":"osenv.js","pos":{"start":[34,1],"end":[34,7]}},"name":"done"});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[2,5],"end":[2,12]}},"name":"console"});
+
+    m.readProperty("obj6", "log", {"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[2,5],"end":[2,16]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[2,17],"end":[2,24]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"osenv.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"osenv.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[2,5],"end":[2,25]}}});
+
+    m.functionReturn("done", {"type":"functionReturn","location":{"fileName":"osenv.js","pos":{"start":[34,1],"end":[34,7]}},"name":"done"});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[34,1],"end":[34,7]}}});
+
+    m.initVar("er", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[25,31],"end":[28,2]}},"name":"er"});
+
+    m.initVar("hostname", {"type":"declaration","location":{"fileName":"osenv.js","pos":{"start":[25,31],"end":[28,2]}},"name":"hostname"});
+
+    m.readVar("er", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[26,7],"end":[26,9]}},"name":"er"});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[27,8],"end":[27,15]}},"name":"console"});
+
+    m.readProperty("obj6", "log", {"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[27,8],"end":[27,19]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"osenv.js","pos":{"start":[27,20],"end":[27,50]}}});
+
+    m.readVar("hostname", {"type":"variable","location":{"fileName":"osenv.js","pos":{"start":[27,52],"end":[27,60]}},"name":"hostname"});
+
+    m.functionCall("bound log", 0, 2, {"type":"functionInvocation","location":{"fileName":"osenv.js","pos":{"start":[27,8],"end":[27,61]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"osenv.js","pos":{"start":[27,8],"end":[27,61]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[27,8],"end":[27,61]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"osenv.js","pos":{"start":[26,3],"end":[27,61]}}});
 
     m.endExecution();
 

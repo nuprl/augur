@@ -2,7 +2,7 @@
     "main": "mol-proto-eval.js",
     "sources": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "dummySource",
             "location": {
                 "fileName": "mol-proto-eval.js"

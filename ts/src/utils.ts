@@ -47,20 +47,30 @@ export function parseJalangiLocationString(loc: string): Location {
     // Parse Jalangi location string
     let result = /\((.+\.js):(\d+):(\d+):(\d+):(\d+)\)/.exec(loc);
 
-    let fileName = result[1];
-    let indices = result.slice(2).map(n => Number.parseInt(n));
+    if (result == null || !(result.length >= 4)) {
+        // If the location couldn't be parsed with the above regular
+        // expression, it is PROBABLY referencing an eval.
+        // TODO: make sure this is the case.
+        // TODO: come up with a better Location to return here
+        return {
+            fileName: "eval"
+        };
+    } else {
+        let fileName = result[1];
+        let indices = result.slice(2).map(n => Number.parseInt(n));
 
-    let span: SourceSpan = {
-        start: [indices[0], indices[1]],
-        end: [indices[2], indices[3]]
-    };
+        let span: SourceSpan = {
+            start: [indices[0], indices[1]],
+            end: [indices[2], indices[3]]
+        };
 
-    let location: Location = {
-        fileName: fileName,
-        pos: span
-    };
+        let location: Location = {
+            fileName: fileName,
+            pos: span
+        };
 
-    return location;
+        return location;
+    }
 }
 
 export function parseIID(iid: number): Location {

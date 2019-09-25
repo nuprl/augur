@@ -1,656 +1,786 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,1],"end":[18,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,1],"end":[18,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,2],"end":[18,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,2],"end":[18,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,2],"end":[18,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,2],"end":[18,2]}},"name":"__filename"});
 
-    m.initVar("payload");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,2],"end":[18,2]}},"name":"__dirname"});
 
-    m.initVar("parser");
+    m.initVar("payload", {"type":"declaration","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,2],"end":[18,2]}},"name":"payload"});
 
-    m.initVar("query");
+    m.initVar("parser", {"type":"declaration","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,2],"end":[18,2]}},"name":"parser"});
 
-    m.push(false);
+    m.initVar("query", {"type":"declaration","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,2],"end":[18,2]}},"name":"query"});
 
-    m.writeVar("done");
+    m.literal({"type":"literal","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,69],"end":[3,2]}}});
 
-    m.push(false);
+    m.writeVar("done", {"type":"variable","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"});
 
-    m.writeVar("payload");
+    m.pop({"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[1,62],"end":[3,2]}}});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[5,15],"end":[5,57]}}});
 
-    m.push(false);
+    m.writeVar("payload", {"type":"variable","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[5,5],"end":[5,56]}},"name":"payload"});
 
-    m.functionCall("require", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[5,5],"end":[5,56]}}});
 
-    m.push(false);
+    m.readVar("require", {"type":"variable","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[6,14],"end":[6,21]}},"name":"require"});
 
-    m.initVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[6,22],"end":[6,35]}}});
 
-    m.initVar("require");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[6,14],"end":[6,36]}},"name":"require"});
 
-    m.initVar("module");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,1],"end":[151,3]}}});
 
-    m.initVar("__filename");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,1],"end":[151,3]}}});
 
-    m.initVar("__dirname");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"exports"});
 
-    m.initVar("isInclusive");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"require"});
 
-    m.initVar("parseQuery");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"module"});
 
-    m.initVar("parseFieldOperator");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"__filename"});
 
-    m.initVar("parseElemMatch");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"__dirname"});
 
-    m.initVar("parseNot");
+    m.initVar("isInclusive", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"isInclusive"});
 
-    m.initVar("fieldOperand");
+    m.initVar("parseQuery", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"parseQuery"});
 
-    m.initVar("isObject");
+    m.initVar("parseFieldOperator", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"parseFieldOperator"});
 
-    m.initVar("mapValues");
+    m.initVar("parseElemMatch", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"parseElemMatch"});
 
-    m.initVar("matches");
+    m.initVar("parseNot", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"parseNot"});
 
-    m.initVar("Parse");
+    m.initVar("fieldOperand", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"fieldOperand"});
 
-    m.initVar("complexFieldIndependantOperators");
+    m.initVar("isObject", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"isObject"});
 
-    m.initVar("simpleFieldIndependantOperators");
+    m.initVar("mapValues", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"mapValues"});
 
-    m.initVar("Part");
+    m.initVar("matches", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"matches"});
 
-    m.push(false);
+    m.initVar("Parse", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"Parse"});
 
-    m.writeVar("isInclusive");
+    m.initVar("complexFieldIndependantOperators", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"complexFieldIndependantOperators"});
 
-    m.push(false);
+    m.initVar("simpleFieldIndependantOperators", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"simpleFieldIndependantOperators"});
 
-    m.writeVar("parseQuery");
+    m.initVar("Part", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[1,2],"end":[151,2]}},"name":"Part"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[32,1],"end":[48,2]}}});
 
-    m.writeVar("parseFieldOperator");
+    m.writeVar("isInclusive", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[32,1],"end":[48,2]}},"name":"isInclusive"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}}});
 
-    m.writeVar("parseElemMatch");
+    m.writeVar("parseQuery", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"parseQuery"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[91,1],"end":[102,2]}}});
 
-    m.writeVar("parseNot");
+    m.writeVar("parseFieldOperator", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[91,1],"end":[102,2]}},"name":"parseFieldOperator"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[106,1],"end":[117,2]}}});
 
-    m.writeVar("fieldOperand");
+    m.writeVar("parseElemMatch", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[106,1],"end":[117,2]}},"name":"parseElemMatch"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[119,1],"end":[126,2]}}});
 
-    m.writeVar("isObject");
+    m.writeVar("parseNot", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[119,1],"end":[126,2]}},"name":"parseNot"});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[130,1],"end":[134,2]}}});
 
-    m.push(false);
+    m.writeVar("fieldOperand", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[130,1],"end":[134,2]}},"name":"fieldOperand"});
 
-    m.functionCall("require", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[137,1],"end":[139,2]}}});
 
-    m.push(false);
+    m.writeVar("isObject", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[137,1],"end":[139,2]}},"name":"isObject"});
 
-    m.initVar("exports");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[3,17],"end":[3,24]}},"name":"require"});
 
-    m.initVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[3,25],"end":[3,38]}}});
 
-    m.initVar("module");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[3,17],"end":[3,39]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,1],"end":[95,3]}}});
 
-    m.initVar("__dirname");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,1],"end":[95,3]}}});
 
-    m.initVar("obj");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,2],"end":[95,2]}},"name":"exports"});
 
-    m.initVar("addOperator");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,2],"end":[95,2]}},"name":"require"});
 
-    m.initVar("singleValueOperators");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,2],"end":[95,2]}},"name":"module"});
 
-    m.initVar("arrayOperators");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,2],"end":[95,2]}},"name":"__filename"});
 
-    m.initVar("mapValues");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,2],"end":[95,2]}},"name":"__dirname"});
 
-    m.push(false);
+    m.initVar("obj", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,2],"end":[95,2]}},"name":"obj"});
 
-    m.writeVar("obj");
+    m.initVar("addOperator", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,2],"end":[95,2]}},"name":"addOperator"});
 
-    m.push(false);
+    m.initVar("singleValueOperators", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,2],"end":[95,2]}},"name":"singleValueOperators"});
 
-    m.writeVar("addOperator");
+    m.initVar("arrayOperators", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,2],"end":[95,2]}},"name":"arrayOperators"});
 
-    m.push(false);
+    m.initVar("mapValues", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[1,2],"end":[95,2]}},"name":"mapValues"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[79,1],"end":[85,2]}}});
 
-    m.push(false);
+    m.writeVar("obj", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[79,1],"end":[85,2]}},"name":"obj"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[88,1],"end":[94,2]}}});
 
-    m.push(false);
+    m.writeVar("addOperator", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[88,1],"end":[94,2]}},"name":"addOperator"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[2,33],"end":[2,34]}}});
 
-    m.writeProperty("obj0", "$not");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[2,41],"end":[2,42]}}});
 
-    m.writeProperty("obj0", "$ne");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[2,48],"end":[2,49]}}});
 
-    m.writeProperty("obj0", "$lte");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[2,56],"end":[2,57]}}});
 
-    m.writeProperty("obj0", "$lt");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[2,63],"end":[2,64]}}});
 
-    m.writeProperty("obj0", "$gte");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[2,71],"end":[2,72]}}});
 
-    m.writeProperty("obj0", "$gt");
+    m.writeProperty("obj0", "$not", {});
 
-    m.push(false);
+    m.writeProperty("obj0", "$ne", {});
 
-    m.writeVar("singleValueOperators");
+    m.writeProperty("obj0", "$lte", {});
 
-    m.push(false);
+    m.writeProperty("obj0", "$lt", {});
 
-    m.push(false);
+    m.writeProperty("obj0", "$gte", {});
 
-    m.push(false);
+    m.writeProperty("obj0", "$gt", {});
 
-    m.writeProperty("obj1", "$in");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[2,28],"end":[2,73]}}});
 
-    m.writeProperty("obj1", "$all");
+    m.writeVar("singleValueOperators", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[2,5],"end":[2,73]}},"name":"singleValueOperators"});
 
-    m.writeProperty("obj1", "$nin");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[2,5],"end":[2,73]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[3,28],"end":[3,29]}}});
 
-    m.writeVar("arrayOperators");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[3,36],"end":[3,37]}}});
 
-    m.readVar("module");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[3,43],"end":[3,44]}}});
 
-    m.push(false);
+    m.writeProperty("obj1", "$in", {});
 
-    m.writeProperty("obj2", "exports");
+    m.writeProperty("obj1", "$all", {});
 
-    m.writeVar("mapValues");
+    m.writeProperty("obj1", "$nin", {});
 
-    m.writeVar("mapValues");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[3,22],"end":[3,45]}}});
 
-    m.readVar("require");
+    m.writeVar("arrayOperators", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[3,5],"end":[3,45]}},"name":"arrayOperators"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[3,5],"end":[3,45]}}});
 
-    m.functionCall("require", 1, 1);
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[8,17],"end":[8,23]}},"name":"module"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[8,34],"end":[76,2]}}});
 
-    m.initVar("exports");
+    m.writeProperty("obj2", "exports", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[8,17],"end":[76,2]}}});
 
-    m.initVar("require");
+    m.writeVar("mapValues", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[8,5],"end":[76,2]}},"name":"mapValues"});
 
-    m.initVar("module");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mapValues.js","pos":{"start":[8,5],"end":[76,2]}}});
 
-    m.initVar("__filename");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[3,17],"end":[3,39]}},"name":"require"});
 
-    m.initVar("__dirname");
+    m.writeVar("mapValues", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[3,5],"end":[3,39]}},"name":"mapValues"});
 
-    m.initVar("partMatches");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[3,5],"end":[3,39]}}});
 
-    m.initVar("valueTest");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[4,15],"end":[4,22]}},"name":"require"});
 
-    m.initVar("mongoEqual");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[4,23],"end":[4,34]}}});
 
-    m.initVar("validateDocumentObject");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[4,15],"end":[4,35]}},"name":"require"});
 
-    m.initVar("DotNotationPointers");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,1],"end":[261,3]}}});
 
-    m.initVar("simpleComparators");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,1],"end":[261,3]}}});
 
-    m.initVar("compoundOperatorComparators");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"exports"});
 
-    m.initVar("matches");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"require"});
 
-    m.push(false);
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"module"});
 
-    m.writeVar("partMatches");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"__filename"});
 
-    m.push(false);
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"__dirname"});
 
-    m.writeVar("valueTest");
+    m.initVar("partMatches", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"partMatches"});
 
-    m.push(false);
+    m.initVar("valueTest", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"valueTest"});
 
-    m.writeVar("mongoEqual");
+    m.initVar("mongoEqual", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"mongoEqual"});
 
-    m.push(false);
+    m.initVar("validateDocumentObject", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"validateDocumentObject"});
 
-    m.writeVar("validateDocumentObject");
+    m.initVar("DotNotationPointers", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"DotNotationPointers"});
 
-    m.readVar("require");
+    m.initVar("simpleComparators", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"simpleComparators"});
 
-    m.push(false);
+    m.initVar("compoundOperatorComparators", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"compoundOperatorComparators"});
 
-    m.functionCall("require", 1, 1);
+    m.initVar("matches", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[1,2],"end":[261,2]}},"name":"matches"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[106,1],"end":[182,2]}}});
 
-    m.initVar("exports");
+    m.writeVar("partMatches", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[106,1],"end":[182,2]}},"name":"partMatches"});
 
-    m.initVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[187,1],"end":[203,2]}}});
 
-    m.initVar("module");
+    m.writeVar("valueTest", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[187,1],"end":[203,2]}},"name":"valueTest"});
 
-    m.initVar("__filename");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[206,1],"end":[248,2]}}});
 
-    m.initVar("__dirname");
+    m.writeVar("mongoEqual", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[206,1],"end":[248,2]}},"name":"mongoEqual"});
 
-    m.initVar("createPointers");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[250,1],"end":[260,2]}}});
 
-    m.initVar("getValue");
+    m.writeVar("validateDocumentObject", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[250,1],"end":[260,2]}},"name":"validateDocumentObject"});
 
-    m.initVar("createProperty");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[2,27],"end":[2,34]}},"name":"require"});
 
-    m.initVar("isInteger");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[2,35],"end":[2,58]}}});
 
-    m.initVar("DotNotationPointers");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[2,27],"end":[2,59]}},"name":"require"});
 
-    m.initVar("DotNotationPointer");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,1],"end":[120,3]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,1],"end":[120,3]}}});
 
-    m.writeVar("createPointers");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"exports"});
 
-    m.push(false);
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"require"});
 
-    m.writeVar("getValue");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"module"});
 
-    m.push(false);
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"__filename"});
 
-    m.writeVar("createProperty");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"__dirname"});
 
-    m.push(false);
+    m.initVar("createPointers", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"createPointers"});
 
-    m.writeVar("isInteger");
+    m.initVar("getValue", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"getValue"});
 
-    m.readVar("module");
+    m.initVar("createProperty", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"createProperty"});
 
-    m.push(false);
+    m.initVar("isInteger", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"isInteger"});
 
-    m.writeProperty("obj3", "exports");
+    m.initVar("DotNotationPointers", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"DotNotationPointers"});
 
-    m.writeVar("DotNotationPointers");
+    m.initVar("DotNotationPointer", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[1,2],"end":[120,2]}},"name":"DotNotationPointer"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[12,1],"end":[42,2]}}});
 
-    m.writeVar("DotNotationPointer");
+    m.writeVar("createPointers", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[12,1],"end":[42,2]}},"name":"createPointers"});
 
-    m.readVar("DotNotationPointer");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[44,1],"end":[49,2]}}});
 
-    m.push(false);
+    m.writeVar("getValue", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[44,1],"end":[49,2]}},"name":"getValue"});
 
-    m.writeProperty("obj4", "prototype");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[95,1],"end":[113,2]}}});
 
-    m.readVar("Object");
+    m.writeVar("createProperty", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[95,1],"end":[113,2]}},"name":"createProperty"});
 
-    m.readProperty("obj5", "defineProperty");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[116,1],"end":[119,2]}}});
 
-    m.readVar("DotNotationPointer");
+    m.writeVar("isInteger", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[116,1],"end":[119,2]}},"name":"isInteger"});
 
-    m.readProperty("obj4", "prototype");
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[2,27],"end":[2,33]}},"name":"module"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[2,44],"end":[10,2]}}});
 
-    m.push(false);
+    m.writeProperty("obj3", "exports", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[2,27],"end":[10,2]}}});
 
-    m.push(false);
+    m.writeVar("DotNotationPointers", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[2,5],"end":[10,2]}},"name":"DotNotationPointers"});
 
-    m.writeProperty("obj6", "set");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[2,5],"end":[10,2]}}});
 
-    m.writeProperty("obj6", "get");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[56,26],"end":[69,2]}}});
 
-    m.push(false);
+    m.writeVar("DotNotationPointer", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[56,5],"end":[69,2]}},"name":"DotNotationPointer"});
 
-    m.functionCall("defineProperty", 3, 3);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[56,5],"end":[69,2]}}});
 
-    m.writeVar("DotNotationPointers");
+    m.readVar("DotNotationPointer", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[70,1],"end":[70,19]}},"name":"DotNotationPointer"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[70,32],"end":[70,34]}}});
 
-    m.push(false);
+    m.writeProperty("obj4", "prototype", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[70,1],"end":[70,34]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[70,1],"end":[70,34]}}});
 
-    m.push(false);
+    m.readVar("Object", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[73,1],"end":[73,7]}},"name":"Object"});
 
-    m.push(false);
+    m.readProperty("obj5", "defineProperty", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[73,1],"end":[73,22]}}});
 
-    m.push(false);
+    m.readVar("DotNotationPointer", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[73,23],"end":[73,41]}},"name":"DotNotationPointer"});
 
-    m.push(false);
+    m.readProperty("obj4", "prototype", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[73,23],"end":[73,51]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[73,53],"end":[73,58]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[74,10],"end":[85,6]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[85,13],"end":[91,6]}}});
 
-    m.push(false);
+    m.writeProperty("obj6", "set", {});
 
-    m.writeProperty("obj7", "$all");
+    m.writeProperty("obj6", "get", {});
 
-    m.writeProperty("obj7", "$nin");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[73,60],"end":[92,2]}}});
 
-    m.writeProperty("obj7", "$in");
+    m.functionCall("defineProperty", 3, 3, {"type":"functionInvocation","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[73,1],"end":[92,3]}},"name":"defineProperty"});
 
-    m.writeProperty("obj7", "$exists");
+    m.functionReturn("defineProperty", {"type":"functionReturn","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[73,1],"end":[92,3]}},"name":"defineProperty"});
 
-    m.writeProperty("obj7", "$regex");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/DotNotationPointers.js","pos":{"start":[73,1],"end":[92,3]}}});
 
-    m.writeProperty("obj7", "$mod");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[2,27],"end":[2,59]}},"name":"require"});
 
-    m.writeProperty("obj7", "$ne");
+    m.writeVar("DotNotationPointers", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[2,5],"end":[2,59]}},"name":"DotNotationPointers"});
 
-    m.writeProperty("obj7", "$lte");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[2,5],"end":[2,59]}}});
 
-    m.writeProperty("obj7", "$lt");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[38,10],"end":[38,36]}}});
 
-    m.writeProperty("obj7", "$gte");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[39,10],"end":[39,37]}}});
 
-    m.writeProperty("obj7", "$gt");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[40,9],"end":[40,35]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[41,10],"end":[41,37]}}});
 
-    m.writeVar("simpleComparators");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[42,9],"end":[42,37]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[44,10],"end":[44,80]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[45,12],"end":[45,121]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[47,13],"end":[47,85]}}});
 
-    m.writeProperty("obj8", "$nor");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[49,9],"end":[51,6]}}});
 
-    m.writeProperty("obj8", "$or");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[52,10],"end":[54,6]}}});
 
-    m.writeProperty("obj8", "$and");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[55,10],"end":[59,6]}}});
 
-    m.push(false);
+    m.writeProperty("obj7", "$all", {});
 
-    m.writeVar("compoundOperatorComparators");
+    m.writeProperty("obj7", "$nin", {});
 
-    m.readVar("module");
+    m.writeProperty("obj7", "$in", {});
 
-    m.push(false);
+    m.writeProperty("obj7", "$exists", {});
 
-    m.writeProperty("obj9", "exports");
+    m.writeProperty("obj7", "$regex", {});
 
-    m.writeVar("matches");
+    m.writeProperty("obj7", "$mod", {});
 
-    m.writeVar("matches");
+    m.writeProperty("obj7", "$ne", {});
 
-    m.readVar("exports");
+    m.writeProperty("obj7", "$lte", {});
 
-    m.readVar("require");
+    m.writeProperty("obj7", "$lt", {});
 
-    m.push(false);
+    m.writeProperty("obj7", "$gte", {});
 
-    m.functionCall("require", 1, 1);
+    m.writeProperty("obj7", "$gt", {});
 
-    m.writeProperty("obj10", "DotNotationPointers");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[37,25],"end":[60,2]}}});
 
-    m.push(false);
+    m.writeVar("simpleComparators", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[37,5],"end":[60,2]}},"name":"simpleComparators"});
 
-    m.writeVar("Parse");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[37,5],"end":[60,2]}}});
 
-    m.readVar("Parse");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[63,11],"end":[71,6]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[72,10],"end":[80,6]}}});
 
-    m.writeProperty("obj11", "prototype");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[81,11],"end":[89,6]}}});
 
-    m.readVar("Parse");
+    m.writeProperty("obj8", "$nor", {});
 
-    m.readProperty("obj11", "prototype");
+    m.writeProperty("obj8", "$or", {});
 
-    m.push(false);
+    m.writeProperty("obj8", "$and", {});
 
-    m.writeProperty("obj12", "mapValues");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[62,35],"end":[90,2]}}});
 
-    m.readVar("Parse");
+    m.writeVar("compoundOperatorComparators", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[62,5],"end":[90,2]}},"name":"compoundOperatorComparators"});
 
-    m.readProperty("obj11", "prototype");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[62,5],"end":[90,2]}}});
 
-    m.push(false);
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[92,15],"end":[92,21]}},"name":"module"});
 
-    m.writeProperty("obj12", "matches");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[92,32],"end":[104,2]}}});
 
-    m.readVar("exports");
+    m.writeProperty("obj9", "exports", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[92,15],"end":[104,2]}}});
 
-    m.push(false);
+    m.writeVar("matches", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[92,5],"end":[104,2]}},"name":"matches"});
 
-    m.writeProperty("obj10", "parse");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/matches.js","pos":{"start":[92,5],"end":[104,2]}}});
 
-    m.readVar("exports");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[4,15],"end":[4,35]}},"name":"require"});
 
-    m.push(false);
+    m.writeVar("matches", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[4,5],"end":[4,35]}},"name":"matches"});
 
-    m.writeProperty("obj10", "inclusive");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[4,5],"end":[4,35]}}});
 
-    m.push(false);
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[6,1],"end":[6,8]}},"name":"exports"});
 
-    m.push(false);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[6,31],"end":[6,38]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[6,39],"end":[6,62]}}});
 
-    m.writeProperty("obj13", "$nor");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[6,31],"end":[6,63]}},"name":"require"});
 
-    m.writeProperty("obj13", "$or");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[6,31],"end":[6,63]}},"name":"require"});
 
-    m.writeProperty("obj13", "$and");
+    m.writeProperty("obj10", "DotNotationPointers", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[6,1],"end":[6,63]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[6,1],"end":[6,63]}}});
 
-    m.writeVar("complexFieldIndependantOperators");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[9,13],"end":[11,2]}}});
 
-    m.push(false);
+    m.writeVar("Parse", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[9,5],"end":[11,2]}},"name":"Parse"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[9,5],"end":[11,2]}}});
 
-    m.writeProperty("obj14", "$comment");
+    m.readVar("Parse", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[12,1],"end":[12,6]}},"name":"Parse"});
 
-    m.writeProperty("obj14", "$text");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[12,19],"end":[12,21]}}});
 
-    m.push(false);
+    m.writeProperty("obj11", "prototype", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[12,1],"end":[12,21]}}});
 
-    m.writeVar("simpleFieldIndependantOperators");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[12,1],"end":[12,21]}}});
 
-    m.push(false);
+    m.readVar("Parse", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[15,1],"end":[15,6]}},"name":"Parse"});
 
-    m.writeVar("Part");
+    m.readProperty("obj11", "prototype", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[15,1],"end":[15,16]}}});
 
-    m.writeVar("parser");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[15,29],"end":[17,2]}}});
 
-    m.readVar("parser");
+    m.writeProperty("obj12", "mapValues", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[15,1],"end":[17,2]}}});
 
-    m.readProperty("obj10", "parse");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[15,1],"end":[17,2]}}});
 
-    m.push(false);
+    m.readVar("Parse", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[18,1],"end":[18,6]}},"name":"Parse"});
 
-    m.readVar("payload");
+    m.readProperty("obj11", "prototype", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[18,1],"end":[18,16]}}});
 
-    m.binaryOp();
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[18,27],"end":[20,2]}}});
 
-    m.push(false);
+    m.writeProperty("obj12", "matches", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[18,1],"end":[20,2]}}});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[18,1],"end":[20,2]}}});
 
-    m.functionCall("", 1, 1);
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[22,1],"end":[22,8]}},"name":"exports"});
 
-    m.initVar("mongoQuery");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[22,17],"end":[24,2]}}});
 
-    m.readVar("Parse");
+    m.writeProperty("obj10", "parse", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[22,1],"end":[24,2]}}});
 
-    m.readVar("mongoQuery");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[22,1],"end":[24,2]}}});
 
-    m.functionCall("Parse", 1, 1);
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[25,1],"end":[25,8]}},"name":"exports"});
 
-    m.initVar("mongoQuery");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[25,21],"end":[27,2]}}});
 
-    m.readVar("parseQuery");
+    m.writeProperty("obj10", "inclusive", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[25,1],"end":[27,2]}}});
 
-    m.readVar("mongoQuery");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[25,1],"end":[27,2]}}});
 
-    m.functionCall("parseQuery", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[29,46],"end":[29,47]}}});
 
-    m.initVar("query");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[29,53],"end":[29,54]}}});
 
-    m.initVar("arguments");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[29,61],"end":[29,62]}}});
 
-    m.initVar("normalizedFunction");
+    m.writeProperty("obj13", "$nor", {});
 
-    m.initVar("parts");
+    m.writeProperty("obj13", "$or", {});
 
-    m.initVar("key");
+    m.writeProperty("obj13", "$and", {});
 
-    m.initVar("operator");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[29,40],"end":[29,63]}}});
 
-    m.initVar("operands");
+    m.writeVar("complexFieldIndependantOperators", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[29,5],"end":[29,63]}},"name":"complexFieldIndependantOperators"});
 
-    m.initVar("innerParts");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[29,5],"end":[29,63]}}});
 
-    m.initVar("field");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[30,46],"end":[30,47]}}});
 
-    m.initVar("innerOperator");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[30,58],"end":[30,59]}}});
 
-    m.initVar("innerOperand");
+    m.writeProperty("obj14", "$comment", {});
 
-    m.readVar("query");
+    m.writeProperty("obj14", "$text", {});
 
-    m.readVar("Function");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[30,39],"end":[30,60]}}});
 
-    m.binaryOp();
+    m.writeVar("simpleFieldIndependantOperators", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[30,5],"end":[30,60]}},"name":"simpleFieldIndependantOperators"});
 
-    m.readVar("query");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[30,5],"end":[30,60]}}});
 
-    m.readVar("query");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[142,12],"end":[150,2]}}});
 
-    m.readVar("Function");
+    m.writeVar("Part", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[142,5],"end":[150,2]}},"name":"Part"});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[142,5],"end":[150,2]}}});
 
-    m.readVar("eval");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[6,14],"end":[6,36]}},"name":"require"});
 
-    m.push(false);
+    m.writeVar("parser", {"type":"variable","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[6,5],"end":[6,36]}},"name":"parser"});
 
-    m.readVar("query");
+    m.pop({"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[6,5],"end":[6,36]}}});
 
-    m.binaryOp();
+    m.readVar("parser", {"type":"variable","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,13],"end":[7,19]}},"name":"parser"});
 
-    m.push(false);
+    m.readProperty("obj10", "parse", {"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,13],"end":[7,25]}}});
 
-    m.binaryOp();
+    m.literal({"type":"literal","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,26],"end":[7,32]}}});
 
-    m.builtin("eval", 1);
+    m.readVar("payload", {"type":"variable","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,35],"end":[7,42]}},"name":"payload"});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,26],"end":[7,42]}}});
 
-    m.readVar("console");
+    m.literal({"type":"literal","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,45],"end":[7,49]}}});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,26],"end":[7,49]}}});
 
-    m.push(false);
+    m.functionCall("", 1, 1, {"type":"functionInvocation","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,13],"end":[7,50]}}});
 
-    m.writeProperty("obj15", "my-awesome-prop-23-42");
+    m.initVar("mongoQuery", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[22,17],"end":[24,2]}},"name":"mongoQuery"});
 
-    m.writeVar("normalizedFunction");
+    m.readVar("Parse", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[23,16],"end":[23,21]}},"name":"Parse"});
 
-    m.readVar("Part");
+    m.readVar("mongoQuery", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[23,22],"end":[23,32]}},"name":"mongoQuery"});
 
-    m.readVar("undefined");
+    m.functionCall("Parse", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[23,12],"end":[23,33]}},"name":"Parse"});
 
-    m.push(false);
+    m.initVar("mongoQuery", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[9,13],"end":[11,2]}},"name":"mongoQuery"});
 
-    m.readVar("normalizedFunction");
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[10,5],"end":[10,9]}},"name":"this"});
 
-    m.functionCall("Part", 5, 3);
+    m.readVar("parseQuery", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[10,18],"end":[10,28]}},"name":"parseQuery"});
 
-    m.initVar("field");
+    m.readVar("mongoQuery", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[10,29],"end":[10,39]}},"name":"mongoQuery"});
 
-    m.initVar("operator");
+    m.functionCall("parseQuery", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[10,18],"end":[10,40]}},"name":"parseQuery"});
 
-    m.initVar("operand");
+    m.initVar("query", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"query"});
 
-    m.initVar("parts");
+    m.initVar("arguments", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"arguments"});
 
-    m.initVar("implicitField");
+    m.initVar("normalizedFunction", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"normalizedFunction"});
 
-    m.readVar("parts");
+    m.initVar("parts", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"parts"});
 
-    m.push(false);
+    m.initVar("key", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"key"});
 
-    m.binaryOp();
+    m.initVar("operator", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"operator"});
 
-    m.unaryOp();
+    m.initVar("operands", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"operands"});
 
-    m.push(false);
+    m.initVar("innerParts", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"innerParts"});
 
-    m.writeVar("parts");
+    m.initVar("field", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"field"});
 
-    m.readVar("field");
+    m.initVar("innerOperator", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"innerOperator"});
 
-    m.writeProperty("obj16", "field");
+    m.initVar("innerOperand", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[50,1],"end":[88,2]}},"name":"innerOperand"});
 
-    m.readVar("operator");
+    m.readVar("query", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[51,8],"end":[51,13]}},"name":"query"});
 
-    m.writeProperty("obj16", "operator");
+    m.readVar("Function", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[51,25],"end":[51,33]}},"name":"Function"});
 
-    m.readVar("operand");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[51,8],"end":[51,33]}}});
 
-    m.writeProperty("obj16", "operand");
+    m.readVar("query", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[51,43],"end":[51,50]}},"name":"query"});
 
-    m.readVar("parts");
+    m.unaryOp({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[51,37],"end":[51,63]}}});
 
-    m.writeProperty("obj16", "parts");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[51,37],"end":[51,63]}}});
 
-    m.readVar("implicitField");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[51,37],"end":[51,63]}}});
 
-    m.writeProperty("obj16", "implicitField");
+    m.readVar("query", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[52,12],"end":[52,17]}},"name":"query"});
 
-    m.writeProperty("obj17", "0");
+    m.readVar("Function", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[52,29],"end":[52,37]}},"name":"Function"});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[52,12],"end":[52,37]}}});
 
-    m.writeProperty("obj18", "parts");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[52,9],"end":[54,10]}}});
 
-    m.writeVar("query");
+    m.readVar("eval", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[56,34],"end":[56,38]}},"name":"eval"});
 
-    m.readVar("console");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[56,39],"end":[56,75]}}});
 
-    m.push(false);
+    m.readVar("query", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[56,76],"end":[56,81]}},"name":"query"});
 
-    m.readProperty("obj15", "my-awesome-prop-23-42");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[56,39],"end":[56,81]}}});
 
-    m.unaryOp();
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[56,82],"end":[56,86]}}});
 
-    m.readVar("console");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[56,39],"end":[56,86]}}});
 
-    m.readProperty("obj15", "log");
+    m.builtin("eval", 1, {"type":"builtin","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[56,34],"end":[56,87]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"eval"}});
 
-    m.functionCall("bound log", 0, 1);
+    m.pop({"type":"expr","location":{"fileName":"eval"}});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"eval"},"name":"console"});
+
+    m.literal({"type":"literal","location":{"fileName":"eval"}});
+
+    m.literal({"type":"literal","location":{"fileName":"eval"}});
+
+    m.writeProperty("obj15", "my-awesome-prop-23-42", {"type":"expr","location":{"fileName":"eval"}});
+
+    m.pop({"type":"expr","location":{"fileName":"eval"}});
+
+    m.writeVar("normalizedFunction", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[56,13],"end":[56,87]}},"name":"normalizedFunction"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[56,13],"end":[56,87]}}});
+
+    m.readVar("Part", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[57,21],"end":[57,25]}},"name":"Part"});
+
+    m.readVar("undefined", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[57,26],"end":[57,35]}},"name":"undefined"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[57,37],"end":[57,45]}}});
+
+    m.readVar("normalizedFunction", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[57,47],"end":[57,65]}},"name":"normalizedFunction"});
+
+    m.functionCall("Part", 5, 3, {"type":"functionInvocation","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[57,17],"end":[57,66]}},"name":"Part"});
+
+    m.initVar("field", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[142,12],"end":[150,2]}},"name":"field"});
+
+    m.initVar("operator", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[142,12],"end":[150,2]}},"name":"operator"});
+
+    m.initVar("operand", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[142,12],"end":[150,2]}},"name":"operand"});
+
+    m.initVar("parts", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[142,12],"end":[150,2]}},"name":"parts"});
+
+    m.initVar("implicitField", {"type":"declaration","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[142,12],"end":[150,2]}},"name":"implicitField"});
+
+    m.readVar("parts", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[143,8],"end":[143,13]}},"name":"parts"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[143,8],"end":[143,27]}}});
+
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[143,8],"end":[143,27]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[143,37],"end":[143,39]}}});
+
+    m.writeVar("parts", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[143,29],"end":[143,39]}},"name":"parts"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[143,29],"end":[143,39]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[143,5],"end":[143,39]}}});
+
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[145,5],"end":[145,9]}},"name":"this"});
+
+    m.readVar("field", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[145,18],"end":[145,23]}},"name":"field"});
+
+    m.writeProperty("obj16", "field", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[145,5],"end":[145,23]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[145,5],"end":[145,23]}}});
+
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[146,5],"end":[146,9]}},"name":"this"});
+
+    m.readVar("operator", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[146,21],"end":[146,29]}},"name":"operator"});
+
+    m.writeProperty("obj16", "operator", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[146,5],"end":[146,29]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[146,5],"end":[146,29]}}});
+
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[147,5],"end":[147,9]}},"name":"this"});
+
+    m.readVar("operand", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[147,20],"end":[147,27]}},"name":"operand"});
+
+    m.writeProperty("obj16", "operand", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[147,5],"end":[147,27]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[147,5],"end":[147,27]}}});
+
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[148,5],"end":[148,9]}},"name":"this"});
+
+    m.readVar("parts", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[148,18],"end":[148,23]}},"name":"parts"});
+
+    m.writeProperty("obj16", "parts", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[148,5],"end":[148,23]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[148,5],"end":[148,23]}}});
+
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[149,5],"end":[149,9]}},"name":"this"});
+
+    m.readVar("implicitField", {"type":"variable","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[149,26],"end":[149,39]}},"name":"implicitField"});
+
+    m.writeProperty("obj16", "implicitField", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[149,5],"end":[149,39]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[149,5],"end":[149,39]}}});
+
+    m.functionReturn("Part", {"type":"functionReturn","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[57,17],"end":[57,66]}},"name":"Part"});
+
+    m.writeProperty("obj17", "0", {});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[57,16],"end":[57,67]}}});
+
+    m.functionReturn("parseQuery", {"type":"functionReturn","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[10,18],"end":[10,40]}},"name":"parseQuery"});
+
+    m.writeProperty("obj18", "parts", {"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[10,5],"end":[10,40]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[10,5],"end":[10,40]}}});
+
+    m.functionReturn("Parse", {"type":"functionReturn","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[23,12],"end":[23,33]}},"name":"Parse"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/mongo-parse/mongoParse.js","pos":{"start":[23,5],"end":[23,33]}}});
+
+    m.functionReturn("", {"type":"functionReturn","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,13],"end":[7,50]}}});
+
+    m.writeVar("query", {"type":"variable","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,5],"end":[7,50]}},"name":"query"});
+
+    m.pop({"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[7,5],"end":[7,50]}}});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[10,5],"end":[10,12]}},"name":"console"});
+
+    m.literal({"type":"literal","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[10,13],"end":[10,36]}}});
+
+    m.readProperty("obj15", "my-awesome-prop-23-42", {"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[10,5],"end":[10,37]}}});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[11,5],"end":[11,12]}},"name":"console"});
+
+    m.readProperty("obj15", "log", {"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[11,5],"end":[11,16]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[11,17],"end":[11,40]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[11,5],"end":[11,41]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[11,5],"end":[11,41]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[11,5],"end":[11,41]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"mongo-parse-eval.js","pos":{"start":[10,1],"end":[14,2]}}});
 
     m.endExecution();
 

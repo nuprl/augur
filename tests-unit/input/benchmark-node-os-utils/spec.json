@@ -2,7 +2,7 @@
     "main": "node-os-utils.js",
     "sources": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "dummySource",
             "location": {
                 "fileName": "node-os-utils.js"
@@ -11,13 +11,13 @@
     ],
     "sinks": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "exec"
         }
     ],
     "expectedFlows": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "exec"
         }
     ]

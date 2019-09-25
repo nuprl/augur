@@ -70,11 +70,11 @@ export default class Analysis implements Analyzer {
         this.state.writeVar(name, description);
     }
 
-    public endExpression: NPCallbacks.endExpression = (iid, type) => {
+    public endStatement: NPCallbacks.endStatement = (iid, type) => {
         let description: TaintDescription = {type: "expr",
             location: parseIID(iid)};
-        console.log("endExpression: " + type);
-        this.state.conditionalEnd(description);
+        console.log("endStatement: " + type);
+        this.state.pop(description);
     }
 
     public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {

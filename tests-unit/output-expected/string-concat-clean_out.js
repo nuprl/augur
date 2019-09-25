@@ -1,48 +1,60 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[10,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[10,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[10,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[10,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[10,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[10,2]}},"name":"__filename"});
 
-    m.initVar("sendToThirdParty");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[10,2]}},"name":"__dirname"});
 
-    m.initVar("input");
+    m.initVar("sendToThirdParty", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[10,2]}},"name":"sendToThirdParty"});
 
-    m.push(false);
+    m.initVar("input", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[10,2]}},"name":"input"});
 
-    m.writeVar("sendToThirdParty");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[3,1],"end":[6,2]}}});
 
-    m.push(false);
+    m.writeVar("sendToThirdParty", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[3,1],"end":[6,2]}},"name":"sendToThirdParty"});
 
-    m.writeVar("input");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,76],"end":[1,107]}}});
 
-    m.readVar("sendToThirdParty");
+    m.writeVar("input", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[1,68],"end":[1,106]}},"name":"input"});
 
-    m.readVar("input");
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,68],"end":[1,106]}}});
 
-    m.functionCall("sendToThirdParty", 1, 1);
+    m.readVar("sendToThirdParty", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[8,1],"end":[8,17]}},"name":"sendToThirdParty"});
 
-    m.initVar("data");
+    m.readVar("input", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[8,18],"end":[8,23]}},"name":"input"});
 
-    m.initVar("message");
+    m.functionCall("sendToThirdParty", 1, 1, {"type":"functionInvocation","location":{"fileName":"test.js","pos":{"start":[8,1],"end":[8,24]}},"name":"sendToThirdParty"});
 
-    m.initVar("output");
+    m.initVar("data", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[3,1],"end":[6,2]}},"name":"data"});
 
-    m.push(false);
+    m.initVar("message", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[3,1],"end":[6,2]}},"name":"message"});
 
-    m.writeVar("message");
+    m.initVar("output", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[3,1],"end":[6,2]}},"name":"output"});
 
-    m.readVar("message");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[4,21],"end":[4,72]}}});
 
-    m.writeVar("output");
+    m.writeVar("message", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,11],"end":[4,71]}},"name":"message"});
+
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,11],"end":[4,71]}}});
+
+    m.readVar("message", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[5,20],"end":[5,27]}},"name":"message"});
+
+    m.writeVar("output", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[5,11],"end":[5,27]}},"name":"output"});
+
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[5,11],"end":[5,27]}}});
+
+    m.functionReturn("sendToThirdParty", {"type":"functionReturn","location":{"fileName":"test.js","pos":{"start":[8,1],"end":[8,24]}},"name":"sendToThirdParty"});
+
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[8,1],"end":[8,24]}}});
 
     m.endExecution();
 

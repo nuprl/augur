@@ -2,8 +2,8 @@
     "main": "taint-string.js",
     "sources": [
         {
-            "type": "function",
-            "name": "dummySource",
+            "type": "variable",
+            "name": "str",
             "location": {
                 "fileName": "taint-string.js"
             }
@@ -11,14 +11,9 @@
     ],
     "sinks": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "exec"
         }
     ],
-    "expectedFlows": [
-        {
-            "type": "function",
-            "name": "exec"
-        }
-    ]
+    "expectedFlows": []
 }

@@ -2,7 +2,7 @@
     "main": "write-file.js",
     "sources": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "dummySource",
             "location": {
                 "fileName": "write-file.js"
@@ -11,14 +11,14 @@
     ],
     "sinks": [
         {
-            "type": "function",
-            "name": "exec"
+            "type": "functionInvocation",
+            "name": "writeFile"
         }
     ],
     "expectedFlows": [
         {
-            "type": "function",
-            "name": "exec"
+            "type": "functionInvocation",
+            "name": "writeFile"
         }
     ]
 }

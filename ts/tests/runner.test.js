@@ -78,7 +78,8 @@ function runTest(testName, done){
         "rm -f " + outputFile + "; " +
         (SHOULD_USE_DOCKER
             // Run test using Docker
-            ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --inputFile " + inputFile + " --outputFile " + outputFile
+            ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --private --inputFile" +
+            " " + inputFile + " --outputFile " + outputFile
             // Run test using local NodeProf installation
             : "cd " + NODEPROF_HOME + "; "
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
@@ -204,7 +205,7 @@ test('for-loop-update-clean', (done) => runTest('for-loop-update-clean', done));
 test('for-loop-update-tainted', (done) => runTest('for-loop-update-tainted', done));
 test('benchmark-chook-growl-reporter-exec', (done) => runTest('benchmark-chook-growl-reporter-exec', done));
 test('benchmark-cocos-utils', (done) => runTest('benchmark-cocos-utils', done));
-test('benchmrk-exec-cmd', (done) => runTest('benchmark-exec-cmd', done));
+test('benchmark-exec-cmd', (done) => runTest('benchmark-exec-cmd', done));
 test('benchmark-fish-exec', (done) => runTest('benchmark-fish-exec', done));
 test('benchmark-git2json-exec', (done) => runTest('benchmark-git2json-exec', done));
 test('benchmark-growl-exec', (done) => runTest('benchmark-growl-exec', done));
@@ -230,7 +231,6 @@ test('benchmark-sequelize-sql', (done) => runTest('benchmark-sequelize-sql', don
 test('benchmark-systeminformation', (done) => runTest('benchmark-systeminformation', done));
 test('benchmark-system-locale', (done) => runTest('benchmark-system-locale', done));
 test('benchmark-taint-string', (done) => runTest('benchmark-taint-string', done));
-test('benchmark-test', (done) => runTest('benchmark-test', done));
 test('benchmark-write-file', (done) => runTest('benchmark-write-file', done));
 test('string-hygiene-tainted', (done) => runTest('string-hygiene-tainted', done));
 test('for-loop-condition-clean', (done) => runTest('for-loop-condition-clean', done));

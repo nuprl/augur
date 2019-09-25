@@ -2,7 +2,7 @@
     "main": "growl-exec.js",
     "sources": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "dummySource",
             "location": {
                 "fileName": "growl-exec.js"
@@ -11,13 +11,13 @@
     ],
     "sinks": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "exec"
         }
     ],
     "expectedFlows": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "exec"
         }
     ]

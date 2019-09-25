@@ -2,7 +2,7 @@
     "main": "m-log-eval.js",
     "sources": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "dummySource",
             "location": {
                 "fileName": "m-log-eval.js"

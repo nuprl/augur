@@ -1,216 +1,282 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"fish-exec.js","pos":{"start":[1,1],"end":[19,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[1,1],"end":[19,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"fish-exec.js","pos":{"start":[1,2],"end":[19,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"fish-exec.js","pos":{"start":[1,2],"end":[19,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"fish-exec.js","pos":{"start":[1,2],"end":[19,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"fish-exec.js","pos":{"start":[1,2],"end":[19,2]}},"name":"__filename"});
 
-    m.initVar("dummySource");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"fish-exec.js","pos":{"start":[1,2],"end":[19,2]}},"name":"__dirname"});
 
-    m.initVar("DUMMY_FILE");
+    m.initVar("dummySource", {"type":"declaration","location":{"fileName":"fish-exec.js","pos":{"start":[1,2],"end":[19,2]}},"name":"dummySource"});
 
-    m.initVar("payload");
+    m.initVar("DUMMY_FILE", {"type":"declaration","location":{"fileName":"fish-exec.js","pos":{"start":[1,2],"end":[19,2]}},"name":"DUMMY_FILE"});
 
-    m.initVar("fish");
+    m.initVar("payload", {"type":"declaration","location":{"fileName":"fish-exec.js","pos":{"start":[1,2],"end":[19,2]}},"name":"payload"});
 
-    m.push(false);
+    m.initVar("fish", {"type":"declaration","location":{"fileName":"fish-exec.js","pos":{"start":[1,2],"end":[19,2]}},"name":"fish"});
 
-    m.writeVar("dummySource");
+    m.literal({"type":"literal","location":{"fileName":"fish-exec.js","pos":{"start":[9,1],"end":[11,2]}}});
 
-    m.push(false);
+    m.writeVar("dummySource", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[9,1],"end":[11,2]}},"name":"dummySource"});
 
-    m.writeVar("done");
+    m.literal({"type":"literal","location":{"fileName":"fish-exec.js","pos":{"start":[1,69],"end":[3,2]}}});
 
-    m.push(false);
+    m.writeVar("done", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"});
 
-    m.writeVar("DUMMY_FILE");
+    m.pop({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[1,62],"end":[3,2]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"fish-exec.js","pos":{"start":[5,18],"end":[5,27]}}});
 
-    m.readVar("DUMMY_FILE");
+    m.writeVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[5,5],"end":[5,26]}},"name":"DUMMY_FILE"});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[5,5],"end":[5,26]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"fish-exec.js","pos":{"start":[7,15],"end":[7,25]}}});
 
-    m.binaryOp();
+    m.readVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[7,28],"end":[7,38]}},"name":"DUMMY_FILE"});
 
-    m.writeVar("payload");
+    m.binaryOp({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[7,15],"end":[7,38]}}});
 
-    m.readVar("dummySource");
+    m.literal({"type":"literal","location":{"fileName":"fish-exec.js","pos":{"start":[7,41],"end":[7,44]}}});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[7,15],"end":[7,44]}}});
 
-    m.functionCall("dummySource", 1, 1);
+    m.writeVar("payload", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[7,5],"end":[7,43]}},"name":"payload"});
 
-    m.initVar("val");
+    m.pop({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[7,5],"end":[7,43]}}});
 
-    m.readVar("payload");
+    m.readVar("dummySource", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[13,1],"end":[13,12]}},"name":"dummySource"});
 
-    m.readVar("val");
+    m.literal({"type":"literal","location":{"fileName":"fish-exec.js","pos":{"start":[13,13],"end":[13,16]}}});
 
-    m.binaryOp();
+    m.functionCall("dummySource", 1, 1, {"type":"functionInvocation","location":{"fileName":"fish-exec.js","pos":{"start":[13,1],"end":[13,17]}},"name":"dummySource"});
 
-    m.writeVar("payload");
+    m.initVar("val", {"type":"declaration","location":{"fileName":"fish-exec.js","pos":{"start":[9,1],"end":[11,2]}},"name":"val"});
 
-    m.readVar("require");
+    m.readVar("payload", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[10,5],"end":[10,12]}},"name":"payload"});
 
-    m.push(false);
+    m.readVar("val", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[10,16],"end":[10,19]}},"name":"val"});
 
-    m.functionCall("require", 1, 1);
+    m.binaryOp({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[10,5],"end":[10,12]}}});
 
-    m.push(false);
+    m.writeVar("payload", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[10,5],"end":[10,19]}},"name":"payload"});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[10,5],"end":[10,19]}}});
 
-    m.initVar("require");
+    m.functionReturn("dummySource", {"type":"functionReturn","location":{"fileName":"fish-exec.js","pos":{"start":[13,1],"end":[13,17]}},"name":"dummySource"});
 
-    m.initVar("module");
+    m.pop({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[13,1],"end":[13,17]}}});
 
-    m.initVar("__filename");
+    m.readVar("require", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[15,12],"end":[15,19]}},"name":"require"});
 
-    m.initVar("__dirname");
+    m.literal({"type":"literal","location":{"fileName":"fish-exec.js","pos":{"start":[15,20],"end":[15,26]}}});
 
-    m.readVar("module");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"fish-exec.js","pos":{"start":[15,12],"end":[15,27]}},"name":"require"});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,1],"end":[3,3]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,1],"end":[3,3]}}});
 
-    m.functionCall("require", 1, 1);
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,2],"end":[3,2]}},"name":"exports"});
 
-    m.push(false);
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,2],"end":[3,2]}},"name":"require"});
 
-    m.initVar("exports");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,2],"end":[3,2]}},"name":"module"});
 
-    m.initVar("require");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,2],"end":[3,2]}},"name":"__filename"});
 
-    m.initVar("module");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,2],"end":[3,2]}},"name":"__dirname"});
 
-    m.initVar("__filename");
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,62],"end":[1,68]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,79],"end":[1,86]}},"name":"require"});
 
-    m.initVar("fs");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,87],"end":[1,99]}}});
 
-    m.initVar("EventEmitter");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,79],"end":[1,100]}},"name":"require"});
 
-    m.initVar("exec");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,1],"end":[53,3]}}});
 
-    m.initVar("ee");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,1],"end":[53,3]}}});
 
-    m.initVar("fish");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,2],"end":[53,2]}},"name":"exports"});
 
-    m.readVar("require");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,2],"end":[53,2]}},"name":"require"});
 
-    m.push(false);
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,2],"end":[53,2]}},"name":"module"});
 
-    m.functionCall("require", 1, 1);
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,2],"end":[53,2]}},"name":"__filename"});
 
-    m.writeVar("fs");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,2],"end":[53,2]}},"name":"__dirname"});
 
-    m.readVar("require");
+    m.initVar("fs", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,2],"end":[53,2]}},"name":"fs"});
 
-    m.push(false);
+    m.initVar("EventEmitter", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,2],"end":[53,2]}},"name":"EventEmitter"});
 
-    m.functionCall("require", 1, 1);
+    m.initVar("exec", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,2],"end":[53,2]}},"name":"exec"});
 
-    m.readProperty("obj0", "EventEmitter");
+    m.initVar("ee", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,2],"end":[53,2]}},"name":"ee"});
 
-    m.writeVar("EventEmitter");
+    m.initVar("fish", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,2],"end":[53,2]}},"name":"fish"});
 
-    m.readVar("require");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,84],"end":[1,91]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,92],"end":[1,96]}}});
 
-    m.functionCall("require", 1, 1);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,84],"end":[1,97]}},"name":"require"});
 
-    m.readProperty("obj1", "exec");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,84],"end":[1,97]}},"name":"require"});
 
-    m.writeVar("exec");
+    m.writeVar("fs", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,66],"end":[1,97]}},"name":"fs"});
 
-    m.readVar("EventEmitter");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[1,66],"end":[1,97]}}});
 
-    m.functionCall("EventEmitter", 0, 0);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[2,23],"end":[2,30]}},"name":"require"});
 
-    m.writeVar("ee");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[2,31],"end":[2,39]}}});
 
-    m.push(false);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[2,23],"end":[2,40]}},"name":"require"});
 
-    m.writeVar("fish");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[2,23],"end":[2,40]}},"name":"require"});
 
-    m.readVar("module");
+    m.readProperty("obj0", "EventEmitter", {"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[2,23],"end":[2,53]}}});
 
-    m.readVar("fish");
+    m.writeVar("EventEmitter", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[2,5],"end":[2,53]}},"name":"EventEmitter"});
 
-    m.writeProperty("obj2", "exports");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[2,5],"end":[2,53]}}});
 
-    m.writeProperty("obj3", "exports");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[3,23],"end":[3,30]}},"name":"require"});
 
-    m.writeVar("fish");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[3,31],"end":[3,46]}}});
 
-    m.readVar("fish");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[3,23],"end":[3,47]}},"name":"require"});
 
-    m.readVar("payload");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[3,23],"end":[3,47]}},"name":"require"});
 
-    m.functionCall("fish", 1, 1);
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[3,23],"end":[3,52]}}});
 
-    m.initVar("query");
+    m.writeVar("exec", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[3,5],"end":[3,52]}},"name":"exec"});
 
-    m.initVar("ls");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[3,5],"end":[3,52]}}});
 
-    m.readVar("exec");
+    m.readVar("EventEmitter", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[5,14],"end":[5,26]}},"name":"EventEmitter"});
 
-    m.push(false);
+    m.functionCall("EventEmitter", 0, 0, {"type":"functionInvocation","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[5,10],"end":[5,26]}},"name":"EventEmitter"});
 
-    m.readVar("query");
+    m.functionReturn("EventEmitter", {"type":"functionReturn","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[5,10],"end":[5,26]}},"name":"EventEmitter"});
 
-    m.binaryOp();
+    m.writeVar("ee", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[5,5],"end":[5,26]}},"name":"ee"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[5,5],"end":[5,26]}}});
 
-    m.functionCall("exec", 0, 2);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[8,12],"end":[16,2]}}});
 
-    m.writeVar("ls");
+    m.writeVar("fish", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[8,5],"end":[16,2]}},"name":"fish"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[8,5],"end":[16,2]}}});
 
-    m.readVar("done");
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[51,1],"end":[51,7]}},"name":"module"});
 
-    m.functionCall("done", 0, 0);
+    m.readVar("fish", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[51,18],"end":[51,22]}},"name":"fish"});
 
-    m.unaryOp();
+    m.writeProperty("obj2", "exports", {"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[51,1],"end":[51,22]}}});
 
-    m.readVar("console");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[51,1],"end":[51,22]}}});
 
-    m.readProperty("obj4", "log");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,79],"end":[1,100]}},"name":"require"});
 
-    m.push(false);
+    m.writeProperty("obj3", "exports", {"type":"expr","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,62],"end":[1,100]}}});
 
-    m.functionCall("bound log", 0, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/index.js","pos":{"start":[1,62],"end":[1,100]}}});
 
-    m.initVar("error");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"fish-exec.js","pos":{"start":[15,12],"end":[15,27]}},"name":"require"});
 
-    m.initVar("stdout");
+    m.writeVar("fish", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[15,5],"end":[15,27]}},"name":"fish"});
 
-    m.initVar("stderr");
+    m.pop({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[15,5],"end":[15,27]}}});
 
-    m.readVar("ee");
+    m.readVar("fish", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[17,1],"end":[17,5]}},"name":"fish"});
 
-    m.readProperty("obj5", "emit");
+    m.readVar("payload", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[17,6],"end":[17,13]}},"name":"payload"});
 
-    m.push(false);
+    m.functionCall("fish", 1, 1, {"type":"functionInvocation","location":{"fileName":"fish-exec.js","pos":{"start":[17,1],"end":[17,14]}},"name":"fish"});
 
-    m.readVar("stdout");
+    m.initVar("query", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[8,12],"end":[16,2]}},"name":"query"});
 
-    m.functionCall("emit", 1, 2);
+    m.initVar("ls", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[8,12],"end":[16,2]}},"name":"ls"});
+
+    m.readVar("exec", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,14],"end":[10,18]}},"name":"exec"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,19],"end":[10,24]}}});
+
+    m.readVar("query", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,27],"end":[10,32]}},"name":"query"});
+
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,19],"end":[10,32]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,34],"end":[12,6]}}});
+
+    m.functionCall("exec", 3, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,14],"end":[12,7]}},"name":"exec"});
+
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,14],"end":[12,7]}},"name":"exec"});
+
+    m.writeVar("ls", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,9],"end":[12,7]}},"name":"ls"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,9],"end":[12,7]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[13,12],"end":[15,6]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[13,5],"end":[15,7]}}});
+
+    m.functionReturn("fish", {"type":"functionReturn","location":{"fileName":"fish-exec.js","pos":{"start":[17,1],"end":[17,14]}},"name":"fish"});
+
+    m.pop({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[17,1],"end":[17,14]}}});
+
+    m.readVar("done", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[18,1],"end":[18,5]}},"name":"done"});
+
+    m.functionCall("done", 0, 0, {"type":"functionInvocation","location":{"fileName":"fish-exec.js","pos":{"start":[18,1],"end":[18,7]}},"name":"done"});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"fish-exec.js","pos":{"start":[2,5],"end":[2,12]}},"name":"console"});
+
+    m.readProperty("obj4", "log", {"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[2,5],"end":[2,16]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"fish-exec.js","pos":{"start":[2,17],"end":[2,24]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"fish-exec.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"fish-exec.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[2,5],"end":[2,25]}}});
+
+    m.functionReturn("done", {"type":"functionReturn","location":{"fileName":"fish-exec.js","pos":{"start":[18,1],"end":[18,7]}},"name":"done"});
+
+    m.pop({"type":"expr","location":{"fileName":"fish-exec.js","pos":{"start":[18,1],"end":[18,7]}}});
+
+    m.initVar("error", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,34],"end":[12,6]}},"name":"error"});
+
+    m.initVar("stdout", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,34],"end":[12,6]}},"name":"stdout"});
+
+    m.initVar("stderr", {"type":"declaration","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[10,34],"end":[12,6]}},"name":"stderr"});
+
+    m.readVar("ee", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[11,9],"end":[11,11]}},"name":"ee"});
+
+    m.readProperty("obj5", "emit", {"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[11,9],"end":[11,16]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[11,17],"end":[11,21]}}});
+
+    m.readVar("stdout", {"type":"variable","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[11,23],"end":[11,29]}},"name":"stdout"});
+
+    m.functionCall("emit", 1, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[11,9],"end":[11,30]}},"name":"emit"});
+
+    m.functionReturn("emit", {"type":"functionReturn","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[11,9],"end":[11,30]}},"name":"emit"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/fish/src/fish.js","pos":{"start":[11,9],"end":[11,30]}}});
 
     m.endExecution();
 

@@ -1,34 +1,38 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[11,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[11,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"__filename"});
 
-    m.initVar("a");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"__dirname"});
 
-    m.initVar("b");
+    m.initVar("a", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"a"});
 
-    m.initVar("z");
+    m.initVar("b", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"b"});
 
-    m.push(false);
+    m.initVar("z", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"z"});
 
-    m.writeVar("a");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,62],"end":[3,2]}}});
 
-    m.push(false);
+    m.writeVar("a", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[1,62],"end":[3,2]}},"name":"a"});
 
-    m.writeVar("b");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[5,1],"end":[7,2]}}});
 
-    m.readVar("b");
+    m.writeVar("b", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[5,1],"end":[7,2]}},"name":"b"});
 
-    m.writeVar("z");
+    m.readVar("b", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[9,11],"end":[9,12]}},"name":"b"});
+
+    m.writeVar("z", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[9,7],"end":[9,12]}},"name":"z"});
+
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[9,7],"end":[9,12]}}});
 
     m.endExecution();
 

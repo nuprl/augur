@@ -2,7 +2,7 @@
     "main": "paper-example.js",
     "sources": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "dummySource",
             "location": {
                 "fileName": "paper-example.js"
@@ -11,13 +11,13 @@
     ],
     "sinks": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "exec"
         }
     ],
     "expectedFlows": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "exec"
         }
     ]

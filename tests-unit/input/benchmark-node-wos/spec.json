@@ -2,7 +2,7 @@
     "main": "node-wos.js",
     "sources": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "dummySource",
             "location": {
                 "fileName": "node-wos.js"
@@ -11,7 +11,7 @@
     ],
     "sinks": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "execSync"
         }
     ],

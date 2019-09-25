@@ -2,7 +2,7 @@
     "main": "mixin-pro-eval.js",
     "sources": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "dummySource",
             "location": {
                 "fileName": "mixin-pro-eval.js"

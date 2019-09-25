@@ -1,112 +1,146 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[1,1],"end":[26,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[1,1],"end":[26,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"__filename"});
 
-    m.initVar("DUMMY_FILE");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"__dirname"});
 
-    m.initVar("command");
+    m.initVar("DUMMY_FILE", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"DUMMY_FILE"});
 
-    m.initVar("exec");
+    m.initVar("command", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"command"});
 
-    m.initVar("str");
+    m.initVar("exec", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"exec"});
 
-    m.push(false);
+    m.initVar("str", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"str"});
 
-    m.writeVar("done");
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[1,69],"end":[3,2]}}});
 
-    m.readVar("__dirname");
+    m.writeVar("done", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[1,62],"end":[3,2]}}});
 
-    m.binaryOp();
+    m.readVar("__dirname", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[6,18],"end":[6,27]}},"name":"__dirname"});
 
-    m.writeVar("DUMMY_FILE");
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[6,30],"end":[6,38]}}});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[6,18],"end":[6,38]}}});
 
-    m.readVar("DUMMY_FILE");
+    m.writeVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[6,5],"end":[6,37]}},"name":"DUMMY_FILE"});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[6,5],"end":[6,37]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[8,15],"end":[8,25]}}});
 
-    m.binaryOp();
+    m.readVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[8,28],"end":[8,38]}},"name":"DUMMY_FILE"});
 
-    m.writeVar("command");
+    m.binaryOp({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[8,15],"end":[8,38]}}});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[8,41],"end":[8,44]}}});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[8,15],"end":[8,44]}}});
 
-    m.functionCall("require", 1, 1);
+    m.writeVar("command", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[8,5],"end":[8,43]}},"name":"command"});
 
-    m.readProperty("obj0", "exec");
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[8,5],"end":[8,43]}}});
 
-    m.writeVar("exec");
+    m.readVar("require", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[10,12],"end":[10,19]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[10,20],"end":[10,35]}}});
 
-    m.writeVar("str");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[10,12],"end":[10,36]}},"name":"require"});
 
-    m.readVar("exec");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[10,12],"end":[10,36]}},"name":"require"});
 
-    m.readVar("command");
+    m.readProperty("obj0", "exec", {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[10,12],"end":[10,41]}}});
 
-    m.push(false);
+    m.writeVar("exec", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[10,5],"end":[10,41]}},"name":"exec"});
 
-    m.functionCall("exec", 0, 2);
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[10,5],"end":[10,41]}}});
 
-    m.initVar("error");
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[12,11],"end":[12,32]}}});
 
-    m.initVar("stdout");
+    m.writeVar("str", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[12,5],"end":[12,31]}},"name":"str"});
 
-    m.initVar("stderr");
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[12,5],"end":[12,31]}}});
 
-    m.readVar("error");
+    m.readVar("exec", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[14,1],"end":[14,5]}},"name":"exec"});
 
-    m.readVar("console");
+    m.readVar("command", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[14,6],"end":[14,13]}},"name":"command"});
 
-    m.readProperty("obj1", "log");
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[14,15],"end":[22,2]}}});
 
-    m.push(false);
+    m.functionCall("exec", 3, 2, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[14,1],"end":[22,3]}},"name":"exec"});
 
-    m.readVar("stdout");
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[14,1],"end":[22,3]}},"name":"exec"});
 
-    m.functionCall("bound log", 0, 2);
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[14,1],"end":[22,3]}}});
 
-    m.readVar("console");
+    m.initVar("error", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[14,15],"end":[22,2]}},"name":"error"});
 
-    m.readProperty("obj1", "log");
+    m.initVar("stdout", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[14,15],"end":[22,2]}},"name":"stdout"});
 
-    m.push(false);
+    m.initVar("stderr", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[14,15],"end":[22,2]}},"name":"stderr"});
 
-    m.readVar("stderr");
+    m.readVar("error", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[15,9],"end":[15,14]}},"name":"error"});
 
-    m.functionCall("bound log", 0, 2);
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[15,5],"end":[18,6]}}});
 
-    m.readVar("done");
+    m.readVar("console", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[19,5],"end":[19,12]}},"name":"console"});
 
-    m.functionCall("done", 0, 0);
+    m.readProperty("obj1", "log", {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[19,5],"end":[19,16]}}});
 
-    m.unaryOp();
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[19,17],"end":[19,26]}}});
 
-    m.readVar("console");
+    m.readVar("stdout", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[19,29],"end":[19,35]}},"name":"stdout"});
 
-    m.readProperty("obj1", "log");
+    m.functionCall("bound log", 0, 2, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[19,5],"end":[19,36]}},"name":"bound log"});
 
-    m.push(false);
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[19,5],"end":[19,36]}},"name":"bound log"});
 
-    m.functionCall("bound log", 0, 1);
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[19,5],"end":[19,36]}}});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[20,5],"end":[20,12]}},"name":"console"});
+
+    m.readProperty("obj1", "log", {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[20,5],"end":[20,16]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[20,17],"end":[20,26]}}});
+
+    m.readVar("stderr", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[20,28],"end":[20,34]}},"name":"stderr"});
+
+    m.functionCall("bound log", 0, 2, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[20,5],"end":[20,35]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[20,5],"end":[20,35]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[20,5],"end":[20,35]}}});
+
+    m.readVar("done", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[21,5],"end":[21,9]}},"name":"done"});
+
+    m.functionCall("done", 0, 0, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[21,5],"end":[21,11]}},"name":"done"});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[2,5],"end":[2,12]}},"name":"console"});
+
+    m.readProperty("obj1", "log", {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[2,5],"end":[2,16]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[2,17],"end":[2,24]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[2,5],"end":[2,25]}}});
+
+    m.functionReturn("done", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[21,5],"end":[21,11]}},"name":"done"});
+
+    m.pop({"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[21,5],"end":[21,11]}}});
 
     m.endExecution();
 

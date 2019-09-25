@@ -1,252 +1,314 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[1,1],"end":[32,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[1,1],"end":[32,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[1,2],"end":[32,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[1,2],"end":[32,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[1,2],"end":[32,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[1,2],"end":[32,2]}},"name":"__filename"});
 
-    m.initVar("dummySource");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[1,2],"end":[32,2]}},"name":"__dirname"});
 
-    m.initVar("fun");
+    m.initVar("dummySource", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[1,2],"end":[32,2]}},"name":"dummySource"});
 
-    m.initVar("DUMMY_FILE");
+    m.initVar("fun", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[1,2],"end":[32,2]}},"name":"fun"});
 
-    m.initVar("command");
+    m.initVar("DUMMY_FILE", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[1,2],"end":[32,2]}},"name":"DUMMY_FILE"});
 
-    m.initVar("converter");
+    m.initVar("command", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[1,2],"end":[32,2]}},"name":"command"});
 
-    m.push(false);
+    m.initVar("converter", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[1,2],"end":[32,2]}},"name":"converter"});
 
-    m.writeVar("dummySource");
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[10,1],"end":[12,2]}}});
 
-    m.push(false);
+    m.writeVar("dummySource", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[10,1],"end":[12,2]}},"name":"dummySource"});
 
-    m.writeVar("fun");
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[19,2],"end":[23,2]}}});
 
-    m.push(false);
+    m.writeVar("fun", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[19,2],"end":[23,2]}},"name":"fun"});
 
-    m.writeVar("done");
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[1,69],"end":[3,2]}}});
 
-    m.push(false);
+    m.writeVar("done", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"});
 
-    m.writeVar("DUMMY_FILE");
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[1,62],"end":[3,2]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[6,18],"end":[6,27]}}});
 
-    m.readVar("DUMMY_FILE");
+    m.writeVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[6,5],"end":[6,26]}},"name":"DUMMY_FILE"});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[6,5],"end":[6,26]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[8,15],"end":[8,25]}}});
 
-    m.binaryOp();
+    m.readVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[8,28],"end":[8,38]}},"name":"DUMMY_FILE"});
 
-    m.writeVar("command");
+    m.binaryOp({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[8,15],"end":[8,38]}}});
 
-    m.readVar("dummySource");
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[8,41],"end":[8,44]}}});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[8,15],"end":[8,44]}}});
 
-    m.functionCall("dummySource", 1, 1);
+    m.writeVar("command", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[8,5],"end":[8,43]}},"name":"command"});
 
-    m.initVar("val");
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[8,5],"end":[8,43]}}});
 
-    m.readVar("command");
+    m.readVar("dummySource", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[14,1],"end":[14,12]}},"name":"dummySource"});
 
-    m.readVar("val");
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[14,13],"end":[14,16]}}});
 
-    m.binaryOp();
+    m.functionCall("dummySource", 1, 1, {"type":"functionInvocation","location":{"fileName":"office-converter.js","pos":{"start":[14,1],"end":[14,17]}},"name":"dummySource"});
 
-    m.writeVar("command");
+    m.initVar("val", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[10,1],"end":[12,2]}},"name":"val"});
 
-    m.readVar("require");
+    m.readVar("command", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[11,5],"end":[11,12]}},"name":"command"});
 
-    m.push(false);
+    m.readVar("val", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[11,16],"end":[11,19]}},"name":"val"});
 
-    m.functionCall("require", 1, 1);
+    m.binaryOp({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[11,5],"end":[11,12]}}});
 
-    m.push(false);
+    m.writeVar("command", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[11,5],"end":[11,19]}},"name":"command"});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[11,5],"end":[11,19]}}});
 
-    m.initVar("require");
+    m.functionReturn("dummySource", {"type":"functionReturn","location":{"fileName":"office-converter.js","pos":{"start":[14,1],"end":[14,17]}},"name":"dummySource"});
 
-    m.initVar("module");
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[14,1],"end":[14,17]}}});
 
-    m.initVar("__filename");
+    m.readVar("require", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[16,17],"end":[16,24]}},"name":"require"});
 
-    m.initVar("__dirname");
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[16,25],"end":[16,43]}}});
 
-    m.initVar("exec");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"office-converter.js","pos":{"start":[16,17],"end":[16,44]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[1,1],"end":[31,3]}}});
 
-    m.readVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[1,1],"end":[31,3]}}});
 
-    m.push(false);
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[1,2],"end":[31,2]}},"name":"exports"});
 
-    m.functionCall("require", 1, 1);
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[1,2],"end":[31,2]}},"name":"require"});
 
-    m.readProperty("obj0", "exec");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[1,2],"end":[31,2]}},"name":"module"});
 
-    m.writeVar("exec");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[1,2],"end":[31,2]}},"name":"__filename"});
 
-    m.readVar("module");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[1,2],"end":[31,2]}},"name":"__dirname"});
 
-    m.push(false);
+    m.initVar("exec", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[1,2],"end":[31,2]}},"name":"exec"});
 
-    m.writeProperty("obj1", "exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[1,62],"end":[1,74]}}});
 
-    m.functionCall("", 0, 0);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[1,62],"end":[1,74]}}});
 
-    m.initVar("generatePdf");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[3,12],"end":[3,19]}},"name":"require"});
 
-    m.initVar("generateHtml");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[3,20],"end":[3,35]}}});
 
-    m.initVar("generate");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[3,12],"end":[3,36]}},"name":"require"});
 
-    m.push(false);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[3,12],"end":[3,36]}},"name":"require"});
 
-    m.writeVar("generatePdf");
+    m.readProperty("obj0", "exec", {"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[3,12],"end":[3,41]}}});
 
-    m.push(false);
+    m.writeVar("exec", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[3,5],"end":[3,41]}},"name":"exec"});
 
-    m.writeVar("generateHtml");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[3,5],"end":[3,41]}}});
 
-    m.push(false);
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[5,1],"end":[5,7]}},"name":"module"});
 
-    m.writeVar("generate");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[5,18],"end":[29,2]}}});
 
-    m.readVar("generateHtml");
+    m.writeProperty("obj1", "exports", {"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[5,1],"end":[29,2]}}});
 
-    m.readVar("generatePdf");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[5,1],"end":[29,2]}}});
 
-    m.writeProperty("obj2", "generatePdf");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"office-converter.js","pos":{"start":[16,17],"end":[16,44]}},"name":"require"});
 
-    m.writeProperty("obj2", "generateHtml");
+    m.functionCall("", 0, 0, {"type":"functionInvocation","location":{"fileName":"office-converter.js","pos":{"start":[16,17],"end":[16,46]}}});
 
-    m.push(false);
+    m.initVar("generatePdf", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[5,18],"end":[29,2]}},"name":"generatePdf"});
 
-    m.writeVar("converter");
+    m.initVar("generateHtml", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[5,18],"end":[29,2]}},"name":"generateHtml"});
 
-    m.readVar("console");
+    m.initVar("generate", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[5,18],"end":[29,2]}},"name":"generate"});
 
-    m.readProperty("obj3", "log");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[11,3],"end":[13,4]}}});
 
-    m.push(false);
+    m.writeVar("generatePdf", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[11,3],"end":[13,4]}},"name":"generatePdf"});
 
-    m.functionCall("bound log", 0, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[15,3],"end":[17,4]}}});
 
-    m.readVar("converter");
+    m.writeVar("generateHtml", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[15,3],"end":[17,4]}},"name":"generateHtml"});
 
-    m.readProperty("obj2", "generatePdf");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[19,3],"end":[28,4]}}});
 
-    m.push(false);
+    m.writeVar("generate", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[19,3],"end":[28,4]}},"name":"generate"});
 
-    m.readVar("command");
+    m.readVar("generateHtml", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[7,19],"end":[7,31]}},"name":"generateHtml"});
 
-    m.binaryOp();
+    m.readVar("generatePdf", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[8,18],"end":[8,29]}},"name":"generatePdf"});
 
-    m.readVar("fun");
+    m.writeProperty("obj2", "generatePdf", {});
 
-    m.functionCall("generatePdf", 2, 2);
+    m.writeProperty("obj2", "generateHtml", {});
 
-    m.initVar("fileName");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[6,10],"end":[9,4]}}});
 
-    m.initVar("next");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[6,3],"end":[9,5]}}});
 
-    m.readVar("generate");
+    m.functionReturn("", {"type":"functionReturn","location":{"fileName":"office-converter.js","pos":{"start":[16,17],"end":[16,46]}}});
 
-    m.readVar("fileName");
+    m.writeVar("converter", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[16,5],"end":[16,46]}},"name":"converter"});
 
-    m.readVar("next");
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[16,5],"end":[16,46]}}});
 
-    m.push(false);
+    m.readVar("console", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[17,1],"end":[17,8]}},"name":"console"});
 
-    m.functionCall("generate", 3, 3);
+    m.readProperty("obj3", "log", {"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[17,1],"end":[17,12]}}});
 
-    m.initVar("fileName");
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[17,13],"end":[17,45]}}});
 
-    m.initVar("next");
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"office-converter.js","pos":{"start":[17,1],"end":[17,46]}},"name":"bound log"});
 
-    m.initVar("outputType");
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"office-converter.js","pos":{"start":[17,1],"end":[17,46]}},"name":"bound log"});
 
-    m.readVar("exec");
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[17,1],"end":[17,46]}}});
 
-    m.push(false);
+    m.readVar("converter", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[25,1],"end":[25,10]}},"name":"converter"});
 
-    m.readVar("outputType");
+    m.readProperty("obj2", "generatePdf", {"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[25,1],"end":[25,22]}}});
 
-    m.binaryOp();
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[25,23],"end":[25,35]}}});
 
-    m.push(false);
+    m.readVar("command", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[25,38],"end":[25,45]}},"name":"command"});
 
-    m.binaryOp();
+    m.binaryOp({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[25,23],"end":[25,45]}}});
 
-    m.readVar("fileName");
+    m.readVar("fun", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[25,47],"end":[25,50]}},"name":"fun"});
 
-    m.binaryOp();
+    m.functionCall("generatePdf", 2, 2, {"type":"functionInvocation","location":{"fileName":"office-converter.js","pos":{"start":[25,1],"end":[25,51]}},"name":"generatePdf"});
 
-    m.push(false);
+    m.initVar("fileName", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[11,3],"end":[13,4]}},"name":"fileName"});
 
-    m.binaryOp();
+    m.initVar("next", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[11,3],"end":[13,4]}},"name":"next"});
 
-    m.push(false);
+    m.readVar("generate", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[12,12],"end":[12,20]}},"name":"generate"});
 
-    m.functionCall("exec", 0, 2);
+    m.readVar("fileName", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[12,21],"end":[12,29]}},"name":"fileName"});
 
-    m.readVar("console");
+    m.readVar("next", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[12,31],"end":[12,35]}},"name":"next"});
 
-    m.readProperty("obj3", "log");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[12,37],"end":[12,42]}}});
 
-    m.push(false);
+    m.functionCall("generate", 3, 3, {"type":"functionInvocation","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[12,12],"end":[12,43]}},"name":"generate"});
 
-    m.functionCall("bound log", 0, 1);
+    m.initVar("fileName", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[19,3],"end":[28,4]}},"name":"fileName"});
 
-    m.readVar("done");
+    m.initVar("next", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[19,3],"end":[28,4]}},"name":"next"});
 
-    m.functionCall("done", 0, 0);
+    m.initVar("outputType", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[19,3],"end":[28,4]}},"name":"outputType"});
 
-    m.unaryOp();
+    m.readVar("exec", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,5],"end":[20,9]}},"name":"exec"});
 
-    m.readVar("console");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,10],"end":[20,23]}}});
 
-    m.readProperty("obj3", "log");
+    m.readVar("outputType", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,26],"end":[20,36]}},"name":"outputType"});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,10],"end":[20,36]}}});
 
-    m.functionCall("bound log", 0, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,39],"end":[20,43]}}});
 
-    m.initVar("error");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,10],"end":[20,43]}}});
 
-    m.initVar("stdout");
+    m.readVar("fileName", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,46],"end":[20,54]}},"name":"fileName"});
 
-    m.initVar("stderr");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,10],"end":[20,54]}}});
 
-    m.initVar("outputFile");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,56],"end":[20,59]}}});
 
-    m.readVar("error");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,10],"end":[20,59]}}});
 
-    m.readVar("next");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,61],"end":[27,6]}}});
 
-    m.readVar("error");
+    m.functionCall("exec", 3, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,5],"end":[27,7]}},"name":"exec"});
 
-    m.functionCall("fun", 2, 1);
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,5],"end":[27,7]}},"name":"exec"});
 
-    m.initVar("err");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,5],"end":[27,7]}}});
 
-    m.initVar("result");
+    m.functionReturn("generate", {"type":"functionReturn","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[12,12],"end":[12,43]}},"name":"generate"});
 
-    m.readVar("err");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[12,5],"end":[12,44]}}});
 
-    m.unaryOp();
+    m.functionReturn("generatePdf", {"type":"functionReturn","location":{"fileName":"office-converter.js","pos":{"start":[25,1],"end":[25,51]}},"name":"generatePdf"});
+
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[25,1],"end":[25,51]}}});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[26,1],"end":[26,8]}},"name":"console"});
+
+    m.readProperty("obj3", "log", {"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[26,1],"end":[26,12]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[26,13],"end":[26,44]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"office-converter.js","pos":{"start":[26,1],"end":[26,45]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"office-converter.js","pos":{"start":[26,1],"end":[26,45]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[26,1],"end":[26,45]}}});
+
+    m.readVar("done", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[28,1],"end":[28,5]}},"name":"done"});
+
+    m.functionCall("done", 0, 0, {"type":"functionInvocation","location":{"fileName":"office-converter.js","pos":{"start":[28,1],"end":[28,7]}},"name":"done"});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[2,5],"end":[2,12]}},"name":"console"});
+
+    m.readProperty("obj3", "log", {"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[2,5],"end":[2,16]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"office-converter.js","pos":{"start":[2,17],"end":[2,24]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"office-converter.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"office-converter.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[2,5],"end":[2,25]}}});
+
+    m.functionReturn("done", {"type":"functionReturn","location":{"fileName":"office-converter.js","pos":{"start":[28,1],"end":[28,7]}},"name":"done"});
+
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[28,1],"end":[28,7]}}});
+
+    m.initVar("error", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,61],"end":[27,6]}},"name":"error"});
+
+    m.initVar("stdout", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,61],"end":[27,6]}},"name":"stdout"});
+
+    m.initVar("stderr", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,61],"end":[27,6]}},"name":"stderr"});
+
+    m.initVar("outputFile", {"type":"declaration","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[20,61],"end":[27,6]}},"name":"outputFile"});
+
+    m.readVar("error", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[21,11],"end":[21,16]}},"name":"error"});
+
+    m.readVar("next", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[21,25],"end":[21,29]}},"name":"next"});
+
+    m.readVar("error", {"type":"variable","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[21,30],"end":[21,35]}},"name":"error"});
+
+    m.functionCall("fun", 2, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[21,25],"end":[21,36]}},"name":"fun"});
+
+    m.initVar("err", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[19,2],"end":[23,2]}},"name":"err"});
+
+    m.initVar("result", {"type":"declaration","location":{"fileName":"office-converter.js","pos":{"start":[19,2],"end":[23,2]}},"name":"result"});
+
+    m.readVar("err", {"type":"variable","location":{"fileName":"office-converter.js","pos":{"start":[20,10],"end":[20,13]}},"name":"err"});
+
+    m.unaryOp({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[20,9],"end":[20,13]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"office-converter.js","pos":{"start":[20,5],"end":[22,6]}}});
+
+    m.functionReturn("fun", {"type":"functionReturn","location":{"fileName":"node_modules/office-converter/index.js","pos":{"start":[21,25],"end":[21,36]}},"name":"fun"});
 
     m.endExecution();
 

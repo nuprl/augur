@@ -2,8 +2,8 @@
     "main": "chook-growl-reporter-exec.js",
     "sources": [
         {
-            "type": "function",
-            "name": "dummySource",
+            "type": "variable",
+            "name": "payload",
             "location": {
                 "fileName": "chook-growl-reporter-exec.js"
             }
@@ -11,13 +11,13 @@
     ],
     "sinks": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "exec"
         }
     ],
     "expectedFlows": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "exec"
         }
     ]

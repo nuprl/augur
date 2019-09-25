@@ -1,34 +1,38 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[3,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[3,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[3,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[3,2]}},"name":"__filename"});
 
-    m.initVar("a");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[3,2]}},"name":"__dirname"});
 
-    m.initVar("z");
+    m.initVar("a", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[3,2]}},"name":"a"});
 
-    m.push(false);
+    m.initVar("z", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[3,2]}},"name":"z"});
 
-    m.writeVar("a");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,70],"end":[1,71]}}});
 
-    m.readVar("a");
+    m.writeVar("a", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[1,66],"end":[1,71]}},"name":"a"});
 
-    m.writeProperty("obj0", "z");
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,66],"end":[1,71]}}});
 
-    m.push(false);
+    m.readVar("a", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[2,18],"end":[2,19]}},"name":"a"});
 
-    m.readProperty("obj0", "z");
+    m.writeProperty("obj0", "z", {});
 
-    m.writeVar("z");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[2,13],"end":[2,21]}}});
+
+    m.readProperty("obj0", "z", {"type":"expr","location":{"fileName":"test.js","pos":{"start":[2,7],"end":[2,8]}}});
+
+    m.writeVar("z", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[2,7],"end":[2,8]}},"name":"z"});
 
     m.endExecution();
 

@@ -21,6 +21,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     private flows: Set<F> = new Set();
     private pc: V;
     private callStack: Array<TaintDescription>;
+    private lastPoppedValue: V;
 
     /**
      * Returns the taint marking associated with a completely clean value.
@@ -52,7 +53,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.spec = spec;
         this.objects = new Map();
         this.pc = this.getUntaintedValue();
-        this.callStack = [this.getUntaintedValue()];
+        this.callStack = [{name: "program start"}];
         this.getTaint = this.getTaint.bind(this);
     }
 
@@ -65,6 +66,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public functionReturn(name: string, description: TaintDescription): void {
         this.callStack.pop();
+        this.taintStack.push(this.lastPoppedValue);
     }
 
     public literal(description: TaintDescription): void {
@@ -80,7 +82,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public pop(description: TaintDescription) {
         this.resetState();
         logger.info("pop");
-        this.taintStack.pop();
+        this.lastPoppedValue = this.taintStack.pop();
     }
 
     public readVar(s: string, description: TaintDescription) {
@@ -102,7 +104,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.reportPossibleFlow(description, v);
         this.reportPossibleImplicitFlow(description, v);
         // TODO: fix this hack!
-        this.pop(description);
+        // this.pop(description);
         // logger.info("wrote", this.varTaintMap.get(s));
     }
 
@@ -235,9 +237,16 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         tempStack.forEach(
             (mark) => this.reportPossibleFlow(description, mark));
 
+        // The stack contains an extra taint value for the function we're
+        // entering. Pop it and join it with the taint value for the function
+        // invocation to produce the taint value for "entering the function".
+        const functionInvocationTaint =
+            this.join(this.taintStack.pop(),
+                this.produceMark(description));
+
         // Push the actual arguments to taintStack
         tempStack.forEach((v) =>
-            this.taintStack.push(this.join(v, this.produceMark(description))));
+            this.taintStack.push(this.join(v, functionInvocationTaint)));
         logger.debug("funcall, new stack:", this.taintStack);
         this.state = States.FunctionCall;
         this.stateCounter = expectedArgs;
@@ -259,7 +268,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     }
 
     private currentFunction(): TaintDescription {
-        return this.callStack[this.callStack.length];
+        return this.callStack[this.callStack.length - 1];
     }
 
     private resetState() {

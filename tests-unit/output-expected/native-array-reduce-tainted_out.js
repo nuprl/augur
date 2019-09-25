@@ -1,106 +1,126 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[7,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[7,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[7,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[7,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[7,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[7,2]}},"name":"__filename"});
 
-    m.initVar("a");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[7,2]}},"name":"__dirname"});
 
-    m.initVar("b");
+    m.initVar("a", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[7,2]}},"name":"a"});
 
-    m.initVar("numbers");
+    m.initVar("b", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[7,2]}},"name":"b"});
 
-    m.initVar("z");
+    m.initVar("numbers", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[7,2]}},"name":"numbers"});
 
-    m.push(false);
+    m.initVar("z", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[7,2]}},"name":"z"});
 
-    m.writeVar("a");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,72],"end":[1,73]}}});
 
-    m.push(false);
+    m.writeVar("a", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[1,68],"end":[1,73]}},"name":"a"});
 
-    m.writeVar("b");
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,68],"end":[1,73]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[2,11],"end":[2,12]}}});
 
-    m.push(false);
+    m.writeVar("b", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[2,7],"end":[2,12]}},"name":"b"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[2,7],"end":[2,12]}}});
 
-    m.readVar("b");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[3,18],"end":[3,19]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[3,21],"end":[3,22]}}});
 
-    m.writeProperty("obj0", "4");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[3,24],"end":[3,25]}}});
 
-    m.writeProperty("obj0", "3");
+    m.readVar("b", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[3,27],"end":[3,28]}},"name":"b"});
 
-    m.writeProperty("obj0", "2");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[3,30],"end":[3,32]}}});
 
-    m.writeProperty("obj0", "1");
+    m.writeProperty("obj0", "4", {});
 
-    m.writeProperty("obj0", "0");
+    m.writeProperty("obj0", "3", {});
 
-    m.push(false);
+    m.writeProperty("obj0", "2", {});
 
-    m.writeVar("numbers");
+    m.writeProperty("obj0", "1", {});
 
-    m.readVar("numbers");
+    m.writeProperty("obj0", "0", {});
 
-    m.readProperty("obj0", "reduce");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[3,17],"end":[3,33]}}});
 
-    m.push(false);
+    m.writeVar("numbers", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[3,7],"end":[3,33]}},"name":"numbers"});
 
-    m.functionCall("reduce", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[3,7],"end":[3,33]}}});
 
-    m.initVar("x");
+    m.readVar("numbers", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,11],"end":[4,18]}},"name":"numbers"});
 
-    m.initVar("y");
+    m.readProperty("obj0", "reduce", {"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,11],"end":[4,25]}}});
 
-    m.readVar("x");
+    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[4,26],"end":[4,41]}}});
 
-    m.readVar("y");
+    m.functionCall("reduce", 1, 1, {"type":"functionInvocation","location":{"fileName":"test.js","pos":{"start":[4,11],"end":[4,42]}},"name":"reduce"});
 
-    m.binaryOp();
+    m.initVar("x", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[4,26],"end":[4,41]}},"name":"x"});
 
-    m.initVar("x");
+    m.initVar("y", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[4,26],"end":[4,41]}},"name":"y"});
 
-    m.initVar("y");
+    m.readVar("x", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,36],"end":[4,37]}},"name":"x"});
 
-    m.readVar("x");
+    m.readVar("y", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,40],"end":[4,41]}},"name":"y"});
 
-    m.readVar("y");
+    m.binaryOp({"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,36],"end":[4,41]}}});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,38],"end":[4,41]}}});
 
-    m.initVar("x");
+    m.initVar("x", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[4,26],"end":[4,41]}},"name":"x"});
 
-    m.initVar("y");
+    m.initVar("y", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[4,26],"end":[4,41]}},"name":"y"});
 
-    m.readVar("x");
+    m.readVar("x", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,36],"end":[4,37]}},"name":"x"});
 
-    m.readVar("y");
+    m.readVar("y", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,40],"end":[4,41]}},"name":"y"});
 
-    m.binaryOp();
+    m.binaryOp({"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,36],"end":[4,41]}}});
 
-    m.initVar("x");
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,38],"end":[4,41]}}});
 
-    m.initVar("y");
+    m.initVar("x", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[4,26],"end":[4,41]}},"name":"x"});
 
-    m.readVar("x");
+    m.initVar("y", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[4,26],"end":[4,41]}},"name":"y"});
 
-    m.readVar("y");
+    m.readVar("x", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,36],"end":[4,37]}},"name":"x"});
 
-    m.binaryOp();
+    m.readVar("y", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,40],"end":[4,41]}},"name":"y"});
 
-    m.writeVar("z");
+    m.binaryOp({"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,36],"end":[4,41]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,38],"end":[4,41]}}});
+
+    m.initVar("x", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[4,26],"end":[4,41]}},"name":"x"});
+
+    m.initVar("y", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[4,26],"end":[4,41]}},"name":"y"});
+
+    m.readVar("x", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,36],"end":[4,37]}},"name":"x"});
+
+    m.readVar("y", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,40],"end":[4,41]}},"name":"y"});
+
+    m.binaryOp({"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,36],"end":[4,41]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,38],"end":[4,41]}}});
+
+    m.functionReturn("reduce", {"type":"functionReturn","location":{"fileName":"test.js","pos":{"start":[4,11],"end":[4,42]}},"name":"reduce"});
+
+    m.writeVar("z", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[4,7],"end":[4,42]}},"name":"z"});
+
+    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[4,7],"end":[4,42]}}});
 
     m.endExecution();
 

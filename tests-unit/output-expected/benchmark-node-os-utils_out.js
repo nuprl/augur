@@ -1,1162 +1,1486 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node-os-utils.js","pos":{"start":[1,1],"end":[24,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[1,1],"end":[24,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[1,2],"end":[24,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[1,2],"end":[24,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[1,2],"end":[24,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[1,2],"end":[24,2]}},"name":"__filename"});
 
-    m.initVar("dummySource");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[1,2],"end":[24,2]}},"name":"__dirname"});
 
-    m.initVar("DUMMY_FILE");
+    m.initVar("dummySource", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[1,2],"end":[24,2]}},"name":"dummySource"});
 
-    m.initVar("command");
+    m.initVar("DUMMY_FILE", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[1,2],"end":[24,2]}},"name":"DUMMY_FILE"});
 
-    m.initVar("nodeosutils");
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[1,2],"end":[24,2]}},"name":"command"});
 
-    m.initVar("exec");
+    m.initVar("nodeosutils", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[1,2],"end":[24,2]}},"name":"nodeosutils"});
 
-    m.push(false);
+    m.initVar("exec", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[1,2],"end":[24,2]}},"name":"exec"});
 
-    m.writeVar("dummySource");
+    m.literal({"type":"literal","location":{"fileName":"node-os-utils.js","pos":{"start":[10,1],"end":[12,2]}}});
 
-    m.push(false);
+    m.writeVar("dummySource", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[10,1],"end":[12,2]}},"name":"dummySource"});
 
-    m.writeVar("done");
+    m.literal({"type":"literal","location":{"fileName":"node-os-utils.js","pos":{"start":[1,69],"end":[3,2]}}});
 
-    m.push(false);
+    m.writeVar("done", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"});
 
-    m.writeVar("DUMMY_FILE");
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[1,62],"end":[3,2]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node-os-utils.js","pos":{"start":[6,18],"end":[6,27]}}});
 
-    m.readVar("DUMMY_FILE");
+    m.writeVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[6,5],"end":[6,26]}},"name":"DUMMY_FILE"});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[6,5],"end":[6,26]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node-os-utils.js","pos":{"start":[8,15],"end":[8,25]}}});
 
-    m.binaryOp();
+    m.readVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[8,28],"end":[8,38]}},"name":"DUMMY_FILE"});
 
-    m.writeVar("command");
+    m.binaryOp({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[8,15],"end":[8,38]}}});
 
-    m.readVar("dummySource");
+    m.literal({"type":"literal","location":{"fileName":"node-os-utils.js","pos":{"start":[8,41],"end":[8,44]}}});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[8,15],"end":[8,44]}}});
 
-    m.functionCall("dummySource", 1, 1);
+    m.writeVar("command", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[8,5],"end":[8,43]}},"name":"command"});
 
-    m.initVar("val");
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[8,5],"end":[8,43]}}});
 
-    m.readVar("command");
+    m.readVar("dummySource", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[14,1],"end":[14,12]}},"name":"dummySource"});
 
-    m.readVar("val");
+    m.literal({"type":"literal","location":{"fileName":"node-os-utils.js","pos":{"start":[14,13],"end":[14,16]}}});
 
-    m.binaryOp();
+    m.functionCall("dummySource", 1, 1, {"type":"functionInvocation","location":{"fileName":"node-os-utils.js","pos":{"start":[14,1],"end":[14,17]}},"name":"dummySource"});
 
-    m.writeVar("command");
+    m.initVar("val", {"type":"declaration","location":{"fileName":"node-os-utils.js","pos":{"start":[10,1],"end":[12,2]}},"name":"val"});
 
-    m.readVar("require");
+    m.readVar("command", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[11,5],"end":[11,12]}},"name":"command"});
 
-    m.push(false);
+    m.readVar("val", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[11,16],"end":[11,19]}},"name":"val"});
 
-    m.functionCall("require", 1, 1);
+    m.binaryOp({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[11,5],"end":[11,12]}}});
 
-    m.push(false);
+    m.writeVar("command", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[11,5],"end":[11,19]}},"name":"command"});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[11,5],"end":[11,19]}}});
 
-    m.initVar("require");
+    m.functionReturn("dummySource", {"type":"functionReturn","location":{"fileName":"node-os-utils.js","pos":{"start":[14,1],"end":[14,17]}},"name":"dummySource"});
 
-    m.initVar("module");
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[14,1],"end":[14,17]}}});
 
-    m.initVar("__filename");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[16,19],"end":[16,26]}},"name":"require"});
 
-    m.initVar("__dirname");
+    m.literal({"type":"literal","location":{"fileName":"node-os-utils.js","pos":{"start":[16,27],"end":[16,42]}}});
 
-    m.readVar("require");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node-os-utils.js","pos":{"start":[16,19],"end":[16,43]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[1,1],"end":[19,3]}}});
 
-    m.functionCall("require", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[1,1],"end":[19,3]}}});
 
-    m.push(false);
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[1,2],"end":[19,2]}},"name":"exports"});
 
-    m.initVar("exports");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[1,2],"end":[19,2]}},"name":"require"});
 
-    m.initVar("require");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[1,2],"end":[19,2]}},"name":"module"});
 
-    m.initVar("module");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[1,2],"end":[19,2]}},"name":"__filename"});
 
-    m.initVar("__filename");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[1,2],"end":[19,2]}},"name":"__dirname"});
 
-    m.initVar("__dirname");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[7,1],"end":[7,8]}},"name":"require"});
 
-    m.initVar("bucket");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[7,9],"end":[7,20]}}});
 
-    m.initVar("os");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[7,1],"end":[7,21]}},"name":"require"});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[1,1],"end":[96,3]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[1,1],"end":[96,3]}}});
 
-    m.functionCall("require", 1, 1);
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[1,2],"end":[96,2]}},"name":"exports"});
 
-    m.push(false);
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[1,2],"end":[96,2]}},"name":"require"});
 
-    m.initVar("exports");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[1,2],"end":[96,2]}},"name":"module"});
 
-    m.initVar("require");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[1,2],"end":[96,2]}},"name":"__filename"});
 
-    m.initVar("module");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[1,2],"end":[96,2]}},"name":"__dirname"});
 
-    m.initVar("__filename");
+    m.initVar("bucket", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[1,2],"end":[96,2]}},"name":"bucket"});
 
-    m.initVar("__dirname");
+    m.initVar("os", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[1,2],"end":[96,2]}},"name":"os"});
 
-    m.initVar("cp");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[6,14],"end":[6,21]}},"name":"require"});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[6,22],"end":[6,32]}}});
 
-    m.push(false);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.functionCall("require", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[1,1],"end":[31,3]}}});
 
-    m.writeVar("cp");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[1,1],"end":[31,3]}}});
 
-    m.readVar("module");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[1,2],"end":[31,2]}},"name":"exports"});
 
-    m.push(false);
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[1,2],"end":[31,2]}},"name":"require"});
 
-    m.push(false);
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[1,2],"end":[31,2]}},"name":"module"});
 
-    m.writeProperty("obj0", "INTERVAL");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[1,2],"end":[31,2]}},"name":"__filename"});
 
-    m.writeProperty("obj0", "NOT_SUPPORTED_VALUE");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[1,2],"end":[31,2]}},"name":"__dirname"});
 
-    m.push(false);
+    m.initVar("cp", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[1,2],"end":[31,2]}},"name":"cp"});
 
-    m.push(false);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[6,10],"end":[6,17]}},"name":"require"});
 
-    m.writeProperty("obj1", "exec");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[6,18],"end":[6,33]}}});
 
-    m.writeProperty("obj1", "options");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[6,10],"end":[6,34]}},"name":"require"});
 
-    m.push(false);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[6,10],"end":[6,34]}},"name":"require"});
 
-    m.writeProperty("obj2", "exports");
+    m.writeVar("cp", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[6,5],"end":[6,34]}},"name":"cp"});
 
-    m.writeVar("bucket");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[6,5],"end":[6,34]}}});
 
-    m.readVar("require");
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[8,1],"end":[8,7]}},"name":"module"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[10,26],"end":[10,41]}}});
 
-    m.functionCall("require", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[11,15],"end":[11,19]}}});
 
-    m.writeVar("os");
+    m.writeProperty("obj0", "INTERVAL", {});
 
-    m.readVar("bucket");
+    m.writeProperty("obj0", "NOT_SUPPORTED_VALUE", {});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[9,12],"end":[12,4]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}}});
 
-    m.push(false);
+    m.writeProperty("obj1", "exec", {});
 
-    m.push(false);
+    m.writeProperty("obj1", "options", {});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[8,18],"end":[29,2]}}});
 
-    m.push(false);
+    m.writeProperty("obj2", "exports", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[8,1],"end":[29,2]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[8,1],"end":[29,2]}}});
 
-    m.writeProperty("obj3", "loadavgTime");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.writeProperty("obj3", "loadavg");
+    m.writeVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[6,5],"end":[6,33]}},"name":"bucket"});
 
-    m.writeProperty("obj3", "model");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[6,5],"end":[6,33]}}});
 
-    m.writeProperty("obj3", "count");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[7,10],"end":[7,17]}},"name":"require"});
 
-    m.writeProperty("obj3", "free");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[7,18],"end":[7,22]}}});
 
-    m.writeProperty("obj3", "usage");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[7,10],"end":[7,23]}},"name":"require"});
 
-    m.writeProperty("obj3", "average");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[7,10],"end":[7,23]}},"name":"require"});
 
-    m.push(false);
+    m.writeVar("os", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[7,5],"end":[7,23]}},"name":"os"});
 
-    m.writeProperty("obj1", "cpu");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[7,5],"end":[7,23]}}});
 
-    m.readVar("require");
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[9,1],"end":[9,7]}},"name":"bucket"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[10,12],"end":[29,4]}}});
 
-    m.functionCall("require", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[30,10],"end":[53,4]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[54,9],"end":[71,4]}}});
 
-    m.initVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[72,10],"end":[74,4]}}});
 
-    m.initVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[75,10],"end":[77,4]}}});
 
-    m.initVar("module");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[78,12],"end":[80,4]}}});
 
-    m.initVar("__filename");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[81,16],"end":[93,4]}}});
 
-    m.initVar("__dirname");
+    m.writeProperty("obj3", "loadavgTime", {});
 
-    m.initVar("createDiskInfo");
+    m.writeProperty("obj3", "loadavg", {});
 
-    m.initVar("parseDfStdout");
+    m.writeProperty("obj3", "model", {});
 
-    m.initVar("bucket");
+    m.writeProperty("obj3", "count", {});
 
-    m.initVar("DISK_PATTERN");
+    m.writeProperty("obj3", "free", {});
 
-    m.push(false);
+    m.writeProperty("obj3", "usage", {});
 
-    m.writeVar("createDiskInfo");
+    m.writeProperty("obj3", "average", {});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[9,14],"end":[94,2]}}});
 
-    m.writeVar("parseDfStdout");
+    m.writeProperty("obj1", "cpu", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[9,1],"end":[94,2]}}});
 
-    m.readVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/cpu.js","pos":{"start":[9,1],"end":[94,2]}}});
 
-    m.push(false);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[7,1],"end":[7,21]}},"name":"require"});
 
-    m.functionCall("require", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[7,1],"end":[7,21]}}});
 
-    m.writeVar("bucket");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[8,1],"end":[8,8]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[8,9],"end":[8,22]}}});
 
-    m.writeVar("DISK_PATTERN");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[8,1],"end":[8,23]}},"name":"require"});
 
-    m.readVar("bucket");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,1],"end":[115,3]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,1],"end":[115,3]}}});
 
-    m.push(false);
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,2],"end":[115,2]}},"name":"exports"});
 
-    m.push(false);
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,2],"end":[115,2]}},"name":"require"});
 
-    m.writeProperty("obj4", "used");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,2],"end":[115,2]}},"name":"module"});
 
-    m.writeProperty("obj4", "free");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,2],"end":[115,2]}},"name":"__filename"});
 
-    m.writeProperty("obj4", "info");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,2],"end":[115,2]}},"name":"__dirname"});
 
-    m.push(false);
+    m.initVar("createDiskInfo", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,2],"end":[115,2]}},"name":"createDiskInfo"});
 
-    m.writeProperty("obj1", "drive");
+    m.initVar("parseDfStdout", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,2],"end":[115,2]}},"name":"parseDfStdout"});
 
-    m.readVar("require");
+    m.initVar("bucket", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,2],"end":[115,2]}},"name":"bucket"});
 
-    m.push(false);
+    m.initVar("DISK_PATTERN", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[1,2],"end":[115,2]}},"name":"DISK_PATTERN"});
 
-    m.functionCall("require", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[9,1],"end":[17,2]}}});
 
-    m.push(false);
+    m.writeVar("createDiskInfo", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[9,1],"end":[17,2]}},"name":"createDiskInfo"});
 
-    m.initVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[19,1],"end":[34,2]}}});
 
-    m.initVar("require");
+    m.writeVar("parseDfStdout", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[19,1],"end":[34,2]}},"name":"parseDfStdout"});
 
-    m.initVar("module");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[6,14],"end":[6,21]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[6,22],"end":[6,32]}}});
 
-    m.initVar("__dirname");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.initVar("bucket");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.initVar("cp");
+    m.writeVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[6,5],"end":[6,33]}},"name":"bucket"});
 
-    m.initVar("os");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[6,5],"end":[6,33]}}});
 
-    m.initVar("co");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[7,20],"end":[7,75]}}});
 
-    m.initVar("darwinMem");
+    m.writeVar("DISK_PATTERN", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[7,5],"end":[7,75]}},"name":"DISK_PATTERN"});
 
-    m.readVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[7,5],"end":[7,75]}}});
 
-    m.push(false);
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[36,1],"end":[36,7]}},"name":"bucket"});
 
-    m.functionCall("require", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[37,9],"end":[87,4]}}});
 
-    m.writeVar("bucket");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[88,9],"end":[99,4]}}});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[100,9],"end":[111,4]}}});
 
-    m.push(false);
+    m.writeProperty("obj4", "used", {});
 
-    m.functionCall("require", 1, 1);
+    m.writeProperty("obj4", "free", {});
 
-    m.writeVar("cp");
+    m.writeProperty("obj4", "info", {});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[36,16],"end":[112,2]}}});
 
-    m.push(false);
+    m.writeProperty("obj1", "drive", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[36,1],"end":[112,2]}}});
 
-    m.functionCall("require", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/drive.js","pos":{"start":[36,1],"end":[112,2]}}});
 
-    m.writeVar("os");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[8,1],"end":[8,23]}},"name":"require"});
 
-    m.readVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[8,1],"end":[8,23]}}});
 
-    m.push(false);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[9,1],"end":[9,8]}},"name":"require"});
 
-    m.functionCall("require", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[9,9],"end":[9,20]}}});
 
-    m.push(false);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[9,1],"end":[9,21]}},"name":"require"});
 
-    m.initVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,1],"end":[118,3]}}});
 
-    m.initVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,1],"end":[118,3]}}});
 
-    m.initVar("module");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,2],"end":[118,2]}},"name":"exports"});
 
-    m.initVar("__filename");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,2],"end":[118,2]}},"name":"require"});
 
-    m.initVar("__dirname");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,2],"end":[118,2]}},"name":"module"});
 
-    m.initVar("co");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,2],"end":[118,2]}},"name":"__filename"});
 
-    m.initVar("toPromise");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,2],"end":[118,2]}},"name":"__dirname"});
 
-    m.initVar("thunkToPromise");
+    m.initVar("bucket", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,2],"end":[118,2]}},"name":"bucket"});
 
-    m.initVar("arrayToPromise");
+    m.initVar("cp", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,2],"end":[118,2]}},"name":"cp"});
 
-    m.initVar("objectToPromise");
+    m.initVar("os", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,2],"end":[118,2]}},"name":"os"});
 
-    m.initVar("isPromise");
+    m.initVar("co", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,2],"end":[118,2]}},"name":"co"});
 
-    m.initVar("isGenerator");
+    m.initVar("darwinMem", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[1,2],"end":[118,2]}},"name":"darwinMem"});
 
-    m.initVar("isGeneratorFunction");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[6,14],"end":[6,21]}},"name":"require"});
 
-    m.initVar("isObject");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[6,22],"end":[6,32]}}});
 
-    m.initVar("slice");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.push(false);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.writeVar("co");
+    m.writeVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[6,5],"end":[6,33]}},"name":"bucket"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[6,5],"end":[6,33]}}});
 
-    m.writeVar("toPromise");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[7,10],"end":[7,17]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[7,18],"end":[7,33]}}});
 
-    m.writeVar("thunkToPromise");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[7,10],"end":[7,34]}},"name":"require"});
 
-    m.push(false);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[7,10],"end":[7,34]}},"name":"require"});
 
-    m.writeVar("arrayToPromise");
+    m.writeVar("cp", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[7,5],"end":[7,34]}},"name":"cp"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[7,5],"end":[7,34]}}});
 
-    m.writeVar("objectToPromise");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[8,10],"end":[8,17]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[8,18],"end":[8,22]}}});
 
-    m.writeVar("isPromise");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[8,10],"end":[8,23]}},"name":"require"});
 
-    m.push(false);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[8,10],"end":[8,23]}},"name":"require"});
 
-    m.writeVar("isGenerator");
+    m.writeVar("os", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[8,5],"end":[8,23]}},"name":"os"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[8,5],"end":[8,23]}}});
 
-    m.writeVar("isGeneratorFunction");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[9,10],"end":[9,17]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[9,18],"end":[9,30]}}});
 
-    m.writeVar("isObject");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[9,10],"end":[9,31]}},"name":"require"});
 
-    m.readVar("Array");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,1],"end":[239,3]}}});
 
-    m.readProperty("obj5", "prototype");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,1],"end":[239,3]}}});
 
-    m.readProperty("obj6", "slice");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"exports"});
 
-    m.writeVar("slice");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"require"});
 
-    m.readVar("module");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"module"});
 
-    m.readVar("co");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"__filename"});
 
-    m.push(false);
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"__dirname"});
 
-    m.readVar("co");
+    m.initVar("co", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"co"});
 
-    m.readVar("co");
+    m.initVar("toPromise", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"toPromise"});
 
-    m.writeProperty("obj7", "co");
+    m.initVar("thunkToPromise", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"thunkToPromise"});
 
-    m.writeProperty("obj7", "default");
+    m.initVar("arrayToPromise", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"arrayToPromise"});
 
-    m.writeProperty("obj8", "exports");
+    m.initVar("objectToPromise", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"objectToPromise"});
 
-    m.readVar("co");
+    m.initVar("isPromise", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"isPromise"});
 
-    m.push(false);
+    m.initVar("isGenerator", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"isGenerator"});
 
-    m.writeProperty("obj7", "wrap");
+    m.initVar("isGeneratorFunction", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"isGeneratorFunction"});
 
-    m.writeVar("co");
+    m.initVar("isObject", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"isObject"});
 
-    m.push(false);
+    m.initVar("slice", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[1,2],"end":[239,2]}},"name":"slice"});
 
-    m.readVar("co");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[43,1],"end":[105,2]}}});
 
-    m.readProperty("obj7", "wrap");
+    m.writeVar("co", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[43,1],"end":[105,2]}},"name":"co"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[115,1],"end":[123,2]}}});
 
-    m.functionCall("", 1, 1);
+    m.writeVar("toPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[115,1],"end":[123,2]}},"name":"toPromise"});
 
-    m.initVar("fn");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[133,1],"end":[142,2]}}});
 
-    m.initVar("createPromise");
+    m.writeVar("thunkToPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[133,1],"end":[142,2]}},"name":"thunkToPromise"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[153,1],"end":[155,2]}}});
 
-    m.writeVar("createPromise");
+    m.writeVar("arrayToPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[153,1],"end":[155,2]}},"name":"arrayToPromise"});
 
-    m.readVar("createPromise");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[166,1],"end":[187,2]}}});
 
-    m.readVar("fn");
+    m.writeVar("objectToPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[166,1],"end":[187,2]}},"name":"objectToPromise"});
 
-    m.writeProperty("obj9", "__generatorFunction__");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[197,1],"end":[199,2]}}});
 
-    m.readVar("createPromise");
+    m.writeVar("isPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[197,1],"end":[199,2]}},"name":"isPromise"});
 
-    m.readVar("co");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[209,1],"end":[211,2]}}});
 
-    m.readProperty("obj7", "wrap");
+    m.writeVar("isGenerator", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[209,1],"end":[211,2]}},"name":"isGenerator"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[220,1],"end":[225,2]}}});
 
-    m.functionCall("", 1, 1);
+    m.writeVar("isGeneratorFunction", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[220,1],"end":[225,2]}},"name":"isGeneratorFunction"});
 
-    m.initVar("fn");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[235,1],"end":[237,2]}}});
 
-    m.initVar("createPromise");
+    m.writeVar("isObject", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[235,1],"end":[237,2]}},"name":"isObject"});
 
-    m.push(false);
+    m.readVar("Array", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[6,13],"end":[6,18]}},"name":"Array"});
 
-    m.writeVar("createPromise");
+    m.readProperty("obj5", "prototype", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[6,13],"end":[6,28]}}});
 
-    m.readVar("createPromise");
+    m.readProperty("obj6", "slice", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[6,13],"end":[6,34]}}});
 
-    m.readVar("fn");
+    m.writeVar("slice", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[6,5],"end":[6,34]}},"name":"slice"});
 
-    m.writeProperty("obj10", "__generatorFunction__");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[6,5],"end":[6,34]}}});
 
-    m.readVar("createPromise");
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[12,1],"end":[12,7]}},"name":"module"});
 
-    m.readVar("co");
+    m.readVar("co", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[12,18],"end":[12,20]}},"name":"co"});
 
-    m.readProperty("obj7", "wrap");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[12,21],"end":[12,30]}}});
 
-    m.push(false);
+    m.readVar("co", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[12,34],"end":[12,36]}},"name":"co"});
 
-    m.functionCall("", 1, 1);
+    m.readVar("co", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[12,42],"end":[12,44]}},"name":"co"});
 
-    m.initVar("fn");
+    m.writeProperty("obj7", "co", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[12,34],"end":[12,44]}}});
 
-    m.initVar("createPromise");
+    m.writeProperty("obj7", "default", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[12,18],"end":[12,44]}}});
 
-    m.push(false);
+    m.writeProperty("obj8", "exports", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[12,1],"end":[12,44]}}});
 
-    m.writeVar("createPromise");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[12,1],"end":[12,44]}}});
 
-    m.readVar("createPromise");
+    m.readVar("co", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[26,1],"end":[26,3]}},"name":"co"});
 
-    m.readVar("fn");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[26,11],"end":[32,2]}}});
 
-    m.writeProperty("obj11", "__generatorFunction__");
+    m.writeProperty("obj7", "wrap", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[26,1],"end":[32,2]}}});
 
-    m.readVar("createPromise");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[26,1],"end":[32,2]}}});
 
-    m.writeProperty("obj12", "memory");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[9,10],"end":[9,31]}},"name":"require"});
 
-    m.writeProperty("obj12", "vmStats");
+    m.writeVar("co", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[9,5],"end":[9,31]}},"name":"co"});
 
-    m.writeProperty("obj12", "physicalMemory");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[9,5],"end":[9,31]}}});
 
-    m.writeProperty("obj12", "PAGE_SIZE");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[12,14],"end":[12,18]}}});
 
-    m.push(false);
+    m.readVar("co", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[13,19],"end":[13,21]}},"name":"co"});
 
-    m.writeVar("darwinMem");
+    m.readProperty("obj7", "wrap", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[13,19],"end":[13,26]}}});
 
-    m.readVar("bucket");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[13,27],"end":[17,4]}}});
 
-    m.push(false);
+    m.functionCall("", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[13,19],"end":[17,5]}}});
 
-    m.push(false);
+    m.initVar("fn", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[26,11],"end":[32,2]}},"name":"fn"});
 
-    m.push(false);
+    m.initVar("createPromise", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[26,11],"end":[32,2]}},"name":"createPromise"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[29,3],"end":[31,4]}}});
 
-    m.writeProperty("obj13", "totalMem");
+    m.writeVar("createPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[29,3],"end":[31,4]}},"name":"createPromise"});
 
-    m.writeProperty("obj13", "used");
+    m.readVar("createPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,3],"end":[27,16]}},"name":"createPromise"});
 
-    m.writeProperty("obj13", "free");
+    m.readVar("fn", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,41],"end":[27,43]}},"name":"fn"});
 
-    m.writeProperty("obj13", "info");
+    m.writeProperty("obj9", "__generatorFunction__", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,3],"end":[27,43]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,3],"end":[27,43]}}});
 
-    m.writeProperty("obj1", "mem");
+    m.readVar("createPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[28,10],"end":[28,23]}},"name":"createPromise"});
 
-    m.readVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[28,3],"end":[28,23]}}});
 
-    m.push(false);
+    m.functionReturn("", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[13,19],"end":[17,5]}}});
 
-    m.functionCall("require", 1, 1);
+    m.readVar("co", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[18,12],"end":[18,14]}},"name":"co"});
 
-    m.push(false);
+    m.readProperty("obj7", "wrap", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[18,12],"end":[18,19]}}});
 
-    m.initVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[18,20],"end":[45,4]}}});
 
-    m.initVar("require");
+    m.functionCall("", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[18,12],"end":[45,5]}}});
 
-    m.initVar("module");
+    m.initVar("fn", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[26,11],"end":[32,2]}},"name":"fn"});
 
-    m.initVar("__filename");
+    m.initVar("createPromise", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[26,11],"end":[32,2]}},"name":"createPromise"});
 
-    m.initVar("__dirname");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[29,3],"end":[31,4]}}});
 
-    m.initVar("ifconfigStats");
+    m.writeVar("createPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[29,3],"end":[31,4]}},"name":"createPromise"});
 
-    m.initVar("bucket");
+    m.readVar("createPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,3],"end":[27,16]}},"name":"createPromise"});
 
-    m.initVar("cp");
+    m.readVar("fn", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,41],"end":[27,43]}},"name":"fn"});
 
-    m.initVar("ifconfig");
+    m.writeProperty("obj10", "__generatorFunction__", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,3],"end":[27,43]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,3],"end":[27,43]}}});
 
-    m.writeVar("ifconfigStats");
+    m.readVar("createPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[28,10],"end":[28,23]}},"name":"createPromise"});
 
-    m.readVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[28,3],"end":[28,23]}}});
 
-    m.push(false);
+    m.functionReturn("", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[18,12],"end":[45,5]}}});
 
-    m.functionCall("require", 1, 1);
+    m.readVar("co", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[46,11],"end":[46,13]}},"name":"co"});
 
-    m.writeVar("bucket");
+    m.readProperty("obj7", "wrap", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[46,11],"end":[46,18]}}});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[46,19],"end":[53,4]}}});
 
-    m.push(false);
+    m.functionCall("", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[46,11],"end":[53,5]}}});
 
-    m.functionCall("require", 1, 1);
+    m.initVar("fn", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[26,11],"end":[32,2]}},"name":"fn"});
 
-    m.writeVar("cp");
+    m.initVar("createPromise", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[26,11],"end":[32,2]}},"name":"createPromise"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[29,3],"end":[31,4]}}});
 
-    m.push(false);
+    m.writeVar("createPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[29,3],"end":[31,4]}},"name":"createPromise"});
 
-    m.writeProperty("obj14", "parseSingleBlock");
+    m.readVar("createPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,3],"end":[27,16]}},"name":"createPromise"});
 
-    m.writeProperty("obj14", "breakIntoBlocks");
+    m.readVar("fn", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,41],"end":[27,43]}},"name":"fn"});
 
-    m.push(false);
+    m.writeProperty("obj11", "__generatorFunction__", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,3],"end":[27,43]}}});
 
-    m.writeVar("ifconfig");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[27,3],"end":[27,43]}}});
 
-    m.readVar("bucket");
+    m.readVar("createPromise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[28,10],"end":[28,23]}},"name":"createPromise"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/util/co.js","pos":{"start":[28,3],"end":[28,23]}}});
 
-    m.push(false);
+    m.functionReturn("", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[46,11],"end":[53,5]}}});
 
-    m.writeProperty("obj15", "inOut");
+    m.writeProperty("obj12", "memory", {});
 
-    m.writeProperty("obj15", "stats");
+    m.writeProperty("obj12", "vmStats", {});
 
-    m.push(false);
+    m.writeProperty("obj12", "physicalMemory", {});
 
-    m.writeProperty("obj1", "netstat");
+    m.writeProperty("obj12", "PAGE_SIZE", {});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[11,17],"end":[54,2]}}});
 
-    m.push(false);
+    m.writeVar("darwinMem", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[11,5],"end":[54,2]}},"name":"darwinMem"});
 
-    m.functionCall("require", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[11,5],"end":[54,2]}}});
 
-    m.push(false);
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[56,1],"end":[56,7]}},"name":"bucket"});
 
-    m.initVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[57,9],"end":[92,4]}}});
 
-    m.initVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[93,9],"end":[102,4]}}});
 
-    m.initVar("module");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[103,9],"end":[112,4]}}});
 
-    m.initVar("__filename");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[113,13],"end":[115,4]}}});
 
-    m.initVar("__dirname");
+    m.writeProperty("obj13", "totalMem", {});
 
-    m.initVar("bucket");
+    m.writeProperty("obj13", "used", {});
 
-    m.initVar("fs");
+    m.writeProperty("obj13", "free", {});
 
-    m.readVar("require");
+    m.writeProperty("obj13", "info", {});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[56,14],"end":[116,2]}}});
 
-    m.functionCall("require", 1, 1);
+    m.writeProperty("obj1", "mem", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[56,1],"end":[116,2]}}});
 
-    m.writeVar("bucket");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/mem.js","pos":{"start":[56,1],"end":[116,2]}}});
 
-    m.readVar("require");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[9,1],"end":[9,21]}},"name":"require"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[9,1],"end":[9,21]}}});
 
-    m.functionCall("require", 1, 1);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[10,1],"end":[10,8]}},"name":"require"});
 
-    m.writeVar("fs");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[10,9],"end":[10,24]}}});
 
-    m.readVar("bucket");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[10,1],"end":[10,25]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,1],"end":[189,3]}}});
 
-    m.writeProperty("obj16", "openFd");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,1],"end":[189,3]}}});
 
-    m.push(false);
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,2],"end":[189,2]}},"name":"exports"});
 
-    m.writeProperty("obj1", "openfiles");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,2],"end":[189,2]}},"name":"require"});
 
-    m.readVar("require");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,2],"end":[189,2]}},"name":"module"});
 
-    m.push(false);
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,2],"end":[189,2]}},"name":"__filename"});
 
-    m.functionCall("require", 1, 1);
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,2],"end":[189,2]}},"name":"__dirname"});
 
-    m.push(false);
+    m.initVar("ifconfigStats", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,2],"end":[189,2]}},"name":"ifconfigStats"});
 
-    m.initVar("exports");
+    m.initVar("bucket", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,2],"end":[189,2]}},"name":"bucket"});
 
-    m.initVar("require");
+    m.initVar("cp", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,2],"end":[189,2]}},"name":"cp"});
 
-    m.initVar("module");
+    m.initVar("ifconfig", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[1,2],"end":[189,2]}},"name":"ifconfig"});
 
-    m.initVar("__filename");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[79,1],"end":[101,2]}}});
 
-    m.initVar("__dirname");
+    m.writeVar("ifconfigStats", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[79,1],"end":[101,2]}},"name":"ifconfigStats"});
 
-    m.initVar("bucket");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[6,14],"end":[6,21]}},"name":"require"});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[6,22],"end":[6,32]}}});
 
-    m.push(false);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.functionCall("require", 1, 1);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.writeVar("bucket");
+    m.writeVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[6,5],"end":[6,33]}},"name":"bucket"});
 
-    m.readVar("bucket");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[6,5],"end":[6,33]}}});
 
-    m.readVar("bucket");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[7,10],"end":[7,17]}},"name":"require"});
 
-    m.readProperty("obj1", "exec");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[7,18],"end":[7,33]}}});
 
-    m.push(false);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[7,10],"end":[7,34]}},"name":"require"});
 
-    m.functionCall("exec", 1, 1);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[7,10],"end":[7,34]}},"name":"require"});
 
-    m.initVar("command");
+    m.writeVar("cp", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[7,5],"end":[7,34]}},"name":"cp"});
 
-    m.initVar("self");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[7,5],"end":[7,34]}}});
 
-    m.writeVar("self");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[10,20],"end":[28,4]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[30,21],"end":[76,4]}}});
 
-    m.readVar("bucket");
+    m.writeProperty("obj14", "parseSingleBlock", {});
 
-    m.readProperty("obj1", "exec");
+    m.writeProperty("obj14", "breakIntoBlocks", {});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[9,16],"end":[77,2]}}});
 
-    m.functionCall("exec", 1, 1);
+    m.writeVar("ifconfig", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[9,5],"end":[77,2]}},"name":"ifconfig"});
 
-    m.initVar("command");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[9,5],"end":[77,2]}}});
 
-    m.initVar("self");
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[103,1],"end":[103,7]}},"name":"bucket"});
 
-    m.writeVar("self");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[104,10],"end":[138,4]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[139,10],"end":[186,4]}}});
 
-    m.readVar("bucket");
+    m.writeProperty("obj15", "inOut", {});
 
-    m.readProperty("obj1", "exec");
+    m.writeProperty("obj15", "stats", {});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[103,18],"end":[187,2]}}});
 
-    m.functionCall("exec", 1, 1);
+    m.writeProperty("obj1", "netstat", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[103,1],"end":[187,2]}}});
 
-    m.initVar("command");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/netstat.js","pos":{"start":[103,1],"end":[187,2]}}});
 
-    m.initVar("self");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[10,1],"end":[10,25]}},"name":"require"});
 
-    m.writeVar("self");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[10,1],"end":[10,25]}}});
 
-    m.push(false);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[11,1],"end":[11,8]}},"name":"require"});
 
-    m.readVar("bucket");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[11,9],"end":[11,26]}}});
 
-    m.readProperty("obj1", "exec");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[11,1],"end":[11,27]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[1,1],"end":[27,3]}}});
 
-    m.functionCall("exec", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[1,1],"end":[27,3]}}});
 
-    m.initVar("command");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[1,2],"end":[27,2]}},"name":"exports"});
 
-    m.initVar("self");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[1,2],"end":[27,2]}},"name":"require"});
 
-    m.writeVar("self");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[1,2],"end":[27,2]}},"name":"module"});
 
-    m.push(false);
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[1,2],"end":[27,2]}},"name":"__filename"});
 
-    m.readVar("bucket");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[1,2],"end":[27,2]}},"name":"__dirname"});
 
-    m.readProperty("obj1", "exec");
+    m.initVar("bucket", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[1,2],"end":[27,2]}},"name":"bucket"});
 
-    m.push(false);
+    m.initVar("fs", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[1,2],"end":[27,2]}},"name":"fs"});
 
-    m.functionCall("exec", 1, 1);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[6,14],"end":[6,21]}},"name":"require"});
 
-    m.initVar("command");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[6,22],"end":[6,32]}}});
 
-    m.initVar("self");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.writeVar("self");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.push(false);
+    m.writeVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[6,5],"end":[6,33]}},"name":"bucket"});
 
-    m.readVar("bucket");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[6,5],"end":[6,33]}}});
 
-    m.readProperty("obj1", "exec");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[7,10],"end":[7,17]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[7,18],"end":[7,22]}}});
 
-    m.functionCall("exec", 1, 1);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[7,10],"end":[7,23]}},"name":"require"});
 
-    m.initVar("command");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[7,10],"end":[7,23]}},"name":"require"});
 
-    m.initVar("self");
+    m.writeVar("fs", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[7,5],"end":[7,23]}},"name":"fs"});
 
-    m.writeVar("self");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[7,5],"end":[7,23]}}});
 
-    m.push(false);
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[9,1],"end":[9,7]}},"name":"bucket"});
 
-    m.readVar("bucket");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[10,11],"end":[24,4]}}});
 
-    m.readProperty("obj1", "exec");
+    m.writeProperty("obj16", "openFd", {});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[9,20],"end":[25,2]}}});
 
-    m.functionCall("exec", 1, 1);
+    m.writeProperty("obj1", "openfiles", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[9,1],"end":[25,2]}}});
 
-    m.initVar("command");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/openfiles.js","pos":{"start":[9,1],"end":[25,2]}}});
 
-    m.initVar("self");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[11,1],"end":[11,27]}},"name":"require"});
 
-    m.writeVar("self");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[11,1],"end":[11,27]}}});
 
-    m.push(false);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[12,1],"end":[12,8]}},"name":"require"});
 
-    m.readVar("bucket");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[12,9],"end":[12,22]}}});
 
-    m.readProperty("obj1", "exec");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[12,1],"end":[12,23]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[1,1],"end":[20,3]}}});
 
-    m.functionCall("exec", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[1,1],"end":[20,3]}}});
 
-    m.initVar("command");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[1,2],"end":[20,2]}},"name":"exports"});
 
-    m.initVar("self");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[1,2],"end":[20,2]}},"name":"require"});
 
-    m.writeVar("self");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[1,2],"end":[20,2]}},"name":"module"});
 
-    m.push(false);
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[1,2],"end":[20,2]}},"name":"__filename"});
 
-    m.readVar("bucket");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[1,2],"end":[20,2]}},"name":"__dirname"});
 
-    m.readProperty("obj1", "exec");
+    m.initVar("bucket", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[1,2],"end":[20,2]}},"name":"bucket"});
 
-    m.push(false);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[6,14],"end":[6,21]}},"name":"require"});
 
-    m.functionCall("exec", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[6,22],"end":[6,32]}}});
 
-    m.initVar("command");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.initVar("self");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.writeVar("self");
+    m.writeVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[6,5],"end":[6,33]}},"name":"bucket"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[6,5],"end":[6,33]}}});
 
-    m.writeProperty("obj17", "ifconfig");
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[8,1],"end":[8,7]}},"name":"bucket"});
 
-    m.writeProperty("obj17", "openPorts");
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[9,11],"end":[9,17]}},"name":"bucket"});
 
-    m.writeProperty("obj17", "whoami");
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[9,11],"end":[9,22]}}});
 
-    m.writeProperty("obj17", "who");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[9,23],"end":[9,117]}}});
 
-    m.writeProperty("obj17", "diskUsage");
+    m.functionCall("exec", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[9,11],"end":[9,118]}},"name":"exec"});
 
-    m.writeProperty("obj17", "processesUsers");
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"command"});
 
-    m.writeProperty("obj17", "vmstats");
+    m.initVar("self", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"self"});
 
-    m.writeProperty("obj17", "topMem");
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,16],"end":[15,20]}},"name":"this"});
 
-    m.writeProperty("obj17", "topCpu");
+    m.writeVar("self", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}},"name":"self"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}}});
 
-    m.writeProperty("obj1", "osCmd");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,12],"end":[27,6]}}});
 
-    m.readVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,5],"end":[27,6]}}});
 
-    m.push(false);
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[9,11],"end":[9,118]}},"name":"exec"});
 
-    m.functionCall("require", 1, 1);
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[10,11],"end":[10,17]}},"name":"bucket"});
 
-    m.push(false);
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[10,11],"end":[10,22]}}});
 
-    m.initVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[10,23],"end":[10,102]}}});
 
-    m.initVar("require");
+    m.functionCall("exec", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[10,11],"end":[10,103]}},"name":"exec"});
 
-    m.initVar("module");
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"command"});
 
-    m.initVar("__filename");
+    m.initVar("self", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"self"});
 
-    m.initVar("__dirname");
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,16],"end":[15,20]}},"name":"this"});
 
-    m.initVar("bucket");
+    m.writeVar("self", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}},"name":"self"});
 
-    m.initVar("cp");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}}});
 
-    m.initVar("fs");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,12],"end":[27,6]}}});
 
-    m.initVar("os");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,5],"end":[27,6]}}});
 
-    m.initVar("originalOperatingSystem");
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[10,11],"end":[10,103]}},"name":"exec"});
 
-    m.readVar("require");
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[11,12],"end":[11,18]}},"name":"bucket"});
 
-    m.push(false);
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[11,12],"end":[11,23]}}});
 
-    m.functionCall("require", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[11,24],"end":[11,37]}}});
 
-    m.writeVar("bucket");
+    m.functionCall("exec", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[11,12],"end":[11,38]}},"name":"exec"});
 
-    m.readVar("require");
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"command"});
 
-    m.push(false);
+    m.initVar("self", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"self"});
 
-    m.functionCall("require", 1, 1);
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,16],"end":[15,20]}},"name":"this"});
 
-    m.writeVar("cp");
+    m.writeVar("self", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}},"name":"self"});
 
-    m.readVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,12],"end":[27,6]}}});
 
-    m.functionCall("require", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,5],"end":[27,6]}}});
 
-    m.writeVar("fs");
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[11,12],"end":[11,38]}},"name":"exec"});
 
-    m.readVar("require");
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[12,19],"end":[12,25]}},"name":"bucket"});
 
-    m.push(false);
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[12,19],"end":[12,30]}}});
 
-    m.functionCall("require", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[12,31],"end":[12,64]}}});
 
-    m.writeVar("os");
+    m.functionCall("exec", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[12,19],"end":[12,65]}},"name":"exec"});
 
-    m.push(false);
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"command"});
 
-    m.push(false);
+    m.initVar("self", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"self"});
 
-    m.push(false);
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,16],"end":[15,20]}},"name":"this"});
 
-    m.writeProperty("obj18", "linux");
+    m.writeVar("self", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}},"name":"self"});
 
-    m.writeProperty("obj18", "darwin");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}}});
 
-    m.writeProperty("obj18", "checkLastResort");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,12],"end":[27,6]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,5],"end":[27,6]}}});
 
-    m.writeVar("originalOperatingSystem");
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[12,19],"end":[12,65]}},"name":"exec"});
 
-    m.readVar("bucket");
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[13,14],"end":[13,20]}},"name":"bucket"});
 
-    m.push(false);
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[13,14],"end":[13,25]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[13,26],"end":[13,33]}}});
 
-    m.push(false);
+    m.functionCall("exec", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[13,14],"end":[13,34]}},"name":"exec"});
 
-    m.push(false);
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"command"});
 
-    m.push(false);
+    m.initVar("self", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"self"});
 
-    m.push(false);
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,16],"end":[15,20]}},"name":"this"});
 
-    m.push(false);
+    m.writeVar("self", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}},"name":"self"});
 
-    m.writeProperty("obj19", "arch");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}}});
 
-    m.writeProperty("obj19", "type");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,12],"end":[27,6]}}});
 
-    m.writeProperty("obj19", "hostname");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,5],"end":[27,6]}}});
 
-    m.writeProperty("obj19", "ip");
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[13,14],"end":[13,34]}},"name":"exec"});
 
-    m.writeProperty("obj19", "uptime");
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[14,8],"end":[14,14]}},"name":"bucket"});
 
-    m.writeProperty("obj19", "platform");
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[14,8],"end":[14,19]}}});
 
-    m.writeProperty("obj19", "oos");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[14,20],"end":[14,25]}}});
 
-    m.push(false);
+    m.functionCall("exec", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[14,8],"end":[14,26]}},"name":"exec"});
 
-    m.writeProperty("obj1", "os");
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"command"});
 
-    m.readVar("require");
+    m.initVar("self", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"self"});
 
-    m.push(false);
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,16],"end":[15,20]}},"name":"this"});
 
-    m.functionCall("require", 1, 1);
+    m.writeVar("self", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}},"name":"self"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}}});
 
-    m.initVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,12],"end":[27,6]}}});
 
-    m.initVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,5],"end":[27,6]}}});
 
-    m.initVar("module");
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[14,8],"end":[14,26]}},"name":"exec"});
 
-    m.initVar("__filename");
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[15,11],"end":[15,17]}},"name":"bucket"});
 
-    m.initVar("__dirname");
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[15,11],"end":[15,22]}}});
 
-    m.initVar("bucket");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[15,23],"end":[15,31]}}});
 
-    m.initVar("cp");
+    m.functionCall("exec", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[15,11],"end":[15,32]}},"name":"exec"});
 
-    m.initVar("os");
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"command"});
 
-    m.initVar("co");
+    m.initVar("self", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"self"});
 
-    m.readVar("require");
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,16],"end":[15,20]}},"name":"this"});
 
-    m.push(false);
+    m.writeVar("self", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}},"name":"self"});
 
-    m.functionCall("require", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}}});
 
-    m.writeVar("bucket");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,12],"end":[27,6]}}});
 
-    m.readVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,5],"end":[27,6]}}});
 
-    m.push(false);
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[15,11],"end":[15,32]}},"name":"exec"});
 
-    m.functionCall("require", 1, 1);
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[16,14],"end":[16,20]}},"name":"bucket"});
 
-    m.writeVar("cp");
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[16,14],"end":[16,25]}}});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[16,26],"end":[16,57]}}});
 
-    m.push(false);
+    m.functionCall("exec", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[16,14],"end":[16,58]}},"name":"exec"});
 
-    m.functionCall("require", 1, 1);
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"command"});
 
-    m.writeVar("os");
+    m.initVar("self", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"self"});
 
-    m.readVar("require");
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,16],"end":[15,20]}},"name":"this"});
 
-    m.push(false);
+    m.writeVar("self", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}},"name":"self"});
 
-    m.functionCall("require", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}}});
 
-    m.writeVar("co");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,12],"end":[27,6]}}});
 
-    m.readVar("bucket");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,5],"end":[27,6]}}});
 
-    m.push(false);
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[16,14],"end":[16,58]}},"name":"exec"});
 
-    m.push(false);
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[17,13],"end":[17,19]}},"name":"bucket"});
 
-    m.writeProperty("obj20", "zombieProcesses");
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[17,13],"end":[17,24]}}});
 
-    m.writeProperty("obj20", "totalProcesses");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[17,25],"end":[17,35]}}});
 
-    m.push(false);
+    m.functionCall("exec", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[17,13],"end":[17,36]}},"name":"exec"});
 
-    m.writeProperty("obj1", "proc");
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"command"});
 
-    m.readVar("require");
+    m.initVar("self", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"self"});
 
-    m.push(false);
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,16],"end":[15,20]}},"name":"this"});
 
-    m.functionCall("require", 1, 1);
+    m.writeVar("self", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}},"name":"self"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}}});
 
-    m.initVar("exports");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,12],"end":[27,6]}}});
 
-    m.initVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,5],"end":[27,6]}}});
 
-    m.initVar("module");
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[17,13],"end":[17,36]}},"name":"exec"});
 
-    m.initVar("__filename");
+    m.writeProperty("obj17", "ifconfig", {});
 
-    m.initVar("__dirname");
+    m.writeProperty("obj17", "openPorts", {});
 
-    m.initVar("bucket");
+    m.writeProperty("obj17", "whoami", {});
 
-    m.readVar("require");
+    m.writeProperty("obj17", "who", {});
 
-    m.push(false);
+    m.writeProperty("obj17", "diskUsage", {});
 
-    m.functionCall("require", 1, 1);
+    m.writeProperty("obj17", "processesUsers", {});
 
-    m.writeVar("bucket");
+    m.writeProperty("obj17", "vmstats", {});
 
-    m.readVar("bucket");
+    m.writeProperty("obj17", "topMem", {});
 
-    m.push(false);
+    m.writeProperty("obj17", "topCpu", {});
 
-    m.writeProperty("obj21", "openedCount");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[8,16],"end":[18,2]}}});
 
-    m.push(false);
+    m.writeProperty("obj1", "osCmd", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[8,1],"end":[18,2]}}});
 
-    m.writeProperty("obj1", "users");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/osCmd.js","pos":{"start":[8,1],"end":[18,2]}}});
 
-    m.readVar("module");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[12,1],"end":[12,23]}},"name":"require"});
 
-    m.readVar("require");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[12,1],"end":[12,23]}}});
 
-    m.push(false);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[13,1],"end":[13,8]}},"name":"require"});
 
-    m.functionCall("require", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[13,9],"end":[13,19]}}});
 
-    m.writeProperty("obj22", "exports");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[13,1],"end":[13,20]}},"name":"require"});
 
-    m.writeVar("nodeosutils");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,1],"end":[155,3]}}});
 
-    m.readVar("nodeosutils");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,1],"end":[155,3]}}});
 
-    m.readProperty("obj1", "exec");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,2],"end":[155,2]}},"name":"exports"});
 
-    m.writeVar("exec");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,2],"end":[155,2]}},"name":"require"});
 
-    m.readVar("exec");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,2],"end":[155,2]}},"name":"module"});
 
-    m.readVar("command");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,2],"end":[155,2]}},"name":"__filename"});
 
-    m.functionCall("exec", 1, 1);
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,2],"end":[155,2]}},"name":"__dirname"});
 
-    m.initVar("command");
+    m.initVar("bucket", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,2],"end":[155,2]}},"name":"bucket"});
 
-    m.initVar("self");
+    m.initVar("cp", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,2],"end":[155,2]}},"name":"cp"});
 
-    m.writeVar("self");
+    m.initVar("fs", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,2],"end":[155,2]}},"name":"fs"});
 
-    m.push(false);
+    m.initVar("os", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,2],"end":[155,2]}},"name":"os"});
 
-    m.functionCall("", 0, 0);
+    m.initVar("originalOperatingSystem", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[1,2],"end":[155,2]}},"name":"originalOperatingSystem"});
 
-    m.readVar("Promise");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[6,14],"end":[6,21]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[6,22],"end":[6,32]}}});
 
-    m.functionCall("Promise", 1, 1);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.initVar("resolve");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
 
-    m.readVar("cp");
+    m.writeVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[6,5],"end":[6,33]}},"name":"bucket"});
 
-    m.readProperty("obj23", "exec");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[6,5],"end":[6,33]}}});
 
-    m.readVar("command");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[7,10],"end":[7,17]}},"name":"require"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[7,18],"end":[7,33]}}});
 
-    m.writeProperty("obj24", "shell");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[7,10],"end":[7,34]}},"name":"require"});
 
-    m.push(false);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[7,10],"end":[7,34]}},"name":"require"});
 
-    m.push(false);
+    m.writeVar("cp", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[7,5],"end":[7,34]}},"name":"cp"});
 
-    m.functionCall("exec", 0, 3);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[7,5],"end":[7,34]}}});
 
-    m.readVar("done");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[8,10],"end":[8,17]}},"name":"require"});
 
-    m.functionCall("done", 0, 0);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[8,18],"end":[8,22]}}});
 
-    m.unaryOp();
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[8,10],"end":[8,23]}},"name":"require"});
 
-    m.readVar("console");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[8,10],"end":[8,23]}},"name":"require"});
 
-    m.readProperty("obj25", "log");
+    m.writeVar("fs", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[8,5],"end":[8,23]}},"name":"fs"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[8,5],"end":[8,23]}}});
 
-    m.functionCall("bound log", 0, 1);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[9,10],"end":[9,17]}},"name":"require"});
 
-    m.initVar("err");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[9,18],"end":[9,22]}}});
 
-    m.initVar("stdout");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[9,10],"end":[9,23]}},"name":"require"});
 
-    m.initVar("stderr");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[9,10],"end":[9,23]}},"name":"require"});
 
-    m.readVar("err");
+    m.writeVar("os", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[9,5],"end":[9,23]}},"name":"os"});
 
-    m.readVar("stdout");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[9,5],"end":[9,23]}}});
 
-    m.unaryOp();
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[12,20],"end":[21,4]}}});
 
-    m.readVar("resolve");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[22,11],"end":[38,4]}}});
 
-    m.readVar("module");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[39,10],"end":[80,4]}}});
 
-    m.readProperty("obj2", "exports");
+    m.writeProperty("obj18", "linux", {});
 
-    m.readProperty("obj1", "options");
+    m.writeProperty("obj18", "darwin", {});
 
-    m.readProperty("obj0", "NOT_SUPPORTED_VALUE");
+    m.writeProperty("obj18", "checkLastResort", {});
 
-    m.functionCall("", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[11,31],"end":[81,2]}}});
+
+    m.writeVar("originalOperatingSystem", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[11,5],"end":[81,2]}},"name":"originalOperatingSystem"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[11,5],"end":[81,2]}}});
+
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[83,1],"end":[83,7]}},"name":"bucket"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[84,8],"end":[96,4]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[97,13],"end":[99,4]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[100,11],"end":[103,4]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[104,7],"end":[143,4]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[144,13],"end":[146,4]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[147,9],"end":[149,4]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[150,9],"end":[152,4]}}});
+
+    m.writeProperty("obj19", "arch", {});
+
+    m.writeProperty("obj19", "type", {});
+
+    m.writeProperty("obj19", "hostname", {});
+
+    m.writeProperty("obj19", "ip", {});
+
+    m.writeProperty("obj19", "uptime", {});
+
+    m.writeProperty("obj19", "platform", {});
+
+    m.writeProperty("obj19", "oos", {});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[83,13],"end":[153,2]}}});
+
+    m.writeProperty("obj1", "os", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[83,1],"end":[153,2]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/os.js","pos":{"start":[83,1],"end":[153,2]}}});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[13,1],"end":[13,20]}},"name":"require"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[13,1],"end":[13,20]}}});
+
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[14,1],"end":[14,8]}},"name":"require"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[14,9],"end":[14,21]}}});
+
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[14,1],"end":[14,22]}},"name":"require"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,1],"end":[49,3]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,1],"end":[49,3]}}});
+
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,2],"end":[49,2]}},"name":"exports"});
+
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,2],"end":[49,2]}},"name":"require"});
+
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,2],"end":[49,2]}},"name":"module"});
+
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,2],"end":[49,2]}},"name":"__filename"});
+
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,2],"end":[49,2]}},"name":"__dirname"});
+
+    m.initVar("bucket", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,2],"end":[49,2]}},"name":"bucket"});
+
+    m.initVar("cp", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,2],"end":[49,2]}},"name":"cp"});
+
+    m.initVar("os", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,2],"end":[49,2]}},"name":"os"});
+
+    m.initVar("co", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[1,2],"end":[49,2]}},"name":"co"});
+
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[6,14],"end":[6,21]}},"name":"require"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[6,22],"end":[6,32]}}});
+
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
+
+    m.writeVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[6,5],"end":[6,33]}},"name":"bucket"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[6,5],"end":[6,33]}}});
+
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[7,10],"end":[7,17]}},"name":"require"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[7,18],"end":[7,33]}}});
+
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[7,10],"end":[7,34]}},"name":"require"});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[7,10],"end":[7,34]}},"name":"require"});
+
+    m.writeVar("cp", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[7,5],"end":[7,34]}},"name":"cp"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[7,5],"end":[7,34]}}});
+
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[8,10],"end":[8,17]}},"name":"require"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[8,18],"end":[8,22]}}});
+
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[8,10],"end":[8,23]}},"name":"require"});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[8,10],"end":[8,23]}},"name":"require"});
+
+    m.writeVar("os", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[8,5],"end":[8,23]}},"name":"os"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[8,5],"end":[8,23]}}});
+
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[9,10],"end":[9,17]}},"name":"require"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[9,18],"end":[9,30]}}});
+
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[9,10],"end":[9,31]}},"name":"require"});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[9,10],"end":[9,31]}},"name":"require"});
+
+    m.writeVar("co", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[9,5],"end":[9,31]}},"name":"co"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[9,5],"end":[9,31]}}});
+
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[11,1],"end":[11,7]}},"name":"bucket"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[12,19],"end":[34,4]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[35,20],"end":[46,4]}}});
+
+    m.writeProperty("obj20", "zombieProcesses", {});
+
+    m.writeProperty("obj20", "totalProcesses", {});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[11,15],"end":[47,2]}}});
+
+    m.writeProperty("obj1", "proc", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[11,1],"end":[47,2]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/proc.js","pos":{"start":[11,1],"end":[47,2]}}});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[14,1],"end":[14,22]}},"name":"require"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[14,1],"end":[14,22]}}});
+
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[15,1],"end":[15,8]}},"name":"require"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[15,9],"end":[15,22]}}});
+
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[15,1],"end":[15,23]}},"name":"require"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[1,1],"end":[20,3]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[1,1],"end":[20,3]}}});
+
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[1,2],"end":[20,2]}},"name":"exports"});
+
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[1,2],"end":[20,2]}},"name":"require"});
+
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[1,2],"end":[20,2]}},"name":"module"});
+
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[1,2],"end":[20,2]}},"name":"__filename"});
+
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[1,2],"end":[20,2]}},"name":"__dirname"});
+
+    m.initVar("bucket", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[1,2],"end":[20,2]}},"name":"bucket"});
+
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[6,14],"end":[6,21]}},"name":"require"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[6,22],"end":[6,32]}}});
+
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[6,14],"end":[6,33]}},"name":"require"});
+
+    m.writeVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[6,5],"end":[6,33]}},"name":"bucket"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[6,5],"end":[6,33]}}});
+
+    m.readVar("bucket", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[8,1],"end":[8,7]}},"name":"bucket"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[9,16],"end":[17,4]}}});
+
+    m.writeProperty("obj21", "openedCount", {});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[8,16],"end":[18,2]}}});
+
+    m.writeProperty("obj1", "users", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[8,1],"end":[18,2]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/users.js","pos":{"start":[8,1],"end":[18,2]}}});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[15,1],"end":[15,23]}},"name":"require"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[15,1],"end":[15,23]}}});
+
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[17,1],"end":[17,7]}},"name":"module"});
+
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[17,18],"end":[17,25]}},"name":"require"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[17,26],"end":[17,40]}}});
+
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[17,18],"end":[17,41]}},"name":"require"});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[17,18],"end":[17,41]}},"name":"require"});
+
+    m.writeProperty("obj22", "exports", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[17,1],"end":[17,41]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/index.js","pos":{"start":[17,1],"end":[17,41]}}});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node-os-utils.js","pos":{"start":[16,19],"end":[16,43]}},"name":"require"});
+
+    m.writeVar("nodeosutils", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[16,5],"end":[16,43]}},"name":"nodeosutils"});
+
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[16,5],"end":[16,43]}}});
+
+    m.readVar("nodeosutils", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[17,12],"end":[17,23]}},"name":"nodeosutils"});
+
+    m.readProperty("obj1", "exec", {"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[17,12],"end":[17,28]}}});
+
+    m.writeVar("exec", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[17,5],"end":[17,28]}},"name":"exec"});
+
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[17,5],"end":[17,28]}}});
+
+    m.readVar("exec", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[18,1],"end":[18,5]}},"name":"exec"});
+
+    m.readVar("command", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[18,6],"end":[18,13]}},"name":"command"});
+
+    m.functionCall("exec", 1, 1, {"type":"functionInvocation","location":{"fileName":"node-os-utils.js","pos":{"start":[18,1],"end":[18,14]}},"name":"exec"});
+
+    m.initVar("command", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"command"});
+
+    m.initVar("self", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[13,9],"end":[28,4]}},"name":"self"});
+
+    m.readVar("this", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,16],"end":[15,20]}},"name":"this"});
+
+    m.writeVar("self", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}},"name":"self"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[15,9],"end":[15,20]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,12],"end":[27,6]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[17,5],"end":[27,6]}}});
+
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node-os-utils.js","pos":{"start":[18,1],"end":[18,14]}},"name":"exec"});
+
+    m.functionCall("", 0, 0, {"type":"functionInvocation","location":{"fileName":"node-os-utils.js","pos":{"start":[18,1],"end":[18,16]}}});
+
+    m.readVar("Promise", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[18,18],"end":[18,25]}},"name":"Promise"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[18,26],"end":[26,8]}}});
+
+    m.functionCall("Promise", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[18,14],"end":[26,9]}},"name":"Promise"});
+
+    m.initVar("resolve", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[18,26],"end":[26,8]}},"name":"resolve"});
+
+    m.readVar("cp", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,9],"end":[19,11]}},"name":"cp"});
+
+    m.readProperty("obj23", "exec", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,9],"end":[19,16]}}});
+
+    m.readVar("command", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,17],"end":[19,24]}},"name":"command"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,35],"end":[19,39]}}});
+
+    m.writeProperty("obj24", "shell", {});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,26],"end":[19,41]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,43],"end":[25,10]}}});
+
+    m.functionCall("exec", 3, 3, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,9],"end":[25,11]}},"name":"exec"});
+
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,9],"end":[25,11]}},"name":"exec"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,9],"end":[25,11]}}});
+
+    m.functionReturn("Promise", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[18,14],"end":[26,9]}},"name":"Promise"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[18,7],"end":[26,9]}}});
+
+    m.functionReturn("", {"type":"functionReturn","location":{"fileName":"node-os-utils.js","pos":{"start":[18,1],"end":[18,16]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[18,1],"end":[18,16]}}});
+
+    m.readVar("done", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[20,1],"end":[20,5]}},"name":"done"});
+
+    m.functionCall("done", 0, 0, {"type":"functionInvocation","location":{"fileName":"node-os-utils.js","pos":{"start":[20,1],"end":[20,7]}},"name":"done"});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"node-os-utils.js","pos":{"start":[2,5],"end":[2,12]}},"name":"console"});
+
+    m.readProperty("obj25", "log", {"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[2,5],"end":[2,16]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node-os-utils.js","pos":{"start":[2,17],"end":[2,24]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"node-os-utils.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"node-os-utils.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[2,5],"end":[2,25]}}});
+
+    m.functionReturn("done", {"type":"functionReturn","location":{"fileName":"node-os-utils.js","pos":{"start":[20,1],"end":[20,7]}},"name":"done"});
+
+    m.pop({"type":"expr","location":{"fileName":"node-os-utils.js","pos":{"start":[20,1],"end":[20,7]}}});
+
+    m.initVar("err", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,43],"end":[25,10]}},"name":"err"});
+
+    m.initVar("stdout", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,43],"end":[25,10]}},"name":"stdout"});
+
+    m.initVar("stderr", {"type":"declaration","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[19,43],"end":[25,10]}},"name":"stderr"});
+
+    m.readVar("err", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[20,15],"end":[20,18]}},"name":"err"});
+
+    m.readVar("stdout", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[20,23],"end":[20,29]}},"name":"stdout"});
+
+    m.unaryOp({"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[20,22],"end":[20,29]}}});
+
+    m.readVar("resolve", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[21,20],"end":[21,27]}},"name":"resolve"});
+
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[21,28],"end":[21,34]}},"name":"module"});
+
+    m.readProperty("obj2", "exports", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[21,28],"end":[21,42]}}});
+
+    m.readProperty("obj1", "options", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[21,28],"end":[21,50]}}});
+
+    m.readProperty("obj0", "NOT_SUPPORTED_VALUE", {"type":"expr","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[21,28],"end":[21,70]}}});
+
+    m.functionCall("", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[21,20],"end":[21,71]}}});
+
+    m.functionReturn("", {"type":"functionReturn","location":{"fileName":"node_modules/node-os-utils/lib/bucket.js","pos":{"start":[21,20],"end":[21,71]}}});
 
     m.endExecution();
 

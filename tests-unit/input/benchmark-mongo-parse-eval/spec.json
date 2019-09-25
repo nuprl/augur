@@ -2,7 +2,7 @@
     "main": "mongo-parse-eval.js",
     "sources": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "dummySource",
             "location": {
                 "fileName": "mongo-parse-eval.js"

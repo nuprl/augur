@@ -2,7 +2,7 @@
     "main": "system-locale.js",
     "sources": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "dummySource",
             "location": {
                 "fileName": "system-locale.js"
@@ -11,7 +11,7 @@
     ],
     "sinks": [
         {
-            "type": "function",
+            "type": "functionInvocation",
             "name": "execFileSync"
         }
     ],

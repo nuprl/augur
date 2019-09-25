@@ -1,716 +1,922 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"growl-exec.js","pos":{"start":[1,1],"end":[24,3]}}});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[1,1],"end":[24,3]}}});
 
-    m.initVar("require");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"growl-exec.js","pos":{"start":[1,2],"end":[24,2]}},"name":"exports"});
 
-    m.initVar("module");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"growl-exec.js","pos":{"start":[1,2],"end":[24,2]}},"name":"require"});
 
-    m.initVar("__filename");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"growl-exec.js","pos":{"start":[1,2],"end":[24,2]}},"name":"module"});
 
-    m.initVar("__dirname");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"growl-exec.js","pos":{"start":[1,2],"end":[24,2]}},"name":"__filename"});
 
-    m.initVar("dummySource");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"growl-exec.js","pos":{"start":[1,2],"end":[24,2]}},"name":"__dirname"});
 
-    m.initVar("DUMMY_FILE");
+    m.initVar("dummySource", {"type":"declaration","location":{"fileName":"growl-exec.js","pos":{"start":[1,2],"end":[24,2]}},"name":"dummySource"});
 
-    m.initVar("payload");
+    m.initVar("DUMMY_FILE", {"type":"declaration","location":{"fileName":"growl-exec.js","pos":{"start":[1,2],"end":[24,2]}},"name":"DUMMY_FILE"});
 
-    m.initVar("growl");
+    m.initVar("payload", {"type":"declaration","location":{"fileName":"growl-exec.js","pos":{"start":[1,2],"end":[24,2]}},"name":"payload"});
 
-    m.push(false);
+    m.initVar("growl", {"type":"declaration","location":{"fileName":"growl-exec.js","pos":{"start":[1,2],"end":[24,2]}},"name":"growl"});
 
-    m.writeVar("dummySource");
+    m.literal({"type":"literal","location":{"fileName":"growl-exec.js","pos":{"start":[9,1],"end":[11,2]}}});
 
-    m.push(false);
+    m.writeVar("dummySource", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[9,1],"end":[11,2]}},"name":"dummySource"});
 
-    m.writeVar("done");
+    m.literal({"type":"literal","location":{"fileName":"growl-exec.js","pos":{"start":[1,69],"end":[3,2]}}});
 
-    m.push(false);
+    m.writeVar("done", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"});
 
-    m.writeVar("DUMMY_FILE");
+    m.pop({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[1,62],"end":[3,2]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"growl-exec.js","pos":{"start":[5,18],"end":[5,27]}}});
 
-    m.readVar("DUMMY_FILE");
+    m.writeVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[5,5],"end":[5,26]}},"name":"DUMMY_FILE"});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[5,5],"end":[5,26]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"growl-exec.js","pos":{"start":[7,15],"end":[7,25]}}});
 
-    m.binaryOp();
+    m.readVar("DUMMY_FILE", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[7,28],"end":[7,38]}},"name":"DUMMY_FILE"});
 
-    m.writeVar("payload");
+    m.binaryOp({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[7,15],"end":[7,38]}}});
 
-    m.readVar("dummySource");
+    m.literal({"type":"literal","location":{"fileName":"growl-exec.js","pos":{"start":[7,41],"end":[7,44]}}});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[7,15],"end":[7,44]}}});
 
-    m.functionCall("dummySource", 1, 1);
+    m.writeVar("payload", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[7,5],"end":[7,43]}},"name":"payload"});
 
-    m.initVar("val");
+    m.pop({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[7,5],"end":[7,43]}}});
 
-    m.readVar("payload");
+    m.readVar("dummySource", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[13,1],"end":[13,12]}},"name":"dummySource"});
 
-    m.readVar("val");
+    m.literal({"type":"literal","location":{"fileName":"growl-exec.js","pos":{"start":[13,13],"end":[13,16]}}});
 
-    m.binaryOp();
+    m.functionCall("dummySource", 1, 1, {"type":"functionInvocation","location":{"fileName":"growl-exec.js","pos":{"start":[13,1],"end":[13,17]}},"name":"dummySource"});
 
-    m.writeVar("payload");
+    m.initVar("val", {"type":"declaration","location":{"fileName":"growl-exec.js","pos":{"start":[9,1],"end":[11,2]}},"name":"val"});
 
-    m.readVar("require");
+    m.readVar("payload", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[10,5],"end":[10,12]}},"name":"payload"});
 
-    m.push(false);
+    m.readVar("val", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[10,16],"end":[10,19]}},"name":"val"});
 
-    m.functionCall("require", 1, 1);
+    m.binaryOp({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[10,5],"end":[10,12]}}});
 
-    m.push(false);
+    m.writeVar("payload", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[10,5],"end":[10,19]}},"name":"payload"});
 
-    m.initVar("exports");
+    m.pop({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[10,5],"end":[10,19]}}});
 
-    m.initVar("require");
+    m.functionReturn("dummySource", {"type":"functionReturn","location":{"fileName":"growl-exec.js","pos":{"start":[13,1],"end":[13,17]}},"name":"dummySource"});
 
-    m.initVar("module");
+    m.pop({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[13,1],"end":[13,17]}}});
 
-    m.initVar("__filename");
+    m.readVar("require", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[15,13],"end":[15,20]}},"name":"require"});
 
-    m.initVar("__dirname");
+    m.literal({"type":"literal","location":{"fileName":"growl-exec.js","pos":{"start":[15,21],"end":[15,28]}}});
 
-    m.initVar("which");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"growl-exec.js","pos":{"start":[15,13],"end":[15,29]}},"name":"require"});
 
-    m.initVar("growl");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,1],"end":[292,3]}}});
 
-    m.initVar("exec");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,1],"end":[292,3]}}});
 
-    m.initVar("fs");
+    m.initVar("exports", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"exports"});
 
-    m.initVar("path");
+    m.initVar("require", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"require"});
 
-    m.initVar("exists");
+    m.initVar("module", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"module"});
 
-    m.initVar("os");
+    m.initVar("__filename", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"__filename"});
 
-    m.initVar("quote");
+    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"__dirname"});
 
-    m.initVar("cmd");
+    m.initVar("which", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"which"});
 
-    m.push(false);
+    m.initVar("growl", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"growl"});
 
-    m.writeVar("which");
+    m.initVar("exec", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"exec"});
 
-    m.push(false);
+    m.initVar("fs", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"fs"});
 
-    m.writeVar("growl");
+    m.initVar("path", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"path"});
 
-    m.readVar("require");
+    m.initVar("exists", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"exists"});
 
-    m.push(false);
+    m.initVar("os", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"os"});
 
-    m.functionCall("require", 1, 1);
+    m.initVar("quote", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"quote"});
 
-    m.readProperty("obj0", "exec");
+    m.initVar("cmd", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[1,2],"end":[292,2]}},"name":"cmd"});
 
-    m.writeVar("exec");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[15,1],"end":[23,2]}}});
 
-    m.readVar("require");
+    m.writeVar("which", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[15,1],"end":[23,2]}},"name":"which"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}}});
 
-    m.functionCall("require", 1, 1);
+    m.writeVar("growl", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"growl"});
 
-    m.writeVar("fs");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[7,12],"end":[7,19]}},"name":"require"});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[7,20],"end":[7,35]}}});
 
-    m.push(false);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[7,12],"end":[7,36]}},"name":"require"});
 
-    m.functionCall("require", 1, 1);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[7,12],"end":[7,36]}},"name":"require"});
 
-    m.writeVar("path");
+    m.readProperty("obj0", "exec", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[7,12],"end":[7,41]}}});
 
-    m.readVar("fs");
+    m.writeVar("exec", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[7,5],"end":[7,41]}},"name":"exec"});
 
-    m.readProperty("obj1", "existsSync");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[7,5],"end":[7,41]}}});
 
-    m.writeVar("exists");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[8,12],"end":[8,19]}},"name":"require"});
 
-    m.readVar("require");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[8,20],"end":[8,24]}}});
 
-    m.push(false);
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[8,12],"end":[8,25]}},"name":"require"});
 
-    m.functionCall("require", 1, 1);
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[8,12],"end":[8,25]}},"name":"require"});
 
-    m.writeVar("os");
+    m.writeVar("fs", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[8,7],"end":[8,25]}},"name":"fs"});
 
-    m.readVar("JSON");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[8,7],"end":[8,25]}}});
 
-    m.readProperty("obj2", "stringify");
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[9,14],"end":[9,21]}},"name":"require"});
 
-    m.writeVar("quote");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[9,22],"end":[9,28]}}});
 
-    m.readVar("os");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[9,14],"end":[9,29]}},"name":"require"});
 
-    m.readProperty("obj3", "type");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[9,14],"end":[9,29]}},"name":"require"});
 
-    m.functionCall("checkError", 0, 0);
+    m.writeVar("path", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[9,7],"end":[9,29]}},"name":"path"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[9,7],"end":[9,29]}}});
 
-    m.binaryOp();
+    m.readVar("fs", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[10,16],"end":[10,18]}},"name":"fs"});
 
-    m.push(false);
+    m.readProperty("obj1", "existsSync", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[10,16],"end":[10,29]}}});
 
-    m.binaryOp();
+    m.writeVar("exists", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[10,7],"end":[10,48]}},"name":"exists"});
 
-    m.readVar("which");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[10,7],"end":[10,48]}}});
 
-    m.push(false);
+    m.readVar("require", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[11,12],"end":[11,19]}},"name":"require"});
 
-    m.functionCall("which", 1, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[11,20],"end":[11,24]}}});
 
-    m.initVar("name");
+    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[11,12],"end":[11,25]}},"name":"require"});
 
-    m.initVar("paths");
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[11,12],"end":[11,25]}},"name":"require"});
 
-    m.initVar("loc");
+    m.writeVar("os", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[11,7],"end":[11,25]}},"name":"os"});
 
-    m.initVar("i");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[11,7],"end":[11,25]}}});
 
-    m.initVar("len");
+    m.readVar("JSON", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[12,15],"end":[12,19]}},"name":"JSON"});
 
-    m.readVar("process");
+    m.readProperty("obj2", "stringify", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[12,15],"end":[12,29]}}});
 
-    m.readProperty("obj4", "env");
+    m.writeVar("quote", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[12,7],"end":[12,29]}},"name":"quote"});
 
-    m.readProperty("obj5", "PATH");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[12,7],"end":[12,29]}}});
 
-    m.readProperty("obj6", "split");
+    m.readVar("os", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[25,8],"end":[25,10]}},"name":"os"});
 
-    m.push(false);
+    m.readProperty("obj3", "type", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[25,8],"end":[25,15]}}});
 
-    m.functionCall("split", 2, 1);
+    m.functionCall("checkError", 0, 0, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[25,8],"end":[25,17]}},"name":"checkError"});
 
-    m.writeVar("paths");
+    m.functionReturn("checkError", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[25,8],"end":[25,17]}},"name":"checkError"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[25,8],"end":[25,17]}}});
 
-    m.writeVar("i");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[26,5],"end":[65,15]}}});
 
-    m.readVar("paths");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[26,5],"end":[65,15]}}});
 
-    m.readProperty("obj7", "length");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[66,5],"end":[96,15]}}});
 
-    m.writeVar("len");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[66,5],"end":[96,15]}}});
 
-    m.readVar("i");
+    m.readVar("which", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[67,13],"end":[67,18]}},"name":"which"});
 
-    m.readVar("len");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[67,19],"end":[67,26]}}});
 
-    m.binaryOp();
+    m.functionCall("which", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[67,13],"end":[67,27]}},"name":"which"});
 
-    m.readVar("path");
+    m.initVar("name", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[15,1],"end":[23,2]}},"name":"name"});
 
-    m.readProperty("obj8", "join");
+    m.initVar("paths", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[15,1],"end":[23,2]}},"name":"paths"});
 
-    m.readVar("paths");
+    m.initVar("loc", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[15,1],"end":[23,2]}},"name":"loc"});
 
-    m.readVar("i");
+    m.initVar("i", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[15,1],"end":[23,2]}},"name":"i"});
 
-    m.readProperty("obj7", 0);
+    m.initVar("len", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[15,1],"end":[23,2]}},"name":"len"});
 
-    m.readVar("name");
+    m.readVar("process", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[16,17],"end":[16,24]}},"name":"process"});
 
-    m.functionCall("join", 0, 2);
+    m.readProperty("obj4", "env", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[16,17],"end":[16,28]}}});
 
-    m.writeVar("loc");
+    m.readProperty("obj5", "PATH", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[16,17],"end":[16,33]}}});
 
-    m.readVar("exists");
+    m.readProperty("obj6", "split", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[16,17],"end":[16,39]}}});
 
-    m.readVar("loc");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[16,40],"end":[16,43]}}});
 
-    m.functionCall("existsSync", 1, 1);
+    m.functionCall("split", 2, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[16,17],"end":[16,44]}},"name":"split"});
 
-    m.readVar("i");
+    m.functionReturn("split", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[16,17],"end":[16,44]}},"name":"split"});
 
-    m.push(false);
+    m.writeVar("paths", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[16,9],"end":[16,44]}},"name":"paths"});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[16,9],"end":[16,44]}}});
 
-    m.writeVar("i");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,18],"end":[19,19]}}});
 
-    m.readVar("i");
+    m.writeVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,14],"end":[19,19]}},"name":"i"});
 
-    m.readVar("len");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,14],"end":[19,19]}}});
 
-    m.binaryOp();
+    m.readVar("paths", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,27],"end":[19,32]}},"name":"paths"});
 
-    m.readVar("path");
+    m.readProperty("obj7", "length", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,27],"end":[19,39]}}});
 
-    m.readProperty("obj8", "join");
+    m.writeVar("len", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,21],"end":[19,39]}},"name":"len"});
 
-    m.readVar("paths");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,21],"end":[19,39]}}});
 
-    m.readVar("i");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,42]}},"name":"i"});
 
-    m.readProperty("obj7", 1);
+    m.readVar("len", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,45],"end":[19,48]}},"name":"len"});
 
-    m.readVar("name");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.functionCall("join", 0, 2);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.writeVar("loc");
+    m.readVar("path", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,19]}},"name":"path"});
 
-    m.readVar("exists");
+    m.readProperty("obj8", "join", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,24]}}});
 
-    m.readVar("loc");
+    m.readVar("paths", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,30]}},"name":"paths"});
 
-    m.functionCall("existsSync", 1, 1);
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,31],"end":[20,32]}},"name":"i"});
 
-    m.readVar("i");
+    m.readProperty("obj7", 0, {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,33]}}});
 
-    m.push(false);
+    m.readVar("name", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,35],"end":[20,39]}},"name":"name"});
 
-    m.binaryOp();
+    m.functionCall("join", 0, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.writeVar("i");
+    m.functionReturn("join", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.readVar("i");
+    m.writeVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}},"name":"loc"});
 
-    m.readVar("len");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}}});
 
-    m.binaryOp();
+    m.readVar("exists", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,19]}},"name":"exists"});
 
-    m.readVar("path");
+    m.readVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,20],"end":[21,23]}},"name":"loc"});
 
-    m.readProperty("obj8", "join");
+    m.functionCall("existsSync", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readVar("paths");
+    m.functionReturn("existsSync", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readVar("i");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,9],"end":[21,37]}}});
 
-    m.readProperty("obj7", 2);
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.readVar("name");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.functionCall("join", 0, 2);
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.writeVar("loc");
+    m.writeVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.readVar("exists");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.readVar("loc");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,42]}},"name":"i"});
 
-    m.functionCall("existsSync", 1, 1);
+    m.readVar("len", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,45],"end":[19,48]}},"name":"len"});
 
-    m.readVar("i");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.binaryOp();
+    m.readVar("path", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,19]}},"name":"path"});
 
-    m.writeVar("i");
+    m.readProperty("obj8", "join", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,24]}}});
 
-    m.readVar("i");
+    m.readVar("paths", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,30]}},"name":"paths"});
 
-    m.readVar("len");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,31],"end":[20,32]}},"name":"i"});
 
-    m.binaryOp();
+    m.readProperty("obj7", 1, {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,33]}}});
 
-    m.readVar("path");
+    m.readVar("name", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,35],"end":[20,39]}},"name":"name"});
 
-    m.readProperty("obj8", "join");
+    m.functionCall("join", 0, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.readVar("paths");
+    m.functionReturn("join", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.readVar("i");
+    m.writeVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}},"name":"loc"});
 
-    m.readProperty("obj7", 3);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}}});
 
-    m.readVar("name");
+    m.readVar("exists", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,19]}},"name":"exists"});
 
-    m.functionCall("join", 0, 2);
+    m.readVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,20],"end":[21,23]}},"name":"loc"});
 
-    m.writeVar("loc");
+    m.functionCall("existsSync", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readVar("exists");
+    m.functionReturn("existsSync", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readVar("loc");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,9],"end":[21,37]}}});
 
-    m.functionCall("existsSync", 1, 1);
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.readVar("i");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.binaryOp();
+    m.writeVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.writeVar("i");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.readVar("i");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,42]}},"name":"i"});
 
-    m.readVar("len");
+    m.readVar("len", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,45],"end":[19,48]}},"name":"len"});
 
-    m.binaryOp();
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.readVar("path");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.readProperty("obj8", "join");
+    m.readVar("path", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,19]}},"name":"path"});
 
-    m.readVar("paths");
+    m.readProperty("obj8", "join", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,24]}}});
 
-    m.readVar("i");
+    m.readVar("paths", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,30]}},"name":"paths"});
 
-    m.readProperty("obj7", 4);
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,31],"end":[20,32]}},"name":"i"});
 
-    m.readVar("name");
+    m.readProperty("obj7", 2, {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,33]}}});
 
-    m.functionCall("join", 0, 2);
+    m.readVar("name", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,35],"end":[20,39]}},"name":"name"});
 
-    m.writeVar("loc");
+    m.functionCall("join", 0, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.readVar("exists");
+    m.functionReturn("join", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.readVar("loc");
+    m.writeVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}},"name":"loc"});
 
-    m.functionCall("existsSync", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}}});
 
-    m.readVar("i");
+    m.readVar("exists", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,19]}},"name":"exists"});
 
-    m.push(false);
+    m.readVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,20],"end":[21,23]}},"name":"loc"});
 
-    m.binaryOp();
+    m.functionCall("existsSync", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.writeVar("i");
+    m.functionReturn("existsSync", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readVar("i");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,9],"end":[21,37]}}});
 
-    m.readVar("len");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.binaryOp();
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.readVar("path");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.readProperty("obj8", "join");
+    m.writeVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.readVar("paths");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.readVar("i");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,42]}},"name":"i"});
 
-    m.readProperty("obj7", 5);
+    m.readVar("len", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,45],"end":[19,48]}},"name":"len"});
 
-    m.readVar("name");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.functionCall("join", 0, 2);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.writeVar("loc");
+    m.readVar("path", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,19]}},"name":"path"});
 
-    m.readVar("exists");
+    m.readProperty("obj8", "join", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,24]}}});
 
-    m.readVar("loc");
+    m.readVar("paths", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,30]}},"name":"paths"});
 
-    m.functionCall("existsSync", 1, 1);
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,31],"end":[20,32]}},"name":"i"});
 
-    m.readVar("i");
+    m.readProperty("obj7", 3, {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,33]}}});
 
-    m.push(false);
+    m.readVar("name", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,35],"end":[20,39]}},"name":"name"});
 
-    m.binaryOp();
+    m.functionCall("join", 0, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.writeVar("i");
+    m.functionReturn("join", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.readVar("i");
+    m.writeVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}},"name":"loc"});
 
-    m.readVar("len");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}}});
 
-    m.binaryOp();
+    m.readVar("exists", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,19]}},"name":"exists"});
 
-    m.readVar("path");
+    m.readVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,20],"end":[21,23]}},"name":"loc"});
 
-    m.readProperty("obj8", "join");
+    m.functionCall("existsSync", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readVar("paths");
+    m.functionReturn("existsSync", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readVar("i");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,9],"end":[21,37]}}});
 
-    m.readProperty("obj7", 6);
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.readVar("name");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.functionCall("join", 0, 2);
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.writeVar("loc");
+    m.writeVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.readVar("exists");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.readVar("loc");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,42]}},"name":"i"});
 
-    m.functionCall("existsSync", 1, 1);
+    m.readVar("len", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,45],"end":[19,48]}},"name":"len"});
 
-    m.readVar("i");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.binaryOp();
+    m.readVar("path", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,19]}},"name":"path"});
 
-    m.writeVar("i");
+    m.readProperty("obj8", "join", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,24]}}});
 
-    m.readVar("i");
+    m.readVar("paths", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,30]}},"name":"paths"});
 
-    m.readVar("len");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,31],"end":[20,32]}},"name":"i"});
 
-    m.binaryOp();
+    m.readProperty("obj7", 4, {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,33]}}});
 
-    m.readVar("path");
+    m.readVar("name", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,35],"end":[20,39]}},"name":"name"});
 
-    m.readProperty("obj8", "join");
+    m.functionCall("join", 0, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.readVar("paths");
+    m.functionReturn("join", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.readVar("i");
+    m.writeVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}},"name":"loc"});
 
-    m.readProperty("obj7", 7);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}}});
 
-    m.readVar("name");
+    m.readVar("exists", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,19]}},"name":"exists"});
 
-    m.functionCall("join", 0, 2);
+    m.readVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,20],"end":[21,23]}},"name":"loc"});
 
-    m.writeVar("loc");
+    m.functionCall("existsSync", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readVar("exists");
+    m.functionReturn("existsSync", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readVar("loc");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,9],"end":[21,37]}}});
 
-    m.functionCall("existsSync", 1, 1);
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.readVar("i");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.binaryOp();
+    m.writeVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.writeVar("i");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.readVar("i");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,42]}},"name":"i"});
 
-    m.readVar("len");
+    m.readVar("len", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,45],"end":[19,48]}},"name":"len"});
 
-    m.binaryOp();
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.unaryOp();
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.push(false);
+    m.readVar("path", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,19]}},"name":"path"});
 
-    m.push(false);
+    m.readProperty("obj8", "join", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,24]}}});
 
-    m.push(false);
+    m.readVar("paths", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,30]}},"name":"paths"});
 
-    m.push(false);
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,31],"end":[20,32]}},"name":"i"});
 
-    m.push(false);
+    m.readProperty("obj7", 5, {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,33]}}});
 
-    m.push(false);
+    m.readVar("name", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,35],"end":[20,39]}},"name":"name"});
 
-    m.writeProperty("obj9", "2");
+    m.functionCall("join", 0, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.writeProperty("obj9", "1");
+    m.functionReturn("join", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.writeProperty("obj9", "0");
+    m.writeVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}},"name":"loc"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}}});
 
-    m.writeProperty("obj10", "range");
+    m.readVar("exists", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,19]}},"name":"exists"});
 
-    m.writeProperty("obj10", "cmd");
+    m.readVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,20],"end":[21,23]}},"name":"loc"});
 
-    m.push(false);
+    m.functionCall("existsSync", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.writeProperty("obj11", "priority");
+    m.functionReturn("existsSync", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.writeProperty("obj11", "icon");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,9],"end":[21,37]}}});
 
-    m.writeProperty("obj11", "sticky");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.writeProperty("obj11", "msg");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.writeProperty("obj11", "pkg");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.writeProperty("obj11", "type");
+    m.writeVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.writeVar("cmd");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,42]}},"name":"i"});
 
-    m.readVar("module");
+    m.readVar("len", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,45],"end":[19,48]}},"name":"len"});
 
-    m.readVar("growl");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.writeProperty("obj12", "exports");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.writeVar("exports");
+    m.readVar("path", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,19]}},"name":"path"});
 
-    m.readVar("exports");
+    m.readProperty("obj8", "join", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,24]}}});
 
-    m.push(false);
+    m.readVar("paths", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,30]}},"name":"paths"});
 
-    m.writeProperty("obj13", "version");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,31],"end":[20,32]}},"name":"i"});
 
-    m.writeVar("growl");
+    m.readProperty("obj7", 6, {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,33]}}});
 
-    m.readVar("growl");
+    m.readVar("name", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,35],"end":[20,39]}},"name":"name"});
 
-    m.readVar("payload");
+    m.functionCall("join", 0, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.functionCall("growl", 3, 1);
+    m.functionReturn("join", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.initVar("msg");
+    m.writeVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}},"name":"loc"});
 
-    m.initVar("options");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}}});
 
-    m.initVar("fn");
+    m.readVar("exists", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,19]}},"name":"exists"});
 
-    m.initVar("image");
+    m.readVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,20],"end":[21,23]}},"name":"loc"});
 
-    m.initVar("args");
+    m.functionCall("existsSync", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.initVar("flag");
+    m.functionReturn("existsSync", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.initVar("ext");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,9],"end":[21,37]}}});
 
-    m.initVar("priority");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.initVar("checkindexOf");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.initVar("stringifiedMsg");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.initVar("escapedMsg");
+    m.writeVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.readVar("options");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.push(false);
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,42]}},"name":"i"});
 
-    m.writeVar("options");
+    m.readVar("len", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,45],"end":[19,48]}},"name":"len"});
 
-    m.readVar("fn");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.writeVar("fn");
+    m.readVar("path", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,19]}},"name":"path"});
 
-    m.readVar("options");
+    m.readProperty("obj8", "join", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,24]}}});
 
-    m.readProperty("obj14", "exec");
+    m.readVar("paths", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,30]}},"name":"paths"});
 
-    m.readVar("cmd");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,31],"end":[20,32]}},"name":"i"});
 
-    m.readVar("cmd");
+    m.readProperty("obj7", 7, {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,25],"end":[20,33]}}});
 
-    m.readProperty("obj11", "pkg");
+    m.readVar("name", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,35],"end":[20,39]}},"name":"name"});
 
-    m.writeProperty("obj15", "0");
+    m.functionCall("join", 0, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.push(false);
+    m.functionReturn("join", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,15],"end":[20,40]}},"name":"join"});
 
-    m.writeVar("args");
+    m.writeVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}},"name":"loc"});
 
-    m.readVar("options");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[20,9],"end":[20,40]}}});
 
-    m.readProperty("obj14", "image");
+    m.readVar("exists", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,19]}},"name":"exists"});
 
-    m.writeVar("image");
+    m.readVar("loc", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,20],"end":[21,23]}},"name":"loc"});
 
-    m.readVar("options");
+    m.functionCall("existsSync", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readProperty("obj14", "sticky");
+    m.functionReturn("existsSync", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,13],"end":[21,24]}},"name":"existsSync"});
 
-    m.readVar("options");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[21,9],"end":[21,37]}}});
 
-    m.readProperty("obj14", "priority");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.readVar("options");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.readProperty("obj14", "sound");
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.readVar("options");
+    m.writeVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}},"name":"i"});
 
-    m.readProperty("obj14", "name");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,50],"end":[19,53]}}});
 
-    m.readVar("cmd");
+    m.readVar("i", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,42]}},"name":"i"});
 
-    m.readProperty("obj11", "type");
+    m.readVar("len", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,45],"end":[19,48]}},"name":"len"});
 
-    m.push(false);
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.binaryOp();
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[19,41],"end":[19,48]}}});
 
-    m.push(false);
+    m.functionReturn("which", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[67,13],"end":[67,27]}},"name":"which"});
 
-    m.binaryOp();
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[81,23],"end":[81,30]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[82,24],"end":[82,37]}}});
 
-    m.binaryOp();
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[83,24],"end":[83,26]}}});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[84,27],"end":[84,33]}}});
 
-    m.binaryOp();
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[85,25],"end":[85,29]}}});
 
-    m.readVar("options");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[87,26],"end":[87,30]}}});
 
-    m.readProperty("obj14", "title");
+    m.writeProperty("obj9", "2", {});
 
-    m.unaryOp();
+    m.writeProperty("obj9", "1", {});
 
-    m.readVar("args");
+    m.writeProperty("obj9", "0", {});
 
-    m.readProperty("obj15", "push");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[88,30],"end":[92,22]}}});
 
-    m.readVar("quote");
+    m.writeProperty("obj10", "range", {});
 
-    m.readVar("msg");
+    m.writeProperty("obj10", "cmd", {});
 
-    m.functionCall("stringify", 3, 1);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[86,29],"end":[93,18]}}});
 
-    m.readProperty("obj16", "replace");
+    m.writeProperty("obj11", "priority", {});
 
-    m.push(false);
+    m.writeProperty("obj11", "icon", {});
 
-    m.push(false);
+    m.writeProperty("obj11", "sticky", {});
 
-    m.functionCall("replace", 2, 2);
+    m.writeProperty("obj11", "msg", {});
 
-    m.functionCall("push", 1, 1);
+    m.writeProperty("obj11", "pkg", {});
 
-    m.readVar("exec");
+    m.writeProperty("obj11", "type", {});
 
-    m.readVar("args");
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[80,19],"end":[94,14]}}});
 
-    m.readProperty("obj15", "join");
+    m.writeVar("cmd", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[80,13],"end":[94,14]}},"name":"cmd"});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[80,13],"end":[94,14]}}});
 
-    m.functionCall("join", 1, 1);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[67,9],"end":[95,10]}}});
 
-    m.readVar("fn");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[26,5],"end":[65,15]}}});
 
-    m.functionCall("exec", 0, 2);
+    m.readVar("module", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[124,11],"end":[124,17]}},"name":"module"});
 
-    m.readVar("done");
+    m.readVar("growl", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[124,28],"end":[124,33]}},"name":"growl"});
 
-    m.functionCall("done", 0, 0);
+    m.writeProperty("obj12", "exports", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[124,11],"end":[124,33]}}});
 
-    m.unaryOp();
+    m.writeVar("exports", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[124,1],"end":[124,33]}},"name":"exports"});
 
-    m.readVar("console");
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[124,1],"end":[124,33]}}});
 
-    m.readProperty("obj17", "log");
+    m.readVar("exports", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[130,1],"end":[130,8]}},"name":"exports"});
 
-    m.push(false);
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[130,19],"end":[130,26]}}});
 
-    m.functionCall("bound log", 0, 1);
+    m.writeProperty("obj13", "version", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[130,1],"end":[130,26]}}});
 
-    m.push(false);
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[130,1],"end":[130,26]}}});
+
+    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"growl-exec.js","pos":{"start":[15,13],"end":[15,29]}},"name":"require"});
+
+    m.writeVar("growl", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[15,5],"end":[15,29]}},"name":"growl"});
+
+    m.pop({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[15,5],"end":[15,29]}}});
+
+    m.readVar("growl", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[17,1],"end":[17,6]}},"name":"growl"});
+
+    m.readVar("payload", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[17,7],"end":[17,14]}},"name":"payload"});
+
+    m.functionCall("growl", 3, 1, {"type":"functionInvocation","location":{"fileName":"growl-exec.js","pos":{"start":[17,1],"end":[17,15]}},"name":"growl"});
+
+    m.initVar("msg", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"msg"});
+
+    m.initVar("options", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"options"});
+
+    m.initVar("fn", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"fn"});
+
+    m.initVar("image", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"image"});
+
+    m.initVar("args", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"args"});
+
+    m.initVar("flag", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"flag"});
+
+    m.initVar("ext", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"ext"});
+
+    m.initVar("priority", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"priority"});
+
+    m.initVar("checkindexOf", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"checkindexOf"});
+
+    m.initVar("stringifiedMsg", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"stringifiedMsg"});
+
+    m.initVar("escapedMsg", {"type":"declaration","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[164,1],"end":[290,2]}},"name":"escapedMsg"});
+
+    m.readVar("options", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[167,21],"end":[167,28]}},"name":"options"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[167,32],"end":[167,34]}}});
+
+    m.writeVar("options", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[167,11],"end":[167,34]}},"name":"options"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[167,11],"end":[167,34]}}});
+
+    m.readVar("fn", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[168,16],"end":[168,18]}},"name":"fn"});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[168,22],"end":[168,34]}}});
+
+    m.writeVar("fn", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[168,11],"end":[168,34]}},"name":"fn"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[168,11],"end":[168,34]}}});
+
+    m.readVar("options", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[170,9],"end":[170,16]}},"name":"options"});
+
+    m.readProperty("obj14", "exec", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[170,9],"end":[170,21]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[170,5],"end":[176,6]}}});
+
+    m.readVar("cmd", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[179,10],"end":[179,13]}},"name":"cmd"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[179,5],"end":[179,76]}}});
+
+    m.readVar("cmd", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[180,13],"end":[180,16]}},"name":"cmd"});
+
+    m.readProperty("obj11", "pkg", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[180,13],"end":[180,20]}}});
+
+    m.writeProperty("obj15", "0", {});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[180,12],"end":[180,21]}}});
+
+    m.writeVar("args", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[180,5],"end":[180,21]}},"name":"args"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[180,5],"end":[180,21]}}});
+
+    m.readVar("options", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[183,17],"end":[183,24]}},"name":"options"});
+
+    m.readProperty("obj14", "image", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[183,17],"end":[183,30]}}});
+
+    m.writeVar("image", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[183,9],"end":[183,30]}},"name":"image"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[183,5],"end":[206,6]}}});
+
+    m.readVar("options", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[209,9],"end":[209,16]}},"name":"options"});
+
+    m.readProperty("obj14", "sticky", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[209,9],"end":[209,23]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[209,5],"end":[209,47]}}});
+
+    m.readVar("options", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[212,9],"end":[212,16]}},"name":"options"});
+
+    m.readProperty("obj14", "priority", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[212,9],"end":[212,25]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[212,5],"end":[218,6]}}});
+
+    m.readVar("options", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[221,8],"end":[221,15]}},"name":"options"});
+
+    m.readProperty("obj14", "sound", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[221,8],"end":[221,21]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[221,5],"end":[223,6]}}});
+
+    m.readVar("options", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[226,9],"end":[226,16]}},"name":"options"});
+
+    m.readProperty("obj14", "name", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[226,9],"end":[226,21]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[226,5],"end":[228,6]}}});
+
+    m.readVar("cmd", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[230,12],"end":[230,15]}},"name":"cmd"});
+
+    m.readProperty("obj11", "type", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[230,12],"end":[230,20]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[230,15],"end":[230,20]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[231,9],"end":[235,19]}}});
+
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[231,9],"end":[235,19]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[236,9],"end":[253,19]}}});
+
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[236,9],"end":[253,19]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[254,9],"end":[261,19]}}});
+
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[254,9],"end":[261,19]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[262,9],"end":[270,19]}}});
+
+    m.binaryOp({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[262,9],"end":[270,19]}}});
+
+    m.readVar("options", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[263,17],"end":[263,24]}},"name":"options"});
+
+    m.readProperty("obj14", "title", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[263,17],"end":[263,30]}}});
+
+    m.readVar("args", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,17],"end":[268,21]}},"name":"args"});
+
+    m.readProperty("obj15", "push", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,17],"end":[268,26]}}});
+
+    m.readVar("quote", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,27],"end":[268,32]}},"name":"quote"});
+
+    m.readVar("msg", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,33],"end":[268,36]}},"name":"msg"});
+
+    m.functionCall("stringify", 3, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,27],"end":[268,37]}},"name":"stringify"});
+
+    m.functionReturn("stringify", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,27],"end":[268,37]}},"name":"stringify"});
+
+    m.readProperty("obj16", "replace", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,27],"end":[268,45]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,46],"end":[268,52]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,54],"end":[268,58]}}});
+
+    m.functionCall("replace", 2, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,27],"end":[268,59]}},"name":"replace"});
+
+    m.functionReturn("replace", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,27],"end":[268,59]}},"name":"replace"});
+
+    m.functionCall("push", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,17],"end":[268,60]}},"name":"push"});
+
+    m.functionReturn("push", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,17],"end":[268,60]}},"name":"push"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[268,17],"end":[268,60]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[263,13],"end":[269,14]}}});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[231,9],"end":[235,19]}}});
+
+    m.readVar("exec", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[289,5],"end":[289,9]}},"name":"exec"});
+
+    m.readVar("args", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[289,10],"end":[289,14]}},"name":"args"});
+
+    m.readProperty("obj15", "join", {"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[289,10],"end":[289,19]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[289,20],"end":[289,23]}}});
+
+    m.functionCall("join", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[289,10],"end":[289,24]}},"name":"join"});
+
+    m.functionReturn("join", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[289,10],"end":[289,24]}},"name":"join"});
+
+    m.readVar("fn", {"type":"variable","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[289,26],"end":[289,28]}},"name":"fn"});
+
+    m.functionCall("exec", 3, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[289,5],"end":[289,29]}},"name":"exec"});
+
+    m.functionReturn("exec", {"type":"functionReturn","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[289,5],"end":[289,29]}},"name":"exec"});
+
+    m.pop({"type":"expr","location":{"fileName":"node_modules/growl/lib/growl.js","pos":{"start":[289,5],"end":[289,29]}}});
+
+    m.functionReturn("growl", {"type":"functionReturn","location":{"fileName":"growl-exec.js","pos":{"start":[17,1],"end":[17,15]}},"name":"growl"});
+
+    m.pop({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[17,1],"end":[17,15]}}});
+
+    m.readVar("done", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[20,1],"end":[20,5]}},"name":"done"});
+
+    m.functionCall("done", 0, 0, {"type":"functionInvocation","location":{"fileName":"growl-exec.js","pos":{"start":[20,1],"end":[20,7]}},"name":"done"});
+
+    m.readVar("console", {"type":"variable","location":{"fileName":"growl-exec.js","pos":{"start":[2,5],"end":[2,12]}},"name":"console"});
+
+    m.readProperty("obj17", "log", {"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[2,5],"end":[2,16]}}});
+
+    m.literal({"type":"literal","location":{"fileName":"growl-exec.js","pos":{"start":[2,17],"end":[2,24]}}});
+
+    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"growl-exec.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"growl-exec.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+
+    m.pop({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[2,5],"end":[2,25]}}});
+
+    m.functionReturn("done", {"type":"functionReturn","location":{"fileName":"growl-exec.js","pos":{"start":[20,1],"end":[20,7]}},"name":"done"});
+
+    m.pop({"type":"expr","location":{"fileName":"growl-exec.js","pos":{"start":[20,1],"end":[20,7]}}});
 
     m.endExecution();
 
