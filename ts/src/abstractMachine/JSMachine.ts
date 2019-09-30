@@ -15,7 +15,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     private taintStack: V[] = [];
     private varTaintMap: Map<string, V> = new Map();
     private spec: RunSpecification;
-    private objects: Map<any, {}>;
+    private objects: Map<any, any>;
     private state: States = States.None;
     private stateCounter: number = 0;
     private flows: Set<F> = new Set();
