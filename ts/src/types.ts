@@ -17,14 +17,14 @@ export interface AbstractMachine {
      * Pop an abstract value from the stack.
      * @param description why and where the action occurred
      */
-    pop: (description: TaintDescription) => void;
+    pop: (input: [TaintDescription]) => void;
 
     /**
      * Push a variable's abstract value onto the stack.
      * @param s the name of the variable
      * @param description why and where the action occurred
      */
-    readVar: (s: string, description: TaintDescription) => void;
+    readVar: (input: [string, TaintDescription]) => void;
 
     /**
      * Write the abstract value at the top of the stack to the given variable
@@ -32,21 +32,21 @@ export interface AbstractMachine {
      * @param s the name of the variable
      * @param description why and where the action occurred
      */
-    writeVar: (s: string, description: TaintDescription) => void;
+    writeVar: (input: [string, TaintDescription]) => void;
 
     /**
      * Pop two values off the stack, perform a binary operation on them, and
      * push the result.
      * @param description why and where the action occurred
      */
-    binaryOp: (description: TaintDescription) => void;
+    binaryOp: (input: [TaintDescription]) => void;
 
     /**
      * Pop one value off the stack, perform a unary operation on it, and
      * push the result.
      * @param description why and where the action occurred
      */
-    unaryOp: (description: TaintDescription) => void;
+    unaryOp: (input: [TaintDescription]) => void;
 
     /**
      * Push an object property's abstract value onto the stack.
@@ -54,7 +54,7 @@ export interface AbstractMachine {
      * @param s the property name
      * @param description why and where the action occurred
      */
-    readProperty: (o: any, s: Accessor, description: TaintDescription) => void;
+    readProperty: (input: [any, Accessor, TaintDescription]) => void;
 
     /**
      * Write an abstract value to an object property from the top of the stack.
@@ -62,7 +62,7 @@ export interface AbstractMachine {
      * @param s the property name
      * @param description why and where the action occurred
      */
-    writeProperty: (o: any, s: Accessor, description: TaintDescription) => void;
+    writeProperty: (input: [any, Accessor, TaintDescription]) => void;
 
     /**
      * Initialize a new variable with the abstract value at the top of the
@@ -70,7 +70,7 @@ export interface AbstractMachine {
      * @param s the name of the new variable
      * @param description why and where the action occurred
      */
-    initVar: (s: string, description: TaintDescription) => void;
+    initVar: (input: [string, TaintDescription]) => void;
 
     /**
      * Ensure the stack is properly aligned for `expectedNumArgs`. If too
@@ -82,14 +82,14 @@ export interface AbstractMachine {
      * @param actualNumArgs the number of arguments actually given
      * @param description why and where the action occurred
      */
-    functionCall: (name: string, expectedNumArgs: number, actualNumArgs: number, description: TaintDescription) => void;
+    functionCall: (input: [string, number, number, TaintDescription]) => void;
 
     /**
      * Used to signal a function has exited. No stack action is required.
      * @param name the name of the function being exited
      * @param description why and where the action occurred
      */
-    functionReturn: (name: string, description: TaintDescription) => void;
+    functionReturn: (input: [string, TaintDescription]) => void;
 
     /**
      * Perform the specified builtin on the arguments from the top of the
@@ -98,25 +98,25 @@ export interface AbstractMachine {
      * @param actualArgs the number of arguments supplied to the builtin
      * @param description why and where the action occurred
      */
-    builtin: (name: string, actualArgs: number, description: TaintDescription) => void;
+    builtin: (input: [string, number, TaintDescription]) => void;
 
     /**
      * Used to signal the end of execution.
      */
-    endExecution: () => void;
+    endExecution: ([]) => void;
 
     /**
      * Used to signal a conditional is branching on the abstract value at
      * the top of the stack.
      * @param description why and where the action occurred
      */
-    conditional: (description: TaintDescription) => void;
+    conditional: (input: [TaintDescription]) => void;
 
     /**
      * Used to signal the end of a conditional block.
      * @param description why and where the action occurred
      */
-    conditionalEnd: (description: TaintDescription) => void;
+    conditionalEnd: (input: [TaintDescription]) => void;
 
     /**
      * Produce an abstract value for the given code location, and push it to
@@ -126,7 +126,7 @@ export interface AbstractMachine {
      * stack machine. All other instructions re-use existing abstract values.
      * @param description why and where the action occurred
      */
-    literal: (description: TaintDescription) => void;
+    literal: (input: [TaintDescription]) => void;
 }
 
 export type Command = keyof AbstractMachine;

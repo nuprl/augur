@@ -5,6 +5,7 @@ import { Accessor } from "../nodeprof";
 import {AbstractMachine, TaintDescription, RunSpecification} from "../types";
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
+import Operation from "./operation";
 
 enum States {
     FunctionCall,
@@ -20,7 +21,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     private stateCounter: number = 0;
     private flows: Set<F> = new Set();
     private pc: V;
-    private callStack: Array<TaintDescription>;
+    public callStack: Array<TaintDescription>;
     private lastPoppedValue: V;
 
     /**
@@ -57,6 +58,18 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.getTaint = this.getTaint.bind(this);
     }
 
+    private adviceWrap<I, O>(impl: (input: I) => O): Operation<I, O> {
+        let wrappedOperationClass = class extends Operation<I, O> {
+            protected implementation(input: I): O {
+                return impl(input);
+            }
+        };
+
+        let wrappedOperation = new wrappedOperationClass();
+
+        return wrappedOperation;
+    }
+
     public reportFlow(flow: F) {
         console.log("tainted value flowed into sink "
             + JSON.stringify(flow)
@@ -64,10 +77,14 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.flows.add(flow);
     }
 
-    public functionReturn(name: string, description: TaintDescription): void {
-        this.callStack.pop();
-        this.taintStack.push(this.lastPoppedValue);
-    }
+    public functionReturnOp: Operation<[string, TaintDescription], void> =
+        this.adviceWrap(
+        (input) => {
+            this.callStack.pop();
+            this.taintStack.push(this.lastPoppedValue);
+        });
+
+    public functionReturn = this.functionReturnOp.execute;
 
     public literal(description: TaintDescription): void {
         this.push(this.produceMark(description), description);
