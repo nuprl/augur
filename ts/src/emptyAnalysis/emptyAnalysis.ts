@@ -19,7 +19,7 @@ function shouldPrintBuiltin(name: string) {
 export default class Analyze implements Analyzer {
     public sandbox: Sandbox;
 
-    constructor(sandbox) {
+    constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args, isConstructor, isMethn, functionIid, functionSid) => {
