@@ -1,3 +1,5 @@
+// JALANGI DO NOT INSTRUMENT
+
 import JSMachine from "./JSMachine";
 import {TaintDescription} from "../types";
 
