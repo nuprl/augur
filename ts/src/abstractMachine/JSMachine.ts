@@ -6,6 +6,7 @@ import {AbstractMachine, TaintDescription, RunSpecification} from "../types";
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
 import Operation from "./operation";
+import {useNativeModel} from "./native";
 
 enum States {
     FunctionCall,
@@ -13,16 +14,16 @@ enum States {
 }
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
-    private taintStack: V[] = [];
-    private varTaintMap: Map<string, V> = new Map();
-    private spec: RunSpecification;
-    private objects: Map<any, any>;
-    private state: States = States.None;
-    private stateCounter: number = 0;
-    private flows: Set<F> = new Set();
-    private pc: V;
-    public callStack: Array<TaintDescription>;
-    private lastPoppedValue: V;
+    taintStack: V[] = [];
+    varTaintMap: Map<string, V> = new Map();
+    spec: RunSpecification;
+    objects: Map<any, any>;
+    state: States = States.None;
+    stateCounter: number = 0;
+    flows: Set<F> = new Set();
+    pc: V;
+    callStack: Array<TaintDescription>;
+    lastPoppedValue: V;
 
     /**
      * Returns the taint marking associated with a completely clean value.
@@ -252,13 +253,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([name, actualArgs, description]) => {
                 this.resetState();
                 logger.info("builtin", name, actualArgs);
-                let args = [];
 
-                for (let i = 0; i < actualArgs; i++) {
-                    args.push(this.taintStack.pop());
-                }
+                useNativeModel(this, name, actualArgs, description);
 
-                args.forEach((v) => this.reportPossibleFlow(description, v));
             }
         );
 

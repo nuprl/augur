@@ -248,3 +248,4 @@ test('expression-async-1-tainted', (done) => runTest('expression-async-1-tainted
 test('for-of-tainted', (done) => runTest('for-of-tainted', done));
 test('for-in-clean', (done) => runTest('for-in-clean', done));
 test('for-in-tainted', (done) => runTest('for-in-tainted', done));
+test('native-object-defineProperty', (done) => runTest('native-object-defineProperty', done));
