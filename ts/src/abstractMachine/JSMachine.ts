@@ -86,81 +86,112 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public functionReturn = this.functionReturnOp.execute;
 
-    public literal(description: TaintDescription): void {
-        this.push(this.produceMark(description), description);
-    }
+    public literalOp: Operation<[TaintDescription], void> =
+        this.adviceWrap(
+            ([description]) => {
+                this.push([this.produceMark(description), description]);
+            });
 
-    public push(v: V, description: TaintDescription) {
-        this.resetState();
-        logger.info("push", v);
-        this.taintStack.push(v);
-    }
+    public literal = this.literalOp.execute;
 
-    public pop(description: TaintDescription) {
-        this.resetState();
-        logger.info("pop");
-        this.lastPoppedValue = this.taintStack.pop();
-    }
+    public pushOp: Operation<[V, TaintDescription], void> =
+        this.adviceWrap(
+            ([v, description]) => {
+                this.resetState();
+                logger.info("push", v);
+                this.taintStack.push(v);
+            }
+        );
 
-    public readVar(s: string, description: TaintDescription) {
-        this.resetState();
-        const r = this.join(this.produceMark(description),
-            this.varTaintMap.get(s));
-        this.taintStack.push(r);
-        logger.info("read", s, r);
-        return r;
-    }
+    public push = this.pushOp.execute;
 
-    public writeVar(s: string, description: TaintDescription) {
-        this.resetState();
-        // Do not pop off the stack for a write
-        const v = this.join(this.produceMark(description),
-            this.taintStack[this.taintStack.length - 1]);
-        logger.info("write", s, v);
-        this.varTaintMap.set(s, v);
-        this.reportPossibleFlow(description, v);
-        this.reportPossibleImplicitFlow(description, v);
-        // TODO: fix this hack!
-        // this.pop(description);
-        // logger.info("wrote", this.varTaintMap.get(s));
-    }
+    public popOp: Operation<[TaintDescription], void> =
+        this.adviceWrap(
+            ([description]) => {
+                this.resetState();
+                logger.info("pop");
+                this.lastPoppedValue = this.taintStack.pop();
+            }
+        );
 
-    public readProperty(o: any, s: Accessor, description: TaintDescription) {
-        this.resetState();
-        const isSource = this.isSource(description);
-        const objectTaintMap = this.objects.get(o);
+    public pop = this.popOp.execute;
 
-        // If objectTaintMap is defined, and it contains a defined taint mark
-        // for this property, this will be its value. Otherwise, it will
-        // default to the taint value of the parent object. If it doesn't
-        // exist, it will be untainted.
-        const propertyTaint =  (objectTaintMap && objectTaintMap[s])
-            || this.varTaintMap.get(o) || this.getUntaintedValue();
+    public readVarOp: Operation<[string, TaintDescription], void> =
+        this.adviceWrap(
+            ([s, description]) => {
+                this.resetState();
+                const r = this.join(this.produceMark(description),
+                    this.varTaintMap.get(s));
+                this.taintStack.push(r);
+                logger.info("read", s, r);
+            });
 
-        // Then join this with its initial marking
-        let r = this.join(this.produceMark(description),
-            propertyTaint);
+    public readVar = this.readVarOp.execute;
 
-        logger.info("readprop", o, s, r);
-        this.taintStack.push(r);
-        return r;
-    }
+    public writeVarOp: Operation<[string, TaintDescription], void> =
+        this.adviceWrap(
+            ([s, description]) => {
+                this.resetState();
+                // Do not pop off the stack for a write
+                const v = this.join(this.produceMark(description),
+                    this.taintStack[this.taintStack.length - 1]);
+                logger.info("write", s, v);
+                this.varTaintMap.set(s, v);
+                this.reportPossibleFlow(description, v);
+                this.reportPossibleImplicitFlow(description, v);
+                // TODO: fix this hack!
+                // this.pop(description);
+                // logger.info("wrote", this.varTaintMap.get(s));
+            }
+        );
 
-    public writeProperty(o: any, s: Accessor, description: TaintDescription) {
-        this.resetState();
-        if (!this.objects.has(o)) {
-            this.objects.set(o, {});
-        }
+    public writeVar = this.writeVarOp.execute;
 
-        const storedTaint = this.taintStack.pop();
-        let objectTaintMap = this.objects.get(o);
-        objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
+    public readPropertyOp: Operation<[any, Accessor, TaintDescription], void> =
+        this.adviceWrap(
+            ([o, s, description]) => {
+                this.resetState();
+                const isSource = this.isSource(description);
+                const objectTaintMap = this.objects.get(o);
 
-        this.reportPossibleFlow(description, objectTaintMap[s]);
-        this.reportPossibleImplicitFlow(description, objectTaintMap[s]);
+                // If objectTaintMap is defined, and it contains a defined taint mark
+                // for this property, this will be its value. Otherwise, it will
+                // default to the taint value of the parent object. If it doesn't
+                // exist, it will be untainted.
+                const propertyTaint =  (objectTaintMap && objectTaintMap[s])
+                    || this.varTaintMap.get(o) || this.getUntaintedValue();
 
-        logger.info("writeprop", o, s, objectTaintMap[s]);
-    }
+                // Then join this with its initial marking
+                let r = this.join(this.produceMark(description),
+                    propertyTaint);
+
+                logger.info("readprop", o, s, r);
+                this.taintStack.push(r);
+            }
+        );
+
+    public readProperty = this.readPropertyOp.execute;
+
+    public writePropertyOp: Operation<[any, Accessor, TaintDescription], void> =
+        this.adviceWrap(
+            ([o, s, description]) => {
+                this.resetState();
+                if (!this.objects.has(o)) {
+                    this.objects.set(o, {});
+                }
+
+                const storedTaint = this.taintStack.pop();
+                let objectTaintMap = this.objects.get(o);
+                objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
+
+                this.reportPossibleFlow(description, objectTaintMap[s]);
+                this.reportPossibleImplicitFlow(description, objectTaintMap[s]);
+
+                logger.info("writeprop", o, s, objectTaintMap[s]);
+            }
+        );
+
+    public writeProperty = this.writePropertyOp.execute;
 
     public unaryOp(description: TaintDescription): void {
         this.resetState();
@@ -169,106 +200,138 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         // no-op. Unary operations on values do not change their taint status.
     }
 
-    public binaryOp(description: TaintDescription): void {
-        this.resetState();
+    public binaryOp: Operation<[TaintDescription], void> =
+        this.adviceWrap(
+            (description) => {
+                this.resetState();
 
-        // Combine the taint markings of the two operands
-        this.taintStack.push(
-            this.join(this.taintStack.pop(), this.taintStack.pop())
+                // Combine the taint markings of the two operands
+                this.taintStack.push(
+                    this.join(this.taintStack.pop(), this.taintStack.pop())
+                );
+
+                logger.info("binaryOp");
+            }
         );
 
-        logger.info("binaryOp");
-    }
+    public binary = this.binaryOp.execute;
 
-    public initVar(s: string, description: TaintDescription) {
-        let v = this.join(this.taintStack[this.taintStack.length - 1], this.produceMark(description));
+    public initVarOp: Operation<[string, TaintDescription], void> =
+        this.adviceWrap(
+            ([s, description]) => {
+                let v = this.join(this.taintStack[this.taintStack.length - 1], this.produceMark(description));
 
-        // If we're currently processing function arguments
-        if (this.state === States.FunctionCall && this.stateCounter > 0) {
-            // pop the argument
-            this.taintStack.pop();
+                // If we're currently processing function arguments
+                if (this.state === States.FunctionCall && this.stateCounter > 0) {
+                    // pop the argument
+                    this.taintStack.pop();
 
-            // subtract 1 from the amount of arguments left to process
-            this.stateCounter -= 1;
+                    // subtract 1 from the amount of arguments left to process
+                    this.stateCounter -= 1;
 
-            // track taint based on the function we are entering
-            v = this.join(v, this.produceMark(this.currentFunction()));
-        }
+                    // track taint based on the function we are entering
+                    v = this.join(v, this.produceMark(this.currentFunction()));
+                }
 
-        logger.info("init var", s, v);
+                logger.info("init var", s, v);
 
-        // actually set the taint value of the variable
-        this.varTaintMap.set(s, v);
-
-    }
-
-    public builtin(name: string, actualArgs: number, description: TaintDescription) {
-        this.resetState();
-        logger.info("builtin", name, actualArgs);
-        let args = [];
-
-        for (let i = 0; i < actualArgs; i++) {
-            args.push(this.taintStack.pop());
-        }
-
-        args.forEach((v) => this.reportPossibleFlow(description, v));
-    }
-
-    public conditional(description: TaintDescription): void {
-        this.resetState();
-
-        // no peek operation...
-        const abstractValue = this.taintStack[this.taintStack.length - 1];
-
-        logger.info("conditional", abstractValue);
-
-        this.pc = abstractValue;
-    }
-
-    public conditionalEnd(): void {
-        this.resetState();
-    }
-
-    public functionCall(name: string, expectedArgs: number, actualArgs: number, description: TaintDescription) {
-        const tempStack = [];
-
-        // Pop off the actual arguments given to this function from taintStack
-        for (let i = 0; i < actualArgs; i++) {
-            tempStack.push(this.taintStack.pop());
-        }
-
-        // If not enough arguments were supplied, they will be "undefined".
-        // This value is *untainted*, so push the untainted marker.
-        if (expectedArgs > actualArgs) {
-            const diff = expectedArgs - actualArgs;
-
-            for (let i = 0; i < diff; i++) {
-                tempStack.push(this.getUntaintedValue());
+                // actually set the taint value of the variable
+                this.varTaintMap.set(s, v);
             }
-        }
+        );
 
-        logger.debug("funcall, temp stack:", tempStack);
-        // tempStack.reverse();
+    public initVar = this.initVarOp.execute;
 
-        // Is this function a sink, and did any tainted values flow into it?
-        tempStack.forEach(
-            (mark) => this.reportPossibleFlow(description, mark));
+    public builtinOp: Operation<[string, number, TaintDescription], void> =
+        this.adviceWrap(
+            ([name, actualArgs, description]) => {
+                this.resetState();
+                logger.info("builtin", name, actualArgs);
+                let args = [];
 
-        // The stack contains an extra taint value for the function we're
-        // entering. Pop it and join it with the taint value for the function
-        // invocation to produce the taint value for "entering the function".
-        const functionInvocationTaint =
-            this.join(this.taintStack.pop(),
-                this.produceMark(description));
+                for (let i = 0; i < actualArgs; i++) {
+                    args.push(this.taintStack.pop());
+                }
 
-        // Push the actual arguments to taintStack
-        tempStack.forEach((v) =>
-            this.taintStack.push(this.join(v, functionInvocationTaint)));
-        logger.debug("funcall, new stack:", this.taintStack);
-        this.state = States.FunctionCall;
-        this.stateCounter = expectedArgs;
-        this.callStack.push(description);
-    }
+                args.forEach((v) => this.reportPossibleFlow(description, v));
+            }
+        );
+
+    public builtin = this.builtinOp.execute;
+
+    public conditionalOp: Operation<[TaintDescription], void> =
+        this.adviceWrap(
+            ([description]) => {
+                this.resetState();
+
+                // no peek operation...
+                const abstractValue = this.taintStack[this.taintStack.length - 1];
+
+                logger.info("conditional", abstractValue);
+
+                this.pc = abstractValue;
+            }
+        );
+
+    public conditional = this.conditionalOp.execute;
+
+    public conditionalEndOp: Operation<[TaintDescription], void> =
+        this.adviceWrap(
+            ([description]) => {
+                this.resetState();
+            }
+        );
+
+    public conditionalEnd = this.conditionalEndOp.execute;
+
+    public functionCallOp: Operation<[string, number, number, TaintDescription], void> =
+        this.adviceWrap(
+            ([name, expectedArgs, actualArgs, description]) => {
+                const tempStack = [];
+
+                // Pop off the actual arguments given to this function from taintStack
+                for (let i = 0; i < actualArgs; i++) {
+                    tempStack.push(this.taintStack.pop());
+                }
+
+                // If not enough arguments were supplied, they
+                // will be "undefined". This value is *untainted*,
+                // so push the untainted marker.
+                if (expectedArgs > actualArgs) {
+                    const diff = expectedArgs - actualArgs;
+
+                    for (let i = 0; i < diff; i++) {
+                        tempStack.push(this.getUntaintedValue());
+                    }
+                }
+
+                logger.debug("funcall, temp stack:", tempStack);
+                // tempStack.reverse();
+
+                // Is this function a sink, and did any tainted
+                // values flow into it?
+                tempStack.forEach(
+                    (mark) => this.reportPossibleFlow(description, mark));
+
+                // The stack contains an extra taint value for the function
+                // we're entering. Pop it and join it with the taint value for
+                // the function invocation to produce the taint value for
+                // "entering the function".
+                const functionInvocationTaint =
+                    this.join(this.taintStack.pop(),
+                        this.produceMark(description));
+
+                // Push the actual arguments to taintStack
+                tempStack.forEach((v) =>
+                    this.taintStack.push(this.join(v, functionInvocationTaint)));
+                logger.debug("funcall, new stack:", this.taintStack);
+                this.state = States.FunctionCall;
+                this.stateCounter = expectedArgs;
+                this.callStack.push(description);
+            }
+        );
+
+    public functionCall = this.functionCallOp.execute;
 
     public endExecution() {
         // do nothing.

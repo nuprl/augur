@@ -24,8 +24,7 @@ export default class Analysis implements Analyzer {
             location: parseIID(iid),
             name: name};
 
-        this.state.initVar(name,
-            description);
+        this.state.initVar([name, description]);
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
@@ -48,57 +47,56 @@ export default class Analysis implements Analyzer {
             logger.info("keys", keys);
 
             for (const k of keys) {
-                this.state.writeProperty(val, k,
-                    {});
+                this.state.writeProperty([val, k, {}]);
             }
         }
         logger.info("val", val);
-        this.state.literal(description);
+        this.state.literal([description]);
     }
 
     public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
         let description: TaintDescription = {type: "variable",
             location: parseIID(iid),
             name: name};
-        this.state.readVar(name, description);
+        this.state.readVar([name, description]);
     }
 
     public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
         let description: TaintDescription = {type: "variable",
             location: parseIID(iid),
             name: name};
-        this.state.writeVar(name, description);
+        this.state.writeVar([name, description]);
     }
 
     public endStatement: NPCallbacks.endStatement = (iid, type) => {
         let description: TaintDescription = {type: "expr",
             location: parseIID(iid)};
         console.log("endStatement: " + type);
-        this.state.pop(description);
+        this.state.pop([description]);
     }
 
     public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {
         let description: TaintDescription = {type: "expr",
             location: parseIID(iid)};
-        this.state.binaryOp(description);
+        this.state.binary([description]);
     }
 
     public unaryPre: NPCallbacks.unaryPre = (iid: number, op: string, left: any) => {
         let description: TaintDescription = {type: "expr",
             location: parseIID(iid)};
-        this.state.unaryOp(description);
+        this.state.unary([description]);
     }
 
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
         let description: TaintDescription = {type: "expr",
             location: parseIID(iid)};
-        this.state.readProperty(receiver, offset, description);
+        this.state.readProperty([receiver, offset, description]);
     }
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
         let description: TaintDescription = {type: "expr",
             location: parseIID(iid)};
-        this.state.writeProperty(receiver, offset, description);
+        this.state.writeProperty([receiver, offset, description]);
     }
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args) => {
@@ -107,7 +105,7 @@ export default class Analysis implements Analyzer {
         if (f.name && f.name != "") {
             description.name = f.name;
         }
-        this.state.functionCall(f.name, f.length, args.length, description);
+        this.state.functionCall([f.name, f.length, args.length, description]);
     }
 
     public invokeFun: NPCallbacks.invokeFun = (iid: number, f: Invoked) => {
@@ -116,13 +114,13 @@ export default class Analysis implements Analyzer {
         if (f.name && f.name != "") {
             description.name = f.name;
         }
-        this.state.functionReturn(f.name, description);
+        this.state.functionReturn([f.name, description]);
     }
 
     public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
         let description: TaintDescription = {type: "builtin",
             location: parseIID(iid)};
-        this.state.builtin("eval", 1, description);
+        this.state.builtin(["eval", 1, description]);
         // eval always takes a single arg
     }
 
@@ -131,8 +129,8 @@ export default class Analysis implements Analyzer {
             console.log("built in encountered: " + name);
         }
         if (name === "exec" || name === "eval") {
-            this.state.functionCall(name, f.length, args.length,
-                {location: {fileName: "builtins are broken"}, type: "builtin"});
+            this.state.functionCall([name, f.length, args.length,
+                {location: {fileName: "builtins are broken"}, type: "builtin"}]);
         }
     }
 
@@ -143,6 +141,6 @@ export default class Analysis implements Analyzer {
     }
 
     public endExecution: NPCallbacks.endExecution = () => {
-        this.state.endExecution();
+        this.state.endExecution([]);
     }
 }

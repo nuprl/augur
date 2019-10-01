@@ -39,14 +39,14 @@ export interface AbstractMachine {
      * push the result.
      * @param description why and where the action occurred
      */
-    binaryOp: (input: [TaintDescription]) => void;
+    binary: (input: [TaintDescription]) => void;
 
     /**
      * Pop one value off the stack, perform a unary operation on it, and
      * push the result.
      * @param description why and where the action occurred
      */
-    unaryOp: (input: [TaintDescription]) => void;
+    unary: (input: [TaintDescription]) => void;
 
     /**
      * Push an object property's abstract value onto the stack.
