@@ -7,7 +7,7 @@ import {AbstractMachine} from "../types";
 import JSMachine from "./JSMachine";
 
 class Advice<I, O> {
-    private stack: Array<(I: I) => O>;
+    private stack: Array<(I: I) => O> = [];
 
     public install(advice: (I: I) => O): void {
         this.stack.push(advice);
@@ -29,17 +29,13 @@ class Advice<I, O> {
 export default abstract class Operation<I, O> {
     protected abstract implementation(I: I): O;
 
-    public before: Advice<I, void>;
+    public before: Advice<I, void> = new Advice();
 
-    public after: Advice<[I, O], void>;
+    public after: Advice<[I, O], void> = new Advice();
 
-    public around: Advice<[I, (input: I) => O], O>;
+    public around: Advice<[I, (input: I) => O], O> = new Advice();
 
     public execute(input: I): O {
-
-        function a(b: (I: I) => I): I {
-            return null;
-        }
 
         // try to execute the before advice
         this.before.activate(input);
@@ -56,5 +52,9 @@ export default abstract class Operation<I, O> {
         this.after.activate([input, output]);
 
         return output;
+    }
+
+    public wrapper: (I: I) => O = (I: I) => {
+        return this.execute(I);
     }
 }

@@ -84,7 +84,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             this.taintStack.push(this.lastPoppedValue);
         });
 
-    public functionReturn = this.functionReturnOp.execute;
+    public functionReturn = this.functionReturnOp.wrapper;
 
     public literalOp: Operation<[TaintDescription], void> =
         this.adviceWrap(
@@ -92,7 +92,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.push([this.produceMark(description), description]);
             });
 
-    public literal = this.literalOp.execute;
+    public literal = this.literalOp.wrapper;
 
     public pushOp: Operation<[V, TaintDescription], void> =
         this.adviceWrap(
@@ -103,7 +103,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public push = this.pushOp.execute;
+    public push = this.pushOp.wrapper;
 
     public popOp: Operation<[TaintDescription], void> =
         this.adviceWrap(
@@ -114,7 +114,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public pop = this.popOp.execute;
+    public pop = this.popOp.wrapper;
 
     public readVarOp: Operation<[string, TaintDescription], void> =
         this.adviceWrap(
@@ -126,7 +126,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 logger.info("read", s, r);
             });
 
-    public readVar = this.readVarOp.execute;
+    public readVar = this.readVarOp.wrapper;
 
     public writeVarOp: Operation<[string, TaintDescription], void> =
         this.adviceWrap(
@@ -145,7 +145,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public writeVar = this.writeVarOp.execute;
+    public writeVar = this.writeVarOp.wrapper;
 
     public readPropertyOp: Operation<[any, Accessor, TaintDescription], void> =
         this.adviceWrap(
@@ -170,7 +170,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public readProperty = this.readPropertyOp.execute;
+    public readProperty = this.readPropertyOp.wrapper;
 
     public writePropertyOp: Operation<[any, Accessor, TaintDescription], void> =
         this.adviceWrap(
@@ -191,7 +191,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public writeProperty = this.writePropertyOp.execute;
+    public writeProperty = this.writePropertyOp.wrapper;
 
     public unaryOp: Operation<[TaintDescription], void> =
         this.adviceWrap(
@@ -203,7 +203,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public unary = this.unaryOp.execute;
+    public unary = this.unaryOp.wrapper;
 
     public binaryOp: Operation<[TaintDescription], void> =
         this.adviceWrap(
@@ -219,7 +219,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public binary = this.binaryOp.execute;
+    public binary = this.binaryOp.wrapper;
 
     public initVarOp: Operation<[string, TaintDescription], void> =
         this.adviceWrap(
@@ -245,7 +245,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public initVar = this.initVarOp.execute;
+    public initVar = this.initVarOp.wrapper;
 
     public builtinOp: Operation<[string, number, TaintDescription], void> =
         this.adviceWrap(
@@ -262,7 +262,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public builtin = this.builtinOp.execute;
+    public builtin = this.builtinOp.wrapper;
 
     public conditionalOp: Operation<[TaintDescription], void> =
         this.adviceWrap(
@@ -278,7 +278,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public conditional = this.conditionalOp.execute;
+    public conditional = this.conditionalOp.wrapper;
 
     public conditionalEndOp: Operation<[TaintDescription], void> =
         this.adviceWrap(
@@ -287,7 +287,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public conditionalEnd = this.conditionalEndOp.execute;
+    public conditionalEnd = this.conditionalEndOp.wrapper;
 
     public functionCallOp: Operation<[string, number, number, TaintDescription], void> =
         this.adviceWrap(
@@ -336,7 +336,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         );
 
-    public functionCall = this.functionCallOp.execute;
+    public functionCall = this.functionCallOp.wrapper;
 
     public endExecution() {
         // do nothing.
