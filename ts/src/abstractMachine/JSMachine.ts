@@ -193,12 +193,17 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public writeProperty = this.writePropertyOp.execute;
 
-    public unaryOp(description: TaintDescription): void {
-        this.resetState();
+    public unaryOp: Operation<[TaintDescription], void> =
+        this.adviceWrap(
+            ([description]) => {
+                this.resetState();
 
-        logger.info("unaryOp");
-        // no-op. Unary operations on values do not change their taint status.
-    }
+                logger.info("unaryOp");
+                // no-op. Unary operations on values do not change their taint status.
+            }
+        );
+
+    public unary = this.unaryOp.execute;
 
     public binaryOp: Operation<[TaintDescription], void> =
         this.adviceWrap(
