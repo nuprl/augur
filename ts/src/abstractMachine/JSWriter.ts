@@ -36,23 +36,23 @@ export default class JSWriter implements AbstractMachine {
         this.logger.log(this.preamble);
     }
 
-    public literal(description: TaintDescription) {
+    public literal([description]: [TaintDescription]) {
         this.writeInstruction({ command: "literal", args: [description] });
     }
 
-    public pop(description: TaintDescription) {
+    public pop([description]: [TaintDescription]) {
         this.writeInstruction({ command: "pop", args: [description] });
     }
 
-    public readVar(s: string, description: TaintDescription) {
+    public readVar([s, description]: [string, TaintDescription]) {
         this.writeInstruction({ command: "readVar", args: [s, description] });
     }
 
-    public writeVar(s: string, description: TaintDescription) {
+    public writeVar([s, description]: [string, TaintDescription]) {
         this.writeInstruction({ command: "writeVar", args: [s, description] });
     }
 
-    public readProperty(o: {}, s: Accessor, description: TaintDescription) {
+    public readProperty([o, s, description]: [{}, Accessor, TaintDescription]) {
         if (!this.objIdMap.has(o)) {
             this.objIdMap.set(o, "obj" + this.objCnt++);
         }
@@ -60,7 +60,7 @@ export default class JSWriter implements AbstractMachine {
             args: [this.objIdMap.get(o), s, description] });
     }
 
-    public writeProperty(o: {}, s: Accessor, description: TaintDescription) {
+    public writeProperty([o, s, description]: [{}, Accessor, TaintDescription]) {
         if (!this.objIdMap.has(o)) {
             this.objIdMap.set(o, "obj" + this.objCnt++);
         }
@@ -68,43 +68,44 @@ export default class JSWriter implements AbstractMachine {
             args: [this.objIdMap.get(o), s, description] });
     }
 
-    public binaryOp(description: TaintDescription): void {
-        this.writeInstruction({ command: "binaryOp", args: [description]});
+    public binary([description]: [TaintDescription]): void {
+        this.writeInstruction({ command: "binary", args: [description]});
     }
 
-    public unaryOp(description: TaintDescription): void {
-        this.writeInstruction({ command: "unaryOp", args: [description]});
+    public unary([description]: [TaintDescription]): void {
+        this.writeInstruction({ command: "unary", args: [description]});
     }
 
-    public initVar(s: string, description: TaintDescription) {
+    public initVar([s, description]: [string, TaintDescription]) {
         this.writeInstruction({ command: "initVar", args: [s, description]});
     }
 
-    public functionCall(name: string, expectedNumArgs: number, actualNumArgs: number, description: TaintDescription) {
+    public functionCall([name, expectedNumArgs, actualNumArgs, description]:
+                            [string, number, number, TaintDescription]) {
         this.writeInstruction({ command: "functionCall",
             args: [name, expectedNumArgs, actualNumArgs, description]});
     }
 
-    public functionReturn(name: string, description: TaintDescription) {
+    public functionReturn([name, description]: [string, TaintDescription]) {
         this.writeInstruction({ command: "functionReturn", args: [name, description]});
     }
 
-    public builtin(name: string, actualArgs: number, description: TaintDescription) {
+    public builtin([name, actualArgs, description]: [string, number, TaintDescription]) {
         this.writeInstruction({ command: "builtin",
             args: [name, actualArgs, description]});
     }
 
-    public conditional(description: TaintDescription): void {
+    public conditional([description]: [TaintDescription]): void {
         this.writeInstruction({ command: "conditional",
             args: [description]});
     }
 
-    public conditionalEnd(description: TaintDescription): void {
+    public conditionalEnd([description]: [TaintDescription]): void {
         this.writeInstruction({ command: "conditionalEnd",
             args: [description]});
     };
 
-    public endExecution() {
+    public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
         this.logger.log(this.postamble);
     }
