@@ -105,7 +105,11 @@ export default class Analysis implements Analyzer {
         if (f.name && f.name != "") {
             description.name = f.name;
         }
-        this.state.functionCall([f.name, f.length, args.length, description]);
+        if (this.isNative(f)) {
+            this.state.builtin([f.name, f.length, description]);
+        } else {
+            this.state.functionCall([f.name, f.length, args.length, description]);
+        }
     }
 
     public invokeFun: NPCallbacks.invokeFun = (iid: number, f: Invoked) => {
@@ -114,7 +118,11 @@ export default class Analysis implements Analyzer {
         if (f.name && f.name != "") {
             description.name = f.name;
         }
-        this.state.functionReturn([f.name, description]);
+        if (this.isNative(f)) {
+            this.state.builtinExit([f.name, description]);
+        } else {
+            this.state.functionReturn([f.name, description]);
+        }
     }
 
     public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
@@ -122,20 +130,6 @@ export default class Analysis implements Analyzer {
             location: parseIID(iid)};
         this.state.builtin(["eval", 1, description]);
         // eval always takes a single arg
-    }
-
-    public builtinEnter: NPCallbacks.builtinEnter = (name: string, f: Invoked, receiver: Receiver, args: any[]) => {
-        if (name === "exec" || name === "eval") {
-            this.state.builtin([name, args.length,
-                {location: {fileName: "builtins are broken"}, type: "builtin"}]);
-        }
-    }
-
-    public builtinExit: NPCallbacks.builtinExit = (name: string, returnVal: any) => {
-        if (name === "exec" || name === "eval") {
-            this.state.builtinExit([name,
-                {location: {fileName: "builtins are broken"}, type: "builtin"}]);
-        }
     }
 
     public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
@@ -146,5 +140,14 @@ export default class Analysis implements Analyzer {
 
     public endExecution: NPCallbacks.endExecution = () => {
         this.state.endExecution([]);
+    }
+
+    // TODO: fix this stupid hack with real instrumentation
+    private isNative(fun: Function): boolean {
+        // apparently this kinda stuff isn't very slow
+        // https://stackoverflow.com/questions/6598945/detect-if-function-is-native-to-browser
+        // but doesn't cover all 1592624 of the corner cases
+        return /\{\s+\[native code\]/
+            .test(Function.prototype.toString.call(fun));
     }
 }
