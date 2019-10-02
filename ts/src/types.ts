@@ -101,6 +101,15 @@ export interface AbstractMachine {
     builtin: (input: [string, number, TaintDescription]) => void;
 
     /**
+     * Used to signal a builtin has exited. The result is on the top of the
+     * stack. No stack action is required.
+     * @param name the name of the builtin
+     * @param actualArgs the number of arguments supplied to the builtin
+     * @param description why and where the action occurred
+     */
+    builtinExit: (input: [string, TaintDescription]) => void;
+
+    /**
      * Used to signal the end of execution.
      */
     endExecution: ([]) => void;

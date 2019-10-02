@@ -95,6 +95,12 @@ export default class JSWriter implements AbstractMachine {
             args: [name, actualArgs, description]});
     }
 
+    public builtinExit([name, description]: [string, TaintDescription]): void {
+        this.writeInstruction({ command: "builtinExit",
+            args: [name, description]})
+    }
+
+
     public conditional([description]: [TaintDescription]): void {
         this.writeInstruction({ command: "conditional",
             args: [description]});

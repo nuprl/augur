@@ -125,11 +125,15 @@ export default class Analysis implements Analyzer {
     }
 
     public builtinEnter: NPCallbacks.builtinEnter = (name: string, f: Invoked, receiver: Receiver, args: any[]) => {
-        if (name.includes("eval")) {
-            console.log("built in encountered: " + name);
-        }
         if (name === "exec" || name === "eval") {
-            this.state.functionCall([name, f.length, args.length,
+            this.state.builtin([name, args.length,
+                {location: {fileName: "builtins are broken"}, type: "builtin"}]);
+        }
+    }
+
+    public builtinExit: NPCallbacks.builtinExit = (name: string, returnVal: any) => {
+        if (name === "exec" || name === "eval") {
+            this.state.builtinExit([name,
                 {location: {fileName: "builtins are broken"}, type: "builtin"}]);
         }
     }

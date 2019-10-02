@@ -1,4 +1,5 @@
 // do not remove the following comment
+
 // JALANGI DO NOT INSTRUMENT
 
 import { Accessor } from "../nodeprof";
@@ -260,6 +261,16 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         );
 
     public builtin = this.builtinOp.wrapper;
+
+    public builtinExitOp: Operation<[string, TaintDescription], void> =
+        this.adviceWrap(
+            ([name, description]) => {
+                this.resetState();
+                logger.info("builtinExit", name);
+            }
+        );
+
+    public builtinExit = this.builtinExitOp.wrapper;
 
     public conditionalOp: Operation<[TaintDescription], void> =
         this.adviceWrap(
