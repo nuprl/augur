@@ -91,9 +91,6 @@ export default class Analyze implements Analyzer {
     public _with: NPCallbacks._with = (iid, val) => {
         console.log("_with", val);
     }
-    public endExpression: NPCallbacks.endExpression = (iid) => {
-        console.log("endExpression");
-    }
     public builtinEnter: NPCallbacks.builtinEnter = (name, f, receiver, args) => {
         if (shouldPrintBuiltin(name)) {
             console.log("builtinEnter", name, f, receiver, args);
@@ -115,5 +112,25 @@ export default class Analyze implements Analyzer {
     }
     public evalPost: NPCallbacks.evalPost = (iid, str) => {
         console.log("evalPost", str);
+    }
+
+    public startStatement: NPCallbacks.startStatement = (iid, type) => {
+        console.log("startStatement", iid, type);
+    }
+
+    public endStatement: NPCallbacks.endStatement = (iid, type) => {
+        console.log("endStatement", iid, type);
+    }
+
+    public startExpression: NPCallbacks.startExpression = (iid, type) => {
+        console.log("startExpression", iid, type);
+    }
+
+    public endExpression: NPCallbacks.endExpression = (iid) => {
+        console.log("endExpression", iid);
+    }
+
+    public onReady: NPCallbacks.onReady = () => {
+        console.log("onReady");
     }
 }
