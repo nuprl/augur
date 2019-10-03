@@ -1,4 +1,11 @@
-import {Analyzer, Receiver, Invoked, NPCallbacks, Sandbox} from "../nodeprof";
+import {
+    Analyzer,
+    Receiver,
+    Invoked,
+    NPCallbacks,
+    Sandbox,
+    ExceptionVal
+} from "../nodeprof";
 import {AbstractMachine, TaintDescription} from "../types";
 import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
@@ -14,6 +21,12 @@ import {parseIID} from "../utils";
 export default class Analysis implements Analyzer {
     private sandbox: Sandbox;
     private state: AbstractMachine = new JSWriter();
+
+    // keeping track of the functions entered and exited using the
+    // `functionEnter` and `functionExit` callbacks. this is because the
+    // `functionExit` callback doesn't provide the function that is
+    // being exited.
+    private functionCallStack: Function[] = [];
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
@@ -114,7 +127,7 @@ export default class Analysis implements Analyzer {
 
     public invokeFun: NPCallbacks.invokeFun = (iid: number, f: Invoked) => {
         let description: TaintDescription = {type: "functionReturn",
-        location: parseIID(iid)};
+            location: parseIID(iid)};
         if (f.name && f.name != "") {
             description.name = f.name;
         }
@@ -123,6 +136,16 @@ export default class Analysis implements Analyzer {
         } else {
             this.state.functionReturn([f.name, description]);
         }
+    }
+
+    public functionEnter: NPCallbacks.functionEnter = (iid: number, f: Invoked, receiver: Receiver, args: any[]) => {
+        this.functionCallStack.push(f);
+        this.invokeFunPre(iid, f, undefined, args, undefined, undefined, undefined, undefined);
+    }
+
+    public functionExit: NPCallbacks.functionExit = (iid: number,  returnVal: any, wrappedExceptionVal?: ExceptionVal) => {
+        let f = this.functionCallStack.pop();
+        this.invokeFun(iid, f, undefined, undefined, returnVal, undefined, undefined, undefined, undefined);
     }
 
     public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
