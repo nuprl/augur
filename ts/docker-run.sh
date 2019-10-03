@@ -112,4 +112,5 @@ docker run --rm \
        "(cd /root/program; \
        /root/mx/mx -p /root/nodeprof/ jalangi \
          --initParam outputFile:/root/output.js \
-         --analysis /root/ts/dist/src/analysis/nodeprofAnalysis.js /root/program/$PROGRAM_FILE)"
+         --analysis /root/ts/dist/src/analysis/nodeprofAnalysis.js \
+         /root/program/$PROGRAM_FILE)"
