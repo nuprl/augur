@@ -249,3 +249,5 @@ test('for-of-tainted', (done) => runTest('for-of-tainted', done));
 test('for-in-clean', (done) => runTest('for-in-clean', done));
 test('for-in-tainted', (done) => runTest('for-in-tainted', done));
 test('native-object-defineProperty', (done) => runTest('native-object-defineProperty', done));
+test('chained-object-properties-clean', (done) => runTest('chained-object-properties-clean', done));
+test('chained-object-properties-tainted', (done) => runTest('chained-object-properties-tainted', done));
