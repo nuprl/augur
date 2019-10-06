@@ -23,15 +23,20 @@ let defaultModel: NativeModel = (machine, name, actualArgs, description) => {
 };
 
 let models: NativeModelMap = {
-    "Array.reduce":
+    "reduce":
         <V, F>(m: JSMachine<V, F>, name: string, actualArgs: number, description: TaintDescription) => {
+            // Array.prototype.reduce
+            let arrayOID = "";
+            let reducerName = "";
+            let index = 0;
+
             // pre
             m.pop([description]);
             if (actualArgs === 1) {
                 m.pop([description]);
                 m.push([m.getUntaintedValue(), description]);
                 m.push([m.getUntaintedValue(), description]);
-                m.readProperty([name, 0, description]);
+                m.readProperty([arrayOID, 0, description]);
                 m.initVar(["__accum__", description]);
                 m.pop([description]);
             } else if (actualArgs === 2) {
@@ -46,7 +51,7 @@ let models: NativeModelMap = {
                         m.readVar(["__accum__", description]);
                         m.push([m.getUntaintedValue(), description]);
                         m.push([m.getUntaintedValue(), description]);
-                        m.readProperty([name, 0, description]);
+                        m.readProperty([arrayOID, index, description]);
                         m.push([m.getUntaintedValue(), description]);
                         m.push([m.getUntaintedValue(), description]);
                         m.push([m.getUntaintedValue(), description]);
@@ -60,6 +65,7 @@ let models: NativeModelMap = {
                         m.readVar(["__ret__", description]);
                         m.writeVar(["__accum__", description]);
                         m.pop([description]);
+                        index++;
                     }
                 }
             );
