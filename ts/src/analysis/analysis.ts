@@ -170,6 +170,9 @@ export default class Analysis implements Analyzer {
         // apparently this kinda stuff isn't very slow
         // https://stackoverflow.com/questions/6598945/detect-if-function-is-native-to-browser
         // but doesn't cover all 1592624 of the corner cases
+
+        // actually that stackoverflow post is a terrible experiment and
+        // doesn't represent real code
         return /\{\s+\[native code\]/
             .test(Function.prototype.toString.call(fun));
     }

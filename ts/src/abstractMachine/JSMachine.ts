@@ -334,6 +334,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                     this.join(this.taintStack.pop(),
                         this.produceMark(description));
 
+                // The stack may *also* contain an extra value if this is a
+                // method on an object. In the case this is a method, a
+                // value should also be present for the object.
+
                 // Push the actual arguments to taintStack
                 tempStack.forEach((v) =>
                     this.taintStack.push(this.join(v, functionInvocationTaint)));
