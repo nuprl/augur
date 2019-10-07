@@ -73,20 +73,96 @@ export interface AbstractMachine {
     initVar: (input: [string, TaintDescription]) => void;
 
     /**
+     * This operation represents the execution of a *function invocation
+     * site*. This is the place in the programmer's source code (not a
+     * native function) where they *call* the function.
+     *
+     * This operation represents function invocation from the
+     * caller-perspective. `functionInvokeStart` represents function
+     * invocation from the callee-perspective.
+     *
      * Ensure the stack is properly aligned for `expectedNumArgs`. If too
      * many arguments were supplied, pop them of the stack. If too few
      * arguments were supplied, push abstract values for them.
-     * @param name the name of the function being entered
+     *
+     * @param name the name of the function according to the caller
      * @param expectedNumArgs the number of arguments this function is
      *                         expecting
      * @param actualNumArgs the number of arguments actually given
      * @param description why and where the action occurred
      */
-    functionCall: (input: [string, number, number, TaintDescription]) => void;
+    functionInvokeStart: (input: [string, number, number, TaintDescription]) => void;
 
     /**
-     * Used to signal a function has exited. No stack action is required.
-     * @param name the name of the function being exited
+     * This operation represents the return of a *function invocation
+     * site*. This is the place in the programmer's source code where they
+     * *call* the function.
+     *
+     * When a function uses the `return` keyword, you will see a
+     * functionReturn operation. If the function was called by the programmer's
+     * source code (and not a native function), you will see this
+     * functionInvokeEnd operation.
+     *
+     * This operation represents a function return from the
+     * caller-perspective. `functionReturn`/`functionExit` represent function
+     * return from the callee-perspective.
+     *
+     * Since we are returning into the programmer's source code, this
+     * operation should push the returned value onto the stack.
+     *
+     * @param name the name of the function according to the caller
+     * @param expectedNumArgs the number of arguments this function is
+     *                         expecting
+     * @param actualNumArgs the number of arguments actually given
+     * @param description why and where the action occurred
+     */
+    functionInvokeEnd: (input: [string, number, number, TaintDescription]) => void;
+
+    /**
+     * This operation represents the execution of a *function*. This
+     * operation will occur for both user-defined and native functions.
+     *
+     * This operation can assume `actualNumArgs` values will be on the
+     * stack. This operation should track the flow of these arguments into
+     * this function.
+     *
+     * This operation represents function invocation from the
+     * callee-perspective. `functionInvokeStart` represents function
+     * invocation from the caller-perspective.
+     *
+     * @param name the name of the function according to the caller
+     * @param actualNumArgs the number of arguments actually given
+     * @param description why and where the action occurred
+     */
+    functionEnter: (input: [string, number, TaintDescription]) => void;
+
+    /**
+     * This operation represents the execution of a *function*. This
+     * operation will occur for both user-defined and native functions.
+     *
+     * This operation can assume `actualNumArgs` values will be on the
+     * stack. This operation should track the flow of these arguments into
+     * this function.
+     *
+     * This operation represents function invocation from the
+     * callee-perspective. `functionInvokeStart` represents function
+     * invocation from the caller-perspective.
+     *
+     * @param name the name of the function according to the caller
+     * @param actualNumArgs the number of arguments actually given
+     * @param description why and where the action occurred
+     */
+    functionExit: (input: [string, number, TaintDescription]) => void;
+
+    /**
+     * This operation represents the marking of the top-most value on the
+     * stack as the return value of this function. It should be saved and
+     * popped from the stack.
+     *
+     * If returning into user-defined code, its value will be pushed back
+     * onto the stack in `invokeFunEnd`.
+     *
+     * @param name the name of the function returning from
      * @param description why and where the action occurred
      */
     functionReturn: (input: [string, TaintDescription]) => void;
