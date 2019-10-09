@@ -80,10 +80,34 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "initVar", args: [s, description]});
     }
 
-    public functionCall([name, expectedNumArgs, actualNumArgs, description]:
-                            [string, number, number, TaintDescription]) {
-        this.writeInstruction({ command: "functionCall",
-            args: [name, expectedNumArgs, actualNumArgs, description]});
+    public functionEnter([name, actualArgs, description]: [string, number, TaintDescription]) {
+        this.writeInstruction({
+            command: "functionEnter",
+            args: [name, actualArgs, description]
+        });
+    }
+
+    public functionExit ([name, actualArgs, description]: [string, number, TaintDescription]) {
+        this.writeInstruction({
+            command: "functionExit",
+            args: [name, actualArgs, description]
+        });
+    }
+
+    public functionInvokeEnd([name, description]:
+                                 [string, TaintDescription]) {
+        this.writeInstruction({
+            command: "functionInvokeEnd",
+            args: [name, description]
+        });
+    }
+
+    public functionInvokeStart([name, expectedArgs, actualArgs, description]:
+                                   [string, number, number, TaintDescription]) {
+        this.writeInstruction({
+            command: "functionInvokeStart",
+            args: [name, expectedArgs, actualArgs, description]
+        });
     }
 
     public functionReturn([name, description]: [string, TaintDescription]) {

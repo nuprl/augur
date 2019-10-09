@@ -121,11 +121,20 @@ export default class Analysis implements Analyzer {
         if (this.isNative(f)) {
             this.state.builtin([f.name, f.length, description]);
         } else {
-            this.state.functionCall([f.name, f.length, args.length, description]);
+            this.state.functionInvokeStart([f.name, f.length, args.length, description]);
         }
     }
 
-    public invokeFun: NPCallbacks.invokeFun = (iid: number, f: Invoked) => {
+    public _return: NPCallbacks._return = (iid, val) => {
+        let description: TaintDescription = {type: "functionReturn",
+            location: parseIID(iid)};
+
+        this.state.functionReturn([
+            this.functionCallStack[this.functionCallStack.length - 1].name,
+            description]);
+    }
+
+    public invokeFun: NPCallbacks.invokeFun = (iid: number,  f: Invoked, receiver: Receiver, args: any[], result: any, isConstructor: boolean, isMethod: boolean, functionIid: number, functionSid: number) => {
         let description: TaintDescription = {type: "functionReturn",
             location: parseIID(iid)};
         if (f.name && f.name != "") {
@@ -134,18 +143,23 @@ export default class Analysis implements Analyzer {
         if (this.isNative(f)) {
             this.state.builtinExit([f.name, description]);
         } else {
-            this.state.functionReturn([f.name, description]);
+            this.state.functionInvokeEnd([f.name, description]);
         }
     }
 
     public functionEnter: NPCallbacks.functionEnter = (iid: number, f: Invoked, receiver: Receiver, args: any[]) => {
+        let description: TaintDescription = {type: "functionEnter",
+            location: parseIID(iid)};
         this.functionCallStack.push(f);
-        this.invokeFunPre(iid, f, undefined, args, undefined, undefined, undefined, undefined);
+        this.state.functionEnter([f.name, args.length, description]);
     }
 
     public functionExit: NPCallbacks.functionExit = (iid: number,  returnVal: any, wrappedExceptionVal?: ExceptionVal) => {
         let f = this.functionCallStack.pop();
-        this.invokeFun(iid, f, undefined, undefined, returnVal, undefined, undefined, undefined, undefined);
+        let description: TaintDescription = {type: "expr",
+            location: parseIID(iid)};
+
+        this.state.functionExit([f.name, f.length, description]);
     }
 
     public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {

@@ -116,7 +116,7 @@ export interface AbstractMachine {
      * @param actualNumArgs the number of arguments actually given
      * @param description why and where the action occurred
      */
-    functionInvokeEnd: (input: [string, number, number, TaintDescription]) => void;
+    functionInvokeEnd: (input: [string, TaintDescription]) => void;
 
     /**
      * This operation represents the execution of a *function*. This
@@ -223,8 +223,15 @@ export interface Instruction {
 
 // Possible types of taint sources/sinks. JS expressions should only be
 // recorded as "expr" if they appear within a statement block.
-export type TaintType = "function" | "variable" | "builtin" | "expr"
-    | "functionInvocation" | "functionReturn" | "literal" | "declaration";
+export type TaintType = "function"
+    | "variable"
+    | "builtin"
+    | "expr"
+    | "functionInvocation"
+    | "functionEnter"
+    | "functionReturn"
+    | "literal"
+    | "declaration";
 
 // A description of a taint source/sink. All fields are optional.
 export interface TaintDescription extends Object {

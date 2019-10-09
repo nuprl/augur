@@ -25,7 +25,7 @@ let defaultModel: NativeModel = (machine, name, actualArgs, description) => {
 let models: NativeModelMap = {
     "reduce":
         <V, F>(m: JSMachine<V, F>, name: string, actualArgs: number, description: TaintDescription) => {
-            // Array.prototype.reduce
+            // Array.prototype.reduce(callback, initialValue)
             let arrayOID = "";
             let reducerName = "";
             let index = 0;
@@ -45,8 +45,8 @@ let models: NativeModelMap = {
             }
 
             // callback pre
-            m.functionCallOp.before.install(
-                ([functionName, expectedArgs, actualArgs, description]) => {
+            m.functionEnterOp.before.install(
+                ([functionName, actualArgs, description]) => {
                     if (functionName === name) {
                         m.readVar(["__accum__", description]);
                         m.push([m.getUntaintedValue(), description]);
@@ -75,7 +75,7 @@ let models: NativeModelMap = {
                 ([[name, description], ret]) => {
                     m.readVar(["__accum__", description]);
                     m.writeVar(["__ret__", description]);
-                    m.functionCallOp.before.uninstall();
+                    m.functionEnterOp.before.uninstall();
                     m.functionReturnOp.after.uninstall();
                     m.builtinExitOp.after.uninstall();
                 }

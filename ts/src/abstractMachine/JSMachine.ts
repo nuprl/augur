@@ -19,12 +19,11 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     varTaintMap: Map<string, V> = new Map();
     spec: RunSpecification;
     objects: Map<any, any>;
-    state: States = States.None;
-    stateCounter: number = 0;
     flows: Set<F> = new Set();
     pc: V;
     callStack: Array<TaintDescription>;
     lastPoppedValue: V;
+    returnValue: V;
 
     /**
      * Returns the taint marking associated with a completely clean value.
@@ -79,13 +78,90 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.flows.add(flow);
     }
 
+    public functionInvokeStartOp: Operation<[string, number, number, TaintDescription], void> =
+        this.adviceWrap(
+            ([name, expectedArgs, actualArgs, description]) => {
+                const tempStack = [];
+
+                // Pop off the actual arguments given to this function from taintStack
+                for (let i = 0; i < actualArgs; i++) {
+                    tempStack.push(this.taintStack.pop());
+                }
+
+                // If not enough arguments were supplied, they
+                // will be "undefined". This value is *untainted*,
+                // so push the untainted marker.
+                if (expectedArgs > actualArgs) {
+                    const diff = expectedArgs - actualArgs;
+
+                    for (let i = 0; i < diff; i++) {
+                        tempStack.push(this.getUntaintedValue());
+                    }
+                }
+
+                // Report possible flows of arguments into this function,
+                // from the caller-perspective.
+                tempStack.forEach(
+                    (mark) => this.reportPossibleFlow(description, mark));
+
+                // We want to track a dependency between each arguments and
+                // both:
+                // - the function we're entering
+                // - the invocation of the function.
+                //
+                // The stack contains an extra taint value for the function
+                // we're entering. Pop it and join it with the taint value for
+                // the function invocation to produce the taint value for
+                // "entering the function".
+                const functionInvocationTaint =
+                    this.join(this.taintStack.pop(),
+                        this.produceMark(description));
+
+                // Push the actual arguments to taintStack
+                tempStack.forEach((v) =>
+                    this.taintStack.push(this.join(v, functionInvocationTaint)));
+            }
+        );
+    public functionInvokeStart = this.functionInvokeStartOp.wrapper;
+
+    public functionInvokeEndOp: Operation<[string, TaintDescription], void> =
+        this.adviceWrap(
+            ([name, description]) => {
+                this.push([this.returnValue, description]);
+            }
+        );
+    public functionInvokeEnd = this.functionInvokeEndOp.wrapper;
+
+    public functionEnterOp: Operation<[string, number, TaintDescription], void> =
+        this.adviceWrap(
+            ([name, actualArgs, description]) => {
+                this.callStack.push(description);
+
+                // Pop arguments off the stack
+                let args = new Array(actualArgs);
+                for (let i = 0; i < actualArgs; i++) {
+                    args.push(this.taintStack.pop());
+                }
+
+                // Record taint flows from the callee perspective
+                args.forEach(v => this.reportPossibleFlow(description, v));
+            }
+        );
+    public functionEnter = this.functionEnterOp.wrapper;
+
+    public functionExitOp: Operation<[string, number, TaintDescription], void> =
+        this.adviceWrap(
+            ([name, actualArgs, description]) => {
+                this.callStack.pop();
+            }
+        );
+    functionExit = this.functionExitOp.wrapper;
+
     public functionReturnOp: Operation<[string, TaintDescription], void> =
         this.adviceWrap(
-        (input) => {
-            this.callStack.pop();
-            this.taintStack.push(this.lastPoppedValue);
-        });
-
+            (input) => {
+                this.returnValue = this.taintStack[this.taintStack.length - 1];
+            });
     public functionReturn = this.functionReturnOp.wrapper;
 
     public literalOp: Operation<[TaintDescription], void> =
@@ -233,17 +309,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([s, description]) => {
                 let v = this.join(this.taintStack[this.taintStack.length - 1], this.produceMark(description));
 
-                // If we're currently processing function arguments
-                if (this.state === States.FunctionCall && this.stateCounter > 0) {
-                    // pop the argument
-                    this.taintStack.pop();
-
-                    // subtract 1 from the amount of arguments left to process
-                    this.stateCounter -= 1;
-
-                    // track taint based on the function we are entering
-                    v = this.join(v, this.produceMark(this.currentFunction()));
-                }
 
                 logger.info("init var", s, v);
 
@@ -302,59 +367,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public conditionalEnd = this.conditionalEndOp.wrapper;
 
-    public functionCallOp: Operation<[string, number, number, TaintDescription], void> =
-        this.adviceWrap(
-            ([name, expectedArgs, actualArgs, description]) => {
-                const tempStack = [];
-
-                // Pop off the actual arguments given to this function from taintStack
-                for (let i = 0; i < actualArgs; i++) {
-                    tempStack.push(this.taintStack.pop());
-                }
-
-                // If not enough arguments were supplied, they
-                // will be "undefined". This value is *untainted*,
-                // so push the untainted marker.
-                if (expectedArgs > actualArgs) {
-                    const diff = expectedArgs - actualArgs;
-
-                    for (let i = 0; i < diff; i++) {
-                        tempStack.push(this.getUntaintedValue());
-                    }
-                }
-
-                logger.debug("funcall, temp stack:", tempStack);
-                // tempStack.reverse();
-
-                // Is this function a sink, and did any tainted
-                // values flow into it?
-                tempStack.forEach(
-                    (mark) => this.reportPossibleFlow(description, mark));
-
-                // The stack contains an extra taint value for the function
-                // we're entering. Pop it and join it with the taint value for
-                // the function invocation to produce the taint value for
-                // "entering the function".
-                const functionInvocationTaint =
-                    this.join(this.taintStack.pop(),
-                        this.produceMark(description));
-
-                // The stack may *also* contain an extra value if this is a
-                // method on an object. In the case this is a method, a
-                // value should also be present for the object.
-
-                // Push the actual arguments to taintStack
-                tempStack.forEach((v) =>
-                    this.taintStack.push(this.join(v, functionInvocationTaint)));
-                logger.debug("funcall, new stack:", this.taintStack);
-                this.state = States.FunctionCall;
-                this.stateCounter = expectedArgs;
-                this.callStack.push(description);
-            }
-        );
-
-    public functionCall = this.functionCallOp.wrapper;
-
     public endExecution() {
         // do nothing.
     }
@@ -374,8 +386,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     }
 
     private resetState() {
-        this.state = States.None;
-        this.stateCounter = 0;
+        // this.state = States.None;
+        // this.stateCounter = 0;
     }
 
     protected getSink(description: TaintDescription): TaintDescription {
