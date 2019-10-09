@@ -78,9 +78,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.flows.add(flow);
     }
 
-    public functionInvokeStartOp: Operation<[string, number, number, TaintDescription], void> =
+    public functionInvokeStartOp: Operation<[string, number, number, any, TaintDescription], void> =
         this.adviceWrap(
-            ([name, expectedArgs, actualArgs, description]) => {
+            ([name, expectedArgs, actualArgs, _this, description]) => {
                 const tempStack = [];
 
                 // Pop off the actual arguments given to this function from taintStack

@@ -121,7 +121,7 @@ export default class Analysis implements Analyzer {
         if (this.isNative(f)) {
             this.state.builtin([f.name, f.length, description]);
         } else {
-            this.state.functionInvokeStart([f.name, f.length, args.length, description]);
+            this.state.functionInvokeStart([f.name, f.length, args.length, receiver, description]);
         }
     }
 

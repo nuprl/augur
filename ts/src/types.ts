@@ -89,9 +89,10 @@ export interface AbstractMachine {
      * @param expectedNumArgs the number of arguments this function is
      *                         expecting
      * @param actualNumArgs the number of arguments actually given
+     * @param _this the object bound to `this` for this function call
      * @param description why and where the action occurred
      */
-    functionInvokeStart: (input: [string, number, number, TaintDescription]) => void;
+    functionInvokeStart: (input: [string, number, number, any, TaintDescription]) => void;
 
     /**
      * This operation represents the return of a *function invocation

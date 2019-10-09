@@ -102,11 +102,11 @@ export default class JSWriter implements AbstractMachine {
         });
     }
 
-    public functionInvokeStart([name, expectedArgs, actualArgs, description]:
-                                   [string, number, number, TaintDescription]) {
+    public functionInvokeStart([name, expectedArgs, actualArgs, _this, description]:
+                                   [string, number, number, any, TaintDescription]) {
         this.writeInstruction({
             command: "functionInvokeStart",
-            args: [name, expectedArgs, actualArgs, description]
+            args: [name, expectedArgs, actualArgs, _this, description]
         });
     }
 
