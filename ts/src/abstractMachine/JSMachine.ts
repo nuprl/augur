@@ -41,10 +41,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     /**
      * Produce an initial taint mark for a given description. This mark should
-     * describe this description's affiliation with any sinks.
+     * describe this description's affiliation with any sources.
      *
      * For example, it could return a boolean T/F to represent its status as a
-     * sink. It could also return some value to represent which sink it
+     * source. It could also return some value to represent which source it
      * describes.
      */
     abstract produceMark(description: TaintDescription): V;
