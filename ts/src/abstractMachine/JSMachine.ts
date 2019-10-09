@@ -22,7 +22,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     flows: Set<F> = new Set();
     pc: V;
     callStack: Array<TaintDescription>;
-    lastPoppedValue: V;
     returnValue: V;
 
     /**
@@ -188,7 +187,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([description]) => {
                 this.resetState();
                 logger.info("pop");
-                this.lastPoppedValue = this.taintStack.pop();
             }
         );
 
