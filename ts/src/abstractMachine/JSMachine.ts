@@ -167,6 +167,11 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 let r = this.join(this.produceMark(description),
                     propertyTaint);
 
+                // When reading a property of an object, the value of the
+                // object is discarded and replaced with the projection.
+                // Discard the object's value on the taint stack.
+                this.taintStack.pop();
+
                 logger.info("readprop", o, s, r);
                 this.taintStack.push(r);
             }
