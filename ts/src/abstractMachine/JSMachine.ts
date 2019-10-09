@@ -9,11 +9,6 @@ import {descriptionSubset} from "../utils";
 import Operation from "./operation";
 import {useNativeModel} from "./native";
 
-enum States {
-    FunctionCall,
-    None,
-}
-
 export default abstract class JSMachine<V, F> implements AbstractMachine {
     taintStack: V[] = [];
     varTaintMap: Map<string, V> = new Map();
