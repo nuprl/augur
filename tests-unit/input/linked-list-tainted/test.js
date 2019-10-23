@@ -8,6 +8,14 @@ list.append(2);
 list.append(3);
 list.append(a);
 
-for (let a in list) {
+// we don't have for loop callbacks yet
+
+// for (let x in list) {
+//     z += x;
+// }
+
+let cur = list;
+while (cur) {
     z += a;
+    cur = cur.next;
 }
