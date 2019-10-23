@@ -134,8 +134,17 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         if (!this.objects.has(o)) {
             this.objects.set(o, {});
         }
+        // we want to keep the value to be written on the stack for a
+        // property write, because it may be a chained assignment.
+        // however, we also need to discard the value of the base
+        // object, which is below the value to be written.
 
+        // pop the value to be written first, then the taint value
+        // of the base object, then push the value to be written again
         const storedTaint = this.taintStack.pop();
+        this.taintStack.pop();
+        this.taintStack.push(storedTaint);
+
         let objectTaintMap = this.objects.get(o);
         objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
 
