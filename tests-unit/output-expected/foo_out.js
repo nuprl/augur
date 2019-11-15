@@ -1,56 +1,76 @@
 exports.drive = (m) => {
 
-    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[11,3]}}});
+    m.functionEnter(["global@0", 0, {"type":"functionEnter","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[11,4]}}}]);
 
-    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[11,3]}}});
+    m.literal([{"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[11,3]}}}]);
 
-    m.initVar("exports", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"exports"});
+    m.pop([{"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[11,3]}}}]);
 
-    m.initVar("require", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"require"});
+    m.functionExit(["global@0", 8, {"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[11,4]}}}]);
 
-    m.initVar("module", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"module"});
+    m.initVar(["global^exports", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"exports"}]);
 
-    m.initVar("__filename", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"__filename"});
+    m.initVar(["global^require", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"require"}]);
 
-    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"__dirname"});
+    m.initVar(["global^module", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"module"}]);
 
-    m.initVar("foo", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"foo"});
+    m.initVar(["global^__filename", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"__filename"}]);
 
-    m.initVar("bar", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"bar"});
+    m.initVar(["global^__dirname", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"__dirname"}]);
 
-    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,62],"end":[3,2]}}});
+    m.initVar(["global^foo", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"foo"}]);
 
-    m.writeVar("foo", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[1,62],"end":[3,2]}},"name":"foo"});
+    m.initVar(["global^bar", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}},"name":"bar"}]);
 
-    m.literal({"type":"literal","location":{"fileName":"test.js","pos":{"start":[5,1],"end":[7,2]}}});
+    m.functionEnter(["global@1", 5, {"type":"functionEnter","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}}}]);
 
-    m.writeVar("bar", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[5,1],"end":[7,2]}},"name":"bar"});
+    m.literal([{"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,62],"end":[3,2]}}}]);
 
-    m.readVar("bar", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[9,1],"end":[9,4]}},"name":"bar"});
+    m.writeVar(["global^foo", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[1,62],"end":[3,2]}},"name":"foo"}]);
 
-    m.functionCall("bar", 0, 0, {"type":"functionInvocation","location":{"fileName":"test.js","pos":{"start":[9,1],"end":[9,6]}},"name":"bar"});
+    m.literal([{"type":"literal","location":{"fileName":"test.js","pos":{"start":[5,1],"end":[7,2]}}}]);
 
-    m.readVar("foo", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[6,3],"end":[6,6]}},"name":"foo"});
+    m.writeVar(["global^bar", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[5,1],"end":[7,2]}},"name":"bar"}]);
 
-    m.functionCall("foo", 0, 0, {"type":"functionInvocation","location":{"fileName":"test.js","pos":{"start":[6,3],"end":[6,8]}},"name":"foo"});
+    m.readVar(["global^bar", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[9,1],"end":[9,4]}},"name":"bar"}]);
 
-    m.functionReturn("foo", {"type":"functionReturn","location":{"fileName":"test.js","pos":{"start":[6,3],"end":[6,8]}},"name":"foo"});
+    m.functionInvokeStart(["global@3", 0, 0, {"type":"functionInvocation","location":{"fileName":"test.js","pos":{"start":[9,1],"end":[9,6]}},"name":"bar"}]);
 
-    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[6,3],"end":[6,8]}}});
+    m.functionEnter(["global@3", 0, {"type":"functionEnter","location":{"fileName":"test.js","pos":{"start":[5,1],"end":[7,2]}}}]);
 
-    m.functionReturn("bar", {"type":"functionReturn","location":{"fileName":"test.js","pos":{"start":[9,1],"end":[9,6]}},"name":"bar"});
+    m.readVar(["global^foo", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[6,3],"end":[6,6]}},"name":"foo"}]);
 
-    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[9,1],"end":[9,6]}}});
+    m.functionInvokeStart(["global@3#4@6", 0, 0, {"type":"functionInvocation","location":{"fileName":"test.js","pos":{"start":[6,3],"end":[6,8]}},"name":"foo"}]);
 
-    m.readVar("foo", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[10,1],"end":[10,4]}},"name":"foo"});
+    m.functionEnter(["global@3#4@6", 0, {"type":"functionEnter","location":{"fileName":"test.js","pos":{"start":[1,62],"end":[3,2]}}}]);
 
-    m.functionCall("foo", 0, 0, {"type":"functionInvocation","location":{"fileName":"test.js","pos":{"start":[10,1],"end":[10,6]}},"name":"foo"});
+    m.functionExit(["global@3#4@6", 12, {"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,62],"end":[3,2]}}}]);
 
-    m.functionReturn("foo", {"type":"functionReturn","location":{"fileName":"test.js","pos":{"start":[10,1],"end":[10,6]}},"name":"foo"});
+    m.functionInvokeEnd(["global@3#4@6", {"type":"functionReturn","location":{"fileName":"test.js","pos":{"start":[6,3],"end":[6,8]}},"name":"foo"}]);
 
-    m.pop({"type":"expr","location":{"fileName":"test.js","pos":{"start":[10,1],"end":[10,6]}}});
+    m.pop([{"type":"expr","location":{"fileName":"test.js","pos":{"start":[6,3],"end":[6,8]}}}]);
 
-    m.endExecution();
+    m.functionExit(["global@3", 8, {"type":"expr","location":{"fileName":"test.js","pos":{"start":[5,1],"end":[7,2]}}}]);
+
+    m.functionInvokeEnd(["global@3", {"type":"functionReturn","location":{"fileName":"test.js","pos":{"start":[9,1],"end":[9,6]}},"name":"bar"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"test.js","pos":{"start":[9,1],"end":[9,6]}}}]);
+
+    m.readVar(["global^foo", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[10,1],"end":[10,4]}},"name":"foo"}]);
+
+    m.functionInvokeStart(["global@3#4@6", 0, 0, {"type":"functionInvocation","location":{"fileName":"test.js","pos":{"start":[10,1],"end":[10,6]}},"name":"foo"}]);
+
+    m.functionEnter(["global@3#4@6", 0, {"type":"functionEnter","location":{"fileName":"test.js","pos":{"start":[1,62],"end":[3,2]}}}]);
+
+    m.functionExit(["global@3#4@6", 12, {"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,62],"end":[3,2]}}}]);
+
+    m.functionInvokeEnd(["global@3#4@6", {"type":"functionReturn","location":{"fileName":"test.js","pos":{"start":[10,1],"end":[10,6]}},"name":"foo"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"test.js","pos":{"start":[10,1],"end":[10,6]}}}]);
+
+    m.functionExit(["global@1", 8, {"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,2],"end":[11,2]}}}]);
+
+    m.endExecution([]);
 
 };
 

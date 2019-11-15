@@ -18,5 +18,13 @@
             }
         }
     ],
-    "expectedFlows": []
+    "expectedFlows": [
+        {
+            "type": "variable",
+            "name": "z",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ]
 }

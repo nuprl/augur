@@ -1,132 +1,152 @@
 exports.drive = (m) => {
 
-    m.literal({"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[1,1],"end":[27,3]}}});
+    m.functionEnter(["global@0", 0, {"type":"functionEnter","location":{"fileName":"write-file.js","pos":{"start":[1,1],"end":[27,4]}}}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[1,1],"end":[27,3]}}});
+    m.literal([{"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[1,1],"end":[27,3]}}}]);
 
-    m.initVar("exports", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"exports"});
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[1,1],"end":[27,3]}}}]);
 
-    m.initVar("require", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"require"});
+    m.functionExit(["global@0", 8, {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[1,1],"end":[27,4]}}}]);
 
-    m.initVar("module", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"module"});
+    m.initVar(["global^exports", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"exports"}]);
 
-    m.initVar("__filename", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"__filename"});
+    m.initVar(["global^require", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"require"}]);
 
-    m.initVar("__dirname", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"__dirname"});
+    m.initVar(["global^module", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"module"}]);
 
-    m.initVar("dummySource", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"dummySource"});
+    m.initVar(["global^__filename", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"__filename"}]);
 
-    m.initVar("content", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"content"});
+    m.initVar(["global^__dirname", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"__dirname"}]);
 
-    m.literal({"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[10,1],"end":[12,2]}}});
+    m.initVar(["global^dummySource", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"dummySource"}]);
 
-    m.writeVar("dummySource", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[10,1],"end":[12,2]}},"name":"dummySource"});
+    m.initVar(["global^content", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}},"name":"content"}]);
 
-    m.literal({"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[1,69],"end":[3,2]}}});
+    m.functionEnter(["global@1", 5, {"type":"functionEnter","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}}}]);
 
-    m.writeVar("done", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"});
+    m.literal([{"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[10,1],"end":[12,2]}}}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[1,62],"end":[3,2]}}});
+    m.writeVar(["global^dummySource", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[10,1],"end":[12,2]}},"name":"dummySource"}]);
 
-    m.literal({"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[6,15],"end":[6,30]}}});
+    m.literal([{"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[1,69],"end":[3,2]}}}]);
 
-    m.writeVar("content", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[6,5],"end":[6,29]}},"name":"content"});
+    m.writeVar(["global^done", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[6,5],"end":[6,29]}}});
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[1,62],"end":[3,2]}}}]);
 
-    m.readVar("require", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[8,6],"end":[8,13]}},"name":"require"});
+    m.literal([{"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[6,15],"end":[6,30]}}}]);
 
-    m.literal({"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[8,14],"end":[8,18]}}});
+    m.writeVar(["global^content", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[6,5],"end":[6,29]}},"name":"content"}]);
 
-    m.functionCall("require", 1, 1, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[8,6],"end":[8,19]}},"name":"require"});
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[6,5],"end":[6,29]}}}]);
 
-    m.functionReturn("require", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[8,6],"end":[8,19]}},"name":"require"});
+    m.readVar(["global^require", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[8,6],"end":[8,13]}},"name":"require"}]);
 
-    m.writeVar("fs", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[8,1],"end":[8,19]}},"name":"fs"});
+    m.literal([{"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[8,14],"end":[8,18]}}}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[8,1],"end":[8,19]}}});
+    m.functionInvokeStart(["global@3", 1, 1, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[8,6],"end":[8,19]}},"name":"require"}]);
 
-    m.readVar("dummySource", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[14,1],"end":[14,12]}},"name":"dummySource"});
+    m.functionInvokeEnd(["global@3", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[8,6],"end":[8,19]}},"name":"require"}]);
 
-    m.literal({"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[14,13],"end":[14,16]}}});
+    m.writeVar(["global^fs", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[8,1],"end":[8,19]}},"name":"fs"}]);
 
-    m.functionCall("dummySource", 1, 1, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[14,1],"end":[14,17]}},"name":"dummySource"});
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[8,1],"end":[8,19]}}}]);
 
-    m.initVar("val", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[10,1],"end":[12,2]}},"name":"val"});
+    m.readVar(["global^dummySource", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[14,1],"end":[14,12]}},"name":"dummySource"}]);
 
-    m.readVar("content", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[11,5],"end":[11,12]}},"name":"content"});
+    m.literal([{"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[14,13],"end":[14,16]}}}]);
 
-    m.readVar("val", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[11,16],"end":[11,19]}},"name":"val"});
+    m.functionInvokeStart(["global@6", 1, 1, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[14,1],"end":[14,17]}},"name":"dummySource"}]);
 
-    m.binaryOp({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[11,5],"end":[11,12]}}});
+    m.initVar(["global@6#7^val", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[10,1],"end":[12,2]}},"name":"val"}]);
 
-    m.writeVar("content", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[11,5],"end":[11,19]}},"name":"content"});
+    m.functionEnter(["global@6", 1, {"type":"functionEnter","location":{"fileName":"write-file.js","pos":{"start":[10,1],"end":[12,2]}}}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[11,5],"end":[11,19]}}});
+    m.readVar(["global^content", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[11,5],"end":[11,12]}},"name":"content"}]);
 
-    m.functionReturn("dummySource", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[14,1],"end":[14,17]}},"name":"dummySource"});
+    m.readVar(["global@6#7^val", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[11,16],"end":[11,19]}},"name":"val"}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[14,1],"end":[14,17]}}});
+    m.binary([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[11,5],"end":[11,12]}}}]);
 
-    m.readVar("fs", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[16,1],"end":[16,3]}},"name":"fs"});
+    m.writeVar(["global^content", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[11,5],"end":[11,19]}},"name":"content"}]);
 
-    m.readProperty("obj0", "writeFile", {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[16,1],"end":[16,13]}}});
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[11,5],"end":[11,19]}}}]);
 
-    m.literal({"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[16,14],"end":[16,30]}}});
+    m.functionExit(["global@6", 8, {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[10,1],"end":[12,2]}}}]);
 
-    m.readVar("content", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[16,32],"end":[16,39]}},"name":"content"});
+    m.functionInvokeEnd(["global@6", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[14,1],"end":[14,17]}},"name":"dummySource"}]);
 
-    m.literal({"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[16,41],"end":[20,2]}}});
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[14,1],"end":[14,17]}}}]);
 
-    m.functionCall("writeFile", 4, 3, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[16,1],"end":[20,3]}},"name":"writeFile"});
+    m.readVar(["global^fs", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[16,1],"end":[16,3]}},"name":"fs"}]);
 
-    m.functionReturn("writeFile", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[16,1],"end":[20,3]}},"name":"writeFile"});
+    m.readProperty(["obj0", "writeFile", {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[16,1],"end":[16,13]}}}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[16,1],"end":[20,3]}}});
+    m.literal([{"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[16,14],"end":[16,30]}}}]);
 
-    m.initVar("err", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[16,41],"end":[20,2]}},"name":"err"});
+    m.readVar(["global^content", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[16,32],"end":[16,39]}},"name":"content"}]);
 
-    m.readVar("err", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[17,9],"end":[17,12]}},"name":"err"});
+    m.literal([{"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[16,41],"end":[20,2]}}}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[17,5],"end":[17,38]}}});
+    m.functionInvokeStart(["global@9", 4, 3, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[16,1],"end":[20,3]}},"name":"writeFile"}]);
 
-    m.readVar("console", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[18,5],"end":[18,12]}},"name":"console"});
+    m.functionInvokeEnd(["global@9", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[16,1],"end":[20,3]}},"name":"writeFile"}]);
 
-    m.readProperty("obj1", "log", {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[18,5],"end":[18,16]}}});
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[16,1],"end":[20,3]}}}]);
 
-    m.readVar("content", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[18,18],"end":[18,25]}},"name":"content"});
+    m.functionExit(["global@1", 8, {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[1,2],"end":[27,2]}}}]);
 
-    m.literal({"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[18,28],"end":[18,47]}}});
+    m.initVar(["global^err", {"type":"declaration","location":{"fileName":"write-file.js","pos":{"start":[16,41],"end":[20,2]}},"name":"err"}]);
 
-    m.binaryOp({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[18,18],"end":[18,47]}}});
+    m.functionEnter(["global@11", 1, {"type":"functionEnter","location":{"fileName":"write-file.js","pos":{"start":[16,41],"end":[20,2]}}}]);
 
-    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[18,5],"end":[18,48]}},"name":"bound log"});
+    m.readVar(["global^err", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[17,9],"end":[17,12]}},"name":"err"}]);
 
-    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[18,5],"end":[18,48]}},"name":"bound log"});
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[17,5],"end":[17,38]}}}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[18,5],"end":[18,48]}}});
+    m.readVar(["global^console", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[18,5],"end":[18,12]}},"name":"console"}]);
 
-    m.readVar("done", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[19,5],"end":[19,9]}},"name":"done"});
+    m.readProperty(["obj1", "log", {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[18,5],"end":[18,16]}}}]);
 
-    m.functionCall("done", 0, 0, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[19,5],"end":[19,11]}},"name":"done"});
+    m.readVar(["global^content", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[18,18],"end":[18,25]}},"name":"content"}]);
 
-    m.readVar("console", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[2,5],"end":[2,12]}},"name":"console"});
+    m.literal([{"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[18,28],"end":[18,47]}}}]);
 
-    m.readProperty("obj1", "log", {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[2,5],"end":[2,16]}}});
+    m.binary([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[18,18],"end":[18,47]}}}]);
 
-    m.literal({"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[2,17],"end":[2,24]}}});
+    m.builtin(["global@13", 0, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[18,5],"end":[18,48]}},"name":"bound log"}]);
 
-    m.functionCall("bound log", 0, 1, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+    m.builtinExit(["global@13", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[18,5],"end":[18,48]}},"name":"bound log"}]);
 
-    m.functionReturn("bound log", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"});
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[18,5],"end":[18,48]}}}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[2,5],"end":[2,25]}}});
+    m.readVar(["global^done", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[19,5],"end":[19,9]}},"name":"done"}]);
 
-    m.functionReturn("done", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[19,5],"end":[19,11]}},"name":"done"});
+    m.functionInvokeStart(["global@16", 0, 0, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[19,5],"end":[19,11]}},"name":"done"}]);
 
-    m.pop({"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[19,5],"end":[19,11]}}});
+    m.functionEnter(["global@16", 0, {"type":"functionEnter","location":{"fileName":"write-file.js","pos":{"start":[1,69],"end":[3,2]}}}]);
 
-    m.endExecution();
+    m.readVar(["global^console", {"type":"variable","location":{"fileName":"write-file.js","pos":{"start":[2,5],"end":[2,12]}},"name":"console"}]);
+
+    m.readProperty(["obj1", "log", {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[2,5],"end":[2,16]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"write-file.js","pos":{"start":[2,17],"end":[2,24]}}}]);
+
+    m.builtin(["global@13", 0, {"type":"functionInvocation","location":{"fileName":"write-file.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"}]);
+
+    m.builtinExit(["global@13", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[2,5],"end":[2,25]}}}]);
+
+    m.functionExit(["global@16", 9, {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[1,69],"end":[3,2]}}}]);
+
+    m.functionInvokeEnd(["global@16", {"type":"functionReturn","location":{"fileName":"write-file.js","pos":{"start":[19,5],"end":[19,11]}},"name":"done"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[19,5],"end":[19,11]}}}]);
+
+    m.functionExit(["global@11", 9, {"type":"expr","location":{"fileName":"write-file.js","pos":{"start":[16,41],"end":[20,2]}}}]);
+
+    m.endExecution([]);
 
 };
 
