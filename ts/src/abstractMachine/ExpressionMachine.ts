@@ -1,21 +1,21 @@
 // JALANGI DO NOT INSTRUMENT
 
 import JSMachine from "./JSMachine";
-import {TaintDescription} from "../types";
+import {StaticDescription} from "../types";
 
 export default class ExpressionMachine
-    extends JSMachine<Set<TaintDescription>, [Set<TaintDescription>, TaintDescription]> {
-    check(sink: TaintDescription, taint: Set<TaintDescription>): boolean {
+    extends JSMachine<Set<StaticDescription>, [Set<StaticDescription>, StaticDescription]> {
+    check(sink: StaticDescription, taint: Set<StaticDescription>): boolean {
         return true;
     }
 
-    reportPossibleFlow(description: TaintDescription, taintMarking: Set<TaintDescription>): void {
+    reportPossibleFlow(description: StaticDescription, taintMarking: Set<StaticDescription>): void {
         this.reportFlow([taintMarking, description]);
     }
 
-    join(a: Set<TaintDescription>, b: Set<TaintDescription>): Set<TaintDescription> {
+    join(a: Set<StaticDescription>, b: Set<StaticDescription>): Set<StaticDescription> {
         // set union
-        let set = new Set<TaintDescription>();
+        let set = new Set<StaticDescription>();
 
         // add them separately, since one of them might not be defined.
         // TODO: this is a hack. they SHOULD always be defined. if they aren't
@@ -29,11 +29,11 @@ export default class ExpressionMachine
         return set;
     }
 
-    produceMark(description: TaintDescription): Set<TaintDescription> {
-        return new Set<TaintDescription>().add(description);
+    produceMark(description: StaticDescription): Set<StaticDescription> {
+        return new Set<StaticDescription>().add(description);
     }
 
-    getUntaintedValue(): Set<TaintDescription> {
-        return new Set<TaintDescription>();
+    getUntaintedValue(): Set<StaticDescription> {
+        return new Set<StaticDescription>();
     }
 }

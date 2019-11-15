@@ -1,4 +1,4 @@
-import {RunSpecification, SourceSpan, Location, TaintDescription} from "./types";
+import {RunSpecification, SourceSpan, Location, StaticDescription} from "./types";
 import BooleanMachine from "./abstractMachine/BooleanMachine";
 import ExpressionMachine from "./abstractMachine/ExpressionMachine";
 
@@ -9,7 +9,7 @@ import ExpressionMachine from "./abstractMachine/ExpressionMachine";
 // Does the description t1 describe a subset of t2? In other words, does t2
 // describe each type of thing that t1 does, and do the common descriptions
 // match?
-export function descriptionSubset(t1: TaintDescription, t2: TaintDescription): boolean {
+export function descriptionSubset(t1: StaticDescription, t2: StaticDescription): boolean {
     if (typeof t1 !== "object" || typeof t2 !== "object") {
         throw new Error("descriptionSubset was passed a non-object: "
             + t1.toString()

@@ -3,7 +3,13 @@
 // JALANGI DO NOT INSTRUMENT
 
 import { Accessor } from "../nodeprof";
-import {AbstractMachine, TaintDescription, RunSpecification} from "../types";
+import {
+    AbstractMachine,
+    DynamicDescription,
+    StaticDescription,
+    RunSpecification,
+    VariableDescription
+} from "../types";
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
 import Operation from "./operation";
@@ -11,13 +17,20 @@ import {useNativeModel} from "./native";
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
     taintStack: V[] = [];
-    varTaintMap: Map<string, V> = new Map();
+    varTaintMap: Map<VariableDescription, V> = new Map();
     spec: RunSpecification;
-    objects: Map<any, any>;
+
+    // maps all dynamic descriptions of objects to:
+    // an object whose property names match the original objects', and whose
+    // values are taint descriptions.
+    objects: Map<DynamicDescription, {[name: string]: V}>;
+
     flows: Set<F> = new Set();
     pc: V;
-    callStack: Array<TaintDescription>;
+    callStack: Array<StaticDescription>;
     returnValue: V;
+
+    argsLeftToProcess: number = 0;
 
     /**
      * Returns the taint marking associated with a completely clean value.
@@ -32,7 +45,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     // When a value with taint marking T flows into a construct with the given
     // description
-    abstract reportPossibleFlow(description: TaintDescription, taintMarking: V): void;
+    abstract reportPossibleFlow(description: StaticDescription, taintMarking: V): void;
 
     /**
      * Produce an initial taint mark for a given description. This mark should
@@ -42,7 +55,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
      * source. It could also return some value to represent which source it
      * describes.
      */
-    abstract produceMark(description: TaintDescription): V;
+    abstract produceMark(description: StaticDescription): V;
 
     constructor(spec: RunSpecification) {
         // logger.info(sources, sinks);
@@ -72,14 +85,69 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.flows.add(flow);
     }
 
-    public functionInvokeStartOp: Operation<[string, number, number, any, TaintDescription], void> =
+    public functionInvokeStartOp: Operation<[string, number, number, StaticDescription], void> =
         this.adviceWrap(
-            ([name, expectedArgs, actualArgs, _this, description]) => {
+            ([name, expectedArgs, actualArgs, description]) => {
+                // 1. Ensure the right number of arguments is present on
+                // `taintStack`.
+
+                /*
+                if (actualArgs > expectedArgs) {
+                    let difference = expectedArgs - actualArgs;
+                    for (let i = 0; i < difference; i++) {
+                        this.taintStack.pop();
+                    }
+                } else if (expectedArgs > actualArgs) {
+                    let difference = actualArgs - expectedArgs;
+                    for (let i = 0; i < difference; i++) {
+                        this.taintStack.push(this.getUntaintedValue());
+                    }
+                } */
+
+                if (expectedArgs != actualArgs) {
+                    let difference = Math.abs(expectedArgs - actualArgs);
+                    let operation = (actualArgs > expectedArgs)
+                        ? (() => this.taintStack.pop())
+                        : (() => this.taintStack.push(this.getUntaintedValue()));
+
+                    for (let i = 0; i < difference; i++) {
+                        operation();
+                    }
+                }
+
+                // 2. Report possible taint flows into this function
+
+                // We want to track a dependency between each arguments and
+                // both:
+                // - the function we're entering
+                // - the invocation of the function.
+                //
+                // The stack contains an extra taint value for the function
+                // we're entering. Pop it and join it with the taint value for
+                // the function invocation to produce the taint value for
+                // "entering the function".
+                const functionInvocationTaint =
+                    this.join(this.taintStack[this.taintStack.length - expectedArgs - 1],
+                        this.produceMark(description));
+
+                for (let i = this.taintStack.length - expectedArgs; i < this.taintStack.length; i++) {
+                    this.reportPossibleFlow(description, this.taintStack[i]);
+                    this.taintStack[i] = this.join(this.taintStack[i], functionInvocationTaint);
+                }
+
+                // reverse order of arguments
+                let args = this.taintStack.splice(this.taintStack.length - expectedArgs);
+                args.reverse();
+                this.taintStack.push(...args);
+
+                this.argsLeftToProcess = expectedArgs;
+
+                /*
                 const tempStack = [];
 
                 // Pop off the actual arguments given to this function from taintStack
                 for (let i = 0; i < actualArgs; i++) {
-                    tempStack.push(this.taintStack.pop());
+                    tempStack.unshift(this.taintStack.pop());
                 }
 
                 // If not enough arguments were supplied, they
@@ -98,27 +166,15 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 tempStack.forEach(
                     (mark) => this.reportPossibleFlow(description, mark));
 
-                // We want to track a dependency between each arguments and
-                // both:
-                // - the function we're entering
-                // - the invocation of the function.
-                //
-                // The stack contains an extra taint value for the function
-                // we're entering. Pop it and join it with the taint value for
-                // the function invocation to produce the taint value for
-                // "entering the function".
-                const functionInvocationTaint =
-                    this.join(this.taintStack.pop(),
-                        this.produceMark(description));
-
                 // Push the actual arguments to taintStack
                 tempStack.forEach((v) =>
                     this.taintStack.push(this.join(v, functionInvocationTaint)));
+                */
             }
         );
     public functionInvokeStart = this.functionInvokeStartOp.wrapper;
 
-    public functionInvokeEndOp: Operation<[string, TaintDescription], void> =
+    public functionInvokeEndOp: Operation<[string, StaticDescription], void> =
         this.adviceWrap(
             ([name, description]) => {
                 this.push([this.returnValue, description]);
@@ -126,24 +182,20 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         );
     public functionInvokeEnd = this.functionInvokeEndOp.wrapper;
 
-    public functionEnterOp: Operation<[string, number, TaintDescription], void> =
+    public functionEnterOp: Operation<[string, number, StaticDescription], void> =
         this.adviceWrap(
             ([name, actualArgs, description]) => {
                 this.callStack.push(description);
 
-                // Pop arguments off the stack
-                let args = new Array(actualArgs);
-                for (let i = 0; i < actualArgs; i++) {
-                    args.push(this.taintStack.pop());
-                }
+                // pop the value of the function
+                this.taintStack.pop();
 
-                // Record taint flows from the callee perspective
-                args.forEach(v => this.reportPossibleFlow(description, v));
+                // TODO: report possible flows from callee perspective
             }
         );
     public functionEnter = this.functionEnterOp.wrapper;
 
-    public functionExitOp: Operation<[string, number, TaintDescription], void> =
+    public functionExitOp: Operation<[string, number, StaticDescription], void> =
         this.adviceWrap(
             ([name, actualArgs, description]) => {
                 this.callStack.pop();
@@ -151,14 +203,14 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         );
     functionExit = this.functionExitOp.wrapper;
 
-    public functionReturnOp: Operation<[string, TaintDescription], void> =
+    public functionReturnOp: Operation<[string, StaticDescription], void> =
         this.adviceWrap(
             (input) => {
                 this.returnValue = this.taintStack[this.taintStack.length - 1];
             });
     public functionReturn = this.functionReturnOp.wrapper;
 
-    public literalOp: Operation<[TaintDescription], void> =
+    public literalOp: Operation<[StaticDescription], void> =
         this.adviceWrap(
             ([description]) => {
                 this.push([this.produceMark(description), description]);
@@ -166,7 +218,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public literal = this.literalOp.wrapper;
 
-    public pushOp: Operation<[V, TaintDescription], void> =
+    public pushOp: Operation<[V, StaticDescription], void> =
         this.adviceWrap(
             ([v, description]) => {
                 this.resetState();
@@ -177,17 +229,18 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public push = this.pushOp.wrapper;
 
-    public popOp: Operation<[TaintDescription], void> =
+    public popOp: Operation<[StaticDescription], void> =
         this.adviceWrap(
             ([description]) => {
                 this.resetState();
                 logger.info("pop");
+                this.taintStack.pop();
             }
         );
 
     public pop = this.popOp.wrapper;
 
-    public readVarOp: Operation<[string, TaintDescription], void> =
+    public readVarOp: Operation<[VariableDescription, StaticDescription], void> =
         this.adviceWrap(
             ([s, description]) => {
                 this.resetState();
@@ -199,7 +252,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public readVar = this.readVarOp.wrapper;
 
-    public writeVarOp: Operation<[string, TaintDescription], void> =
+    public writeVarOp: Operation<[VariableDescription, StaticDescription], void> =
         this.adviceWrap(
             ([s, description]) => {
                 this.resetState();
@@ -218,7 +271,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public writeVar = this.writeVarOp.wrapper;
 
-    public readPropertyOp: Operation<[any, Accessor, TaintDescription], void> =
+    public readPropertyOp: Operation<[DynamicDescription, Accessor, StaticDescription], void> =
         this.adviceWrap(
             ([o, s, description]) => {
                 this.resetState();
@@ -227,10 +280,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
                 // If objectTaintMap is defined, and it contains a defined taint mark
                 // for this property, this will be its value. Otherwise, it will
-                // default to the taint value of the parent object. If it doesn't
-                // exist, it will be untainted.
-                const propertyTaint =  (objectTaintMap && objectTaintMap[s])
-                    || this.varTaintMap.get(o) || this.getUntaintedValue();
+                // be untainted.
+                const propertyTaint = (objectTaintMap && objectTaintMap[s])
+                    || this.getUntaintedValue();
 
                 // Then join this with its initial marking
                 let r = this.join(this.produceMark(description),
@@ -248,7 +300,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public readProperty = this.readPropertyOp.wrapper;
 
-    public writePropertyOp: Operation<[any, Accessor, TaintDescription], void> =
+    public writePropertyOp: Operation<[DynamicDescription, Accessor, StaticDescription], void> =
         this.adviceWrap(
             ([o, s, description]) => {
                 this.resetState();
@@ -269,7 +321,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public writeProperty = this.writePropertyOp.wrapper;
 
-    public unaryOp: Operation<[TaintDescription], void> =
+    public unaryOp: Operation<[StaticDescription], void> =
         this.adviceWrap(
             ([description]) => {
                 this.resetState();
@@ -281,7 +333,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public unary = this.unaryOp.wrapper;
 
-    public binaryOp: Operation<[TaintDescription], void> =
+    public binaryOp: Operation<[StaticDescription], void> =
         this.adviceWrap(
             (description) => {
                 this.resetState();
@@ -297,11 +349,15 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public binary = this.binaryOp.wrapper;
 
-    public initVarOp: Operation<[string, TaintDescription], void> =
+    public initVarOp: Operation<[VariableDescription, StaticDescription], void> =
         this.adviceWrap(
             ([s, description]) => {
                 let v = this.join(this.taintStack[this.taintStack.length - 1], this.produceMark(description));
 
+                if (this.argsLeftToProcess > 0) {
+                    this.taintStack.pop();
+                    this.argsLeftToProcess--;
+                }
 
                 logger.info("init var", s, v);
 
@@ -312,7 +368,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public initVar = this.initVarOp.wrapper;
 
-    public builtinOp: Operation<[string, number, TaintDescription], void> =
+    public builtinOp: Operation<[string, number, StaticDescription], void> =
         this.adviceWrap(
             ([name, actualArgs, description]) => {
                 this.resetState();
@@ -325,7 +381,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public builtin = this.builtinOp.wrapper;
 
-    public builtinExitOp: Operation<[string, TaintDescription], void> =
+    public builtinExitOp: Operation<[string, StaticDescription], void> =
         this.adviceWrap(
             ([name, description]) => {
                 this.resetState();
@@ -335,7 +391,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public builtinExit = this.builtinExitOp.wrapper;
 
-    public conditionalOp: Operation<[TaintDescription], void> =
+    public conditionalOp: Operation<[StaticDescription], void> =
         this.adviceWrap(
             ([description]) => {
                 this.resetState();
@@ -351,7 +407,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public conditional = this.conditionalOp.wrapper;
 
-    public conditionalEndOp: Operation<[TaintDescription], void> =
+    public conditionalEndOp: Operation<[StaticDescription], void> =
         this.adviceWrap(
             ([description]) => {
                 this.resetState();
@@ -368,13 +424,13 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         return [...this.flows];
     }
 
-    private reportPossibleImplicitFlow(description: TaintDescription, taintMarking: V) {
+    private reportPossibleImplicitFlow(description: StaticDescription, taintMarking: V) {
         // no sensitive upgrade check
         // TODO: figure out how this should work generally
         return;
     }
 
-    private currentFunction(): TaintDescription {
+    private currentFunction(): StaticDescription {
         return this.callStack[this.callStack.length - 1];
     }
 
@@ -383,15 +439,15 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         // this.stateCounter = 0;
     }
 
-    protected getSink(description: TaintDescription): TaintDescription {
+    protected getSink(description: StaticDescription): StaticDescription {
         return this.spec.sinks.find((sink) => descriptionSubset(sink, description));
     }
 
-    protected isSource(description: TaintDescription): boolean {
+    protected isSource(description: StaticDescription): boolean {
         return this.spec.sources.some((source) => descriptionSubset(source, description));
     }
 
-    protected isSink(description: TaintDescription): boolean {
+    protected isSink(description: StaticDescription): boolean {
         return this.spec.sinks.some((sink) => descriptionSubset(sink, description));
     }
 }

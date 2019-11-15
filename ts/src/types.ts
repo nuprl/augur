@@ -7,7 +7,6 @@ import { Accessor } from "./nodeprof";
  *
  * Implementations of this abstract machine should maintain a stack of abstract
  * values.
-
  *
  * All `description` arguments to these functions describe *why* and *where* in
  * the code the action occurred.
@@ -17,14 +16,14 @@ export interface AbstractMachine {
      * Pop an abstract value from the stack.
      * @param description why and where the action occurred
      */
-    pop: (input: [TaintDescription]) => void;
+    pop: (input: [StaticDescription]) => void;
 
     /**
      * Push a variable's abstract value onto the stack.
      * @param s the name of the variable
      * @param description why and where the action occurred
      */
-    readVar: (input: [string, TaintDescription]) => void;
+    readVar: (input: [VariableDescription, StaticDescription]) => void;
 
     /**
      * Write the abstract value at the top of the stack to the given variable
@@ -32,21 +31,21 @@ export interface AbstractMachine {
      * @param s the name of the variable
      * @param description why and where the action occurred
      */
-    writeVar: (input: [string, TaintDescription]) => void;
+    writeVar: (input: [VariableDescription, StaticDescription]) => void;
 
     /**
      * Pop two values off the stack, perform a binary operation on them, and
      * push the result.
      * @param description why and where the action occurred
      */
-    binary: (input: [TaintDescription]) => void;
+    binary: (input: [StaticDescription]) => void;
 
     /**
      * Pop one value off the stack, perform a unary operation on it, and
      * push the result.
      * @param description why and where the action occurred
      */
-    unary: (input: [TaintDescription]) => void;
+    unary: (input: [StaticDescription]) => void;
 
     /**
      * Push an object property's abstract value onto the stack.
@@ -54,7 +53,7 @@ export interface AbstractMachine {
      * @param s the property name
      * @param description why and where the action occurred
      */
-    readProperty: (input: [any, Accessor, TaintDescription]) => void;
+    readProperty: (input: [DynamicDescription, PropertyDescription, StaticDescription]) => void;
 
     /**
      * Write an abstract value to an object property from the top of the stack.
@@ -62,15 +61,15 @@ export interface AbstractMachine {
      * @param s the property name
      * @param description why and where the action occurred
      */
-    writeProperty: (input: [any, Accessor, TaintDescription]) => void;
+    writeProperty: (input: [DynamicDescription, PropertyDescription, StaticDescription]) => void;
 
     /**
      * Initialize a new variable with the abstract value at the top of the
-     * stack.
+     * stack. It will be initialized in the current scope.
      * @param s the name of the new variable
      * @param description why and where the action occurred
      */
-    initVar: (input: [string, TaintDescription]) => void;
+    initVar: (input: [VariableDescription, StaticDescription]) => void;
 
     /**
      * This operation represents the execution of a *function invocation
@@ -92,7 +91,7 @@ export interface AbstractMachine {
      * @param _this the object bound to `this` for this function call
      * @param description why and where the action occurred
      */
-    functionInvokeStart: (input: [string, number, number, any, TaintDescription]) => void;
+    functionInvokeStart: (input: [DynamicDescription, number, number, StaticDescription]) => void;
 
     /**
      * This operation represents the return of a *function invocation
@@ -117,7 +116,7 @@ export interface AbstractMachine {
      * @param actualNumArgs the number of arguments actually given
      * @param description why and where the action occurred
      */
-    functionInvokeEnd: (input: [string, TaintDescription]) => void;
+    functionInvokeEnd: (input: [DynamicDescription, StaticDescription]) => void;
 
     /**
      * This operation represents the execution of a *function*. This
@@ -135,7 +134,7 @@ export interface AbstractMachine {
      * @param actualNumArgs the number of arguments actually given
      * @param description why and where the action occurred
      */
-    functionEnter: (input: [string, number, TaintDescription]) => void;
+    functionEnter: (input: [DynamicDescription, number, StaticDescription]) => void;
 
     /**
      * This operation represents the execution of a *function*. This
@@ -153,7 +152,7 @@ export interface AbstractMachine {
      * @param actualNumArgs the number of arguments actually given
      * @param description why and where the action occurred
      */
-    functionExit: (input: [string, number, TaintDescription]) => void;
+    functionExit: (input: [DynamicDescription, number, StaticDescription]) => void;
 
     /**
      * This operation represents the marking of the top-most value on the
@@ -166,7 +165,7 @@ export interface AbstractMachine {
      * @param name the name of the function returning from
      * @param description why and where the action occurred
      */
-    functionReturn: (input: [string, TaintDescription]) => void;
+    functionReturn: (input: [DynamicDescription, StaticDescription]) => void;
 
     /**
      * Perform the specified builtin on the arguments from the top of the
@@ -175,7 +174,7 @@ export interface AbstractMachine {
      * @param actualArgs the number of arguments supplied to the builtin
      * @param description why and where the action occurred
      */
-    builtin: (input: [string, number, TaintDescription]) => void;
+    builtin: (input: [DynamicDescription, number, StaticDescription]) => void;
 
     /**
      * Used to signal a builtin has exited. The result is on the top of the
@@ -184,7 +183,7 @@ export interface AbstractMachine {
      * @param actualArgs the number of arguments supplied to the builtin
      * @param description why and where the action occurred
      */
-    builtinExit: (input: [string, TaintDescription]) => void;
+    builtinExit: (input: [DynamicDescription, StaticDescription]) => void;
 
     /**
      * Used to signal the end of execution.
@@ -196,13 +195,13 @@ export interface AbstractMachine {
      * the top of the stack.
      * @param description why and where the action occurred
      */
-    conditional: (input: [TaintDescription]) => void;
+    conditional: (input: [StaticDescription]) => void;
 
     /**
      * Used to signal the end of a conditional block.
      * @param description why and where the action occurred
      */
-    conditionalEnd: (input: [TaintDescription]) => void;
+    conditionalEnd: (input: [StaticDescription]) => void;
 
     /**
      * Produce an abstract value for the given code location, and push it to
@@ -212,7 +211,29 @@ export interface AbstractMachine {
      * stack machine. All other instructions re-use existing abstract values.
      * @param description why and where the action occurred
      */
-    literal: (input: [TaintDescription]) => void;
+    literal: (input: [StaticDescription]) => void;
+}
+
+// an interface for associating shadow identifiers with arbitrary objects.
+//
+// shadow identifiers are just identifiers that are unique to each instance
+// of an object.
+export interface ShadowMemory {
+    // initialize a shadow id for an object
+    initialize(o: object): void;
+
+    // retrieve a shadow id for an object. if there is no valid shadow id
+    // for this object, this will return `undefined`.
+    getShadowID(o: object): DynamicDescription;
+
+    // used to keep track of what function we are currently in.
+    functionEnter(f: Function): void;
+
+    functionExit(): void;
+
+    declare(name: RawVariableDescription): void;
+
+    getFullVariableName(name: string): VariableDescription;
 }
 
 export type Command = keyof AbstractMachine;
@@ -234,8 +255,37 @@ export type TaintType = "function"
     | "literal"
     | "declaration";
 
+// A unique identifier for a particular DYNAMIC OBJECT.
+//
+// (The `brand` property should not be instantiated. It is a
+//  hack to implement  "branded types". This type will be
+//  distinct from all other  aliases of the `string` type that
+//  include a brand.)
+export type DynamicDescription = string & { readonly brand: unique symbol };
+
+export type RawVariableDescription = string & { readonly brand: unique symbol };
+
+// An identifier for a VARIABLE NAME and its associated scope.
+// If a function is called multiple times, the names of local
+// variables in them should NOT conflict. In other words, the
+// `VariableDescription` must include some information about the
+// scope it was defined in.
+//
+// (The `brand` property should not be instantiated. It is a
+//  hack to implement  "branded types". This type will be
+//  distinct from all other  aliases of the `string` type that
+//  include a brand.)
+export type VariableDescription = string & { readonly brand: unique symbol };
+
+// An identifier for a property of an object.
+export type PropertyDescription = Accessor & { readonly brand: unique symbol };
+
+// A set of STATIC objects that could be present at a particular source
+// location. Flows are detected by checking if particular DYNAMIC objects
+// fit into this set, based on where it is travelling through the source code.
+//
 // A description of a taint source/sink. All fields are optional.
-export interface TaintDescription extends Object {
+export interface StaticDescription extends Object {
     type?: TaintType;
     name?: string;
     location?: Location;
@@ -272,11 +322,11 @@ export interface RunSpecification extends Object {
     main: string;
 
     // The sources of taint
-    sources?: Array<TaintDescription>;
+    sources?: Array<StaticDescription>;
 
     // The sinks for taint
-    sinks?: Array<TaintDescription>;
+    sinks?: Array<StaticDescription>;
 
     // The list of sinks that are expected to be flowed into
-    expectedFlows?: Array<TaintDescription>;
+    expectedFlows?: Array<StaticDescription>;
 }

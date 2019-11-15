@@ -2,7 +2,7 @@
 // JALANGI DO NOT INSTRUMENT
 
 import { Accessor } from "../nodeprof";
-import {Instruction, AbstractMachine, TaintDescription} from "../types";
+import {Instruction, AbstractMachine, StaticDescription} from "../types";
 import MyLogger from "../analysis/mylogger";
 
 // An implementation of an abstract machine that produces JavaScript code.
@@ -36,23 +36,23 @@ export default class JSWriter implements AbstractMachine {
         this.logger.log(this.preamble);
     }
 
-    public literal([description]: [TaintDescription]) {
+    public literal([description]: [StaticDescription]) {
         this.writeInstruction({ command: "literal", args: [description] });
     }
 
-    public pop([description]: [TaintDescription]) {
+    public pop([description]: [StaticDescription]) {
         this.writeInstruction({ command: "pop", args: [description] });
     }
 
-    public readVar([s, description]: [string, TaintDescription]) {
+    public readVar([s, description]: [string, StaticDescription]) {
         this.writeInstruction({ command: "readVar", args: [s, description] });
     }
 
-    public writeVar([s, description]: [string, TaintDescription]) {
+    public writeVar([s, description]: [string, StaticDescription]) {
         this.writeInstruction({ command: "writeVar", args: [s, description] });
     }
 
-    public readProperty([o, s, description]: [{}, Accessor, TaintDescription]) {
+    public readProperty([o, s, description]: [{}, Accessor, StaticDescription]) {
         if (!this.objIdMap.has(o)) {
             this.objIdMap.set(o, "obj" + this.objCnt++);
         }
@@ -60,7 +60,7 @@ export default class JSWriter implements AbstractMachine {
             args: [this.objIdMap.get(o), s, description] });
     }
 
-    public writeProperty([o, s, description]: [{}, Accessor, TaintDescription]) {
+    public writeProperty([o, s, description]: [{}, Accessor, StaticDescription]) {
         if (!this.objIdMap.has(o)) {
             this.objIdMap.set(o, "obj" + this.objCnt++);
         }
@@ -68,26 +68,26 @@ export default class JSWriter implements AbstractMachine {
             args: [this.objIdMap.get(o), s, description] });
     }
 
-    public binary([description]: [TaintDescription]): void {
+    public binary([description]: [StaticDescription]): void {
         this.writeInstruction({ command: "binary", args: [description]});
     }
 
-    public unary([description]: [TaintDescription]): void {
+    public unary([description]: [StaticDescription]): void {
         this.writeInstruction({ command: "unary", args: [description]});
     }
 
-    public initVar([s, description]: [string, TaintDescription]) {
+    public initVar([s, description]: [string, StaticDescription]) {
         this.writeInstruction({ command: "initVar", args: [s, description]});
     }
 
-    public functionEnter([name, actualArgs, description]: [string, number, TaintDescription]) {
+    public functionEnter([name, actualArgs, description]: [string, number, StaticDescription]) {
         this.writeInstruction({
             command: "functionEnter",
             args: [name, actualArgs, description]
         });
     }
 
-    public functionExit ([name, actualArgs, description]: [string, number, TaintDescription]) {
+    public functionExit ([name, actualArgs, description]: [string, number, StaticDescription]) {
         this.writeInstruction({
             command: "functionExit",
             args: [name, actualArgs, description]
@@ -95,42 +95,42 @@ export default class JSWriter implements AbstractMachine {
     }
 
     public functionInvokeEnd([name, description]:
-                                 [string, TaintDescription]) {
+                                 [string, StaticDescription]) {
         this.writeInstruction({
             command: "functionInvokeEnd",
             args: [name, description]
         });
     }
 
-    public functionInvokeStart([name, expectedArgs, actualArgs, _this, description]:
-                                   [string, number, number, any, TaintDescription]) {
+    public functionInvokeStart([name, expectedArgs, actualArgs, description]:
+                                   [string, number, number, StaticDescription]) {
         this.writeInstruction({
             command: "functionInvokeStart",
-            args: [name, expectedArgs, actualArgs, _this, description]
+            args: [name, expectedArgs, actualArgs, description]
         });
     }
 
-    public functionReturn([name, description]: [string, TaintDescription]) {
+    public functionReturn([name, description]: [string, StaticDescription]) {
         this.writeInstruction({ command: "functionReturn", args: [name, description]});
     }
 
-    public builtin([name, actualArgs, description]: [string, number, TaintDescription]) {
+    public builtin([name, actualArgs, description]: [string, number, StaticDescription]) {
         this.writeInstruction({ command: "builtin",
             args: [name, actualArgs, description]});
     }
 
-    public builtinExit([name, description]: [string, TaintDescription]): void {
+    public builtinExit([name, description]: [string, StaticDescription]): void {
         this.writeInstruction({ command: "builtinExit",
             args: [name, description]})
     }
 
 
-    public conditional([description]: [TaintDescription]): void {
+    public conditional([description]: [StaticDescription]): void {
         this.writeInstruction({ command: "conditional",
             args: [description]});
     }
 
-    public conditionalEnd([description]: [TaintDescription]): void {
+    public conditionalEnd([description]: [StaticDescription]): void {
         this.writeInstruction({ command: "conditionalEnd",
             args: [description]});
     };

@@ -1,11 +1,11 @@
 import JSMachine from "./JSMachine";
-import {TaintDescription} from "../types";
+import {StaticDescription} from "../types";
 
 type NativeModel =
     <V, F>(machine: JSMachine<V, F>,
            name: string,
            actualArgs: number,
-           description: TaintDescription) => void;
+           description: StaticDescription) => void;
 
 interface NativeModelMap {
     // this means any string can be a valid key
@@ -23,8 +23,14 @@ let defaultModel: NativeModel = (machine, name, actualArgs, description) => {
 };
 
 let models: NativeModelMap = {
+    // TODO: correctly implement variables in this native model. currently
+    //  there is no access to the shadow memory in here, so we cannot call
+    //  shadowMemory.getFullVariableName("__accum__"), for example. Perhaps
+    //  these variables should be modeled as local variables inside this
+    //  function.
+    /*
     "reduce":
-        <V, F>(m: JSMachine<V, F>, name: string, actualArgs: number, description: TaintDescription) => {
+        <V, F>(m: JSMachine<V, F>, name: string, actualArgs: number, description: StaticDescription) => {
             // Array.prototype.reduce(callback, initialValue)
             let arrayOID = "";
             let reducerName = "";
@@ -81,9 +87,10 @@ let models: NativeModelMap = {
                 }
             );
         }
+     */
 };
 
-export function useNativeModel<V, F>(machine: JSMachine<V, F>, name: string, actualArgs: number, description: TaintDescription): void {
+export function useNativeModel<V, F>(machine: JSMachine<V, F>, name: string, actualArgs: number, description: StaticDescription): void {
     let model = models[name];
 
     if (model) {
