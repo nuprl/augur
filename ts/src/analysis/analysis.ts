@@ -19,6 +19,7 @@ import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
 import {parseIID} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
+import {useNativeRecorder} from "../native/native";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
@@ -148,7 +149,13 @@ export default class Analysis implements Analyzer {
         if (this.isNative(f)) {
             // TODO: make sure this works using regular builtins and
             //  reassigned builtins
-            this.state.builtin([this.shadowMemory.getShadowID(f), f.length, description]);
+            this.state.builtin(
+                [this.shadowMemory.getShadowID(f),
+                    f.length,
+                    // TODO: should this be description.name?
+                    //       we need a way to correctly name buiiltins
+                    useNativeRecorder(this, description.name, args, description),
+                    description]);
         } else {
             this.state.functionInvokeStart([this.shadowMemory.getShadowID(f),
                 f.length,

@@ -262,3 +262,7 @@ test('scoping-clean', (done) => runTest('scoping-clean', done));
 test('scoping-tainted', (done) => runTest('scoping-tainted', done));
 test('linked-list-clean', (done) => runTest('linked-list-clean', done));
 test('linked-list-tainted', (done) => runTest('linked-list-tainted', done));
+test('native-function-call-clean', (done) => runTest('native-function-call-clean', done));
+test('native-function-call-tainted', (done) => runTest('native-function-call-tainted', done));
+test('native-function-call-2-clean', (done) => runTest('native-function-call-2-clean', done));
+test('native-function-call-2-tainted', (done) => runTest('native-function-call-2-tainted', done));

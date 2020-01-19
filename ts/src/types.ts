@@ -172,9 +172,11 @@ export interface AbstractMachine {
      * stack.
      * @param name the name of the builtin
      * @param actualArgs the number of arguments supplied to the builtin
+     * @param extraRecords the extra information needed to implement this
+     *                     builtin model
      * @param description why and where the action occurred
      */
-    builtin: (input: [DynamicDescription, number, StaticDescription]) => void;
+    builtin: (input: [DynamicDescription, number, any, StaticDescription]) => void;
 
     /**
      * Used to signal a builtin has exited. The result is on the top of the

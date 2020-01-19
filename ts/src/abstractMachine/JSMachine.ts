@@ -13,7 +13,7 @@ import {
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
 import Operation from "./operation";
-import {useNativeModel} from "./native";
+import {getNativeModel, useNativeImplementation} from "../native/native";
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
     taintStack: V[] = [];
@@ -368,14 +368,13 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public initVar = this.initVarOp.wrapper;
 
-    public builtinOp: Operation<[string, number, StaticDescription], void> =
+    public builtinOp: Operation<[string, number, any, StaticDescription], void> =
         this.adviceWrap(
-            ([name, actualArgs, description]) => {
+            ([name, actualArgs, extraRecords, description]) => {
                 this.resetState();
                 logger.info("builtin", name, actualArgs);
 
-                useNativeModel(this, name, actualArgs, description);
-
+                useNativeImplementation(this, name, actualArgs, extraRecords, description);
             }
         );
 
