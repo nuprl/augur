@@ -374,7 +374,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.resetState();
                 logger.info("builtin", name, actualArgs);
 
-                useNativeImplementation(this, name, actualArgs, extraRecords, description);
+                useNativeImplementation(this, description.name, actualArgs, extraRecords, description);
             }
         );
 
