@@ -29,16 +29,65 @@ type NativeModelMap<S> = {
 let asNativeModel = <T>(x: NativeModel<T>) => x;
 let asNativeModelMap = <S>(x: NativeModelMap<S>): NativeModelMap<S> => x;
 
+// Pops the values associated with this builtin call from the stack.
+// Returns them in the form [builtin taint value, args' taint values []]
+let popArgs = <V, F>(machine: JSMachine<V, F>,
+                     name: string,
+                     actualArgs: number,
+                     description: StaticDescription): [V, V[]] => {
+    let args: V[] = [];
+
+    // pop taint value of args
+    for (let i = 0; i < actualArgs; i++) {
+        args[i - actualArgs] = (machine.taintStack.pop());
+    }
+
+    // pop value of builtin
+    let builtinTaint = machine.taintStack.pop();
+
+    return [builtinTaint, args];
+};
+
+let popArgsAndReportFlowsIntoBuiltin =
+    <V, F>(machine: JSMachine<V, F>,
+           name: string,
+           actualArgs: number,
+           description: StaticDescription): [V, V[]] => {
+
+        let [builtinTaint, argsTaint] =
+            popArgs(machine, name, actualArgs, description);
+
+        argsTaint.forEach((v: V) =>
+            machine.reportPossibleFlow(description, v));
+
+        return [builtinTaint, argsTaint];
+    };
+
+let returnTaints = <V, F>(machine: JSMachine<V, F>,
+                          taint: V) => {
+    machine.taintStack.push(taint);
+};
+
+let joinTaints = <V, F>(machine: JSMachine<V, F>, taints: V[]): V => {
+    return taints.reduce((a, b) => machine.join(a, b));
+};
+
+let joinAndReturnTaints = <V, F>(machine: JSMachine<V, F>,
+                                 taints: V[]) => {
+    // join args' taint values, and use that as the return value
+    returnTaints(machine, joinTaints(machine, taints));
+};
+
 let defaultRecorder: NativeModelRecorder<void> = () => {};
 let defaultImplementation: NativeModelImplementation<void> =
     (machine, name, actualArgs, extraRecords, description): void => {
-    let args = [];
+        let [_, argsTaint] =
+            popArgsAndReportFlowsIntoBuiltin(machine,
+                name,
+                actualArgs,
+                description);
 
-    for (let i = 0; i < actualArgs; i++) {
-        args.push(machine.taintStack.pop());
-    }
-
-    args.forEach((v) => machine.reportPossibleFlow(description, v));
+        joinAndReturnTaints(machine, argsTaint);
 };
 let defaultModel: NativeModel<void> = {
     recorder: defaultRecorder,
