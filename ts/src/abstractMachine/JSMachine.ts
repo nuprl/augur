@@ -27,7 +27,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     flows: Set<F> = new Set();
     pc: V;
-    callStack: Array<StaticDescription>;
+    functionCallStack: Array<StaticDescription>;
     returnValue: V;
 
     argsLeftToProcess: number = 0;
@@ -62,7 +62,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.spec = spec;
         this.objects = new Map();
         this.pc = this.getUntaintedValue();
-        this.callStack = [{name: "program start"}];
+        this.functionCallStack = [{name: "program start"}];
         this.getTaint = this.getTaint.bind(this);
     }
 
@@ -76,6 +76,22 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         let wrappedOperation = new wrappedOperationClass();
 
         return wrappedOperation;
+    }
+
+    public callstackPush(frame: StaticDescription): void {
+        this.functionCallStack.push(frame);
+        this.functionEnterAdvice.push(null);
+        this.functionExitAdvice.push(null);
+    }
+
+    public callstackPop(): void {
+        this.functionCallStack.pop();
+        this.functionEnterAdvice.pop();
+        this.functionExitAdvice.pop();
+    }
+
+    public installAdvice(adviceStack: Array<Function>, f: Function): void {
+        adviceStack[adviceStack.length - 1] = f;
     }
 
     public reportFlow(flow: F) {
@@ -182,10 +198,17 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         );
     public functionInvokeEnd = this.functionInvokeEndOp.wrapper;
 
+    public functionEnterAdvice: {(name: string, actualArgs: number, description: StaticDescription): void}[] = [];
     public functionEnterOp: Operation<[string, number, StaticDescription], void> =
         this.adviceWrap(
             ([name, actualArgs, description]) => {
-                this.callStack.push(description);
+                let advice = this.functionEnterAdvice[this.functionEnterAdvice.length - 1];
+                if (advice != null) {
+                    advice(name, actualArgs, description);
+                    return;
+                }
+
+                this.callstackPush(description);
 
                 // pop the value of the function
                 this.taintStack.pop();
@@ -195,10 +218,17 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         );
     public functionEnter = this.functionEnterOp.wrapper;
 
+    public functionExitAdvice: {(name: string, actualArgs: number, description: StaticDescription): void}[] = [];
     public functionExitOp: Operation<[string, number, StaticDescription], void> =
         this.adviceWrap(
             ([name, actualArgs, description]) => {
-                this.callStack.pop();
+                let advice = this.functionExitAdvice[this.functionExitAdvice.length - 1];
+                if (advice != null) {
+                    advice(name, actualArgs, description);
+                    return;
+                }
+
+                this.callstackPop();
             }
         );
     functionExit = this.functionExitOp.wrapper;
@@ -430,7 +460,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     }
 
     private currentFunction(): StaticDescription {
-        return this.callStack[this.callStack.length - 1];
+        return this.functionCallStack[this.functionCallStack.length - 1];
     }
 
     private resetState() {
