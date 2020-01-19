@@ -22,9 +22,6 @@ type NativeModel<R> = {
     implementation: NativeModelImplementation<R>;
 };
 
-type CheckNativeModel<M> =
-    NativeModel<M extends NativeModel<infer U> ? NativeModel<U> : never>;
-
 type NativeModelMap<S> = {
     [K in keyof S]: S[K];
 }
