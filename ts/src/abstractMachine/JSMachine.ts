@@ -13,7 +13,7 @@ import {
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
 import Operation from "./operation";
-import {getNativeModel, useNativeImplementation} from "../native/native";
+import {useNativeImplementation} from "../native/native";
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
     taintStack: V[] = [];
