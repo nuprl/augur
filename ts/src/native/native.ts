@@ -22,17 +22,10 @@ type NativeModel<R> = {
     implementation: NativeModelImplementation<R>;
 };
 
-// type Check<R> = NativeModel<R extends NativeModel<infer U> ?
-// NativeModel<U> : never>;
-// type INativeModel<R, TNativeModel extends Check<TNativeModel>> =
-
 type CheckNativeModel<M> =
     NativeModel<M extends NativeModel<infer U> ? NativeModel<U> : never>;
 
 type NativeModelMap<S> = {
-    // this means any string can be a valid key
-    // [name: string]: Check<R>;
-
     [K in keyof S]: S[K];
 }
 
@@ -93,10 +86,8 @@ export function getNativeModel<V, F>(name: string): NativeModel<any> {
 
     if (model) {
         return model;
-        // model.recorder(machine, name, actualArgs, description);
     } else {
         return defaultModel;
-        // defaultModel(machine, name, actualArgs, description);
     }
 }
 
