@@ -81,7 +81,7 @@ export interface AbstractMachine {
      * invocation from the callee-perspective.
      *
      * Ensure the stack is properly aligned for `expectedNumArgs`. If too
-     * many arguments were supplied, pop them of the stack. If too few
+     * many arguments were supplied, pop them off the stack. If too few
      * arguments were supplied, push abstract values for them.
      *
      * @param name the name of the function according to the caller
