@@ -266,3 +266,5 @@ test('native-function-call-clean', (done) => runTest('native-function-call-clean
 test('native-function-call-tainted', (done) => runTest('native-function-call-tainted', done));
 test('native-function-call-2-clean', (done) => runTest('native-function-call-2-clean', done));
 test('native-function-call-2-tainted', (done) => runTest('native-function-call-2-tainted', done));
+test('native-function-call-3-clean', (done) => runTest('native-function-call-3-clean', done));
+test('native-function-call-3-tainted', (done) => runTest('native-function-call-3-tainted', done));

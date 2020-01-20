@@ -202,7 +202,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public functionEnterOp: Operation<[string, number, StaticDescription], void> =
         this.adviceWrap(
             ([name, actualArgs, description]) => {
-                let advice = this.functionEnterAdvice[this.functionEnterAdvice.length - 1];
+                let advice = this.functionEnterAdvice[this.functionEnterAdvice.length - 2];
                 if (advice != null) {
                     advice(name, actualArgs, description);
                     return;
@@ -222,7 +222,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public functionExitOp: Operation<[string, number, StaticDescription], void> =
         this.adviceWrap(
             ([name, actualArgs, description]) => {
-                let advice = this.functionExitAdvice[this.functionExitAdvice.length - 1];
+                let advice = this.functionExitAdvice[this.functionExitAdvice.length - 2];
                 if (advice != null) {
                     advice(name, actualArgs, description);
                     return;
@@ -398,13 +398,13 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public initVar = this.initVarOp.wrapper;
 
-    public builtinOp: Operation<[string, number, any, StaticDescription], void> =
+    public builtinOp: Operation<[DynamicDescription, number, any, StaticDescription], void> =
         this.adviceWrap(
             ([name, actualArgs, extraRecords, description]) => {
                 this.resetState();
                 logger.info("builtin", name, actualArgs);
 
-                useNativeImplementation(this, description.name, actualArgs, extraRecords, description);
+                useNativeImplementation(this, name, actualArgs, extraRecords, description);
             }
         );
 

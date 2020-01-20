@@ -39,7 +39,7 @@ export default class Analysis implements Analyzer {
     private functionCallStack: DynamicDescription[] = ["global" as DynamicDescription];
 
     // shadow memory
-    private shadowMemory: ShadowMemory = new WeakMapShadow();
+    public shadowMemory: ShadowMemory = new WeakMapShadow();
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
@@ -133,7 +133,7 @@ export default class Analysis implements Analyzer {
         this.state.writeProperty([this.shadowMemory.getShadowID(receiver),
             offset as PropertyDescription,
             description]);
-    }
+    };
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args) => {
         let description: StaticDescription = {type: "functionInvocation",
@@ -154,7 +154,7 @@ export default class Analysis implements Analyzer {
                     f.length,
                     // TODO: should this be description.name?
                     //       we need a way to correctly name buiiltins
-                    useNativeRecorder(this, description.name, args, description),
+                    useNativeRecorder(this, this.shadowMemory.getShadowID(f), args, description),
                     description]);
         } else {
             this.state.functionInvokeStart([this.shadowMemory.getShadowID(f),

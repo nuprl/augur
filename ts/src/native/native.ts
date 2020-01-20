@@ -1,16 +1,20 @@
 import JSMachine from "../abstractMachine/JSMachine";
-import {StaticDescription} from "../types";
+import {
+    DynamicDescription,
+    StaticDescription,
+    VariableDescription
+} from "../types";
 import Analysis from "../analysis/analysis";
 
 type NativeModelRecorder<R> =
     (analysis: Analysis,
-     name: string,
+     name: DynamicDescription,
      args: any[],
      description: StaticDescription) => R;
 
 type NativeModelImplementation<R> =
     <V, F>(machine: JSMachine<V, F>,
-           name: string,
+           name: DynamicDescription,
            actualArgs: number,
            extraRecords: R,
            description: StaticDescription) => void
@@ -29,17 +33,30 @@ type NativeModelMap<S> = {
 let asNativeModel = <T>(x: NativeModel<T>) => x;
 let asNativeModelMap = <S>(x: NativeModelMap<S>): NativeModelMap<S> => x;
 
+let prepareFunctionCall = <V, F>(machine: JSMachine<V, F>,
+                                 functionTaintValue: V,
+                                 argTaintValues: V[],
+                                 builtinDescription: StaticDescription): void => {
+    // prepare the stack for an upcoming functionEnter
+    machine.push([functionTaintValue, builtinDescription]);
+
+    // push the arguments in reverse order
+    for (let i = argTaintValues.length - 1; i >= 0; i--) {
+        machine.push([argTaintValues[i], builtinDescription]);
+    }
+};
+
 // Pops the values associated with this builtin call from the stack.
 // Returns them in the form [builtin taint value, args' taint values []]
 let popArgs = <V, F>(machine: JSMachine<V, F>,
-                     name: string,
+                     name: DynamicDescription,
                      actualArgs: number,
                      description: StaticDescription): [V, V[]] => {
     let args: V[] = [];
 
     // pop taint value of args
     for (let i = 0; i < actualArgs; i++) {
-        args[i - actualArgs] = (machine.taintStack.pop());
+        args[actualArgs - i] = (machine.taintStack.pop());
     }
 
     // pop value of builtin
@@ -50,7 +67,7 @@ let popArgs = <V, F>(machine: JSMachine<V, F>,
 
 let popArgsAndReportFlowsIntoBuiltin =
     <V, F>(machine: JSMachine<V, F>,
-           name: string,
+           name: DynamicDescription,
            actualArgs: number,
            description: StaticDescription): [V, V[]] => {
 
@@ -102,7 +119,7 @@ let models = asNativeModelMap({
     //  function.
     "map": asNativeModel({recorder: () => {},
         implementation: function <V, F>(machine: JSMachine<V, F>,
-               name: string,
+               name: DynamicDescription,
                actualArgs: number,
                extraRecords: void,
                description: StaticDescription): void {
@@ -110,22 +127,41 @@ let models = asNativeModelMap({
     }),
     "call": asNativeModel({
         recorder: (analysis: Analysis,
-                   name: string,
+                   name: DynamicDescription,
                    args: any[],
                    description: StaticDescription) => {
             return name;
         },
         implementation: function <V, F>(machine: JSMachine<V, F>,
-                               name: string,
+                               name: DynamicDescription,
                                actualArgs: number,
-                               extraRecords: string,
+                               builtinName: DynamicDescription,
                                description: StaticDescription): void {
+            let [builtinTaint, argsTaint] =
+                popArgsAndReportFlowsIntoBuiltin(machine,
+                    name,
+                    actualArgs,
+                    description);
+
+            // TODO: currently we're passing in the description of the builtin.
+            //       this is not really correct. but it appears that
+            //       functionEnter isn't even using this value. so really
+            //       both of these issues need to be fixed.
+            prepareFunctionCall(machine, argsTaint[0], argsTaint.slice(1), description);
+
+            machine.installAdvice(machine.functionExitAdvice,
+                () => {
+                    // machine.callstackPop();
+                    returnTaints(machine, machine.returnValue);
+                });
+
         }
     }),
 
 
 });
 
+// TODO: don't use string here; create a type for builtin names
 export function getNativeModel<V, F>(name: string): NativeModel<any> {
     // @ts-ignore
     let model = models[name] as NativeModel<any>;
@@ -138,18 +174,18 @@ export function getNativeModel<V, F>(name: string): NativeModel<any> {
 }
 
 export function useNativeRecorder<R>(analysis: Analysis,
-                                     name: string,
+                                     name: DynamicDescription,
                                      args: any[],
                                      description: StaticDescription): R {
-    return getNativeModel(name).recorder(analysis, name, args, description);
+    return getNativeModel(description.name).recorder(analysis, name, args, description);
 }
 
 export function useNativeImplementation<V, F, R>(machine: JSMachine<V, F>,
-                                     name: string,
+                                     name: DynamicDescription,
                                      actualArgs: number,
                                      extraRecords: R,
                                      description: StaticDescription): void {
-    getNativeModel(name)
+    getNativeModel(description.name)
         .implementation(machine,
             name,
             actualArgs,
