@@ -61,7 +61,7 @@ let popArgs = <V, F>(machine: JSMachine<V, F>,
 
     // pop taint value of args
     for (let i = 0; i < actualArgs; i++) {
-        args[actualArgs - i] = (machine.taintStack.pop());
+        args[actualArgs - i - 1] = (machine.taintStack.pop());
     }
 
     // pop value of builtin
