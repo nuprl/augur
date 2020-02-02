@@ -142,6 +142,7 @@ export default class Analysis implements Analyzer {
         this.shadowMemory.initialize(receiver);
         this.shadowMemory.initialize(f);
         this.shadowMemory.functionEnter(f);
+        this.shadowMemory.declare("this" as RawVariableDescription);
 
         if (f.name && f.name != "") {
             description.name = f.name;
