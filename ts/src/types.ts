@@ -265,6 +265,8 @@ export type TaintType = "function"
 //  include a brand.)
 export type DynamicDescription = string & { readonly brand: unique symbol };
 
+// An identifier that represents a variable's name. It should contain JUST
+// the variable's name, and no other information about its scope.
 export type RawVariableDescription = string & { readonly brand: unique symbol };
 
 // An identifier for a VARIABLE NAME and its associated scope.
