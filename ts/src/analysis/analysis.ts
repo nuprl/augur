@@ -152,7 +152,7 @@ export default class Analysis implements Analyzer {
             //  reassigned builtins
             this.state.builtin(
                 [this.shadowMemory.getShadowID(f),
-                    f.length,
+                    args.length,
                     // TODO: should this be description.name?
                     //       we need a way to correctly name buiiltins
                     useNativeRecorder(this, this.shadowMemory.getShadowID(f), args, description),
