@@ -60,7 +60,7 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
-function runTest(testName, done){
+function runTest(testName, done) {
     // Parse the spec to know the program to instrument, sources, sinks, and
     // expected taints
     const spec = JSON.parse(fs.readFileSync(INPUT_DIR + testName + "/spec.json").toString());
@@ -69,24 +69,33 @@ function runTest(testName, done){
     const outputFile = ACTUAL_OUT_DIR + testName + '_out.js';
     const inputFile = INPUT_DIR + testName + "/" + spec.main;
 
-    if (!fs.existsSync(ANALYSIS)){
+    if (!fs.existsSync(ANALYSIS)) {
         throw new Error("analysis not found: " + ANALYSIS);
     }
+
+    const DOCKER_OUTPUT_FILENAME = "analysis.output";
 
     // The command to instrument the test's JS code
     const command =
         "rm -f " + outputFile + "; " +
         (SHOULD_USE_DOCKER
             // Run test using Docker
-            ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --private --inputFile" +
-            " " + inputFile + " --outputFile " + outputFile
+            ? TAINT_ANALYSIS_HOME + "/ts/docker-nodeprof/docker-analyze.sh" +
+            ` --mxArg "--initParam outputFile:/root/program/${DOCKER_OUTPUT_FILENAME}"` +
+            " --analysisDir " + TAINT_ANALYSIS_HOME + "/ts/" +
+            " --analysisMain " + "dist/src/analysis/nodeprofAnalysis.js" +
+            " --programDir " + INPUT_DIR + testName + "/" +
+            " --programMain " + spec.main + ";" +
+            "mv " + INPUT_DIR + testName + "/" + DOCKER_OUTPUT_FILENAME +
+            " " + outputFile
             // Run test using local NodeProf installation
             : "cd " + NODEPROF_HOME + "; "
+            + `env OUTPUT_FILE=\"${outputFile}\"`
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
             + " --analysis " + ANALYSIS + " "
             + inputFile);
 
-    exec(command, function(error, stdout, stderr){
+    exec(command, function (error, stdout, stderr) {
         console.error("Source file: \t" + inputFile);
 
         if (error) {
