@@ -143,6 +143,9 @@ let models = asNativeModelMap({
                     actualArgs,
                     description);
 
+            // create an entry on the callstack for this builtin
+            machine.callstackPush(description);
+
             // TODO: currently we're passing in the description of the builtin.
             //       this is not really correct. but it appears that
             //       functionEnter isn't even using this value. so really
@@ -153,6 +156,8 @@ let models = asNativeModelMap({
                 () => {
                     // machine.callstackPop();
                     returnTaints(machine, machine.returnValue);
+                    machine.callstackPop();
+                    machine.callstackPop();
                 });
 
         }
