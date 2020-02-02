@@ -155,7 +155,7 @@ let models = asNativeModelMap({
             //       this is not really correct. but it appears that
             //       functionEnter isn't even using this value. so really
             //       both of these issues need to be fixed.
-            prepareFunctionCall(machine, argsTaint[0], argsTaint.slice(1), description);
+            prepareFunctionCall(machine, builtinTaint, argsTaint.slice(1), description);
 
             machine.installAdvice(machine.functionExitAdvice,
                 () => {
