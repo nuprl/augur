@@ -46,6 +46,9 @@ let prepareFunctionCall = <V, F>(machine: JSMachine<V, F>,
     for (let i = argTaintValues.length - 1; i >= 0; i--) {
         machine.push([argTaintValues[i], builtinDescription]);
     }
+
+    // inform the stack machine how many args are coming in
+    machine.argsLeftToProcess = argTaintValues.length;
 };
 
 // Pops the values associated with this builtin call from the stack.
