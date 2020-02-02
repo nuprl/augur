@@ -33,6 +33,8 @@ type NativeModelMap<S> = {
 let asNativeModel = <T>(x: NativeModel<T>) => x;
 let asNativeModelMap = <S>(x: NativeModelMap<S>): NativeModelMap<S> => x;
 
+// prepares the stack for an upcoming functionEnter by pushing the arguments
+// in reverse order.
 let prepareFunctionCall = <V, F>(machine: JSMachine<V, F>,
                                  functionTaintValue: V,
                                  argTaintValues: V[],
