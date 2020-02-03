@@ -237,6 +237,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             (input) => {
                 this.returnValue = this.taintStack[this.taintStack.length - 1];
+                this.taintStack.pop();
             });
     public functionReturn = this.functionReturnOp.wrapper;
 
