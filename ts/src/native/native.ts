@@ -91,7 +91,7 @@ let returnTaints = <V, F>(machine: JSMachine<V, F>,
 };
 
 let joinTaints = <V, F>(machine: JSMachine<V, F>, taints: V[]): V => {
-    return taints.reduce((a, b) => machine.join(a, b));
+    return taints.reduce((a, b) => machine.join(a, b), machine.getUntaintedValue());
 };
 
 let joinAndReturnTaints = <V, F>(machine: JSMachine<V, F>,
@@ -167,7 +167,6 @@ let models = asNativeModelMap({
 
         }
     }),
-
 
 });
 
