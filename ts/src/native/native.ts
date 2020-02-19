@@ -33,6 +33,13 @@ type NativeModelMap<S> = {
 let asNativeModel = <T>(x: NativeModel<T>) => x;
 let asNativeModelMap = <S>(x: NativeModelMap<S>): NativeModelMap<S> => x;
 
+class NativeModelError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = "NativeModelError";
+    }
+}
+
 // prepares the stack for an upcoming functionEnter by pushing the arguments
 // in reverse order.
 let prepareFunctionCall = <V, F>(machine: JSMachine<V, F>,
@@ -167,7 +174,71 @@ let models = asNativeModelMap({
 
         }
     }),
+    "Math.max": asNativeModel({recorder:
+            (analysis: Analysis,
+             name: DynamicDescription,
+             args: any[],
+             description: StaticDescription) => {
+                // our goal in this recorder is to determine *which*
+                // argument is the maximum. we can use this information at
+                // abstract machine time to correctly determine which taint
+                // value should be returned from this builtin.
 
+                // we will return a number n (>0) to represent that the
+                // argument at args[n] was the maximum.
+                // we will return -1 to represent that Math.max returned
+                // NaN, and thus, none of the arguments are related to the
+                // return value.
+
+                // TODO: we shouldn't make a duplicate call to Math.max here.
+
+                // first, get the actual maximum of the arguments
+                let max = Math.max(...args);
+
+                // there are two cases for the return value of Math.max:
+
+                // 1. NaN, when one or more of the arguments could not be
+                //    converted to a number.
+                // (to deal with this case, we check if the return value of
+                // Math.max is NaN. if it is, we return the untainted value.)
+                if (isNaN(max)) {
+                    // record that none of the arguments are related to this
+                    // function's output
+                    return -1;
+                }
+
+                // 2. a number >0, representing the maximum of the given
+                // arguments.
+                // (to deal with this case, we figure out *which* argument ended
+                // up being the result of the function.)
+                for (let i = 0; i < args.length; i++) {
+                    if (args[i] == max) {
+                        return i;
+                    }
+                }
+
+                // if we execute this, this means that Math.max returned a value
+                // that wasn't any of our arguments or NaN. this should
+                // never happen.
+                throw new NativeModelError("Math.max didn't return a value" +
+                    " equal to any of its arguments");
+        },
+        implementation: function <V, F>(machine: JSMachine<V, F>,
+                                        name: DynamicDescription,
+                                        actualArgs: number,
+                                        extraRecords: number,
+                                        description: StaticDescription): void {
+            let [builtinTaint, argsTaint] =
+                popArgsAndReportFlowsIntoBuiltin(machine,
+                    name,
+                    actualArgs,
+                    description);
+
+            // the return value of this native function should be equal to
+            // the taint value of whichever argument was the maximum
+            returnTaints(machine, argsTaint[extraRecords]);
+        }
+    }),
 });
 
 // TODO: don't use string here; create a type for builtin names
