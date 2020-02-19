@@ -279,3 +279,7 @@ test('native-function-call-3-clean', (done) => runTest('native-function-call-3-c
 test('native-function-call-3-tainted', (done) => runTest('native-function-call-3-tainted', done));
 test('native-function-call-4-clean', (done) => runTest('native-function-call-4-clean', done));
 test('native-function-call-4-tainted', (done) => runTest('native-function-call-4-tainted', done));
+test('native-string-toLowerCase-clean', (done) => runTest('native-string-toLowerCase-clean', done));
+test('native-string-toLowerCase-tainted', (done) => runTest('native-string-toLowerCase-tainted', done));
+test('native-Math-round-clean', (done) => runTest('native-Math-round-clean', done));
+test('native-Math-round-tainted', (done) => runTest('native-Math-round-tainted', done));
