@@ -2,7 +2,12 @@
 // JALANGI DO NOT INSTRUMENT
 
 import { Accessor } from "../nodeprof";
-import {Instruction, AbstractMachine, StaticDescription} from "../types";
+import {
+    Instruction,
+    AbstractMachine,
+    StaticDescription,
+    DynamicDescription
+} from "../types";
 import MyLogger from "../analysis/mylogger";
 
 // An implementation of an abstract machine that produces JavaScript code.
@@ -28,10 +33,6 @@ export default class JSWriter implements AbstractMachine {
     // @ts-ignore
     private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
 
-    // TODO: Replace with shadow id
-    private objCnt: number = 0;
-    private objIdMap: Map<{}, string> = new Map();
-
     constructor() {
         this.logger.log(this.preamble);
     }
@@ -52,20 +53,14 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "writeVar", args: [s, description] });
     }
 
-    public readProperty([o, s, description]: [{}, Accessor, StaticDescription]) {
-        if (!this.objIdMap.has(o)) {
-            this.objIdMap.set(o, "obj" + this.objCnt++);
-        }
+    public readProperty([o, s, description]: [DynamicDescription, Accessor, StaticDescription]) {
         this.writeInstruction({ command: "readProperty",
-            args: [this.objIdMap.get(o), s, description] });
+            args: [o, s, description] });
     }
 
-    public writeProperty([o, s, description]: [{}, Accessor, StaticDescription]) {
-        if (!this.objIdMap.has(o)) {
-            this.objIdMap.set(o, "obj" + this.objCnt++);
-        }
+    public writeProperty([o, s, description]: [DynamicDescription, Accessor, StaticDescription]) {
         this.writeInstruction({ command: "writeProperty",
-            args: [this.objIdMap.get(o), s, description] });
+            args: [o, s, description] });
     }
 
     public binary([description]: [StaticDescription]): void {
