@@ -282,3 +282,7 @@ test('native-string-toLowerCase-clean', (done) => runTest('native-string-toLower
 test('native-string-toLowerCase-tainted', (done) => runTest('native-string-toLowerCase-tainted', done));
 test('native-Math-round-clean', (done) => runTest('native-Math-round-clean', done));
 test('native-Math-round-tainted', (done) => runTest('native-Math-round-tainted', done));
+test('native-Math-max-1-clean', (done) => runTest('native-Math-max-1-clean', done));
+test('native-Math-max-1-tainted', (done) => runTest('native-Math-max-1-tainted', done));
+test('native-Math-max-2-clean', (done) => runTest('native-Math-max-2-clean', done));
+test('native-Math-max-2-tainted', (done) => runTest('native-Math-max-2-tainted', done));
