@@ -57,6 +57,7 @@ export interface AbstractMachine {
 
     /**
      * Write an abstract value to an object property from the top of the stack.
+     * Pops the value after it is written.
      * @param o the object
      * @param s the property name
      * @param description why and where the action occurred
