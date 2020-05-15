@@ -174,7 +174,7 @@ let models = asNativeModelMap({
 
         }
     }),
-    "Math.max": asNativeModel({recorder:
+    "max": asNativeModel({recorder:
             (analysis: Analysis,
              name: DynamicDescription,
              args: any[],
