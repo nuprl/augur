@@ -11,14 +11,18 @@
     ],
     "sinks": [
         {
-            "type": "builtin",
-            "name": "eval"
+            "type": "functionEnter",
+            "location": {
+                "fileName": "eval"
+            }
         }
     ],
     "expectedFlows": [
         {
-            "type": "builtin",
-            "name": "eval"
+            "type": "functionEnter",
+            "location": {
+                "fileName": "eval"
+            }
         }
     ]
 }
