@@ -1,0 +1,21 @@
+{
+    "main": "test.js",
+    "sources": [
+        {
+            "type": "variable",
+            "name": "a",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionEnter",
+            "location": {
+                "fileName": "eval"
+            }
+        }
+    ],
+    "expectedFlows": []
+}
