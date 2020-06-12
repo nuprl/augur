@@ -5,16 +5,40 @@ import {
     VariableDescription
 } from "../types";
 import Analysis from "../analysis/analysis";
+import {removeErrorMarkup} from "tslint/lib/verify/parse";
 
+/**
+ * A mechanism for a native model to record runtime information. This
+ * information can then be used when the abstract machine executes a
+ * NativeModelImplementation. NativeModelRecorders are useful when a
+ * NativeModelImplementation needs a *concrete* value from the program,
+ * as opposed to a taint value.
+ *
+ * For example, let's assume you want to write a native model of
+ * Object.defineProperty. You would want to translate a call like:
+ *
+ *     Object.defineProperty(obj, "prop", {value: true})
+ *
+ * to set the property "prop" on "obj" to the value "true". When your NativeModel
+ *
+ * Since native models are executed inside the AbstractMachine, this means
+ * the program has already finished running and you only have access to
+ * abstract values.
+ *
+ * Native models are implemented inside the
+ * AbstractMachine, so the model will observe a call to Object.defineProperty
+ */
 type NativeModelRecorder<R> =
     (analysis: Analysis,
      name: DynamicDescription,
+     receiver: DynamicDescription,
      args: any[],
      description: StaticDescription) => R;
 
 type NativeModelImplementation<R> =
     <V, F>(machine: JSMachine<V, F>,
            name: DynamicDescription,
+           receiver: DynamicDescription,
            actualArgs: number,
            extraRecords: R,
            description: StaticDescription) => void
@@ -80,6 +104,7 @@ let popArgs = <V, F>(machine: JSMachine<V, F>,
 let popArgsAndReportFlowsIntoBuiltin =
     <V, F>(machine: JSMachine<V, F>,
            name: DynamicDescription,
+           receiver: DynamicDescription,
            actualArgs: number,
            description: StaticDescription): [V, V[]] => {
 
@@ -109,21 +134,141 @@ let joinAndReturnTaints = <V, F>(machine: JSMachine<V, F>,
 
 let defaultRecorder: NativeModelRecorder<void> = () => {};
 let defaultImplementation: NativeModelImplementation<void> =
-    (machine, name, actualArgs, extraRecords, description): void => {
+    (machine, name, receiver, actualArgs, extraRecords, description): void => {
         let [_, argsTaint] =
             popArgsAndReportFlowsIntoBuiltin(machine,
                 name,
+                receiver,
                 actualArgs,
                 description);
 
         joinAndReturnTaints(machine, argsTaint);
-};
+    };
+
 let defaultModel: NativeModel<void> = {
     recorder: defaultRecorder,
     implementation: defaultImplementation
 };
 
+let defaultObjectImplementation: NativeModelImplementation<void> =
+    (machine, name, receiver, actualArgs, extraRecords, description): void => {
+        let [builtinTaint, argsTaint] =
+            popArgsAndReportFlowsIntoBuiltin(machine,
+                name,
+                receiver,
+                actualArgs,
+                description);
+
+    };
+
+/*
+// native model template
+    "test": asNativeModel({
+        recorder: (analysis: Analysis,
+                   name: DynamicDescription,
+                   args: any[],
+                   description: StaticDescription) => {
+        },
+        implementation: function <V, F>(machine: JSMachine<V, F>,
+                                        name: DynamicDescription,
+                                        actualArgs: number,
+                                        recorded: any,
+                                        description: StaticDescription): void {
+        }
+    }),
+ */
+
 let models = asNativeModelMap({
+    "join": asNativeModel({
+        recorder: (analysis: Analysis,
+                   name: DynamicDescription,
+                   receiver: DynamicDescription,
+                   args: any[],
+                   description: StaticDescription) => {
+
+        },
+        implementation: function <V, F>(machine: JSMachine<V, F>,
+                                        name: DynamicDescription,
+                                        receiver: DynamicDescription,
+                                        actualArgs: number,
+                                        recorded: null,
+                                        description: StaticDescription): void {
+            let [builtinTaint, argsTaint] =
+                popArgsAndReportFlowsIntoBuiltin(machine,
+                    name,
+                    receiver,
+                    actualArgs,
+                    description);
+
+            // find the shadow object corresponding to this array
+            let shadowArray = machine.objects.get(receiver);
+
+            // join all the taints in this array. this computes the *result*
+            // of this builtin, a.k.a. whether or not the result of this
+            // function should be tainted.
+            let arrayValuesTaint = Object.values(shadowArray).reduce(machine.join);
+
+            // get the taint of the separator string used to join all the
+            // values of this array together. if no separator was specified,
+            // use the untainted value.
+            let separatorTaint;
+            if (argsTaint.length > 0) {
+                // user specified a separator
+                separatorTaint = argsTaint[0];
+            } else {
+                // user didn't specify a separator, use the untainted value
+                separatorTaint = machine.getUntaintedValue();
+            }
+
+            // compute the taint value that should be output by this
+            // function, consisting of joining the taint values of the array
+            // values and the separator string.
+            let returnTaint = machine.join(arrayValuesTaint, separatorTaint);
+
+            // return this taint value
+            returnTaints(machine, returnTaint);
+        }
+    }),
+    /**
+     * TODO: actually inspect the "descriptor" object and only perform
+     *  the change if it's possible/allowed by the semantics defined in
+     *  the API
+     */
+    "defineProperty": asNativeModel({
+        recorder: (analysis: Analysis,
+                   name: DynamicDescription,
+                   receiver: DynamicDescription,
+                   args: any[],
+                   description: StaticDescription) => {
+            let [obj, prop, descriptor] = args;
+
+            return {obj: analysis.shadowMemory.getShadowID(obj),
+                prop: prop,
+                descriptor: analysis.shadowMemory.getShadowID(descriptor)
+            };
+        },
+        implementation: function <V, F>(machine: JSMachine<V, F>,
+                                        name: DynamicDescription,
+                                        receiver: DynamicDescription,
+                                        actualArgs: number,
+                                        recorded: {obj: DynamicDescription, prop: string, descriptor: DynamicDescription},
+                                        description: StaticDescription): void {
+            let [builtinTaint, argsTaint] =
+                popArgsAndReportFlowsIntoBuiltin(machine,
+                    name,
+                    receiver,
+                    actualArgs,
+                    description);
+
+            // deconstruct recorded information
+            let {obj, prop, descriptor} = recorded;
+
+            // emulate a regular writeProperty event in the abstract machine
+            let abstractPropertyValue = machine.objects.get(descriptor).value;
+            machine.push([abstractPropertyValue, description]);
+            machine.writeProperty([obj, prop, description]);
+        }
+    }),
     // TODO: correctly implement variables in this native model. currently
     //  there is no access to the shadow memory in here, so we cannot call
     //  shadowMemory.getFullVariableName("__accum__"), for example. Perhaps
@@ -132,6 +277,7 @@ let models = asNativeModelMap({
     "map": asNativeModel({recorder: () => {},
         implementation: function <V, F>(machine: JSMachine<V, F>,
                name: DynamicDescription,
+               receiver: DynamicDescription,
                actualArgs: number,
                extraRecords: void,
                description: StaticDescription): void {
@@ -140,18 +286,21 @@ let models = asNativeModelMap({
     "call": asNativeModel({
         recorder: (analysis: Analysis,
                    name: DynamicDescription,
+                   receiver: DynamicDescription,
                    args: any[],
                    description: StaticDescription) => {
             return name;
         },
         implementation: function <V, F>(machine: JSMachine<V, F>,
                                name: DynamicDescription,
+                               receiver: DynamicDescription,
                                actualArgs: number,
                                builtinName: DynamicDescription,
                                description: StaticDescription): void {
             let [builtinTaint, argsTaint] =
                 popArgsAndReportFlowsIntoBuiltin(machine,
                     name,
+                    receiver,
                     actualArgs,
                     description);
 
@@ -177,6 +326,7 @@ let models = asNativeModelMap({
     "max": asNativeModel({recorder:
             (analysis: Analysis,
              name: DynamicDescription,
+             receiver: DynamicDescription,
              args: any[],
              description: StaticDescription) => {
                 // our goal in this recorder is to determine *which*
@@ -225,12 +375,14 @@ let models = asNativeModelMap({
         },
         implementation: function <V, F>(machine: JSMachine<V, F>,
                                         name: DynamicDescription,
+                                        receiver: DynamicDescription,
                                         actualArgs: number,
                                         extraRecords: number,
                                         description: StaticDescription): void {
             let [builtinTaint, argsTaint] =
                 popArgsAndReportFlowsIntoBuiltin(machine,
                     name,
+                    receiver,
                     actualArgs,
                     description);
 
@@ -255,19 +407,22 @@ export function getNativeModel<V, F>(name: string): NativeModel<any> {
 
 export function useNativeRecorder<R>(analysis: Analysis,
                                      name: DynamicDescription,
+                                     receiver: DynamicDescription,
                                      args: any[],
                                      description: StaticDescription): R {
-    return getNativeModel(description.name).recorder(analysis, name, args, description);
+    return getNativeModel(description.name).recorder(analysis, name, receiver, args, description);
 }
 
 export function useNativeImplementation<V, F, R>(machine: JSMachine<V, F>,
                                      name: DynamicDescription,
+                                     receiver: DynamicDescription,
                                      actualArgs: number,
                                      extraRecords: R,
                                      description: StaticDescription): void {
     getNativeModel(description.name)
         .implementation(machine,
             name,
+            receiver,
             actualArgs,
             extraRecords,
             description);

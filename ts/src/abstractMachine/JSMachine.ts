@@ -400,13 +400,13 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public initVar = this.initVarOp.wrapper;
 
-    public builtinOp: Operation<[DynamicDescription, number, any, StaticDescription], void> =
+    public builtinOp: Operation<[DynamicDescription, DynamicDescription, number, any, StaticDescription], void> =
         this.adviceWrap(
-            ([name, actualArgs, extraRecords, description]) => {
+            ([name, receiver, actualArgs, extraRecords, description]) => {
                 this.resetState();
                 logger.info("builtin", name, actualArgs);
 
-                useNativeImplementation(this, name, actualArgs, extraRecords, description);
+                useNativeImplementation(this, name, receiver, actualArgs, extraRecords, description);
             }
         );
 

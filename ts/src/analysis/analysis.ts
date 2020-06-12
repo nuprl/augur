@@ -150,12 +150,17 @@ export default class Analysis implements Analyzer {
         if (this.isNative(f)) {
             // TODO: make sure this works using regular builtins and
             //  reassigned builtins
+
+            let functionShadowID = this.shadowMemory.getShadowID(f);
+            let receiverShadowID = this.shadowMemory.getShadowID(receiver);
+
             this.state.builtin(
-                [this.shadowMemory.getShadowID(f),
+                [functionShadowID,
+                    receiverShadowID,
                     args.length,
                     // TODO: should this be description.name?
                     //       we need a way to correctly name buiiltins
-                    useNativeRecorder(this, this.shadowMemory.getShadowID(f), args, description),
+                    useNativeRecorder(this, functionShadowID, receiverShadowID, args, description),
                     description]);
         } else {
             this.state.functionInvokeStart([this.shadowMemory.getShadowID(f),
@@ -259,7 +264,7 @@ export default class Analysis implements Analyzer {
     }
      */
 
-    // TODO: fix this stupid hack with real instrumentation
+    // TODO: fix this hack with real instrumentation
     private isNative(fun: Function): boolean {
         // apparently this kinda stuff isn't very slow
         // https://stackoverflow.com/questions/6598945/detect-if-function-is-native-to-browser
