@@ -211,9 +211,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.callstackPush(description);
 
                 // pop the value of the function
-                this.taintStack.pop();
+                let functionTaint = this.taintStack.pop();
 
-                // TODO: report possible flows from callee perspective
+                // report possible flows from callee perspective
+                this.reportPossibleFlow(description, functionTaint);
             }
         );
     public functionEnter = this.functionEnterOp.wrapper;
