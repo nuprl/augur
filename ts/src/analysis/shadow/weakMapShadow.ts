@@ -25,7 +25,9 @@ export default class WeakMapShadow implements ShadowMemory {
         let key = this.map.get(o);
 
         if (!key) {
-            console.error(`tried to get non-existent shadow ID for object ${o.toString()}`);
+            // console.error(`tried to get non-existent shadow ID for object
+            // ${o.toString()}`);
+            console.error(`tried to get non-existent shadow ID for object`);
             console.error(`initializing now...`);
             this.initialize(o);
             key = this.map.get(o);
