@@ -2,8 +2,8 @@
     "main": "mongoosemask-eval.js",
     "sources": [
         {
-            "type": "functionInvocation",
-            "name": "dummySource",
+            "type": "variable",
+            "name": "payload",
             "location": {
                 "fileName": "mongoosemask-eval.js"
             }
