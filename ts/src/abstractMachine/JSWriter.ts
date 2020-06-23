@@ -53,9 +53,9 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "writeVar", args: [s, description] });
     }
 
-    public readProperty([o, s, description]: [DynamicDescription, Accessor, StaticDescription]) {
+    public readProperty([o, s, isMethod, description]: [DynamicDescription, Accessor, boolean, StaticDescription]) {
         this.writeInstruction({ command: "readProperty",
-            args: [o, s, description] });
+            args: [o, s, isMethod, description] });
     }
 
     public writeProperty([o, s, description]: [DynamicDescription, Accessor, StaticDescription]) {
@@ -109,10 +109,10 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "functionReturn", args: [name, description]});
     }
 
-    public builtin([name, receiver, actualArgs, extraRecords, description]:
-                       [string, string, number, any, StaticDescription]) {
+    public builtin([name, receiver, actualArgs, extraRecords, isMethod, description]:
+                       [string, string, number, any, boolean, StaticDescription]) {
         this.writeInstruction({ command: "builtin",
-            args: [name, receiver, actualArgs, extraRecords, description]});
+            args: [name, receiver, actualArgs, extraRecords, isMethod, description]});
     }
 
     public builtinExit([name, description]: [string, StaticDescription]): void {
@@ -134,6 +134,11 @@ export default class JSWriter implements AbstractMachine {
     public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
         this.logger.log(this.postamble);
+    }
+
+    public initializeArgumentsObject([argumentsObject, description]: [DynamicDescription, StaticDescription]) {
+        this.writeInstruction({ command: "initializeArgumentsObject",
+            args: [argumentsObject, description]});
     }
 
     // Prepares an argument to a callback to appear in JS code.

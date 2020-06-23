@@ -51,9 +51,10 @@ export interface AbstractMachine {
      * Push an object property's abstract value onto the stack.
      * @param o the object
      * @param s the property name
+     * @param isMethod is this readProperty being used for a method call?
      * @param description why and where the action occurred
      */
-    readProperty: (input: [DynamicDescription, PropertyDescription, StaticDescription]) => void;
+    readProperty: (input: [DynamicDescription, PropertyDescription, boolean, StaticDescription]) => void;
 
     /**
      * Write an abstract value to an object property from the top of the stack.
@@ -176,9 +177,10 @@ export interface AbstractMachine {
      * @param actualArgs the number of arguments supplied to the builtin
      * @param extraRecords the extra information needed to implement this
      *                     builtin model
+     * @param isMethod is this builtin being called as a method?
      * @param description why and where the action occurred
      */
-    builtin: (input: [DynamicDescription, DynamicDescription, number, any, StaticDescription]) => void;
+    builtin: (input: [DynamicDescription, DynamicDescription, number, any, boolean, StaticDescription]) => void;
 
     /**
      * Used to signal a builtin has exited. The result is on the top of the
@@ -216,6 +218,23 @@ export interface AbstractMachine {
      * @param description why and where the action occurred
      */
     literal: (input: [StaticDescription]) => void;
+
+    /**
+     * Initialize the "arguments" object inside a function. The taint
+     * values of the arguments to the current function should be placed
+     * inside the shadow object, `argumentsObject`.
+     *
+     * This taint analysis currently only supports strict mode behavior of
+     * the "arguments" object.
+     *
+     * Documentation about the "arguments exotic object" in JavaScript:
+     * https://tc39.es/ecma262/#arguments-exotic-object
+     *
+     * @param argumentsObject the dynamic description of the arguments
+     *                        object we have to initialize
+     * @param description why and where the action occurred
+     */
+    initializeArgumentsObject: (input: [DynamicDescription, StaticDescription]) => void;
 }
 
 // an interface for associating shadow identifiers with arbitrary objects.
@@ -239,6 +258,8 @@ export interface ShadowMemory {
 
     getFullVariableName(name: string): VariableDescription;
 }
+
+export type ShadowObject<V> = {[name: string]: V};
 
 export type Command = keyof AbstractMachine;
 

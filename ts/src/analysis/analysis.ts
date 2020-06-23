@@ -89,6 +89,10 @@ export default class Analysis implements Analyzer {
             location: parseIID(iid),
             name: name};
         this.state.readVar([this.shadowMemory.getFullVariableName(name), description]);
+
+        if (name === "arguments") {
+            this.state.initializeArgumentsObject([this.shadowMemory.getShadowID(val), description]);
+        }
     }
 
     public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
@@ -123,6 +127,7 @@ export default class Analysis implements Analyzer {
         this.shadowMemory.initialize(receiver);
         this.state.readProperty([this.shadowMemory.getShadowID(receiver),
             offset as PropertyDescription,
+            isMethodCall,
             description]);
     }
 
@@ -135,7 +140,7 @@ export default class Analysis implements Analyzer {
             description]);
     };
 
-    public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args) => {
+    public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args, isConstructor, isMethod) => {
         let description: StaticDescription = {type: "functionInvocation",
             location: parseIID(iid)};
 
@@ -143,6 +148,7 @@ export default class Analysis implements Analyzer {
         this.shadowMemory.initialize(f);
         this.shadowMemory.functionEnter(f);
         this.shadowMemory.declare("this" as RawVariableDescription);
+        this.shadowMemory.declare("arguments" as RawVariableDescription);
 
         if (f.name && f.name != "") {
             description.name = f.name;
@@ -153,6 +159,7 @@ export default class Analysis implements Analyzer {
 
             let functionShadowID = this.shadowMemory.getShadowID(f);
             let receiverShadowID = this.shadowMemory.getShadowID(receiver);
+            // console.error(this.shadowMemory.getFullVariableName("arguments"));
 
             this.state.builtin(
                 [functionShadowID,
@@ -160,7 +167,8 @@ export default class Analysis implements Analyzer {
                     args.length,
                     // TODO: should this be description.name?
                     //       we need a way to correctly name buiiltins
-                    useNativeRecorder(this, functionShadowID, receiverShadowID, args, description),
+                    useNativeRecorder(this, functionShadowID, receiverShadowID, receiver, args, isMethod, description),
+                    isMethod,
                     description]);
         } else {
             this.state.functionInvokeStart([this.shadowMemory.getShadowID(f),

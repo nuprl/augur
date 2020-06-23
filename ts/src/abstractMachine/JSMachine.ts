@@ -8,7 +8,8 @@ import {
     DynamicDescription,
     StaticDescription,
     RunSpecification,
-    VariableDescription
+    VariableDescription,
+    ShadowObject
 } from "../types";
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
@@ -23,7 +24,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     // maps all dynamic descriptions of objects to:
     // an object whose property names match the original objects', and whose
     // values are taint descriptions.
-    objects: Map<DynamicDescription, {[name: string]: V}>;
+    private objects: Map<DynamicDescription, ShadowObject<V>>;
 
     flows: Set<F> = new Set();
     pc: V;
@@ -31,6 +32,32 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     returnValue: V;
 
     argsLeftToProcess: number = 0;
+
+    lastObjectAccessed: V;
+
+    /**
+     * Used to keep track of the initial arguments given to each function in
+     * the current call stack.
+     *
+     * Whenever a function is entered, the taint values of its arguments
+     * should be pushed to this stack. Whenever a function exits, this stack
+     * should be popped.
+     *
+     * ALL arguments given to the function should be pushed, not just ones
+     * that the argument maps to named parameters. For example, in this code:
+     *
+     *     function add(x) {
+     *         return arguments[0] + arguments[1]; // ignores named parameter x
+     *     }
+     *     add(1, 2); // returns 3
+     *
+     * The taint values for BOTH arguments should be pushed to this stack.
+     *
+     * It's necessary to keep track of these taint values in case the
+     * program accesses the "arguments" variable, which represents an
+     * indexable array into the function's arguments.
+     */
+    functionArgsStack: Array<Array<V>>;
 
     /**
      * Returns the taint marking associated with a completely clean value.
@@ -64,6 +91,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.pc = this.getUntaintedValue();
         this.functionCallStack = [{name: "program start"}];
         this.getTaint = this.getTaint.bind(this);
+        this.lastObjectAccessed = this.getUntaintedValue();
+        this.functionArgsStack = [[]];
     }
 
     private adviceWrap<I, O>(impl: (input: I) => O): Operation<I, O> {
@@ -78,7 +107,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         return wrappedOperation;
     }
 
-    public callstackPush(frame: StaticDescription): void {
+    public callstackPush(frame: StaticDescription, ): void {
         this.functionCallStack.push(frame);
         this.functionEnterAdvice.push(null);
         this.functionExitAdvice.push(null);
@@ -104,21 +133,14 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public functionInvokeStartOp: Operation<[string, number, number, StaticDescription], void> =
         this.adviceWrap(
             ([name, expectedArgs, actualArgs, description]) => {
-                // 1. Ensure the right number of arguments is present on
-                // `taintStack`.
 
-                /*
-                if (actualArgs > expectedArgs) {
-                    let difference = expectedArgs - actualArgs;
-                    for (let i = 0; i < difference; i++) {
-                        this.taintStack.pop();
-                    }
-                } else if (expectedArgs > actualArgs) {
-                    let difference = actualArgs - expectedArgs;
-                    for (let i = 0; i < difference; i++) {
-                        this.taintStack.push(this.getUntaintedValue());
-                    }
-                } */
+                // 1. set up `arguments` variable in shadow memory.
+                let actualArgsValues = this.taintStack.slice(this.taintStack.length - actualArgs);
+                // actualArgsValues.reverse();
+                this.functionArgsStack.push(actualArgsValues);
+
+                // 2. Ensure the right number of arguments is present on
+                // `taintStack`.
 
                 if (expectedArgs != actualArgs) {
                     let difference = Math.abs(expectedArgs - actualArgs);
@@ -151,41 +173,14 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                     this.taintStack[i] = this.join(this.taintStack[i], functionInvocationTaint);
                 }
 
-                // reverse order of arguments
+                // get arguments from the stack
                 let args = this.taintStack.splice(this.taintStack.length - expectedArgs);
                 args.reverse();
                 this.taintStack.push(...args);
 
+                // prepare the machine to declare the named parameters to
+                // this function
                 this.argsLeftToProcess = expectedArgs;
-
-                /*
-                const tempStack = [];
-
-                // Pop off the actual arguments given to this function from taintStack
-                for (let i = 0; i < actualArgs; i++) {
-                    tempStack.unshift(this.taintStack.pop());
-                }
-
-                // If not enough arguments were supplied, they
-                // will be "undefined". This value is *untainted*,
-                // so push the untainted marker.
-                if (expectedArgs > actualArgs) {
-                    const diff = expectedArgs - actualArgs;
-
-                    for (let i = 0; i < diff; i++) {
-                        tempStack.push(this.getUntaintedValue());
-                    }
-                }
-
-                // Report possible flows of arguments into this function,
-                // from the caller-perspective.
-                tempStack.forEach(
-                    (mark) => this.reportPossibleFlow(description, mark));
-
-                // Push the actual arguments to taintStack
-                tempStack.forEach((v) =>
-                    this.taintStack.push(this.join(v, functionInvocationTaint)));
-                */
             }
         );
     public functionInvokeStart = this.functionInvokeStartOp.wrapper;
@@ -193,6 +188,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public functionInvokeEndOp: Operation<[string, StaticDescription], void> =
         this.adviceWrap(
             ([name, description]) => {
+                this.functionArgsStack.pop();
                 this.push([this.returnValue, description]);
             }
         );
@@ -202,6 +198,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public functionEnterOp: Operation<[string, number, StaticDescription], void> =
         this.adviceWrap(
             ([name, actualArgs, description]) => {
+
+                if (description.location.fileName === "eval") {
+                    console.log("eval time");
+                }
                 let advice = this.functionEnterAdvice[this.functionEnterAdvice.length - 2];
                 if (advice != null) {
                     advice(name, actualArgs, description);
@@ -238,7 +238,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             (input) => {
                 this.returnValue = this.taintStack[this.taintStack.length - 1];
-                this.taintStack.pop();
+                // we shouldn't pop this manually. a discardValue
+                // instruction should be generated by NodeProf right after
+                // the return callback.
+                // this.taintStack.pop();
             });
     public functionReturn = this.functionReturnOp.wrapper;
 
@@ -303,27 +306,36 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public writeVar = this.writeVarOp.wrapper;
 
-    public readPropertyOp: Operation<[DynamicDescription, Accessor, StaticDescription], void> =
+    public readPropertyOp: Operation<[DynamicDescription, Accessor, boolean, StaticDescription], void> =
         this.adviceWrap(
-            ([o, s, description]) => {
+            ([o, s, isMethod, description]) => {
                 this.resetState();
                 const isSource = this.isSource(description);
-                const objectTaintMap = this.objects.get(o);
+                const objectTaintMap = this.getShadowObject(o);
 
-                // If objectTaintMap is defined, and it contains a defined taint mark
+                // If objectTaintMap contains a defined taint mark
                 // for this property, this will be its value. Otherwise, it will
                 // be untainted.
-                const propertyTaint = (objectTaintMap && objectTaintMap[s])
+                const propertyTaint = objectTaintMap[s]
                     || this.getUntaintedValue();
 
                 // Then join this with its initial marking
                 let r = this.join(this.produceMark(description),
                     propertyTaint);
 
-                // When reading a property of an object, the value of the
-                // object is discarded and replaced with the projection.
-                // Discard the object's value on the taint stack.
-                this.taintStack.pop();
+                // if we're not going to perform a method call using this
+                // property, we want to throw away the value of the object
+                // itself, which is currently sitting at the top of the stack.
+                // if this is a method call, we want to keep the base
+                // object's value on the stack, as we will use it later in
+                // functionInvokeStart.
+                // if (!isMethod) {
+                    // When reading a property of an object, the value of the
+                    // object is discarded and replaced with the projection.
+                    // Discard the object's value on the taint stack.
+                // TODO: document this
+                    this.lastObjectAccessed = this.taintStack.pop();
+                // }
 
                 logger.info("readprop", o, s, r);
                 this.taintStack.push(r);
@@ -336,12 +348,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([o, s, description]) => {
                 this.resetState();
-                if (!this.objects.has(o)) {
-                    this.objects.set(o, {});
-                }
 
                 const storedTaint = this.taintStack.pop();
-                let objectTaintMap = this.objects.get(o);
+                let objectTaintMap = this.getShadowObject(o);
                 objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
 
                 this.reportPossibleFlow(description, objectTaintMap[s]);
@@ -400,13 +409,19 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public initVar = this.initVarOp.wrapper;
 
-    public builtinOp: Operation<[DynamicDescription, DynamicDescription, number, any, StaticDescription], void> =
+    public builtinOp: Operation<[DynamicDescription, DynamicDescription, number, any, boolean, StaticDescription], void> =
         this.adviceWrap(
-            ([name, receiver, actualArgs, extraRecords, description]) => {
+            ([name, receiver, actualArgs, extraRecords, isMethod, description]) => {
                 this.resetState();
                 logger.info("builtin", name, actualArgs);
 
-                useNativeImplementation(this, name, receiver, actualArgs, extraRecords, description);
+                // if this is a method, push the value of the base object
+                // (that we saved earlier)
+                if (isMethod) {
+                    this.push([this.lastObjectAccessed, description]);
+                }
+
+                useNativeImplementation(this, name, receiver, actualArgs, extraRecords, isMethod, description);
             }
         );
 
@@ -447,12 +462,47 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public conditionalEnd = this.conditionalEndOp.wrapper;
 
+    public initializeArgumentsObjectOp: Operation<[DynamicDescription, StaticDescription], void> =
+        this.adviceWrap(
+            ([argumentsObject, description]) => {
+               this.resetState();
+
+               // only initialize the "arguments" variable if we haven't already
+               if (!this.objects.has(argumentsObject)) {
+                   // peek into function args stack
+                   let argsValues = this.functionArgsStack[this.functionArgsStack.length - 1];
+
+                   // take the values of the arguments and SET that as the
+                   // shadow object for the "arguments" variable.
+
+                   // "as unknown as ShadowObject<V>" is just a typescript hack.
+                   // the `argsValues` object will be an array of abstract
+                   // values of type V, and this will technically fit the shape
+                   // of ShadowObject<V>. but typescript will not believe it.
+                   this.objects.set(argumentsObject, argsValues as unknown as ShadowObject<V>);
+               }
+            }
+        );
+    public initializeArgumentsObject = this.initializeArgumentsObjectOp.wrapper;
+
     public endExecution() {
         // do nothing.
     }
 
     public getTaint(): F[] {
         return [...this.flows];
+    }
+
+    public initializeShadowObject(obj: DynamicDescription): void {
+        if (!this.objects.has(obj)) {
+            this.objects.set(obj, {});
+        }
+    }
+
+    public getShadowObject(obj: DynamicDescription): ShadowObject<V> {
+        // ensure the shadow object is initialize
+        this.initializeShadowObject(obj);
+        return this.objects.get(obj);
     }
 
     private reportPossibleImplicitFlow(description: StaticDescription, taintMarking: V) {
