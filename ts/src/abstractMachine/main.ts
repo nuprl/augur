@@ -1,4 +1,4 @@
-import {executeInstructionsFromFile} from "./JSMachine";
+import {executeInstructionsFromFile} from "../utils";
 import * as fs from "fs";
 
 // This script is responsible for executing JS abstract machine instructions

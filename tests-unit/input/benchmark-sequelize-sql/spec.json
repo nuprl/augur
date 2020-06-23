@@ -1,16 +1,24 @@
 {
-	"main": "sequelize-sql.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "sequelize-sql.js"}
-	],
-	"sinks": [
-		{"type": "function",
-			"name": "exec"}
-	],
-	"expectedFlows": [
-		{"type": "function",
-			"name": "exec"}
-	]
+    "main": "sequelize-sql.js",
+    "sources": [
+        {
+            "type": "functionInvocation",
+            "name": "dummySource",
+            "location": {
+                "fileName": "sequelize-sql.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionInvocation",
+            "name": "exec"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "functionInvocation",
+            "name": "exec"
+        }
+    ]
 }

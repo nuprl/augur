@@ -11,7 +11,7 @@ export default class DynCG implements Analyzer {
   private cg : Map = new Map();
   // @ts-ignore
   private iidToLocation : Map = new Map();
-  private lastCallsite = undefined;
+  private lastCallsite: number | undefined = undefined;
   // @ts-ignore
   private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
 
@@ -19,7 +19,7 @@ export default class DynCG implements Analyzer {
     this.sandbox = sandbox;
   }
 
-  private addCallee(callsite, callee) {
+  private addCallee(callsite: any, callee: any) {
     callsite = callsite === undefined ? "GraalVM" : callsite;
     this.cg.has(callsite) ? this.cg.get(callsite).add(callee) : this.cg.set(callsite, new Set([callee]));
   }
@@ -41,14 +41,14 @@ export default class DynCG implements Analyzer {
   public endExecution: NPCallbacks.endExecution = () => {
     //Output location information
     const logger = this.logger;
-    this.iidToLocation.forEach(function (value, key) {
+    this.iidToLocation.forEach(function (value: any, key: any) {
       logger.log(`// ${key}: ${value}`);
     });
 
     //Output dynamic call graph in Dot format
     logger.log("digraph {");
-    this.cg.forEach(function (value, key) {
-      value.forEach(function (callee) {
+    this.cg.forEach(function (value: any, key: any) {
+      value.forEach(function (callee: any) {
         logger.log(`  ${key} -> ${callee};`);
       })
     });

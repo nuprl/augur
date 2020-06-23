@@ -1,114 +1,164 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.functionEnter(["global@0", 0, {"type":"functionEnter","location":{"fileName":"taint-string.js","pos":{"start":[1,1],"end":[26,4]}}}]);
 
-    m.initVar("exports");
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[1,1],"end":[26,3]}}}]);
 
-    m.initVar("require");
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[1,1],"end":[26,3]}}}]);
 
-    m.initVar("module");
+    m.functionExit(["global@0", 8, {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[1,1],"end":[26,4]}}}]);
 
-    m.initVar("__filename");
+    m.initVar(["global^exports", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"exports"}]);
 
-    m.initVar("__dirname");
+    m.initVar(["global^require", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"require"}]);
 
-    m.initVar("DUMMY_FILE");
+    m.initVar(["global^module", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"module"}]);
 
-    m.initVar("command");
+    m.initVar(["global^__filename", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"__filename"}]);
 
-    m.initVar("exec");
+    m.initVar(["global^__dirname", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"__dirname"}]);
 
-    m.initVar("str");
+    m.initVar(["global^DUMMY_FILE", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"DUMMY_FILE"}]);
 
-    m.push(false);
+    m.initVar(["global^command", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"command"}]);
 
-    m.writeVar("done");
+    m.initVar(["global^exec", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"exec"}]);
 
-    m.readVar("__dirname");
+    m.initVar(["global^str", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}},"name":"str"}]);
 
-    m.push(false);
+    m.functionEnter(["global@1", 5, {"type":"functionEnter","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}}}]);
 
-    m.binaryOp();
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[1,69],"end":[3,2]}}}]);
 
-    m.writeVar("DUMMY_FILE");
+    m.writeVar(["global^done", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[1,62],"end":[3,2]}}}]);
 
-    m.readVar("DUMMY_FILE");
+    m.readVar(["global^__dirname", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[6,18],"end":[6,27]}},"name":"__dirname"}]);
 
-    m.binaryOp();
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[6,30],"end":[6,38]}}}]);
 
-    m.push(false);
+    m.binary([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[6,18],"end":[6,38]}}}]);
 
-    m.binaryOp();
+    m.writeVar(["global^DUMMY_FILE", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[6,5],"end":[6,37]}},"name":"DUMMY_FILE"}]);
 
-    m.writeVar("command");
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[6,5],"end":[6,37]}}}]);
 
-    m.readVar("require");
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[8,15],"end":[8,25]}}}]);
 
-    m.push(false);
+    m.readVar(["global^DUMMY_FILE", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[8,28],"end":[8,38]}},"name":"DUMMY_FILE"}]);
 
-    m.functionCall("require", 1, 1);
+    m.binary([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[8,15],"end":[8,38]}}}]);
 
-    m.readProperty("obj0", "exec");
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[8,41],"end":[8,44]}}}]);
 
-    m.writeVar("exec");
+    m.binary([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[8,15],"end":[8,44]}}}]);
 
-    m.push(false);
+    m.writeVar(["global^command", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[8,5],"end":[8,43]}},"name":"command"}]);
 
-    m.writeVar("str");
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[8,5],"end":[8,43]}}}]);
 
-    m.readVar("exec");
+    m.readVar(["global^require", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[10,12],"end":[10,19]}},"name":"require"}]);
 
-    m.readVar("command");
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[10,20],"end":[10,35]}}}]);
 
-    m.push(false);
+    m.functionInvokeStart(["global@3", 1, 1, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[10,12],"end":[10,36]}},"name":"require"}]);
 
-    m.functionCall("exec", 0, 2);
+    m.functionInvokeEnd(["global@3", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[10,12],"end":[10,36]}},"name":"require"}]);
 
-    m.initVar("error");
+    m.readProperty(["obj0", "exec", {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[10,12],"end":[10,41]}}}]);
 
-    m.initVar("stdout");
+    m.writeVar(["global^exec", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[10,5],"end":[10,41]}},"name":"exec"}]);
 
-    m.initVar("stderr");
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[10,5],"end":[10,41]}}}]);
 
-    m.readVar("error");
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[12,11],"end":[12,32]}}}]);
 
-    m.readVar("console");
+    m.writeVar(["global^str", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[12,5],"end":[12,31]}},"name":"str"}]);
 
-    m.readProperty("obj1", "log");
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[12,5],"end":[12,31]}}}]);
 
-    m.push(false);
+    m.readVar(["global^exec", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[14,1],"end":[14,5]}},"name":"exec"}]);
 
-    m.readVar("stdout");
+    m.readVar(["global^command", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[14,6],"end":[14,13]}},"name":"command"}]);
 
-    m.functionCall("bound log", 0, 2);
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[14,15],"end":[22,2]}}}]);
 
-    m.readVar("console");
+    m.functionInvokeStart(["global@7", 3, 2, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[14,1],"end":[22,3]}},"name":"exec"}]);
 
-    m.readProperty("obj1", "log");
+    m.functionInvokeEnd(["global@7", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[14,1],"end":[22,3]}},"name":"exec"}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[14,1],"end":[22,3]}}}]);
 
-    m.readVar("stderr");
+    m.functionExit(["global@1", 8, {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[1,2],"end":[26,2]}}}]);
 
-    m.functionCall("bound log", 0, 2);
+    m.initVar(["global^error", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[14,15],"end":[22,2]}},"name":"error"}]);
 
-    m.readVar("done");
+    m.initVar(["global^stdout", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[14,15],"end":[22,2]}},"name":"stdout"}]);
 
-    m.functionCall("done", 0, 0);
+    m.initVar(["global^stderr", {"type":"declaration","location":{"fileName":"taint-string.js","pos":{"start":[14,15],"end":[22,2]}},"name":"stderr"}]);
 
-    m.unaryOp();
+    m.functionEnter(["global@9", 3, {"type":"functionEnter","location":{"fileName":"taint-string.js","pos":{"start":[14,15],"end":[22,2]}}}]);
 
-    m.readVar("console");
+    m.readVar(["global^error", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[15,9],"end":[15,14]}},"name":"error"}]);
 
-    m.readProperty("obj1", "log");
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[15,5],"end":[18,6]}}}]);
 
-    m.push(false);
+    m.readVar(["global^console", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[19,5],"end":[19,12]}},"name":"console"}]);
 
-    m.functionCall("bound log", 0, 1);
+    m.readProperty(["obj1", "log", {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[19,5],"end":[19,16]}}}]);
 
-    m.endExecution();
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[19,17],"end":[19,26]}}}]);
+
+    m.readVar(["global^stdout", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[19,29],"end":[19,35]}},"name":"stdout"}]);
+
+    m.builtin(["global@11", 0, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[19,5],"end":[19,36]}},"name":"bound log"}]);
+
+    m.builtinExit(["global@11", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[19,5],"end":[19,36]}},"name":"bound log"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[19,5],"end":[19,36]}}}]);
+
+    m.readVar(["global^console", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[20,5],"end":[20,12]}},"name":"console"}]);
+
+    m.readProperty(["obj1", "log", {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[20,5],"end":[20,16]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[20,17],"end":[20,26]}}}]);
+
+    m.readVar(["global^stderr", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[20,28],"end":[20,34]}},"name":"stderr"}]);
+
+    m.builtin(["global@11", 0, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[20,5],"end":[20,35]}},"name":"bound log"}]);
+
+    m.builtinExit(["global@11", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[20,5],"end":[20,35]}},"name":"bound log"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[20,5],"end":[20,35]}}}]);
+
+    m.readVar(["global^done", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[21,5],"end":[21,9]}},"name":"done"}]);
+
+    m.functionInvokeStart(["global@15", 0, 0, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[21,5],"end":[21,11]}},"name":"done"}]);
+
+    m.functionEnter(["global@15", 0, {"type":"functionEnter","location":{"fileName":"taint-string.js","pos":{"start":[1,69],"end":[3,2]}}}]);
+
+    m.readVar(["global^console", {"type":"variable","location":{"fileName":"taint-string.js","pos":{"start":[2,5],"end":[2,12]}},"name":"console"}]);
+
+    m.readProperty(["obj1", "log", {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[2,5],"end":[2,16]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"taint-string.js","pos":{"start":[2,17],"end":[2,24]}}}]);
+
+    m.builtin(["global@11", 0, {"type":"functionInvocation","location":{"fileName":"taint-string.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"}]);
+
+    m.builtinExit(["global@11", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[2,5],"end":[2,25]}}}]);
+
+    m.functionExit(["global@15", 9, {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[1,69],"end":[3,2]}}}]);
+
+    m.functionInvokeEnd(["global@15", {"type":"functionReturn","location":{"fileName":"taint-string.js","pos":{"start":[21,5],"end":[21,11]}},"name":"done"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[21,5],"end":[21,11]}}}]);
+
+    m.functionExit(["global@9", 8, {"type":"expr","location":{"fileName":"taint-string.js","pos":{"start":[14,15],"end":[22,2]}}}]);
+
+    m.endExecution([]);
 
 };
 

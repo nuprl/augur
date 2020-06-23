@@ -1,344 +1,432 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.functionEnter(["global@0", 0, {"type":"functionEnter","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,1],"end":[32,4]}}}]);
 
-    m.initVar("exports");
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,1],"end":[32,3]}}}]);
 
-    m.initVar("require");
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,1],"end":[32,3]}}}]);
 
-    m.initVar("module");
+    m.functionExit(["global@0", 8, {"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,1],"end":[32,4]}}}]);
 
-    m.initVar("__filename");
+    m.initVar(["global^exports", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}},"name":"exports"}]);
 
-    m.initVar("__dirname");
+    m.initVar(["global^require", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}},"name":"require"}]);
 
-    m.initVar("dummySource");
+    m.initVar(["global^module", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}},"name":"module"}]);
 
-    m.initVar("Foo");
+    m.initVar(["global^__filename", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}},"name":"__filename"}]);
 
-    m.initVar("payload");
+    m.initVar(["global^__dirname", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}},"name":"__dirname"}]);
 
-    m.initVar("mixin");
+    m.initVar(["global^dummySource", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}},"name":"dummySource"}]);
 
-    m.initVar("x");
+    m.initVar(["global^Foo", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}},"name":"Foo"}]);
 
-    m.push(false);
+    m.initVar(["global^payload", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}},"name":"payload"}]);
 
-    m.writeVar("dummySource");
+    m.initVar(["global^mixin", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}},"name":"mixin"}]);
 
-    m.push(false);
+    m.initVar(["global^x", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}},"name":"x"}]);
 
-    m.writeVar("Foo");
+    m.functionEnter(["global@1", 5, {"type":"functionEnter","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}}}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[7,1],"end":[9,2]}}}]);
 
-    m.writeVar("done");
+    m.writeVar(["global^dummySource", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[7,1],"end":[9,2]}},"name":"dummySource"}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[16,1],"end":[17,2]}}}]);
 
-    m.writeVar("payload");
+    m.writeVar(["global^Foo", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[16,1],"end":[17,2]}},"name":"Foo"}]);
 
-    m.readVar("dummySource");
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,69],"end":[3,2]}}}]);
 
-    m.push(false);
+    m.writeVar(["global^done", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"}]);
 
-    m.functionCall("dummySource", 1, 1);
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,62],"end":[3,2]}}}]);
 
-    m.initVar("val");
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[5,15],"end":[5,57]}}}]);
 
-    m.readVar("payload");
+    m.writeVar(["global^payload", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[5,5],"end":[5,56]}},"name":"payload"}]);
 
-    m.readVar("val");
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[5,5],"end":[5,56]}}}]);
 
-    m.binaryOp();
+    m.readVar(["global^dummySource", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[11,1],"end":[11,12]}},"name":"dummySource"}]);
 
-    m.writeVar("payload");
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[11,13],"end":[11,16]}}}]);
 
-    m.readVar("require");
+    m.functionInvokeStart(["global@3", 1, 1, {"type":"functionInvocation","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[11,1],"end":[11,17]}},"name":"dummySource"}]);
 
-    m.push(false);
+    m.initVar(["global@3#4^val", {"type":"declaration","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[7,1],"end":[9,2]}},"name":"val"}]);
 
-    m.functionCall("require", 1, 1);
+    m.functionEnter(["global@3", 1, {"type":"functionEnter","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[7,1],"end":[9,2]}}}]);
 
-    m.push(false);
+    m.readVar(["global^payload", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[8,5],"end":[8,12]}},"name":"payload"}]);
 
-    m.initVar("exports");
+    m.readVar(["global@3#4^val", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[8,16],"end":[8,19]}},"name":"val"}]);
 
-    m.initVar("require");
+    m.binary([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[8,5],"end":[8,12]}}}]);
 
-    m.initVar("module");
+    m.writeVar(["global^payload", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[8,5],"end":[8,19]}},"name":"payload"}]);
 
-    m.initVar("__filename");
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[8,5],"end":[8,19]}}}]);
 
-    m.initVar("__dirname");
+    m.functionExit(["global@3", 8, {"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[7,1],"end":[9,2]}}}]);
 
-    m.initVar("createClass");
+    m.functionInvokeEnd(["global@3", {"type":"functionReturn","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[11,1],"end":[11,17]}},"name":"dummySource"}]);
 
-    m.initVar("instanceOf");
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[11,1],"end":[11,17]}}}]);
 
-    m.initVar("superMethod");
+    m.readVar(["global^require", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[13,13],"end":[13,20]}},"name":"require"}]);
 
-    m.initVar("subOf");
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[13,21],"end":[13,32]}}}]);
 
-    m.initVar("mixin");
+    m.functionInvokeStart(["global@6", 1, 1, {"type":"functionInvocation","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[13,13],"end":[13,33]}},"name":"require"}]);
 
-    m.initVar("mixin_constructor");
+    m.functionEnter(["global@6#7@8", 0, {"type":"functionEnter","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,1],"end":[254,4]}}}]);
 
-    m.initVar("isEmpty");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,1],"end":[254,3]}}}]);
 
-    m.initVar("insert_proto");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,1],"end":[254,3]}}}]);
 
-    m.initVar("copyInto");
+    m.functionExit(["global@6#7@8", 12, {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,1],"end":[254,4]}}}]);
 
-    m.initVar("inspect_protos");
+    m.initVar(["global@6#7^exports", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"exports"}]);
 
-    m.initVar("alias");
+    m.initVar(["global@6#7^require", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"require"}]);
 
-    m.initVar("util");
+    m.initVar(["global@6#7^module", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"module"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^__filename", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"__filename"}]);
 
-    m.writeVar("createClass");
+    m.initVar(["global@6#7^__dirname", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"__dirname"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^createClass", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"createClass"}]);
 
-    m.writeVar("instanceOf");
+    m.initVar(["global@6#7^instanceOf", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"instanceOf"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^superMethod", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"superMethod"}]);
 
-    m.writeVar("superMethod");
+    m.initVar(["global@6#7^subOf", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"subOf"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^mixin", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"mixin"}]);
 
-    m.writeVar("subOf");
+    m.initVar(["global@6#7^mixin_constructor", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"mixin_constructor"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^isEmpty", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"isEmpty"}]);
 
-    m.writeVar("mixin");
+    m.initVar(["global@6#7^insert_proto", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"insert_proto"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^copyInto", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"copyInto"}]);
 
-    m.writeVar("mixin_constructor");
+    m.initVar(["global@6#7^inspect_protos", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"inspect_protos"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^alias", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"alias"}]);
 
-    m.writeVar("isEmpty");
+    m.initVar(["global@6#7^util", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}},"name":"util"}]);
 
-    m.push(false);
+    m.functionEnter(["global@6#7@9", 5, {"type":"functionEnter","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}}}]);
 
-    m.writeVar("insert_proto");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[26,1],"end":[68,2]}}}]);
 
-    m.push(false);
+    m.writeVar(["global@6#7^createClass", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[26,1],"end":[68,2]}},"name":"createClass"}]);
 
-    m.writeVar("copyInto");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[71,1],"end":[74,2]}}}]);
 
-    m.push(false);
+    m.writeVar(["global@6#7^instanceOf", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[71,1],"end":[74,2]}},"name":"instanceOf"}]);
 
-    m.writeVar("inspect_protos");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[77,1],"end":[90,2]}}}]);
 
-    m.push(false);
+    m.writeVar(["global@6#7^superMethod", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[77,1],"end":[90,2]}},"name":"superMethod"}]);
 
-    m.writeVar("alias");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[93,1],"end":[107,2]}}}]);
 
-    m.readVar("require");
+    m.writeVar(["global@6#7^subOf", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[93,1],"end":[107,2]}},"name":"subOf"}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[127,1],"end":[157,2]}}}]);
 
-    m.functionCall("require", 1, 1);
+    m.writeVar(["global@6#7^mixin", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[127,1],"end":[157,2]}},"name":"mixin"}]);
 
-    m.writeVar("util");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[159,1],"end":[163,2]}}}]);
 
-    m.readVar("mixin");
+    m.writeVar(["global@6#7^mixin_constructor", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[159,1],"end":[163,2]}},"name":"mixin_constructor"}]);
 
-    m.readVar("copyInto");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[165,1],"end":[168,2]}}}]);
 
-    m.writeProperty("obj0", "copyInto");
+    m.writeVar(["global@6#7^isEmpty", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[165,1],"end":[168,2]}},"name":"isEmpty"}]);
 
-    m.readVar("mixin");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[170,1],"end":[192,2]}}}]);
 
-    m.readVar("alias");
+    m.writeVar(["global@6#7^insert_proto", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[170,1],"end":[192,2]}},"name":"insert_proto"}]);
 
-    m.writeProperty("obj0", "alias");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[194,1],"end":[205,2]}}}]);
 
-    m.readVar("mixin");
+    m.writeVar(["global@6#7^copyInto", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[194,1],"end":[205,2]}},"name":"copyInto"}]);
 
-    m.readVar("createClass");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[208,1],"end":[216,2]}}}]);
 
-    m.writeProperty("obj0", "createClass");
+    m.writeVar(["global@6#7^inspect_protos", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[208,1],"end":[216,2]}},"name":"inspect_protos"}]);
 
-    m.readVar("mixin");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[237,1],"end":[245,2]}}}]);
 
-    m.readVar("createClass");
+    m.writeVar(["global@6#7^alias", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[237,1],"end":[245,2]}},"name":"alias"}]);
 
-    m.writeProperty("obj0", "inherit");
+    m.readVar(["global@6#7^require", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[10,12],"end":[10,19]}},"name":"require"}]);
 
-    m.readVar("module");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[10,20],"end":[10,26]}}}]);
 
-    m.readVar("mixin");
+    m.functionInvokeStart(["global@6#7@11", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[10,12],"end":[10,27]}},"name":"require"}]);
 
-    m.writeProperty("obj1", "exports");
+    m.functionInvokeEnd(["global@6#7@11", {"type":"functionReturn","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[10,12],"end":[10,27]}},"name":"require"}]);
 
-    m.writeVar("mixin");
+    m.writeVar(["global@6#7^util", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[10,5],"end":[10,27]}},"name":"util"}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[10,5],"end":[10,27]}}}]);
 
-    m.writeVar("x");
+    m.readVar(["global@6#7^mixin", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[206,1],"end":[206,6]}},"name":"mixin"}]);
 
-    m.readVar("Object");
+    m.readVar(["global@6#7^copyInto", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[206,18],"end":[206,26]}},"name":"copyInto"}]);
 
-    m.readProperty("obj2", "defineProperty");
+    m.writeProperty(["obj0", "copyInto", {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[206,1],"end":[206,26]}}}]);
 
-    m.readVar("Foo");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[206,1],"end":[206,26]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7^mixin", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[247,1],"end":[247,6]}},"name":"mixin"}]);
 
-    m.push(false);
+    m.readVar(["global@6#7^alias", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[247,15],"end":[247,20]}},"name":"alias"}]);
 
-    m.readVar("payload");
+    m.writeProperty(["obj0", "alias", {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[247,1],"end":[247,20]}}}]);
 
-    m.binaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[247,1],"end":[247,20]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7^mixin", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[249,1],"end":[249,6]}},"name":"mixin"}]);
 
-    m.binaryOp();
+    m.readVar(["global@6#7^createClass", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[249,21],"end":[249,32]}},"name":"createClass"}]);
 
-    m.writeProperty("obj3", "value");
+    m.writeProperty(["obj0", "createClass", {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[249,1],"end":[249,32]}}}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[249,1],"end":[249,32]}}}]);
 
-    m.functionCall("defineProperty", 3, 3);
+    m.readVar(["global@6#7^mixin", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[250,1],"end":[250,6]}},"name":"mixin"}]);
 
-    m.unaryOp();
+    m.readVar(["global@6#7^createClass", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[250,17],"end":[250,28]}},"name":"createClass"}]);
 
-    m.readVar("mixin");
+    m.writeProperty(["obj0", "inherit", {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[250,1],"end":[250,28]}}}]);
 
-    m.readVar("Foo");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[250,1],"end":[250,28]}}}]);
 
-    m.readVar("x");
+    m.readVar(["global@6#7^module", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[252,1],"end":[252,7]}},"name":"module"}]);
 
-    m.functionCall("mixin", 2, 2);
+    m.readVar(["global@6#7^mixin", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[252,18],"end":[252,23]}},"name":"mixin"}]);
 
-    m.initVar("base");
+    m.writeProperty(["obj1", "exports", {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[252,1],"end":[252,23]}}}]);
 
-    m.initVar("mixin");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[252,1],"end":[252,23]}}}]);
 
-    m.initVar("ctor");
+    m.functionExit(["global@6#7@9", 12, {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[1,2],"end":[254,2]}}}]);
 
-    m.initVar("incl");
+    m.functionInvokeEnd(["global@6", {"type":"functionReturn","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[13,13],"end":[13,33]}},"name":"require"}]);
 
-    m.readVar("base");
+    m.writeVar(["global^mixin", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[13,5],"end":[13,33]}},"name":"mixin"}]);
 
-    m.writeVar("ctor");
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[13,5],"end":[13,33]}}}]);
 
-    m.readVar("base");
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[15,9],"end":[15,11]}}}]);
 
-    m.readProperty("obj4", "constructors");
+    m.writeVar(["global^x", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[15,5],"end":[15,11]}},"name":"x"}]);
 
-    m.readVar("base");
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[15,5],"end":[15,11]}}}]);
 
-    m.readVar("mixin");
+    m.readVar(["global^Object", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,1],"end":[18,7]}},"name":"Object"}]);
 
-    m.readVar("base");
+    m.readProperty(["obj2", "defineProperty", {"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,1],"end":[18,22]}}}]);
 
-    m.writeProperty("obj5", "1");
+    m.readVar(["global^Foo", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,23],"end":[18,26]}},"name":"Foo"}]);
 
-    m.writeProperty("obj5", "0");
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,28],"end":[18,34]}}}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,45],"end":[18,54]}}}]);
 
-    m.writeProperty("obj4", "constructors");
+    m.readVar(["global^payload", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,57],"end":[18,64]}},"name":"payload"}]);
 
-    m.readVar("base");
+    m.binary([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,45],"end":[18,64]}}}]);
 
-    m.readProperty("obj4", "prototype");
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,67],"end":[18,72]}}}]);
 
-    m.readVar("mixin_constructor");
+    m.binary([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,45],"end":[18,72]}}}]);
 
-    m.readVar("base");
+    m.writeProperty(["obj3", "value", {}]);
 
-    m.readProperty("obj4", "name");
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,36],"end":[18,74]}}}]);
 
-    m.readVar("base");
+    m.builtin(["global@18", 3, {"type":"functionInvocation","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,1],"end":[18,75]}},"name":"defineProperty"}]);
 
-    m.functionCall("mixin_constructor", 2, 2);
+    m.builtinExit(["global@18", {"type":"functionReturn","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,1],"end":[18,75]}},"name":"defineProperty"}]);
 
-    m.initVar("name");
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[18,1],"end":[18,75]}}}]);
 
-    m.initVar("ctor");
+    m.readVar(["global^mixin", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[20,5],"end":[20,10]}},"name":"mixin"}]);
 
-    m.initVar("arguments");
+    m.readVar(["global^Foo", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[20,11],"end":[20,14]}},"name":"Foo"}]);
 
-    m.initVar("str");
+    m.readVar(["global^x", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[20,16],"end":[20,17]}},"name":"x"}]);
 
-    m.push(false);
+    m.functionInvokeStart(["global@6#7@13", 2, 2, {"type":"functionInvocation","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[20,5],"end":[20,18]}},"name":"mixin"}]);
 
-    m.readProperty("obj6", "replace");
+    m.initVar(["global@6#7@13#21^base", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[127,1],"end":[157,2]}},"name":"base"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7@13#21^mixin", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[127,1],"end":[157,2]}},"name":"mixin"}]);
 
-    m.readVar("name");
+    m.initVar(["global@6#7@13#21^ctor", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[127,1],"end":[157,2]}},"name":"ctor"}]);
 
-    m.functionCall("replace", 2, 2);
+    m.initVar(["global@6#7@13#21^incl", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[127,1],"end":[157,2]}},"name":"incl"}]);
 
-    m.writeVar("str");
+    m.functionEnter(["global@6#7@13", 2, {"type":"functionEnter","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[127,1],"end":[157,2]}}}]);
 
-    m.readVar("eval");
+    m.readVar(["global@6#7@13#21^base", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[128,14],"end":[128,18]}},"name":"base"}]);
 
-    m.readVar("str");
+    m.writeVar(["global@6#7@13#21^ctor", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[128,7],"end":[128,18]}},"name":"ctor"}]);
 
-    m.builtin("eval", 1);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[128,7],"end":[128,18]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@13#21^base", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[129,7],"end":[129,11]}},"name":"base"}]);
 
-    m.writeVar("f");
+    m.readProperty(["obj4", "constructors", {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[129,7],"end":[129,24]}}}]);
 
-    m.readVar("console");
+    m.readVar(["global@6#7@13#21^base", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[137,5],"end":[137,9]}},"name":"base"}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@13#21^mixin", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[137,26],"end":[137,31]}},"name":"mixin"}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@13#21^base", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[137,33],"end":[137,37]}},"name":"base"}]);
 
-    m.writeProperty("obj7", "my-awesome-prop-23-42");
+    m.writeProperty(["obj5", "1", {}]);
 
-    m.readVar("eval");
+    m.writeProperty(["obj5", "0", {}]);
 
-    m.readVar("name");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[137,25],"end":[137,38]}}}]);
 
-    m.builtin("eval", 1);
+    m.writeProperty(["obj4", "constructors", {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[137,5],"end":[137,38]}}}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[137,5],"end":[137,38]}}}]);
 
-    m.readVar("console");
+    m.readVar(["global@6#7@13#21^base", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[139,12],"end":[139,16]}},"name":"base"}]);
 
-    m.push(false);
+    m.readProperty(["obj4", "prototype", {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[139,12],"end":[139,26]}}}]);
 
-    m.readProperty("obj7", "my-awesome-prop-23-42");
+    m.readVar(["global^mixin_constructor", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[139,41],"end":[139,58]}},"name":"mixin_constructor"}]);
 
-    m.unaryOp();
+    m.readVar(["global@6#7@13#21^base", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[139,59],"end":[139,63]}},"name":"base"}]);
 
-    m.readVar("console");
+    m.readProperty(["obj4", "name", {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[139,59],"end":[139,68]}}}]);
 
-    m.readProperty("obj7", "log");
+    m.readVar(["global@6#7@13#21^base", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[139,70],"end":[139,74]}},"name":"base"}]);
 
-    m.push(false);
+    m.functionInvokeStart(["global@6#7@13#21@25", 2, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[139,41],"end":[139,75]}},"name":"mixin_constructor"}]);
 
-    m.functionCall("bound log", 0, 1);
+    m.initVar(["global@6#7@13#21@25#26^name", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[159,1],"end":[163,2]}},"name":"name"}]);
 
-    m.readVar("done");
+    m.initVar(["global@6#7@13#21@25#26^ctor", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[159,1],"end":[163,2]}},"name":"ctor"}]);
 
-    m.functionCall("done", 0, 0);
+    m.initVar(["global@6#7@13#21@25#26^arguments", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[159,1],"end":[163,2]}},"name":"arguments"}]);
 
-    m.unaryOp();
+    m.initVar(["global@6#7@13#21@25#26^str", {"type":"declaration","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[159,1],"end":[163,2]}},"name":"str"}]);
 
-    m.readVar("console");
+    m.functionEnter(["global@6#7@13#21@25", 2, {"type":"functionEnter","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[159,1],"end":[163,2]}}}]);
 
-    m.readProperty("obj7", "log");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[160,13],"end":[160,114]}}}]);
 
-    m.push(false);
+    m.readProperty(["obj6", "replace", {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[160,13],"end":[160,122]}}}]);
 
-    m.functionCall("bound log", 0, 1);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[160,123],"end":[160,132]}}}]);
 
-    m.endExecution();
+    m.readVar(["global@6#7@13#21@25#26^name", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[160,134],"end":[160,138]}},"name":"name"}]);
+
+    m.builtin(["global@6#7@13#21@25#26@31", 2, {"type":"functionInvocation","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[160,13],"end":[160,139]}},"name":"replace"}]);
+
+    m.builtinExit(["global@6#7@13#21@25#26@31", {"type":"functionReturn","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[160,13],"end":[160,139]}},"name":"replace"}]);
+
+    m.writeVar(["global@6#7@13#21@25#26^str", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[160,7],"end":[160,139]}},"name":"str"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[160,7],"end":[160,139]}}}]);
+
+    m.readVar(["global^eval", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[161,3],"end":[161,7]}},"name":"eval"}]);
+
+    m.readVar(["global@6#7@13#21@25#26^str", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[161,8],"end":[161,11]}},"name":"str"}]);
+
+    m.functionEnter(["global@6#7@13#21@25#26@33", 0, {"type":"functionEnter","location":{"fileName":"eval"}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"eval"}}]);
+
+    m.writeVar(["global^f", {"type":"variable","location":{"fileName":"eval"},"name":"f"}]);
+
+    m.readVar(["global^console", {"type":"variable","location":{"fileName":"eval"},"name":"console"}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"eval"}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"eval"}}]);
+
+    m.writeProperty(["obj7", "my-awesome-prop-23-42", {"type":"expr","location":{"fileName":"eval"}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"eval"}}]);
+
+    m.functionExit(["global@6#7@13#21@25#26@33", 25, {"type":"expr","location":{"fileName":"eval"}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[161,3],"end":[161,12]}}}]);
+
+    m.readVar(["global^eval", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[162,10],"end":[162,14]}},"name":"eval"}]);
+
+    m.readVar(["global@6#7@13#21@25#26^name", {"type":"variable","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[162,15],"end":[162,19]}},"name":"name"}]);
+
+    m.functionExit(["global@6#7@13#21@25", 19, {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[159,1],"end":[163,2]}}}]);
+
+    m.functionExit(["global@6#7@13", 13, {"type":"expr","location":{"fileName":"node_modules/mixin-pro/mixin.js","pos":{"start":[127,1],"end":[157,2]}}}]);
+
+    m.readVar(["global^console", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[25,5],"end":[25,12]}},"name":"console"}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[25,13],"end":[25,36]}}}]);
+
+    m.readProperty(["obj7", "my-awesome-prop-23-42", {"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[25,5],"end":[25,37]}}}]);
+
+    m.readVar(["global^console", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[26,5],"end":[26,12]}},"name":"console"}]);
+
+    m.readProperty(["obj7", "log", {"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[26,5],"end":[26,16]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[26,17],"end":[26,40]}}}]);
+
+    m.builtin(["global@6#7@13#21@25#26@35", 0, {"type":"functionInvocation","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[26,5],"end":[26,41]}},"name":"bound log"}]);
+
+    m.builtinExit(["global@6#7@13#21@25#26@35", {"type":"functionReturn","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[26,5],"end":[26,41]}},"name":"bound log"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[26,5],"end":[26,41]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[25,1],"end":[29,2]}}}]);
+
+    m.readVar(["global^done", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[31,1],"end":[31,5]}},"name":"done"}]);
+
+    m.functionInvokeStart(["global@6#7@13#21@25#26@38", 0, 0, {"type":"functionInvocation","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[31,1],"end":[31,7]}},"name":"done"}]);
+
+    m.functionEnter(["global@6#7@13#21@25#26@38", 0, {"type":"functionEnter","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,69],"end":[3,2]}}}]);
+
+    m.readVar(["global^console", {"type":"variable","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[2,5],"end":[2,12]}},"name":"console"}]);
+
+    m.readProperty(["obj7", "log", {"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[2,5],"end":[2,16]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[2,17],"end":[2,24]}}}]);
+
+    m.builtin(["global@6#7@13#21@25#26@35", 0, {"type":"functionInvocation","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"}]);
+
+    m.builtinExit(["global@6#7@13#21@25#26@35", {"type":"functionReturn","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[2,5],"end":[2,25]}},"name":"bound log"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[2,5],"end":[2,25]}}}]);
+
+    m.functionExit(["global@6#7@13#21@25#26@38", 25, {"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,69],"end":[3,2]}}}]);
+
+    m.functionInvokeEnd(["global@6#7@13#21@25#26@38", {"type":"functionReturn","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[31,1],"end":[31,7]}},"name":"done"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[31,1],"end":[31,7]}}}]);
+
+    m.functionExit(["global@1", 8, {"type":"expr","location":{"fileName":"mixin-pro-eval.js","pos":{"start":[1,2],"end":[32,2]}}}]);
+
+    m.endExecution([]);
 
 };
 

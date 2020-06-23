@@ -1,16 +1,28 @@
 {
-	"main": "mixin-pro-eval.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "mixin-pro-eval.js"}
-	],
-	"sinks": [
-		{"type": "builtin",
-			"name": "eval"}
-	],
-	"expectedFlows": [
-		{"type": "builtin",
-			"name": "eval"}
-	]
+    "main": "mixin-pro-eval.js",
+    "sources": [
+        {
+            "type": "functionInvocation",
+            "name": "dummySource",
+            "location": {
+                "fileName": "mixin-pro-eval.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionEnter",
+            "location": {
+                "fileName": "eval"
+            }
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "functionEnter",
+            "location": {
+                "fileName": "eval"
+            }
+        }
+    ]
 }

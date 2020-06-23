@@ -1,7 +1,25 @@
-import {Analyzer, Receiver, Invoked, NPCallbacks, Sandbox} from "../nodeprof";
-import { AbstractMachine } from "../types";
+import {
+    Analyzer,
+    Receiver,
+    Invoked,
+    NPCallbacks,
+    Sandbox,
+    ExceptionVal
+} from "../nodeprof";
+import {
+    AbstractMachine,
+    DynamicDescription,
+    PropertyDescription,
+    RawVariableDescription,
+    ShadowMemory,
+    StaticDescription,
+    VariableDescription
+} from "../types";
 import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
+import {parseIID} from "../utils";
+import WeakMapShadow from "./shadow/weakMapShadow";
+import {useNativeRecorder} from "../native/native";
 
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
@@ -14,17 +32,37 @@ export default class Analysis implements Analyzer {
     private sandbox: Sandbox;
     private state: AbstractMachine = new JSWriter();
 
+    // keeping track of the functions entered and exited using the
+    // `functionEnter` and `functionExit` callbacks. this is because the
+    // `functionExit` callback doesn't provide the function that is
+    // being exited.
+    private functionCallStack: DynamicDescription[] = ["global" as DynamicDescription];
+
+    // shadow memory
+    public shadowMemory: ShadowMemory = new WeakMapShadow();
+
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
 
-    public declare: NPCallbacks.declare = (iid, name, type) => {
-        this.state.initVar(name);
+    public declare: NPCallbacks.declare = (iid, name: RawVariableDescription, type: string) => {
+        let description: StaticDescription = {type: "declaration",
+            location: parseIID(iid),
+            name: name};
+
+        this.shadowMemory.declare(name);
+        this.state.initVar([this.shadowMemory.getFullVariableName(name), description]);
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
+        let description: StaticDescription = {type: "literal",
+            location: parseIID(iid)};
+
         // logger.info("literal", val, hasGetterSetter);
         if (typeof val === "object") {
+
+            this.shadowMemory.initialize(val);
+
             const keys = [];
 
             // This works as long as there's no number keys
@@ -39,64 +77,210 @@ export default class Analysis implements Analyzer {
             logger.info("keys", keys);
 
             for (const k of keys) {
-                this.state.writeProperty(val, k);
+                this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
             }
         }
         logger.info("val", val);
-        this.state.push(false);
+        this.state.literal([description]);
     }
 
     public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
-        this.state.readVar(name);
+        let description: StaticDescription = {type: "variable",
+            location: parseIID(iid),
+            name: name};
+        this.state.readVar([this.shadowMemory.getFullVariableName(name), description]);
+
+        if (name === "arguments") {
+            this.state.initializeArgumentsObject([this.shadowMemory.getShadowID(val), description]);
+        }
     }
 
     public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
-        this.state.writeVar(name);
+        let description: StaticDescription = {type: "variable",
+            location: parseIID(iid),
+            name: name};
+        this.state.writeVar([this.shadowMemory.getFullVariableName(name), description]);
     }
 
-    public endExpression: NPCallbacks.endExpression = (iid, type) => {
-        console.log("endExpression: " + type);
-        this.state.conditionalEnd();
+    public endStatement: NPCallbacks.endStatement = (iid, type) => {
+        let description: StaticDescription = {type: "expr",
+            location: parseIID(iid)};
+        console.log("endStatement: " + type);
+        this.state.pop([description]);
     }
 
     public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {
-        this.state.binaryOp();
+        let description: StaticDescription = {type: "expr",
+            location: parseIID(iid)};
+        this.state.binary([description]);
     }
 
     public unaryPre: NPCallbacks.unaryPre = (iid: number, op: string, left: any) => {
-        this.state.unaryOp();
+        let description: StaticDescription = {type: "expr",
+            location: parseIID(iid)};
+        this.state.unary([description]);
     }
 
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
-        this.state.readProperty(receiver, offset);
+        let description: StaticDescription = {type: "expr",
+            location: parseIID(iid)};
+        this.shadowMemory.initialize(receiver);
+        this.state.readProperty([this.shadowMemory.getShadowID(receiver),
+            offset as PropertyDescription,
+            isMethodCall,
+            description]);
     }
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
-        this.state.writeProperty(receiver, offset);
+        let description: StaticDescription = {type: "expr",
+            location: parseIID(iid)};
+        this.shadowMemory.initialize(receiver);
+        this.state.writeProperty([this.shadowMemory.getShadowID(receiver),
+            offset as PropertyDescription,
+            description]);
+    };
+
+    public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args, isConstructor, isMethod) => {
+        let description: StaticDescription = {type: "functionInvocation",
+            location: parseIID(iid)};
+
+        this.shadowMemory.initialize(receiver);
+        this.shadowMemory.initialize(f);
+        this.shadowMemory.functionEnter(f);
+        this.shadowMemory.declare("this" as RawVariableDescription);
+        this.shadowMemory.declare("arguments" as RawVariableDescription);
+
+        if (f.name && f.name != "") {
+            description.name = f.name;
+        }
+        if (this.isNative(f)) {
+            // TODO: make sure this works using regular builtins and
+            //  reassigned builtins
+
+            let functionShadowID = this.shadowMemory.getShadowID(f);
+            let receiverShadowID = this.shadowMemory.getShadowID(receiver);
+            // console.error(this.shadowMemory.getFullVariableName("arguments"));
+
+            this.state.builtin(
+                [functionShadowID,
+                    receiverShadowID,
+                    args.length,
+                    // TODO: should this be description.name?
+                    //       we need a way to correctly name buiiltins
+                    useNativeRecorder(this, functionShadowID, receiverShadowID, receiver, args, isMethod, description),
+                    isMethod,
+                    description]);
+        } else {
+            this.state.functionInvokeStart([this.shadowMemory.getShadowID(f),
+                f.length,
+                args.length,
+                // this.shadowMemory.getShadowID(receiver),
+                description]);
+        }
     }
 
-    public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args) => {
-        this.state.functionCall(f.name, f.length, args.length);
+    public _return: NPCallbacks._return = (iid, val) => {
+        let description: StaticDescription = {type: "functionReturn",
+            location: parseIID(iid)};
+
+        this.state.functionReturn([
+            this.functionCallStack[this.functionCallStack.length - 1],
+            description]);
+    }
+
+    public invokeFun: NPCallbacks.invokeFun = (iid: number,  f: Invoked, receiver: Receiver, args: any[], result: any, isConstructor: boolean, isMethod: boolean, functionIid: number, functionSid: number) => {
+        let description: StaticDescription = {type: "functionReturn",
+            location: parseIID(iid)};
+        if (f.name && f.name != "") {
+            description.name = f.name;
+        }
+        this.shadowMemory.functionExit();
+        if (this.isNative(f)) {
+            this.state.builtinExit([this.shadowMemory.getShadowID(f), description]);
+        } else {
+            this.state.functionInvokeEnd([this.shadowMemory.getShadowID(f), description]);
+        }
+    }
+
+    public functionEnter: NPCallbacks.functionEnter = (iid: number, f: Invoked, receiver: Receiver, args: any[]) => {
+        let description: StaticDescription = {type: "functionEnter",
+            location: parseIID(iid)};
+        let functionName = this.shadowMemory.getShadowID(f);
+        this.functionCallStack.push(functionName);
+        this.state.functionEnter([functionName, args.length, description]);
+    }
+
+    public functionExit: NPCallbacks.functionExit = (iid: number,  returnVal: any, wrappedExceptionVal?: ExceptionVal) => {
+        let f = this.functionCallStack.pop();
+        let description: StaticDescription = {type: "expr",
+            location: parseIID(iid)};
+
+        this.state.functionExit([f, f.length, description]);
     }
 
     public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
-        this.state.builtin("eval", 1); // eval always takes a single arg
-    }
-
-    public builtinEnter: NPCallbacks.builtinEnter = (name: string, f: Invoked, receiver: Receiver, args: any[]) => {
-        if (name.includes("eval")) {
-            console.log("built in encountered: " + name);
-        }
-        if (name === "exec" || name === "eval") {
-            this.state.functionCall(name, f.length, args.length);
-        }
+        let description: StaticDescription = {type: "builtin",
+            location: parseIID(iid)};
+        // TODO: properly design a mechanism to track taint with eval
+        // this.state.builtin(["eval", 1, description]);
+        // eval always takes a single arg
     }
 
     public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
-        this.state.conditional(result);
+        let description: StaticDescription = {type: "expr",
+            location: parseIID(iid)};
+        // this.state.conditional(description);
     }
 
     public endExecution: NPCallbacks.endExecution = () => {
-        this.state.endExecution();
+        this.state.endExecution([]);
+    }
+
+    // returns the name that should be used to refer to the given value.
+    // it will return one of the three, prioritized by the following order:
+    //
+    // 1. if `val` is an object, and has a valid shadow identifier, its
+    // shadow identifier will be returned.
+    // 2. if `name` is not undefined, it will be returned.
+    // 3. if `val` is an object, the result of invoking `toString` on it
+    // will be returned.
+    // 4. `undefined` will be returned.
+    /*
+    private getName(val: any, name: string): DynamicDescription {
+
+        // if val is an object
+        if (typeof val === "object") {
+            let shadowID = this.shadowMemory.getShadowID(val);
+
+            // and has a valid shadow id
+            if (shadowID !== undefined) {
+
+                // return it
+                return shadowID;
+            }
+        }
+
+        // otherwise, if a name was provided
+        if (name !== undefined) {
+
+            // return it
+            return name;
+        }
+
+        // otherwise, just turn the object into a string and return it
+        return val.toString();
+    }
+     */
+
+    // TODO: fix this hack with real instrumentation
+    private isNative(fun: Function): boolean {
+        // apparently this kinda stuff isn't very slow
+        // https://stackoverflow.com/questions/6598945/detect-if-function-is-native-to-browser
+        // but doesn't cover all 1592624 of the corner cases
+
+        // actually that stackoverflow post is a terrible experiment and
+        // doesn't represent real code
+        return /\{\s+\[native code\]/
+            .test(Function.prototype.toString.call(fun));
     }
 }

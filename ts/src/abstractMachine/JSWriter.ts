@@ -2,7 +2,12 @@
 // JALANGI DO NOT INSTRUMENT
 
 import { Accessor } from "../nodeprof";
-import { Instruction, AbstractMachine } from "../types";
+import {
+    Instruction,
+    AbstractMachine,
+    StaticDescription,
+    DynamicDescription
+} from "../types";
 import MyLogger from "../analysis/mylogger";
 
 // An implementation of an abstract machine that produces JavaScript code.
@@ -16,6 +21,8 @@ import MyLogger from "../analysis/mylogger";
 //
 // The generated JS code will export a function, `drive`, that, given an
 // abstract machine, will drive it with the original callbacks.
+//
+// The type parameter, T, should be serializable to JSON.
 export default class JSWriter implements AbstractMachine {
 
     // JS code that should appear before and after the callbacks, respectively.
@@ -26,75 +33,112 @@ export default class JSWriter implements AbstractMachine {
     // @ts-ignore
     private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
 
-    // TODO: Replace with shadow id
-    private objCnt: number = 0;
-    private objIdMap: Map<{}, string> = new Map();
-
     constructor() {
         this.logger.log(this.preamble);
     }
 
-    public push(v: boolean) {
-        this.writeInstruction({ command: "push", args: [v] });
+    public literal([description]: [StaticDescription]) {
+        this.writeInstruction({ command: "literal", args: [description] });
     }
 
-    public pop() {
-        this.writeInstruction({ command: "pop", args: [] });
+    public pop([description]: [StaticDescription]) {
+        this.writeInstruction({ command: "pop", args: [description] });
     }
 
-    public readVar(s: string) {
-        this.writeInstruction({ command: "readVar", args: [s] });
+    public readVar([s, description]: [string, StaticDescription]) {
+        this.writeInstruction({ command: "readVar", args: [s, description] });
     }
 
-    public writeVar(s: string) {
-        this.writeInstruction({ command: "writeVar", args: [s] });
+    public writeVar([s, description]: [string, StaticDescription]) {
+        this.writeInstruction({ command: "writeVar", args: [s, description] });
     }
 
-    public readProperty(o: {}, s: Accessor) {
-        if (!this.objIdMap.has(o)) {
-            this.objIdMap.set(o, "obj" + this.objCnt++);
-        }
-        this.writeInstruction({ command: "readProperty", args: [this.objIdMap.get(o), s] });
+    public readProperty([o, s, isMethod, description]: [DynamicDescription, Accessor, boolean, StaticDescription]) {
+        this.writeInstruction({ command: "readProperty",
+            args: [o, s, isMethod, description] });
     }
 
-    public writeProperty(o: {}, s: Accessor) {
-        if (!this.objIdMap.has(o)) {
-            this.objIdMap.set(o, "obj" + this.objCnt++);
-        }
-        this.writeInstruction({ command: "writeProperty", args: [this.objIdMap.get(o), s] });
+    public writeProperty([o, s, description]: [DynamicDescription, Accessor, StaticDescription]) {
+        this.writeInstruction({ command: "writeProperty",
+            args: [o, s, description] });
     }
 
-    public binaryOp(): void {
-        this.writeInstruction({ command: "binaryOp", args: []});
+    public binary([description]: [StaticDescription]): void {
+        this.writeInstruction({ command: "binary", args: [description]});
     }
 
-    public unaryOp(): void {
-        this.writeInstruction({ command: "unaryOp", args: []});
+    public unary([description]: [StaticDescription]): void {
+        this.writeInstruction({ command: "unary", args: [description]});
     }
 
-    public initVar(s: string) {
-        this.writeInstruction({ command: "initVar", args: [s]});
+    public initVar([s, description]: [string, StaticDescription]) {
+        this.writeInstruction({ command: "initVar", args: [s, description]});
     }
 
-    public functionCall(name: string, expectedNumArgs: number, actualNumArgs: number) {
-        this.writeInstruction({ command: "functionCall", args: [name, expectedNumArgs, actualNumArgs]});
+    public functionEnter([name, actualArgs, description]: [string, number, StaticDescription]) {
+        this.writeInstruction({
+            command: "functionEnter",
+            args: [name, actualArgs, description]
+        });
     }
 
-    public builtin(name: string, actualArgs: number) {
-        this.writeInstruction({ command: "builtin", args: [name, actualArgs]});
+    public functionExit ([name, actualArgs, description]: [string, number, StaticDescription]) {
+        this.writeInstruction({
+            command: "functionExit",
+            args: [name, actualArgs, description]
+        });
     }
 
-    public conditional(s: any): void {
-        this.writeInstruction({ command: "conditional", args: [s]});
+    public functionInvokeEnd([name, description]:
+                                 [string, StaticDescription]) {
+        this.writeInstruction({
+            command: "functionInvokeEnd",
+            args: [name, description]
+        });
     }
 
-    public conditionalEnd(): void {
-        this.writeInstruction({ command: "conditionalEnd", args: []});
+    public functionInvokeStart([name, expectedArgs, actualArgs, description]:
+                                   [string, number, number, StaticDescription]) {
+        this.writeInstruction({
+            command: "functionInvokeStart",
+            args: [name, expectedArgs, actualArgs, description]
+        });
+    }
+
+    public functionReturn([name, description]: [string, StaticDescription]) {
+        this.writeInstruction({ command: "functionReturn", args: [name, description]});
+    }
+
+    public builtin([name, receiver, actualArgs, extraRecords, isMethod, description]:
+                       [string, string, number, any, boolean, StaticDescription]) {
+        this.writeInstruction({ command: "builtin",
+            args: [name, receiver, actualArgs, extraRecords, isMethod, description]});
+    }
+
+    public builtinExit([name, description]: [string, StaticDescription]): void {
+        this.writeInstruction({ command: "builtinExit",
+            args: [name, description]})
+    }
+
+
+    public conditional([description]: [StaticDescription]): void {
+        this.writeInstruction({ command: "conditional",
+            args: [description]});
+    }
+
+    public conditionalEnd([description]: [StaticDescription]): void {
+        this.writeInstruction({ command: "conditionalEnd",
+            args: [description]});
     };
 
-    public endExecution() {
+    public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
         this.logger.log(this.postamble);
+    }
+
+    public initializeArgumentsObject([argumentsObject, description]: [DynamicDescription, StaticDescription]) {
+        this.writeInstruction({ command: "initializeArgumentsObject",
+            args: [argumentsObject, description]});
     }
 
     // Prepares an argument to a callback to appear in JS code.
@@ -106,7 +150,7 @@ export default class JSWriter implements AbstractMachine {
     // Actually write the instruction to the output file.
     private writeInstruction(instr: Instruction) {
         const delim = ", ";
-        this.logger.log(`    m.${instr.command}(${instr.args.map(this.prepareArg).join(delim)});\n`);
+        this.logger.log(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
     }
 
 }

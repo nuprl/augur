@@ -1,16 +1,24 @@
 {
-	"main": "pomelo-monitor.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "pomelo-monitor.js"}
-	],
-	"sinks": [
-		{"type": "function",
-			"name": "exec"}
-	],
-	"expectedFlows": [
-		{"type": "function",
-			"name": "exec"}
-	]
+    "main": "pomelo-monitor.js",
+    "sources": [
+        {
+            "type": "functionInvocation",
+            "name": "dummySource",
+            "location": {
+                "fileName": "pomelo-monitor.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionInvocation",
+            "name": "exec"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "functionInvocation",
+            "name": "exec"
+        }
+    ]
 }

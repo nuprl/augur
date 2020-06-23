@@ -1,7 +1,7 @@
 const { exec } = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
-const {executeInstructionsFromFile} = require('../dist/src/abstractMachine/JSMachine');
+const {executeInstructionsFromFile} = require('../dist/src/utils');
 
 // The Jest test file.
 
@@ -16,12 +16,16 @@ const TAINT_ANALYSIS_HOME =
 // Should we be using Docker or a local NodeProf installation?
 const NODEPROF_HOME = shell.env['NODEPROF_HOME'];
 const MX_HOME = shell.env['MX_HOME'];
+const JAVA_HOME = shell.env['JAVA_HOME'];
 // If no NODEPROF_HOME was specified, Docker will be used instead.
-const SHOULD_USE_DOCKER = (NODEPROF_HOME === undefined) || (MX_HOME === undefined);
+const SHOULD_USE_DOCKER = (NODEPROF_HOME === undefined)
+    || (MX_HOME === undefined)
+    || (JAVA_HOME === undefined);
 // Tell the user that Docker is being used because they did not specify
 // the necessary environment variables.
 if (SHOULD_USE_DOCKER) {
-    console.error("You did not set the 'NODEPROF_HOME' and 'MX_HOME' environment variables. Docker will be used instead.");
+    console.error("You did not set the 'NODEPROF_HOME', 'MX_HOME', and" +
+        " 'JAVA_HOME' environment variables. Docker will be used instead.");
 }
 
 // Calculate paths
@@ -56,7 +60,7 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
-function runTest(testName, done){
+function runTest(testName, done) {
     // Parse the spec to know the program to instrument, sources, sinks, and
     // expected taints
     const spec = JSON.parse(fs.readFileSync(INPUT_DIR + testName + "/spec.json").toString());
@@ -65,23 +69,33 @@ function runTest(testName, done){
     const outputFile = ACTUAL_OUT_DIR + testName + '_out.js';
     const inputFile = INPUT_DIR + testName + "/" + spec.main;
 
-    if (!fs.existsSync(ANALYSIS)){
+    if (!fs.existsSync(ANALYSIS)) {
         throw new Error("analysis not found: " + ANALYSIS);
     }
+
+    const DOCKER_OUTPUT_FILENAME = "analysis.output";
 
     // The command to instrument the test's JS code
     const command =
         "rm -f " + outputFile + "; " +
         (SHOULD_USE_DOCKER
             // Run test using Docker
-            ? TAINT_ANALYSIS_HOME + "/ts/docker-run.sh --inputFile " + inputFile + " --outputFile " + outputFile
+            ? TAINT_ANALYSIS_HOME + "/ts/docker-nodeprof/docker-analyze.sh" +
+            ` --mxArg "--initParam outputFile:/root/program/${DOCKER_OUTPUT_FILENAME}"` +
+            " --analysisDir " + TAINT_ANALYSIS_HOME + "/ts/" +
+            " --analysisMain " + "dist/src/analysis/nodeprofAnalysis.js" +
+            " --programDir " + INPUT_DIR + testName + "/" +
+            " --programMain " + spec.main + ";" +
+            "mv " + INPUT_DIR + testName + "/" + DOCKER_OUTPUT_FILENAME +
+            " " + outputFile
             // Run test using local NodeProf installation
             : "cd " + NODEPROF_HOME + "; "
+            + `env OUTPUT_FILE=\"${outputFile}\"`
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
             + " --analysis " + ANALYSIS + " "
             + inputFile);
 
-    exec(command, function(error, stdout, stderr){
+    exec(command, function (error, stdout, stderr) {
         console.error("Source file: \t" + inputFile);
 
         if (error) {
@@ -92,10 +106,23 @@ function runTest(testName, done){
         if (stderr) console.error(stderr);
 
         // Compare compiled instructions
-        compareOutput(testName, ACTUAL_OUT_DIR, EXPECTED_OUT_DIR);
+        // compareOutput(testName, ACTUAL_OUT_DIR, EXPECTED_OUT_DIR);
+
+        // construct program dependence graph
+        let results = executeInstructionsFromFile(outputFile, spec);
+        // TODO: only do this when an ExpressionMachine was used
+        /*
+        let transformedResults = results.map((flow) => {
+            console.log(flow);
+            return [[...flow[0].values()], flow[1]];
+        });
+        fs.writeFile(ACTUAL_OUT_DIR + testName + "_out_graph.json",
+            JSON.stringify(transformedResults, undefined, 2));
+         */
 
         // Compare the result of executing the compiled instructions
-        expect(executeInstructionsFromFile(outputFile, spec)).toEqual(spec.expectedFlows);
+
+        expect(results).toEqual(spec.expectedFlows);
 
         done();
     });
@@ -144,10 +171,10 @@ test('init-destructure-obj-clean', (done) => runTest('init-destructure-obj-clean
 test('promise-await-clean', (done) => runTest('promise-await-clean', done));
 test('promise-await-tainted', (done) => runTest('promise-await-tainted', done));
 test('promise-then-clean', (done) => runTest('promise-then-clean', done));
+test('promise-then-tainted', (done) => runTest('promise-then-tainted', done))
 test('async-await-tainted', (done) => runTest('async-await-tainted', done));
 test('async-then-tainted', (done) => runTest('async-then-tainted', done));
 test('init-destructure-obj-tainted', (done) => runTest('init-destructure-obj-tainted', done));
-test('promise-then-tainted', (done) => runTest('promise-then-tainted', done))
 
 // New tests
 test('computed-property-name-tainted', (done) => runTest('computed-property-name-tainted', done));
@@ -213,7 +240,6 @@ test('benchmark-sequelize-sql', (done) => runTest('benchmark-sequelize-sql', don
 test('benchmark-systeminformation', (done) => runTest('benchmark-systeminformation', done));
 test('benchmark-system-locale', (done) => runTest('benchmark-system-locale', done));
 test('benchmark-taint-string', (done) => runTest('benchmark-taint-string', done));
-test('benchmark-test', (done) => runTest('benchmark-test', done));
 test('benchmark-write-file', (done) => runTest('benchmark-write-file', done));
 test('string-hygiene-tainted', (done) => runTest('string-hygiene-tainted', done));
 test('for-loop-condition-clean', (done) => runTest('for-loop-condition-clean', done));
@@ -222,3 +248,87 @@ test('implicit-flow-clean', (done) => runTest('implicit-flow-clean', done));
 test('implicit-flow-tainted', (done) => runTest('implicit-flow-tainted', done));
 test('object-alias-clean', (done) => runTest('object-alias-clean', done));
 test('object-alias-tainted', (done) => runTest('object-alias-tainted', done));
+test('general-clean', (done) => runTest('general-clean', done));
+test('general-tainted', (done) => runTest('general-tainted', done));
+test('expression-simple-clean', (done) => runTest('expression-simple-clean', done));
+test('expression-simple-tainted', (done) => runTest('expression-simple-tainted', done));
+test('expression-async-1-clean', (done) => runTest('expression-async-1-clean', done));
+test('expression-async-1-tainted', (done) => runTest('expression-async-1-tainted', done));
+test('for-of-tainted', (done) => runTest('for-of-tainted', done));
+test('for-in-clean', (done) => runTest('for-in-clean', done));
+test('for-in-tainted', (done) => runTest('for-in-tainted', done));
+test('function-reassignment-clean', (done) => runTest('function-reassignment-clean', done));
+test('function-reassignment-tainted', (done) => runTest('function-reassignment-tainted', done));
+test('chained-object-properties-clean', (done) => runTest('chained-object-properties-clean', done));
+test('chained-object-properties-tainted', (done) => runTest('chained-object-properties-tainted', done));
+test('implicit-return-clean', (done) => runTest('implicit-return-clean', done));
+test('implicit-return-tainted', (done) => runTest('implicit-return-tainted', done));
+test('no-return-clean', (done) => runTest('no-return-clean', done));
+test('dynamic-memory-usage-clean', (done) => runTest('dynamic-memory-usage-clean', done));
+test('dynamic-memory-usage-tainted', (done) => runTest('dynamic-memory-usage-tainted', done));
+test('scoping-clean', (done) => runTest('scoping-clean', done));
+test('scoping-tainted', (done) => runTest('scoping-tainted', done));
+test('linked-list-clean', (done) => runTest('linked-list-clean', done));
+test('linked-list-tainted', (done) => runTest('linked-list-tainted', done));
+test('native-function-call-clean', (done) => runTest('native-function-call-clean', done));
+test('native-function-call-tainted', (done) => runTest('native-function-call-tainted', done));
+test('native-function-call-2-clean', (done) => runTest('native-function-call-2-clean', done));
+test('native-function-call-2-tainted', (done) => runTest('native-function-call-2-tainted', done));
+test('native-function-call-3-clean', (done) => runTest('native-function-call-3-clean', done));
+test('native-function-call-3-tainted', (done) => runTest('native-function-call-3-tainted', done));
+test('native-function-call-4-clean', (done) => runTest('native-function-call-4-clean', done));
+test('native-function-call-4-tainted', (done) => runTest('native-function-call-4-tainted', done));
+test('native-string-toLowerCase-clean', (done) => runTest('native-string-toLowerCase-clean', done));
+test('native-string-toLowerCase-tainted', (done) => runTest('native-string-toLowerCase-tainted', done));
+test('native-Math-round-clean', (done) => runTest('native-Math-round-clean', done));
+test('native-Math-round-tainted', (done) => runTest('native-Math-round-tainted', done));
+test('native-Math-max-1-clean', (done) => runTest('native-Math-max-1-clean', done));
+test('native-Math-max-1-tainted', (done) => runTest('native-Math-max-1-tainted', done));
+test('native-Math-max-2-clean', (done) => runTest('native-Math-max-2-clean', done));
+test('native-Math-max-2-tainted', (done) => runTest('native-Math-max-2-tainted', done));
+test('native-Object-defineProperty-1-clean', (done) => runTest('native-Object-defineProperty-1-clean', done));
+test('native-Object-defineProperty-1-tainted', (done) => runTest('native-Object-defineProperty-1-tainted', done));
+test('native-Object-defineProperty-2-clean', (done) => runTest('native-Object-defineProperty-2-clean', done));
+test('native-Object-defineProperty-2-tainted', (done) => runTest('native-Object-defineProperty-2-tainted', done));
+test('native-Object-defineProperty-3-clean', (done) => runTest('native-Object-defineProperty-3-clean', done));
+test('native-Object-defineProperty-3-tainted', (done) => runTest('native-Object-defineProperty-3-tainted', done));
+test('native-Object-defineProperty-4-clean', (done) => runTest('native-Object-defineProperty-4-clean', done));
+test('native-Object-defineProperty-4-tainted', (done) => runTest('native-Object-defineProperty-4-tainted', done));
+test('native-eval-1-clean', (done) => runTest('native-eval-1-clean', done));
+test('native-eval-1-tainted', (done) => runTest('native-eval-1-tainted', done));
+test('native-Array-join-1-clean', (done) => runTest('native-Array-join-1-clean', done));
+test('native-Array-join-1-tainted', (done) => runTest('native-Array-join-1-tainted', done));
+test('native-Array-join-2-clean', (done) => runTest('native-Array-join-2-clean', done));
+test('native-Array-join-2-tainted', (done) => runTest('native-Array-join-2-tainted', done));
+test('native-Array-join-3-clean', (done) => runTest('native-Array-join-3-clean', done));
+test('native-Array-join-3-tainted', (done) => runTest('native-Array-join-3-tainted', done));
+test('native-Array-join-4-clean', (done) => runTest('native-Array-join-4-clean', done));
+test('native-Array-join-4-tainted', (done) => runTest('native-Array-join-4-tainted', done));
+test('native-Array-join-5-clean', (done) => runTest('native-Array-join-5-clean', done));
+test('native-Array-join-5-tainted', (done) => runTest('native-Array-join-5-tainted', done));
+test('native-Array-push-1-clean', (done) => runTest('native-Array-push-1-clean', done));
+test('native-Array-push-1-tainted', (done) => runTest('native-Array-push-1-tainted', done));
+test('native-Array-push-2-clean', (done) => runTest('native-Array-push-2-clean', done));
+test('native-Array-push-2-tainted', (done) => runTest('native-Array-push-2-tainted', done));
+test('native-Array-push-3-clean', (done) => runTest('native-Array-push-3-clean', done));
+test('native-Array-push-3-tainted', (done) => runTest('native-Array-push-3-tainted', done));
+test('native-Array-push-4-clean', (done) => runTest('native-Array-push-4-clean', done));
+test('native-Array-push-4-tainted', (done) => runTest('native-Array-push-4-tainted', done));
+test('native-Array-push-5-clean', (done) => runTest('native-Array-push-5-clean', done));
+test('native-Array-push-5-tainted', (done) => runTest('native-Array-push-5-tainted', done));
+test('arguments-1-clean', (done) => runTest('arguments-1-clean', done));
+test('arguments-1-tainted', (done) => runTest('arguments-1-tainted', done));
+test('arguments-2-clean', (done) => runTest('arguments-2-clean', done));
+test('arguments-2-tainted', (done) => runTest('arguments-2-tainted', done));
+test('arguments-3-clean', (done) => runTest('arguments-3-clean', done));
+test('arguments-3-tainted', (done) => runTest('arguments-3-tainted', done));
+test('arguments-4-clean', (done) => runTest('arguments-4-clean', done));
+test('arguments-4-tainted', (done) => runTest('arguments-4-tainted', done));
+test('arguments-5-clean', (done) => runTest('arguments-5-clean', done));
+test('arguments-5-tainted', (done) => runTest('arguments-5-tainted', done));
+test('arguments-6-clean', (done) => runTest('arguments-6-clean', done));
+test('arguments-6-tainted', (done) => runTest('arguments-6-tainted', done));
+test('arguments-7-clean', (done) => runTest('arguments-7-clean', done));
+test('arguments-7-tainted', (done) => runTest('arguments-7-tainted', done));
+test('arguments-8-clean', (done) => runTest('arguments-8-clean', done));
+test('arguments-8-tainted', (done) => runTest('arguments-8-tainted', done));

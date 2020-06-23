@@ -12,7 +12,7 @@ export default class MyLogger {
     fs.openSync(fileName, "w"); // create empty file
   }
 
-  log(s){
+  log(s: string){
     fs.appendFileSync(this.fileName, s + "\n");
   }
 

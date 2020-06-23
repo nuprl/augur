@@ -1,976 +1,1268 @@
 exports.drive = (m) => {
 
-    m.push(false);
+    m.functionEnter(["global@0", 0, {"type":"functionEnter","location":{"fileName":"node-wos.js","pos":{"start":[1,1],"end":[24,4]}}}]);
 
-    m.initVar("exports");
+    m.literal([{"type":"literal","location":{"fileName":"node-wos.js","pos":{"start":[1,1],"end":[24,3]}}}]);
 
-    m.initVar("require");
+    m.pop([{"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[1,1],"end":[24,3]}}}]);
 
-    m.initVar("module");
+    m.functionExit(["global@0", 8, {"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[1,1],"end":[24,4]}}}]);
 
-    m.initVar("__filename");
+    m.initVar(["global^exports", {"type":"declaration","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}},"name":"exports"}]);
 
-    m.initVar("__dirname");
+    m.initVar(["global^require", {"type":"declaration","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}},"name":"require"}]);
 
-    m.initVar("dummySource");
+    m.initVar(["global^module", {"type":"declaration","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}},"name":"module"}]);
 
-    m.initVar("DUMMY_FILE");
+    m.initVar(["global^__filename", {"type":"declaration","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}},"name":"__filename"}]);
 
-    m.initVar("command");
+    m.initVar(["global^__dirname", {"type":"declaration","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}},"name":"__dirname"}]);
 
-    m.initVar("wos");
+    m.initVar(["global^dummySource", {"type":"declaration","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}},"name":"dummySource"}]);
 
-    m.push(false);
+    m.initVar(["global^DUMMY_FILE", {"type":"declaration","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}},"name":"DUMMY_FILE"}]);
 
-    m.writeVar("dummySource");
+    m.initVar(["global^command", {"type":"declaration","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}},"name":"command"}]);
 
-    m.push(false);
+    m.initVar(["global^wos", {"type":"declaration","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}},"name":"wos"}]);
 
-    m.writeVar("done");
+    m.functionEnter(["global@1", 5, {"type":"functionEnter","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}}}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node-wos.js","pos":{"start":[11,1],"end":[13,2]}}}]);
 
-    m.writeVar("DUMMY_FILE");
+    m.writeVar(["global^dummySource", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[11,1],"end":[13,2]}},"name":"dummySource"}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node-wos.js","pos":{"start":[1,69],"end":[3,2]}}}]);
 
-    m.readVar("DUMMY_FILE");
+    m.writeVar(["global^done", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[1,62],"end":[3,2]}},"name":"done"}]);
 
-    m.binaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[1,62],"end":[3,2]}}}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node-wos.js","pos":{"start":[6,18],"end":[6,27]}}}]);
 
-    m.binaryOp();
+    m.writeVar(["global^DUMMY_FILE", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[6,5],"end":[6,26]}},"name":"DUMMY_FILE"}]);
 
-    m.writeVar("command");
+    m.pop([{"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[6,5],"end":[6,26]}}}]);
 
-    m.readVar("dummySource");
+    m.literal([{"type":"literal","location":{"fileName":"node-wos.js","pos":{"start":[8,15],"end":[8,25]}}}]);
 
-    m.push(false);
+    m.readVar(["global^DUMMY_FILE", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[8,28],"end":[8,38]}},"name":"DUMMY_FILE"}]);
 
-    m.functionCall("dummySource", 1, 1);
+    m.binary([{"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[8,15],"end":[8,38]}}}]);
 
-    m.initVar("val");
+    m.literal([{"type":"literal","location":{"fileName":"node-wos.js","pos":{"start":[8,41],"end":[8,44]}}}]);
 
-    m.readVar("command");
+    m.binary([{"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[8,15],"end":[8,44]}}}]);
 
-    m.readVar("val");
+    m.writeVar(["global^command", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[8,5],"end":[8,43]}},"name":"command"}]);
 
-    m.binaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[8,5],"end":[8,43]}}}]);
 
-    m.writeVar("command");
+    m.readVar(["global^dummySource", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[15,1],"end":[15,12]}},"name":"dummySource"}]);
 
-    m.readVar("require");
+    m.literal([{"type":"literal","location":{"fileName":"node-wos.js","pos":{"start":[15,13],"end":[15,16]}}}]);
 
-    m.push(false);
+    m.functionInvokeStart(["global@3", 1, 1, {"type":"functionInvocation","location":{"fileName":"node-wos.js","pos":{"start":[15,1],"end":[15,17]}},"name":"dummySource"}]);
 
-    m.functionCall("require", 1, 1);
+    m.initVar(["global@3#4^val", {"type":"declaration","location":{"fileName":"node-wos.js","pos":{"start":[11,1],"end":[13,2]}},"name":"val"}]);
 
-    m.push(false);
+    m.functionEnter(["global@3", 1, {"type":"functionEnter","location":{"fileName":"node-wos.js","pos":{"start":[11,1],"end":[13,2]}}}]);
 
-    m.initVar("exports");
+    m.readVar(["global^command", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[12,5],"end":[12,12]}},"name":"command"}]);
 
-    m.initVar("require");
+    m.readVar(["global@3#4^val", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[12,16],"end":[12,19]}},"name":"val"}]);
 
-    m.initVar("module");
+    m.binary([{"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[12,5],"end":[12,12]}}}]);
 
-    m.initVar("__filename");
+    m.writeVar(["global^command", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[12,5],"end":[12,19]}},"name":"command"}]);
 
-    m.initVar("__dirname");
+    m.pop([{"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[12,5],"end":[12,19]}}}]);
 
-    m.initVar("_interopRequireDefault");
+    m.functionExit(["global@3", 8, {"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[11,1],"end":[13,2]}}}]);
 
-    m.initVar("_classCallCheck");
+    m.functionInvokeEnd(["global@3", {"type":"functionReturn","location":{"fileName":"node-wos.js","pos":{"start":[15,1],"end":[15,17]}},"name":"dummySource"}]);
 
-    m.initVar("getLinuxOperationSystemName");
+    m.pop([{"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[15,1],"end":[15,17]}}}]);
 
-    m.initVar("getMacOperationSystemName");
+    m.readVar(["global^require", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[17,11],"end":[17,18]}},"name":"require"}]);
 
-    m.initVar("getWindowsOperationSystem");
+    m.literal([{"type":"literal","location":{"fileName":"node-wos.js","pos":{"start":[17,19],"end":[17,29]}}}]);
 
-    m.initVar("_createClass");
+    m.functionInvokeStart(["global@6", 1, 1, {"type":"functionInvocation","location":{"fileName":"node-wos.js","pos":{"start":[17,11],"end":[17,30]}},"name":"require"}]);
 
-    m.initVar("_os");
+    m.functionEnter(["global@6#7@8", 0, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,1],"end":[228,4]}}}]);
 
-    m.initVar("_os2");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,1],"end":[228,3]}}}]);
 
-    m.initVar("_child_process");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,1],"end":[228,3]}}}]);
 
-    m.initVar("NodeWOS");
+    m.functionExit(["global@6#7@8", 12, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,1],"end":[228,4]}}}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^exports", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"exports"}]);
 
-    m.writeVar("_interopRequireDefault");
+    m.initVar(["global@6#7^require", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"require"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^module", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"module"}]);
 
-    m.writeVar("_classCallCheck");
+    m.initVar(["global@6#7^__filename", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"__filename"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^__dirname", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"__dirname"}]);
 
-    m.writeVar("getLinuxOperationSystemName");
+    m.initVar(["global@6#7^_interopRequireDefault", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"_interopRequireDefault"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^_classCallCheck", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"_classCallCheck"}]);
 
-    m.writeVar("getMacOperationSystemName");
+    m.initVar(["global@6#7^getLinuxOperationSystemName", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"getLinuxOperationSystemName"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^getMacOperationSystemName", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"getMacOperationSystemName"}]);
 
-    m.writeVar("getWindowsOperationSystem");
+    m.initVar(["global@6#7^getWindowsOperationSystem", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"getWindowsOperationSystem"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^_createClass", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"_createClass"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^_os", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"_os"}]);
 
-    m.functionCall("", 0, 0);
+    m.initVar(["global@6#7^_os2", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"_os2"}]);
 
-    m.initVar("defineProperties");
+    m.initVar(["global@6#7^_child_process", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"_child_process"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7^NodeWOS", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}},"name":"NodeWOS"}]);
 
-    m.writeVar("defineProperties");
+    m.functionEnter(["global@6#7@9", 5, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}}}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,1],"end":[15,96]}}}]);
 
-    m.writeVar("_createClass");
+    m.writeVar(["global@6#7^_interopRequireDefault", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,1],"end":[15,96]}},"name":"_interopRequireDefault"}]);
 
-    m.readVar("Object");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[17,1],"end":[17,154]}}}]);
 
-    m.readProperty("obj0", "defineProperty");
+    m.writeVar(["global@6#7^_classCallCheck", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[17,1],"end":[17,154]}},"name":"_classCallCheck"}]);
 
-    m.readVar("exports");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[168,1],"end":[200,2]}}}]);
 
-    m.push(false);
+    m.writeVar(["global@6#7^getLinuxOperationSystemName", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[168,1],"end":[200,2]}},"name":"getLinuxOperationSystemName"}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[208,1],"end":[212,2]}}}]);
 
-    m.writeProperty("obj1", "value");
+    m.writeVar(["global@6#7^getMacOperationSystemName", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[208,1],"end":[212,2]}},"name":"getMacOperationSystemName"}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[220,1],"end":[224,2]}}}]);
 
-    m.functionCall("defineProperty", 3, 3);
+    m.writeVar(["global@6#7^getWindowsOperationSystem", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[220,1],"end":[224,2]}},"name":"getWindowsOperationSystem"}]);
 
-    m.readVar("require");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,62],"end":[1,74]}}}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,62],"end":[1,74]}}}]);
 
-    m.functionCall("require", 1, 1);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,20],"end":[3,562]}}}]);
 
-    m.writeVar("_os");
+    m.functionInvokeStart(["global@6#7@11", 0, 0, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,20],"end":[3,564]}}}]);
 
-    m.readVar("_interopRequireDefault");
+    m.initVar(["global@6#7@11#12^defineProperties", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,20],"end":[3,562]}},"name":"defineProperties"}]);
 
-    m.readVar("_os");
+    m.functionEnter(["global@6#7@11", 0, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,20],"end":[3,562]}}}]);
 
-    m.functionCall("_interopRequireDefault", 1, 1);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}}}]);
 
-    m.initVar("obj");
+    m.writeVar(["global@6#7@11#12^defineProperties", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}},"name":"defineProperties"}]);
 
-    m.readVar("obj");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,358],"end":[3,559]}}}]);
 
-    m.readVar("obj");
+    m.functionReturn(["global@6#7@11", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,351],"end":[3,560]}}}]);
 
-    m.readProperty("obj2", "__esModule");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,351],"end":[3,560]}}}]);
 
-    m.readVar("obj");
+    m.functionExit(["global@6#7@11", 13, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,20],"end":[3,562]}}}]);
 
-    m.writeProperty("obj3", "default");
+    m.functionInvokeEnd(["global@6#7@11", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,20],"end":[3,564]}}}]);
 
-    m.push(false);
+    m.writeVar(["global@6#7^_createClass", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,5],"end":[3,564]}},"name":"_createClass"}]);
 
-    m.writeVar("_os2");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,5],"end":[3,564]}}}]);
 
-    m.readVar("require");
+    m.readVar(["global^Object", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[5,1],"end":[5,7]}},"name":"Object"}]);
 
-    m.push(false);
+    m.readProperty(["obj0", "defineProperty", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[5,1],"end":[5,22]}}}]);
 
-    m.functionCall("require", 1, 1);
+    m.readVar(["global@6#7^exports", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[5,23],"end":[5,30]}},"name":"exports"}]);
 
-    m.writeVar("_child_process");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[5,32],"end":[5,44]}}}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[6,10],"end":[6,14]}}}]);
 
-    m.functionCall("", 0, 0);
+    m.writeProperty(["obj1", "value", {}]);
 
-    m.initVar("NodeWOS");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[5,46],"end":[7,2]}}}]);
 
-    m.push(false);
+    m.builtin(["global@6#7@15", 3, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[5,1],"end":[7,3]}},"name":"defineProperty"}]);
 
-    m.writeVar("NodeWOS");
+    m.builtinExit(["global@6#7@15", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[5,1],"end":[7,3]}},"name":"defineProperty"}]);
 
-    m.readVar("_createClass");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[5,1],"end":[7,3]}}}]);
 
-    m.readVar("NodeWOS");
+    m.readVar(["global@6#7^require", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[9,11],"end":[9,18]}},"name":"require"}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[9,19],"end":[9,23]}}}]);
 
-    m.push(false);
+    m.functionInvokeStart(["global@6#7@18", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[9,11],"end":[9,24]}},"name":"require"}]);
 
-    m.writeProperty("obj4", "value");
+    m.functionInvokeEnd(["global@6#7@18", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[9,11],"end":[9,24]}},"name":"require"}]);
 
-    m.writeProperty("obj4", "key");
+    m.writeVar(["global@6#7^_os", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[9,5],"end":[9,24]}},"name":"_os"}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[9,5],"end":[9,24]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7^_interopRequireDefault", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[11,12],"end":[11,34]}},"name":"_interopRequireDefault"}]);
 
-    m.push(false);
+    m.readVar(["global@6#7^_os", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[11,35],"end":[11,38]}},"name":"_os"}]);
 
-    m.writeProperty("obj5", "value");
+    m.functionInvokeStart(["global@6#7@21", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[11,12],"end":[11,39]}},"name":"_interopRequireDefault"}]);
 
-    m.writeProperty("obj5", "key");
+    m.initVar(["global@6#7@21#22^obj", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,1],"end":[15,96]}},"name":"obj"}]);
 
-    m.push(false);
+    m.functionEnter(["global@6#7@21", 1, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,1],"end":[15,96]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@21#22^obj", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,47],"end":[15,50]}},"name":"obj"}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@21#22^obj", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,54],"end":[15,57]}},"name":"obj"}]);
 
-    m.writeProperty("obj6", "value");
+    m.readProperty(["obj2", "__esModule", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,54],"end":[15,68]}}}]);
 
-    m.writeProperty("obj6", "key");
+    m.readVar(["global@6#7@21#22^obj", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,88],"end":[15,91]}},"name":"obj"}]);
 
-    m.push(false);
+    m.writeProperty(["obj3", "default", {}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,77],"end":[15,93]}}}]);
 
-    m.push(false);
+    m.functionReturn(["global@6#7@21", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,40],"end":[15,94]}}}]);
 
-    m.writeProperty("obj7", "value");
+    m.functionExit(["global@6#7@21", 13, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,1],"end":[15,96]}}}]);
 
-    m.writeProperty("obj7", "key");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[15,40],"end":[15,94]}}}]);
 
-    m.push(false);
+    m.functionInvokeEnd(["global@6#7@21", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[11,12],"end":[11,39]}},"name":"_interopRequireDefault"}]);
 
-    m.push(false);
+    m.writeVar(["global@6#7^_os2", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[11,5],"end":[11,39]}},"name":"_os2"}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[11,5],"end":[11,39]}}}]);
 
-    m.writeProperty("obj8", "value");
+    m.readVar(["global@6#7^require", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[13,22],"end":[13,29]}},"name":"require"}]);
 
-    m.writeProperty("obj8", "key");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[13,30],"end":[13,45]}}}]);
 
-    m.push(false);
+    m.functionInvokeStart(["global@6#7@18", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[13,22],"end":[13,46]}},"name":"require"}]);
 
-    m.push(false);
+    m.functionInvokeEnd(["global@6#7@18", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[13,22],"end":[13,46]}},"name":"require"}]);
 
-    m.push(false);
+    m.writeVar(["global@6#7^_child_process", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[13,5],"end":[13,46]}},"name":"_child_process"}]);
 
-    m.writeProperty("obj9", "value");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[13,5],"end":[13,46]}}}]);
 
-    m.writeProperty("obj9", "key");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[24,15],"end":[158,2]}}}]);
 
-    m.push(false);
+    m.functionInvokeStart(["global@6#7@28", 0, 0, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[24,15],"end":[158,4]}}}]);
 
-    m.writeProperty("obj10", "5");
+    m.initVar(["global@6#7@28#29^NodeWOS", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[24,15],"end":[158,2]}},"name":"NodeWOS"}]);
 
-    m.writeProperty("obj10", "4");
+    m.functionEnter(["global@6#7@28", 0, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[24,15],"end":[158,2]}}}]);
 
-    m.writeProperty("obj10", "3");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[25,3],"end":[67,4]}}}]);
 
-    m.writeProperty("obj10", "2");
+    m.writeVar(["global@6#7@28#29^NodeWOS", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[25,3],"end":[67,4]}},"name":"NodeWOS"}]);
 
-    m.writeProperty("obj10", "1");
+    m.readVar(["global@6#7^_createClass", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[74,3],"end":[74,15]}},"name":"_createClass"}]);
 
-    m.writeProperty("obj10", "0");
+    m.readVar(["global@6#7@28#29^NodeWOS", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[74,16],"end":[74,23]}},"name":"NodeWOS"}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[75,10],"end":[75,21]}}}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[81,12],"end":[83,6]}}}]);
 
-    m.push(false);
+    m.writeProperty(["obj4", "value", {}]);
 
-    m.writeProperty("obj11", "value");
+    m.writeProperty(["obj4", "key", {}]);
 
-    m.writeProperty("obj11", "key");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[74,26],"end":[90,4]}}}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[91,10],"end":[91,19]}}}]);
 
-    m.writeProperty("obj12", "0");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[92,12],"end":[94,6]}}}]);
 
-    m.push(false);
+    m.writeProperty(["obj5", "value", {}]);
 
-    m.functionCall("", 3, 3);
+    m.writeProperty(["obj5", "key", {}]);
 
-    m.initVar("Constructor");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[90,6],"end":[101,4]}}}]);
 
-    m.initVar("protoProps");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[102,10],"end":[102,17]}}}]);
 
-    m.initVar("staticProps");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[103,12],"end":[105,6]}}}]);
 
-    m.readVar("protoProps");
+    m.writeProperty(["obj6", "value", {}]);
 
-    m.unaryOp();
+    m.writeProperty(["obj6", "key", {}]);
 
-    m.readVar("defineProperties");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[101,6],"end":[112,4]}}}]);
 
-    m.readVar("Constructor");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[113,10],"end":[113,21]}}}]);
 
-    m.readProperty("obj13", "prototype");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[114,12],"end":[116,6]}}}]);
 
-    m.readVar("protoProps");
+    m.writeProperty(["obj7", "value", {}]);
 
-    m.functionCall("defineProperties", 2, 2);
+    m.writeProperty(["obj7", "key", {}]);
 
-    m.initVar("target");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[112,6],"end":[123,4]}}}]);
 
-    m.initVar("props");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[124,10],"end":[124,21]}}}]);
 
-    m.initVar("i");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[125,12],"end":[127,6]}}}]);
 
-    m.initVar("descriptor");
+    m.writeProperty(["obj8", "value", {}]);
 
-    m.push(false);
+    m.writeProperty(["obj8", "key", {}]);
 
-    m.writeVar("i");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[123,6],"end":[135,4]}}}]);
 
-    m.readVar("i");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[136,10],"end":[136,21]}}}]);
 
-    m.readVar("props");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[137,12],"end":[149,6]}}}]);
 
-    m.readProperty("obj10", "length");
+    m.writeProperty(["obj9", "value", {}]);
 
-    m.binaryOp();
+    m.writeProperty(["obj9", "key", {}]);
 
-    m.readVar("props");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[135,6],"end":[150,4]}}}]);
 
-    m.readVar("i");
+    m.writeProperty(["obj10", "5", {}]);
 
-    m.readProperty("obj10", 0);
+    m.writeProperty(["obj10", "4", {}]);
 
-    m.writeVar("descriptor");
+    m.writeProperty(["obj10", "3", {}]);
 
-    m.readVar("descriptor");
+    m.writeProperty(["obj10", "2", {}]);
 
-    m.readVar("descriptor");
+    m.writeProperty(["obj10", "1", {}]);
 
-    m.readProperty("obj4", "enumerable");
+    m.writeProperty(["obj10", "0", {}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[74,25],"end":[150,5]}}}]);
 
-    m.writeProperty("obj4", "enumerable");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[151,10],"end":[151,14]}}}]);
 
-    m.readVar("descriptor");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[152,12],"end":[154,6]}}}]);
 
-    m.push(false);
+    m.writeProperty(["obj11", "value", {}]);
 
-    m.writeProperty("obj4", "configurable");
+    m.writeProperty(["obj11", "key", {}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[150,8],"end":[155,4]}}}]);
 
-    m.readVar("descriptor");
+    m.writeProperty(["obj12", "0", {}]);
 
-    m.binaryOp();
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[150,7],"end":[155,5]}}}]);
 
-    m.unaryOp();
+    m.functionInvokeStart(["global@6#7@28#29@40", 3, 3, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[74,3],"end":[155,6]}}}]);
 
-    m.readVar("descriptor");
+    m.initVar(["global@6#7@28#29@40#41^Constructor", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,358],"end":[3,559]}},"name":"Constructor"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7@28#29@40#41^protoProps", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,358],"end":[3,559]}},"name":"protoProps"}]);
 
-    m.writeProperty("obj4", "writable");
+    m.initVar(["global@6#7@28#29@40#41^staticProps", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,358],"end":[3,559]}},"name":"staticProps"}]);
 
-    m.readVar("Object");
+    m.functionEnter(["global@6#7@28#29@40", 3, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,358],"end":[3,559]}}}]);
 
-    m.readProperty("obj0", "defineProperty");
+    m.readVar(["global@6#7@28#29@40#41^protoProps", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,412],"end":[3,422]}},"name":"protoProps"}]);
 
-    m.readVar("target");
+    m.readVar(["global^defineProperties", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,424],"end":[3,440]}},"name":"defineProperties"}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41^Constructor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,441],"end":[3,452]}},"name":"Constructor"}]);
 
-    m.readProperty("obj4", "key");
+    m.readProperty(["obj13", "prototype", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,441],"end":[3,462]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41^protoProps", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,464],"end":[3,474]}},"name":"protoProps"}]);
 
-    m.functionCall("defineProperty", 3, 3);
+    m.functionInvokeStart(["global@6#7@28#29@40#41@44", 2, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,424],"end":[3,475]}},"name":"defineProperties"}]);
 
-    m.readVar("i");
+    m.initVar(["global@6#7@28#29@40#41@44#45^target", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}},"name":"target"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7@28#29@40#41@44#45^props", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}},"name":"props"}]);
 
-    m.binaryOp();
+    m.initVar(["global@6#7@28#29@40#41@44#45^i", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}},"name":"i"}]);
 
-    m.writeVar("i");
+    m.initVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}},"name":"descriptor"}]);
 
-    m.readVar("i");
+    m.functionEnter(["global@6#7@28#29@40#41@44", 2, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}}}]);
 
-    m.readVar("props");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,90],"end":[3,91]}}}]);
 
-    m.readProperty("obj10", "length");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,86],"end":[3,91]}},"name":"i"}]);
 
-    m.binaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,86],"end":[3,91]}}}]);
 
-    m.readVar("props");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,94]}},"name":"i"}]);
 
-    m.readVar("i");
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,102]}},"name":"props"}]);
 
-    m.readProperty("obj10", 1);
+    m.readProperty(["obj10", "length", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,109]}}}]);
 
-    m.writeVar("descriptor");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.readVar("descriptor");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,140]}},"name":"props"}]);
 
-    m.readProperty("obj5", "enumerable");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,141],"end":[3,142]}},"name":"i"}]);
 
-    m.push(false);
+    m.readProperty(["obj10", 0, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,143]}}}]);
 
-    m.writeProperty("obj5", "enumerable");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}},"name":"descriptor"}]);
 
-    m.readVar("descriptor");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,155]}},"name":"descriptor"}]);
 
-    m.writeProperty("obj5", "configurable");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,179]}},"name":"descriptor"}]);
 
-    m.push(false);
+    m.readProperty(["obj4", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,190]}}}]);
 
-    m.readVar("descriptor");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,194],"end":[3,199]}}}]);
 
-    m.binaryOp();
+    m.writeProperty(["obj4", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.unaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,211]}},"name":"descriptor"}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,227],"end":[3,231]}}}]);
 
-    m.writeProperty("obj5", "writable");
+    m.writeProperty(["obj4", "configurable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.readVar("Object");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.readProperty("obj0", "defineProperty");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,244]}}}]);
 
-    m.readVar("target");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,248],"end":[3,258]}},"name":"descriptor"}]);
 
-    m.readVar("descriptor");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,258]}}}]);
 
-    m.readProperty("obj5", "key");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,270]}},"name":"descriptor"}]);
 
-    m.readVar("descriptor");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,282],"end":[3,286]}}}]);
 
-    m.functionCall("defineProperty", 3, 3);
+    m.writeProperty(["obj4", "writable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.readVar("i");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,233],"end":[3,287]}}}]);
 
-    m.binaryOp();
+    m.readVar(["global^Object", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,294]}},"name":"Object"}]);
 
-    m.writeVar("i");
+    m.readProperty(["obj0", "defineProperty", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,309]}}}]);
 
-    m.readVar("i");
+    m.readVar(["global@6#7@28#29@40#41@44#45^target", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,310],"end":[3,316]}},"name":"target"}]);
 
-    m.readVar("props");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,328]}},"name":"descriptor"}]);
 
-    m.readProperty("obj10", "length");
+    m.readProperty(["obj4", "key", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,332]}}}]);
 
-    m.binaryOp();
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,334],"end":[3,344]}},"name":"descriptor"}]);
 
-    m.readVar("props");
+    m.builtin(["global@6#7@15", 3, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.readVar("i");
+    m.builtinExit(["global@6#7@15", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.readProperty("obj10", 2);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}}}]);
 
-    m.writeVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.readVar("descriptor");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("descriptor");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readProperty("obj6", "enumerable");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.writeProperty("obj6", "enumerable");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,94]}},"name":"i"}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,102]}},"name":"props"}]);
 
-    m.push(false);
+    m.readProperty(["obj10", "length", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,109]}}}]);
 
-    m.writeProperty("obj6", "configurable");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,140]}},"name":"props"}]);
 
-    m.binaryOp();
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,141],"end":[3,142]}},"name":"i"}]);
 
-    m.unaryOp();
+    m.readProperty(["obj10", 1, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,143]}}}]);
 
-    m.readVar("descriptor");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}},"name":"descriptor"}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}}}]);
 
-    m.writeProperty("obj6", "writable");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,155]}},"name":"descriptor"}]);
 
-    m.readVar("Object");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,179]}},"name":"descriptor"}]);
 
-    m.readProperty("obj0", "defineProperty");
+    m.readProperty(["obj5", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,190]}}}]);
 
-    m.readVar("target");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,194],"end":[3,199]}}}]);
 
-    m.readVar("descriptor");
+    m.writeProperty(["obj5", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.readProperty("obj6", "key");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,211]}},"name":"descriptor"}]);
 
-    m.functionCall("defineProperty", 3, 3);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,227],"end":[3,231]}}}]);
 
-    m.readVar("i");
+    m.writeProperty(["obj5", "configurable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.binaryOp();
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,244]}}}]);
 
-    m.writeVar("i");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,248],"end":[3,258]}},"name":"descriptor"}]);
 
-    m.readVar("i");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,258]}}}]);
 
-    m.readVar("props");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,270]}},"name":"descriptor"}]);
 
-    m.readProperty("obj10", "length");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,282],"end":[3,286]}}}]);
 
-    m.binaryOp();
+    m.writeProperty(["obj5", "writable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.readVar("props");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.readVar("i");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,233],"end":[3,287]}}}]);
 
-    m.readProperty("obj10", 3);
+    m.readVar(["global^Object", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,294]}},"name":"Object"}]);
 
-    m.writeVar("descriptor");
+    m.readProperty(["obj0", "defineProperty", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,309]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^target", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,310],"end":[3,316]}},"name":"target"}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,328]}},"name":"descriptor"}]);
 
-    m.readProperty("obj7", "enumerable");
+    m.readProperty(["obj5", "key", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,332]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,334],"end":[3,344]}},"name":"descriptor"}]);
 
-    m.writeProperty("obj7", "enumerable");
+    m.builtin(["global@6#7@15", 3, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.readVar("descriptor");
+    m.builtinExit(["global@6#7@15", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}}}]);
 
-    m.writeProperty("obj7", "configurable");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("descriptor");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.binaryOp();
+    m.writeVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.unaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,94]}},"name":"i"}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,102]}},"name":"props"}]);
 
-    m.writeProperty("obj7", "writable");
+    m.readProperty(["obj10", "length", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,109]}}}]);
 
-    m.readVar("Object");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.readProperty("obj0", "defineProperty");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.readVar("target");
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,140]}},"name":"props"}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,141],"end":[3,142]}},"name":"i"}]);
 
-    m.readProperty("obj7", "key");
+    m.readProperty(["obj10", 2, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,143]}}}]);
 
-    m.readVar("descriptor");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}},"name":"descriptor"}]);
 
-    m.functionCall("defineProperty", 3, 3);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}}}]);
 
-    m.readVar("i");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,155]}},"name":"descriptor"}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,179]}},"name":"descriptor"}]);
 
-    m.binaryOp();
+    m.readProperty(["obj6", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,190]}}}]);
 
-    m.writeVar("i");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,194],"end":[3,199]}}}]);
 
-    m.readVar("i");
+    m.writeProperty(["obj6", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.readVar("props");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.readProperty("obj10", "length");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,211]}},"name":"descriptor"}]);
 
-    m.binaryOp();
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,227],"end":[3,231]}}}]);
 
-    m.readVar("props");
+    m.writeProperty(["obj6", "configurable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.readVar("i");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.readProperty("obj10", 4);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,244]}}}]);
 
-    m.writeVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,248],"end":[3,258]}},"name":"descriptor"}]);
 
-    m.readVar("descriptor");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,258]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,270]}},"name":"descriptor"}]);
 
-    m.readProperty("obj8", "enumerable");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,282],"end":[3,286]}}}]);
 
-    m.push(false);
+    m.writeProperty(["obj6", "writable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.writeProperty("obj8", "enumerable");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.readVar("descriptor");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,233],"end":[3,287]}}}]);
 
-    m.push(false);
+    m.readVar(["global^Object", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,294]}},"name":"Object"}]);
 
-    m.writeProperty("obj8", "configurable");
+    m.readProperty(["obj0", "defineProperty", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,309]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@28#29@40#41@44#45^target", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,310],"end":[3,316]}},"name":"target"}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,328]}},"name":"descriptor"}]);
 
-    m.binaryOp();
+    m.readProperty(["obj6", "key", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,332]}}}]);
 
-    m.unaryOp();
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,334],"end":[3,344]}},"name":"descriptor"}]);
 
-    m.readVar("descriptor");
+    m.builtin(["global@6#7@15", 3, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.push(false);
+    m.builtinExit(["global@6#7@15", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.writeProperty("obj8", "writable");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}}}]);
 
-    m.readVar("Object");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.readProperty("obj0", "defineProperty");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("target");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("descriptor");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.readProperty("obj8", "key");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,94]}},"name":"i"}]);
 
-    m.functionCall("defineProperty", 3, 3);
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,102]}},"name":"props"}]);
 
-    m.readVar("i");
+    m.readProperty(["obj10", "length", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,109]}}}]);
 
-    m.push(false);
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.binaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.writeVar("i");
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,140]}},"name":"props"}]);
 
-    m.readVar("i");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,141],"end":[3,142]}},"name":"i"}]);
 
-    m.readVar("props");
+    m.readProperty(["obj10", 3, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,143]}}}]);
 
-    m.readProperty("obj10", "length");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}},"name":"descriptor"}]);
 
-    m.binaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}}}]);
 
-    m.readVar("props");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,155]}},"name":"descriptor"}]);
 
-    m.readVar("i");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,179]}},"name":"descriptor"}]);
 
-    m.readProperty("obj10", 5);
+    m.readProperty(["obj7", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,190]}}}]);
 
-    m.writeVar("descriptor");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,194],"end":[3,199]}}}]);
 
-    m.readVar("descriptor");
+    m.writeProperty(["obj7", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.readVar("descriptor");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.readProperty("obj9", "enumerable");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,211]}},"name":"descriptor"}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,227],"end":[3,231]}}}]);
 
-    m.writeProperty("obj9", "enumerable");
+    m.writeProperty(["obj7", "configurable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.readVar("descriptor");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.push(false);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,244]}}}]);
 
-    m.writeProperty("obj9", "configurable");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,248],"end":[3,258]}},"name":"descriptor"}]);
 
-    m.push(false);
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,258]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,270]}},"name":"descriptor"}]);
 
-    m.binaryOp();
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,282],"end":[3,286]}}}]);
 
-    m.unaryOp();
+    m.writeProperty(["obj7", "writable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.readVar("descriptor");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,233],"end":[3,287]}}}]);
 
-    m.writeProperty("obj9", "writable");
+    m.readVar(["global^Object", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,294]}},"name":"Object"}]);
 
-    m.readVar("Object");
+    m.readProperty(["obj0", "defineProperty", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,309]}}}]);
 
-    m.readProperty("obj0", "defineProperty");
+    m.readVar(["global@6#7@28#29@40#41@44#45^target", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,310],"end":[3,316]}},"name":"target"}]);
 
-    m.readVar("target");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,328]}},"name":"descriptor"}]);
 
-    m.readVar("descriptor");
+    m.readProperty(["obj7", "key", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,332]}}}]);
 
-    m.readProperty("obj9", "key");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,334],"end":[3,344]}},"name":"descriptor"}]);
 
-    m.readVar("descriptor");
+    m.builtin(["global@6#7@15", 3, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.functionCall("defineProperty", 3, 3);
+    m.builtinExit(["global@6#7@15", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.readVar("i");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.binaryOp();
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.writeVar("i");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("i");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.readVar("props");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readProperty("obj10", "length");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,94]}},"name":"i"}]);
 
-    m.binaryOp();
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,102]}},"name":"props"}]);
 
-    m.readVar("staticProps");
+    m.readProperty(["obj10", "length", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,109]}}}]);
 
-    m.unaryOp();
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.readVar("defineProperties");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.readVar("Constructor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,140]}},"name":"props"}]);
 
-    m.readVar("staticProps");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,141],"end":[3,142]}},"name":"i"}]);
 
-    m.functionCall("defineProperties", 2, 2);
+    m.readProperty(["obj10", 4, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,143]}}}]);
 
-    m.initVar("target");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}},"name":"descriptor"}]);
 
-    m.initVar("props");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}}}]);
 
-    m.initVar("i");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,155]}},"name":"descriptor"}]);
 
-    m.initVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,179]}},"name":"descriptor"}]);
 
-    m.push(false);
+    m.readProperty(["obj8", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,190]}}}]);
 
-    m.writeVar("i");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,194],"end":[3,199]}}}]);
 
-    m.readVar("i");
+    m.writeProperty(["obj8", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.readVar("props");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.readProperty("obj12", "length");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,211]}},"name":"descriptor"}]);
 
-    m.binaryOp();
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,227],"end":[3,231]}}}]);
 
-    m.readVar("props");
+    m.writeProperty(["obj8", "configurable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.readVar("i");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.readProperty("obj12", 0);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,244]}}}]);
 
-    m.writeVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,248],"end":[3,258]}},"name":"descriptor"}]);
 
-    m.readVar("descriptor");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,258]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,270]}},"name":"descriptor"}]);
 
-    m.readProperty("obj11", "enumerable");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,282],"end":[3,286]}}}]);
 
-    m.push(false);
+    m.writeProperty(["obj8", "writable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.writeProperty("obj11", "enumerable");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.readVar("descriptor");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,233],"end":[3,287]}}}]);
 
-    m.push(false);
+    m.readVar(["global^Object", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,294]}},"name":"Object"}]);
 
-    m.writeProperty("obj11", "configurable");
+    m.readProperty(["obj0", "defineProperty", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,309]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@28#29@40#41@44#45^target", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,310],"end":[3,316]}},"name":"target"}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,328]}},"name":"descriptor"}]);
 
-    m.binaryOp();
+    m.readProperty(["obj8", "key", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,332]}}}]);
 
-    m.unaryOp();
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,334],"end":[3,344]}},"name":"descriptor"}]);
 
-    m.readVar("descriptor");
+    m.builtin(["global@6#7@15", 3, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.push(false);
+    m.builtinExit(["global@6#7@15", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.writeProperty("obj11", "writable");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}}}]);
 
-    m.readVar("Object");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.readProperty("obj0", "defineProperty");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("target");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("descriptor");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.readProperty("obj11", "key");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("descriptor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,94]}},"name":"i"}]);
 
-    m.functionCall("defineProperty", 3, 3);
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,102]}},"name":"props"}]);
 
-    m.readVar("i");
+    m.readProperty(["obj10", "length", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,109]}}}]);
 
-    m.push(false);
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.binaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.writeVar("i");
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,140]}},"name":"props"}]);
 
-    m.readVar("i");
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,141],"end":[3,142]}},"name":"i"}]);
 
-    m.readVar("props");
+    m.readProperty(["obj10", 5, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,143]}}}]);
 
-    m.readProperty("obj12", "length");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}},"name":"descriptor"}]);
 
-    m.binaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}}}]);
 
-    m.readVar("Constructor");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,155]}},"name":"descriptor"}]);
 
-    m.readVar("NodeWOS");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,179]}},"name":"descriptor"}]);
 
-    m.writeVar("NodeWOS");
+    m.readProperty(["obj9", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,190]}}}]);
 
-    m.readVar("module");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,194],"end":[3,199]}}}]);
 
-    m.readVar("NodeWOS");
+    m.writeProperty(["obj9", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.functionCall("NodeWOS", 0, 0);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
 
-    m.initVar("platform");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,211]}},"name":"descriptor"}]);
 
-    m.initVar("arch");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,227],"end":[3,231]}}}]);
 
-    m.readVar("_classCallCheck");
+    m.writeProperty(["obj9", "configurable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.readVar("NodeWOS");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
 
-    m.functionCall("_classCallCheck", 2, 2);
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,244]}}}]);
 
-    m.initVar("instance");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,248],"end":[3,258]}},"name":"descriptor"}]);
 
-    m.initVar("Constructor");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,258]}}}]);
 
-    m.readVar("instance");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,270]}},"name":"descriptor"}]);
 
-    m.readVar("Constructor");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,282],"end":[3,286]}}}]);
 
-    m.binaryOp();
+    m.writeProperty(["obj9", "writable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
 
-    m.writeVar("platform");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,233],"end":[3,287]}}}]);
 
-    m.push(false);
+    m.readVar(["global^Object", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,294]}},"name":"Object"}]);
 
-    m.writeVar("arch");
+    m.readProperty(["obj0", "defineProperty", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,309]}}}]);
 
-    m.readVar("process");
+    m.readVar(["global@6#7@28#29@40#41@44#45^target", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,310],"end":[3,316]}},"name":"target"}]);
 
-    m.readProperty("obj14", "platform");
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,328]}},"name":"descriptor"}]);
 
-    m.push(false);
+    m.readProperty(["obj9", "key", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,332]}}}]);
 
-    m.binaryOp();
+    m.readVar(["global@6#7@28#29@40#41@44#45^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,334],"end":[3,344]}},"name":"descriptor"}]);
 
-    m.push(false);
+    m.builtin(["global@6#7@15", 3, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.binaryOp();
+    m.builtinExit(["global@6#7@15", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
 
-    m.unaryOp();
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}}}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.writeVar("platform");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readVar("process");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.readProperty("obj14", "arch");
+    m.writeVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
 
-    m.binaryOp();
+    m.readVar(["global@6#7@28#29@40#41@44#45^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,94]}},"name":"i"}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@28#29@40#41@44#45^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,102]}},"name":"props"}]);
 
-    m.writeVar("arch");
+    m.readProperty(["obj10", "length", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,109]}}}]);
 
-    m.readVar("platform");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.writeProperty("obj15", "platform");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.readVar("arch");
+    m.functionExit(["global@6#7@28#29@40#41@44", 25, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}}}]);
 
-    m.writeProperty("obj15", "arch");
+    m.functionInvokeEnd(["global@6#7@28#29@40#41@44", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,424],"end":[3,475]}},"name":"defineProperties"}]);
 
-    m.writeProperty("obj16", "exports");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,424],"end":[3,475]}}}]);
 
-    m.writeVar("wos");
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,408],"end":[3,476]}}}]);
 
-    m.readVar("console");
+    m.readVar(["global@6#7@28#29@40#41^staticProps", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,481],"end":[3,492]}},"name":"staticProps"}]);
 
-    m.readProperty("obj17", "log");
+    m.readVar(["global^defineProperties", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,494],"end":[3,510]}},"name":"defineProperties"}]);
 
-    m.readVar("wos");
+    m.readVar(["global@6#7@28#29@40#41^Constructor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,511],"end":[3,522]}},"name":"Constructor"}]);
 
-    m.readProperty("obj15", "getOSName");
+    m.readVar(["global@6#7@28#29@40#41^staticProps", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,524],"end":[3,535]}},"name":"staticProps"}]);
 
-    m.readVar("command");
+    m.functionInvokeStart(["global@6#7@28#29@40#41@44", 2, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,494],"end":[3,536]}},"name":"defineProperties"}]);
 
-    m.functionCall("getOSName", 1, 1);
+    m.initVar(["global@6#7@28#29@40#41@44#53^target", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}},"name":"target"}]);
 
-    m.initVar("verbose");
+    m.initVar(["global@6#7@28#29@40#41@44#53^props", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}},"name":"props"}]);
 
-    m.readProperty("obj15", "platform");
+    m.initVar(["global@6#7@28#29@40#41@44#53^i", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}},"name":"i"}]);
 
-    m.push(false);
+    m.initVar(["global@6#7@28#29@40#41@44#53^descriptor", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}},"name":"descriptor"}]);
 
-    m.binaryOp();
+    m.functionEnter(["global@6#7@28#29@40#41@44", 2, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}}}]);
 
-    m.readVar("getLinuxOperationSystemName");
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,90],"end":[3,91]}}}]);
 
-    m.readVar("verbose");
+    m.writeVar(["global@6#7@28#29@40#41@44#53^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,86],"end":[3,91]}},"name":"i"}]);
 
-    m.functionCall("getLinuxOperationSystemName", 1, 1);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,86],"end":[3,91]}}}]);
 
-    m.initVar("verbose");
+    m.readVar(["global@6#7@28#29@40#41@44#53^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,94]}},"name":"i"}]);
 
-    m.initVar("OSName");
+    m.readVar(["global@6#7@28#29@40#41@44#53^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,102]}},"name":"props"}]);
 
-    m.initVar("buffer");
+    m.readProperty(["obj12", "length", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,109]}}}]);
 
-    m.initVar("release");
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
 
-    m.writeVar("OSName");
+    m.readVar(["global@6#7@28#29@40#41@44#53^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,140]}},"name":"props"}]);
 
-    m.push(false);
+    m.readVar(["global@6#7@28#29@40#41@44#53^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,141],"end":[3,142]}},"name":"i"}]);
 
-    m.readVar("_child_process");
+    m.readProperty(["obj12", 0, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,135],"end":[3,143]}}}]);
 
-    m.readProperty("obj18", "execSync");
+    m.writeVar(["global@6#7@28#29@40#41@44#53^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}},"name":"descriptor"}]);
 
-    m.push(false);
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,122],"end":[3,143]}}}]);
 
-    m.functionCall("execSync", 1, 1);
+    m.readVar(["global@6#7@28#29@40#41@44#53^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,155]}},"name":"descriptor"}]);
 
-    m.endExecution();
+    m.readVar(["global@6#7@28#29@40#41@44#53^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,179]}},"name":"descriptor"}]);
+
+    m.readProperty(["obj11", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,169],"end":[3,190]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,194],"end":[3,199]}}}]);
+
+    m.writeProperty(["obj11", "enumerable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,145],"end":[3,199]}}}]);
+
+    m.readVar(["global@6#7@28#29@40#41@44#53^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,211]}},"name":"descriptor"}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,227],"end":[3,231]}}}]);
+
+    m.writeProperty(["obj11", "configurable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,201],"end":[3,231]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,244]}}}]);
+
+    m.readVar(["global@6#7@28#29@40#41@44#53^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,248],"end":[3,258]}},"name":"descriptor"}]);
+
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,237],"end":[3,258]}}}]);
+
+    m.readVar(["global@6#7@28#29@40#41@44#53^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,270]}},"name":"descriptor"}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,282],"end":[3,286]}}}]);
+
+    m.writeProperty(["obj11", "writable", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,260],"end":[3,286]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,233],"end":[3,287]}}}]);
+
+    m.readVar(["global^Object", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,294]}},"name":"Object"}]);
+
+    m.readProperty(["obj0", "defineProperty", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,309]}}}]);
+
+    m.readVar(["global@6#7@28#29@40#41@44#53^target", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,310],"end":[3,316]}},"name":"target"}]);
+
+    m.readVar(["global@6#7@28#29@40#41@44#53^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,328]}},"name":"descriptor"}]);
+
+    m.readProperty(["obj11", "key", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,318],"end":[3,332]}}}]);
+
+    m.readVar(["global@6#7@28#29@40#41@44#53^descriptor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,334],"end":[3,344]}},"name":"descriptor"}]);
+
+    m.builtin(["global@6#7@15", 3, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
+
+    m.builtinExit(["global@6#7@15", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}},"name":"defineProperty"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,288],"end":[3,345]}}}]);
+
+    m.readVar(["global@6#7@28#29@40#41@44#53^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
+
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
+
+    m.writeVar(["global@6#7@28#29@40#41@44#53^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}},"name":"i"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,111],"end":[3,114]}}}]);
+
+    m.readVar(["global@6#7@28#29@40#41@44#53^i", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,94]}},"name":"i"}]);
+
+    m.readVar(["global@6#7@28#29@40#41@44#53^props", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,102]}},"name":"props"}]);
+
+    m.readProperty(["obj12", "length", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,97],"end":[3,109]}}}]);
+
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,93],"end":[3,109]}}}]);
+
+    m.functionExit(["global@6#7@28#29@40#41@44", 25, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,34],"end":[3,350]}}}]);
+
+    m.functionInvokeEnd(["global@6#7@28#29@40#41@44", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,494],"end":[3,536]}},"name":"defineProperties"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,494],"end":[3,536]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,477],"end":[3,537]}}}]);
+
+    m.readVar(["global@6#7@28#29@40#41^Constructor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,545],"end":[3,556]}},"name":"Constructor"}]);
+
+    m.functionReturn(["global@6#7@28#29@40", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,538],"end":[3,557]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,538],"end":[3,557]}}}]);
+
+    m.functionExit(["global@6#7@28#29@40", 19, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[3,358],"end":[3,559]}}}]);
+
+    m.functionInvokeEnd(["global@6#7@28#29@40", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[74,3],"end":[155,6]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[74,3],"end":[155,6]}}}]);
+
+    m.readVar(["global@6#7@28#29^NodeWOS", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[157,10],"end":[157,17]}},"name":"NodeWOS"}]);
+
+    m.functionReturn(["global@6#7@28", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[157,3],"end":[157,18]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[157,3],"end":[157,18]}}}]);
+
+    m.functionExit(["global@6#7@28", 13, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[24,15],"end":[158,2]}}}]);
+
+    m.functionInvokeEnd(["global@6#7@28", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[24,15],"end":[158,4]}}}]);
+
+    m.writeVar(["global@6#7^NodeWOS", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[24,5],"end":[158,4]}},"name":"NodeWOS"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[24,5],"end":[158,4]}}}]);
+
+    m.readVar(["global@6#7^module", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[226,1],"end":[226,7]}},"name":"module"}]);
+
+    m.readVar(["global@6#7^NodeWOS", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[226,22],"end":[226,29]}},"name":"NodeWOS"}]);
+
+    m.functionInvokeStart(["global@6#7@28#29@40#41@42", 0, 0, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[226,18],"end":[226,31]}},"name":"NodeWOS"}]);
+
+    m.initVar(["global@6#7@28#29@40#41@42#56^platform", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[25,3],"end":[67,4]}},"name":"platform"}]);
+
+    m.initVar(["global@6#7@28#29@40#41@42#56^arch", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[25,3],"end":[67,4]}},"name":"arch"}]);
+
+    m.functionEnter(["global@6#7@28#29@40#41@42", 0, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[25,3],"end":[67,4]}}}]);
+
+    m.readVar(["global@6#7^_classCallCheck", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[26,5],"end":[26,20]}},"name":"_classCallCheck"}]);
+
+    m.readVar(["global^this", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[26,21],"end":[26,25]}},"name":"this"}]);
+
+    m.readVar(["global@6#7^NodeWOS", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[26,27],"end":[26,34]}},"name":"NodeWOS"}]);
+
+    m.functionInvokeStart(["global@6#7@28#29@40#41@42#56@58", 2, 2, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[26,5],"end":[26,35]}},"name":"_classCallCheck"}]);
+
+    m.initVar(["global@6#7@28#29@40#41@42#56@58#59^instance", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[17,1],"end":[17,154]}},"name":"instance"}]);
+
+    m.initVar(["global@6#7@28#29@40#41@42#56@58#59^Constructor", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[17,1],"end":[17,154]}},"name":"Constructor"}]);
+
+    m.functionEnter(["global@6#7@28#29@40#41@42#56@58", 2, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[17,1],"end":[17,154]}}}]);
+
+    m.readVar(["global@6#7@28#29@40#41@42#56@58#59^instance", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[17,57],"end":[17,65]}},"name":"instance"}]);
+
+    m.readVar(["global@6#7@28#29@40#41@42#56@58#59^Constructor", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[17,77],"end":[17,88]}},"name":"Constructor"}]);
+
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[17,56],"end":[17,89]}}}]);
+
+    m.functionExit(["global@6#7@28#29@40#41@42#56@58", 31, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[17,1],"end":[17,154]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[17,51],"end":[17,152]}}}]);
+
+    m.functionInvokeEnd(["global@6#7@28#29@40#41@42#56@58", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[26,5],"end":[26,35]}},"name":"_classCallCheck"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[26,5],"end":[26,35]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[28,20],"end":[28,29]}}}]);
+
+    m.writeVar(["global@6#7@28#29@40#41@42#56^platform", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[28,9],"end":[28,29]}},"name":"platform"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[28,9],"end":[28,29]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[29,16],"end":[29,25]}}}]);
+
+    m.writeVar(["global@6#7@28#29@40#41@42#56^arch", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[29,9],"end":[29,25]}},"name":"arch"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[29,9],"end":[29,25]}}}]);
+
+    m.readVar(["global^process", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[31,13],"end":[31,20]}},"name":"process"}]);
+
+    m.readProperty(["obj14", "platform", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[31,13],"end":[31,29]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[31,20],"end":[31,29]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[32,7],"end":[34,15]}}}]);
+
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[32,7],"end":[34,15]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[35,7],"end":[37,15]}}}]);
+
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[35,7],"end":[37,15]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[36,20],"end":[36,27]}}}]);
+
+    m.writeVar(["global@6#7@28#29@40#41@42#56^platform", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[36,9],"end":[36,27]}},"name":"platform"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[36,9],"end":[36,27]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[32,7],"end":[34,15]}}}]);
+
+    m.readVar(["global^process", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[52,13],"end":[52,20]}},"name":"process"}]);
+
+    m.readProperty(["obj14", "arch", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[52,13],"end":[52,25]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[52,20],"end":[52,25]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[53,7],"end":[55,15]}}}]);
+
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[53,7],"end":[55,15]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[54,16],"end":[54,23]}}}]);
+
+    m.writeVar(["global@6#7@28#29@40#41@42#56^arch", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[54,9],"end":[54,23]}},"name":"arch"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[54,9],"end":[54,23]}}}]);
+
+    m.readVar(["global^this", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[65,5],"end":[65,9]}},"name":"this"}]);
+
+    m.readVar(["global@6#7@28#29@40#41@42#56^platform", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[65,21],"end":[65,29]}},"name":"platform"}]);
+
+    m.writeProperty(["obj15", "platform", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[65,5],"end":[65,29]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[65,5],"end":[65,29]}}}]);
+
+    m.readVar(["global^this", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[66,5],"end":[66,9]}},"name":"this"}]);
+
+    m.readVar(["global@6#7@28#29@40#41@42#56^arch", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[66,17],"end":[66,21]}},"name":"arch"}]);
+
+    m.writeProperty(["obj15", "arch", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[66,5],"end":[66,21]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[66,5],"end":[66,21]}}}]);
+
+    m.functionExit(["global@6#7@28#29@40#41@42", 25, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[25,3],"end":[67,4]}}}]);
+
+    m.functionInvokeEnd(["global@6#7@28#29@40#41@42", {"type":"functionReturn","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[226,18],"end":[226,31]}},"name":"NodeWOS"}]);
+
+    m.writeProperty(["obj16", "exports", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[226,1],"end":[226,31]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[226,1],"end":[226,31]}}}]);
+
+    m.functionExit(["global@6#7@9", 12, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[1,2],"end":[228,2]}}}]);
+
+    m.functionInvokeEnd(["global@6", {"type":"functionReturn","location":{"fileName":"node-wos.js","pos":{"start":[17,11],"end":[17,30]}},"name":"require"}]);
+
+    m.writeVar(["global^wos", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[17,5],"end":[17,30]}},"name":"wos"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[17,5],"end":[17,30]}}}]);
+
+    m.readVar(["global^console", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[18,1],"end":[18,8]}},"name":"console"}]);
+
+    m.readProperty(["obj17", "log", {"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[18,1],"end":[18,12]}}}]);
+
+    m.readVar(["global^wos", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[18,13],"end":[18,16]}},"name":"wos"}]);
+
+    m.readProperty(["obj15", "getOSName", {"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[18,13],"end":[18,26]}}}]);
+
+    m.readVar(["global^command", {"type":"variable","location":{"fileName":"node-wos.js","pos":{"start":[18,27],"end":[18,34]}},"name":"command"}]);
+
+    m.functionInvokeStart(["global@64", 1, 1, {"type":"functionInvocation","location":{"fileName":"node-wos.js","pos":{"start":[18,13],"end":[18,35]}},"name":"getOSName"}]);
+
+    m.initVar(["global@64#65^verbose", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[137,12],"end":[149,6]}},"name":"verbose"}]);
+
+    m.functionEnter(["global@64", 1, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[137,12],"end":[149,6]}}}]);
+
+    m.readVar(["global^this", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[139,15],"end":[139,19]}},"name":"this"}]);
+
+    m.readProperty(["obj15", "platform", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[139,15],"end":[139,28]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[139,19],"end":[139,28]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[140,9],"end":[141,55]}}}]);
+
+    m.binary([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[140,9],"end":[141,55]}}}]);
+
+    m.readVar(["global^getLinuxOperationSystemName", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[141,18],"end":[141,45]}},"name":"getLinuxOperationSystemName"}]);
+
+    m.readVar(["global@64#65^verbose", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[141,46],"end":[141,53]}},"name":"verbose"}]);
+
+    m.functionInvokeStart(["global@64#65@67", 1, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[141,18],"end":[141,54]}},"name":"getLinuxOperationSystemName"}]);
+
+    m.initVar(["global@64#65@67#68^verbose", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[168,1],"end":[200,2]}},"name":"verbose"}]);
+
+    m.initVar(["global@64#65@67#68^OSName", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[168,1],"end":[200,2]}},"name":"OSName"}]);
+
+    m.initVar(["global@64#65@67#68^buffer", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[168,1],"end":[200,2]}},"name":"buffer"}]);
+
+    m.initVar(["global@64#65@67#68^release", {"type":"declaration","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[168,1],"end":[200,2]}},"name":"release"}]);
+
+    m.functionEnter(["global@64#65@67", 1, {"type":"functionEnter","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[168,1],"end":[200,2]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[169,16],"end":[169,25]}}}]);
+
+    m.writeVar(["global@64#65@67#68^OSName", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[169,7],"end":[169,25]}},"name":"OSName"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[169,7],"end":[169,25]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[170,17],"end":[170,18]}}}]);
+
+    m.readVar(["global^_child_process", {"type":"variable","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[170,20],"end":[170,34]}},"name":"_child_process"}]);
+
+    m.readProperty(["obj18", "execSync", {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[170,20],"end":[170,43]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[170,45],"end":[170,61]}}}]);
+
+    m.functionInvokeStart(["global@64#65@67#68@71", 2, 1, {"type":"functionInvocation","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[170,16],"end":[170,62]}},"name":"execSync"}]);
+
+    m.functionExit(["global@64#65@67", 15, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[168,1],"end":[200,2]}}}]);
+
+    m.functionExit(["global@64", 9, {"type":"expr","location":{"fileName":"node_modules/node-wos/dist/index.js","pos":{"start":[137,12],"end":[149,6]}}}]);
+
+    m.functionExit(["global@1", 8, {"type":"expr","location":{"fileName":"node-wos.js","pos":{"start":[1,2],"end":[24,2]}}}]);
+
+    m.endExecution([]);
 
 };
 

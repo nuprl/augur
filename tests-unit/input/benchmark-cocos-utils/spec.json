@@ -1,16 +1,24 @@
 {
-	"main": "cocos-utils.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "cocos-utils.js"}
-	],
-	"sinks": [
-		{"type": "function",
-			"name": "exec"}
-	],
-	"expectedFlows": [
-		{"type": "function",
-			"name": "exec"}
-	]
+    "main": "cocos-utils.js",
+    "sources": [
+        {
+            "type": "functionInvocation",
+            "name": "dummySource",
+            "location": {
+                "fileName": "cocos-utils.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionInvocation",
+            "name": "exec"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "functionInvocation",
+            "name": "exec"
+        }
+    ]
 }

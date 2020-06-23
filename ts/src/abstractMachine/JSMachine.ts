@@ -1,237 +1,534 @@
 // do not remove the following comment
+
 // JALANGI DO NOT INSTRUMENT
 
 import { Accessor } from "../nodeprof";
-import {AbstractMachine, TaintDescription, RunSpecification} from "../types";
+import {
+    AbstractMachine,
+    DynamicDescription,
+    StaticDescription,
+    RunSpecification,
+    VariableDescription,
+    ShadowObject
+} from "../types";
 import logger from "./logger";
-import {sameDescription} from "../utils";
+import {descriptionSubset} from "../utils";
+import Operation from "./operation";
+import {useNativeImplementation} from "../native/native";
 
-enum States {
-    FunctionCall,
-    None,
-}
+export default abstract class JSMachine<V, F> implements AbstractMachine {
+    taintStack: V[] = [];
+    varTaintMap: Map<VariableDescription, V> = new Map();
+    spec: RunSpecification;
 
-export default class JSMachine implements AbstractMachine {
-    private taintStack: boolean[] = [];
-    private varTaintMap: Map<string, boolean> = new Map();
-    private spec: RunSpecification;
-    private objects: Map<any, {}>;
-    private state: States = States.None;
-    private stateCounter: number = 0;
-    private flows: Set<TaintDescription> = new Set();
-    private pc: boolean;
+    // maps all dynamic descriptions of objects to:
+    // an object whose property names match the original objects', and whose
+    // values are taint descriptions.
+    private objects: Map<DynamicDescription, ShadowObject<V>>;
+
+    flows: Set<F> = new Set();
+    pc: V;
+    functionCallStack: Array<StaticDescription>;
+    returnValue: V;
+
+    argsLeftToProcess: number = 0;
+
+    lastObjectAccessed: V;
+
+    /**
+     * Used to keep track of the initial arguments given to each function in
+     * the current call stack.
+     *
+     * Whenever a function is entered, the taint values of its arguments
+     * should be pushed to this stack. Whenever a function exits, this stack
+     * should be popped.
+     *
+     * ALL arguments given to the function should be pushed, not just ones
+     * that the argument maps to named parameters. For example, in this code:
+     *
+     *     function add(x) {
+     *         return arguments[0] + arguments[1]; // ignores named parameter x
+     *     }
+     *     add(1, 2); // returns 3
+     *
+     * The taint values for BOTH arguments should be pushed to this stack.
+     *
+     * It's necessary to keep track of these taint values in case the
+     * program accesses the "arguments" variable, which represents an
+     * indexable array into the function's arguments.
+     */
+    functionArgsStack: Array<Array<V>>;
+
+    /**
+     * Returns the taint marking associated with a completely clean value.
+     */
+    abstract getUntaintedValue(): V;
+
+    /**
+     * Join two taint labels. The resulting label should represent the union
+     * of the two given labels.
+     */
+    abstract join(a: V, b: V): V;
+
+    // When a value with taint marking T flows into a construct with the given
+    // description
+    abstract reportPossibleFlow(description: StaticDescription, taintMarking: V): void;
+
+    /**
+     * Produce an initial taint mark for a given description. This mark should
+     * describe this description's affiliation with any sources.
+     *
+     * For example, it could return a boolean T/F to represent its status as a
+     * source. It could also return some value to represent which source it
+     * describes.
+     */
+    abstract produceMark(description: StaticDescription): V;
 
     constructor(spec: RunSpecification) {
         // logger.info(sources, sinks);
         this.spec = spec;
         this.objects = new Map();
-        this.pc = false;
+        this.pc = this.getUntaintedValue();
+        this.functionCallStack = [{name: "program start"}];
         this.getTaint = this.getTaint.bind(this);
+        this.lastObjectAccessed = this.getUntaintedValue();
+        this.functionArgsStack = [[]];
     }
 
-    public push(v: boolean) {
-        this.resetState();
-        logger.info("push", v);
-        this.taintStack.push(v);
+    private adviceWrap<I, O>(impl: (input: I) => O): Operation<I, O> {
+        let wrappedOperationClass = class extends Operation<I, O> {
+            protected implementation(input: I): O {
+                return impl(input);
+            }
+        };
+
+        let wrappedOperation = new wrappedOperationClass();
+
+        return wrappedOperation;
     }
 
-    public pop() {
-        this.resetState();
-        logger.info("pop");
-        this.taintStack.pop();
+    public callstackPush(frame: StaticDescription, ): void {
+        this.functionCallStack.push(frame);
+        this.functionEnterAdvice.push(null);
+        this.functionExitAdvice.push(null);
     }
 
-    public readVar(s: string) {
-        this.resetState();
-        let description: TaintDescription = {name: s, type: "variable"};
-        const r = this.isSource(description) || this.varTaintMap.get(s);
-        this.taintStack.push(r);
-        logger.info("read", s, r);
-        return r;
+    public callstackPop(): void {
+        this.functionCallStack.pop();
+        this.functionEnterAdvice.pop();
+        this.functionExitAdvice.pop();
     }
 
-    public writeVar(s: string) {
-        this.resetState();
-        let description: TaintDescription = {name: s, type: "variable"};
-        // Do not pop off the stack for a write
-        const v = this.isSource(description) || this.taintStack[this.taintStack.length - 1];
-        logger.info("write", s, v);
-        this.varTaintMap.set(s, v);
-        this.reportPossibleFlow(description, v);
-        this.reportPossibleImplicitFlow(description, v);
-        // logger.info("wrote", this.varTaintMap.get(s));
+    public installAdvice(adviceStack: Array<Function>, f: Function): void {
+        adviceStack[adviceStack.length - 1] = f;
     }
 
-    public readProperty(o: any, s: Accessor) {
-        this.resetState();
-        const isSource = this.isSource({name: s.toString()});
-        const storedTaint = this.objects.get(o);
-        const r = isSource || (storedTaint && storedTaint[s]);
-        logger.info("readprop", o, s, r);
-        this.taintStack.push(r);
-        return r;
+    public reportFlow(flow: F) {
+        console.log("tainted value flowed into sink "
+            + JSON.stringify(flow)
+            + "!");
+        this.flows.add(flow);
     }
 
-    public writeProperty(o: any, s: Accessor) {
-        this.resetState();
-        if (!this.objects.has(o)) {
-            this.objects.set(o, {});
-        }
+    public functionInvokeStartOp: Operation<[string, number, number, StaticDescription], void> =
+        this.adviceWrap(
+            ([name, expectedArgs, actualArgs, description]) => {
 
-        const storedTaint = this.taintStack.pop();
-        let objectMap = this.objects.get(o);
-        objectMap[s] = this.isSource({name: s.toString()}) || storedTaint;
+                // 1. set up `arguments` variable in shadow memory.
+                let actualArgsValues = this.taintStack.slice(this.taintStack.length - actualArgs);
+                // actualArgsValues.reverse();
+                this.functionArgsStack.push(actualArgsValues);
 
-        const description = {name: s.toString()};
+                // 2. Ensure the right number of arguments is present on
+                // `taintStack`.
 
-        this.reportPossibleFlow(description, objectMap[s]);
-        this.reportPossibleImplicitFlow(description, objectMap[s]);
+                if (expectedArgs != actualArgs) {
+                    let difference = Math.abs(expectedArgs - actualArgs);
+                    let operation = (actualArgs > expectedArgs)
+                        ? (() => this.taintStack.pop())
+                        : (() => this.taintStack.push(this.getUntaintedValue()));
 
-        logger.info("writeprop", o, s, objectMap[s]);
-    }
+                    for (let i = 0; i < difference; i++) {
+                        operation();
+                    }
+                }
 
-    public unaryOp(): void {
-        this.resetState();
+                // 2. Report possible taint flows into this function
 
-        logger.info("unaryOp");
-        // no-op. Unary operations on values do not change their taint status.
-    }
+                // We want to track a dependency between each arguments and
+                // both:
+                // - the function we're entering
+                // - the invocation of the function.
+                //
+                // The stack contains an extra taint value for the function
+                // we're entering. Pop it and join it with the taint value for
+                // the function invocation to produce the taint value for
+                // "entering the function".
+                const functionInvocationTaint =
+                    this.join(this.taintStack[this.taintStack.length - expectedArgs - 1],
+                        this.produceMark(description));
 
-    public binaryOp(): void {
-        this.resetState();
+                for (let i = this.taintStack.length - expectedArgs; i < this.taintStack.length; i++) {
+                    this.reportPossibleFlow(description, this.taintStack[i]);
+                    this.taintStack[i] = this.join(this.taintStack[i], functionInvocationTaint);
+                }
 
-        // Combine the taint markings of the two operands
-        this.taintStack.push(
-            this.taintStack.pop() || this.taintStack.pop()
+                // get arguments from the stack
+                let args = this.taintStack.splice(this.taintStack.length - expectedArgs);
+                args.reverse();
+                this.taintStack.push(...args);
+
+                // prepare the machine to declare the named parameters to
+                // this function
+                this.argsLeftToProcess = expectedArgs;
+            }
+        );
+    public functionInvokeStart = this.functionInvokeStartOp.wrapper;
+
+    public functionInvokeEndOp: Operation<[string, StaticDescription], void> =
+        this.adviceWrap(
+            ([name, description]) => {
+                this.functionArgsStack.pop();
+                this.push([this.returnValue, description]);
+            }
+        );
+    public functionInvokeEnd = this.functionInvokeEndOp.wrapper;
+
+    public functionEnterAdvice: {(name: string, actualArgs: number, description: StaticDescription): void}[] = [];
+    public functionEnterOp: Operation<[string, number, StaticDescription], void> =
+        this.adviceWrap(
+            ([name, actualArgs, description]) => {
+
+                if (description.location.fileName === "eval") {
+                    console.log("eval time");
+                }
+                let advice = this.functionEnterAdvice[this.functionEnterAdvice.length - 2];
+                if (advice != null) {
+                    advice(name, actualArgs, description);
+                    return;
+                }
+
+                this.callstackPush(description);
+
+                // pop the value of the function
+                let functionTaint = this.taintStack.pop();
+
+                // report possible flows from callee perspective
+                this.reportPossibleFlow(description, functionTaint);
+            }
+        );
+    public functionEnter = this.functionEnterOp.wrapper;
+
+    public functionExitAdvice: {(name: string, actualArgs: number, description: StaticDescription): void}[] = [];
+    public functionExitOp: Operation<[string, number, StaticDescription], void> =
+        this.adviceWrap(
+            ([name, actualArgs, description]) => {
+                let advice = this.functionExitAdvice[this.functionExitAdvice.length - 2];
+                if (advice != null) {
+                    advice(name, actualArgs, description);
+                    return;
+                }
+
+                this.callstackPop();
+            }
+        );
+    functionExit = this.functionExitOp.wrapper;
+
+    public functionReturnOp: Operation<[string, StaticDescription], void> =
+        this.adviceWrap(
+            (input) => {
+                this.returnValue = this.taintStack[this.taintStack.length - 1];
+                // we shouldn't pop this manually. a discardValue
+                // instruction should be generated by NodeProf right after
+                // the return callback.
+                // this.taintStack.pop();
+            });
+    public functionReturn = this.functionReturnOp.wrapper;
+
+    public literalOp: Operation<[StaticDescription], void> =
+        this.adviceWrap(
+            ([description]) => {
+                this.push([this.produceMark(description), description]);
+            });
+
+    public literal = this.literalOp.wrapper;
+
+    public pushOp: Operation<[V, StaticDescription], void> =
+        this.adviceWrap(
+            ([v, description]) => {
+                this.resetState();
+                logger.info("push", v);
+                this.taintStack.push(v);
+            }
         );
 
-        logger.info("binaryOp");
-    }
+    public push = this.pushOp.wrapper;
 
-    public initVar(s: string) {
-        if (this.state === States.FunctionCall && this.stateCounter > 0) {
-            const v = this.taintStack.pop();
-            logger.info("init function arg", s, v);
-            this.varTaintMap.set(s, v);
-            this.stateCounter -= 1;
-        } else {
-            logger.info("initVar called but not an argument: " + s);
-            this.varTaintMap.set(s, this.isSource({name: s}));
-            this.resetState();
-        }
-    }
-
-    public builtin(name: string, actualArgs: number) {
-        this.resetState();
-        logger.info("builtin", name, actualArgs);
-        let description: TaintDescription = {name: name, type: "builtin"};
-        let args = [];
-
-        for (let i = 0; i < actualArgs; i++) {
-            args.push(this.taintStack.pop());
-        }
-
-        args.forEach((v) => this.reportPossibleFlow(description, v));
-    }
-
-    public conditional(s: any): void {
-        this.resetState();
-        logger.info("conditional", s);
-
-        // no peek operation...
-        this.pc = this.taintStack[this.taintStack.length - 1];
-    }
-
-    public conditionalEnd(): void {
-        this.resetState();
-    }
-
-    public functionCall(name: string, expectedArgs: number, actualArgs: number) {
-        let description: TaintDescription = {name: name, type: "function"};
-        const tempStack = [];
-
-        // Pop off the actual arguments given to this function from taintStack
-        for (let i = 0; i < actualArgs; i++) {
-            tempStack.push(this.taintStack.pop());
-        }
-
-        // If not enough arguments were supplied, they will be "undefined".
-        // This value is *untainted*, so push the untainted marker.
-        if (expectedArgs > actualArgs) {
-            const diff = expectedArgs - actualArgs;
-
-            for (let i = 0; i < diff; i++) {
-                tempStack.push(false);
+    public popOp: Operation<[StaticDescription], void> =
+        this.adviceWrap(
+            ([description]) => {
+                this.resetState();
+                logger.info("pop");
+                this.taintStack.pop();
             }
-        }
+        );
 
-        logger.debug("funcall, temp stack:", tempStack);
-        // tempStack.reverse();
+    public pop = this.popOp.wrapper;
 
-        // Is this function a sink, and did any tainted values flow into it?
-        tempStack.forEach(
-            (mark) => this.reportPossibleFlow(description, mark));
+    public readVarOp: Operation<[VariableDescription, StaticDescription], void> =
+        this.adviceWrap(
+            ([s, description]) => {
+                this.resetState();
+                const r = this.join(this.produceMark(description),
+                    this.varTaintMap.get(s));
+                this.taintStack.push(r);
+                logger.info("read", s, r);
+            });
 
-        // Push the actual arguments to taintStack
-        tempStack.forEach((v) =>
-            this.taintStack.push(v || this.isSource(description)));
-        logger.debug("funcall, new stack:", this.taintStack);
-        this.state = States.FunctionCall;
-        this.stateCounter = expectedArgs;
-    }
+    public readVar = this.readVarOp.wrapper;
+
+    public writeVarOp: Operation<[VariableDescription, StaticDescription], void> =
+        this.adviceWrap(
+            ([s, description]) => {
+                this.resetState();
+                // Do not pop off the stack for a write
+                const v = this.join(this.produceMark(description),
+                    this.taintStack[this.taintStack.length - 1]);
+                logger.info("write", s, v);
+                this.varTaintMap.set(s, v);
+                this.reportPossibleFlow(description, v);
+                this.reportPossibleImplicitFlow(description, v);
+                // TODO: fix this hack!
+                // this.pop(description);
+                // logger.info("wrote", this.varTaintMap.get(s));
+            }
+        );
+
+    public writeVar = this.writeVarOp.wrapper;
+
+    public readPropertyOp: Operation<[DynamicDescription, Accessor, boolean, StaticDescription], void> =
+        this.adviceWrap(
+            ([o, s, isMethod, description]) => {
+                this.resetState();
+                const isSource = this.isSource(description);
+                const objectTaintMap = this.getShadowObject(o);
+
+                // If objectTaintMap contains a defined taint mark
+                // for this property, this will be its value. Otherwise, it will
+                // be untainted.
+                const propertyTaint = objectTaintMap[s]
+                    || this.getUntaintedValue();
+
+                // Then join this with its initial marking
+                let r = this.join(this.produceMark(description),
+                    propertyTaint);
+
+                // if we're not going to perform a method call using this
+                // property, we want to throw away the value of the object
+                // itself, which is currently sitting at the top of the stack.
+                // if this is a method call, we want to keep the base
+                // object's value on the stack, as we will use it later in
+                // functionInvokeStart.
+                // if (!isMethod) {
+                    // When reading a property of an object, the value of the
+                    // object is discarded and replaced with the projection.
+                    // Discard the object's value on the taint stack.
+                // TODO: document this
+                    this.lastObjectAccessed = this.taintStack.pop();
+                // }
+
+                logger.info("readprop", o, s, r);
+                this.taintStack.push(r);
+            }
+        );
+
+    public readProperty = this.readPropertyOp.wrapper;
+
+    public writePropertyOp: Operation<[DynamicDescription, Accessor, StaticDescription], void> =
+        this.adviceWrap(
+            ([o, s, description]) => {
+                this.resetState();
+
+                const storedTaint = this.taintStack.pop();
+                let objectTaintMap = this.getShadowObject(o);
+                objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
+
+                this.reportPossibleFlow(description, objectTaintMap[s]);
+                this.reportPossibleImplicitFlow(description, objectTaintMap[s]);
+
+                logger.info("writeprop", o, s, objectTaintMap[s]);
+            }
+        );
+
+    public writeProperty = this.writePropertyOp.wrapper;
+
+    public unaryOp: Operation<[StaticDescription], void> =
+        this.adviceWrap(
+            ([description]) => {
+                this.resetState();
+
+                logger.info("unaryOp");
+                // no-op. Unary operations on values do not change their taint status.
+            }
+        );
+
+    public unary = this.unaryOp.wrapper;
+
+    public binaryOp: Operation<[StaticDescription], void> =
+        this.adviceWrap(
+            (description) => {
+                this.resetState();
+
+                // Combine the taint markings of the two operands
+                this.taintStack.push(
+                    this.join(this.taintStack.pop(), this.taintStack.pop())
+                );
+
+                logger.info("binaryOp");
+            }
+        );
+
+    public binary = this.binaryOp.wrapper;
+
+    public initVarOp: Operation<[VariableDescription, StaticDescription], void> =
+        this.adviceWrap(
+            ([s, description]) => {
+                let v = this.join(this.taintStack[this.taintStack.length - 1], this.produceMark(description));
+
+                if (this.argsLeftToProcess > 0) {
+                    this.taintStack.pop();
+                    this.argsLeftToProcess--;
+                }
+
+                logger.info("init var", s, v);
+
+                // actually set the taint value of the variable
+                this.varTaintMap.set(s, v);
+            }
+        );
+
+    public initVar = this.initVarOp.wrapper;
+
+    public builtinOp: Operation<[DynamicDescription, DynamicDescription, number, any, boolean, StaticDescription], void> =
+        this.adviceWrap(
+            ([name, receiver, actualArgs, extraRecords, isMethod, description]) => {
+                this.resetState();
+                logger.info("builtin", name, actualArgs);
+
+                // if this is a method, push the value of the base object
+                // (that we saved earlier)
+                if (isMethod) {
+                    this.push([this.lastObjectAccessed, description]);
+                }
+
+                useNativeImplementation(this, name, receiver, actualArgs, extraRecords, isMethod, description);
+            }
+        );
+
+    public builtin = this.builtinOp.wrapper;
+
+    public builtinExitOp: Operation<[string, StaticDescription], void> =
+        this.adviceWrap(
+            ([name, description]) => {
+                this.resetState();
+                logger.info("builtinExit", name);
+            }
+        );
+
+    public builtinExit = this.builtinExitOp.wrapper;
+
+    public conditionalOp: Operation<[StaticDescription], void> =
+        this.adviceWrap(
+            ([description]) => {
+                this.resetState();
+
+                // no peek operation...
+                const abstractValue = this.taintStack[this.taintStack.length - 1];
+
+                logger.info("conditional", abstractValue);
+
+                this.pc = abstractValue;
+            }
+        );
+
+    public conditional = this.conditionalOp.wrapper;
+
+    public conditionalEndOp: Operation<[StaticDescription], void> =
+        this.adviceWrap(
+            ([description]) => {
+                this.resetState();
+            }
+        );
+
+    public conditionalEnd = this.conditionalEndOp.wrapper;
+
+    public initializeArgumentsObjectOp: Operation<[DynamicDescription, StaticDescription], void> =
+        this.adviceWrap(
+            ([argumentsObject, description]) => {
+               this.resetState();
+
+               // only initialize the "arguments" variable if we haven't already
+               if (!this.objects.has(argumentsObject)) {
+                   // peek into function args stack
+                   let argsValues = this.functionArgsStack[this.functionArgsStack.length - 1];
+
+                   // take the values of the arguments and SET that as the
+                   // shadow object for the "arguments" variable.
+
+                   // "as unknown as ShadowObject<V>" is just a typescript hack.
+                   // the `argsValues` object will be an array of abstract
+                   // values of type V, and this will technically fit the shape
+                   // of ShadowObject<V>. but typescript will not believe it.
+                   this.objects.set(argumentsObject, argsValues as unknown as ShadowObject<V>);
+               }
+            }
+        );
+    public initializeArgumentsObject = this.initializeArgumentsObjectOp.wrapper;
 
     public endExecution() {
         // do nothing.
     }
 
-    public getTaint(): TaintDescription[] {
+    public getTaint(): F[] {
         return [...this.flows];
     }
 
-    private reportPossibleImplicitFlow(description: TaintDescription, taintMarking: boolean) {
-        // no sensitive upgrade check
-        if (this.pc && !taintMarking) {
-            console.log("implicit flow detected! previously untainted value updated from a tainted code location");
+    public initializeShadowObject(obj: DynamicDescription): void {
+        if (!this.objects.has(obj)) {
+            this.objects.set(obj, {});
         }
     }
 
-    private reportPossibleFlow(description: TaintDescription, taintMarking: boolean): void {
-        // Check taint marking *first*
-        if (taintMarking) {
-            // If it's tainted, then check to see if this is a sink
-            let sinkDescription = this.getSink(description);
-            if (sinkDescription !== undefined) {
-                console.log("tainted value flowed into sink "
-                    + JSON.stringify(description)
-                    + "!");
-                this.flows.add(sinkDescription);
-            }
-        }
+    public getShadowObject(obj: DynamicDescription): ShadowObject<V> {
+        // ensure the shadow object is initialize
+        this.initializeShadowObject(obj);
+        return this.objects.get(obj);
+    }
+
+    private reportPossibleImplicitFlow(description: StaticDescription, taintMarking: V) {
+        // no sensitive upgrade check
+        // TODO: figure out how this should work generally
+        return;
+    }
+
+    private currentFunction(): StaticDescription {
+        return this.functionCallStack[this.functionCallStack.length - 1];
     }
 
     private resetState() {
-        this.state = States.None;
-        this.stateCounter = 0;
+        // this.state = States.None;
+        // this.stateCounter = 0;
     }
 
-    private getSink(description: TaintDescription): TaintDescription {
-        return this.spec.sinks.find((sink) => sameDescription(sink, description));
+    protected getSink(description: StaticDescription): StaticDescription {
+        return this.spec.sinks.find((sink) => descriptionSubset(sink, description));
     }
 
-    private isSource(description: TaintDescription): boolean {
-        return this.spec.sources.some((source) => sameDescription(source, description));
+    protected isSource(description: StaticDescription): boolean {
+        return this.spec.sources.some((source) => descriptionSubset(source, description));
     }
 
-    private isSink(description: TaintDescription): boolean {
-        return this.spec.sinks.some((sink) => sameDescription(sink, description));
+    protected isSink(description: StaticDescription): boolean {
+        return this.spec.sinks.some((sink) => descriptionSubset(sink, description));
     }
-}
-
-export function executeInstructionsFromFile(path: string, options: RunSpecification) {
-    console.log(path, options);
-    const abstractMachine = new JSMachine(options);
-    const compiledOutput = require(path);
-    console.log(JSON.stringify(compiledOutput));
-    compiledOutput.drive(abstractMachine);
-    return abstractMachine.getTaint();
 }

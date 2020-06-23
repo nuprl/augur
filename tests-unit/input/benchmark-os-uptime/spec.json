@@ -1,13 +1,19 @@
 {
-	"main": "os-uptime.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "os-uptime.js"}
-	],
-	"sinks": [
-		{"type": "function",
-			"name": "execSync"}
-	],
-	"expectedFlows": []
+    "main": "os-uptime.js",
+    "sources": [
+        {
+            "type": "functionInvocation",
+            "name": "dummySource",
+            "location": {
+                "fileName": "os-uptime.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionInvocation",
+            "name": "execSync"
+        }
+    ],
+    "expectedFlows": []
 }

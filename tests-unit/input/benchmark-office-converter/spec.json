@@ -1,16 +1,24 @@
 {
-	"main": "office-converter.js",
-	"sources": [
-		{"type": "function",
-			"name": "dummySource",
-			"fileName": "office-converter.js"}
-	],
-	"sinks": [
-		{"type": "function",
-			"name": "exec"}
-	],
-	"expectedFlows": [
-		{"type": "function",
-			"name": "exec"}
-	]
+    "main": "office-converter.js",
+    "sources": [
+        {
+            "type": "functionInvocation",
+            "name": "dummySource",
+            "location": {
+                "fileName": "office-converter.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionInvocation",
+            "name": "exec"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "functionInvocation",
+            "name": "exec"
+        }
+    ]
 }
