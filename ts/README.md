@@ -1,12 +1,11 @@
-# JavaScript Taint Analysis (implemented in TypeScript)
+<img src="./augur.png" align="left" height="100">
 
 This is a dynamic taint analysis implemented in TypeScript using
 [NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). This implementation
  is based on the taint analysis described in the [IEEE TSE paper: Platform
  -Independent Dynamic Taint Analysis for JavaScript](https://ieeexplore.ieee.org/document/8511058).
-
-The structure and implementation of the analysis is documented with `README`s in
-folders inside [`src`](./src).
+ 
+---
 
 ## Installation
 
@@ -27,6 +26,9 @@ To run the tests:
 - using Docker, run `jest`.
 - using a local NodeProf installation, run `jest` with the environment variables set as described [here](#manual-installation)
   - ex. `NODEPROF_HOME=/home/mwaldrich/workspace-nodeprof/nodeprof.js/ MX_HOME=/home/mwaldrich/mx JAVA_HOME=/home/mwaldrich/openjdk1.8.0_172-jvmci-0.46 jest`
+
+If you're looking to dive into the code, the structure and implementation of the analysis is documented with `README`s in
+folders inside [`src`](./src).
 
 ### Docker installation
 
