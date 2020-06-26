@@ -5,9 +5,6 @@ This is a dynamic taint analysis implemented in TypeScript using
  is based on the taint analysis described in the [IEEE TSE paper: Platform
  -Independent Dynamic Taint Analysis for JavaScript](https://ieeexplore.ieee.org/document/8511058).
 
-The structure and implementation of the analysis is documented with `README`s in
-folders inside [`src`](./src).
-
 ## Installation
 
 You will need **Node.js** installed. We recommend >=v10.
@@ -27,6 +24,9 @@ To run the tests:
 - using Docker, run `jest`.
 - using a local NodeProf installation, run `jest` with the environment variables set as described [here](#manual-installation)
   - ex. `NODEPROF_HOME=/home/mwaldrich/workspace-nodeprof/nodeprof.js/ MX_HOME=/home/mwaldrich/mx JAVA_HOME=/home/mwaldrich/openjdk1.8.0_172-jvmci-0.46 jest`
+
+The structure and implementation of the analysis is documented with `README`s in
+folders inside [`src`](./src).
 
 ### Docker installation
 
