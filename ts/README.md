@@ -4,6 +4,8 @@ This is a dynamic taint analysis implemented in TypeScript using
 [NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). This implementation
  is based on the taint analysis described in the [IEEE TSE paper: Platform
  -Independent Dynamic Taint Analysis for JavaScript](https://ieeexplore.ieee.org/document/8511058).
+ 
+---
 
 ## Installation
 
