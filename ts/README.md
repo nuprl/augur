@@ -1,7 +1,9 @@
 # JavaScript Taint Analysis (implemented in TypeScript)
 
 This is a dynamic taint analysis implemented in TypeScript using
-[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js).
+[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). This implementation
+ is based on the taint analysis described in the [IEEE TSE paper: Platform
+ -Independent Dynamic Taint Analysis for JavaScript](https://ieeexplore.ieee.org/document/8511058).
 
 The structure and implementation of the analysis is documented with `README`s in
 folders inside [`src`](./src).
@@ -42,12 +44,6 @@ To use the Docker container:
 4. Run `make` to build our TypeScript analysis (requires Node.js >=v10).
 5. Simply use the `docker-run.sh` and `docker-run-callbacks.sh` scripts, instead of `run.sh` and `run-callbacks.sh`, respectively. There is no need to set environment variables pointing to Java installations or NodeProf installations.
 
-#### Using the private version of NodeProf in Docker
-
-We also support using the internal development version of NodeProf in Docker, which may implement features not yet available to the public. Both the `docker-build.sh` and `docker-run.sh` scripts support an optional argument, `--private`, which will either build or use a separate Docker container for the private version of NodeProf.
-
-As the internal development version of NodeProf is a private Github repo, authentication is required when using `--private` with `docker-build.sh`.
-
 ### Manual installation
 
 Follow the [advanced installation instructions](https://github.com/Haiyang-Sun/nodeprof.js/tree/master/docs/panathon18#advanced-installation---building-nodeprof-and-graalvm-from-source-linux-and-macos).
@@ -76,18 +72,17 @@ If you do not wish to use Docker, you must follow the [follow the advanced insta
 ## JavaScript Feature Support
 |                                | None | In Progress | Done | Notes   |
 |--------------------------------|------|-------------|------|---------|
-| Literal expression             |      | x           |      | see #18 |
 | Variable read                  |      |             | x    |         |
 | Variable write                 |      |             | x    |         |
 | Property read                  |      |             | x    |         |
 | Property write                 |      |             | x    |         |
 | Unary expression               |      |             | x    |         |
 | Binary expression              |      |             | x    |         |
-| Implicit declaration of `this` | x    |             |      | see #19 |
+| Implicit declaration of `this` |      |             | x    | see #19 |
 | Function declaration           |      |             | x    |         |
 | Function arguments             |      |             | x    |         |
-| Variable assignment            |      | x           |      | see #20 |
-| Function call                  |      | x           |      | see #21 |
-| Native functions               | x    |             |      | see #22 |
+| Variable assignment            |      |             | x    | see #20 |
+| Function call                  |      |             | x    | see #21 |
+| Native functions               |      |             | x    | see #22 |
 | Async/await                    | x    |             |      | see #29 |
-| Function returns               | x    |             |      | see #30 |
+| Function returns               |      |             | x    | see #30 |
