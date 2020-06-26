@@ -1,4 +1,4 @@
-# JavaScript Taint Analysis (implemented in TypeScript)
+![logo](augur.png)
 
 This is a dynamic taint analysis implemented in TypeScript using
 [NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). This implementation
