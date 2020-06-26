@@ -1,4 +1,4 @@
-![logo](augur.png)
+<img src="./augur.png" align="left" hspace="10" vspace="6">
 
 This is a dynamic taint analysis implemented in TypeScript using
 [NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). This implementation
