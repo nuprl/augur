@@ -28,7 +28,7 @@ To run the tests:
   - ex. `NODEPROF_HOME=/home/mwaldrich/workspace-nodeprof/nodeprof.js/ MX_HOME=/home/mwaldrich/mx JAVA_HOME=/home/mwaldrich/openjdk1.8.0_172-jvmci-0.46 jest`
 
 If you're looking to dive into the code, the structure and implementation of the analysis is documented with `README`s in
-folders inside [`src`](./src).
+folders inside [`src`](./ts/src).
 
 ### Docker installation
 
