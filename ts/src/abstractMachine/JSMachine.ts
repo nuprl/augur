@@ -17,13 +17,42 @@ import Operation from "./operation";
 import {useNativeImplementation} from "../native/native";
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
+
+    /**
+     * The stack of taint values for the current execution context. Almost
+     * all AbstractMachine instructions will manipulate or read from this stack.
+     * Taint values involved in intermediate computations will be stored here.
+     */
     taintStack: V[] = [];
+
+    /**
+     * A mapping of all bound variables to their corresponding taint values.
+     * For example, if a variable "x" is tainted, there will be an entry in
+     * this map similar to:
+     *    "x" => tainted
+     *
+     * Variables in ALL scopes are tracked in this map. Variables in
+     * different scopes with the same name will NOT conflict in this map,
+     * because a "VariableDescription" describes a variable in a specific
+     * concrete function execution.
+     */
     varTaintMap: Map<VariableDescription, V> = new Map();
+
+    /**
+     * The specification of taint sources and sinks, supplied by the user.
+     */
     spec: RunSpecification;
 
-    // maps all dynamic descriptions of objects to:
-    // an object whose property names match the original objects', and whose
-    // values are taint descriptions.
+    /**
+     * A mapping of all objects in the program to their "shadow objects".
+     * For example, if the program we're analyzing is:
+     *    let exampleObject = {property: "user input"};
+     *    (where "user input" a tainted value)
+     *  there will be an entry in this map that roughly corresponds to:
+     *    "obj1" => {property: tainted}
+     *
+     *  See the documentation for ShadowObject for more information.
+     */
     private objects: Map<DynamicDescription, ShadowObject<V>>;
 
     flows: Set<F> = new Set();
@@ -189,7 +218,18 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([name, description]) => {
                 this.functionArgsStack.pop();
-                this.push([this.returnValue, description]);
+
+                // if the function returned, push its abstract return value
+                if (this.returnValue) {
+                    this.push([this.returnValue, description]);
+                } else {
+                    // if it didn't return, push the untainted value (which
+                    // should represent the abstract value for "undefined"
+                    this.push([this.getUntaintedValue(), description]);
+                }
+
+                // clean out return value
+                this.returnValue = undefined;
             }
         );
     public functionInvokeEnd = this.functionInvokeEndOp.wrapper;

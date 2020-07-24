@@ -21,6 +21,10 @@ import {parseIID} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
 import {useNativeRecorder} from "../native/native";
 
+// TODO: document this
+// load in polyfills
+require("../native/polyfill");
+
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 

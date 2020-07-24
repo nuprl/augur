@@ -5,7 +5,8 @@ import {
     VariableDescription
 } from "../types";
 import Analysis from "../analysis/analysis";
-import {removeErrorMarkup} from "tslint/lib/verify/parse";
+
+
 
 /**
  * A mechanism for a native model to record runtime information. This
@@ -184,6 +185,7 @@ let defaultObjectImplementation: NativeModelImplementation<void> =
     };
 
 let models = asNativeModelMap({
+    // ""
     "push": asNativeModel({
         recorder: (analysis: Analysis,
                    name: DynamicDescription,
@@ -256,7 +258,7 @@ let models = asNativeModelMap({
             // join all the taints in this array. this computes the *result*
             // of this builtin, a.k.a. whether or not the result of this
             // function should be tainted.
-            let arrayValuesTaint = Object.values(shadowArray).reduce(machine.join);
+            let arrayValuesTaint = Object.values(shadowArray).reduce(machine.join, machine.getUntaintedValue());
 
             // get the taint of the separator string used to join all the
             // values of this array together. if no separator was specified,
@@ -343,15 +345,23 @@ let models = asNativeModelMap({
                    receiver: any,
                    args: any[],
                    description: StaticDescription) => {
-            return name;
+            /*
+            // Record two things:
+            // 1. the shadow id of the function the user wants to call
+            // 2. the number of arguments that function is expecting
+            return [name, args[1].length];
+            */
+            return [receiver.length, description];
         },
         implementation: function <V, F>(machine: JSMachine<V, F>,
                                name: DynamicDescription,
                                receiverName: DynamicDescription,
                                actualArgs: number,
-                               builtinName: DynamicDescription,
+                               extraRecords: [number, StaticDescription],
                                isMethod: boolean,
                                description: StaticDescription): void {
+            // let expectedArgs
+            // ([name, expectedArgs, actualArgs, description])
             let [builtinTaint, receiverTaint, argsTaint] =
                 popArgsAndReportFlowsIntoBuiltin(machine,
                     name,
@@ -376,7 +386,6 @@ let models = asNativeModelMap({
                     machine.callstackPop();
                     machine.callstackPop();
                 });
-
         }
     }),
     "max": asNativeModel({recorder:
@@ -454,6 +463,15 @@ let models = asNativeModelMap({
 
 // TODO: don't use string here; create a type for builtin names
 export function getNativeModel<V, F>(name: string): NativeModel<any> {
+
+    if (models.hasOwnProperty(name)) {
+        // @ts-ignore
+        return models[name] as NativeModel<any>;
+    } else {
+        return defaultModel;
+    }
+
+    /*
     // @ts-ignore
     let model = models[name] as NativeModel<any>;
 
@@ -462,6 +480,7 @@ export function getNativeModel<V, F>(name: string): NativeModel<any> {
     } else {
         return defaultModel;
     }
+    */
 }
 
 export function useNativeRecorder<R>(analysis: Analysis,

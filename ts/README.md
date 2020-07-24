@@ -1,8 +1,8 @@
 <img src="./augur.png" align="left" height="100">
 
 This is a dynamic taint analysis implemented in TypeScript using
-[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). This implementation
- is based on the taint analysis described in the [IEEE TSE paper: Platform
+[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). Auger is a clean room
+ implementation of the taint analysis described in the [IEEE TSE paper: Platform
  -Independent Dynamic Taint Analysis for JavaScript](https://ieeexplore.ieee.org/document/8511058).
  
 ---
@@ -72,19 +72,21 @@ fully up and running, simply:
 If you do not wish to use Docker, you must follow the [follow the advanced installation instructions](https://github.com/Haiyang-Sun/nodeprof.js/tree/master/docs/panathon18#advanced-installation---building-nodeprof-and-graalvm-from-source-linux-and-macos), create a copy of the run configuration, and set your environment variables as described [here](#manual-installation).
 
 ## JavaScript Feature Support
-|                                | None | In Progress | Done | Notes   |
-|--------------------------------|------|-------------|------|---------|
-| Variable read                  |      |             | x    |         |
-| Variable write                 |      |             | x    |         |
-| Property read                  |      |             | x    |         |
-| Property write                 |      |             | x    |         |
-| Unary expression               |      |             | x    |         |
-| Binary expression              |      |             | x    |         |
-| Implicit declaration of `this` |      |             | x    | see #19 |
-| Function declaration           |      |             | x    |         |
-| Function arguments             |      |             | x    |         |
-| Variable assignment            |      |             | x    | see #20 |
-| Function call                  |      |             | x    | see #21 |
-| Native functions               |      |             | x    | see #22 |
-| Async/await                    | x    |             |      | see #29 |
-| Function returns               |      |             | x    | see #30 |
+|                                | Not Yet | In Progress | Done | Notes   |
+|--------------------------------|---------|-------------|------|---------|
+| Variable read                  |         |             | x    |         |
+| Variable write                 |         |             | x    |         |
+| Property read                  |         |             | x    |         |
+| Property write                 |         |             | x    |         |
+| Unary expression               |         |             | x    |         |
+| Binary expression              |         |             | x    |         |
+| Implicit declaration of `this` |         |             | x    | see #19 |
+| Function declaration           |         |             | x    |         |
+| Function arguments             |         |             | x    |         |
+| Variable assignment            |         |             | x    | see #20 |
+| Function call                  |         |             | x    | see #21 |
+| Native functions               |         |             | x    | see #22 |
+| Async/await                    | x       |             |      | see #29 |
+| Function returns               |         |             | x    | see #30 |
+
+## 

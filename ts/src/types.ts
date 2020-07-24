@@ -259,6 +259,13 @@ export interface ShadowMemory {
     getFullVariableName(name: string): VariableDescription;
 }
 
+/**
+ * "Shadow objects" are how the taint analysis keeps track of which
+ * properties inside objects are tainted. For each object in the program
+ * we're analyzing, a corresponding ShadowObject will be made. This
+ * ShadowObject will have the same property names as the actual object, but
+ * the values of these properties will only be taint values.
+ */
 export type ShadowObject<V> = {[name: string]: V};
 
 export type Command = keyof AbstractMachine;
@@ -288,8 +295,9 @@ export type TaintType = "function"
 //  include a brand.)
 export type DynamicDescription = string & { readonly brand: unique symbol };
 
-// An identifier that represents a variable's name. It should contain JUST
-// the variable's name, and no other information about its scope.
+// An identifier that represents a variable's name. It contains JUST
+// the variable's name, and no other information about its scope or
+// execution environment.
 export type RawVariableDescription = string & { readonly brand: unique symbol };
 
 // An identifier for a VARIABLE NAME and its associated scope.

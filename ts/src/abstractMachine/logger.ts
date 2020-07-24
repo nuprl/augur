@@ -1,5 +1,5 @@
 import * as bunyan from "bunyan";
 export default bunyan.createLogger({
-    level: "info",
+    level: "fatal",
     name: "execute-instrs",
 });

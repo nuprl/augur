@@ -82,6 +82,7 @@ function runTest(testName, done) {
             // Run test using Docker
             ? TAINT_ANALYSIS_HOME + "/ts/docker-nodeprof/docker-analyze.sh" +
             ` --mxArg "--initParam outputFile:/root/program/${DOCKER_OUTPUT_FILENAME}"` +
+            // " --imageName 20-06-23-discardvalue" +
             " --analysisDir " + TAINT_ANALYSIS_HOME + "/ts/" +
             " --analysisMain " + "dist/src/analysis/nodeprofAnalysis.js" +
             " --programDir " + INPUT_DIR + testName + "/" +
@@ -95,7 +96,9 @@ function runTest(testName, done) {
             + " --analysis " + ANALYSIS + " "
             + inputFile);
 
-    exec(command, function (error, stdout, stderr) {
+    exec(command,
+        {maxBuffer: 1024*1024*10 /* 10 MB */},
+        function (error, stdout, stderr) {
         console.error("Source file: \t" + inputFile);
 
         if (error) {
@@ -159,8 +162,11 @@ test('for-loop-tainted', (done) => runTest('for-loop-tainted', done));
 test('for-loop-assign-tainted', (done) => runTest('for-loop-assign-tainted', done));
 test('init-array-tainted', (done) => runTest('init-array-tainted', done));
 test('init-obj-tainted', (done) => runTest('init-obj-tainted', done));
-test('init-obj-number-key-tainted', (done) => runTest('init-obj-number-key-tainted', done));
-test('init-obj-number-key-clean', (done) => runTest('init-obj-number-key-clean', done));
+
+// TODO: object literals with number keys are currently not supported.
+// test('init-obj-number-key-tainted', (done) => runTest('init-obj-number-key-tainted', done));
+// test('init-obj-number-key-clean', (done) => runTest('init-obj-number-key-clean', done));
+
 test('set-array-tainted', (done) => runTest('set-array-tainted', done));
 test('set-obj-tainted', (done) => runTest('set-obj-tainted', done));
 test('async-await-clean', (done) => runTest('async-await-clean', done));
@@ -171,7 +177,7 @@ test('init-destructure-obj-clean', (done) => runTest('init-destructure-obj-clean
 test('promise-await-clean', (done) => runTest('promise-await-clean', done));
 test('promise-await-tainted', (done) => runTest('promise-await-tainted', done));
 test('promise-then-clean', (done) => runTest('promise-then-clean', done));
-test('promise-then-tainted', (done) => runTest('promise-then-tainted', done))
+test('promise-then-tainted', (done) => runTest('promise-then-tainted', done));
 test('async-await-tainted', (done) => runTest('async-await-tainted', done));
 test('async-then-tainted', (done) => runTest('async-then-tainted', done));
 test('init-destructure-obj-tainted', (done) => runTest('init-destructure-obj-tainted', done));
@@ -332,3 +338,7 @@ test('arguments-7-clean', (done) => runTest('arguments-7-clean', done));
 test('arguments-7-tainted', (done) => runTest('arguments-7-tainted', done));
 test('arguments-8-clean', (done) => runTest('arguments-8-clean', done));
 test('arguments-8-tainted', (done) => runTest('arguments-8-tainted', done));
+test('native-Array-forEach-1-clean', (done) => runTest('native-Array-forEach-1-clean', done));
+test('native-Array-forEach-1-tainted', (done) => runTest('native-Array-forEach-1-tainted', done));
+test('native-function-call-5-clean', (done) => runTest('native-function-call-5-clean', done));
+test('native-function-call-5-tainted', (done) => runTest('native-function-call-5-tainted', done));
