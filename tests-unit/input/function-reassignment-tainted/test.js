@@ -8,7 +8,7 @@ function returnUntainted() {
 }
 
 function returnTainted() {
-    return z;
+    return a;
 }
 
 returnUntainted();
