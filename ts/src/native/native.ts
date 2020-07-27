@@ -50,7 +50,9 @@ type NativeModelImplementationPre<R, S> =
 type NativeModelImplementationPost<S> =
     <V, F>(machine: JSMachine<V, F>,
            name: DynamicDescription,
-           returnValueName: DynamicDescription | undefined) => void;
+           returnValueName: DynamicDescription | undefined,
+           saved: S,
+           description: StaticDescription) => void;
 
 type NativeModel<R, S> = {
     // record step @ instrumentation time
@@ -491,6 +493,9 @@ export function useNativeRecorder<R>(analysis: Analysis,
     if (nativeModel.recorder) {
         return nativeModel.recorder(analysis, name, receiverName, receiver, args, isMethod, description);
     } else {
+        // if there isn't a recorder, return null. this is ok because a lack
+        // of a recorder only makes sense when we aren't expecting any
+        // recorded information.
         return null;
     }
 }
@@ -510,4 +515,22 @@ export function useNativeImplementationPre<V, F, R, S>(machine: JSMachine<V, F>,
             extraRecords,
             isMethod,
             description);
+}
+
+export function useNativeImplementationPost<V, F, S>(machine: JSMachine<V, F>,
+                                                       name: DynamicDescription,
+                                                       returnValueName: DynamicDescription,
+                                                       saved: S,
+                                                       description: StaticDescription): void {
+    let model = getNativeModel(description.name);
+    if (model.implementationPost) {
+        model.implementationPost(machine,
+            name,
+            returnValueName,
+            saved,
+            description);
+    }
+
+    // if there isn't an implementationPost, don't do anything. this is ok
+    // because we don't need to return anything.
 }

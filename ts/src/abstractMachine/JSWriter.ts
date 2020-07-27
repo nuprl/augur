@@ -115,9 +115,9 @@ export default class JSWriter implements AbstractMachine {
             args: [name, receiver, actualArgs, extraRecords, isMethod, description]});
     }
 
-    public builtinExit([name, description]: [string, StaticDescription]): void {
+    public builtinExit([name, returnValueName, description]: [DynamicDescription, DynamicDescription, StaticDescription]): void {
         this.writeInstruction({ command: "builtinExit",
-            args: [name, description]})
+            args: [name, returnValueName, description]})
     }
 
 

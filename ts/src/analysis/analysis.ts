@@ -199,11 +199,11 @@ export default class Analysis implements Analyzer {
             description.name = f.name;
         }
 
-        let oid = this.shadowMemory.getShadowID(result);
+        let returnValueName = this.shadowMemory.getShadowID(result);
 
         this.shadowMemory.functionExit();
         if (this.isNative(f)) {
-            this.state.builtinExit([this.shadowMemory.getShadowID(f), description]);
+            this.state.builtinExit([this.shadowMemory.getShadowID(f), returnValueName, description]);
         } else {
             this.state.functionInvokeEnd([this.shadowMemory.getShadowID(f), description]);
         }

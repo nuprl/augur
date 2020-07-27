@@ -14,7 +14,7 @@ import {
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
 import Operation from "./operation";
-import {useNativeImplementationPre} from "../native/native";
+import {useNativeImplementationPre, useNativeImplementationPost} from "../native/native";
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
 
@@ -466,17 +466,24 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                     this.push([this.lastObjectAccessed, description]);
                 }
 
-                useNativeImplementationPre(this, name, receiver, actualArgs, extraRecords, isMethod, description);
+                let saved = useNativeImplementationPre(this, name, receiver, actualArgs, extraRecords, isMethod, description);
+
+                this.nativeModelSavedValues.push(saved);
             }
         );
 
     public builtin = this.builtinOp.wrapper;
 
-    public builtinExitOp: Operation<[string, StaticDescription], void> =
+    public builtinExitOp: Operation<[DynamicDescription, DynamicDescription, StaticDescription], void> =
         this.adviceWrap(
-            ([name, description]) => {
+            ([name, returnValueName, description]) => {
                 this.resetState();
                 logger.info("builtinExit", name);
+
+                // retrieve saved information from implementationPre
+                let saved = this.nativeModelSavedValues.pop();
+
+                useNativeImplementationPost(this, name, returnValueName, saved, description);
             }
         );
 

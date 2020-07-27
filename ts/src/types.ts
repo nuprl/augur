@@ -186,10 +186,11 @@ export interface AbstractMachine {
      * Used to signal a builtin has exited. The result is on the top of the
      * stack. No stack action is required.
      * @param name the name of the builtin
-     * @param actualArgs the number of arguments supplied to the builtin
+     * @param returnValueName the object identifier of the return value, if
+     *                        it returned an object
      * @param description why and where the action occurred
      */
-    builtinExit: (input: [DynamicDescription, StaticDescription]) => void;
+    builtinExit: (input: [DynamicDescription, DynamicDescription, StaticDescription]) => void;
 
     /**
      * Used to signal the end of execution.
