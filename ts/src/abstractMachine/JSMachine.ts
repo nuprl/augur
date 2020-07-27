@@ -14,7 +14,7 @@ import {
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
 import Operation from "./operation";
-import {useNativeImplementation} from "../native/native";
+import {useNativeImplementationPre} from "../native/native";
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
 
@@ -54,6 +54,11 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
      *  See the documentation for ShadowObject for more information.
      */
     private objects: Map<DynamicDescription, ShadowObject<V>>;
+
+    /**
+     * TODO: document
+     */
+    private nativeModelSavedValues: Array<any> = [];
 
     flows: Set<F> = new Set();
     pc: V;
@@ -461,7 +466,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                     this.push([this.lastObjectAccessed, description]);
                 }
 
-                useNativeImplementation(this, name, receiver, actualArgs, extraRecords, isMethod, description);
+                useNativeImplementationPre(this, name, receiver, actualArgs, extraRecords, isMethod, description);
             }
         );
 
