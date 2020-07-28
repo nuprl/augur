@@ -184,6 +184,52 @@ let defaultModel: NativeModel<void, void> = {
 };
 
 let models = asNativeModelMap({
+    "split": asNativeModel({
+        recorder: function(analysis: Analysis,
+                   name: DynamicDescription,
+                   receiverName: DynamicDescription,
+                   receiver: any,
+                   args: any[],
+                   description: StaticDescription): number {
+            // record length of split string array. we need to do this
+            // because the abstract machine will have no idea how many
+            // splits occurred at runtime, and therefore won't know which
+            // properties in the split array to propagate the taint to.
+            return String.prototype.split.apply(receiver).length;
+        },
+        implementationPre: function <V, F>(machine: JSMachine<V, F>,
+                                           name: DynamicDescription,
+                                           receiverName: DynamicDescription,
+                                           actualArgs: number,
+                                           numSplits: number,
+                                           isMethod: boolean,
+                                           description: StaticDescription): [number, V] {
+            let [builtinTaint, receiverTaint, argsTaint] =
+                popArgsAndReportFlowsIntoBuiltin(machine,
+                    name,
+                    receiverName,
+                    actualArgs,
+                    isMethod,
+                    description);
+
+            // save the taint value of the string we're splitting
+            return [numSplits, receiverTaint];
+        },
+        implementationPost: function<V, F>(machine: JSMachine<V, F>,
+                                           name: DynamicDescription,
+                                           returnValueName: DynamicDescription,
+                                           saved: [number, V],
+                                           description: StaticDescription): void {
+            let [numSplits, stringTaint] = saved;
+            let returnValueShadowObject = machine.getShadowObject(returnValueName);
+
+            // propagate the taint value of the string (`saved`) to each
+            // string in the split array
+            for (let i = 0; i < numSplits; i++) {
+                returnValueShadowObject[i] = stringTaint;
+            }
+        }
+    }),
     "push": asNativeModel({
         recorder: (analysis: Analysis,
                    name: DynamicDescription,

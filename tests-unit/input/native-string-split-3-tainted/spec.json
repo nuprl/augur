@@ -1,0 +1,28 @@
+{
+    "main": "test.js",
+    "sources": [
+        {
+            "type": "functionInvocation",
+            "name": "dummySource",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionEnter",
+            "location": {
+                "fileName": "eval"
+            }
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "functionEnter",
+            "location": {
+                "fileName": "eval"
+            }
+        }
+    ]
+}
