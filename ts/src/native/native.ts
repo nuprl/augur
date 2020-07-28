@@ -366,20 +366,8 @@ let models = asNativeModelMap({
             let abstractPropertyValue = machine.getShadowObject(descriptor).value;
             machine.push([abstractPropertyValue, description]);
             machine.writeProperty([obj, prop, description]);
-        }
-    }),
-    // TODO: correctly implement variables in this native model. currently
-    //  there is no access to the shadow memory in here, so we cannot call
-    //  shadowMemory.getFullVariableName("__accum__"), for example. Perhaps
-    //  these variables should be modeled as local variables inside this
-    //  function.
-    "map": asNativeModel({
-        implementationPre: function <V, F>(machine: JSMachine<V, F>,
-               name: DynamicDescription,
-               receiverName: DynamicDescription,
-               actualArgs: number,
-               extraRecords: void,
-               description: StaticDescription): void {
+
+            returnTaints(machine, receiverTaint);
         }
     }),
     "call": asNativeModel({
