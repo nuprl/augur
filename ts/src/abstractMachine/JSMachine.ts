@@ -547,7 +547,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public initializeShadowObject(obj: DynamicDescription): void {
         if (!this.objects.has(obj)) {
-            this.objects.set(obj, {});
+            this.objects.set(obj, Object.create(null));
         }
     }
 
