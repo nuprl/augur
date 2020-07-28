@@ -1,8 +1,22 @@
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const child_process = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
 const {executeInstructionsFromFile} = require('../dist/src/utils');
+
+/**
+ * Fully-promsified exec implementation. This works well with await, and
+ * returns *all* the information returned by exec.
+ * @param cmd the command to exec
+ * @param opts the options to give to exec
+ * @returns {Promise}
+ */
+const exec = function(cmd, opts) {
+    return new Promise((resolve, reject) => {
+        child_process.exec(cmd, opts, (error, stdout, stderr) => {
+            resolve([error, stdout, stderr]);
+        })
+    })
+};
 
 // If the user does not explicitly specify TAINT_ANALYSIS_HOME, assume it to
 // be "..", because the working directory *should* be the "ts" directory.
@@ -79,9 +93,9 @@ exports.run = async function(projectDir, projectName, outputDir) {
             + " --analysis " + ANALYSIS + " "
             + inputFile);
 
-    await exec(command,
-        {maxBuffer: 1024*1024*10 /* 10 MB */});
-    /*
+    let [error, stdout, stderr] = await exec(command,
+        {maxBuffer: 1024*1024*10 /* 10 MB buffer for stdout/stderr */});
+
     console.error("Source file: \t" + inputFile);
 
     if (error) {
@@ -89,7 +103,7 @@ exports.run = async function(projectDir, projectName, outputDir) {
         return;
     }
     if (stdout) console.log(stdout);
-    if (stderr) console.error(stderr);*/
+    if (stderr) console.error(stderr);
 
     let results = executeInstructionsFromFile(outputFile, spec);
 
