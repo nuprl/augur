@@ -288,7 +288,10 @@ export type TaintType = "function"
     | "literal"
     | "declaration";
 
-// A unique identifier for a particular DYNAMIC OBJECT.
+// A unique identifier for a particular DYNAMIC OBJECT. This is *NOT* the
+// variable name. It is auto-generated, and has nothing to do with the
+// object itself. Each object in the instrumented program has its own,
+// unique, DynamicDescription.
 //
 // (The `brand` property should not be instantiated. It is a
 //  hack to implement  "branded types". This type will be
