@@ -78,10 +78,12 @@ export function parseIID(iid: number): Location {
 }
 
 export function executeInstructionsFromFile(path: string, options: RunSpecification) {
-    console.log(path, options);
+    console.log("Executing instructions from",
+        path,
+        "with the specification:",
+        options);
     const abstractMachine = new BooleanMachine(options);
     const compiledOutput = require(path);
-    console.log(JSON.stringify(compiledOutput));
     compiledOutput.drive(abstractMachine);
     return abstractMachine.getTaint();
 }

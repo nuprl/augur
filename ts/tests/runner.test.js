@@ -15,9 +15,9 @@ const TAINT_ANALYSIS_HOME =
     (USER_SUPPLIED_TAINT_ANALYSIS_HOME === undefined
         ? process.cwd() + "/.."
         : USER_SUPPLIED_TAINT_ANALYSIS_HOME);
-const INPUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/input/";
-const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual/";
-const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected/";
+const INPUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/input";
+const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual";
+const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected";
 
 function getFileContents(fileName){
     let result = fs.readFileSync(fileName).toString().split('\n'); // hack: use .split('\n') to ensure that the differences viewer shows line breaks
@@ -27,8 +27,8 @@ function getFileContents(fileName){
 // Make Jest compare the actual and expected generated abstract machine
 // instructions given a test name
 function compareOutput(testName, actualOutputDir, expectedOutputDir){
-    const actualOutputPath = actualOutputDir + testName + '_out.js';
-    const expectedOutputPath = expectedOutputDir + testName + '_out.js';
+    const actualOutputPath = actualOutputDir + "/" + testName + '_out.js';
+    const expectedOutputPath = expectedOutputDir + "/" + testName + '_out.js';
 
     console.error("Actual output: \t" + actualOutputPath);
     console.error("Expected output: \t" + expectedOutputPath);
@@ -46,7 +46,7 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
 function runTest(testName, done) {
-    let results = run(INPUT_DIR + testName, testName, ACTUAL_OUT_DIR).then(([spec, results]) => {
+    let results = run(INPUT_DIR + "/" + testName, testName, ACTUAL_OUT_DIR).then(([spec, results]) => {
         expect(results).toEqual(spec.expectedFlows);
 
         done();

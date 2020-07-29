@@ -64,7 +64,7 @@ exports.run = async function(projectDir, projectName, outputDir) {
     const spec = JSON.parse(fs.readFileSync(projectDir + "/spec.json").toString());
 
     // Calculate input and output instruction file paths
-    const outputFile = outputDir + projectName + '_out.js';
+    const outputFile = outputDir + "/" + projectName + '_out.js';
     const inputFile = projectDir + "/" + spec.main;
 
     if (!fs.existsSync(ANALYSIS)) {
