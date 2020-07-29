@@ -5,6 +5,7 @@ import {
     VariableDescription
 } from "../types";
 import Analysis from "../analysis/analysis";
+import {isArray} from "util";
 
 // TODO: document pre and post implementations
 
@@ -184,6 +185,69 @@ let defaultModel: NativeModel<void, void> = {
 };
 
 let models = asNativeModelMap({
+    "toString": asNativeModel({
+        recorder: function(analysis: Analysis,
+                           name: DynamicDescription,
+                           receiverName: DynamicDescription,
+                           receiver: any,
+                           args: any[],
+                           description: StaticDescription): boolean {
+            // We need to know if we're calling toString on an Array vs.
+            // something else, because Array.prototype.toString is special.
+            return Array.isArray(receiver);
+        },
+        implementationPre: function <V, F>(machine: JSMachine<V, F>,
+                                           name: DynamicDescription,
+                                           receiverName: DynamicDescription,
+                                           actualArgs: number,
+                                           isArray: boolean,
+                                           isMethod: boolean,
+                                           description: StaticDescription): void {
+            // before popping the arguments or doing anything else,
+            // immediately dispatch on whether or not we're calling toString
+            // on an array
+            if (!isArray) {
+                // if this isn't an array, the default native model will work
+                defaultImplementationPre(machine,
+                    name,
+                    receiverName,
+                    actualArgs,
+                    null,
+                    isMethod,
+                    description);
+            } else {
+                // if this is an array, we have one extra step: join the
+                // taint values of each element of the array
+                let [builtinTaint, receiverTaint, argsTaint] =
+                    popArgsAndReportFlowsIntoBuiltin(machine,
+                        name,
+                        receiverName,
+                        actualArgs,
+                        isMethod,
+                        description);
+
+                // eventually we're going to return this taint value.
+                // we want it to reflect the combination of the array's
+                // taint, AND the taint of all its elements.
+                let returnTaint = receiverTaint;
+
+                // loop through elements of the shadow array and read their
+                // taint values
+                let shadowArray = machine.getShadowObject(receiverName);
+                for (let prop in shadowArray) {
+                    // can't call hasOwnProperty directly because shadow
+                    // objects don't have the Object prototype
+                    if (Object.hasOwnProperty.call(shadowArray, prop)) {
+                        returnTaint =
+                            machine.join(returnTaint, shadowArray[prop]);
+                    }
+                }
+
+                // return the combined taint value
+                returnTaints(machine, returnTaint);
+            }
+        },
+    }),
     "split": asNativeModel({
         recorder: function(analysis: Analysis,
                    name: DynamicDescription,
