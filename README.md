@@ -184,9 +184,11 @@ Auger will automatically use a local NodeProf installation if these environment
 variables are set; no flags or further configuration is needed.
 
 ## Contributing to Auger
+If you're looking to dive into Auger's code, the structure and implementation of
+the analysis is documented with `README`s in folders inside [`src`](./ts/src).
+
 If you want to contribute to Auger, we recommend using JetBrain's WebStorm IDE.
-To get the project
-fully up and running, simply:
+To get the project fully up and running, simply:
 1. follow the installation instructions in the *Getting started* section
 2. open the `TaintAnalysis` folder in WebStorm
 3. execute the Run Configuration named `unit tests`
