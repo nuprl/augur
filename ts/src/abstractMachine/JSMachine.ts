@@ -224,14 +224,24 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([name, description]) => {
                 this.functionArgsStack.pop();
 
-                // if the function returned, push its abstract return value
+                // we need to come up with a taint value to use for the
+                // value of this function application. the first thing we do
+                // is make sure we taint this value if the user asked to
+                // taint all return values from this function.
+                let returnTaintValue = this.produceMark(description);
+
+                // if the function actually returned a value, the taint
+                // value needs to reflect that
                 if (this.returnValue) {
-                    this.push([this.returnValue, description]);
-                } else {
-                    // if it didn't return, push the untainted value (which
-                    // should represent the abstract value for "undefined"
-                    this.push([this.getUntaintedValue(), description]);
+                    returnTaintValue =
+                        this.join(returnTaintValue, this.returnValue);
                 }
+                // if the function didn't explicitly return a value, it
+                // returns undefined, which will be untainted. so we won't
+                // touch the return taint value.
+
+                // push the return taint value to the stack
+                this.push([returnTaintValue, description]);
 
                 // clean out return value
                 this.returnValue = undefined;
