@@ -1,8 +1,8 @@
 <img src="./augur.png" align="left" height="100">
 
-**Auger** is a dynamic taint analysis for Node.js implemented in TypeScript
+**Augur** is a dynamic taint analysis for Node.js implemented in TypeScript
 using
-[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). Auger is a clean room
+[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). Augur is a clean room
 implementation of the taint analysis described in the 
 [IEEE TSE paper: Platform-Independent Dynamic Taint Analysis for JavaScript](https://www.franktip.org/pubs/tse2018.pdf).
  
@@ -19,7 +19,7 @@ on taint analysis.
 
 ## Getting started
 
-Let's walk through how to install Auger and use it to analyze a Node.js project.
+Let's walk through how to install Augur and use it to analyze a Node.js project.
 
 First, clone this project onto your machine:
 ```
@@ -27,11 +27,11 @@ $ git clone --recurse-submodules https://github.com/franktip/TaintAnalysis
 $ cd TaintAnalysis/ts
 ```
 
-Next, build NodeProf and Auger:
+Next, build NodeProf and Augur:
 ```
 $ ./docker-nodeprof/docker-build.sh # Build NodeProf
-$ npm install                       # Install Auger deps
-$ npm run build                     # Build Auger
+$ npm install                       # Install Augur deps
+$ npm run build                     # Build Augur
 ```
 
 Try running a basic test to make sure your installation succeeded:
@@ -48,11 +48,11 @@ Flows found into the following sinks: [
 ]
 ```
 
-Your Auger installation is now set up!
+Your Augur installation is now set up!
 
 #### Instrumenting an application
 
-Using Auger to analyze your own applications simply requires placing a 
+Using Augur to analyze your own applications simply requires placing a 
 file, `spec.json`, at the **root** of your Node.js project:
 ```
 {
@@ -71,9 +71,9 @@ file, `spec.json`, at the **root** of your Node.js project:
     ]
 }
 ```
-This file tells Auger the *sources* and *sinks* of the flows you want to
-track. The spec above tells Auger to alert you if any value returned from
-`readFileSync` flows into the function `exec`. It also tells Auger how to run
+This file tells Augur the *sources* and *sinks* of the flows you want to
+track. The spec above tells Augur to alert you if any value returned from
+`readFileSync` flows into the function `exec`. It also tells Augur how to run
  your project: by executing the file `test.js`.
 
 Let's say we analyze the following program, `test.js`:
@@ -94,7 +94,7 @@ a very powerful function, giving the command full control over your machine; and
 control of your machine. This can cause massive security issues, as well as
 bugs with disastrous consequences.
 
-Let's go ahead and use Auger to verify that there is indeed a taint flow
+Let's go ahead and use Augur to verify that there is indeed a taint flow
 between user input and `exec`.
 
 Our project is structured like this:
@@ -107,9 +107,9 @@ project/
 |
 +-- spec.json
 ```
-[This example is also a real test case in Auger.](./tests-unit/input/simple-readFileSync-exec-tainted)
+[This example is also a real test case in Augur.](./tests-unit/input/simple-readFileSync-exec-tainted)
 
-To analyze this project with Auger, we run:
+To analyze this project with Augur, we run:
 ```
 $ cd TaintAnalysis/ts
 $ node ./runner/cli.js ~/project project .
@@ -121,7 +121,7 @@ $ node ./runner/cli.js ~/project project .
            # directory to store temp files
 ```
 
-Auger will alert us that the application does in fact have the flow we're
+Augur will alert us that the application does in fact have the flow we're
 expecting:
 ```
 Flows found into the following sinks: [
@@ -132,7 +132,7 @@ Flows found into the following sinks: [
 ]
 ```
 
-You've now analyzed your first application using Auger!
+You've now analyzed your first application using Augur!
 
 ## Native function models
 Modern JavaScript relies on a wide variety of native functions to improve
@@ -163,9 +163,9 @@ function that you can write a polyfill for, use it normally in
 [`src/native/polyfill.ts`](./ts/src/native/polyfill.ts).
 
 ## Optional: Installing NodeProf locally
-Auger normally runs your Node.js project in Docker. This is because NodeProf
+Augur normally runs your Node.js project in Docker. This is because NodeProf
 is difficult to install and configure locally. If you want to avoid using
-Docker, you can install NodeProf locally and point Auger to the installation.
+Docker, you can install NodeProf locally and point Augur to the installation.
 
 To install NodeProf locally, follow the 
 [advanced installation instructions](https://github.com/Haiyang-Sun/nodeprof.js/tree/master/docs/panathon18#advanced-installation---building-nodeprof-and-graalvm-from-source-linux-and-macos).
@@ -180,14 +180,14 @@ Example:
 - `MX_HOME=/home/mwaldrich/mx`
 - `JAVA_HOME=/home/mwaldrich/openjdk1.8.0_172-jvmci-0.46`
 
-Auger will automatically use a local NodeProf installation if these environment
+Augur will automatically use a local NodeProf installation if these environment
 variables are set; no flags or further configuration is needed.
 
-## Contributing to Auger
-If you're looking to dive into Auger's code, the structure and implementation of
+## Contributing to Augur
+If you're looking to dive into Augur's code, the structure and implementation of
 the analysis is documented with `README`s in folders inside [`src`](./ts/src).
 
-If you want to contribute to Auger, we recommend using JetBrain's WebStorm IDE.
+If you want to contribute to Augur, we recommend using JetBrain's WebStorm IDE.
 To get the project fully up and running, simply:
 1. follow the installation instructions in the *Getting started* section
 2. open the `TaintAnalysis` folder in WebStorm
