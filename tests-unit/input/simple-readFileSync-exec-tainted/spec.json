@@ -1,0 +1,21 @@
+{
+    "main": "test.js",
+    "sources": [
+        {
+            "type": "functionReturn",
+            "name": "readFileSync"
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionInvocation",
+            "name": "exec"
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "functionInvocation",
+            "name": "exec"
+        }
+    ]
+}

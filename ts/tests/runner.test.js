@@ -333,3 +333,5 @@ test('native-string-split-3-clean', (done) => runTest('native-string-split-3-cle
 test('native-string-split-3-tainted', (done) => runTest('native-string-split-3-tainted', done));
 test('native-string-split-4-clean', (done) => runTest('native-string-split-4-clean', done));
 test('native-string-split-4-tainted', (done) => runTest('native-string-split-4-tainted', done));
+test('simple-readFileSync-exec-clean', (done) => runTest('simple-readFileSync-exec-clean', done));
+test('simple-readFileSync-exec-tainted', (done) => runTest('simple-readFileSync-exec-tainted', done));
