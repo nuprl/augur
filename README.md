@@ -107,7 +107,7 @@ project/
 |
 +-- spec.json
 ```
-[This example is also a real test case in Auger.](https://github.com/franktip/TaintAnalysis/tree/master/tests-unit/input/simple-readFileSync-exec-tainted)
+[This example is also a real test case in Auger.](./tests-unit/input/simple-readFileSync-exec-tainted)
 
 To analyze this project with Auger, we run:
 ```
@@ -149,18 +149,18 @@ through these native functions:
 1. implementing *native models*. A native model is an implementation of a
 native function that *only* tracks taint. It doesn't have to perform any
 logical calculations, it just has to inform the
-[abstract machine](https://github.com/franktip/TaintAnalysis/blob/master/ts/src/README.md)
+[abstract machine](./ts/src/README.md)
 where taint should flow as a result of the function call. These models are often
 much easier to implement than the functions themselves because data flows are
 often more simple than the logic in a function. For examples of native models,
 look at
-[`src/native/native.ts`](https://github.com/franktip/TaintAnalysis/blob/master/ts/src/native/native.ts).
+[`src/native/native.ts`](./ts/src/native/native.ts).
 2. using *polyfills*. Polyfills are implementations of native functions written
 in JavaScript itself. While polyfills are traditionally used for providing
 missing functionality to older web browsers, they can also help the taint
 analysis understand data-flow. If you want to track data-flow through a native
 function that you can write a polyfill for, use it normally in
-[`src/native/polyfill.ts`](https://github.com/franktip/TaintAnalysis/blob/master/ts/src/native/polyfill.ts).
+[`src/native/polyfill.ts`](./ts/src/native/polyfill.ts).
 
 ## Optional: Installing NodeProf locally
 Auger normally runs your Node.js project in Docker. This is because NodeProf
