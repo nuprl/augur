@@ -162,3 +162,49 @@ analysis understand data-flow. If you want to track data-flow through a native
 function that you can write a polyfill for, use it normally in
 [`src/native/polyfill.ts`](https://github.com/franktip/TaintAnalysis/blob/master/ts/src/native/polyfill.ts).
 
+## Optional: Installing NodeProf locally
+Auger normally runs your Node.js project in Docker. This is because NodeProf
+is difficult to install and configure locally. If you want to avoid using
+Docker, you can install NodeProf locally and point Auger to the installation.
+
+To install NodeProf locally, follow the 
+[advanced installation instructions](https://github.com/Haiyang-Sun/nodeprof.js/tree/master/docs/panathon18#advanced-installation---building-nodeprof-and-graalvm-from-source-linux-and-macos).
+
+When using a manual installation, you will have to set environment variables:
+- `NODEPROF_HOME`: pointing to your NodeProf advanced installation
+- `JAVA_HOME`: pointing to your JVM CI directory (not the `bin` subdirectory)
+- `MX_HOME`: pointing to your `mx` installation
+
+Example:
+- `NODEPROF_HOME=/home/mwaldrich/workspace-nodeprof/nodeprof.js/`
+- `MX_HOME=/home/mwaldrich/mx`
+- `JAVA_HOME=/home/mwaldrich/openjdk1.8.0_172-jvmci-0.46`
+
+Auger will automatically use a local NodeProf installation if these environment
+variables are set; no flags or further configuration is needed.
+
+## Contributing to Auger
+If you want to contribute to Auger, we recommend using JetBrain's WebStorm IDE.
+To get the project
+fully up and running, simply:
+1. follow the installation instructions in the *Getting started* section
+2. open the `TaintAnalysis` folder in WebStorm
+3. execute the Run Configuration named `unit tests`
+
+## JavaScript Feature Support
+|                                | Not Yet | In Progress | Done | Notes   |
+|--------------------------------|---------|-------------|------|---------|
+| Variable read                  |         |             | x    |         |
+| Variable write                 |         |             | x    |         |
+| Property read                  |         |             | x    |         |
+| Property write                 |         |             | x    |         |
+| Unary expression               |         |             | x    |         |
+| Binary expression              |         |             | x    |         |
+| Implicit declaration of `this` |         |             | x    | see #19 |
+| Function declaration           |         |             | x    |         |
+| Function arguments             |         |             | x    |         |
+| Variable assignment            |         |             | x    | see #20 |
+| Function call                  |         |             | x    | see #21 |
+| Native functions               |         |             | x    | see #22 |
+| Async/await                    | x       |             |      | see #29 |
+| Function returns               |         |             | x    | see #30 |
