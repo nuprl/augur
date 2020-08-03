@@ -10,7 +10,7 @@ implementation of Ichnaea, the taint analysis described in the
 
 ## What is taint analysis?
 
-**Taint analysis** is a dynamic analysis technique used to track 
+**Taint analysis** is a dynamic program analysis technique used to track 
 *data flows* through programs. It's useful in many domains, but the most
 common application of taint analysis is for detecting injection vulnerabilities.
 Read 
