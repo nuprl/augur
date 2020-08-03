@@ -211,6 +211,41 @@ To get the project fully up and running, simply:
 | Async/await                    | x       |             |      | see #29 |
 | Function returns               |         |             | x    | see #30 |
 
+## Support for Ichnaea Benchmarks
+[Ichnaea](https://www.franktip.org/pubs/tse2018.pdf) was evaluated against a
+set of 22 benchmarks. Here is a table showing how Auger performs on these
+benchmarks:
+
+|                             | Correct Output | Incorrect Output | Old/Broken Code |
+|-----------------------------|----------------|------------------|-----------------|
+| `chook-growl-reporter-exec` | x              |                  |                 |
+| `cocos-utils`               | x              |                  |                 |
+| `fish-exec`                 | x              |                  |                 |
+| `git2json-exec`             | x              |                  |                 |
+| `gm-attack`                 | x              |                  |                 |
+| `growl-exec`                | x              |                  |                 |
+| `libnotify-exec`            | x              |                  |                 |
+| `m-log-eval`                |                | x                |                 |
+| `mixin-pro-eval`            | x              |                  |                 |
+| `modulify-eval`             | x              |                  |                 |
+| `mongo-parse-eval`          | x              |                  |                 |
+| `mongoosemask-eval`         | x              |                  |                 |
+| `mongoosify-eval`           | x              |                  |                 |
+| `node-os-utils`             | x              |                  |                 |
+| `node-wos`                  | x              |                  |                 |
+| `office-converter`          | x              |                  |                 |
+| `os-uptime`                 | x              |                  |                 |
+| `osenv`                     | x              |                  |                 |
+| `pidusage-exec`             |                |                  | x               |
+| `pomelo-monitor`            | x              |                  |                 |
+| `system-locale`             | x              |                  |                 |
+| `systeminformation`         | x              |                  |                 |
+
+The benchmark `pidusage-exec` crashes in modern JavaScript VMs.
+
+The benchmark `m-log-eval` is not currently compatible with the tool due to a
+missing native function model.
+
 ## Acknowledgments
 Auger was written by [Mark Aldrich](https://github.com/mwaldrich),
 [Emily Shi](https://github.com/aralisza),
