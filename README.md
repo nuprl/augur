@@ -210,3 +210,16 @@ To get the project fully up and running, simply:
 | Native functions               |         |             | x    | see #22 |
 | Async/await                    | x       |             |      | see #29 |
 | Function returns               |         |             | x    | see #30 |
+
+## Acknowledgments
+Auger was written by [Mark Aldrich](https://github.com/mwaldrich),
+[Emily Shi](https://github.com/aralisza),
+[Alexi Turcotte](https://github.com/reallyTG),
+and [Frank Tip](https://github.com/franktip).
+
+Auger sits on top of [NodeProf](https://github.com/Haiyang-Sun/nodeprof.js),
+the dynamic analysis framework written by
+[Haiyang Sun](https://github.com/Haiyang-Sun) and others.
+
+Auger also relies on Oracle's [GraalVM](https://www.graalvm.org/)
+and [GraalJS](https://github.com/graalvm/graaljs).
