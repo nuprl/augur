@@ -1,0 +1,3 @@
+[submodule "ts/docker-nodeprof"]
+	path = ts/docker-nodeprof
+	url = https://github.com/mwaldrich/docker-nodeprof
