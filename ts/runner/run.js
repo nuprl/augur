@@ -1,3 +1,7 @@
+// This file provides an internal mechanism to execute the instrumentation.
+// `run.js` should *not* be used from the command line. See `cli.js` in this
+// same directory.
+
 const child_process = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
@@ -18,12 +22,14 @@ const exec = function(cmd, opts) {
     })
 };
 
+// `TAINT_ANALYSIS_HOME` is the root of this repo.
 // If the user does not explicitly specify TAINT_ANALYSIS_HOME, assume it to
-// be "..", because the working directory *should* be the "ts" directory.
+// be "{this script's dir}/../..", because this file should be two
+// directories above the root.
 const USER_SUPPLIED_TAINT_ANALYSIS_HOME = shell.env['TAINT_ANALYSIS_HOME'];
 const TAINT_ANALYSIS_HOME =
     (USER_SUPPLIED_TAINT_ANALYSIS_HOME === undefined
-        ? process.cwd() + "/.."
+        ? __dirname + "/../.."
         : USER_SUPPLIED_TAINT_ANALYSIS_HOME);
 
 // Should we be using Docker or a local NodeProf installation?
