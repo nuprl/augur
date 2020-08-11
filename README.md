@@ -23,8 +23,8 @@ Let's walk through how to install Augur and use it to analyze a Node.js project.
 
 First, clone this project onto your machine:
 ```
-$ git clone --recurse-submodules https://github.com/franktip/TaintAnalysis
-$ cd TaintAnalysis/ts
+$ git clone --recurse-submodules https://github.com/nurprl/augur
+$ cd augur/ts
 ```
 
 Next, build NodeProf and Augur:
@@ -103,7 +103,7 @@ project/
 
 To analyze this project with Augur, we run:
 ```
-$ cd TaintAnalysis/ts
+$ cd augur/ts
 $ node ./runner/cli.js ~/project project .
            #           ^^^^^^^^^ ^^^^^^^ ^
            #     path to project    |    |
@@ -182,7 +182,7 @@ the analysis is documented with `README`s in folders inside [`src`](./ts/src).
 If you want to contribute to Augur, we recommend using JetBrain's WebStorm IDE.
 To get the project fully up and running, simply:
 1. follow the installation instructions in the *Getting started* section
-2. open the `TaintAnalysis` folder in WebStorm
+2. open the `augur` folder in WebStorm
 3. execute the Run Configuration named `unit tests`
 
 ## JavaScript Feature Support
