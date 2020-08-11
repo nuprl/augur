@@ -205,7 +205,7 @@ To get the project fully up and running, simply:
 
 ## Support for Ichnaea Benchmarks
 [Ichnaea](https://www.franktip.org/pubs/tse2018.pdf) was evaluated against a
-set of 22 benchmarks. Here is a table showing how Auger performs on these
+set of 22 benchmarks. Here is a table showing how Augur performs on these
 benchmarks:
 
 |                             | Correct Output | Incorrect Output | Old/Broken Code |
@@ -239,14 +239,14 @@ The benchmark `m-log-eval` is not currently compatible with the tool due to a
 missing native function model.
 
 ## Acknowledgments
-Auger was written by [Mark Aldrich](https://github.com/mwaldrich),
+Augur was written by [Mark Aldrich](https://github.com/mwaldrich),
 [Emily Shi](https://github.com/aralisza),
 [Alexi Turcotte](https://github.com/reallyTG),
 and [Frank Tip](https://github.com/franktip).
 
-Auger sits on top of [NodeProf](https://github.com/Haiyang-Sun/nodeprof.js),
+Augur sits on top of [NodeProf](https://github.com/Haiyang-Sun/nodeprof.js),
 the dynamic analysis framework written by
 [Haiyang Sun](https://github.com/Haiyang-Sun) and others.
 
-Auger also relies on Oracle's [GraalVM](https://www.graalvm.org/)
+Augur also relies on Oracle's [GraalVM](https://www.graalvm.org/)
 and [GraalJS](https://github.com/graalvm/graaljs).
