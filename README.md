@@ -250,3 +250,6 @@ the dynamic analysis framework written by
 
 Augur also relies on Oracle's [GraalVM](https://www.graalvm.org/)
 and [GraalJS](https://github.com/graalvm/graaljs).
+
+This research was supported by the National Science Foundation under NSF grant 
+CCF-1715153 and REU supplement CCF-1930604.
