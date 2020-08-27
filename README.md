@@ -253,3 +253,7 @@ and [GraalJS](https://github.com/graalvm/graaljs).
 
 This research was supported by the National Science Foundation under NSF grant 
 CCF-1715153 and REU supplement CCF-1930604.
+
+Copyright (c) 2019-2020 [Programming Research Lab](https://prl.ccs.neu.edu/) at 
+Northeastern University. Augur is licensed under the UPL. See the `LICENSE` file
+for more information.
