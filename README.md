@@ -2,7 +2,7 @@
 
 **Augur** is a dynamic taint analysis for Node.js implemented in TypeScript
 using
-[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). Augur is a clean room
+[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). Augur is a clean-room
 implementation of Ichnaea, the taint analysis described in the 
 [IEEE TSE paper: Platform-Independent Dynamic Taint Analysis for JavaScript](https://www.franktip.org/pubs/tse2018.pdf).
  
