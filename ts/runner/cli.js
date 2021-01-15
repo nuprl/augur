@@ -17,9 +17,6 @@ if (process.argv.length === 5) {
     let t0 = performance.now();
 
     run(projectDir, projectName, outputDir).then(([spec, result]) => {
-        let t1 = performance.now();
-        let mem = process.memoryUsage().heapUsed / 1024 / 1024;
-
         console.log();
         console.log("---");
         console.log();
@@ -31,7 +28,11 @@ if (process.argv.length === 5) {
                 JSON.stringify(result, undefined, 4));
         }
         console.log("==========Benchmarks========");
-        console.log("Time: " + (t1 - t0)/1000 + " seconds");
+        let t1 = performance.now();
+        let mem = process.memoryUsage().heapUsed / 1024 / 1024;
+        console.log("Time Start: " + t0/1000 + " seconds");
+        console.log("Time End: " + t1/1000 + " seconds");
+        console.log("Time Difference: " + (t1 - t0)/1000 + " seconds");
         console.log("Memory Used: ~" + Math.round(mem * 100) / 100 + "MB" );
     });
 } else {

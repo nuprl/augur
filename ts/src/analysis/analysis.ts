@@ -21,6 +21,8 @@ import {parseIID} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
 import {useNativeRecorder} from "../native/native";
 
+const {performance} = require('perf_hooks');
+
 // TODO: document this
 // load in polyfills
 require("../native/polyfill");
@@ -241,6 +243,7 @@ export default class Analysis implements Analyzer {
 
     public endExecution: NPCallbacks.endExecution = () => {
         this.state.endExecution([]);
+        console.log("End Execution: " + performance.now()/1000);
     }
 
     // returns the name that should be used to refer to the given value.

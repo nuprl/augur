@@ -6,6 +6,7 @@ const child_process = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
 const {executeInstructionsFromFile} = require('../dist/src/utils');
+const {performance} = require('perf_hooks');
 
 /**
  * Fully-promsified exec implementation. This works well with await, and
@@ -99,6 +100,7 @@ exports.run = async function(projectDir, projectName, outputDir) {
             + " --analysis " + ANALYSIS + " "
             + inputFile);
 
+    let beforeInstrumentation = performance.now();
     let [error, stdout, stderr] = await exec(command,
         {maxBuffer: 1024*1024*10 /* 10 MB buffer for stdout/stderr */});
 
@@ -108,8 +110,12 @@ exports.run = async function(projectDir, projectName, outputDir) {
         console.error(`${error}`);
         return;
     }
+
+    console.log("Before Instrumentation: " + beforeInstrumentation/1000);
+
     if (stdout) console.log(stdout);
-    if (stderr) console.error(stderr);
+    // if (stderr) console.error(stderr);
+    console.log("After Instrumentation: " + performance.now()/1000);
 
     let results = executeInstructionsFromFile(outputFile, spec);
 
