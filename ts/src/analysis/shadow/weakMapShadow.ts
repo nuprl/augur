@@ -5,7 +5,6 @@ import {
     ShadowMemory,
     VariableDescription
 } from "../../types";
-const {performance} = require('perf_hooks');
 
 export default class WeakMapShadow implements ShadowMemory {
 
@@ -66,7 +65,6 @@ export default class WeakMapShadow implements ShadowMemory {
     functionExit(): void {
         console.error("shadow functionExit");
         this.stack.pop();
-        console.log("Shadow Done: " + performance.now()/1000);
     }
 
     declare(name: RawVariableDescription): void {

@@ -5,7 +5,7 @@ const {run} = require('./run');
 
 const {performance} = require('perf_hooks');
 
-if (process.argv.length === 5) {
+if (process.argv.length <= 5 || process.argv.length >= 5) {
     let [projectDir, projectName, outputDir] = process.argv.slice(2);
 
     // fully resolve dirs before proceeding

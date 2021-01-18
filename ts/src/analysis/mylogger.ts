@@ -5,7 +5,7 @@ import * as fs from 'fs';
 
 export default class MyLogger {
 
-  private fileName: fs.PathLike;
+  private readonly fileName: fs.PathLike;
 
   constructor(fileName: fs.PathLike){
     this.fileName = fileName;

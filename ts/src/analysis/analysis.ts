@@ -243,7 +243,7 @@ export default class Analysis implements Analyzer {
 
     public endExecution: NPCallbacks.endExecution = () => {
         this.state.endExecution([]);
-        console.log("End Execution: " + performance.now()/1000);
+        console.log("End Analysis: " + performance.now()/1000);
     }
 
     // returns the name that should be used to refer to the given value.
