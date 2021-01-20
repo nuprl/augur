@@ -32,9 +32,11 @@ export default class JSWriter implements AbstractMachine {
     // The logger connected to the intended output file.
     // @ts-ignore
     private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
+    private codeArr: string[] = [];
 
     constructor() {
-        this.logger.log(this.preamble);
+        this.codeArr.push(this.preamble);
+        // this.logger.log(this.preamble);
     }
 
     public literal([description]: [StaticDescription]) {
@@ -133,7 +135,10 @@ export default class JSWriter implements AbstractMachine {
 
     public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
-        this.logger.log(this.postamble);
+        // this.logger.log(this.postamble);
+        this.codeArr.push(this.postamble);
+        let str: string = this.codeArr.join("\n");
+        this.logger.log(str);
     }
 
     public initializeArgumentsObject([argumentsObject, description]: [DynamicDescription, StaticDescription]) {
@@ -150,7 +155,8 @@ export default class JSWriter implements AbstractMachine {
     // Actually write the instruction to the output file.
     private writeInstruction(instr: Instruction) {
         const delim = ", ";
-        this.logger.log(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
+        // this.logger.log(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
+        this.codeArr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
     }
 
 }
