@@ -32,11 +32,11 @@ export default class JSWriter implements AbstractMachine {
     // The logger connected to the intended output file.
     // @ts-ignore
     private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
-    private codeArr: string[] = [];
+    private codeArr : string[] = [];
 
     constructor() {
-        this.codeArr.push(this.preamble);
         // this.logger.log(this.preamble);
+        this.codeArr.push(this.preamble);
     }
 
     public literal([description]: [StaticDescription]) {
@@ -137,8 +137,7 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "endExecution", args: [] });
         // this.logger.log(this.postamble);
         this.codeArr.push(this.postamble);
-        let str: string = this.codeArr.join("\n");
-        this.logger.log(str);
+        this.logger.log(this.codeArr.join("\n"));
     }
 
     public initializeArgumentsObject([argumentsObject, description]: [DynamicDescription, StaticDescription]) {

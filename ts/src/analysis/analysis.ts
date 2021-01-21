@@ -21,8 +21,6 @@ import {parseIID} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
 import {useNativeRecorder} from "../native/native";
 
-const {performance} = require('perf_hooks');
-
 // TODO: document this
 // load in polyfills
 require("../native/polyfill");
@@ -243,7 +241,6 @@ export default class Analysis implements Analyzer {
 
     public endExecution: NPCallbacks.endExecution = () => {
         this.state.endExecution([]);
-        console.log("End Analysis: " + performance.now()/1000);
     }
 
     // returns the name that should be used to refer to the given value.
@@ -257,26 +254,20 @@ export default class Analysis implements Analyzer {
     // 4. `undefined` will be returned.
     /*
     private getName(val: any, name: string): DynamicDescription {
-
         // if val is an object
         if (typeof val === "object") {
             let shadowID = this.shadowMemory.getShadowID(val);
-
             // and has a valid shadow id
             if (shadowID !== undefined) {
-
                 // return it
                 return shadowID;
             }
         }
-
         // otherwise, if a name was provided
         if (name !== undefined) {
-
             // return it
             return name;
         }
-
         // otherwise, just turn the object into a string and return it
         return val.toString();
     }

@@ -1,7 +1,6 @@
 import {RunSpecification, SourceSpan, Location, StaticDescription} from "./types";
 import BooleanMachine from "./abstractMachine/BooleanMachine";
 import ExpressionMachine from "./abstractMachine/ExpressionMachine";
-const {performance} = require('perf_hooks');
 
 // Do the given descriptions of a taint source/sink describe the same thing?
 // Two descriptions are considered equal if all of the common taint source/sink
@@ -79,7 +78,6 @@ export function parseIID(iid: number): Location {
 }
 
 export function executeInstructionsFromFile(path: string, options: RunSpecification) {
-    console.log("Before Execution: " + performance.now()/1000);
     console.log("Executing instructions from",
         path,
         "with the specification:",
@@ -87,6 +85,5 @@ export function executeInstructionsFromFile(path: string, options: RunSpecificat
     const abstractMachine = new BooleanMachine(options);
     const compiledOutput = require(path);
     compiledOutput.drive(abstractMachine);
-    console.log("After Execution: " + performance.now()/1000);
     return abstractMachine.getTaint();
 }
