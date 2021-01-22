@@ -164,7 +164,7 @@ export default class Analysis implements Analyzer {
 
             let functionShadowID = this.shadowMemory.getShadowID(f);
             let receiverShadowID = this.shadowMemory.getShadowID(receiver);
-            // console.error(this.shadowMemory.getFullVariableName("arguments"));
+            console.error(this.shadowMemory.getFullVariableName("arguments"));
 
             this.state.builtin(
                 [functionShadowID,

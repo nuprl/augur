@@ -137,7 +137,7 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "endExecution", args: [] });
         // this.logger.log(this.postamble);
         this.codeArr.push(this.postamble);
-        //this.logger.log(this.codeArr.join("\n"));
+        this.logger.log(this.codeArr.join("\n"));
     }
 
     public initializeArgumentsObject([argumentsObject, description]: [DynamicDescription, StaticDescription]) {

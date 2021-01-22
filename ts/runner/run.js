@@ -65,7 +65,7 @@ function getFileContents(fileName){
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
-exports.run = async function(projectDir, projectName, outputDir) {
+exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
     // Parse the spec to know the program to instrument, sources, sinks, and
     // expected taints
     const spec = JSON.parse(fs.readFileSync(projectDir + "/spec.json").toString());
@@ -111,10 +111,11 @@ exports.run = async function(projectDir, projectName, outputDir) {
         return;
     }
 
-    console.log("Before Analyzing output: " + beforeInstrumentation/1000);
-
-    if (stdout) console.log(stdout);
-    if (stderr) console.error(stderr);
+    console.log("Before Instrumentation: " + beforeInstrumentation/1000);
+    if (consoleFlag) {
+        if (stdout) console.log(stdout);
+        if (stderr) console.error(stderr);
+    }
     console.log("After Analyzing output: " + performance.now()/1000);
 
     let results = executeInstructionsFromFile(outputFile, spec);
