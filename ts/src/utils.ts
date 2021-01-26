@@ -73,7 +73,7 @@ export function parseJalangiLocationString(loc: string): Location {
     // }
     let result: any = loc.split("/");
     result = result[result.length - 1].split(".");
-    let fileName: string = result[0];
+    let fileName: string = `${result[0]}.js`;
     let indices = result[1].split(":").map((n: string) => Number.parseInt(n.charAt(0)));
     let span: SourceSpan = {
         start: [indices[1], indices[2]],
