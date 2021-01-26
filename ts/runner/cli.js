@@ -5,6 +5,7 @@ const {run} = require('./run');
 
 const {performance} = require('perf_hooks');
 
+let t0 = performance.now();
 if (process.argv.length === 5 || process.argv.length === 6) {
 
     let consoleFlag = "";
@@ -21,8 +22,6 @@ if (process.argv.length === 5 || process.argv.length === 6) {
     // resolve against the current working directory
     projectDir = path.resolve(cwd, projectDir);
     outputDir = path.resolve(cwd, outputDir);
-
-    let t0 = performance.now();
 
     run(projectDir, projectName, outputDir, consoleFlag).then(([spec, result]) => {
         console.log();
@@ -42,6 +41,7 @@ if (process.argv.length === 5 || process.argv.length === 6) {
         console.log("Time End: " + t1/1000 + " seconds");
         console.log("Time Difference: " + (t1 - t0)/1000 + " seconds");
         console.log("Memory Used: ~" + Math.round(mem * 100) / 100 + "MB" );
+        console.log((t1 - t0)/1000);
     });
 } else {
     console.err('Usage: node cli.js [-printStack] <project directory> <project name>' +

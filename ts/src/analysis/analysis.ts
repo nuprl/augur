@@ -105,12 +105,13 @@ export default class Analysis implements Analyzer {
             location: parseIID(iid),
             name: name};
         this.state.writeVar([this.shadowMemory.getFullVariableName(name), description]);
+      //  console.log("Write Dummy")
     }
 
     public endStatement: NPCallbacks.endStatement = (iid, type) => {
         let description: StaticDescription = {type: "expr",
             location: parseIID(iid)};
-        console.log("endStatement: " + type);
+     //   console.log("endStatement: " + type);
         this.state.pop([description]);
     }
 
@@ -164,7 +165,7 @@ export default class Analysis implements Analyzer {
 
             let functionShadowID = this.shadowMemory.getShadowID(f);
             let receiverShadowID = this.shadowMemory.getShadowID(receiver);
-            console.error(this.shadowMemory.getFullVariableName("arguments"));
+        //    console.error(this.shadowMemory.getFullVariableName("arguments"));
 
             this.state.builtin(
                 [functionShadowID,
@@ -222,7 +223,6 @@ export default class Analysis implements Analyzer {
         let f = this.functionCallStack.pop();
         let description: StaticDescription = {type: "expr",
             location: parseIID(iid)};
-
         this.state.functionExit([f, f.length, description]);
     }
 
