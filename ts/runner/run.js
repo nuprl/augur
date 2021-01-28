@@ -114,11 +114,13 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
     console.log("Before Instrumentation: " + beforeInstrumentation/1000);
     if (consoleFlag) {
         if (stdout) console.log(stdout);
-       // if (stderr) console.error(stderr);
+        if (stderr) console.error(stderr);
     }
-    console.log("After Analyzing output: " + performance.now()/1000);
+    console.log("Before Abstract Machine: " + performance.now()/1000);
 
     let results = executeInstructionsFromFile(outputFile, spec);
+
+    console.log("After Abstract Machine: " + performance.now() / 1000)
 
     return [spec, results];
 
