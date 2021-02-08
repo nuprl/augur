@@ -95,10 +95,11 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
             " " + outputFile
             // Run project using local NodeProf installation
             : "cd " + NODEPROF_HOME + "; "
-            + `env OUTPUT_FILE=\"${outputFile}\";`
+            + `export OUTPUT_FILE=\"${outputFile}\";`
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
             + " --analysis " + ANALYSIS + " "
-            + inputFile);
+            // + inputFile);
+            + '/mnt/c/programming/augur/ts/runner/nodeprofTester.js');
 
     let beforeInstrumentation = performance.now();
     let [error, stdout, stderr] = await exec(command,
@@ -116,11 +117,11 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
         if (stdout) console.log(stdout);
         if (stderr) console.error(stderr);
     }
-    console.log("Before Abstract Machine: " + performance.now()/1000);
+     let beforeAbstract = performance.now()/1000;
 
     let results = executeInstructionsFromFile(outputFile, spec);
 
-    console.log("After Abstract Machine: " + performance.now() / 1000)
+    console.log("Abstract Machine Time: " + ((performance.now() / 1000) - beforeAbstract));
 
     return [spec, results];
 
