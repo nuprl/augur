@@ -98,8 +98,8 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
             + `export OUTPUT_FILE=\"${outputFile}\";`
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
             + " --analysis " + ANALYSIS + " "
-            // + inputFile);
-            + '/mnt/c/programming/augur/ts/runner/nodeprofTester.js');
+            //+ inputFile);
+             + '/mnt/c/programming/augur/ts/runner/nodeprofTester.js');
 
     let beforeInstrumentation = performance.now();
     let [error, stdout, stderr] = await exec(command,

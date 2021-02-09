@@ -45,7 +45,7 @@ export default class Analysis implements Analyzer {
 
     // shadow memory
     public shadowMemory: ShadowMemory = new WeakMapShadow();
-
+    private time: number = 0;
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
@@ -58,7 +58,9 @@ export default class Analysis implements Analyzer {
 
         this.shadowMemory.declare(name);
         this.state.initVar([this.shadowMemory.getFullVariableName(name), description]);
-        console.log("Declare Time: " + (performance.now()/1000 - start));
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("Declare Time: " + diff);
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
@@ -90,7 +92,9 @@ export default class Analysis implements Analyzer {
         }
         logger.info("val", val);
         this.state.literal([description]);
-        console.log("Literal Time: " + (performance.now()/1000 - start))
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("Literal Time: " + diff);
     }
 
     public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
@@ -104,8 +108,9 @@ export default class Analysis implements Analyzer {
         if (name === "arguments") {
             this.state.initializeArgumentsObject([this.shadowMemory.getShadowID(val), description]);
         }
-        console.log("Read Time:  " + (performance.now()/1000 - start));
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("Read Time: " + diff);    }
 
     public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
         let start: number = performance.now()/1000;
@@ -113,8 +118,9 @@ export default class Analysis implements Analyzer {
             location: parseIID(iid),
             name: name};
         this.state.writeVar([this.shadowMemory.getFullVariableName(name), description]);
-        console.log("Write Time: " + (performance.now()/1000 - start));
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("Write Time: " + diff);    }
 
     public endStatement: NPCallbacks.endStatement = (iid, type) => {
         let start: number = performance.now()/1000;
@@ -122,24 +128,27 @@ export default class Analysis implements Analyzer {
             location: parseIID(iid)};
      //   console.log("endStatement: " + type);
         this.state.pop([description]);
-        console.log("EndStmt Time: " + (performance.now()/1000 - start));
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("Endstmnt Time: " + diff);    }
 
     public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {
         let start: number = performance.now()/1000;
         let description: StaticDescription = {type: "expr",
             location: parseIID(iid)};
         this.state.binary([description]);
-        console.log("BinaryPre Time: " + (performance.now()/1000 - start));
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("Binarypre Time: " + diff);    }
 
     public unaryPre: NPCallbacks.unaryPre = (iid: number, op: string, left: any) => {
         let start: number = performance.now()/1000;
         let description: StaticDescription = {type: "expr",
             location: parseIID(iid)};
         this.state.unary([description]);
-        console.log("UnaryPre Time: " + (performance.now()/1000 - start));
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("UnaryPre Time: " + diff);    }
 
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
         let start: number = performance.now()/1000;
@@ -150,8 +159,9 @@ export default class Analysis implements Analyzer {
             offset as PropertyDescription,
             isMethodCall,
             description]);
-        console.log("getField Time: " + (performance.now()/1000 - start));
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("getField Time: " + diff);    }
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
         let start: number = performance.now()/1000;
@@ -161,8 +171,9 @@ export default class Analysis implements Analyzer {
         this.state.writeProperty([this.shadowMemory.getShadowID(receiver),
             offset as PropertyDescription,
             description]);
-        console.log("PutField Time: " + (performance.now()/1000 - start));
-    };
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("PutField Time: " + diff);    };
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args, isConstructor, isMethod) => {
         let start: number = performance.now()/1000;
@@ -202,8 +213,9 @@ export default class Analysis implements Analyzer {
                 // this.shadowMemory.getShadowID(receiver),
                 description]);
         }
-        console.log("invokeFunPre Time: " + (performance.now()/1000 - start));
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("InvokeFunPre Time: " + diff);    }
 
     public _return: NPCallbacks._return = (iid, val) => {
         let start: number = performance.now()/1000;
@@ -213,8 +225,9 @@ export default class Analysis implements Analyzer {
         this.state.functionReturn([
             this.functionCallStack[this.functionCallStack.length - 1],
             description]);
-        console.log("_return Time: " + (performance.now()/1000 - start))
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("_return Time: " + diff);    }
 
     public invokeFun: NPCallbacks.invokeFun = (iid: number,  f: Invoked, receiver: Receiver, args: any[], result: any, isConstructor: boolean, isMethod: boolean, functionIid: number, functionSid: number) => {
         let start: number = performance.now()/1000;
@@ -232,8 +245,9 @@ export default class Analysis implements Analyzer {
         } else {
             this.state.functionInvokeEnd([this.shadowMemory.getShadowID(f), description]);
         }
-        console.log("invokeFun Time: " + (performance.now()/1000 - start));
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("invokeFun Time: " + diff);    }
 
     public functionEnter: NPCallbacks.functionEnter = (iid: number, f: Invoked, receiver: Receiver, args: any[]) => {
         let start: number = performance.now()/1000;
@@ -242,8 +256,9 @@ export default class Analysis implements Analyzer {
         let functionName = this.shadowMemory.getShadowID(f);
         this.functionCallStack.push(functionName);
         this.state.functionEnter([functionName, args.length, description]);
-        console.log("functionEnter Time: " + (performance.now()/1000 - start));
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("FunctionEnter Time: " + diff);    }
 
     public functionExit: NPCallbacks.functionExit = (iid: number,  returnVal: any, wrappedExceptionVal?: ExceptionVal) => {
         let start: number = performance.now()/1000;
@@ -251,8 +266,9 @@ export default class Analysis implements Analyzer {
         let description: StaticDescription = {type: "expr",
             location: parseIID(iid)};
         this.state.functionExit([f, f.length, description]);
-        console.log("functionExit Time: " + (performance.now()/1000 - start));
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("FunctionExit Time: " + diff);    }
 
     public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
         let start: number = performance.now()/1000;
@@ -261,21 +277,26 @@ export default class Analysis implements Analyzer {
         // TODO: properly design a mechanism to track taint with eval
         // this.state.builtin(["eval", 1, description]);
         // eval always takes a single arg
-        console.log("EvalPre Time: " + (performance.now()/1000 - start))
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("EvalPre Time: " + diff);    }
 
     public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
         let start: number = performance.now()/1000;
         let description: StaticDescription = {type: "expr",
             location: parseIID(iid)};
         // this.state.conditional(description);
-        console.log("conditional Time: " + (performance.now()/1000 - start))
-    }
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("Conditional Time: " + diff);    }
 
     public endExecution: NPCallbacks.endExecution = () => {
         let start: number = performance.now()/1000;
         this.state.endExecution([]);
-        console.log("endExecution time: " + (performance.now() / 1000 - start))
+        let diff = performance.now() / 1000 - start;
+        this.time += diff
+        console.log("EndExecution Time: " + diff);
+        console.error("Total Callback Time: " + this.time);
         console.log("After Analysis: " + performance.now() / 1000)
     }
 
