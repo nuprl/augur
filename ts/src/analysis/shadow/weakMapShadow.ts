@@ -5,7 +5,7 @@ import {
     ShadowMemory,
     VariableDescription
 } from "../../types";
-const {performance} = require('perf_hooks');
+import {performance} from "perf_hooks";
 
 export default class WeakMapShadow implements ShadowMemory {
 
@@ -28,8 +28,8 @@ export default class WeakMapShadow implements ShadowMemory {
         if (!key) {
             // console.error(`tried to get non-existent shadow ID for object
             // ${o.toString()}`);
-        //    console.error(`tried to get non-existent shadow ID for object`);
-         //   console.error(`initializing now...`);
+         //  console.error(`tried to get non-existent shadow ID for object`);
+         //  console.error(`initializing now...`);
             this.initialize(o);
             key = this.map.get(o);
             if (!key) {
@@ -59,17 +59,17 @@ export default class WeakMapShadow implements ShadowMemory {
     functionEnter(f: Function): void {
         // hopefully unnecessary
         // this.initialize(f);
-       // console.error("shadow functionEnter");
+      // console.error("shadow functionEnter");
         this.stack.push([(this.getShadowID(f) + "#" + this.key++) as DynamicDescription, []]);
     }
 
     functionExit(): void {
-      //  console.error("shadow functionExit");
+      // console.error("shadow functionExit");
         this.stack.pop();
     }
 
     declare(name: RawVariableDescription): void {
-       // console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
+       //console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
         this.currentScope()[1].push(name);
     }
 
