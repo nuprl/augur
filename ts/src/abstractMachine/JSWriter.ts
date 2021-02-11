@@ -33,12 +33,10 @@ export default class JSWriter implements AbstractMachine {
     // @ts-ignore
     private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
     private codeArr : string[] = [];
-    private codeStr : string = "";
 
     constructor() {
         // this.logger.log(this.preamble);
-        // this.codeArr.push(this.preamble);
-        this.codeStr = this.codeStr.concat(this.preamble);
+         this.codeArr.push(this.preamble);
     }
 
     public literal([description]: [StaticDescription]) {
@@ -138,11 +136,8 @@ export default class JSWriter implements AbstractMachine {
     public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
         // this.logger.log(this.postamble);
-        // this.codeArr.push(this.postamble);
-        // this.logger.log(this.codeArr.join("\n"));
-        this.codeStr = this.codeStr.concat(this.postamble);
-        console.log(this.codeStr);
-        this.logger.log(this.codeStr);
+        this.codeArr.push(this.postamble);
+        this.logger.log(this.codeArr.join("\n"));
     }
 
     public initializeArgumentsObject([argumentsObject, description]: [DynamicDescription, StaticDescription]) {
@@ -160,8 +155,7 @@ export default class JSWriter implements AbstractMachine {
     private writeInstruction(instr: Instruction) {
         const delim = ", ";
         // this.logger.log(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
-        // this.codeArr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
-       this.codeStr = this.codeStr.concat(`m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`)
+        this.codeArr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);`);
     }
 
 }

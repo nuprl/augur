@@ -191,7 +191,8 @@ export default class Analysis implements Analyzer {
         if (f.name && f.name != "") {
             description.name = f.name;
         }
-        if (this.isNativeMap.has(f.name) || this.isNative(f)) {
+        // if (this.isNative(f)) {
+        if (this.isNativeMap.get(f.name) || this.isNative(f)) {
             this.isNativeMap.set(f.name, true);
             // TODO: make sure this works using regular builtins and
             //  reassigned builtins
@@ -210,6 +211,7 @@ export default class Analysis implements Analyzer {
                     isMethod,
                     description]);
         } else {
+            this.isNativeMap.set(f.name, false);
             this.state.functionInvokeStart([this.shadowMemory.getShadowID(f),
                 f.length,
                 args.length,
@@ -243,8 +245,8 @@ export default class Analysis implements Analyzer {
         let returnValueName = this.shadowMemory.getShadowID(result);
 
         this.shadowMemory.functionExit();
-        if (this.isNative(f)) {
-            // if (this.isNativeMap.has(f.name)) {
+        // if (this.isNative(f)) {
+        if (this.isNativeMap.get(f.name)) {
             this.state.builtinExit([this.shadowMemory.getShadowID(f), returnValueName, description]);
         } else {
             this.state.functionInvokeEnd([this.shadowMemory.getShadowID(f), description]);
