@@ -125,6 +125,8 @@ export default class Analyze implements Analyzer {
         let start: number = performance.now()/1000;
         let diff = performance.now() / 1000 - start;
         this.time += diff
+        console.log("Empty Callback Time: " + this.time);
+        console.log("Empty Analysis Time: " + performance.now() / 1000);
     }
     public forObject: NPCallbacks.forObject = (iid, isForIn) => {
         // console.log("forinObject", isForIn);
