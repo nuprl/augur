@@ -80,13 +80,18 @@ export default class Analysis implements Analyzer {
             const keys = [];
 
             // This works as long as there's no number keys
+            // for (const k in val) {
+            //     if (val.hasOwnProperty(k)) {
+            //         keys.push(k);
+            //     }
+            // }
+            //
+            // keys.reverse();
             for (const k in val) {
                 if (val.hasOwnProperty(k)) {
-                    keys.push(k);
+                    keys[keys.length - 1] = k;
                 }
             }
-
-            keys.reverse();
 
             logger.info("keys", keys);
 

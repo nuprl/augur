@@ -16,6 +16,7 @@ export default class WeakMapShadow implements ShadowMemory {
     //  name, if defined
 
     private map: WeakMap<object, DynamicDescription> = new WeakMap();
+    private stackMap: Map<RawVariableDescription, Array<DynamicDescription>> = new Map()
 
     private key: number = 0;
 
@@ -70,6 +71,11 @@ export default class WeakMapShadow implements ShadowMemory {
 
     declare(name: RawVariableDescription): void {
        //console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
+       //  if (!this.stackMap.has(name)) {
+       //      this.stackMap.set(name, [this.currentScope()[0]]);
+       //  } else {
+       //      this.stackMap.get(name).push(this.currentScope()[0]);
+       //  }
         this.currentScope()[1].push(name);
     }
 
@@ -94,6 +100,11 @@ export default class WeakMapShadow implements ShadowMemory {
         }
 
         return ("global^" + name) as VariableDescription;
+    //     if (this.stackMap.has(name)) {
+    //         let arr = this.stackMap.get(name);
+    //         return (arr[arr.length - 1] + "^" + name) as VariableDescription;
+    //     } else {
+    //         return ("global^" + name) as VariableDescription;
+    //     }
     }
-
 }

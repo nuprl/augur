@@ -155,7 +155,7 @@ export default class JSWriter implements AbstractMachine {
     private writeInstruction(instr: Instruction) {
         const delim = ", ";
         // this.logger.log(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
-        this.codeArr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);`);
+        this.codeArr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
     }
 
 }
