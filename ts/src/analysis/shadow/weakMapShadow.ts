@@ -41,7 +41,6 @@ export default class WeakMapShadow implements ShadowMemory {
         // if (key.includes("obj")) {
         //     console.error(`!!!! GETFIELD INCLUDES OBJ: receiver=${o} shadowID=${key}`);
         // }
-
         return key;
     }
 
@@ -100,11 +99,11 @@ export default class WeakMapShadow implements ShadowMemory {
         }
 
         return ("global^" + name) as VariableDescription;
-    //     if (this.stackMap.has(name)) {
-    //         let arr = this.stackMap.get(name);
-    //         return (arr[arr.length - 1] + "^" + name) as VariableDescription;
-    //     } else {
-    //         return ("global^" + name) as VariableDescription;
-    //     }
+        // if (this.stackMap.has(name)) {
+        //     let arr = this.stackMap.get(name);
+        //     return (arr[arr.length - 1] + "^" + name) as VariableDescription;
+        // } else {
+        //     return ("global^" + name) as VariableDescription;
+        // }
     }
 }

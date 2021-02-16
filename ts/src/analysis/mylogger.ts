@@ -9,7 +9,6 @@ export default class MyLogger {
 
   constructor(fileName: fs.PathLike){
     this.fileName = fileName;
-    // this.fileName = "/mnt/c/programming/augur/ts/b_out.js";
     fs.openSync(this.fileName, "w"); // create empty file
   }
 
