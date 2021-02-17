@@ -5,7 +5,6 @@ import {
     ShadowMemory,
     VariableDescription
 } from "../../types";
-import {performance} from "perf_hooks";
 
 export default class WeakMapShadow implements ShadowMemory {
 
@@ -70,11 +69,11 @@ export default class WeakMapShadow implements ShadowMemory {
 
     declare(name: RawVariableDescription): void {
        //console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
-       //  if (!this.stackMap.has(name)) {
-       //      this.stackMap.set(name, [this.currentScope()[0]]);
-       //  } else {
-       //      this.stackMap.get(name).push(this.currentScope()[0]);
-       //  }
+        if (!this.stackMap.has(name)) {
+            this.stackMap.set(name, [this.currentScope()[0]]);
+        } else {
+            this.stackMap.get(name).push(this.currentScope()[0]);
+        }
         this.currentScope()[1].push(name);
     }
 
@@ -87,23 +86,23 @@ export default class WeakMapShadow implements ShadowMemory {
     }
 
     getFullVariableName(name: RawVariableDescription): VariableDescription {
-        let currentStackIndex = this.stack.length - 1;
-
-        while (currentStackIndex > 0) {
-            let stackFrame = this.stack[currentStackIndex];
-            if (stackFrame[1].some(frameName => frameName === name)) {
-                return (stackFrame[0] + "^" + name) as VariableDescription;
-            }
-
-            currentStackIndex--;
-        }
-
-        return ("global^" + name) as VariableDescription;
-        // if (this.stackMap.has(name)) {
-        //     let arr = this.stackMap.get(name);
-        //     return (arr[arr.length - 1] + "^" + name) as VariableDescription;
-        // } else {
-        //     return ("global^" + name) as VariableDescription;
+        // let currentStackIndex = this.stack.length - 1;
+        //
+        // while (currentStackIndex > 0) {
+        //     let stackFrame = this.stack[currentStackIndex];
+        //     if (stackFrame[1].some(frameName => frameName === name)) {
+        //         return (stackFrame[0] + "^" + name) as VariableDescription;
+        //     }
+        //
+        //     currentStackIndex--;
         // }
+        //
+        // return ("global^" + name) as VariableDescription;
+        if (this.stackMap.has(name)) {
+            let arr = this.stackMap.get(name);
+            return (arr[arr.length - 1] + "^" + name) as VariableDescription;
+        } else {
+            return ("global^" + name) as VariableDescription;
+        }
     }
 }
