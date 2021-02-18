@@ -70,18 +70,24 @@ export function parseJalangiLocationString(loc: string): Location {
     //
     //     return location;
     // }
-    let result: string[] = loc.split("/").pop().split(":");
-    let fileName: string = result.shift();
-    let indices = result.map((n: string) => Number.parseInt(n.charAt(0)));
-    let span: SourceSpan = {
-        start: [indices[1], indices[2]],
-        end: [indices[3], indices[4]]
+    if (loc.substring(0, 5) === "(eval") {
+        return {
+            fileName: "eval"
+        };
+    } else {
+        let result: string[] = loc.split("/").pop().split(":");
+        let fileName: string = result.shift();
+        let indices = result.map((n: string) => Number.parseInt(n.charAt(0)));
+        let span: SourceSpan = {
+            start: [indices[1], indices[2]],
+            end: [indices[3], indices[4]]
+        }
+        let location: Location = {
+            fileName:  fileName,
+            pos: span
+        }
+        return location
     }
-    let location: Location = {
-        fileName:  fileName,
-        pos: span
-    }
-    return location
 }
 
 export function parseIID(iid: number): Location {

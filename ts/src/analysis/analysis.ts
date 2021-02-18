@@ -53,7 +53,6 @@ export default class Analysis implements Analyzer {
     }
 
     public declare: NPCallbacks.declare = (iid, name: RawVariableDescription, type: string) => {
-       // let start: number = performance.now()/1000;
        //  let description: StaticDescription = {type: "declaration",
        //      location: parseIID(iid),
        //      name: name};
@@ -63,13 +62,9 @@ export default class Analysis implements Analyzer {
             {type: "declaration",
             location: parseIID(iid),
             name: name}]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("Declare Time: " + diff);
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
-        // let start: number = performance.now()/1000;
         // let description: StaticDescription = {type: "literal",
         //     location: parseIID(iid)};
 
@@ -106,13 +101,9 @@ export default class Analysis implements Analyzer {
             [{type: "literal",
             location: parseIID(iid)}]);
         // this.state.literal([description]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("Literal Time: " + diff);
     }
 
     public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
-        // let start: number = performance.now()/1000;
         let description: StaticDescription = {
             type: "variable",
             location: parseIID(iid),
@@ -130,13 +121,9 @@ export default class Analysis implements Analyzer {
             //     name: name}]);
             this.state.initializeArgumentsObject([this.shadowMemory.getShadowID(val), description]);
         }
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("Read Time: " + diff);
     }
 
     public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
-        // let start: number = performance.now()/1000;
         // let description: StaticDescription = {type: "variable",
         //     location: parseIID(iid),
         //     name: name};
@@ -145,13 +132,9 @@ export default class Analysis implements Analyzer {
             location: parseIID(iid),
             name: name}]);
         // this.state.writeVar([this.shadowMemory.getFullVariableName(name), description]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("Write Time: " + diff);
     }
 
     public endStatement: NPCallbacks.endStatement = (iid, type) => {
-        // let start: number = performance.now()/1000;
         // let description: StaticDescription = {type: "expr",
         //     location: parseIID(iid)};
      //   console.log("endStatement: " + type);
@@ -159,39 +142,27 @@ export default class Analysis implements Analyzer {
             [{type: "expr",
             location: parseIID(iid)}]);
      //    this.state.pop([description]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("Endstmnt Time: " + diff);
     }
 
     public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {
-        // let start: number = performance.now()/1000;
         // let description: StaticDescription = {type: "expr",
         //     location: parseIID(iid)};
         this.state.binary([
             {type: "expr",
             location: parseIID(iid)}]);
         // this.state.binary([description]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("Binarypre Time: " + diff);
     }
 
     public unaryPre: NPCallbacks.unaryPre = (iid: number, op: string, left: any) => {
-        // let start: number = performance.now()/1000;
         // let description: StaticDescription = {type: "expr",
         //     location: parseIID(iid)};
         this.state.unary([
             {type: "expr",
             location: parseIID(iid)}]);
         // this.state.unary([description]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("UnaryPre Time: " + diff);
     }
 
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
-        // let start: number = performance.now()/1000;
         // let description: StaticDescription = {type: "expr",
         //     location: parseIID(iid)};
         this.shadowMemory.initialize(receiver);
@@ -199,13 +170,9 @@ export default class Analysis implements Analyzer {
             offset as PropertyDescription,
             isMethodCall,
             {type: "expr", location: parseIID(iid)}]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("getField Time: " + diff);
     }
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
-        // let start: number = performance.now()/1000;
         // let description: StaticDescription = {type: "expr",
         //     location: parseIID(iid)};
         this.shadowMemory.initialize(receiver);
@@ -215,13 +182,9 @@ export default class Analysis implements Analyzer {
         // this.state.writeProperty([this.shadowMemory.getShadowID(receiver),
         //     offset as PropertyDescription,
         //     description]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("PutField Time: " + diff);
     };
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args, isConstructor, isMethod) => {
-        // let start: number = performance.now()/1000;
         let description: StaticDescription = {type: "functionInvocation",
             location: parseIID(iid)};
 
@@ -261,13 +224,9 @@ export default class Analysis implements Analyzer {
                 // this.shadowMemory.getShadowID(receiver),
                 description]);
         }
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("InvokeFunPre Time: " + diff);
     }
 
     public _return: NPCallbacks._return = (iid, val) => {
-        // let start: number = performance.now()/1000;
         // let description: StaticDescription = {type: "functionReturn",
         //     location: parseIID(iid)};
 
@@ -277,13 +236,9 @@ export default class Analysis implements Analyzer {
         // this.state.functionReturn([
         //     this.functionCallStack[this.functionCallStack.length - 1],
         //     description]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("_return Time: " + diff);
     }
 
     public invokeFun: NPCallbacks.invokeFun = (iid: number,  f: Invoked, receiver: Receiver, args: any[], result: any, isConstructor: boolean, isMethod: boolean, functionIid: number, functionSid: number) => {
-        // let start: number = performance.now()/1000;
         let description: StaticDescription = {type: "functionReturn",
             location: parseIID(iid)};
         if (f.name && f.name != "") {
@@ -299,34 +254,23 @@ export default class Analysis implements Analyzer {
         } else {
             this.state.functionInvokeEnd([this.shadowMemory.getShadowID(f), description]);
         }
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("invokeFun Time: " + diff);
     }
 
     public functionEnter: NPCallbacks.functionEnter = (iid: number, f: Invoked, receiver: Receiver, args: any[]) => {
-        // let start: number = performance.now()/1000;
         // let description: StaticDescription = {type: "functionEnter",
         //     location: parseIID(iid)};
         let functionName = this.shadowMemory.getShadowID(f);
         this.functionCallStack.push(functionName);
         this.state.functionEnter([functionName, args.length, {type: "functionEnter", location: parseIID(iid)}]);
         // this.state.functionEnter([functionName, args.length, description]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("FunctionEnter Time: " + diff);
     }
 
     public functionExit: NPCallbacks.functionExit = (iid: number,  returnVal: any, wrappedExceptionVal?: ExceptionVal) => {
-        // let start: number = performance.now()/1000;
         let f = this.functionCallStack.pop();
         // let description: StaticDescription = {type: "expr",
         //     location: parseIID(iid)};
         this.state.functionExit([f, f.length, {type: "expr", location: parseIID(iid)}]);
         // this.state.functionExit([f, f.length, description]);
-        // let diff = performance.now() / 1000 - start;
-        // this.time += diff
-        // console.log("FunctionExit Time: " + diff);
     }
 
     // public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
@@ -347,7 +291,8 @@ export default class Analysis implements Analyzer {
     //     // this.state.conditional(description);
     //     let diff = performance.now() / 1000 - start;
     //     this.time += diff
-    //     console.log("Conditional Time: " + diff);    }
+    //     console.log("Conditional Time: " + diff);
+    //     }
 
     public endExecution: NPCallbacks.endExecution = () => {
         let start: number = performance.now()/1000;
