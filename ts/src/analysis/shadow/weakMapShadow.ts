@@ -64,6 +64,9 @@ export default class WeakMapShadow implements ShadowMemory {
 
     functionExit(): void {
       // console.error("shadow functionExit");
+        this.currentScope()[1].forEach(rd => {
+            this.stackMap.get(rd).pop();
+        })
         this.stack.pop();
     }
 

@@ -16,7 +16,7 @@ import {
     VariableDescription
 } from "../types";
 import JSWriter from "../abstractMachine/JSWriter";
-// import logger from "./logger";
+import logger from "./logger";
 import {parseIID} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
 import {useNativeRecorder} from "../native/native";
@@ -73,7 +73,13 @@ export default class Analysis implements Analyzer {
 
             this.shadowMemory.initialize(val);
 
-            // const keys = [];
+            const keys = [];
+
+            for (const k in val) {
+                if (val.hasOwnProperty(k)) {
+                    keys.unshift(k);
+                }
+            }
 
             // This works as long as there's no number keys
             // for (const k in val) {
@@ -83,20 +89,14 @@ export default class Analysis implements Analyzer {
             // }
 
             // keys.reverse();
-            for (const k in val) {
-                if (val.hasOwnProperty(k)) {
+
+            logger.info("keys", keys);
+
+            for (const k of keys) {
                     this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
-                    // keys[keys.length - 1] = k;
-                }
             }
-
-            // logger.info("keys", keys);
-
-            // for (const k of keys) {
-            //     this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
-            // }
         }
-        // logger.info("val", val);
+        logger.info("val", val);
         this.state.literal(
             [{type: "literal",
             location: parseIID(iid)}]);
