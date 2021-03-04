@@ -19,7 +19,8 @@ export default class BooleanMachine
     }
 
     produceMark(description: StaticDescription): boolean {
-        return this.isSource(description);
+        // return this.isSource(description);
+        return false;
     }
 
     // When a value with taint marking T flows into a construct with the given

@@ -2,19 +2,19 @@
 
 // JALANGI DO NOT INSTRUMENT
 
-import { Accessor } from "../nodeprof";
+import {Accessor} from "../nodeprof";
 import {
     AbstractMachine,
     DynamicDescription,
-    StaticDescription,
     RunSpecification,
-    VariableDescription,
-    ShadowObject
+    ShadowObject,
+    StaticDescription,
+    VariableDescription
 } from "../types";
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
 import Operation from "./operation";
-import {useNativeImplementationPre, useNativeImplementationPost} from "../native/native";
+import {useNativeImplementationPost, useNativeImplementationPre} from "../native/native";
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
 
@@ -136,9 +136,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         };
 
-        let wrappedOperation = new wrappedOperationClass();
-
-        return wrappedOperation;
+        return new wrappedOperationClass();
     }
 
     public callstackPush(frame: StaticDescription, ): void {
@@ -365,7 +363,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([o, s, isMethod, description]) => {
                 this.resetState();
-                const isSource = this.isSource(description);
+                // const isSource = this.isSource(description);
                 const objectTaintMap = this.getShadowObject(o);
 
                 // If objectTaintMap contains a defined taint mark
@@ -404,10 +402,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([o, s, description]) => {
                 this.resetState();
 
-                const storedTaint = this.taintStack.pop();
+                // const storedTaint = this.taintStack.pop();
                 let objectTaintMap = this.getShadowObject(o);
-                objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
-
+                // objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
+                objectTaintMap[s] = this.join(this.produceMark(description), this.taintStack.pop());
                 this.reportPossibleFlow(description, objectTaintMap[s]);
                 this.reportPossibleImplicitFlow(description, objectTaintMap[s]);
 
@@ -532,7 +530,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                // only initialize the "arguments" variable if we haven't already
                if (!this.objects.has(argumentsObject)) {
                    // peek into function args stack
-                   let argsValues = this.functionArgsStack[this.functionArgsStack.length - 1];
+                   // let argsValues = this.functionArgsStack[this.functionArgsStack.length - 1];
 
                    // take the values of the arguments and SET that as the
                    // shadow object for the "arguments" variable.
@@ -541,7 +539,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                    // the `argsValues` object will be an array of abstract
                    // values of type V, and this will technically fit the shape
                    // of ShadowObject<V>. but typescript will not believe it.
-                   this.objects.set(argumentsObject, argsValues as unknown as ShadowObject<V>);
+                   // this.objects.set(argumentsObject, argsValues as unknown as ShadowObject<V>);
+                   this.objects.set(argumentsObject,
+                       this.functionArgsStack[this.functionArgsStack.length - 1] as unknown as ShadowObject<V>);
                }
             }
         );
