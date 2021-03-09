@@ -2,19 +2,19 @@
 
 // JALANGI DO NOT INSTRUMENT
 
-import {Accessor} from "../nodeprof";
+import { Accessor } from "../nodeprof";
 import {
     AbstractMachine,
     DynamicDescription,
-    RunSpecification,
-    ShadowObject,
     StaticDescription,
-    VariableDescription
+    RunSpecification,
+    VariableDescription,
+    ShadowObject
 } from "../types";
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
 import Operation from "./operation";
-import {useNativeImplementationPost, useNativeImplementationPre} from "../native/native";
+import {useNativeImplementationPre, useNativeImplementationPost} from "../native/native";
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
 
@@ -136,7 +136,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         };
 
-        return new wrappedOperationClass();
+        let wrappedOperation = new wrappedOperationClass();
+
+        return wrappedOperation;
     }
 
     public callstackPush(frame: StaticDescription, ): void {
@@ -175,13 +177,12 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // `taintStack`.
 
                 if (expectedArgs != actualArgs) {
-                    // let difference = Math.abs(expectedArgs - actualArgs);
+                    let difference = Math.abs(expectedArgs - actualArgs);
                     let operation = (actualArgs > expectedArgs)
                         ? (() => this.taintStack.pop())
                         : (() => this.taintStack.push(this.getUntaintedValue()));
 
-                    for (let i = 0; i < Math.abs(expectedArgs - actualArgs); i++) {
-                        // for (let i = 0; i < difference; i++) {
+                    for (let i = 0; i < difference; i++) {
                         operation();
                     }
                 }
@@ -197,15 +198,13 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // we're entering. Pop it and join it with the taint value for
                 // the function invocation to produce the taint value for
                 // "entering the function".
-                // const functionInvocationTaint =
-                //     this.join(this.taintStack[this.taintStack.length - expectedArgs - 1],
-                //         this.produceMark(description));
+                const functionInvocationTaint =
+                    this.join(this.taintStack[this.taintStack.length - expectedArgs - 1],
+                        this.produceMark(description));
 
                 for (let i = this.taintStack.length - expectedArgs; i < this.taintStack.length; i++) {
                     this.reportPossibleFlow(description, this.taintStack[i]);
-                    // this.taintStack[i] = this.join(this.taintStack[i], functionInvocationTaint);
-                    this.taintStack[i] = this.join(this.taintStack[i],
-                        this.join(this.taintStack[this.taintStack.length - expectedArgs - 1], this.produceMark(description)));
+                    this.taintStack[i] = this.join(this.taintStack[i], functionInvocationTaint);
                 }
 
                 // get arguments from the stack
@@ -267,12 +266,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.callstackPush(description);
 
                 // pop the value of the function
-                // let functionTaint = this.taintStack.pop();
+                let functionTaint = this.taintStack.pop();
 
                 // report possible flows from callee perspective
-                // this.reportPossibleFlow(description, functionTaint);
-                this.reportPossibleFlow(description, this.taintStack.pop());
-
+                this.reportPossibleFlow(description, functionTaint);
             }
         );
     public functionEnter = this.functionEnterOp.wrapper;
@@ -368,14 +365,13 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([o, s, isMethod, description]) => {
                 this.resetState();
-                // const isSource = this.isSource(description);
-                // const objectTaintMap = this.getShadowObject(o);
+                const isSource = this.isSource(description);
+                const objectTaintMap = this.getShadowObject(o);
 
                 // If objectTaintMap contains a defined taint mark
                 // for this property, this will be its value. Otherwise, it will
                 // be untainted.
-                // const propertyTaint = objectTaintMap[s]
-                const propertyTaint = this.getShadowObject(o)[s]
+                const propertyTaint = objectTaintMap[s]
                     || this.getUntaintedValue();
 
                 // Then join this with its initial marking
@@ -408,10 +404,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([o, s, description]) => {
                 this.resetState();
 
-                // const storedTaint = this.taintStack.pop();
+                const storedTaint = this.taintStack.pop();
                 let objectTaintMap = this.getShadowObject(o);
-                // objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
-                objectTaintMap[s] = this.join(this.produceMark(description), this.taintStack.pop());
+                objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
+
                 this.reportPossibleFlow(description, objectTaintMap[s]);
                 this.reportPossibleImplicitFlow(description, objectTaintMap[s]);
 
@@ -480,11 +476,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                     this.push([this.lastObjectAccessed, description]);
                 }
 
-                // let saved = useNativeImplementationPre(this, name, receiver, actualArgs, extraRecords, isMethod, description);
+                let saved = useNativeImplementationPre(this, name, receiver, actualArgs, extraRecords, isMethod, description);
 
-                // this.nativeModelSavedValues.push(saved);
-                this.nativeModelSavedValues.push(
-                    useNativeImplementationPre(this, name, receiver, actualArgs, extraRecords, isMethod, description));
+                this.nativeModelSavedValues.push(saved);
             }
         );
 
@@ -497,10 +491,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 logger.info("builtinExit", name);
 
                 // retrieve saved information from implementationPre
-                // let saved = this.nativeModelSavedValues.pop();
-                //
-                // useNativeImplementationPost(this, name, returnValueName, saved, description);
-                useNativeImplementationPost(this, name, returnValueName, this.nativeModelSavedValues.pop(), description);
+                let saved = this.nativeModelSavedValues.pop();
+
+                useNativeImplementationPost(this, name, returnValueName, saved, description);
             }
         );
 
@@ -539,7 +532,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                // only initialize the "arguments" variable if we haven't already
                if (!this.objects.has(argumentsObject)) {
                    // peek into function args stack
-                   // let argsValues = this.functionArgsStack[this.functionArgsStack.length - 1];
+                   let argsValues = this.functionArgsStack[this.functionArgsStack.length - 1];
 
                    // take the values of the arguments and SET that as the
                    // shadow object for the "arguments" variable.
@@ -548,9 +541,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                    // the `argsValues` object will be an array of abstract
                    // values of type V, and this will technically fit the shape
                    // of ShadowObject<V>. but typescript will not believe it.
-                   // this.objects.set(argumentsObject, argsValues as unknown as ShadowObject<V>);
-                   this.objects.set(argumentsObject,
-                       this.functionArgsStack[this.functionArgsStack.length - 1] as unknown as ShadowObject<V>);
+                   this.objects.set(argumentsObject, argsValues as unknown as ShadowObject<V>);
                }
             }
         );
