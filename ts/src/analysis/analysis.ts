@@ -73,7 +73,7 @@ export default class Analysis implements Analyzer {
 
             this.shadowMemory.initialize(val);
 
-            // const keys = [];
+             const keys = [];
 
             // This works as long as there's no number keys
             // for (const k in val) {
@@ -85,16 +85,16 @@ export default class Analysis implements Analyzer {
             // keys.reverse();
             for (const k in val) {
                 if (val.hasOwnProperty(k)) {
-                    this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
-                    // keys[keys.length - 1] = k;
+                   // this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
+                     keys.unshift(k);
                 }
             }
 
             // logger.info("keys", keys);
 
-            // for (const k of keys) {
-            //     this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
-            // }
+             for (const k of keys) {
+                 this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
+             }
         }
         // logger.info("val", val);
         this.state.literal(
