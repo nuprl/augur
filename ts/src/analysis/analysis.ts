@@ -16,7 +16,7 @@ import {
     VariableDescription
 } from "../types";
 import JSWriter from "../abstractMachine/JSWriter";
-// import logger from "./logger";
+import logger from "./logger";
 import {parseIID} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
 import {useNativeRecorder} from "../native/native";
@@ -46,18 +46,15 @@ export default class Analysis implements Analyzer {
     // shadow memory
     public shadowMemory: ShadowMemory = new WeakMapShadow();
 
+    // Tracks which kind of functions are native throughout instrumentation
+    // This means the isNative() will only need to be called once instead of twice when entering a new function.
     private isNativeMap: Map<string, boolean> = new Map<string, boolean>();
-    private time: number = 0;
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
 
     public declare: NPCallbacks.declare = (iid, name: RawVariableDescription, type: string) => {
-       //  let description: StaticDescription = {type: "declaration",
-       //      location: parseIID(iid),
-       //      name: name};
         this.shadowMemory.declare(name);
-        // this.state.initVar([this.shadowMemory.getFullVariableName(name), description]);
         this.state.initVar([this.shadowMemory.getFullVariableName(name),
             {type: "declaration",
             location: parseIID(iid),
@@ -65,10 +62,7 @@ export default class Analysis implements Analyzer {
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
-        // let description: StaticDescription = {type: "literal",
-        //     location: parseIID(iid)};
-
-        // logger.info("literal", val, hasGetterSetter);
+        logger.info("literal", val, hasGetterSetter);
         if (typeof val === "object") {
 
             this.shadowMemory.initialize(val);
@@ -76,13 +70,8 @@ export default class Analysis implements Analyzer {
              const keys = [];
 
             // This works as long as there's no number keys
-            // for (const k in val) {
-            //     if (val.hasOwnProperty(k)) {
-            //         keys.push(k);
-            //     }
-            // }
-
-            // keys.reverse();
+            // Originally placed key in the back of the array then reversed it.
+            // Now adds each val to the front of the array using unshift()
             for (const k in val) {
                 if (val.hasOwnProperty(k)) {
                    // this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
@@ -90,8 +79,7 @@ export default class Analysis implements Analyzer {
                 }
             }
 
-            // logger.info("keys", keys);
-
+            logger.info("keys", keys);
              for (const k of keys) {
                  this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
              }
@@ -100,7 +88,6 @@ export default class Analysis implements Analyzer {
         this.state.literal(
             [{type: "literal",
             location: parseIID(iid)}]);
-        // this.state.literal([description]);
     }
 
     public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
@@ -108,63 +95,40 @@ export default class Analysis implements Analyzer {
             type: "variable",
             location: parseIID(iid),
             name: name};
-        // this.state.readVar([this.shadowMemory.getFullVariableName(name), {
-        //     type: "variable",
-        //     location: parseIID(iid),
-        //     name: name}]);
         this.state.readVar([this.shadowMemory.getFullVariableName(name), description]);
 
         if (name === "arguments") {
-            // this.state.initializeArgumentsObject([this.shadowMemory.getShadowID(val), {
-            //     type: "variable",
-            //     location: parseIID(iid),
-            //     name: name}]);
             this.state.initializeArgumentsObject([this.shadowMemory.getShadowID(val), description]);
         }
     }
 
     public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
-        // let description: StaticDescription = {type: "variable",
-        //     location: parseIID(iid),
-        //     name: name};
         this.state.writeVar([this.shadowMemory.getFullVariableName(name),
             {type: "variable",
             location: parseIID(iid),
             name: name}]);
-        // this.state.writeVar([this.shadowMemory.getFullVariableName(name), description]);
     }
 
     public endStatement: NPCallbacks.endStatement = (iid, type) => {
-        // let description: StaticDescription = {type: "expr",
-        //     location: parseIID(iid)};
      //   console.log("endStatement: " + type);
         this.state.pop(
             [{type: "expr",
             location: parseIID(iid)}]);
-     //    this.state.pop([description]);
     }
 
     public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {
-        // let description: StaticDescription = {type: "expr",
-        //     location: parseIID(iid)};
         this.state.binary([
             {type: "expr",
             location: parseIID(iid)}]);
-        // this.state.binary([description]);
     }
 
     public unaryPre: NPCallbacks.unaryPre = (iid: number, op: string, left: any) => {
-        // let description: StaticDescription = {type: "expr",
-        //     location: parseIID(iid)};
         this.state.unary([
             {type: "expr",
             location: parseIID(iid)}]);
-        // this.state.unary([description]);
     }
 
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
-        // let description: StaticDescription = {type: "expr",
-        //     location: parseIID(iid)};
         this.shadowMemory.initialize(receiver);
         this.state.readProperty([this.shadowMemory.getShadowID(receiver),
             offset as PropertyDescription,
@@ -173,15 +137,10 @@ export default class Analysis implements Analyzer {
     }
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
-        // let description: StaticDescription = {type: "expr",
-        //     location: parseIID(iid)};
         this.shadowMemory.initialize(receiver);
         this.state.writeProperty([this.shadowMemory.getShadowID(receiver),
             offset as PropertyDescription,
             {type: "expr", location: parseIID(iid)}]);
-        // this.state.writeProperty([this.shadowMemory.getShadowID(receiver),
-        //     offset as PropertyDescription,
-        //     description]);
     };
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args, isConstructor, isMethod) => {
@@ -197,7 +156,8 @@ export default class Analysis implements Analyzer {
         if (f.name && f.name != "") {
             description.name = f.name;
         }
-        // if (this.isNative(f)) {
+        // Checks if the function is a native function or that it exists in the map already
+        // since the same function can be invoked multiple times throughout a program.
         if (this.isNativeMap.get(f.name) || this.isNative(f)) {
             this.isNativeMap.set(f.name, true);
             // TODO: make sure this works using regular builtins and
@@ -227,15 +187,9 @@ export default class Analysis implements Analyzer {
     }
 
     public _return: NPCallbacks._return = (iid, val) => {
-        // let description: StaticDescription = {type: "functionReturn",
-        //     location: parseIID(iid)};
-
         this.state.functionReturn([
             this.functionCallStack[this.functionCallStack.length - 1],
             {type: "functionReturn", location: parseIID(iid)}]);
-        // this.state.functionReturn([
-        //     this.functionCallStack[this.functionCallStack.length - 1],
-        //     description]);
     }
 
     public invokeFun: NPCallbacks.invokeFun = (iid: number,  f: Invoked, receiver: Receiver, args: any[], result: any, isConstructor: boolean, isMethod: boolean, functionIid: number, functionSid: number) => {
@@ -248,7 +202,6 @@ export default class Analysis implements Analyzer {
         let returnValueName = this.shadowMemory.getShadowID(result);
 
         this.shadowMemory.functionExit();
-        // if (this.isNative(f)) {
         if (this.isNativeMap.get(f.name)) {
             this.state.builtinExit([this.shadowMemory.getShadowID(f), returnValueName, description]);
         } else {
@@ -257,20 +210,14 @@ export default class Analysis implements Analyzer {
     }
 
     public functionEnter: NPCallbacks.functionEnter = (iid: number, f: Invoked, receiver: Receiver, args: any[]) => {
-        // let description: StaticDescription = {type: "functionEnter",
-        //     location: parseIID(iid)};
         let functionName = this.shadowMemory.getShadowID(f);
         this.functionCallStack.push(functionName);
         this.state.functionEnter([functionName, args.length, {type: "functionEnter", location: parseIID(iid)}]);
-        // this.state.functionEnter([functionName, args.length, description]);
     }
 
     public functionExit: NPCallbacks.functionExit = (iid: number,  returnVal: any, wrappedExceptionVal?: ExceptionVal) => {
         let f = this.functionCallStack.pop();
-        // let description: StaticDescription = {type: "expr",
-        //     location: parseIID(iid)};
         this.state.functionExit([f, f.length, {type: "expr", location: parseIID(iid)}]);
-        // this.state.functionExit([f, f.length, description]);
     }
 
     // public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
@@ -295,12 +242,7 @@ export default class Analysis implements Analyzer {
     //     }
 
     public endExecution: NPCallbacks.endExecution = () => {
-        let start: number = performance.now()/1000;
         this.state.endExecution([]);
-        let diff = performance.now() / 1000 - start;
-        this.time += diff
-        console.log("EndExecution Time: " + diff);
-        console.error("Total Callback Time: " + this.time);
         console.log("After Analysis: " + performance.now() / 1000)
     }
 

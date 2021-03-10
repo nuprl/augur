@@ -15,6 +15,8 @@ export default class WeakMapShadow implements ShadowMemory {
     //  name, if defined
 
     private map: WeakMap<object, DynamicDescription> = new WeakMap();
+
+    // An inverse of the stack field, this allows easier access to the different DynamicDescriptions for each rawVariableDescription
     private stackMap: Map<RawVariableDescription, Array<DynamicDescription>> = new Map()
 
     private key: number = 0;
@@ -64,6 +66,9 @@ export default class WeakMapShadow implements ShadowMemory {
 
     functionExit(): void {
       // console.error("shadow functionExit");
+        // Updates the stackMap by exiting the scope for variables declared in this scope.
+        // Otherwise if the same variable name occurred throughout the program getting the full variable name
+        // would return the incorrect value.
           this.currentScope()[1].forEach(rd => {
             this.stackMap.get(rd).pop();
         })  
@@ -71,7 +76,9 @@ export default class WeakMapShadow implements ShadowMemory {
     }
 
     declare(name: RawVariableDescription): void {
-       //console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
+        //console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
+        // Adds the new RawVariableDescription to the stackMap along with the current scope to be
+        // used to easily acquire the full variable name.
         if (!this.stackMap.has(name)) {
             this.stackMap.set(name, [this.currentScope()[0]]);
         } else {
@@ -89,18 +96,8 @@ export default class WeakMapShadow implements ShadowMemory {
     }
 
     getFullVariableName(name: RawVariableDescription): VariableDescription {
-        // let currentStackIndex = this.stack.length - 1;
-        //
-        // while (currentStackIndex > 0) {
-        //     let stackFrame = this.stack[currentStackIndex];
-        //     if (stackFrame[1].some(frameName => frameName === name)) {
-        //         return (stackFrame[0] + "^" + name) as VariableDescription;
-        //     }
-        //
-        //     currentStackIndex--;
-        // }
-        //
-        // return ("global^" + name) as VariableDescription;
+        // Checks whether the provided name is in the stackMap from when it was declared.
+        // Otherwise it's most likely in the global scope.
         if (this.stackMap.has(name)) {
             let arr = this.stackMap.get(name);
             return (arr[arr.length - 1] + "^" + name) as VariableDescription;

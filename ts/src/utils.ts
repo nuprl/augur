@@ -45,31 +45,9 @@ export function descriptionSubset(t1: StaticDescription, t2: StaticDescription):
 
 export function parseJalangiLocationString(loc: string): Location {
     // Parse Jalangi location string
-   //  let result = /\((.+\.js):(\d+):(\d+):(\d+):(\d+)\)/.exec(loc);
-  //   if (result == null || !(result.length >= 4)) {
-    //     // If the location couldn't be parsed with the above regular
-    //     // expression, it is PROBABLY referencing an eval.
-    //     // TODO: make sure this is the case.
-    //     // TODO: come up with a better Location to return here
-    //     return {
-      //       fileName: "eval"
-     //    };
-   //  } else {
-     //    let fileName = result[1].split("/").pop();
-       //  let indices = result.slice(2).map(n => Number.parseInt(n));
-    
-      //   let span: SourceSpan = {
-        //     start: [indices[0], indices[1]],
-          //   end: [indices[2], indices[3]]
-       //  };
-    
-        // let location: Location = {
-          //   fileName: fileName,
-            // pos: span
-       //  };
-    
-     //    return location;
-   //  }
+    // Rather than determining the location through a regex search we simply parse the provided loc string
+    // If the location starts with (eval at [path location]) it's probably referencing an eval expression
+    // TODO: make sure this is the case.
     if (loc.substring(0, 5) === "(eval") {
        return {
             fileName: "eval"
