@@ -6,7 +6,6 @@ const child_process = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
 const {executeInstructionsFromFile} = require('../dist/src/utils');
-const {performance} = require('perf_hooks');
 
 /**
  * Fully-promsified exec implementation. This works well with await, and
@@ -101,7 +100,6 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
             //+ inputFile);
              + '/mnt/c/programming/augur/ts/runner/nodeprofTester.js');
 
-    let beforeInstrumentation = performance.now();
     let [error, stdout, stderr] = await exec(command,
         {maxBuffer: 1024*1024*10 /* 10 MB buffer for stdout/stderr */});
 
@@ -112,16 +110,12 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
         return;
     }
 
-    console.log("Before Instrumentation: " + beforeInstrumentation/1000);
     if (consoleFlag) {
         if (stdout) console.log(stdout);
         if (stderr) console.error(stderr);
     }
-     let beforeAbstract = performance.now()/1000;
 
     let results = executeInstructionsFromFile(outputFile, spec);
-
-    console.log("Abstract Machine Time: " + ((performance.now() / 1000) - beforeAbstract));
 
     return [spec, results];
 
