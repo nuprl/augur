@@ -20,7 +20,6 @@ import logger from "./logger";
 import {parseIID} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
 import {useNativeRecorder} from "../native/native";
-const {performance} = require('perf_hooks');
 
 // TODO: document this
 // load in polyfills
@@ -62,12 +61,12 @@ export default class Analysis implements Analyzer {
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
-        logger.info("literal", val, hasGetterSetter);
+        // logger.info("literal", val, hasGetterSetter);
         if (typeof val === "object") {
 
             this.shadowMemory.initialize(val);
 
-             const keys = [];
+            const keys = [];
 
             // This works as long as there's no number keys
             // Originally placed key in the back of the array then reversed it.
@@ -84,7 +83,7 @@ export default class Analysis implements Analyzer {
                  this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
              }
         }
-        // logger.info("val", val);
+        logger.info("val", val);
         this.state.literal(
             [{type: "literal",
             location: parseIID(iid)}]);
@@ -110,7 +109,7 @@ export default class Analysis implements Analyzer {
     }
 
     public endStatement: NPCallbacks.endStatement = (iid, type) => {
-     //   console.log("endStatement: " + type);
+       console.log("endStatement: " + type);
         this.state.pop(
             [{type: "expr",
             location: parseIID(iid)}]);
@@ -165,7 +164,7 @@ export default class Analysis implements Analyzer {
 
             let functionShadowID = this.shadowMemory.getShadowID(f);
             let receiverShadowID = this.shadowMemory.getShadowID(receiver);
-        //    console.error(this.shadowMemory.getFullVariableName("arguments"));
+            // console.error(this.shadowMemory.getFullVariableName("arguments"));
 
             this.state.builtin(
                 [functionShadowID,
@@ -220,30 +219,18 @@ export default class Analysis implements Analyzer {
         this.state.functionExit([f, f.length, {type: "expr", location: parseIID(iid)}]);
     }
 
-    // public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
-    //     let start: number = performance.now()/1000;
-    //     let description: StaticDescription = {type: "builtin",
-    //         location: parseIID(iid)};
-    //     // TODO: properly design a mechanism to track taint with eval
-    //     // this.state.builtin(["eval", 1, description]);
-    //     // eval always takes a single arg
-    //     let diff = performance.now() / 1000 - start;
-    //     this.time += diff
-    //     console.log("EvalPre Time: " + diff);    }
+    public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
+        // TODO: properly design a mechanism to track taint with eval
+        // this.state.builtin(["eval", 1, {type: "builtin", location: parseIID(iid)};]);
+        // eval always takes a single arg
+    }
 
-    // public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
-    //     let start: number = performance.now()/1000;
-    //     let description: StaticDescription = {type: "expr",
-    //         location: parseIID(iid)};
-    //     // this.state.conditional(description);
-    //     let diff = performance.now() / 1000 - start;
-    //     this.time += diff
-    //     console.log("Conditional Time: " + diff);
-    //     }
+    public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
+        // this.state.conditional({type: "expr", location: parseIID(iid)};);
+        }
 
     public endExecution: NPCallbacks.endExecution = () => {
         this.state.endExecution([]);
-        console.log("After Analysis: " + performance.now() / 1000)
     }
 
     // returns the name that should be used to refer to the given value.

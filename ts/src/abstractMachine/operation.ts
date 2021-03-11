@@ -29,8 +29,6 @@ class Advice<I, O> {
 export default abstract class Operation<I, O> {
     protected abstract implementation(I: I): O;
 
-    // private stack: Array<(I: I) => O> = [];
-
     public before: Advice<I, void> = new Advice();
 
     public after: Advice<[I, O], void> = new Advice();
@@ -43,7 +41,7 @@ export default abstract class Operation<I, O> {
         this.before.activate(input);
 
         // try to execute the around advice
-        let output = this.around.activate([ input, this.implementation]);
+        let output = this.around.activate([input, this.implementation]);
 
         // if it fails, just use the regular implementation
         if (!output) {

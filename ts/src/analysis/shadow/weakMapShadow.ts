@@ -30,12 +30,12 @@ export default class WeakMapShadow implements ShadowMemory {
         if (!key) {
             // console.error(`tried to get non-existent shadow ID for object
             // ${o.toString()}`);
-         //  console.error(`tried to get non-existent shadow ID for object`);
-         //  console.error(`initializing now...`);
+            console.error(`tried to get non-existent shadow ID for object`);
+            console.error(`initializing now...`);
             this.initialize(o);
             key = this.map.get(o);
             if (!key) {
-          //      console.error(`failed to initialize shadow ID for object ${o}`);
+               console.error(`failed to initialize shadow ID for object ${o}`);
             }
         }
 
@@ -52,7 +52,7 @@ export default class WeakMapShadow implements ShadowMemory {
             try {
                 this.map.set(o, (this.currentScopeName() + "@" + this.key++) as DynamicDescription);
             } catch(e) {
-                //console.log(e.toString());
+                console.log(e.toString());
             }
         }
     }
@@ -60,23 +60,23 @@ export default class WeakMapShadow implements ShadowMemory {
     functionEnter(f: Function): void {
         // hopefully unnecessary
         // this.initialize(f);
-      // console.error("shadow functionEnter");
+        console.error("shadow functionEnter");
         this.stack.push([(this.getShadowID(f) + "#" + this.key++) as DynamicDescription, []]);
     }
 
     functionExit(): void {
-      // console.error("shadow functionExit");
-        // Updates the stackMap by exiting the scope for variables declared in this scope.
-        // Otherwise if the same variable name occurred throughout the program getting the full variable name
-        // would return the incorrect value.
-          this.currentScope()[1].forEach(rd => {
-            this.stackMap.get(rd).pop();
-        })  
+      console.error("shadow functionExit");
+      // Updates the stackMap by exiting the scope for variables declared in this scope.
+      // Otherwise if the same variable name occurred throughout the program, getting the full variable name
+      // would return the incorrect value.
+      this.currentScope()[1].forEach(rd => {
+          this.stackMap.get(rd).pop();
+      })
       this.stack.pop();
     }
 
     declare(name: RawVariableDescription): void {
-        //console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
+        console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
         // Adds the new RawVariableDescription to the stackMap along with the current scope to be
         // used to easily acquire the full variable name.
         if (!this.stackMap.has(name)) {
