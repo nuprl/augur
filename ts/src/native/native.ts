@@ -2,10 +2,8 @@ import JSMachine from "../abstractMachine/JSMachine";
 import {
     DynamicDescription,
     StaticDescription,
-    VariableDescription
 } from "../types";
 import Analysis from "../analysis/analysis";
-import {isArray} from "util";
 
 // TODO: document pre and post implementations
 
@@ -148,16 +146,6 @@ let popArgsAndReportFlowsIntoBuiltin =
 let returnTaints = <V, F>(machine: JSMachine<V, F>,
                           taint: V) => {
     machine.taintStack.push(taint);
-};
-
-let joinTaints = <V, F>(machine: JSMachine<V, F>, taints: V[]): V => {
-    return taints.reduce((a, b) => machine.join(a, b), machine.getUntaintedValue());
-};
-
-let joinAndReturnTaints = <V, F>(machine: JSMachine<V, F>,
-                                 taints: V[]) => {
-    // join args' taint values, and use that as the return value
-    returnTaints(machine, joinTaints(machine, taints));
 };
 
 let defaultImplementationPre: NativeModelImplementationPre<void, void> =
@@ -566,17 +554,6 @@ export function getNativeModel<V, F>(name: string): NativeModel<any, any> {
     } else {
         return defaultModel;
     }
-
-    /*
-    // @ts-ignore
-    let model = models[name] as NativeModel<any>;
-
-    if (model) {
-        return model;
-    } else {
-        return defaultModel;
-    }
-    */
 }
 
 export function useNativeRecorder<R>(analysis: Analysis,

@@ -53,11 +53,6 @@ if (SHOULD_USE_DOCKER) {
 // const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected/";
 const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
 
-function getFileContents(fileName){
-    let result = fs.readFileSync(fileName).toString().split('\n'); // hack: use .split('\n') to ensure that the differences viewer shows line breaks
-    return result.map((s)=>s.trim());
-}
-
 // Given a test name:
 // - instrument its JS code;
 // - compare the generated instructions with its expected instructions

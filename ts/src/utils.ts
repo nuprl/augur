@@ -1,6 +1,5 @@
 import {RunSpecification, SourceSpan, Location, StaticDescription} from "./types";
 import BooleanMachine from "./abstractMachine/BooleanMachine";
-import ExpressionMachine from "./abstractMachine/ExpressionMachine";
 
 // Do the given descriptions of a taint source/sink describe the same thing?
 // Two descriptions are considered equal if all of the common taint source/sink

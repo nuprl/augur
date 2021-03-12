@@ -233,36 +233,6 @@ export default class Analysis implements Analyzer {
         this.state.endExecution([]);
     }
 
-    // returns the name that should be used to refer to the given value.
-    // it will return one of the three, prioritized by the following order:
-    //
-    // 1. if `val` is an object, and has a valid shadow identifier, its
-    // shadow identifier will be returned.
-    // 2. if `name` is not undefined, it will be returned.
-    // 3. if `val` is an object, the result of invoking `toString` on it
-    // will be returned.
-    // 4. `undefined` will be returned.
-    /*
-    private getName(val: any, name: string): DynamicDescription {
-        // if val is an object
-        if (typeof val === "object") {
-            let shadowID = this.shadowMemory.getShadowID(val);
-            // and has a valid shadow id
-            if (shadowID !== undefined) {
-                // return it
-                return shadowID;
-            }
-        }
-        // otherwise, if a name was provided
-        if (name !== undefined) {
-            // return it
-            return name;
-        }
-        // otherwise, just turn the object into a string and return it
-        return val.toString();
-    }
-     */
-
     // TODO: fix this hack with real instrumentation
     private isNative(fun: Function): boolean {
         // apparently this kinda stuff isn't very slow
