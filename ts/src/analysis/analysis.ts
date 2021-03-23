@@ -47,7 +47,7 @@ export default class Analysis implements Analyzer {
 
     // Tracks which kind of functions are native throughout instrumentation
     // This means the isNative() will only need to be called once instead of twice when entering a new function.
-    private isNativeMap: Map<string, boolean> = new Map<string, boolean>();
+    private isNativeMap: WeakMap<Invoked, boolean> = new WeakMap<Invoked, boolean>();
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
@@ -157,8 +157,8 @@ export default class Analysis implements Analyzer {
         }
         // Checks if the function is a native function or that it exists in the map already
         // since the same function can be invoked multiple times throughout a program.
-        if (this.isNativeMap.get(f.name) || this.isNative(f)) {
-            this.isNativeMap.set(f.name, true);
+        if (this.isNativeMap.get(f) || this.isNative(f)) {
+            this.isNativeMap.set(f, true);
             // TODO: make sure this works using regular builtins and
             //  reassigned builtins
 
@@ -176,7 +176,7 @@ export default class Analysis implements Analyzer {
                     isMethod,
                     description]);
         } else {
-            this.isNativeMap.set(f.name, false);
+            this.isNativeMap.set(f, false);
             this.state.functionInvokeStart([this.shadowMemory.getShadowID(f),
                 f.length,
                 args.length,
@@ -201,7 +201,7 @@ export default class Analysis implements Analyzer {
         let returnValueName = this.shadowMemory.getShadowID(result);
 
         this.shadowMemory.functionExit();
-        if (this.isNativeMap.get(f.name)) {
+        if (this.isNativeMap.get(f)) {
             this.state.builtinExit([this.shadowMemory.getShadowID(f), returnValueName, description]);
         } else {
             this.state.functionInvokeEnd([this.shadowMemory.getShadowID(f), description]);
