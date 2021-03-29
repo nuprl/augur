@@ -53,11 +53,11 @@ export function parseJalangiLocationString(loc: string): Location {
         };
     } else {
         let result: string[] = loc.split("/").pop().split(":");
-        let fileName: string = result.shift();
+        let fileName: string = result.shift().substring(1);
         let indices = result.map((n: string) => Number.parseInt(n.charAt(0)));
         let span: SourceSpan = {
-            start: [indices[1], indices[2]],
-            end: [indices[3], indices[4]]
+            start: [indices[0], indices[1]],
+            end: [indices[2], indices[3]]
         }
         let location: Location = {
             fileName:  fileName,
