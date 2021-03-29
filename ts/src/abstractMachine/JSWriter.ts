@@ -33,11 +33,11 @@ export default class JSWriter implements AbstractMachine {
     // @ts-ignore
     private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
 
-    // the codeArr represents a StringBuilder for the output file so an I/O operation doesn't occur whenever a callback is referenced.
-    private codeArr : string[] = [];
+    // the outputStr represents a StringBuilder for the output file so an I/O operation doesn't occur whenever a callback is referenced.
+    private outputStr : string[] = [];
 
     constructor() {
-         this.codeArr.push(this.preamble);
+         this.outputStr.push(this.preamble);
     }
 
     public literal([description]: [StaticDescription]) {
@@ -92,8 +92,7 @@ export default class JSWriter implements AbstractMachine {
         });
     }
 
-    public functionInvokeEnd([name, description]:
-                                 [string, StaticDescription]) {
+    public functionInvokeEnd([name, description]: [string, StaticDescription]) {
         this.writeInstruction({
             command: "functionInvokeEnd",
             args: [name, description]
@@ -136,8 +135,8 @@ export default class JSWriter implements AbstractMachine {
     public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
         // Once the analysis finishes then we write the output file string to the file location.
-        this.codeArr.push(this.postamble);
-        this.logger.log(this.codeArr.join("\n"));
+        this.outputStr.push(this.postamble);
+        this.logger.log(this.outputStr.join("\n"));
     }
 
     public initializeArgumentsObject([argumentsObject, description]: [DynamicDescription, StaticDescription]) {
@@ -154,7 +153,7 @@ export default class JSWriter implements AbstractMachine {
     // Actually write the instruction to the output file.
     private writeInstruction(instr: Instruction) {
         const delim = ", ";
-        this.codeArr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
+        this.outputStr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
     }
 
 }
