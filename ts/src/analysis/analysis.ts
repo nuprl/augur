@@ -233,6 +233,24 @@ export default class Analysis implements Analyzer {
         this.state.endExecution([]);
     }
 
+    public asyncFunctionEnter:  NPCallbacks.asyncFunctionEnter = (iid: number) => {
+        this.state.asyncFunctionEnter([{type: "asyncFunctionEnter", location: parseIID(iid)}])
+    }
+
+    public asyncFunctionExit: NPCallbacks.asyncFunctionExit = (iid: number, result: any, exceptionVal: ExceptionVal) => {
+        this.state.asyncFunctionExit([{type: "asyncFunctionExit", location: parseIID(iid)}])
+    }
+
+    public awaitPre: NPCallbacks.awaitPre = (iid: number, promiseOrAwaitedVal: any) => {
+        this.shadowMemory.awaitPre(iid);
+        this.state.awaitPre([iid, {type: "awaitPre", location: parseIID((iid))}]);
+    }
+
+    public awaitPost: NPCallbacks.awaitPost = (iid: number, promiseOrValAwaited: any, valResolveOrRejected: any, isPromiseRejected: boolean) => {
+        this.shadowMemory.awaitPost(iid);
+        this.state.awaitPre([iid, {type: "awaitPre", location: parseIID((iid))}]);
+    }
+
     // TODO: fix this hack with real instrumentation
     private isNative(fun: Function): boolean {
         // apparently this kinda stuff isn't very slow

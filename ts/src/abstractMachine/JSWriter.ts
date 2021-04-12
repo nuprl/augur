@@ -144,6 +144,22 @@ export default class JSWriter implements AbstractMachine {
             args: [argumentsObject, description]});
     }
 
+    public asyncFunctionEnter([description]: [StaticDescription]) {
+        this.writeInstruction({command: "asyncFunctionEnter", args: [description]});
+    }
+
+    public asyncFunctionExit([description]: [StaticDescription]) {
+        this.writeInstruction({command: "asyncFunctionExit", args: [description]});
+    }
+
+    public awaitPre([id, description]: [number, StaticDescription]) {
+        this.writeInstruction({command: "awaitPre", args: [id, description]});
+    }
+
+    public awaitPost([id, description]: [number, StaticDescription]) {
+        this.writeInstruction({command: "awaitPost", args: [id, description]});
+    }
+
     // Prepares an argument to a callback to appear in JS code.
     private prepareArg(arg: any): string {
         // Wrap strings in quotes, properly escape strings, etc.

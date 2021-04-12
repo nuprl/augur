@@ -64,6 +64,12 @@ export namespace NPCallbacks {
     export type endExpression = (iid: number, type: string, result: any) => void;
     export type _return = (iid: number, val: any) => void;
 
+    // Async/Await callbacks
+    export type asyncFunctionEnter = (iid: number) => void;
+    export type asyncFunctionExit = (iid: number, result: any, exceptionVal: ExceptionVal) => void;
+    export type awaitPre = (iid: number, promiseOrAwaitedVal: any) => void;
+    export type awaitPost = (iid: number, promiseOrValAwaited: any, valResolveOrRejected: any, isPromiseRejected: boolean) => void;
+
     // Not yet supported by Nodeprof
     // export type declare = (iid: number, name: string, val: any, isArgument: boolean, argumentIndex: number, isCatchParam: boolean) => void;
     export type _throw = (iid: number, val: any) => void;
@@ -108,6 +114,12 @@ export interface Analyzer {
     endStatement?: NPCallbacks.endStatement;
     startExpression?: NPCallbacks.startExpression;
     endExpression?: NPCallbacks.endExpression;
+
+    // Async/Await
+    asyncFunctionEnter? :NPCallbacks.asyncFunctionEnter;
+    asyncFuntionExit? : NPCallbacks.asyncFunctionExit;
+    awaitPre?: NPCallbacks.awaitPre;
+    awaitPost?: NPCallbacks.awaitPost;
 
     // not yet supported
     declare?: NPCallbacks.declare;

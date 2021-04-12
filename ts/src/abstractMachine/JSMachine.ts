@@ -546,6 +546,30 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         // do nothing.
     }
 
+    public asyncFunctionEnterOp: Operation<[StaticDescription], void> =
+        this.adviceWrap(([description]) => {
+
+        });
+    public asyncFunctionEnter = this.asyncFunctionEnterOp.wrapper;
+
+    public asyncFunctionExitOp: Operation<[StaticDescription], void> =
+        this.adviceWrap(([description]) => {
+
+        });
+    public asyncFunctionExit = this.asyncFunctionExitOp.wrapper;
+
+    public awaitPreOp: Operation<[number, StaticDescription], void> =
+        this.adviceWrap(([id, description]) => {
+
+        });
+    public awaitPre = this.awaitPreOp.wrapper;
+
+    public awaitPostOp: Operation<[number, StaticDescription], void> =
+        this.adviceWrap(([id, description]) => {
+
+        });
+    public awaitPost = this.awaitPostOp.wrapper;
+
     public getTaint(): F[] {
         return [...this.flows];
     }

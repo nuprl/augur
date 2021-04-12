@@ -1,4 +1,4 @@
-import { Accessor } from "./nodeprof";
+import {Accessor, ExceptionVal} from "./nodeprof";
 
 // Various types used throughout the analysis.
 
@@ -236,6 +236,31 @@ export interface AbstractMachine {
      * @param description why and where the action occurred
      */
     initializeArgumentsObject: (input: [DynamicDescription, StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    asyncFunctionEnter: (input: [StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    asyncFunctionExit: (input: [StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    awaitPre: (input: [number, StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    awaitPost: (input: [number, StaticDescription]) => void;
+
 }
 
 // an interface for associating shadow identifiers with arbitrary objects.
@@ -254,6 +279,10 @@ export interface ShadowMemory {
     functionEnter(f: Function): void;
 
     functionExit(): void;
+
+    awaitPre(id: number): void;
+
+    awaitPost(id: number): void;
 
     declare(name: RawVariableDescription): void;
 
@@ -286,7 +315,11 @@ export type TaintType = "function"
     | "functionEnter"
     | "functionReturn"
     | "literal"
-    | "declaration";
+    | "declaration"
+    | "asyncFunctionEnter"
+    | "asyncFunctionExit"
+    | "awaitPre"
+    | "awaitPost";
 
 // A unique identifier for a particular DYNAMIC OBJECT. This is *NOT* the
 // variable name. It is auto-generated, and has nothing to do with the
