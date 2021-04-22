@@ -248,7 +248,7 @@ export default class Analysis implements Analyzer {
 
     public awaitPost: NPCallbacks.awaitPost = (iid: number, promiseOrValAwaited: any, valResolveOrRejected: any, isPromiseRejected: boolean) => {
         this.shadowMemory.awaitPost(iid);
-        this.state.awaitPre([iid, {type: "awaitPre", location: parseIID((iid))}]);
+        this.state.awaitPost([iid, {type: "awaitPre", location: parseIID((iid))}]);
     }
 
     // TODO: fix this hack with real instrumentation

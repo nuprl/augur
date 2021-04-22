@@ -91,8 +91,8 @@ export default class WeakMapShadow implements ShadowMemory {
     }
 
    awaitPre(id: number) {
-       this.tree.set(id, this.tree.get(this.idStack[this.idStack.length - 1]));
-       this.idStack.pop();
+       this.tree.set(id, this.tree.get(this.idStack.pop()));
+       this.idStack.push(id);
    }
 
    awaitPost(id: number) {
@@ -105,7 +105,8 @@ export default class WeakMapShadow implements ShadowMemory {
 
     currentScope(): [DynamicDescription, Array<RawVariableDescription>] {
         // return this.stack[this.stack.length - 1];
-        return this.tree.get(this.idStack[this.idStack.length - 1])[0];
+        let currentStack = this.tree.get(this.idStack[this.idStack.length - 1]);
+        return currentStack[currentStack.length - 1];
     }
 
     getFullVariableName(name: RawVariableDescription): VariableDescription {
@@ -119,3 +120,4 @@ export default class WeakMapShadow implements ShadowMemory {
         }
     }
 }
+

@@ -5,7 +5,7 @@
 import {Accessor} from "../nodeprof";
 import {
     AbstractMachine,
-    DynamicDescription,
+    DynamicDescription, RawVariableDescription,
     RunSpecification,
     ShadowObject,
     StaticDescription,
@@ -118,6 +118,12 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
      */
     abstract produceMark(description: StaticDescription): V;
 
+    // private tree: Map<number, [StaticDescription[], V[]]> = new Map<number, [StaticDescription[], V[]]>()
+    functionTree: Map<number, StaticDescription[]> = new Map<number, StaticDescription[]>();
+    taintTree: Map<number, V[]> = new Map<number, V[]>();
+    idStack: number[] = [];
+    ROOTID: number = 0;
+
     constructor(spec: RunSpecification) {
         // logger.info(sources, sinks);
         this.spec = spec;
@@ -127,6 +133,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.getTaint = this.getTaint.bind(this);
         this.lastObjectAccessed = this.getUntaintedValue();
         this.functionArgsStack = [[]];
+
+        this.functionTree.set(this.ROOTID, [{name: "program start"}])
+        this.taintTree.set(this.ROOTID, []);
+        this.idStack.push(this.ROOTID);
     }
 
     private adviceWrap<I, O>(impl: (input: I) => O): Operation<I, O> {
@@ -140,13 +150,15 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     }
 
     public callstackPush(frame: StaticDescription, ): void {
-        this.functionCallStack.push(frame);
+        // this.functionCallStack.push(frame);
+        this.functionTree.get(this.idStack[this.idStack.length - 1]).push(frame);
         this.functionEnterAdvice.push(null);
         this.functionExitAdvice.push(null);
     }
 
     public callstackPop(): void {
-        this.functionCallStack.pop();
+        // this.functionCallStack.pop();
+        this.functionTree.get(this.idStack[this.idStack.length - 1]).pop();
         this.functionEnterAdvice.pop();
         this.functionExitAdvice.pop();
     }
@@ -167,7 +179,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([name, expectedArgs, actualArgs, description]) => {
 
                 // 1. set up `arguments` variable in shadow memory.
-                let actualArgsValues = this.taintStack.slice(this.taintStack.length - actualArgs);
+                // let actualArgsValues = this.taintStack.slice(this.taintStack.length - actualArgs);
+                let actualArgsValues = this.taintTree.get(this.idStack[this.idStack.length - 1]).slice(
+                    this.taintTree.get(this.idStack[this.idStack.length - 1]).length - actualArgs);
                 // actualArgsValues.reverse();
                 this.functionArgsStack.push(actualArgsValues);
 
@@ -176,9 +190,12 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
                 if (expectedArgs != actualArgs) {
                     let difference = Math.abs(expectedArgs - actualArgs);
+                    // let operation = (actualArgs > expectedArgs)
+                    //     ? (() => this.taintStack.pop())
+                    //     : (() => this.taintStack.push(this.getUntaintedValue()));
                     let operation = (actualArgs > expectedArgs)
-                        ? (() => this.taintStack.pop())
-                        : (() => this.taintStack.push(this.getUntaintedValue()));
+                        ? (() => this.taintTree.get(this.idStack[this.idStack.length - 1]).pop())
+                        : (() => this.taintTree.get(this.idStack[this.idStack.length - 1]).push(this.getUntaintedValue()));
 
                     for (let i = 0; i < difference; i++) {
                         operation();
@@ -196,19 +213,34 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // we're entering. Pop it and join it with the taint value for
                 // the function invocation to produce the taint value for
                 // "entering the function".
+                // const functionInvocationTaint =
+                //     this.join(this.taintStack[this.taintStack.length - expectedArgs - 1],
+                //         this.produceMark(description));
                 const functionInvocationTaint =
-                    this.join(this.taintStack[this.taintStack.length - expectedArgs - 1],
+                    this.join(this.taintTree.get(this.idStack[this.idStack.length - 1])[
+                        this.taintTree.get(this.idStack[this.idStack.length - 1]).length - expectedArgs - 1],
                         this.produceMark(description));
 
-                for (let i = this.taintStack.length - expectedArgs; i < this.taintStack.length; i++) {
-                    this.reportPossibleFlow(description, this.taintStack[i]);
-                    this.taintStack[i] = this.join(this.taintStack[i], functionInvocationTaint);
+                for (let i = this.taintTree.get(this.idStack[this.idStack.length - 1]).length - expectedArgs; i < this.taintTree.get(this.idStack[this.idStack.length - 1]).length; i++) {
+                    this.reportPossibleFlow(description, this.taintTree.get(this.idStack[this.idStack.length - 1])[i]);
+                    this.taintTree.get(this.idStack[this.idStack.length - 1])[i] =
+                        this.join(this.taintTree.get(this.idStack[this.idStack.length - 1])[i], functionInvocationTaint);
                 }
 
+                // for (let i = this.taintStack.length - expectedArgs; i < this.taintStack.length; i++) {
+                //     this.reportPossibleFlow(description, this.taintStack[i]);
+                //     this.taintStack[i] = this.join(this.taintStack[i], functionInvocationTaint);
+                // }
+
                 // get arguments from the stack
-                let args = this.taintStack.splice(this.taintStack.length - expectedArgs);
+                // let args = this.taintStack.splice(this.taintStack.length - expectedArgs);
+                // args.reverse();
+                // this.taintStack.push(...args);
+
+                let args = this.taintTree.get(this.idStack[this.idStack.length - 1]).splice(
+                    this.taintTree.get(this.idStack[this.idStack.length - 1]).length - expectedArgs);
                 args.reverse();
-                this.taintStack.push(...args);
+                this.taintTree.get(this.idStack[this.idStack.length - 1]).push(...args);
 
                 // prepare the machine to declare the named parameters to
                 // this function
@@ -264,7 +296,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.callstackPush(description);
 
                 // pop the value of the function
-                let functionTaint = this.taintStack.pop();
+                // let functionTaint = this.taintStack.pop();
+                let functionTaint = this.taintTree.get(this.idStack[this.idStack.length - 1]).pop();
 
                 // report possible flows from callee perspective
                 this.reportPossibleFlow(description, functionTaint);
@@ -290,11 +323,15 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public functionReturnOp: Operation<[string, StaticDescription], void> =
         this.adviceWrap(
             (input) => {
-                this.returnValue = this.taintStack[this.taintStack.length - 1];
+                // this.returnValue = this.taintStack[this.taintStack.length - 1];
+                this.returnValue = this.taintTree.get(this.idStack[this.idStack.length - 1])[
+                this.taintTree.get(this.idStack[this.idStack.length - 1]).length - 1];
                 // we shouldn't pop this manually. a discardValue
                 // instruction should be generated by NodeProf right after
                 // the return callback.
                 // this.taintStack.pop();
+
+                //IGNORE pop() function above!
             });
     public functionReturn = this.functionReturnOp.wrapper;
 
@@ -311,7 +348,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([v, description]) => {
                 this.resetState();
                 logger.info("push", v);
-                this.taintStack.push(v);
+                // this.taintStack.push(v);
+                this.taintTree.get(this.idStack[this.idStack.length - 1]).push(v);
             }
         );
 
@@ -322,7 +360,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([description]) => {
                 this.resetState();
                 logger.info("pop");
-                this.taintStack.pop();
+                // this.taintStack.pop();
+                this.taintTree.get(this.idStack[this.idStack.length - 1]).pop();
             }
         );
 
@@ -334,7 +373,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.resetState();
                 const r = this.join(this.produceMark(description),
                     this.varTaintMap.get(s));
-                this.taintStack.push(r);
+                // this.taintStack.push(r);
+                this.taintTree.get(this.idStack[this.idStack.length - 1]).push(r);
                 logger.info("read", s, r);
             });
 
@@ -344,9 +384,12 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([s, description]) => {
                 this.resetState();
-                // Do not pop off the stack for a write
                 const v = this.join(this.produceMark(description),
-                    this.taintStack[this.taintStack.length - 1]);
+                    this.taintTree.get(this.idStack[this.idStack.length - 1])[
+                    this.taintTree.get(this.idStack[this.idStack.length - 1]).length - 1]);
+                // Do not pop off the stack for a write
+                // const v = this.join(this.produceMark(description),
+                //     this.taintStack[this.taintStack.length - 1]);
                 logger.info("write", s, v);
                 this.varTaintMap.set(s, v);
                 this.reportPossibleFlow(description, v);
@@ -384,11 +427,13 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                     // object is discarded and replaced with the projection.
                     // Discard the object's value on the taint stack.
                 // TODO: document this
-                    this.lastObjectAccessed = this.taintStack.pop();
+                //     this.lastObjectAccessed = this.taintStack.pop();
+                this.lastObjectAccessed = this.taintTree.get(this.idStack[this.idStack.length - 1]).pop();
                 // }
 
                 logger.info("readprop", o, s, r);
-                this.taintStack.push(r);
+                // this.taintStack.push(r);
+                this.taintTree.get(this.idStack[this.idStack.length - 1]).push(r);
             }
         );
 
@@ -399,7 +444,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([o, s, description]) => {
                 this.resetState();
 
-                const storedTaint = this.taintStack.pop();
+                // const storedTaint = this.taintStack.pop();
+                const storedTaint = this.taintTree.get(this.idStack[this.idStack.length - 1]).pop();
                 let objectTaintMap = this.getShadowObject(o);
                 objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
 
@@ -428,12 +474,13 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             (description) => {
                 this.resetState();
-
                 // Combine the taint markings of the two operands
-                this.taintStack.push(
-                    this.join(this.taintStack.pop(), this.taintStack.pop())
-                );
-
+                // this.taintStack.push(
+                //     this.join(this.taintStack.pop(), this.taintStack.pop())
+                // );
+                this.taintTree.get(this.idStack[this.idStack.length - 1]).push(this.join(
+                    this.taintTree.get(this.idStack[this.idStack.length - 1]).pop(),
+                    this.taintTree.get(this.idStack[this.idStack.length - 1]).pop()));
                 logger.info("binaryOp");
             }
         );
@@ -443,10 +490,13 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public initVarOp: Operation<[VariableDescription, StaticDescription], void> =
         this.adviceWrap(
             ([s, description]) => {
-                let v = this.join(this.taintStack[this.taintStack.length - 1], this.produceMark(description));
+                // let v = this.join(this.taintStack[this.taintStack.length - 1], this.produceMark(description));
+                let v = this.join(this.taintTree.get(this.idStack[this.idStack.length - 1])[
+                this.taintTree.get(this.idStack[this.idStack.length - 1]).length - 1], this.produceMark(description));
 
                 if (this.argsLeftToProcess > 0) {
-                    this.taintStack.pop();
+                    // this.taintStack.pop();
+                    this.taintTree.get(this.idStack[this.idStack.length - 1]).pop();
                     this.argsLeftToProcess--;
                 }
 
@@ -498,9 +548,11 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([description]) => {
                 this.resetState();
+                const abstractValue = this.taintTree.get(this.idStack[this.idStack.length - 1])[
+                this.taintTree.get(this.idStack[this.idStack.length - 1]).length - 1];
 
                 // no peek operation...
-                const abstractValue = this.taintStack[this.taintStack.length - 1];
+                // const abstractValue = this.taintStack[this.taintStack.length - 1];
 
                 logger.info("conditional", abstractValue);
 
@@ -554,19 +606,26 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public asyncFunctionExitOp: Operation<[StaticDescription], void> =
         this.adviceWrap(([description]) => {
-
+            // this.idStack.pop();
+            // if (this.idStack.length === 0) {
+            //     this.idStack.push(this.ROOTID);
+            // }
         });
     public asyncFunctionExit = this.asyncFunctionExitOp.wrapper;
 
     public awaitPreOp: Operation<[number, StaticDescription], void> =
         this.adviceWrap(([id, description]) => {
-
+            let prevId = this.idStack[this.idStack.length - 1];
+            this.functionTree.set(id, this.functionTree.get(prevId).concat());
+            this.taintTree.set(id, this.taintTree.get(prevId).concat());
         });
     public awaitPre = this.awaitPreOp.wrapper;
 
     public awaitPostOp: Operation<[number, StaticDescription], void> =
         this.adviceWrap(([id, description]) => {
-
+            // this.idStack.push(id);
+            this.functionTree.set(this.ROOTID, this.functionTree.get(id).concat());
+            this.taintTree.set(this.ROOTID, this.taintTree.get(id).concat());
         });
     public awaitPost = this.awaitPostOp.wrapper;
 
@@ -609,3 +668,4 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         return this.spec.sinks.some((sink) => descriptionSubset(sink, description));
     }
 }
+
