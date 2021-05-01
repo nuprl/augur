@@ -26,10 +26,11 @@ export default class WeakMapShadow implements ShadowMemory {
 
     private tree: Map<number, Array<[DynamicDescription, Array<RawVariableDescription>]>> = new Map<number, Array<[DynamicDescription, Array<RawVariableDescription>]>>()
     private idStack: number[] = [];
+    private ROOTID: number = 0;
 
     constructor() {
         this.tree.set(0, [["global" as DynamicDescription, []]]);
-        this.idStack.push(0);
+        this.idStack.push(this.ROOTID);
     }
 
     getShadowID(o: object): DynamicDescription {
@@ -63,7 +64,7 @@ export default class WeakMapShadow implements ShadowMemory {
     functionEnter(f: Function): void {
         console.error("shadow functionEnter");
         // this.stack.push([(this.getShadowID(f) + "#" + this.key++) as DynamicDescription, []]);
-        this.tree.get(this.idStack[this.idStack.length - 1]).push([(this.getShadowID(f) + "#" + this.key++) as DynamicDescription, []]);
+        this.tree.get(this.idStack[this.ROOTID]).push([(this.getShadowID(f) + "#" + this.key++) as DynamicDescription, []]);
     }
 
     functionExit(): void {
@@ -75,28 +76,25 @@ export default class WeakMapShadow implements ShadowMemory {
           this.scopeMap.get(rd).pop();
       })
       // this.stack.pop();
-        this.tree.get(this.idStack[this.idStack.length - 1]).pop();
+        this.tree.get(this.idStack[this.ROOTID]).pop();
     }
 
     declare(name: RawVariableDescription): void {
         console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
         // Adds the new RawVariableDescription to the scopeMap along with the current scope to be
         // used to easily acquire the full variable name.
-        if (!this.scopeMap.has(name)) {
-            this.scopeMap.set(name, [this.currentScope()[0]]);
-        } else {
-            this.scopeMap.get(name).push(this.currentScope()[0]);
-        }
+        this.addToScope(name);
         this.currentScope()[1].push(name);
     }
 
    awaitPre(id: number) {
-       this.tree.set(id, this.tree.get(this.idStack.pop()));
-       this.idStack.push(id);
+       this.tree.set(id, this.tree.get(this.ROOTID));
+       // this.idStack.push(id);
    }
 
    awaitPost(id: number) {
-        this.idStack.push(id);
+        // this.idStack.push(id);
+       this.tree.set(this.ROOTID, this.tree.get(id));
    }
 
     currentScopeName(): DynamicDescription {
@@ -105,7 +103,7 @@ export default class WeakMapShadow implements ShadowMemory {
 
     currentScope(): [DynamicDescription, Array<RawVariableDescription>] {
         // return this.stack[this.stack.length - 1];
-        let currentStack = this.tree.get(this.idStack[this.idStack.length - 1]);
+        let currentStack = this.tree.get(this.idStack[this.ROOTID]);
         return currentStack[currentStack.length - 1];
     }
 
@@ -114,9 +112,20 @@ export default class WeakMapShadow implements ShadowMemory {
         // Otherwise it's most likely in the global scope.
         if (this.scopeMap.has(name)) {
             let arr = this.scopeMap.get(name);
+            if (arr[arr.length - 1] === undefined) {
+                this.addToScope(name);
+            }
             return (arr[arr.length - 1] + "^" + name) as VariableDescription;
         } else {
             return ("global^" + name) as VariableDescription;
+        }
+    }
+
+    private addToScope(name: RawVariableDescription) {
+        if (!this.scopeMap.has(name)) {
+            this.scopeMap.set(name, [this.currentScope()[0]]);
+        } else {
+            this.scopeMap.get(name).push(this.currentScope()[0]);
         }
     }
 }
