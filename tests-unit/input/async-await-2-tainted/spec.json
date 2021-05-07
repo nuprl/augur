@@ -1,0 +1,30 @@
+{
+  "main": "test.js",
+  "sources": [
+    {
+      "type": "variable",
+      "name": "src",
+      "location": {
+        "fileName": "test.js"
+      }
+    }
+  ],
+  "sinks": [
+    {
+      "type": "variable",
+      "name": "sink",
+      "location": {
+        "fileName": "test.js"
+      }
+    }
+  ],
+  "expectedFlows": [
+    {
+      "type": "variable",
+      "name": "sink",
+      "location": {
+        "fileName": "test.js"
+      }
+    }
+  ]
+}
