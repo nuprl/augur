@@ -121,7 +121,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     // private tree: Map<number, [StaticDescription[], V[]]> = new Map<number, [StaticDescription[], V[]]>()
     functionTree: Map<number, StaticDescription[]> = new Map<number, StaticDescription[]>();
     taintTree: Map<number, V[]> = new Map<number, V[]>();
-    idStack: number[] = [];
+    functionArgsTree: Map<number, Array<Array<V>>> = new Map<number, Array<Array<V>>>();
     ROOTID: number = 0;
 
     constructor(spec: RunSpecification) {
@@ -129,14 +129,14 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.spec = spec;
         this.objects = new Map();
         this.pc = this.getUntaintedValue();
-        this.functionCallStack = [{name: "program start"}];
+        // this.functionCallStack = [{name: "program start"}];
         this.getTaint = this.getTaint.bind(this);
         this.lastObjectAccessed = this.getUntaintedValue();
-        this.functionArgsStack = [[]];
+        // this.functionArgsStack = [[]];
 
         this.functionTree.set(this.ROOTID, [{name: "program start"}])
         this.taintTree.set(this.ROOTID, []);
-        this.idStack.push(this.ROOTID);
+        this.functionArgsTree.set(this.ROOTID, [[]]);
     }
 
     private adviceWrap<I, O>(impl: (input: I) => O): Operation<I, O> {
@@ -182,8 +182,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // let actualArgsValues = this.taintStack.slice(this.taintStack.length - actualArgs);
                 let actualArgsValues = this.taintTree.get(this.ROOTID).slice(
                     this.taintTree.get(this.ROOTID).length - actualArgs);
-                // actualArgsValues.reverse();
-                this.functionArgsStack.push(actualArgsValues);
+
+                // this.functionArgsStack.push(actualArgsValues);
+                this.functionArgsTree.get(this.ROOTID).push(actualArgsValues);
 
                 // 2. Ensure the right number of arguments is present on
                 // `taintStack`.
@@ -245,6 +246,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // prepare the machine to declare the named parameters to
                 // this function
                 this.argsLeftToProcess = expectedArgs;
+                console.log("functionInvokeStart: " + this.taintTree.get(this.ROOTID))
             }
         );
     public functionInvokeStart = this.functionInvokeStartOp.wrapper;
@@ -252,7 +254,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public functionInvokeEndOp: Operation<[string, StaticDescription], void> =
         this.adviceWrap(
             ([name, description]) => {
-                this.functionArgsStack.pop();
+                // this.functionArgsStack.pop();
+                this.functionArgsTree.get(this.ROOTID).pop();
+
 
                 // we need to come up with a taint value to use for the
                 // value of this function application. the first thing we do
@@ -275,6 +279,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
                 // clean out return value
                 this.returnValue = undefined;
+                console.log("function invoke end: " + this.taintTree.get(this.ROOTID))
             }
         );
     public functionInvokeEnd = this.functionInvokeEndOp.wrapper;
@@ -301,6 +306,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
                 // report possible flows from callee perspective
                 this.reportPossibleFlow(description, functionTaint);
+                console.log("functionEnter: " + this.taintTree.get(this.ROOTID))
+                console.log("argStack: " + this.functionArgsTree.get(0));
             }
         );
     public functionEnter = this.functionEnterOp.wrapper;
@@ -316,6 +323,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 }
 
                 this.callstackPop();
+                console.log("functionExit: " + this.taintTree.get(this.ROOTID))
+                console.log("arg stack: " + this.functionArgsTree.get(0));
             }
         );
     functionExit = this.functionExitOp.wrapper;
@@ -332,6 +341,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // this.taintStack.pop();
 
                 //IGNORE pop() function above!
+                console.log("functionReturn: " + this.taintTree.get(this.ROOTID))
             });
     public functionReturn = this.functionReturnOp.wrapper;
 
@@ -339,6 +349,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([description]) => {
                 this.push([this.produceMark(description), description]);
+                console.log("literal: " + this.taintTree.get(this.ROOTID))
             });
 
     public literal = this.literalOp.wrapper;
@@ -376,6 +387,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // this.taintStack.push(r);
                 this.taintTree.get(this.ROOTID).push(r);
                 logger.info("read", s, r);
+                console.log("readVar: " + this.taintTree.get(this.ROOTID))
             });
 
     public readVar = this.readVarOp.wrapper;
@@ -394,6 +406,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.varTaintMap.set(s, v);
                 this.reportPossibleFlow(description, v);
                 this.reportPossibleImplicitFlow(description, v);
+                console.log("writeVar: " + this.taintTree.get(this.ROOTID))
             }
         );
 
@@ -434,6 +447,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 logger.info("readprop", o, s, r);
                 // this.taintStack.push(r);
                 this.taintTree.get(this.ROOTID).push(r);
+                console.log("readProperty: " + this.taintTree.get(this.ROOTID))
             }
         );
 
@@ -453,6 +467,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.reportPossibleImplicitFlow(description, objectTaintMap[s]);
 
                 logger.info("writeprop", o, s, objectTaintMap[s]);
+                console.log("writeProperty: " + this.taintTree.get(this.ROOTID))
             }
         );
 
@@ -465,6 +480,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
                 logger.info("unaryOp");
                 // no-op. Unary operations on values do not change their taint status.
+                console.log("UnaryOp: " + this.taintTree.get(this.ROOTID))
             }
         );
 
@@ -482,6 +498,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                     this.taintTree.get(this.ROOTID).pop(),
                     this.taintTree.get(this.ROOTID).pop()));
                 logger.info("binaryOp");
+                console.log("binaryOp: " + this.taintTree.get(this.ROOTID))
             }
         );
 
@@ -504,6 +521,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
                 // actually set the taint value of the variable
                 this.varTaintMap.set(s, v);
+                console.log("initVar: " + this.taintTree.get(this.ROOTID))
             }
         );
 
@@ -524,6 +542,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 let saved = useNativeImplementationPre(this, name, receiver, actualArgs, extraRecords, isMethod, description);
 
                 this.nativeModelSavedValues.push(saved);
+                console.log("builtInOp: " + this.taintTree.get(this.ROOTID))
             }
         );
 
@@ -539,6 +558,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 let saved = this.nativeModelSavedValues.pop();
 
                 useNativeImplementationPost(this, name, returnValueName, saved, description);
+                console.log("builtInExit: " + this.taintTree.get(this.ROOTID))
             }
         );
 
@@ -557,6 +577,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 logger.info("conditional", abstractValue);
 
                 this.pc = abstractValue;
+                console.log("conditionalOp: " + this.taintTree.get(this.ROOTID))
             }
         );
 
@@ -579,7 +600,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                // only initialize the "arguments" variable if we haven't already
                if (!this.objects.has(argumentsObject)) {
                    // peek into function args stack
-                   let argsValues = this.functionArgsStack[this.functionArgsStack.length - 1];
+                   // let argsValues = this.functionArgsStack[this.functionArgsStack.length - 1];
+                   let argsValues = this.functionArgsTree.get(this.ROOTID)[this.functionArgsTree.get(this.ROOTID).length - 1]
 
                    // take the values of the arguments and SET that as the
                    // shadow object for the "arguments" variable.
@@ -590,6 +612,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                    // of ShadowObject<V>. but typescript will not believe it.
                    this.objects.set(argumentsObject, argsValues as unknown as ShadowObject<V>);
                }
+                console.log("init args objects: " + this.taintTree.get(this.ROOTID))
             }
         );
     public initializeArgumentsObject = this.initializeArgumentsObjectOp.wrapper;
@@ -606,10 +629,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public asyncFunctionExitOp: Operation<[StaticDescription], void> =
         this.adviceWrap(([description]) => {
-            // this.idStack.pop();
-            // if (this.idStack.length === 0) {
-            //     this.idStack.push(this.ROOTID);
-            // }
+
         });
     public asyncFunctionExit = this.asyncFunctionExitOp.wrapper;
 
@@ -617,14 +637,16 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(([id, description]) => {
             this.functionTree.set(id, [...this.functionTree.get(this.ROOTID)]);
             this.taintTree.set(id, [...this.taintTree.get(this.ROOTID)]);
+            this.functionArgsTree.set(id, [...this.functionArgsTree.get(this.ROOTID)])
+            console.log("await pre: " + this.taintTree.get(this.ROOTID))
         });
     public awaitPre = this.awaitPreOp.wrapper;
 
     public awaitPostOp: Operation<[number, StaticDescription], void> =
         this.adviceWrap(([id, description]) => {
-            // this.idStack.push(id);
             this.functionTree.set(this.ROOTID, [...this.functionTree.get(id)]);
             this.taintTree.set(this.ROOTID, [...this.taintTree.get(id)]);
+            this.functionArgsTree.set(this.ROOTID, [...this.functionArgsTree.get(id)])
         });
     public awaitPost = this.awaitPostOp.wrapper;
 

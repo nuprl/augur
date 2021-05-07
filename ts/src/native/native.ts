@@ -110,7 +110,7 @@ let popArgs = <V, F>(machine: JSMachine<V, F>,
     let receiverTaint;
     if (isMethod) {
         // receiverTaint = machine.taintStack.pop();
-        receiverTaint = machine.taintTree.get(machine.idStack[machine.idStack.length - 1]).pop();
+        receiverTaint = machine.taintTree.get(machine.ROOTID).pop();
     } else {
         // if this isn't a method call, the base object is untainted
         receiverTaint = machine.getUntaintedValue();
@@ -119,12 +119,12 @@ let popArgs = <V, F>(machine: JSMachine<V, F>,
     // pop taint value of args
     for (let i = 0; i < actualArgs; i++) {
         // args[actualArgs - i - 1] = (machine.taintStack.pop());
-        args[actualArgs - i - 1] = (machine.taintTree.get(machine.idStack[machine.idStack.length - 1]).pop());
+        args[actualArgs - i - 1] = (machine.taintTree.get(machine.ROOTID).pop());
     }
 
     // pop value of builtin
     // let builtinTaint = machine.taintStack.pop();
-    let builtinTaint = machine.taintTree.get(machine.idStack[machine.idStack.length - 1]).pop();
+    let builtinTaint = machine.taintTree.get(machine.ROOTID).pop();
 
     return [builtinTaint, receiverTaint, args];
 };
@@ -149,7 +149,7 @@ let popArgsAndReportFlowsIntoBuiltin =
 let returnTaints = <V, F>(machine: JSMachine<V, F>,
                           taint: V) => {
     // machine.taintStack.push(taint);
-    machine.taintTree.get(machine.idStack[machine.idStack.length - 1]).push(taint);
+    machine.taintTree.get(machine.ROOTID).push(taint);
 };
 
 let defaultImplementationPre: NativeModelImplementationPre<void, void> =

@@ -72,9 +72,9 @@ export default class WeakMapShadow implements ShadowMemory {
       // Updates the scopeMap by exiting the scope for variables declared in this scope.
       // Otherwise if the same variable name occurred throughout the program, getting the full variable name
       // would return the incorrect value.
-      this.currentScope()[1].forEach(rd => {
-          this.scopeMap.get(rd).pop();
-      })
+      // this.currentScope()[1].forEach(rd => {
+      //     this.scopeMap.get(rd).pop();
+      // })
       // this.stack.pop();
         this.tree.get(this.idStack[this.ROOTID]).pop();
     }
@@ -110,15 +110,28 @@ export default class WeakMapShadow implements ShadowMemory {
     getFullVariableName(name: RawVariableDescription): VariableDescription {
         // Checks whether the provided name is in the scopeMap from when it was declared.
         // Otherwise it's most likely in the global scope.
-        if (this.scopeMap.has(name)) {
-            let arr = this.scopeMap.get(name);
-            if (arr[arr.length - 1] === undefined) {
-                this.addToScope(name);
+        // if (this.scopeMap.has(name)) {
+        //     let arr = this.scopeMap.get(name);
+        //     if (arr[arr.length - 1] === undefined) {
+        //         this.addToScope(name);
+        //     }
+        //     return (arr[arr.length - 1] + "^" + name) as VariableDescription;
+        // } else {
+        //     return ("global^" + name) as VariableDescription;
+        // }
+
+        // Refactored code above currently breaks due to the async/await implementation :/
+
+        let currentStackIndex = this.tree.get(this.ROOTID).length - 1;
+
+        while (currentStackIndex > 0) {
+            let stackFrame = this.tree.get(this.ROOTID)[currentStackIndex];
+            if (stackFrame[1].some(frameName => frameName === name)) {
+                return (stackFrame[0] + "^" + name) as VariableDescription;
             }
-            return (arr[arr.length - 1] + "^" + name) as VariableDescription;
-        } else {
-            return ("global^" + name) as VariableDescription;
+            currentStackIndex--;
         }
+        return ("global^" + name) as VariableDescription;
     }
 
     private addToScope(name: RawVariableDescription) {
