@@ -33,8 +33,11 @@ export default class JSWriter implements AbstractMachine {
     // @ts-ignore
     private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
 
+    // the outputStr represents a StringBuilder for the output file so an I/O operation doesn't occur whenever a callback is referenced.
+    private outputStr : string[] = [];
+
     constructor() {
-        this.logger.log(this.preamble);
+         this.outputStr.push(this.preamble);
     }
 
     public literal([description]: [StaticDescription]) {
@@ -89,8 +92,7 @@ export default class JSWriter implements AbstractMachine {
         });
     }
 
-    public functionInvokeEnd([name, description]:
-                                 [string, StaticDescription]) {
+    public functionInvokeEnd([name, description]: [string, StaticDescription]) {
         this.writeInstruction({
             command: "functionInvokeEnd",
             args: [name, description]
@@ -120,7 +122,6 @@ export default class JSWriter implements AbstractMachine {
             args: [name, returnValueName, description]})
     }
 
-
     public conditional([description]: [StaticDescription]): void {
         this.writeInstruction({ command: "conditional",
             args: [description]});
@@ -133,7 +134,9 @@ export default class JSWriter implements AbstractMachine {
 
     public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
-        this.logger.log(this.postamble);
+        // Once the analysis finishes then we write the output file string to the file location.
+        this.outputStr.push(this.postamble);
+        this.logger.log(this.outputStr.join("\n"));
     }
 
     public initializeArgumentsObject([argumentsObject, description]: [DynamicDescription, StaticDescription]) {
@@ -150,7 +153,7 @@ export default class JSWriter implements AbstractMachine {
     // Actually write the instruction to the output file.
     private writeInstruction(instr: Instruction) {
         const delim = ", ";
-        this.logger.log(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
+        this.outputStr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
     }
 
 }

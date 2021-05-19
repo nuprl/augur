@@ -3,8 +3,6 @@
 //  array each operation to flow into the advice class...
 
 // A type of advice
-import {AbstractMachine} from "../types";
-import JSMachine from "./JSMachine";
 
 class Advice<I, O> {
     private stack: Array<(I: I) => O> = [];

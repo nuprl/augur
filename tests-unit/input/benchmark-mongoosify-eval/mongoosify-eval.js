@@ -17,7 +17,3 @@ if (console["my-awesome-prop-23-42"]){
 } else {
     console.log("payload NOT delivered");
 }
-
-
-
-

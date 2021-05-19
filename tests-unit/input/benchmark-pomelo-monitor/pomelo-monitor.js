@@ -27,5 +27,3 @@ monitor.psmonitor.getPsInfo(param, function(err, data) {
 console.log("** after executing command **");
 
 done();
-
-

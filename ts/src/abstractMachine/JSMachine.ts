@@ -2,19 +2,19 @@
 
 // JALANGI DO NOT INSTRUMENT
 
-import { Accessor } from "../nodeprof";
+import {Accessor} from "../nodeprof";
 import {
     AbstractMachine,
     DynamicDescription,
-    StaticDescription,
     RunSpecification,
-    VariableDescription,
-    ShadowObject
+    ShadowObject,
+    StaticDescription,
+    VariableDescription
 } from "../types";
 import logger from "./logger";
 import {descriptionSubset} from "../utils";
 import Operation from "./operation";
-import {useNativeImplementationPre, useNativeImplementationPost} from "../native/native";
+import {useNativeImplementationPost, useNativeImplementationPre} from "../native/native";
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
 
@@ -136,9 +136,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             }
         };
 
-        let wrappedOperation = new wrappedOperationClass();
-
-        return wrappedOperation;
+        return new wrappedOperationClass();
     }
 
     public callstackPush(frame: StaticDescription, ): void {
@@ -353,9 +351,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.varTaintMap.set(s, v);
                 this.reportPossibleFlow(description, v);
                 this.reportPossibleImplicitFlow(description, v);
-                // TODO: fix this hack!
-                // this.pop(description);
-                // logger.info("wrote", this.varTaintMap.get(s));
             }
         );
 
@@ -571,10 +566,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         // no sensitive upgrade check
         // TODO: figure out how this should work generally
         return;
-    }
-
-    private currentFunction(): StaticDescription {
-        return this.functionCallStack[this.functionCallStack.length - 1];
     }
 
     private resetState() {

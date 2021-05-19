@@ -53,18 +53,13 @@ if (SHOULD_USE_DOCKER) {
 // const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected/";
 const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
 
-function getFileContents(fileName){
-    let result = fs.readFileSync(fileName).toString().split('\n'); // hack: use .split('\n') to ensure that the differences viewer shows line breaks
-    return result.map((s)=>s.trim());
-}
-
 // Given a test name:
 // - instrument its JS code;
 // - compare the generated instructions with its expected instructions
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
-exports.run = async function(projectDir, projectName, outputDir) {
+exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
     // Parse the spec to know the program to instrument, sources, sinks, and
     // expected taints
     const spec = JSON.parse(fs.readFileSync(projectDir + "/spec.json").toString());
@@ -94,7 +89,7 @@ exports.run = async function(projectDir, projectName, outputDir) {
             " " + outputFile
             // Run project using local NodeProf installation
             : "cd " + NODEPROF_HOME + "; "
-            + `env OUTPUT_FILE=\"${outputFile}\"`
+            + `export OUTPUT_FILE=\"${outputFile}\";`
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
             + " --analysis " + ANALYSIS + " "
             + inputFile);
@@ -108,8 +103,11 @@ exports.run = async function(projectDir, projectName, outputDir) {
         console.error(`${error}`);
         return;
     }
-    if (stdout) console.log(stdout);
-    if (stderr) console.error(stderr);
+
+    if (consoleFlag) {
+        if (stdout) console.log(stdout);
+        if (stderr) console.error(stderr);
+    }
 
     let results = executeInstructionsFromFile(outputFile, spec);
 

@@ -17,5 +17,3 @@ console.log(locale.sync(command));
 console.log("** after executing command **");
 
 done();
-
-

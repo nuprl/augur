@@ -3,8 +3,16 @@ const chalk = require('chalk');
 
 const {run} = require('./run');
 
-if (process.argv.length === 5) {
-    let [projectDir, projectName, outputDir] = process.argv.slice(2);
+if (process.argv.length === 5 || process.argv.length === 6) {
+
+    let consoleFlag = "";
+
+    if (process.argv.length === 5) {
+        [projectDir, projectName, outputDir] = process.argv.slice(2);
+    } else {
+        [consoleFlag, projectDir, projectName, outputDir] = process.argv.slice(2);
+    }
+    consoleFlag = consoleFlag === "-printStack";
 
     // fully resolve dirs before proceeding
     let cwd = process.cwd();
@@ -12,7 +20,7 @@ if (process.argv.length === 5) {
     projectDir = path.resolve(cwd, projectDir);
     outputDir = path.resolve(cwd, outputDir);
 
-    run(projectDir, projectName, outputDir).then(([spec, result]) => {
+    run(projectDir, projectName, outputDir, consoleFlag).then(([spec, result]) => {
         console.log();
         console.log("---");
         console.log();
@@ -25,7 +33,7 @@ if (process.argv.length === 5) {
         }
     });
 } else {
-    console.err('Usage: node cli.js <project directory> <project name>' +
+    console.err('Usage: node cli.js [-printStack] <project directory> <project name>' +
         ' <output directory>');
     exit(1);
 }

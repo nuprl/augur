@@ -19,5 +19,3 @@ var uptime = require('os-uptime')
 var time = uptime(command).toLocaleString();
 console.log('System was started at: %s', time);
 done();
-
-

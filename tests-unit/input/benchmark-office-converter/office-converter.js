@@ -26,5 +26,3 @@ converter.generatePdf('./test.xls' + command, fun);
 console.log("*** after calling generatePdf");
 
 done();
-
-

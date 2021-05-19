@@ -18,6 +18,7 @@ function shouldPrintBuiltin(name: string) {
 
 export default class Analyze implements Analyzer {
     public sandbox: Sandbox;
+    private time: number = 0;
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;

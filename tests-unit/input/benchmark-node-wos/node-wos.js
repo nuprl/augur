@@ -18,5 +18,3 @@ var wos = require('node-wos');
 console.log(wos.getOSName(command));
 
 done();
-
-

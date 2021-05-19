@@ -5,11 +5,11 @@ import * as fs from 'fs';
 
 export default class MyLogger {
 
-  private fileName: fs.PathLike;
+  private readonly fileName: fs.PathLike;
 
   constructor(fileName: fs.PathLike){
     this.fileName = fileName;
-    fs.openSync(fileName, "w"); // create empty file
+    fs.openSync(this.fileName, "w"); // create empty file
   }
 
   log(s: string){

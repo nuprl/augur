@@ -32,5 +32,3 @@ console.log('hostname = ' + hostname);
 console.log("** after executing command **");
 
 done();
-
-

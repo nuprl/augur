@@ -21,6 +21,3 @@ si.cpu(function(data) {
     console.log("***after call to exec");
     done(); // note: important to call done() here
 }, command);
-
-
-
