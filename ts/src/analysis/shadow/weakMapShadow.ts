@@ -25,12 +25,10 @@ export default class WeakMapShadow implements ShadowMemory {
         [["global" as DynamicDescription, []]];
 
     private tree: Map<number, Array<[DynamicDescription, Array<RawVariableDescription>]>> = new Map<number, Array<[DynamicDescription, Array<RawVariableDescription>]>>()
-    private idStack: number[] = [];
     private ROOTID: number = 0;
 
     constructor() {
         this.tree.set(0, [["global" as DynamicDescription, []]]);
-        this.idStack.push(this.ROOTID);
     }
 
     getShadowID(o: object): DynamicDescription {
@@ -64,7 +62,7 @@ export default class WeakMapShadow implements ShadowMemory {
     functionEnter(f: Function): void {
         console.error("shadow functionEnter");
         // this.stack.push([(this.getShadowID(f) + "#" + this.key++) as DynamicDescription, []]);
-        this.tree.get(this.idStack[this.ROOTID]).push([(this.getShadowID(f) + "#" + this.key++) as DynamicDescription, []]);
+        this.tree.get(this.ROOTID).push([(this.getShadowID(f) + "#" + this.key++) as DynamicDescription, []]);
     }
 
     functionExit(): void {
@@ -76,7 +74,7 @@ export default class WeakMapShadow implements ShadowMemory {
       //     this.scopeMap.get(rd).pop();
       // })
       // this.stack.pop();
-        this.tree.get(this.idStack[this.ROOTID]).pop();
+        this.tree.get(this.ROOTID).pop();
     }
 
     declare(name: RawVariableDescription): void {
@@ -89,11 +87,9 @@ export default class WeakMapShadow implements ShadowMemory {
 
    awaitPre(id: number) {
        this.tree.set(id, this.tree.get(this.ROOTID));
-       // this.idStack.push(id);
    }
 
    awaitPost(id: number) {
-        // this.idStack.push(id);
        this.tree.set(this.ROOTID, this.tree.get(id));
    }
 
@@ -103,7 +99,7 @@ export default class WeakMapShadow implements ShadowMemory {
 
     currentScope(): [DynamicDescription, Array<RawVariableDescription>] {
         // return this.stack[this.stack.length - 1];
-        let currentStack = this.tree.get(this.idStack[this.ROOTID]);
+        let currentStack = this.tree.get(this.ROOTID);
         return currentStack[currentStack.length - 1];
     }
 

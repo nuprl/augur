@@ -1,7 +1,7 @@
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
-import { Accessor } from "../nodeprof";
+import {Accessor, ExceptionVal} from "../nodeprof";
 import {
     Instruction,
     AbstractMachine,
@@ -148,16 +148,16 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({command: "asyncFunctionEnter", args: [description]});
     }
 
-    public asyncFunctionExit([description]: [StaticDescription]) {
-        this.writeInstruction({command: "asyncFunctionExit", args: [description]});
+    public asyncFunctionExit([iid, promiseId, result, exceptionVal, description]: [number, DynamicDescription, any, ExceptionVal, StaticDescription]) {
+        this.writeInstruction({command: "asyncFunctionExit", args: [result, promiseId, exceptionVal, description]});
     }
 
-    public awaitPre([id, description]: [number, StaticDescription]) {
-        this.writeInstruction({command: "awaitPre", args: [id, description]});
+    public awaitPre([id, promiseId, promiseOrAwaitedVal, description]: [number, DynamicDescription, any, StaticDescription]) {
+        this.writeInstruction({command: "awaitPre", args: [id, promiseId, promiseOrAwaitedVal, description]});
     }
 
-    public awaitPost([id, description]: [number, StaticDescription]) {
-        this.writeInstruction({command: "awaitPost", args: [id, description]});
+    public awaitPost([id, promiseId, promiseOrAwaitedVal, valResolveOrRejected, description]: [number, DynamicDescription, any, any, StaticDescription]) {
+        this.writeInstruction({command: "awaitPost", args: [id, promiseId, promiseOrAwaitedVal, valResolveOrRejected, description]});
     }
 
     // Prepares an argument to a callback to appear in JS code.

@@ -547,6 +547,55 @@ let models = asNativeModelMap({
             returnTaints(machine, argsTaint[extraRecords]);
         }
     }),
+    "then": asNativeModel({
+        recorder:
+            (analysis: Analysis,
+             name: DynamicDescription,
+             receiverName: DynamicDescription,
+             receiver: any,
+             args: any[],
+             description: StaticDescription) => {
+                console.log(args); // [ [Function ]]
+                let func: Function = args[0] as Function;
+                Object.setPrototypeOf(func, {testProp: "Hello World"})
+                return [receiver, func];
+            },
+        implementationPre: function <V, F>(machine: JSMachine<V, F>,
+                                           name: DynamicDescription,
+                                           receiverName: DynamicDescription,
+                                           actualArgs: number,
+                                           saved: any,
+                                           isMethod: boolean,
+                                           description: StaticDescription): void {
+            let [receiver, func] = saved;
+            let receiverTaint = machine.promiseMap.get(receiver);
+        }
+    }),
+
+    "Promise": asNativeModel({
+        recorder:
+            (analysis: Analysis,
+             name: DynamicDescription,
+             receiverName: DynamicDescription,
+             receiver: any,
+             args: any[],
+             description: StaticDescription) => {
+            console.log(receiver);
+            console.log(args);
+                analysis.promiseMap.set(receiver, receiverName);
+                return receiver;
+            },
+        implementationPre: function <V, F>(machine: JSMachine<V, F>,
+                                           name: DynamicDescription,
+                                           receiverName: DynamicDescription,
+                                           actualArgs: number,
+                                           saved: any,
+                                           isMethod: boolean,
+                                           description: StaticDescription): void {
+            let v = machine.produceMark(description);
+            machine.promiseMap.set(saved, {resolve: v, reject: v});
+        }
+    })
 });
 
 // TODO: don't use string here; create a type for builtin names

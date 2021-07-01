@@ -1,4 +1,4 @@
-import {Accessor, ExceptionVal} from "./nodeprof";
+import {Accessor, ExceptionVal, Invoked, Receiver} from "./nodeprof";
 
 // Various types used throughout the analysis.
 
@@ -247,20 +247,19 @@ export interface AbstractMachine {
      *
      * @param input
      */
-    asyncFunctionExit: (input: [StaticDescription]) => void;
+    asyncFunctionExit: (input: [number, DynamicDescription, any, ExceptionVal, StaticDescription]) => void;
 
     /**
      *
      * @param input
      */
-    awaitPre: (input: [number, StaticDescription]) => void;
+    awaitPre: (input: [number, DynamicDescription, any, StaticDescription]) => void;
 
     /**
      *
      * @param input
      */
-    awaitPost: (input: [number, StaticDescription]) => void;
-
+    awaitPost: (input: [number, DynamicDescription, any, any, StaticDescription]) => void;
 }
 
 // an interface for associating shadow identifiers with arbitrary objects.

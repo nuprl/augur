@@ -36,6 +36,7 @@ export default class Analysis implements Analyzer {
     private sandbox: Sandbox;
     private state: AbstractMachine = new JSWriter();
 
+    public promiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
     // keeping track of the functions entered and exited using the
     // `functionEnter` and `functionExit` callbacks. this is because the
     // `functionExit` callback doesn't provide the function that is
@@ -48,7 +49,17 @@ export default class Analysis implements Analyzer {
     // Tracks which kind of functions are native throughout instrumentation
     // This means the isNative() will only need to be called once instead of twice when entering a new function.
     private isNativeMap: WeakMap<Invoked, boolean> = new WeakMap<Invoked, boolean>();
+
     constructor(sandbox: Sandbox) {
+        // async_hooks.createHook({
+        //     init(asyncId: any, type: any, triggerAsyncId: any, resource: any) {
+        //         // state.init([asyncId, type, triggerAsyncId, resource]);
+        //         console.log(asyncId + " " + type + " " + triggerAsyncId + " " + resource);
+        //     },
+        //     promiseResolve(asnycId: number) { state.promiseResolve([asnycId])}
+        // }).enable();
+        // this.asyncHooks.enable();
+
         this.sandbox = sandbox;
     }
 
@@ -238,17 +249,20 @@ export default class Analysis implements Analyzer {
     }
 
     public asyncFunctionExit: NPCallbacks.asyncFunctionExit = (iid: number, result: any, exceptionVal: ExceptionVal) => {
-        this.state.asyncFunctionExit([{type: "asyncFunctionExit", location: parseIID(iid)}])
+        console.log("asyncExit: " + result)
+        this.state.asyncFunctionExit([iid, this.getPromiseId(result),  result, exceptionVal, {type: "asyncFunctionExit", location: parseIID(iid)}])
     }
 
     public awaitPre: NPCallbacks.awaitPre = (iid: number, promiseOrAwaitedVal: any) => {
         this.shadowMemory.awaitPre(iid);
-        this.state.awaitPre([iid, {type: "awaitPre", location: parseIID((iid))}]);
+        this.state.awaitPre([iid, this.getPromiseId(promiseOrAwaitedVal), promiseOrAwaitedVal,
+            {type: "awaitPre", location: parseIID((iid))}]);
     }
 
     public awaitPost: NPCallbacks.awaitPost = (iid: number, promiseOrValAwaited: any, valResolveOrRejected: any, isPromiseRejected: boolean) => {
         this.shadowMemory.awaitPost(iid);
-        this.state.awaitPost([iid, {type: "awaitPre", location: parseIID((iid))}]);
+        this.state.awaitPost([iid, this.getPromiseId(promiseOrValAwaited), promiseOrValAwaited, valResolveOrRejected,
+            {type: "awaitPost", location: parseIID((iid))}]);
     }
 
     // TODO: fix this hack with real instrumentation
@@ -261,5 +275,14 @@ export default class Analysis implements Analyzer {
         // doesn't represent real code
         return /\{\s+\[native code\]/
             .test(Function.prototype.toString.call(fun));
+    }
+
+    getPromiseId(p: any) {
+        if (!(p instanceof Promise))
+            return p;
+        if (!this.promiseMap.has(p)) {
+            this.promiseMap.set(p, ("promise^" + this.promiseMap.size.toString()) as DynamicDescription);
+        }
+        return this.promiseMap.get(p);
     }
 }
