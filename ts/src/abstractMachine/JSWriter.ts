@@ -160,10 +160,23 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({command: "awaitPost", args: [id, promiseId, promiseOrAwaitedVal, valResolveOrRejected, description]});
     }
 
+    public promiseReaction([id, promiseValue, promiseId, description]: [number, any, DynamicDescription, StaticDescription]) {
+        this.writeInstruction({command: "promiseReaction", args: [id, promiseValue, promiseId, description]});
+    }
+
+    public promiseResolve([id, promiseValue, promiseId, description]: [number, any, DynamicDescription, StaticDescription]) {
+        this.writeInstruction({command: "promiseResolve", args: [id, promiseValue, promiseId, description]});
+    }
+
     // Prepares an argument to a callback to appear in JS code.
-    private prepareArg(arg: any): string {
+    private prepareArg(arg: any): string[] | string {
         // Wrap strings in quotes, properly escape strings, etc.
-        return JSON.stringify(arg);
+        try {
+            return JSON.stringify(arg);
+        }
+        catch {
+            return arg;
+        }
     }
 
     // Actually write the instruction to the output file.

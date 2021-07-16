@@ -4,18 +4,17 @@
 
 const RealPromise = Promise;
 
-let promiseCount = 0;
+let promiseCount = 1;
 
 (<any> Promise) = function(fun: any){
-
+    console.log("Promise " + promiseCount + " Created");
     let wrappedFun = function(resolve: any,reject: any){
-
-        let wrappedResolve = function(v: any){
-            // console.log("resolving promise " + promiseCount + " with " + v);
-            resolve(v);
+        let wrappedResolve = function(augur_v: any){
+            console.log("entering wrapped resolve for promise: " + promiseCount);
+            augur_getResolveFor(augur_v, promiseCount);
+            resolve(augur_v);
         }
         let wrappedReject = function(err: any){
-            // console.log("rejecting promise " + promiseCount + " with " + err);
             reject(err);
         }
         fun(wrappedResolve, wrappedReject);
@@ -24,17 +23,43 @@ let promiseCount = 0;
     return PromiseWrapper(p, promiseCount++);
 }
 
-function PromiseWrapper(p: any, count: any){
+function PromiseWrapper(p: any, currPromiseId: any){
     let realThen = p.then;
     return {
         then: (f: any) => {
-            // console.log("registering reaction " + f + " on promise " + count + "\n");
-            return PromiseWrapper(realThen.call(p,(v: any) => {
-                // console.log("executing reaction " + f + " on promise " + count + "\n");
-                return f(v);
-            }), promiseCount++);
+            promiseCount++
+            let nextPromiseId = promiseCount;
+            return PromiseWrapper(realThen.call(p,(augur_v: any) => {
+                augur_v = augur_getTaintFor(p, currPromiseId, augur_v);
+                let result = f(augur_v);
+                augur_getResolveFor(result, nextPromiseId) // TODO: Fix
+                return result;
+            }), nextPromiseId);
         }
     };
+}
+
+// function PromiseWrapper(p: any, count: any){
+//     let realThen = p.then;
+//     return {
+//         then: (f: any) => {
+//             console.log("entering reaction for promise: " + count);
+//             let thenResult = realThen.call(p, (augur_v: any) => {
+//                 augur_v = augur_getTaintFor(p, count, augur_v);
+//                 return f(augur_v);
+//             });
+//             // Should invoke our patch.
+//             return new Promise((res, rej) => {
+//                 res(thenResult);
+//             });
+//         }
+//     };
+// }
+
+function augur_getResolveFor(augur_v: any, p: any) { }
+
+function augur_getTaintFor(p: any, count: number, augur_v: any) {
+    return augur_v;
 }
 
 Array.prototype.forEach = function (fun /*, thisp */) {

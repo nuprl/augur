@@ -260,6 +260,19 @@ export interface AbstractMachine {
      * @param input
      */
     awaitPost: (input: [number, DynamicDescription, any, any, StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    promiseReaction: (input: [number, any, DynamicDescription, StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    promiseResolve: (input: [number, any, DynamicDescription, StaticDescription]) => void;
+
 }
 
 // an interface for associating shadow identifiers with arbitrary objects.

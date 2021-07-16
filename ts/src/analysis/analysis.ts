@@ -8,12 +8,11 @@ import {
 } from "../nodeprof";
 import {
     AbstractMachine,
-    DynamicDescription,
+    DynamicDescription, Location,
     PropertyDescription,
     RawVariableDescription,
-    ShadowMemory,
+    ShadowMemory, SourcePosition, SourceSpan,
     StaticDescription,
-    VariableDescription
 } from "../types";
 import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
@@ -50,20 +49,16 @@ export default class Analysis implements Analyzer {
     // This means the isNative() will only need to be called once instead of twice when entering a new function.
     private isNativeMap: WeakMap<Invoked, boolean> = new WeakMap<Invoked, boolean>();
 
-    constructor(sandbox: Sandbox) {
-        // async_hooks.createHook({
-        //     init(asyncId: any, type: any, triggerAsyncId: any, resource: any) {
-        //         // state.init([asyncId, type, triggerAsyncId, resource]);
-        //         console.log(asyncId + " " + type + " " + triggerAsyncId + " " + resource);
-        //     },
-        //     promiseResolve(asnycId: number) { state.promiseResolve([asnycId])}
-        // }).enable();
-        // this.asyncHooks.enable();
+    private eventLoopOver: Boolean = false;
 
+    constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
     }
 
     public declare: NPCallbacks.declare = (iid, name: RawVariableDescription, type: string) => {
+        if (this.eventLoopOver) {
+            // call shadow memory to get correct scope
+        }
         this.shadowMemory.declare(name);
         this.state.initVar([this.shadowMemory.getFullVariableName(name),
             {type: "declaration",
@@ -209,6 +204,8 @@ export default class Analysis implements Analyzer {
             description.name = f.name;
         }
 
+        if (f.name === "test") { }
+
         let returnValueName = this.shadowMemory.getShadowID(result);
 
         this.shadowMemory.functionExit();
@@ -223,10 +220,21 @@ export default class Analysis implements Analyzer {
         let functionName = this.shadowMemory.getShadowID(f);
         this.functionCallStack.push(functionName);
         this.state.functionEnter([functionName, args.length, {type: "functionEnter", location: parseIID(iid)}]);
+        if (f.name === "augur_getTaintFor") {
+            this.state.promiseReaction([iid, this.shadowMemory.getFullVariableName("augur_v"),
+                "promise^" + args[1] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
+        } else if (f.name === "augur_getResolveFor") {
+            console.log("resolve args: " + args);
+            this.state.promiseResolve([iid, this.shadowMemory.getFullVariableName("augur_v"),
+                "promise^" + args[1] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
+        }
     }
 
     public functionExit: NPCallbacks.functionExit = (iid: number,  returnVal: any, wrappedExceptionVal?: ExceptionVal) => {
         let f = this.functionCallStack.pop();
+        if (f === "global@1") {
+            this.eventLoopOver = true;
+        }
         this.state.functionExit([f, f.length, {type: "expr", location: parseIID(iid)}]);
     }
 
@@ -278,8 +286,8 @@ export default class Analysis implements Analyzer {
     }
 
     getPromiseId(p: any) {
-        if (!(p instanceof Promise))
-            return p;
+        // if (!(p instanceof Promise))
+        //     return p;
         if (!this.promiseMap.has(p)) {
             this.promiseMap.set(p, ("promise^" + this.promiseMap.size.toString()) as DynamicDescription);
         }

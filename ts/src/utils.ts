@@ -52,7 +52,7 @@ export function parseJalangiLocationString(loc: string): Location {
             fileName: "eval"
         };
     } else {
-        let result: string[] = loc.split("/").pop().split(":");
+        let result: string[] = loc.replace('(', '').split("/").pop().split(":");
         let fileName: string = result.shift().substring(0);
         let indices = result.map((n: string) => Number.parseInt(n.charAt(0)));
         let span: SourceSpan = {
