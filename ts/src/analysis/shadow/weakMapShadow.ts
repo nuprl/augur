@@ -40,7 +40,7 @@ export default class WeakMapShadow implements ShadowMemory {
             this.initialize(o);
             key = this.map.get(o);
             if (!key) {
-               console.error(`failed to initialize shadow ID for object ${o}`);
+               console.error(`failed to initialize shadow ID for object ${String(o)}`);
             }
         }
 

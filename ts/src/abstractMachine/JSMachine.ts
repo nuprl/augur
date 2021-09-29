@@ -125,6 +125,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     // promiseMap: Map<DynamicDescription, ShadowObject<V>> = new Map<DynamicDescription, ShadowObject<V>>()
     promiseMap: Map<any, ShadowObject<V>> = new Map<any, ShadowObject<V>>()
+    asyncPromiseMap: Map<any, ShadowObject<V>> = new Map<any, ShadowObject<V>>()
 
     constructor(spec: RunSpecification) {
         // logger.info(sources, sinks);
@@ -650,8 +651,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public asyncFunctionExitOp: Operation<[number, DynamicDescription, any, ExceptionVal, StaticDescription], void> =
         this.adviceWrap(([iid, promiseId, result, exceptionVal, description]) => {
-            let v = this.taintTree.get(this.ROOTID)[this.taintTree.get(this.ROOTID).length - 1];
-            this.promiseMap.set(result, {resolve: v , reject: v})
+            // let v = this.taintTree.get(this.ROOTID)[this.taintTree.get(this.ROOTID).length - 1];
+            let v = this.returnValue;
+            this.asyncPromiseMap.set(promiseId, {resolve: v , reject: v})
 
             console.log("asyncExit: " + this.taintTree.get(0))
         });
@@ -659,9 +661,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public awaitPreOp: Operation<[number, DynamicDescription, any, StaticDescription], void> =
         this.adviceWrap(([id, promiseId, promiseOrValAwaited, description]) => {
-            if (!this.promiseMap.has(promiseOrValAwaited)) {
+            if (!this.asyncPromiseMap.has(promiseId)) {
                 let v = this.taintTree.get(this.ROOTID)[this.taintTree.get(this.ROOTID).length - 1];
-                this.promiseMap.set(promiseOrValAwaited, {resolve: v , reject: v})
+                console.log("AwaitPre Taint: " , v);
+                this.asyncPromiseMap.set(promiseId, {resolve: v , reject: v})
             }
             this.setMachineState(this.ROOTID, id);
 
@@ -672,8 +675,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public awaitPostOp: Operation<[number, DynamicDescription, any, any, StaticDescription], void> =
         this.adviceWrap(([id, promiseId, promiseOrValAwaited, resolveOrRejectedVal, description]) => {
             this.setMachineState(id, this.ROOTID);
-            let resolveField = Object.keys(this.promiseMap.get(promiseOrValAwaited))[0]
-            this.taintTree.get(this.ROOTID).push(this.promiseMap.get(promiseId)[resolveField]);
+            let resolveField = Object.keys(this.asyncPromiseMap.get(promiseId))[0]
+            this.taintTree.get(this.ROOTID).push(this.asyncPromiseMap.get(promiseId)[resolveField]);
 
             console.log("awaitPost: " + this.taintTree.get(0))
         });

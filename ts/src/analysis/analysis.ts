@@ -36,6 +36,8 @@ export default class Analysis implements Analyzer {
     private state: AbstractMachine = new JSWriter();
 
     public promiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
+    public asyncPromiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
+
     // keeping track of the functions entered and exited using the
     // `functionEnter` and `functionExit` callbacks. this is because the
     // `functionExit` callback doesn't provide the function that is
@@ -204,8 +206,6 @@ export default class Analysis implements Analyzer {
             description.name = f.name;
         }
 
-        if (f.name === "test") { }
-
         let returnValueName = this.shadowMemory.getShadowID(result);
 
         this.shadowMemory.functionExit();
@@ -258,18 +258,18 @@ export default class Analysis implements Analyzer {
 
     public asyncFunctionExit: NPCallbacks.asyncFunctionExit = (iid: number, result: any, exceptionVal: ExceptionVal) => {
         console.log("asyncExit: " + result)
-        this.state.asyncFunctionExit([iid, this.getPromiseId(result),  result, exceptionVal, {type: "asyncFunctionExit", location: parseIID(iid)}])
+        this.state.asyncFunctionExit([iid, this.getAsyncPromiseId(result),  result, exceptionVal, {type: "asyncFunctionExit", location: parseIID(iid)}])
     }
 
     public awaitPre: NPCallbacks.awaitPre = (iid: number, promiseOrAwaitedVal: any) => {
         this.shadowMemory.awaitPre(iid);
-        this.state.awaitPre([iid, this.getPromiseId(promiseOrAwaitedVal), promiseOrAwaitedVal,
+        this.state.awaitPre([iid, this.getAsyncPromiseId(promiseOrAwaitedVal), promiseOrAwaitedVal,
             {type: "awaitPre", location: parseIID((iid))}]);
     }
 
     public awaitPost: NPCallbacks.awaitPost = (iid: number, promiseOrValAwaited: any, valResolveOrRejected: any, isPromiseRejected: boolean) => {
         this.shadowMemory.awaitPost(iid);
-        this.state.awaitPost([iid, this.getPromiseId(promiseOrValAwaited), promiseOrValAwaited, valResolveOrRejected,
+        this.state.awaitPost([iid, this.getAsyncPromiseId(promiseOrValAwaited), promiseOrValAwaited, valResolveOrRejected,
             {type: "awaitPost", location: parseIID((iid))}]);
     }
 
@@ -285,12 +285,10 @@ export default class Analysis implements Analyzer {
             .test(Function.prototype.toString.call(fun));
     }
 
-    getPromiseId(p: any) {
-        // if (!(p instanceof Promise))
-        //     return p;
-        if (!this.promiseMap.has(p)) {
-            this.promiseMap.set(p, ("promise^" + this.promiseMap.size.toString()) as DynamicDescription);
+    getAsyncPromiseId(p: any) {
+        if (!this.asyncPromiseMap.has(p)) {
+            this.asyncPromiseMap.set(p, ("async^" + this.asyncPromiseMap.size.toString()) as DynamicDescription);
         }
-        return this.promiseMap.get(p);
+        return this.asyncPromiseMap.get(p);
     }
 }
