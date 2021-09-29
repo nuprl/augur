@@ -33,7 +33,7 @@ if (process.argv.length === 5 || process.argv.length === 6) {
         }
     });
 } else {
-    console.err('Usage: node cli.js [-printStack] <project directory> <project name>' +
+    console.error('Usage: node cli.js [-printStack] <project directory> <project name>' +
         ' <output directory>');
-    exit(1);
+    process.exit(1);
 }

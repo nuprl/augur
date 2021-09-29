@@ -154,6 +154,9 @@ export default class Analysis implements Analyzer {
         let description: StaticDescription = {type: "functionInvocation",
             location: parseIID(iid)};
 
+        console.error(receiver);
+        console.error(f);
+
         this.shadowMemory.initialize(receiver);
         this.shadowMemory.initialize(f);
         this.shadowMemory.functionEnter(f);
@@ -220,13 +223,19 @@ export default class Analysis implements Analyzer {
         let functionName = this.shadowMemory.getShadowID(f);
         this.functionCallStack.push(functionName);
         this.state.functionEnter([functionName, args.length, {type: "functionEnter", location: parseIID(iid)}]);
+        // The following if-statement defines special functionality for functions
+        // that are executed as part of the promise wrapper.
+        //
+        // getTaintFor is used when we need to get the taint for promise resolution 
+        // - (e.g., when it's resolved value is needed)
+        // getResolveFor is used to figure out the taint when `resolve` is called in a promise executor 
+        // - (essentially, we intercept the call to resolve)
         if (f.name === "augur_getTaintFor") {
             this.state.promiseReaction([iid, this.shadowMemory.getFullVariableName("augur_v"),
-                "promise^" + args[1] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
+                "promise^" + args[0] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
         } else if (f.name === "augur_getResolveFor") {
-            console.log("resolve args: " + args);
             this.state.promiseResolve([iid, this.shadowMemory.getFullVariableName("augur_v"),
-                "promise^" + args[1] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
+                "promise^" + args[0] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
         }
     }
 
