@@ -157,7 +157,7 @@ export default class JSWriter implements AbstractMachine {
     }
 
     public awaitPost([id, promiseId, promiseOrAwaitedVal, valResolveOrRejected, description]: [number, DynamicDescription, any, any, StaticDescription]) {
-        this.writeInstruction({command: "awaitPost", args: [id, promiseId, promiseOrAwaitedVal, valResolveOrRejected, description]});
+        this.writeInstruction({command: "awaitPost", args: [id, promiseId, promiseOrAwaitedVal, description]});
     }
 
     public promiseReaction([id, promiseValue, promiseId, description]: [number, any, DynamicDescription, StaticDescription]) {
@@ -166,6 +166,10 @@ export default class JSWriter implements AbstractMachine {
 
     public promiseResolve([id, promiseValue, promiseId, description]: [number, any, DynamicDescription, StaticDescription]) {
         this.writeInstruction({command: "promiseResolve", args: [id, promiseValue, promiseId, description]});
+    }
+
+    public promiseReject([id, promiseValue, promiseId, description]: [number, any, DynamicDescription, StaticDescription]) {
+        this.writeInstruction({command: "promiseReject", args: [id, promiseValue, promiseId, description]});
     }
 
     // Prepares an argument to a callback to appear in JS code.

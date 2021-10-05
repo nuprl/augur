@@ -1,6 +1,6 @@
 const src = "tainted";
 
-function id(x) {
+async function id(x) {
     return x;
 }
 
@@ -9,15 +9,9 @@ const promise2 = 42;
 let promise3;
 
 async function foo() {
-    promise3 = await id(src);
+    promise3 = id(src);
 
-    Promise.all([promise1, promise2, promise3]).then((values) => {
-        values.forEach((val, index, array) => {
-            if (index === 2) {
-                z = val;
-            }
-        });
-    });
+    z = (await Promise.all([promise1, promise2, promise3]))[2];
 }
 
 foo();

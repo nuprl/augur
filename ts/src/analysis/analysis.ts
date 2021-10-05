@@ -154,9 +154,6 @@ export default class Analysis implements Analyzer {
         let description: StaticDescription = {type: "functionInvocation",
             location: parseIID(iid)};
 
-        console.error(receiver);
-        console.error(f);
-
         this.shadowMemory.initialize(receiver);
         this.shadowMemory.initialize(f);
         this.shadowMemory.functionEnter(f);
@@ -230,11 +227,21 @@ export default class Analysis implements Analyzer {
         // - (e.g., when it's resolved value is needed)
         // getResolveFor is used to figure out the taint when `resolve` is called in a promise executor 
         // - (essentially, we intercept the call to resolve)
-        if (f.name === "augur_getTaintFor") {
+        if (f.name === "augur_executingReaction") {
+            this.state.promiseReaction([iid, this.shadowMemory.getFullVariableName("augur_v"),
+                "promise^" + args[0] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
+        } else if (f.name === "augur_executingRejection") {
+            this.state.promiseReject([iid, this.shadowMemory.getFullVariableName("augur_v"),
+                "promise^" + args[0] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
+        } else if (f.name === "augur_executingFinally") {
+            // ???
             this.state.promiseReaction([iid, this.shadowMemory.getFullVariableName("augur_v"),
                 "promise^" + args[0] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
         } else if (f.name === "augur_getResolveFor") {
             this.state.promiseResolve([iid, this.shadowMemory.getFullVariableName("augur_v"),
+                "promise^" + args[0] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
+        } else if (f.name === "augur_getRejectFor") {
+            this.state.promiseReject([iid, this.shadowMemory.getFullVariableName("augur_v"),
                 "promise^" + args[0] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
         }
     }
@@ -267,18 +274,21 @@ export default class Analysis implements Analyzer {
 
     public asyncFunctionExit: NPCallbacks.asyncFunctionExit = (iid: number, result: any, exceptionVal: ExceptionVal) => {
         console.log("asyncExit: " + result)
+        // TODO: we could probably add the property we want to result, here?
         this.state.asyncFunctionExit([iid, this.getAsyncPromiseId(result),  result, exceptionVal, {type: "asyncFunctionExit", location: parseIID(iid)}])
     }
 
     public awaitPre: NPCallbacks.awaitPre = (iid: number, promiseOrAwaitedVal: any) => {
         this.shadowMemory.awaitPre(iid);
-        this.state.awaitPre([iid, this.getAsyncPromiseId(promiseOrAwaitedVal), promiseOrAwaitedVal,
+        console.log('awaitPre: ' + JSON.stringify(promiseOrAwaitedVal));
+        console.log('awaitPre: this.getPromiseId(promiseOrAwaitedVal) ' + this.getPromiseId(promiseOrAwaitedVal));
+        this.state.awaitPre([iid, this.getPromiseId(promiseOrAwaitedVal), promiseOrAwaitedVal,
             {type: "awaitPre", location: parseIID((iid))}]);
     }
 
     public awaitPost: NPCallbacks.awaitPost = (iid: number, promiseOrValAwaited: any, valResolveOrRejected: any, isPromiseRejected: boolean) => {
         this.shadowMemory.awaitPost(iid);
-        this.state.awaitPost([iid, this.getAsyncPromiseId(promiseOrValAwaited), promiseOrValAwaited, valResolveOrRejected,
+        this.state.awaitPost([iid, this.getPromiseId(promiseOrValAwaited), promiseOrValAwaited, valResolveOrRejected,
             {type: "awaitPost", location: parseIID((iid))}]);
     }
 
@@ -292,6 +302,17 @@ export default class Analysis implements Analyzer {
         // doesn't represent real code
         return /\{\s+\[native code\]/
             .test(Function.prototype.toString.call(fun));
+    }
+
+    getPromiseId(p: any) {
+        // console.log('[!!] p.augur_pid: ' + p.augur_pid);
+        if (p != undefined && p.augur_pid != undefined) {
+            // console.log('[!!] True');
+            return 'promise^' + p.augur_pid  as DynamicDescription;
+        } else {
+            // console.log('[!!] False');
+            return this.getAsyncPromiseId(p);
+        }
     }
 
     getAsyncPromiseId(p: any) {

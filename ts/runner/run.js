@@ -95,7 +95,7 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
             + inputFile);
 
     let [error, stdout, stderr] = await exec(command,
-        {maxBuffer: 1024*1024*10 /* 10 MB buffer for stdout/stderr */});
+        {maxBuffer: 10*1024*1024*10 /* 10*10 MB buffer for stdout/stderr */});
 
     console.error("Source file: \t" + inputFile);
 
