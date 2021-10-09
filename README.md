@@ -1,5 +1,5 @@
 <img src="./augur.png" align="left" height="100">
- h
+
 **Augur** is a dynamic taint analysis for Node.js implemented in TypeScript
 using
 [NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). Augur is a clean-room
