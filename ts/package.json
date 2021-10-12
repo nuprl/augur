@@ -20,6 +20,7 @@
     "bunyan": "^1.8.14",
     "chalk": "^4.1.0",
     "get-stdin": "^8.0.0",
+    "prepend-file": "^2.0.0",
     "shelljs": "^0.8.4",
     "tslint": "^6.1.2",
     "typescript": "^3.9.7",
