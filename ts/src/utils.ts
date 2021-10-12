@@ -42,6 +42,19 @@ export function descriptionSubset(t1: StaticDescription, t2: StaticDescription):
     return objectSubset(t1, t2);
 }
 
+/**
+ * Checks if @t2 matches the description @t1 from the taint specification. Care is required
+ * as @t2 will always contain line information, @t1 may not, and @t1 may contain config information,
+ * which @t2 never has. 
+ * 
+ * @param t1 the description from the taint specification
+ * @param t2 the description from the runtime
+ */
+export function descriptionMatchesTaintSpec(t1: StaticDescription, t2: StaticDescription) {
+    return descriptionSubset({type: t1.type, name: t1.name, location: t1.location}, 
+        {type: t2.type, name: t2.name, location: t2.location});
+}
+
 export function parseJalangiLocationString(loc: string): Location {
     // Parse Jalangi location string
     // Rather than determining the location through a regex search we simply parse the provided loc string

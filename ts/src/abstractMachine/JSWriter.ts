@@ -99,16 +99,16 @@ export default class JSWriter implements AbstractMachine {
         });
     }
 
-    public functionInvokeStart([name, expectedArgs, actualArgs, description]:
-                                   [string, number, number, StaticDescription]) {
+    public functionInvokeStart([name, expectedArgs, actualArgs, argShadowIDs, description]:
+                                   [string, number, number, DynamicDescription[], StaticDescription]) {
         this.writeInstruction({
             command: "functionInvokeStart",
-            args: [name, expectedArgs, actualArgs, description]
+            args: [name, expectedArgs, actualArgs, argShadowIDs, description]
         });
     }
 
-    public functionReturn([name, description]: [string, StaticDescription]) {
-        this.writeInstruction({ command: "functionReturn", args: [name, description]});
+    public functionReturn([name, shadowIDs, description]: [string, DynamicDescription[], StaticDescription]) {
+        this.writeInstruction({ command: "functionReturn", args: [name, shadowIDs, description]});
     }
 
     public builtin([name, receiver, actualArgs, extraRecords, isMethod, description]:

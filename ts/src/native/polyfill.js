@@ -2,6 +2,24 @@
 // @ts-ignore
 // Promise = require("bluebird");
 
+// Names are argument order are critical.
+function augur_getResolveFor(p, augur_v) { }
+
+// Names and argument order are critical.
+function augur_getRejectFor(p, augur_v) { }
+
+function augur_executingReaction(count, augur_v) {
+    return augur_v;
+}
+
+function augur_executingRejection(count, augur_v) {
+    return augur_v;
+}
+
+function augur_executingFinally(count, augur_v) {
+    return augur_v;
+}
+
 const RealPromise = Promise;
 
 let promiseCount = 0;
@@ -15,8 +33,6 @@ Promise = function(fun) {
     let wrappedFun = function(resolve, reject){
         let wrappedResolve = function(augur_v){
             augur_getResolveFor(thisPromiseId, augur_v);
-            console.log('========== Resolving with:', augur_v);
-            console.log('========== Also, thisPromiseId:', thisPromiseId);
             resolve(augur_v);
         }
         let wrappedReject = function(err){
@@ -87,8 +103,7 @@ function PromiseWrapper(p, currPromiseId){
         then: (f) => {
             return new Promise((resolve, reject) => {
                 realThen.call(p, (augur_v) => {
-                    augur_v = augur_executingReaction(currPromiseId, augur_v);
-                    resolve(f(augur_v));
+                    resolve(f(augur_executingReaction(currPromiseId, augur_v)));
                 });
             });
             // promiseCount++
@@ -137,24 +152,6 @@ function PromiseWrapper(p, currPromiseId){
         },
         */
     };
-}
-
-// Names are argument order are critical.
-function augur_getResolveFor(p, augur_v) { }
-
-// Names and argument order are critical.
-function augur_getRejectFor(p, augur_v) { }
-
-function augur_executingReaction(count, augur_v) {
-    return augur_v;
-}
-
-function augur_executingRejection(count, augur_v) {
-    return augur_v;
-}
-
-function augur_executingFinally(count, augur_v) {
-    return augur_v;
 }
 
 // Names are argument order are critical.

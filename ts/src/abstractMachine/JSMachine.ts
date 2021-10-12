@@ -12,13 +12,13 @@ import {
     VariableDescription
 } from "../types";
 import logger from "./logger";
-import {descriptionSubset} from "../utils";
+import {descriptionMatchesTaintSpec, descriptionSubset} from "../utils";
 import Operation from "./operation";
 import {useNativeImplementationPost, useNativeImplementationPre} from "../native/native";
 
-const debug = true;
-const promiseDebug = true;
-const promiseDebugMap = true;
+const debug = false;
+const promiseDebug = false;
+const promiseDebugMap = false;
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
 
@@ -68,6 +68,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     pc: V;
     functionCallStack: Array<StaticDescription>;
     returnValue: V;
+    returnShadowIDs: DynamicDescription[];
 
     argsLeftToProcess: number = 0;
 
@@ -101,6 +102,11 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
      * Returns the taint marking associated with a completely clean value.
      */
     abstract getUntaintedValue(): V;
+
+    /**
+     * Returns the taint marking associated with a tainted value.
+     */
+    abstract getTaintedValue(): V;
 
     /**
      * Join two taint labels. The resulting label should represent the union
@@ -181,9 +187,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.flows.add(flow);
     }
 
-    public functionInvokeStartOp: Operation<[string, number, number, StaticDescription], void> =
+    public functionInvokeStartOp: Operation<[string, number, number, DynamicDescription[], StaticDescription], void> =
         this.adviceWrap(
-            ([name, expectedArgs, actualArgs, description]) => {
+            ([name, expectedArgs, actualArgs, argShadowIDs, description]) => {
                 // 1. set up `arguments` variable in shadow memory.
                 // let actualArgsValues = this.taintStack.slice(this.taintStack.length - actualArgs);
                 let actualArgsValues = this.taintTree.get(this.ROOTID).slice(
@@ -228,7 +234,20 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                         this.taintTree.get(this.ROOTID).length - expectedArgs - 1],
                         this.produceMark(description));
 
-                for (let i = this.taintTree.get(this.ROOTID).length - expectedArgs; i < this.taintTree.get(this.ROOTID).length; i++) {
+                // Current thought: We will check if the function is defined as a recursive sink.
+                // If it is, we will deeply check all arguments for taintedness.
+                const sinkConfig = this.getConfigForSink(description);
+                const isRecursive = sinkConfig && sinkConfig.config && sinkConfig.config.recursive;
+                if (isRecursive) {
+                    for (const argShadowID of argShadowIDs) {
+                        // Check the obj. that argShadowIDs[i] refers to for (recursive) taint.
+                        const argObj = this.getShadowObject(argShadowID);
+                        for (const field in argObj) {
+                            this.reportPossibleFlow(description, argObj[field]);
+                        }
+                    }
+                }
+                for (let i = this.taintTree.get(this.ROOTID).length - expectedArgs, j = 0; i < this.taintTree.get(this.ROOTID).length; i++, j++) {
                     this.reportPossibleFlow(description, this.taintTree.get(this.ROOTID)[i]);
                     this.taintTree.get(this.ROOTID)[i] =
                         this.join(this.taintTree.get(this.ROOTID)[i], functionInvocationTaint);
@@ -277,6 +296,23 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                     returnTaintValue =
                         this.join(returnTaintValue, this.returnValue);
                 }
+
+                // We also need to check if we should apply taint differently.
+                if (this.returnShadowIDs) {
+                    let taintInfo = this.getConfigForSource(description);
+                    if (taintInfo && taintInfo.config && taintInfo.config.recursive) {
+                        // Apply taint recursively.
+                        for (const shadowID of this.returnShadowIDs) {
+                            const returnedObj = this.getShadowObject(shadowID);
+                            const keys = Object.keys(returnedObj);
+                            for (const k of keys) {
+                                returnedObj[k] = this.getTaintedValue();
+                            }
+                        }
+                    }
+                    this.returnShadowIDs = undefined;
+                }
+
                 // if the function didn't explicitly return a value, it
                 // returns undefined, which will be untainted. so we won't
                 // touch the return taint value.
@@ -338,19 +374,21 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         );
     functionExit = this.functionExitOp.wrapper;
 
-    public functionReturnOp: Operation<[string, StaticDescription], void> =
+    public functionReturnOp: Operation<[string, DynamicDescription[], StaticDescription], void> =
         this.adviceWrap(
-            (input) => {
+            ([name, shadowIDs, description]) => {
                 // this.returnValue = this.taintStack[this.taintStack.length - 1];
-                this.returnValue = this.taintTree.get(this.ROOTID)[
-                this.taintTree.get(this.ROOTID).length - 1];
+                this.returnValue = this.taintTree.get(this.ROOTID)[this.taintTree.get(this.ROOTID).length - 1];
                 // we shouldn't pop this manually. a discardValue
                 // instruction should be generated by NodeProf right after
                 // the return callback.
                 // this.taintStack.pop();
 
+                // Also load the shadowID, for use in the invokeFunEnd callback.
+                this.returnShadowIDs = shadowIDs;
+
                 //IGNORE pop() function above!
-                if (debug) console.log("func return: " + this.taintTree.get(0))
+                if (debug) console.log("func return: " + this.taintTree.get(0));
             });
     public functionReturn = this.functionReturnOp.wrapper;
 
@@ -692,8 +730,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             let promiseTaint: V = this.getPromise(promiseId).resolve;
 
             this.varTaintMap.set(promiseValue, promiseTaint);
+            this.taintTree.get(this.ROOTID).push(promiseTaint);
 
-            if (promiseDebug || debug) console.log("PromsieReaction: " + promiseId + " " + promiseValue + " taint: " + this.varTaintMap.get(promiseValue));
+            if (promiseDebug || debug) console.log("PromiseReaction: " + promiseId + " " + promiseValue + " taint: " + this.varTaintMap.get(promiseValue));
             if (promiseDebug || debug) console.log("PromiseReaction: " + this.taintTree.get(0))
 
         });
@@ -713,6 +752,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(([id, promiseValue, promiseId, description]) => {
             this.promiseMap.set(promiseId, {resolve: this.getUntaintedValue(),
                 reject: this.varTaintMap.get(promiseValue)});
+
+            // TODO: push taint?
 
             if (promiseDebug || debug) console.log("PromsieReject: " + promiseId + " " + promiseValue + " taint: " + this.varTaintMap.get(promiseValue));
             if (promiseDebug || debug) console.log("PromiseReject: " + this.taintTree.get(0) + " from Map: " +  JSON.stringify(this.getPromise(promiseId)))
@@ -752,16 +793,38 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         // this.stateCounter = 0;
     }
 
+    // Probably don't need this...
+    // protected isRecursive(description: StaticDescription): boolean {
+    //     return (this.spec.sources.some((source) => descriptionSubset(source, description) && source.config && source.config.recursive) ||
+    //     this.spec.sinks.some((sink) => descriptionSubset(sink, description) && sink.config && sink.config.recursive))
+    // }
+
+    /**
+     * This function will get the taint config options for the given description.
+     * E.g., if the config option says "recursive", apply taint to all fields.
+     */
+    protected getConfigForSource(description: StaticDescription) : StaticDescription {
+        return this.spec.sources.find((source) => descriptionMatchesTaintSpec(source, description));
+    }
+
+    /**
+     * This function will get the taint config options for the given description.
+     * E.g., if the config option says "recursive", apply taint to all fields.
+     */
+    protected getConfigForSink(description: StaticDescription) : StaticDescription {
+        return this.spec.sinks.find((sink) => descriptionMatchesTaintSpec(sink, description));
+    }
+
     protected getSink(description: StaticDescription): StaticDescription {
-        return this.spec.sinks.find((sink) => descriptionSubset(sink, description));
+        return this.spec.sinks.find((sink) => descriptionMatchesTaintSpec(sink, description));
     }
 
     protected isSource(description: StaticDescription): boolean {
-        return this.spec.sources.some((source) => descriptionSubset(source, description));
+        return this.spec.sources.some((source) => descriptionMatchesTaintSpec(source, description));
     }
 
     protected isSink(description: StaticDescription): boolean {
-        return this.spec.sinks.some((sink) => descriptionSubset(sink, description));
+        return this.spec.sinks.some((sink) => descriptionMatchesTaintSpec(sink, description));
     }
 
     public getPromise(promiseId : any) {

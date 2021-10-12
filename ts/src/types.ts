@@ -90,10 +90,10 @@ export interface AbstractMachine {
      * @param expectedNumArgs the number of arguments this function is
      *                         expecting
      * @param actualNumArgs the number of arguments actually given
-     * @param _this the object bound to `this` for this function call
+     * @param argShadowIDs the shadowIDs of the arguments themselves
      * @param description why and where the action occurred
      */
-    functionInvokeStart: (input: [DynamicDescription, number, number, StaticDescription]) => void;
+    functionInvokeStart: (input: [DynamicDescription, number, number, DynamicDescription[], StaticDescription]) => void;
 
     /**
      * This operation represents the return of a *function invocation
@@ -165,9 +165,10 @@ export interface AbstractMachine {
      * onto the stack in `invokeFunEnd`.
      *
      * @param name the name of the function returning from
+     * @param shadowID of the return
      * @param description why and where the action occurred
      */
-    functionReturn: (input: [DynamicDescription, StaticDescription]) => void;
+    functionReturn: (input: [DynamicDescription, DynamicDescription[], StaticDescription]) => void;
 
     /**
      * Perform the specified builtin on the arguments from the top of the
@@ -379,6 +380,11 @@ export interface StaticDescription extends Object {
     type?: TaintType;
     name?: string;
     location?: Location;
+    config?: TaintConfig;
+}
+
+export interface TaintConfig {
+    recursive?: boolean;
 }
 
 export interface Location extends Object {

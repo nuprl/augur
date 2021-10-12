@@ -177,6 +177,24 @@ let defaultModel: NativeModel<void, void> = {
 };
 
 let models = asNativeModelMap({
+    "augur_testFunSkip": asNativeModel({
+        recorder: function(analysis: Analysis,
+                           name: DynamicDescription,
+                           receiverName: DynamicDescription,
+                           receiver: any,
+                           args: any[],
+                           description: StaticDescription): boolean {
+            return false;     
+        },
+        implementationPre: function <V, F>(machine: JSMachine<V, F>,
+                                           name: DynamicDescription,
+                                           receiverName: DynamicDescription,
+                                           actualArgs: number,
+                                           isArray: boolean,
+                                           isMethod: boolean,
+                                           description: StaticDescription): void {
+        },
+    }),
     "toString": asNativeModel({
         recorder: function(analysis: Analysis,
                            name: DynamicDescription,
@@ -550,35 +568,35 @@ let models = asNativeModelMap({
     /*
      *   Promises
      */
-    "then": asNativeModel({
-        recorder: (analysis: Analysis,
-                   name: DynamicDescription,
-                   receiverName: DynamicDescription,
-                   receiver: any,
-                   args: any[],
-                   description: StaticDescription) => {
-            // This refers to .then called on the returns of async functions.
-            // Get the asyncID of the promise, and return it.
-            return analysis.getAsyncPromiseId(receiver);
-        },
-        implementationPre: function <V, F>(machine: JSMachine<V, F>,
-                                        name: DynamicDescription,
-                                        receiverName: DynamicDescription,
-                                        actualArgs: number,
-                                        idOfReactedUponPromise: DynamicDescription,
-                                        isMethod: boolean,
-                                        description: StaticDescription): void {
-            let [_, receiverTaint, argsTaint] =
-            popArgsAndReportFlowsIntoBuiltin(machine,
-                name,
-                receiverName,
-                actualArgs,
-                isMethod,
-                description);
+    // "then": asNativeModel({
+    //     recorder: (analysis: Analysis,
+    //                name: DynamicDescription,
+    //                receiverName: DynamicDescription,
+    //                receiver: any,
+    //                args: any[],
+    //                description: StaticDescription) => {
+    //         // This refers to .then called on the returns of async functions.
+    //         // Get the asyncID of the promise, and return it.
+    //         return analysis.getAsyncPromiseId(receiver);
+    //     },
+    //     implementationPre: function <V, F>(machine: JSMachine<V, F>,
+    //                                     name: DynamicDescription,
+    //                                     receiverName: DynamicDescription,
+    //                                     actualArgs: number,
+    //                                     idOfReactedUponPromise: DynamicDescription,
+    //                                     isMethod: boolean,
+    //                                     description: StaticDescription): void {
+    //         let [_, receiverTaint, argsTaint] =
+    //         popArgsAndReportFlowsIntoBuiltin(machine,
+    //             name,
+    //             receiverName,
+    //             actualArgs,
+    //             isMethod,
+    //             description);
 
-            returnTaints(machine, machine.getPromise(idOfReactedUponPromise).resolve);
-        }
-    }),
+    //         returnTaints(machine, machine.getPromise(idOfReactedUponPromise).resolve);
+    //     }
+    // }),
 });
 
 // TODO: don't use string here; create a type for builtin names
@@ -646,3 +664,6 @@ export function useNativeImplementationPost<V, F, S>(machine: JSMachine<V, F>,
     // because we don't need to return anything.
 }
 
+export function getModelledFunctionNames() : string[] {
+    return Object.keys(models);
+}

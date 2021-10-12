@@ -6,6 +6,9 @@
             "name": "findOne",
             "location": {
                 "fileName": "index.js"
+            },
+            "config": {
+                "recursive": true
             }
         }
     ],
@@ -15,6 +18,9 @@
             "name": "findOne",
             "location": {
                 "fileName": "index.js"
+            },
+            "config": {
+                "recursive": true
             }
         }
     ],

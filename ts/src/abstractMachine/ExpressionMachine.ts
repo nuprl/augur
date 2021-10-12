@@ -5,6 +5,10 @@ import {StaticDescription} from "../types";
 
 export default class ExpressionMachine
     extends JSMachine<Set<StaticDescription>, [Set<StaticDescription>, StaticDescription]> {
+        
+    getTaintedValue(): Set<StaticDescription> {
+        throw new Error("Method not implemented.");
+    }
     check(sink: StaticDescription, taint: Set<StaticDescription>): boolean {
         return true;
     }

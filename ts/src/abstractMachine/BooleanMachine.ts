@@ -22,6 +22,10 @@ export default class BooleanMachine
         return this.isSource(description);
     }
 
+    getTaintedValue(): boolean {
+        return true;
+    }
+
     // When a value with taint marking T flows into a construct with the given
     // description
     reportPossibleFlow(description: StaticDescription, taintMarking: boolean): void {

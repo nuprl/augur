@@ -18,7 +18,8 @@ import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
 import {parseIID} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
-import {useNativeRecorder} from "../native/native";
+import {useNativeRecorder, getModelledFunctionNames} from "../native/native";
+import { isModuleBlock } from "typescript";
 
 // TODO: document this
 // load in polyfills
@@ -37,6 +38,14 @@ export default class Analysis implements Analyzer {
 
     public promiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
     public asyncPromiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
+
+    // The names of all modelled functions for which we need no instrumentation.
+    private modelledFunctionNames : string[] = getModelledFunctionNames();
+
+    // A stack of booleans indicating if we are skipping the currently executing function.
+    // It's a stack b/c we can't stop Augur from analyzing things inside of a skipped function,
+    // so we may encouter arbitrarily many functions we want to skip.
+    private inModelledFunction : boolean[] = [];
 
     // keeping track of the functions entered and exited using the
     // `functionEnter` and `functionExit` callbacks. this is because the
@@ -58,6 +67,8 @@ export default class Analysis implements Analyzer {
     }
 
     public declare: NPCallbacks.declare = (iid, name: RawVariableDescription, type: string) => {
+        if (this.inModelledFunction.length > 0) return;
+
         if (this.eventLoopOver) {
             // call shadow memory to get correct scope
         }
@@ -69,6 +80,8 @@ export default class Analysis implements Analyzer {
     }
 
     public literal: NPCallbacks.literal = (iid, val, hasGetterSetter) => {
+        if (this.inModelledFunction.length > 0) return;
+
         // logger.info("literal", val, hasGetterSetter);
         if (typeof val === "object") {
 
@@ -98,6 +111,8 @@ export default class Analysis implements Analyzer {
     }
 
     public read: NPCallbacks.read = (iid, name, val, isGlobal, isScriptLocal) => {
+        if (this.inModelledFunction.length > 0) return;
+
         let description: StaticDescription = {
             type: "variable",
             location: parseIID(iid),
@@ -110,6 +125,8 @@ export default class Analysis implements Analyzer {
     }
 
     public write: NPCallbacks.write = (iid, name, val, originalValue, isGlobal, isScriptLocal) => {
+        if (this.inModelledFunction.length > 0) return;
+
         this.state.writeVar([this.shadowMemory.getFullVariableName(name),
             {type: "variable",
             location: parseIID(iid),
@@ -117,6 +134,8 @@ export default class Analysis implements Analyzer {
     }
 
     public endStatement: NPCallbacks.endStatement = (iid, type) => {
+        if (this.inModelledFunction.length > 0) return;
+
        console.log("endStatement: " + type);
         this.state.pop(
             [{type: "expr",
@@ -124,18 +143,24 @@ export default class Analysis implements Analyzer {
     }
 
     public binaryPre: NPCallbacks.binaryPre = (iid: number, op: string, left: any, right: any, isOpAssign: boolean, isSwitchCaseComparison: boolean, isComputed: boolean) => {
+        if (this.inModelledFunction.length > 0) return;
+
         this.state.binary([
             {type: "expr",
             location: parseIID(iid)}]);
     }
 
     public unaryPre: NPCallbacks.unaryPre = (iid: number, op: string, left: any) => {
+        if (this.inModelledFunction.length > 0) return;
+
         this.state.unary([
             {type: "expr",
             location: parseIID(iid)}]);
     }
 
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
+        if (this.inModelledFunction.length > 0) return;
+
         this.shadowMemory.initialize(receiver);
         this.state.readProperty([this.shadowMemory.getShadowID(receiver),
             offset as PropertyDescription,
@@ -144,6 +169,8 @@ export default class Analysis implements Analyzer {
     }
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
+        if (this.inModelledFunction.length > 0) return;
+
         this.shadowMemory.initialize(receiver);
         this.state.writeProperty([this.shadowMemory.getShadowID(receiver),
             offset as PropertyDescription,
@@ -151,6 +178,8 @@ export default class Analysis implements Analyzer {
     };
 
     public invokeFunPre: NPCallbacks.invokeFunPre = (iid, f, receiver, args, isConstructor, isMethod) => {
+        if (this.inModelledFunction.length > 0) return;
+
         let description: StaticDescription = {type: "functionInvocation",
             location: parseIID(iid)};
 
@@ -185,21 +214,77 @@ export default class Analysis implements Analyzer {
                     description]);
         } else {
             this.isNativeMap.set(f, false);
+            // Get dynamic shadowIDs for all args, and pass that to the abstract machine.
+            const shadowIDs = [];
+            for (const arg of args) {
+                shadowIDs.push(this.shadowMemory.getShadowID(arg));
+                if (typeof arg === 'object' &&
+                    arg !== null) {
+                    const objectsToProcess = [arg];
+                    // Recursively get shadowIDs of sub-objects.
+                    while (objectsToProcess.length > 0) {
+                        const thisArg = objectsToProcess.pop();
+                        for (const field in thisArg) {
+                            // This check prevents pollution with `undefined` shadowIDs
+                            if (this.shadowMemory.getShadowID(thisArg[field]))
+                                shadowIDs.push(this.shadowMemory.getShadowID(thisArg[field]));
+                            if (typeof thisArg[field] === 'object' &&
+                                thisArg[field] !== null) {
+                                    objectsToProcess.push(thisArg[field]);
+                                }
+                        }
+                    }
+                }
+            }
             this.state.functionInvokeStart([this.shadowMemory.getShadowID(f),
                 f.length,
                 args.length,
+                shadowIDs,
                 // this.shadowMemory.getShadowID(receiver),
                 description]);
         }
     }
 
     public _return: NPCallbacks._return = (iid, val) => {
+        if (this.inModelledFunction.length > 0) {
+            return;
+        }
+        const shadowIDsInReturn = [this.shadowMemory.getShadowID(val)];
+        const objectsToProcess = [val];
+        while (objectsToProcess.length > 0) {
+            const obj = objectsToProcess.pop();
+            if (typeof obj === 'object' && obj !== null) {
+                // Check fields.
+                for (const field in obj) {
+                    // If it's an object, add it, and get its shadowID
+                    if (typeof obj[field] === 'object' && obj[field] !== null) {
+                        objectsToProcess.push(obj[field]);
+                        shadowIDsInReturn.push(this.shadowMemory.getShadowID(obj[field]));
+                    }
+                }
+            }
+        }
         this.state.functionReturn([
             this.functionCallStack[this.functionCallStack.length - 1],
+            shadowIDsInReturn,
             {type: "functionReturn", location: parseIID(iid)}]);
     }
 
     public invokeFun: NPCallbacks.invokeFun = (iid: number,  f: Invoked, receiver: Receiver, args: any[], result: any, isConstructor: boolean, isMethod: boolean, functionIid: number, functionSid: number) => {
+        // Check if this is a modelled function.
+        // console.log('[!!] invokeFun...');
+        // console.log('[!!] f.name: ' + f.name);
+        // console.log('this.modelledFunctionNames:');
+        // console.log(this.modelledFunctionNames);
+        if (this.modelledFunctionNames.indexOf(f.name) > -1) {
+            // If so, we're leaving a function that was skipped.
+            // console.log('[!!] Popping in invokeFun!');
+            this.inModelledFunction.pop();
+        }
+        // Should we (continue to) skip stuff?
+        if (this.modelledFunctionNames.length > 0) {
+            return;
+        }
         let description: StaticDescription = {type: "functionReturn",
             location: parseIID(iid)};
         if (f.name && f.name != "") {
@@ -217,6 +302,10 @@ export default class Analysis implements Analyzer {
     }
 
     public functionEnter: NPCallbacks.functionEnter = (iid: number, f: Invoked, receiver: Receiver, args: any[]) => {
+        // Should we skip this?
+        if (this.inModelledFunction.length > 0)
+            return;
+
         let functionName = this.shadowMemory.getShadowID(f);
         this.functionCallStack.push(functionName);
         this.state.functionEnter([functionName, args.length, {type: "functionEnter", location: parseIID(iid)}]);
@@ -244,9 +333,17 @@ export default class Analysis implements Analyzer {
             this.state.promiseReject([iid, this.shadowMemory.getFullVariableName("augur_v"),
                 "promise^" + args[0] as DynamicDescription, {type: "functionEnter", location: parseIID(iid)}])
         }
+
+        // Lastly, check if we should begin skipping.
+        if (this.modelledFunctionNames.indexOf(f.name) > -1) {
+            console.log('[!!] Pushing in functionEnter!');
+            this.inModelledFunction.push(true);
+        }
     }
 
-    public functionExit: NPCallbacks.functionExit = (iid: number,  returnVal: any, wrappedExceptionVal?: ExceptionVal) => {
+    public functionExit: NPCallbacks.functionExit = (iid: number, returnVal: any, wrappedExceptionVal?: ExceptionVal) => {
+        if (this.inModelledFunction.length > 0) return;
+
         let f = this.functionCallStack.pop();
         if (f === "global@1") {
             this.eventLoopOver = true;
@@ -255,30 +352,49 @@ export default class Analysis implements Analyzer {
     }
 
     public evalPre: NPCallbacks.evalPre = (iid: number, str: string) => {
+        if (this.inModelledFunction.length > 0) return;
+
         // TODO: properly design a mechanism to track taint with eval
         // this.state.builtin(["eval", 1, {type: "builtin", location: parseIID(iid)};]);
         // eval always takes a single arg
     }
 
     public conditional: NPCallbacks.conditional = (iid: number, result: any) => {
+        if (this.inModelledFunction.length > 0) return;
+
         // this.state.conditional({type: "expr", location: parseIID(iid)};);
-        }
+    }
 
     public endExecution: NPCallbacks.endExecution = () => {
+        if (this.inModelledFunction.length > 0) return;
+
+        console.log('[!!] Ending execution!');
         this.state.endExecution([]);
+
+        // Stupid hack: waiting before ending, for stragglers.
+        // ACTUALLY we can't do this...
+        // setTimeout(() => { 
+        //     console.log('[!!] Ending execution for real!');
+        //     this.state.endExecution([]);
+        // }, 0);
     }
 
     public asyncFunctionEnter:  NPCallbacks.asyncFunctionEnter = (iid: number) => {
+        if (this.inModelledFunction.length > 0) return;
+
         this.state.asyncFunctionEnter([{type: "asyncFunctionEnter", location: parseIID(iid)}])
     }
 
     public asyncFunctionExit: NPCallbacks.asyncFunctionExit = (iid: number, result: any, exceptionVal: ExceptionVal) => {
+        if (this.inModelledFunction.length > 0) return;
+
         console.log("asyncExit: " + result)
-        // TODO: we could probably add the property we want to result, here?
         this.state.asyncFunctionExit([iid, this.getAsyncPromiseId(result),  result, exceptionVal, {type: "asyncFunctionExit", location: parseIID(iid)}])
     }
 
     public awaitPre: NPCallbacks.awaitPre = (iid: number, promiseOrAwaitedVal: any) => {
+        if (this.inModelledFunction.length > 0) return;
+
         this.shadowMemory.awaitPre(iid);
         console.log('awaitPre: ' + JSON.stringify(promiseOrAwaitedVal));
         console.log('awaitPre: this.getPromiseId(promiseOrAwaitedVal) ' + this.getPromiseId(promiseOrAwaitedVal));
@@ -287,6 +403,8 @@ export default class Analysis implements Analyzer {
     }
 
     public awaitPost: NPCallbacks.awaitPost = (iid: number, promiseOrValAwaited: any, valResolveOrRejected: any, isPromiseRejected: boolean) => {
+        if (this.inModelledFunction.length > 0) return;
+
         this.shadowMemory.awaitPost(iid);
         this.state.awaitPost([iid, this.getPromiseId(promiseOrValAwaited), promiseOrValAwaited, valResolveOrRejected,
             {type: "awaitPost", location: parseIID((iid))}]);
@@ -301,7 +419,10 @@ export default class Analysis implements Analyzer {
         // actually that stackoverflow post is a terrible experiment and
         // doesn't represent real code
         return /\{\s+\[native code\]/
-            .test(Function.prototype.toString.call(fun));
+            .test(Function.prototype.toString.call(fun)) ||
+            // TODO: Not sure how happy I am about this currently. This could cause issues if, e.g.,
+            //       the 
+            this.modelledFunctionNames.indexOf(fun.name) > -1;
     }
 
     getPromiseId(p: any) {
