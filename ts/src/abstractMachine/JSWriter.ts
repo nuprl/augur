@@ -56,9 +56,9 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "writeVar", args: [s, description] });
     }
 
-    public readProperty([o, s, isMethod, description]: [DynamicDescription, Accessor, boolean, StaticDescription]) {
+    public readProperty([o, s, isMethod, isComputed, description]: [DynamicDescription, Accessor, boolean, boolean, StaticDescription]) {
         this.writeInstruction({ command: "readProperty",
-            args: [o, s, isMethod, description] });
+            args: [o, s, isMethod, isComputed, description] });
     }
 
     public writeProperty([o, s, description]: [DynamicDescription, Accessor, StaticDescription]) {
@@ -92,10 +92,10 @@ export default class JSWriter implements AbstractMachine {
         });
     }
 
-    public functionInvokeEnd([name, description]: [string, StaticDescription]) {
+    public functionInvokeEnd([name, shadowIDs, description]: [string, DynamicDescription[], StaticDescription]) {
         this.writeInstruction({
             command: "functionInvokeEnd",
-            args: [name, description]
+            args: [name, shadowIDs, description]
         });
     }
 
@@ -107,8 +107,8 @@ export default class JSWriter implements AbstractMachine {
         });
     }
 
-    public functionReturn([name, shadowIDs, description]: [string, DynamicDescription[], StaticDescription]) {
-        this.writeInstruction({ command: "functionReturn", args: [name, shadowIDs, description]});
+    public functionReturn([name, description]: [string, StaticDescription]) {
+        this.writeInstruction({ command: "functionReturn", args: [name, description]});
     }
 
     public builtin([name, receiver, actualArgs, extraRecords, isMethod, description]:
@@ -157,7 +157,7 @@ export default class JSWriter implements AbstractMachine {
     }
 
     public awaitPost([id, promiseId, promiseOrAwaitedVal, valResolveOrRejected, description]: [number, DynamicDescription, any, any, StaticDescription]) {
-        this.writeInstruction({command: "awaitPost", args: [id, promiseId, promiseOrAwaitedVal, description]});
+        this.writeInstruction({command: "awaitPost", args: [id, promiseId, promiseOrAwaitedVal, valResolveOrRejected, description]});
     }
 
     public promiseReaction([id, promiseValue, promiseId, description]: [number, any, DynamicDescription, StaticDescription]) {

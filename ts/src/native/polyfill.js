@@ -31,11 +31,13 @@ let promiseCount = 0;
 Promise = function(fun) {
     const thisPromiseId = promiseCount++;
     let wrappedFun = function(resolve, reject){
+        console.log('[Promise wrappedResolve]');
         let wrappedResolve = function(augur_v){
             augur_getResolveFor(thisPromiseId, augur_v);
             resolve(augur_v);
         }
         let wrappedReject = function(err){
+            console.log('[Promise wrappedReject]');
             augur_getRejectFor(thisPromiseId, augur_v);
             reject(err);
         }
@@ -44,10 +46,10 @@ Promise = function(fun) {
     let p = new RealPromise(wrappedFun);
     let returnMe = PromiseWrapper(p, thisPromiseId);
     Object.defineProperty(returnMe, "augur_pid", {
+        value: thisPromiseId,
         enumerable: false,
         writable: true
     });
-    returnMe.augur_pid = thisPromiseId;
     return returnMe;
 }
 
@@ -56,40 +58,57 @@ Promise = function(fun) {
 */
 
 Promise.resolve = function(val) {
+    console.log('[Promise.resolve]');
     return new Promise(res => res(val));
 }
 
 Promise.reject = function(val) {
+    console.log('[Promise.reject]');
     return new Promise((res, rej) => rej(val));
 }
 
-Promise.all = function promiseAllIterative(values) {
+Promise.all = (promises) => {
+    console.log('[Promise.all]')
+    let responses = [];
+    let errorResp = [];
     return new Promise((resolve, reject) => {
-       let results = [];
-       let completed = 0;
-       
-       values.forEach((value, index) => {
-            Promise.resolve(value).then(result => {
-                results[index] = result;
-                completed += 1;
-                
-                if (completed == values.length) {
-                    resolve(results);
+      /** Loop over promises array **/
+      if (promises.length > 0) {
+          promises.forEach(async (singlePromise, i) => {
+            try {
+              /** wait for resolving 1 promise **/
+              let res = await singlePromise;
+              responses.push(res);
+              if (i == promises.length - 1) {
+                if (errorResp.length > 0) {
+                  reject(errorResp);
+                } else {
+                  resolve(responses);
                 }
-            }).catch(err => reject(err));
-       });
+              }
+            } catch (err) {
+              errorResp.push(err);
+              reject(err);
+            }
+          });
+      } else {
+          resolve([]);
+      }
     });
-}
+  };
 
 Promise.allSettled = function(iterable) {
+    console.log('[Promise.allSettled]');
     return RealPromise.allSettled(iterable);
 }
 
 Promise.any = function(iterable) {
+    console.log('[Promise.any]');
     return RealPromise.any(iterable);
 }
 
 Promise.race = function(iterable) {
+    console.log('[Promise.race]');
     return RealPromise.race(iterable);
 }
 
@@ -101,33 +120,23 @@ function PromiseWrapper(p, currPromiseId){
     // should have.
     return {
         then: (f) => {
+            console.log('[Promise.then]');
             return new Promise((resolve, reject) => {
                 realThen.call(p, (augur_v) => {
                     resolve(f(augur_executingReaction(currPromiseId, augur_v)));
                 });
             });
-            // promiseCount++
-            // let nextPromiseId = promiseCount;
-            // return PromiseWrapper(realThen.call(p, (augur_v) => {
-            //     augur_v = augur_executingReaction(currPromiseId, augur_v);
-            //     console.log('========== Executing')
-            //     let result = f(augur_v);
-            //     augur_getResolveFor(nextPromiseId, result)
-            //     return result;
-            // }), nextPromiseId);
         },
         catch: (f) => {
-            promiseCount++
-            let nextPromiseId = promiseCount;
-            return PromiseWrapper(realCatch.call(p, (augur_v) => {
-                augur_v = augur_executingRejection(currPromiseId, augur_v);
-                let result = f(augur_v);
-                // TODO change to getRejectFor
-                augur_getResolveFor(nextPromiseId, result)
-                return result;
-            }), nextPromiseId);
+            console.log('[Promise.catch]');
+            return new Promise((resolve, reject) => {
+                realCatch.call(p, (augur_v) => {
+                    resolve(f(augur_executingRejection(currPromiseId, augur_v)));
+                });
+            });
         },
         finally: (f) => {
+            console.log('[Promise.finally]');
             promiseCount++
             let nextPromiseId = promiseCount;
             return PromiseWrapper(realFinally.call(p, (augur_v) => {
@@ -138,90 +147,5 @@ function PromiseWrapper(p, currPromiseId){
                 return result;
             }), nextPromiseId);
         }
-        /*
-        then: (f) => {
-            promiseCount++
-            let nextPromiseId = promiseCount;
-            return PromiseWrapper(realThen.call(p, (augur_v) => {
-                augur_v = augur_executingReaction(currPromiseId, augur_v);
-                console.log('========== Executing')
-                let result = f(augur_v);
-                augur_getResolveFor(nextPromiseId, result)
-                return result;
-            }), nextPromiseId);
-        },
-        */
     };
 }
-
-// Names are argument order are critical.
-// function augur_getTaintFor(count, augur_v) {
-//     return augur_v;
-// }
-
-Array.prototype.forEach = function (fun /*, thisp */) {
-    if (this === void 0 || this === null) { throw TypeError(); }
-
-    var t = this;
-    var len = t.length >>> 0;
-    if (typeof fun !== "function") { throw TypeError(); }
-
-    var thisp = arguments[1], i;
-    for (i = 0; i < len; i++) {
-        if (i in t) {
-            fun.call(thisp, t[i], i, t);
-        }
-    }
-};
-
-/*
-    Old code, for posterity.
-*/
-
-// function PromiseWrapper(p: any, count: any){
-//     let realThen = p.then;
-//     return {
-//         then: (f: any) => {
-//             console.log("entering reaction for promise: " + count);
-//             let thenResult = realThen.call(p, (augur_v: any) => {
-//                 augur_v = augur_getTaintFor(p, count, augur_v);
-//                 return f(augur_v);
-//             });
-//             // Should invoke our patch.
-//             return new Promise((res, rej) => {
-//                 res(thenResult);
-//             });
-//         }
-//     };
-// }
-
-/*
-
-(<any> Promise) = function(fun: any) : any {
-    console.log("Promise " + promiseCount + " Created");
-    let wrappedFun = function(resolve: any,reject: any){
-        let wrappedResolve = function(augur_v: any){
-            console.log("entering wrapped resolve for promise: " + promiseCount);
-            augur_getResolveFor(promiseCount, augur_v);
-            resolve(augur_v);
-        }
-        let wrappedReject = function(err: any){
-            reject(err);
-        }
-        fun(wrappedResolve, wrappedReject);
-    }
-    let p = new RealPromise(wrappedFun);
-    return PromiseWrapper(p, promiseCount++);
-}
-
-(<any> Promise).resolve = function<T>(val : T) : Promise<T> {
-    console.log('Here!');
-    return new Promise((res, rej) => res(val));
-}
-
-*/
-
-// Example shit.
-// const p = new Promise((res, rej) => {
-//     res(2);
-// });

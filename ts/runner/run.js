@@ -45,6 +45,8 @@ const SHOULD_USE_DOCKER = (NODEPROF_HOME === undefined)
 if (SHOULD_USE_DOCKER) {
     console.error("You did not set the 'NODEPROF_HOME', 'MX_HOME', and" +
         " 'JAVA_HOME' environment variables. Docker will be used instead.");
+} else {
+    console.error("Using your native NodeProf install from:", NODEPROF_HOME);
 }
 
 // Calculate paths
@@ -95,7 +97,7 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
             + inputFile);
 
     let [error, stdout, stderr] = await exec(command,
-        {maxBuffer: 10*1024*1024*10 /* 10*10 MB buffer for stdout/stderr */});
+        {maxBuffer: 10*10*1024*1024*10 /* 10*10*10 MB buffer for stdout/stderr */});
 
     console.error("Source file: \t" + inputFile);
 
