@@ -7,7 +7,8 @@ services:
 - docker
 
 before_install:
-- ${TRAVIS_BUILD_DIR}/ts/docker-nodeprof/docker-build.sh
+- cd ${TRAVIS_BUILD_DIR}/ts
+- ./docker-nodeprof/docker-build.sh
 - npm install
 - npm run build
 - jest -t basic-assignment-tainted
