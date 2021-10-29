@@ -1,5 +1,4 @@
 [![Build Status](https://app.travis-ci.com/trueblooda/augur.svg?branch=main)](https://app.travis-ci.com/trueblooda/augur)
-this is a test to see if travis is properly working
 <img src="./augur.png" align="left" height="100">
 
 **Augur** is a dynamic taint analysis for Node.js implemented in TypeScript
