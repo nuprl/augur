@@ -5,9 +5,10 @@ sudo: required
 
 services:
 - docker
+- npm
 
 before_install:
-- {TRAVIS_BUILD_DIR}/docker-nodeprof/docker-build.sh
+- ${TRAVIS_BUILD_DIR}/docker-nodeprof/docker-build.sh
 - npm install
 - npm run build
 - jest -t basic-assignment-tainted
