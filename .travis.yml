@@ -11,4 +11,4 @@ before_install:
 - ./docker-nodeprof/docker-build.sh
 - npm install
 - npm run build
-- jest -t basic-assignment-tainted
+- ./node_modules/.bin/jest
