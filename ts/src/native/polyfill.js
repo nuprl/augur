@@ -3,20 +3,27 @@
 // Promise = require("bluebird");
 
 // Names are argument order are critical.
-function augur_getResolveFor(p, augur_v) { }
+function augur_getResolveFor(p, augur_v) { 
+    console.log('augur_getResolveFor');
+}
 
 // Names and argument order are critical.
-function augur_getRejectFor(p, augur_v) { }
+function augur_getRejectFor(p, augur_v) {
+    console.log('augur_getRejectFor');
+}
 
 function augur_executingReaction(count, augur_v) {
+    console.log('augur_executingReaction');
     return augur_v;
 }
 
 function augur_executingRejection(count, augur_v) {
+    console.log('augur_executingRejection');
     return augur_v;
 }
 
 function augur_executingFinally(count, augur_v) {
+    console.log('augur_executingFinally');
     return augur_v;
 }
 
@@ -36,10 +43,10 @@ Promise = function(fun) {
             augur_getResolveFor(thisPromiseId, augur_v);
             resolve(augur_v);
         }
-        let wrappedReject = function(err){
+        let wrappedReject = function(augur_v){
             console.log('[Promise wrappedReject]');
             augur_getRejectFor(thisPromiseId, augur_v);
-            reject(err);
+            reject(augur_v);
         }
         fun(wrappedResolve, wrappedReject);
     }

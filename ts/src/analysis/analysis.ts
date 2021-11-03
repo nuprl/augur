@@ -199,7 +199,7 @@ export default class Analysis implements Analyzer {
 
             // Get dynamic shadowIDs for all args, and pass that to the abstract machine.
             // Need this to track taint resulting from function invocations.
-            const shadowIDs = [];
+            const shadowIDs : any[] = [];
 
             // NOTE: Computing shadowIDs for all function calls is time-consuming, especially when they are only
             // needed very rarely. Perhaps we should consider having a list of functions for which we intend
@@ -207,33 +207,33 @@ export default class Analysis implements Analyzer {
             // if (["findOne", "findAll"].indexOf(f.name) > -1) {
             console.log('invokeFunPre2');
             console.log(args);
-            for (const arg of args) {
-                // For each object argument...
-                if (typeof arg === 'object' &&
-                    arg !== null) {
-                    shadowIDs.push(this.shadowMemory.getShadowID(arg));
-                    const objectsToProcess = [arg];
-                    // Recursively get shadowIDs of any sub-objects.
-                    while (objectsToProcess.length > 0) {
-                        console.log('Looping...');
-                        const thisArg = objectsToProcess.pop();
-                        console.log('Processing thisArg:', thisArg);
-                        for (const field in thisArg) {
-                            if (typeof thisArg[field] === 'object' &&
-                                thisArg[field] !== null) {
-                                // This check prevents pollution with `undefined` shadowIDs.
+
+            // for (const arg of args) {
+            //     // For each object argument...
+            //     if (typeof arg === 'object' &&
+            //         arg !== null) {
+            //         shadowIDs.push(this.shadowMemory.getShadowID(arg));
+            //         const objectsToProcess = [arg];
+            //         // Recursively get shadowIDs of any sub-objects.
+            //         while (objectsToProcess.length > 0) {
+            //             const thisArg = objectsToProcess.pop();
+            //             for (const field in thisArg) {
+            //                 if (typeof thisArg[field] === 'object' &&
+            //                     thisArg[field] !== null &&
+            //                     shadowIDs.indexOf(this.shadowMemory.getShadowID(thisArg[field])) == -1) {
+            //                     // This check prevents pollution with `undefined` shadowIDs.
                                 
-                                if (typeof thisArg[field] === 'object' &&
-                                thisArg[field] !== null) {
-                                    if (this.shadowMemory.getShadowID(thisArg[field]))
-                                        shadowIDs.push(this.shadowMemory.getShadowID(thisArg[field]));
-                                    objectsToProcess.push(thisArg[field]);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            //                     if (typeof thisArg[field] === 'object' &&
+            //                     thisArg[field] !== null) {
+            //                         if (this.shadowMemory.getShadowID(thisArg[field]))
+            //                             shadowIDs.push(this.shadowMemory.getShadowID(thisArg[field]));
+            //                         objectsToProcess.push(thisArg[field]);
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
             // }
             console.log('invokeFunPre3');
             this.state.functionInvokeStart([this.shadowMemory.getShadowID(f),

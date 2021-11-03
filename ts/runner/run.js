@@ -53,7 +53,9 @@ if (SHOULD_USE_DOCKER) {
 // const INPUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/input/";
 // const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual/";
 // const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected/";
-const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
+
+// const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
+const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/emptyAnalysis/emptyAnalysis.js";
 
 // Given a test name:
 // - instrument its JS code;
@@ -110,10 +112,13 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
 
     console.error("Source file: \t" + inputFile);
 
+    // TODO: When it's not a live analysis, we should probably revert to the old way,
+    // where we wait for the process to complete, cause otherwise outputFile is 
+    // empty :-)
     let results;
-    if (!live)
-        results = executeInstructionsFromFile(outputFile, spec);
-    else
+    // if (!live)
+    //     results = executeInstructionsFromFile(outputFile, spec);
+    // else
         results = {};
 
     return [spec, results];
