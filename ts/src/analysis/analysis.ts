@@ -215,16 +215,18 @@ export default class Analysis implements Analyzer {
                     const objectsToProcess = [arg];
                     // Recursively get shadowIDs of any sub-objects.
                     while (objectsToProcess.length > 0) {
+                        console.log('Looping...');
                         const thisArg = objectsToProcess.pop();
+                        console.log('Processing thisArg:', thisArg);
                         for (const field in thisArg) {
                             if (typeof thisArg[field] === 'object' &&
                                 thisArg[field] !== null) {
                                 // This check prevents pollution with `undefined` shadowIDs.
-                                if (this.shadowMemory.getShadowID(thisArg[field]))
-                                    shadowIDs.push(this.shadowMemory.getShadowID(thisArg[field]));
-
+                                
                                 if (typeof thisArg[field] === 'object' &&
-                                    thisArg[field] !== null) {
+                                thisArg[field] !== null) {
+                                    if (this.shadowMemory.getShadowID(thisArg[field]))
+                                        shadowIDs.push(this.shadowMemory.getShadowID(thisArg[field]));
                                     objectsToProcess.push(thisArg[field]);
                                 }
                             }

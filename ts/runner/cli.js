@@ -4,8 +4,6 @@ require('dotenv').config()
 const path = require('path');
 const chalk = require('chalk');
 
-console.log('process.env', process.env);
-
 const {run} = require('./run');
 
 const yargs = require('yargs');
