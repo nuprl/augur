@@ -54,6 +54,6 @@ run(projectDir, projectName, outputDir, consoleFlag, live).then(([spec, result])
             JSON.stringify(result, undefined, 4));
     }
 }).catch(err => {
-    console.err('Error!');
-    console.err(err);
+    console.error('Error!');
+    console.error(err);
 });
