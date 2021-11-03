@@ -15,12 +15,24 @@ import logger from "./logger";
 import {descriptionMatchesTaintSpec, descriptionSubset} from "../utils";
 import Operation from "./operation";
 import {useNativeImplementationPost, useNativeImplementationPre} from "../native/native";
+import * as fs from 'fs'; // For output during live logging sessions.
 
 const debug = false;
 const promiseDebug = false;
-const promiseDebugMap = false;
+const promiseDebugMap = false
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
+
+    /**
+     * Are we logging live? If so, we will write taint flows directly to the output file.
+     * If not, we write all instructions to the output file, instead.
+     */
+    liveLogging: boolean = false;
+
+    /**
+     * The output file path, used only if we are live logging.
+     */
+    outputFilePath: string;
 
     /**
      * The stack of taint values for the current execution context. Almost
@@ -136,12 +148,14 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     promiseMap: Map<any, ShadowObject<V>> = new Map<any, ShadowObject<V>>()
     asyncPromiseMap: Map<any, ShadowObject<V>> = new Map<any, ShadowObject<V>>()
 
-    constructor(spec: RunSpecification) {
+    constructor(spec: RunSpecification, live = false, outputFilePath: string = "") {
         this.spec = spec;
         this.objects = new Map();
         this.pc = this.getUntaintedValue();
         this.getTaint = this.getTaint.bind(this);
         this.lastObjectAccessed = this.getUntaintedValue();
+        this.liveLogging = live;
+        this.outputFilePath = outputFilePath;
 
         this.functionTree.set(this.ROOTID, [{name: "program start"}])
         this.taintTree.set(this.ROOTID, []);
@@ -175,6 +189,11 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     }
 
     public reportFlow(flow: F) {
+        if (this.liveLogging) {
+            fs.appendFileSync(this.outputFilePath, "tainted value flowed into sink "
+            + JSON.stringify(flow)
+            + "!\n");
+        }
         if (debug) console.log("tainted value flowed into sink "
             + JSON.stringify(flow)
             + "!");

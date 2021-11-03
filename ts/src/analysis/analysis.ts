@@ -90,6 +90,7 @@ export default class Analysis implements Analyzer {
 
             logger.info("keys", keys);
             for (const k of keys) {
+                console.log('literal');
                 this.state.writeProperty([this.shadowMemory.getShadowID(val), k as PropertyDescription, {}]);
             }
         }
@@ -109,6 +110,7 @@ export default class Analysis implements Analyzer {
         this.state.readVar([this.shadowMemory.getFullVariableName(name), description]);
 
         if (name === "arguments") {
+            console.log('read');
             this.state.initializeArgumentsObject([this.shadowMemory.getShadowID(val), description]);
         }
     }
@@ -145,6 +147,7 @@ export default class Analysis implements Analyzer {
 
     public getField: NPCallbacks.getField = (iid, receiver, offset, val, isComputed, isOpAssign, isMethodCall) => {
         this.shadowMemory.initialize(receiver);
+        console.log('getField');
         this.state.readProperty([this.shadowMemory.getShadowID(receiver),
             offset as PropertyDescription,
             isMethodCall,
@@ -154,6 +157,7 @@ export default class Analysis implements Analyzer {
 
     public putField: NPCallbacks.putField = (iid, receiver, offset, val, isComputed, isOpAssign) => {
         this.shadowMemory.initialize(receiver);
+        console.log('putField');
         this.state.writeProperty([this.shadowMemory.getShadowID(receiver),
             offset as PropertyDescription,
             {type: "expr", location: parseIID(iid)}]);
@@ -179,6 +183,7 @@ export default class Analysis implements Analyzer {
             this.isNativeMap.set(f, true);
             // TODO: make sure this works using regular builtins and reassigned builtins
 
+            console.log('invokeFunPre1');
             let functionShadowID = this.shadowMemory.getShadowID(f);
             let receiverShadowID = this.shadowMemory.getShadowID(receiver);
 
@@ -200,6 +205,8 @@ export default class Analysis implements Analyzer {
             // needed very rarely. Perhaps we should consider having a list of functions for which we intend
             // to track taint, and make that available to the analysis, to speed this up?
             // if (["findOne", "findAll"].indexOf(f.name) > -1) {
+            console.log('invokeFunPre2');
+            console.log(args);
             for (const arg of args) {
                 // For each object argument...
                 if (typeof arg === 'object' &&
@@ -210,19 +217,23 @@ export default class Analysis implements Analyzer {
                     while (objectsToProcess.length > 0) {
                         const thisArg = objectsToProcess.pop();
                         for (const field in thisArg) {
-                            // This check prevents pollution with `undefined` shadowIDs.
-                            if (this.shadowMemory.getShadowID(thisArg[field]))
-                                shadowIDs.push(this.shadowMemory.getShadowID(thisArg[field]));
-
                             if (typeof thisArg[field] === 'object' &&
                                 thisArg[field] !== null) {
-                                objectsToProcess.push(thisArg[field]);
+                                // This check prevents pollution with `undefined` shadowIDs.
+                                if (this.shadowMemory.getShadowID(thisArg[field]))
+                                    shadowIDs.push(this.shadowMemory.getShadowID(thisArg[field]));
+
+                                if (typeof thisArg[field] === 'object' &&
+                                    thisArg[field] !== null) {
+                                    objectsToProcess.push(thisArg[field]);
+                                }
                             }
                         }
                     }
                 }
             }
             // }
+            console.log('invokeFunPre3');
             this.state.functionInvokeStart([this.shadowMemory.getShadowID(f),
                 f.length,
                 args.length,
@@ -244,10 +255,12 @@ export default class Analysis implements Analyzer {
             description.name = f.name;
         }
 
+        console.log('invokeFun1');
         let returnValueName = this.shadowMemory.getShadowID(result);
 
         this.shadowMemory.functionExit();
         if (this.isNativeMap.get(f)) {
+            console.log('invokeFun2');
             this.state.builtinExit([this.shadowMemory.getShadowID(f), returnValueName, description]);
         } else {
             // This is needed as invokeFun is the callback for function invocation ending.
@@ -272,12 +285,14 @@ export default class Analysis implements Analyzer {
             //         }
             //     }
             // }
+            console.log('invokeFun3');
             this.state.functionInvokeEnd([this.shadowMemory.getShadowID(f), [], description]);
         }
     }
 
     public functionEnter: NPCallbacks.functionEnter = (iid: number, f: Invoked, receiver: Receiver, args: any[]) => {
 
+        console.log('functionEnter');
         let functionName = this.shadowMemory.getShadowID(f);
         this.functionCallStack.push(functionName);
         this.state.functionEnter([functionName, args.length, {type: "functionEnter", location: parseIID(iid)}]);

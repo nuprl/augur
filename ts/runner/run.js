@@ -14,13 +14,13 @@ const {executeInstructionsFromFile} = require('../dist/src/utils');
  * @param opts the options to give to exec
  * @returns {Promise}
  */
-const exec = function(cmd, opts) {
-    return new Promise((resolve, reject) => {
-        child_process.exec(cmd, opts, (error, stdout, stderr) => {
-            resolve([error, stdout, stderr]);
-        })
-    })
-};
+// const exec = function(cmd, opts) {
+//     return new Promise((resolve, reject) => {
+//         child_process.exec(cmd, opts, (error, stdout, stderr) => {
+//             resolve([error, stdout, stderr]);
+//         })
+//     })
+// };
 
 // `TAINT_ANALYSIS_HOME` is the root of this repo.
 // If the user does not explicitly specify TAINT_ANALYSIS_HOME, assume it to
@@ -61,21 +61,22 @@ const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.j
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
-exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
+exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live) {
     // Parse the spec to know the program to instrument, sources, sinks, and
     // expected taints
+    
     const spec = JSON.parse(fs.readFileSync(projectDir + "/spec.json").toString());
-
+    
     // Calculate input and output instruction file paths
     const outputFile = outputDir + "/" + projectName + '_out.js';
     const inputFile = projectDir + "/" + spec.main;
-
+    
     if (!fs.existsSync(ANALYSIS)) {
         throw new Error("analysis not found: " + ANALYSIS);
     }
-
+    
     const DOCKER_OUTPUT_FILENAME = "analysis.output";
-
+    
     // The command to instrument the test's JS code
     const command =
         "rm -f " + outputFile + "; " +
@@ -93,25 +94,27 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag) {
             : "cd " + NODEPROF_HOME + "; "
             + `export OUTPUT_FILE=\"${outputFile}\";`
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
+            + " --initParam specPath:" + (projectDir + "/spec.json")
+            + " --initParam live:" + live
             + " --analysis " + ANALYSIS + " "
             + inputFile);
 
-    let [error, stdout, stderr] = await exec(command,
-        {maxBuffer: 10*10*1024*1024*10 /* 10*10*10 MB buffer for stdout/stderr */});
+    // let [error, stdout, stderr] = await exec(command,
+    //     {maxBuffer: 10*10*1024*1024*10 /* 10*10*10 MB buffer for stdout/stderr */});
+    const runningAnalysis = child_process.exec(command);
+    if (consoleFlag) {
+        // Register redirection to stdout.
+        runningAnalysis.stdout.pipe(process.stdout);
+        runningAnalysis.stderr.pipe(process.stderr);
+    }
 
     console.error("Source file: \t" + inputFile);
 
-    if (error) {
-        console.error(`${error}`);
-        return;
-    }
-
-    if (consoleFlag) {
-        if (stdout) console.log(stdout);
-        if (stderr) console.error(stderr);
-    }
-
-    let results = executeInstructionsFromFile(outputFile, spec);
+    let results;
+    if (!live)
+        results = executeInstructionsFromFile(outputFile, spec);
+    else
+        results = {};
 
     return [spec, results];
 
