@@ -1,5 +1,5 @@
 # NodeProf will be run using Ubuntu Linux 18.04
-FROM ubuntu:18.04
+FROM debian
 
 ARG nodeprof_repo=docker/nodeprof-clones/public/nodeprof.js
 
