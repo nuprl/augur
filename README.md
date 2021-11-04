@@ -37,7 +37,7 @@ $ npm run build                     # Build Augur
 
 Try running a basic test to make sure your installation succeeded:
 ```
-$ jest -t basic-assignment-tainted
+$ ./node_modules/.bin/jest -t basic-assignment-tainted
 tainted value flowed into sink {"type":"variable","name":"z","location":{"fileName":"test.js"}}!
 ```
 
