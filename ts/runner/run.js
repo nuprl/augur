@@ -54,8 +54,8 @@ if (SHOULD_USE_DOCKER) {
 // const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual/";
 // const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected/";
 
-// const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
-const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/emptyAnalysis/emptyAnalysis.js";
+const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
+// const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/emptyAnalysis/emptyAnalysis.js";
 
 // Given a test name:
 // - instrument its JS code;
@@ -103,10 +103,10 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
 
     // let [error, stdout, stderr] = await exec(command,
     //     {maxBuffer: 10*10*1024*1024*10 /* 10*10*10 MB buffer for stdout/stderr */});
-    const runningAnalysis = child_process.exec(command);
+    const runningAnalysis = child_process.exec(command, { maxBuffer: 10*10*1024*1024*10 /* 10*10*10 MB buffer for stdout/stderr */ });
     if (consoleFlag) {
         // Register redirection to stdout.
-        runningAnalysis.stdout.pipe(process.stdout);
+        // runningAnalysis.stdout.pipe(process.stdout);
         runningAnalysis.stderr.pipe(process.stderr);
     }
 
