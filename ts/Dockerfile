@@ -3,7 +3,7 @@ FROM debian
 
 # Update the Ubuntu installation and install build tools for NodeProf
 RUN \
-  chmod  -R 777 /root \
+  chmod  -R 777 /root && \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y build-essential git wget python2.7 nodejs npm libnotify-bin libffi-dev
