@@ -1,5 +1,5 @@
  # NodeProf will be run using Ubuntu Linux 18.04
-FROM debian
+FROM Ubuntu:18.04
 
 # Update the Ubuntu installation and install build tools for NodeProf
 RUN \
