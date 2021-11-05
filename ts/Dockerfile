@@ -1,9 +1,8 @@
  # NodeProf will be run using Latest Version of Debian
-FROM debian
+FROM debian:buster
 
 # Update the Ubuntu installation and install build tools for NodeProf
 RUN \
-  chmod  -R 777 /root && \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y build-essential git wget python2.7 nodejs npm libnotify-bin libffi-dev
