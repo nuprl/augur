@@ -5,7 +5,7 @@ FROM debian
 RUN \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential git wget python2.7 nodejs npm libnotify-bin libffi-3.3
+  apt-get install -y build-essential git wget python2.7 nodejs npm libnotify-bin libffi-3.3-6
 
 # Install mx and add it to the path
 RUN (cd /root; git clone https://github.com/graalvm/mx.git)
