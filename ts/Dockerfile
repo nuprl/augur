@@ -1,5 +1,5 @@
  # NodeProf will be run using Latest Version of Debian
-FROM debian:buster
+FROM debian:buster-slim
 
 # Update the Ubuntu installation and install build tools for NodeProf
 RUN \
