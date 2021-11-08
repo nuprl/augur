@@ -106,7 +106,7 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
     const runningAnalysis = child_process.exec(command, { maxBuffer: 10*10*1024*1024*10 /* 10*10*10 MB buffer for stdout/stderr */ });
     if (consoleFlag) {
         // Register redirection to stdout.
-        // runningAnalysis.stdout.pipe(process.stdout);
+        runningAnalysis.stdout.pipe(process.stdout);
         runningAnalysis.stderr.pipe(process.stderr);
     }
 

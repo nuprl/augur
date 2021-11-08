@@ -63,12 +63,6 @@ export default class JSWriter implements AbstractMachine {
             // If not live, record preamble for output file.
             this.outputStr.push(this.preamble);
         }
-
-        if (this.LIVE) {
-            console.log('Analysis is live.');
-        } else {
-            console.log('Analysis is offline.');
-        }
     }
 
     public literal([description]: [StaticDescription]) {

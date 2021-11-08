@@ -17,9 +17,9 @@ import Operation from "./operation";
 import {useNativeImplementationPost, useNativeImplementationPre} from "../native/native";
 import * as fs from 'fs'; // For output during live logging sessions.
 
-const debug = false;
-const promiseDebug = false;
-const promiseDebugMap = false
+const debug = true;
+const promiseDebug = true;
+const promiseDebugMap = false;
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
 
@@ -191,6 +191,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public reportFlow(flow: F) {
         if (this.liveLogging) {
             fs.appendFileSync(this.outputFilePath, "tainted value flowed into sink "
+            + JSON.stringify(flow)
+            + "!\n");
+
+            console.log(this.outputFilePath, "tainted value flowed into sink "
             + JSON.stringify(flow)
             + "!\n");
         }

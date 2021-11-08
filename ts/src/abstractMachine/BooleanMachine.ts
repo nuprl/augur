@@ -34,6 +34,10 @@ export default class BooleanMachine
             // Check to see if this is a sink, and that it accepts the given
             // marking
             let sinkDescription = this.getSink(description);
+            console.log('[!!!!!]');
+            console.log(sinkDescription);
+            console.log(description);
+            console.log(taintMarking);
             if (sinkDescription !== undefined && this.check(description, taintMarking)) {
                 this.reportFlow(sinkDescription);
             }
