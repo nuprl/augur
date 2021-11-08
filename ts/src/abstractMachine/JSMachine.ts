@@ -17,8 +17,8 @@ import Operation from "./operation";
 import {useNativeImplementationPost, useNativeImplementationPre} from "../native/native";
 import * as fs from 'fs'; // For output during live logging sessions.
 
-const debug = true;
-const promiseDebug = true;
+const debug = false;
+const promiseDebug = false;
 const promiseDebugMap = false;
 
 export default abstract class JSMachine<V, F> implements AbstractMachine {
