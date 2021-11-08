@@ -41,7 +41,7 @@ const JAVA_HOME = shell.env['JAVA_HOME'];
 const SHOULD_USE_DOCKER = (NODEPROF_HOME === undefined)
     || (MX_HOME === undefined)
     || (JAVA_HOME === undefined);
-    
+
 // Tell the user that Docker is being used because they did not specify
 // the necessary environment variables.
 if (SHOULD_USE_DOCKER) {
@@ -99,7 +99,7 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             + " --analysis " + ANALYSIS + " "
             + inputFile);
 
-    console.error("Source file: \t" + inputFile);
+    console.log("Source file: \t" + inputFile);
 
     let results;
     if (live) {

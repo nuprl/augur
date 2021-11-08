@@ -331,7 +331,6 @@ let models = asNativeModelMap({
                                            returnValueName: DynamicDescription,
                                            saved: [number, V],
                                            description: StaticDescription): void {
-            console.log('haaaa');
             let [numSplits, stringTaint] = saved;
             let returnValueShadowObject = machine.getShadowObject(returnValueName);
 

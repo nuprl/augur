@@ -50,9 +50,25 @@ export function descriptionSubset(t1: StaticDescription, t2: StaticDescription):
  * @param t1 the description from the taint specification
  * @param t2 the description from the runtime
  */
-export function descriptionMatchesTaintSpec(t1: StaticDescription, t2: StaticDescription) {
-    return descriptionSubset({type: t1.type, name: t1.name, location: t1.location}, 
-        {type: t2.type, name: t2.name, location: t2.location});
+// export function descriptionMatchesTaintSpec(t1: StaticDescription, t2: StaticDescription) {
+//     return descriptionSubset({type: t1.type, name: t1.name, location: t1.location}, 
+//         {type: t2.type, name: t2.name, location: t2.location});
+// }
+
+export function descriptionMatchesTaintSpec(sourceOrSink: StaticDescription, target: StaticDescription) {
+    if (Object.keys(target).length === 0) {
+        // Why does this happen?
+        return false;
+    }
+    const namesMatch = sourceOrSink.name === target.name;
+    const typesMatch = sourceOrSink.type === target.type;
+    let locationsMatch = true;
+    if (sourceOrSink.location !== undefined) {
+        locationsMatch = sourceOrSink.location.fileName === target.location.fileName;
+        // TODO: We may want to also check the location, but I'm going to leave it out for now
+        //       since it's unnecessary with the current tests.
+    }
+    return namesMatch && typesMatch && locationsMatch;
 }
 
 export function parseJalangiLocationString(loc: string): Location {
