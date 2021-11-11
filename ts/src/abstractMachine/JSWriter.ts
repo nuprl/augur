@@ -10,11 +10,6 @@ import {
 } from "../types";
 import MyLogger from "../analysis/mylogger";
 
-// For live analysis.
-import BooleanMachine from "./BooleanMachine";
-
-import * as fs from 'fs';
-
 // An implementation of an abstract machine that produces JavaScript code.
 // The JavaScript code produced will not actually execute the instructions,
 // but will reproduce the original callbacks to a machine that *will*, such
@@ -30,11 +25,6 @@ import * as fs from 'fs';
 // The type parameter, T, should be serializable to JSON.
 export default class JSWriter implements AbstractMachine {
 
-    // Is this a live analysis? If so, we execute instructions alongside the program.
-    // If not, we write the instructions to a file.
-    // @ts-ignore
-    private LIVE : boolean = J$.initParams.live === "true";
-
     // JS code that should appear before and after the callbacks, respectively.
     private preamble: string =  "exports.drive = (m) => {\n";
     private postamble: string = "};\n";
@@ -42,27 +32,12 @@ export default class JSWriter implements AbstractMachine {
     // The logger connected to the intended output file.
     // @ts-ignore
     private logger : MyLogger = new MyLogger(J$.initParams.outputFile);
-    
-    // The spec file, in case of live analysis.
-    // @ts-ignore
-    private spec = JSON.parse(fs.readFileSync(J$.initParams.specPath).toString());
-
-    // A ready and waiting abstract machine, in case of live analysis.
-    private abstractMachine : AbstractMachine;
 
     // the outputStr represents a StringBuilder for the output file so an I/O operation doesn't occur whenever a callback is referenced.
     private outputStr : string[] = [];
 
     constructor() {
-        if (this.LIVE) {
-            // If live, initialize an abstract machine that will execute instructions.
-            // this.spec = JSON.parse(fs.readFileSync(J$.initParams.specPath).toString());
-            // @ts-ignore
-            this.abstractMachine = new BooleanMachine(this.spec, this.LIVE, J$.initParams.outputFile);
-        } else {
-            // If not live, record preamble for output file.
-            this.outputStr.push(this.preamble);
-        }
+        this.outputStr.push(this.preamble);
     }
 
     public literal([description]: [StaticDescription]) {
@@ -159,11 +134,10 @@ export default class JSWriter implements AbstractMachine {
 
     public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
+        
         // Once the analysis finishes then we write the output file string to the file location.
-        if (!this.LIVE) {
-            this.outputStr.push(this.postamble);
-            this.logger.log(this.outputStr.join("\n"));
-        }
+        this.outputStr.push(this.postamble);
+        this.logger.log(this.outputStr.join("\n"));
     }
 
     public initializeArgumentsObject([argumentsObject, description]: [DynamicDescription, StaticDescription]) {
@@ -213,14 +187,7 @@ export default class JSWriter implements AbstractMachine {
     // Actually write the instruction to the output file.
     private writeInstruction(instr: Instruction) {
         const delim = ", ";
-        if (this.LIVE) {
-            // In this case, we want to execute the instruction.
-            // TODO: Should do this with a case, but gonna eval right now for expedience.
-            eval(`this.abstractMachine.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);`);
-        } else {
-            // In this case, we want to write the instruction to a file.
-            this.outputStr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
-        }
+        this.outputStr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
     }
 
 }

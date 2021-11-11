@@ -19,6 +19,9 @@ import logger from "./logger";
 import {parseIID} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
 import {useNativeRecorder, getModelledFunctionNames} from "../native/native";
+import SourcedBooleanMachine from "../abstractMachine/SourcedBooleanMachine";
+
+import { readFileSync } from "fs";
 
 // Load polyfills, incl. critical polyfills for Promise functions.
 require("../native/polyfill");
@@ -32,7 +35,13 @@ require("../native/polyfill");
 // analysis.
 export default class Analysis implements Analyzer {
     private sandbox: Sandbox;
-    private state: AbstractMachine = new JSWriter();
+    
+    // The spec file, in case of live analysis.
+    // @ts-ignore
+    private spec = JSON.parse(readFileSync(J$.initParams.specPath).toString());
+    
+    // @ts-ignore
+    private state: AbstractMachine = J$.initParams.live === "true" ? new SourcedBooleanMachine(this.spec, true, J$.initParams.outputFile) : new JSWriter();
 
     public promiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
     public asyncPromiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();

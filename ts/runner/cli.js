@@ -49,7 +49,8 @@ run(projectDir, projectName, outputDir, consoleFlag, live).then(([spec, result])
         console.log(chalk.green("No flows found."));
     } else {
         console.log(chalk.red("Flows found into the following sinks:"),
-            JSON.stringify(result, undefined, 4));
+            JSON.stringify(result, (key, value) =>
+            value instanceof Set ? [...value] : value, 4));
     }
 }).catch(err => {
     console.error('Error!');

@@ -1,5 +1,8 @@
 import {RunSpecification, SourceSpan, Location, StaticDescription} from "./types";
 import BooleanMachine from "./abstractMachine/BooleanMachine";
+import SourcedBooleanMachine from "./abstractMachine/SourcedBooleanMachine";
+
+// JALANGI DO NOT INSTRUMENT
 
 // Do the given descriptions of a taint source/sink describe the same thing?
 // Two descriptions are considered equal if all of the common taint source/sink
@@ -56,6 +59,7 @@ export function descriptionSubset(t1: StaticDescription, t2: StaticDescription):
 // }
 
 export function descriptionMatchesTaintSpec(sourceOrSink: StaticDescription, target: StaticDescription) {
+
     if (Object.keys(target).length === 0) {
         // Why does this happen?
         return false;
@@ -105,7 +109,7 @@ export function executeInstructionsFromFile(path: string, options: RunSpecificat
         path,
         "with the specification:",
         options);
-    const abstractMachine = new BooleanMachine(options);
+    const abstractMachine = new SourcedBooleanMachine(options);
     const compiledOutput = require(path);
     compiledOutput.drive(abstractMachine);
     return abstractMachine.getTaint();

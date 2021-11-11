@@ -425,3 +425,13 @@ export interface RunSpecification extends Object {
     // The list of sinks that are expected to be flowed into
     expectedFlows?: Array<StaticDescription>;
 }
+
+export class SourcedBoolean {
+    value: boolean;
+    source: Set<StaticDescription>; // Int 0000000000000000001000010
+
+    constructor(value: boolean, source: Set<StaticDescription>) {
+        this.value = value;
+        this.source = source;
+    }
+}

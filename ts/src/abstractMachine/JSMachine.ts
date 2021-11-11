@@ -116,11 +116,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     abstract getUntaintedValue(): V;
 
     /**
-     * Returns the taint marking associated with a tainted value.
-     */
-    abstract getTaintedValue(): V;
-
-    /**
      * Join two taint labels. The resulting label should represent the union
      * of the two given labels.
      */
@@ -148,14 +143,14 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     promiseMap: Map<any, ShadowObject<V>> = new Map<any, ShadowObject<V>>()
     asyncPromiseMap: Map<any, ShadowObject<V>> = new Map<any, ShadowObject<V>>()
 
-    constructor(spec: RunSpecification, live = false, outputFilePath: string = "") {
+    constructor(spec: RunSpecification, liveLogging = false, outputFilePath: string = "") {
         this.spec = spec;
         this.objects = new Map();
         this.pc = this.getUntaintedValue();
         this.getTaint = this.getTaint.bind(this);
         this.lastObjectAccessed = this.getUntaintedValue();
-        this.liveLogging = live;
         this.outputFilePath = outputFilePath;
+        this.liveLogging = liveLogging;
 
         this.functionTree.set(this.ROOTID, [{name: "program start"}])
         this.taintTree.set(this.ROOTID, []);
@@ -191,15 +186,18 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public reportFlow(flow: F) {
         if (this.liveLogging) {
             fs.appendFileSync(this.outputFilePath, "tainted value flowed into sink "
-            + JSON.stringify(flow)
+            + JSON.stringify(flow, (key, value) =>
+            value instanceof Set ? [...value] : value)
             + "!\n");
 
             console.log(this.outputFilePath, "tainted value flowed into sink "
-            + JSON.stringify(flow)
+            + JSON.stringify(flow, (key, value) =>
+            value instanceof Set ? [...value] : value)
             + "!\n");
         }
         if (debug) console.log("tainted value flowed into sink "
-            + JSON.stringify(flow)
+            + JSON.stringify(flow, (key, value) =>
+            value instanceof Set ? [...value] : value)
             + "!");
         this.flows.add(flow);
     }
@@ -306,7 +304,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                             const returnedObj = this.getShadowObject(shadowID);
                             const keys = Object.keys(returnedObj);
                             for (const k of keys) {
-                                returnedObj[k] = this.getTaintedValue();
+                                // TODO: Will this correctly identify taint sources for the ORM application?
+                                returnedObj[k] = this.produceMark(description);
                             }
                         }
                     }
@@ -500,9 +499,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // be untainted.
                 // 
                 // Note: if the object is tainted, taint all accesses.
-                const propertyTaint = objectTaintMap[s]
-                    || this.getUntaintedValue()
-                    || this.lastObjectAccessed;
+                const propertyTaint = this.join(objectTaintMap[s], this.lastObjectAccessed);
 
                 // Then join this with its initial marking
                 let r = this.join(this.produceMark(description),
