@@ -184,16 +184,12 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     }
 
     public reportFlow(flow: F) {
+        // 
         if (this.liveLogging) {
-            fs.appendFileSync(this.outputFilePath, "tainted value flowed into sink "
-            + JSON.stringify(flow, (key, value) =>
+            fs.appendFileSync(this.outputFilePath,
+            JSON.stringify(flow, (key, value) =>
             value instanceof Set ? [...value] : value)
-            + "!\n");
-
-            console.log(this.outputFilePath, "tainted value flowed into sink "
-            + JSON.stringify(flow, (key, value) =>
-            value instanceof Set ? [...value] : value)
-            + "!\n");
+            + "\n");
         }
         if (debug) console.log("tainted value flowed into sink "
             + JSON.stringify(flow, (key, value) =>
