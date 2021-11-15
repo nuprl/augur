@@ -22,7 +22,27 @@ export default class SourcedBooleanMachine
         if (b === undefined)
             return a;
             
-        return new SourcedBoolean(a.value || b.value, new Set([...a.source, ...b.source]));
+        // Right now, we don't have a good idea of what we can do with the intermediate information
+        // that would be included in the sources set of the join.
+        // 
+        // It is able to contain intermediate expressions that taint has flowed into, e.g., variables,
+        // but I think the useful information would be in the expressions that are "a level up", e.g.,
+        // the function call that the variable is in (or if that function is a callback to map or forEach).
+        //
+        // For now, we're going to take whichever source had the taint in the first place, which should work
+        // out to be the actual source of the taint.
+        if (a.value && b.value) {
+            console.log('How is this possible?');
+        }
+
+        let retSource;
+        if (a.value) {
+            retSource = a.source;
+        } else {
+            retSource = b.source;
+        }
+
+        return new SourcedBoolean(a.value || b.value, retSource /* new Set([...a.source, ...b.source]) */);
     }
 
     produceMark(description: StaticDescription): SourcedBoolean {
