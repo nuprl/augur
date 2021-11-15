@@ -58,7 +58,8 @@ export default class SourcedBooleanMachine
             // marking
             let sinkDescription = this.getSink(description);
             if (sinkDescription !== undefined && this.check(description, taintMarking)) {
-                this.reportFlow([taintMarking.source, sinkDescription]);
+                // TODO: Changed to description to get location information.
+                this.reportFlow([taintMarking.source, description /* sinkDescription */]);
             }
         }
     }
