@@ -79,15 +79,25 @@ export function parseJalangiLocationString(loc: string): Location {
     // Parse Jalangi location string
     // Rather than determining the location through a regex search we simply parse the provided loc string
     // If the location starts with (eval at [path location]) it's probably referencing an eval expression
+    
+    // TODO: There's a better place to put this. 
+    // projectRoot is an absolute path specifying the root of the project directory.
+    // We will use it to trim the path from the file name in the location string to make
+    // more useful locations, that are path-aware. E.g., we want to differentiate between dir1/foo.js and dir2/foo.js
+    // @ts-ignore
+    const projectRoot : string = J$.initParams.specPath.substr(0, J$.initParams.specPath.length - 9);
+
     // TODO: make sure this is the case.
     if (loc.substring(0, 5) === "(eval") {
        return {
             fileName: "eval"
         };
     } else {
-        let result: string[] = loc.replace('(', '').split("/").pop().split(":");
+        let pathFromRoot : string = loc.replace('(', '').replace(')', '').replace(projectRoot, '');
+        let result: string[] = pathFromRoot.split(":");
+
         let fileName: string = result.shift().substring(0);
-        let indices = result.map((n: string) => Number.parseInt(n.charAt(0)));
+        let indices = result.map((n: string) => Number.parseInt(n));
         let span: SourceSpan = {
             start: [indices[0], indices[1]],
             end: [indices[2], indices[3]]
