@@ -67,13 +67,13 @@ Promise.all = function promiseAllIterative(values) {
     return new Promise((resolve, reject) => {
        let results = [];
        let completed = 0;
-       
+
        values.forEach((value, index) => {
             Promise.resolve(value).then(result => {
                 results[index] = result;
                 completed += 1;
-                
-                if (completed == values.length) {
+
+                if (completed === values.length) {
                     resolve(results);
                 }
             }).catch(err => reject(err));
@@ -82,15 +82,71 @@ Promise.all = function promiseAllIterative(values) {
 }
 
 Promise.allSettled = function(iterable) {
-    return RealPromise.allSettled(iterable);
+    return Promise.all(iterable.map(p => p
+        .then(value => ({ status: 'fulfilled', value})).
+        catch(reason => ({ status: 'rejected', reason }))));
 }
 
 Promise.any = function(iterable) {
-    return RealPromise.any(iterable);
+    return new Promise((resolve, reject) => {
+
+        let hasResolved = false;
+        let promiseLikes = [];
+        let iterableCount = 0;
+        let rejectionReasons = [];
+
+        function resolveOnce(value) {
+            if (!hasResolved) {
+                hasResolved = true;
+                resolve(value);
+            }
+        }
+
+        function rejectionCheck(reason) {
+            rejectionReasons.push(reason);
+            if (rejectionReasons.length >= iterableCount) reject(rejectionReasons);
+        }
+        for (let value of iterable) {
+            iterableCount++;
+            promiseLikes.push(value);
+        }
+        for (let promiseLike of promiseLikes) {
+            if (promiseLike.then !== undefined ||
+            promiseLike.catch !== undefined) {
+                promiseLike.then((result) => resolveOnce(result)).catch((error) => undefined);
+                promiseLike.catch((reason) => rejectionCheck(reason));
+            } else resolveOnce(promiseLike);
+        }
+    });
 }
 
 Promise.race = function(iterable) {
-    return RealPromise.race(iterable);
+    return new Promise((resolve, reject) => {
+
+        let hasResolved = false;
+        let promiseLikes = [];
+        let iterableCount = 0;
+        let rejectionReasons = [];
+
+        function resolveOnce(value) {
+            if (!hasResolved) {
+                hasResolved = true;
+                resolve(value);
+            }
+        }
+
+        for (let value of iterable) {
+            iterableCount++;
+            promiseLikes.push(value);
+        }
+        for (let promiseLike of promiseLikes) {
+            if (promiseLike.then !== undefined ||
+                promiseLike.catch !== undefined) {
+                promiseLike.then((result) => resolveOnce(result)).catch((error) => undefined);
+                promiseLike.catch((reason) => reject(reason));
+            } else resolveOnce(promiseLike);
+        }
+    });
 }
 
 function PromiseWrapper(p, currPromiseId){
