@@ -6,6 +6,8 @@ import {
     VariableDescription
 } from "../../types";
 
+const debug = false;
+
 export default class WeakMapShadow implements ShadowMemory {
 
     // TODO: keep track of number of invocations of each function
@@ -35,12 +37,12 @@ export default class WeakMapShadow implements ShadowMemory {
         let key = this.map.get(o);
 
         if (!key) {
-            console.error(`tried to get non-existent shadow ID for object`);
-            console.error(`initializing now...`);
+            if (debug) console.error(`tried to get non-existent shadow ID for object`);
+            if (debug) console.error(`initializing now...`);
             this.initialize(o);
             key = this.map.get(o);
             if (!key) {
-               console.error(`failed to initialize shadow ID for object ${String(o)}`);
+               if (debug) console.error(`failed to initialize shadow ID for object ${String(o)}`);
             }
         }
 
@@ -54,19 +56,19 @@ export default class WeakMapShadow implements ShadowMemory {
             try {
                 this.map.set(o, (this.currentScopeName() + "@" + this.key++) as DynamicDescription);
             } catch(e) {
-                console.log(e.toString());
+                if (debug) console.log(e.toString());
             }
         }
     }
 
     functionEnter(f: Function): void {
-        console.error("shadow functionEnter");
+        if (debug) console.error("shadow functionEnter");
         // this.stack.push([(this.getShadowID(f) + "#" + this.key++) as DynamicDescription, []]);
         this.tree.get(this.ROOTID).push([(this.getShadowID(f) + "#" + this.key++) as DynamicDescription, []]);
     }
 
     functionExit(): void {
-      console.error("shadow functionExit");
+      if (debug) console.error("shadow functionExit");
       // Updates the scopeMap by exiting the scope for variables declared in this scope.
       // Otherwise if the same variable name occurred throughout the program, getting the full variable name
       // would return the incorrect value.
@@ -78,7 +80,7 @@ export default class WeakMapShadow implements ShadowMemory {
     }
 
     declare(name: RawVariableDescription): void {
-        console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
+        if (debug) console.error(`current scope: ${JSON.stringify(this.currentScope())}`);
         // Adds the new RawVariableDescription to the scopeMap along with the current scope to be
         // used to easily acquire the full variable name.
         this.addToScope(name);

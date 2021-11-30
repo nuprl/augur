@@ -343,5 +343,5 @@ test('async-await-interleave-tainted', (done) => runTest('async-await-interleave
 test('async-await-interleave-2-tainted', (done) => runTest('async-await-interleave-2-tainted', done));
 test('basic-async', (done) => runTest('basic-async', done));
 test('multi-await', (done) => runTest('multi-await', done));
-test('promise-all-tainted', (done) => runtTest('promise-all-tainted', done))
-test('for-await-tainted', (done) => runtTest('for-await-tainted', done))
+test('promise-all-tainted', (done) => runTest('promise-all-tainted', done))
+test('for-await-tainted', (done) => runTest('for-await-tainted', done))

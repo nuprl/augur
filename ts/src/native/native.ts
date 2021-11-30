@@ -195,6 +195,43 @@ let models = asNativeModelMap({
                                            description: StaticDescription): void {
         },
     }),
+    // "findOne": asNativeModel({
+    //     recorder: function(analysis: Analysis,
+    //                        name: DynamicDescription,
+    //                        receiverName: DynamicDescription,
+    //                        receiver: any,
+    //                        args: any[],
+    //                        description: StaticDescription): boolean {
+    //         console.log('[!!!!] in recorder...');
+    //         return false;     
+    //     },
+    //     implementationPre: function <V, F>(machine: JSMachine<V, F>,
+    //                                        name: DynamicDescription,
+    //                                        receiverName: DynamicDescription,
+    //                                        actualArgs: number,
+    //                                        isArray: boolean,
+    //                                        isMethod: boolean,
+    //                                        description: StaticDescription): number {
+    //         console.log('[!!!!] in implementationPre...');
+    //         return 2;
+    //     },
+    //     implementationPost: function<V, F>(machine: JSMachine<V, F>,
+    //         name: DynamicDescription,
+    //         returnValueName: DynamicDescription,
+    //         saved: number,
+    //         description: StaticDescription): void {
+    //             console.log('[!!!!] in implementationPost...');
+    //             console.log('[!!!!] returnValueName:', returnValueName);
+    //             // let [numSplits, stringTaint] = saved;
+    //             // let returnValueShadowObject = machine.getShadowObject(returnValueName);
+
+    //             // // propagate the taint value of the string (`saved`) to each
+    //             // // string in the split array
+    //             // for (let i = 0; i < numSplits; i++) {
+    //             //     returnValueShadowObject[i] = stringTaint;
+    //             // }
+    //         } 
+    // }),
     "toString": asNativeModel({
         recorder: function(analysis: Analysis,
                            name: DynamicDescription,

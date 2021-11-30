@@ -52,9 +52,10 @@ export interface AbstractMachine {
      * @param o the object
      * @param s the property name
      * @param isMethod is this readProperty being used for a method call?
+     * @param isComputed is the property name computed?
      * @param description why and where the action occurred
      */
-    readProperty: (input: [DynamicDescription, PropertyDescription, boolean, StaticDescription]) => void;
+    readProperty: (input: [DynamicDescription, PropertyDescription, boolean, boolean, StaticDescription]) => void;
 
     /**
      * Write an abstract value to an object property from the top of the stack.
@@ -113,12 +114,10 @@ export interface AbstractMachine {
      * operation should push the returned value onto the stack.
      *
      * @param name the name of the function according to the caller
-     * @param expectedNumArgs the number of arguments this function is
-     *                         expecting
-     * @param actualNumArgs the number of arguments actually given
+     * @param returnedIDs the shadowIDs of the return value (for use in models)
      * @param description why and where the action occurred
      */
-    functionInvokeEnd: (input: [DynamicDescription, StaticDescription]) => void;
+    functionInvokeEnd: (input: [DynamicDescription, DynamicDescription[], StaticDescription]) => void;
 
     /**
      * This operation represents the execution of a *function*. This
@@ -168,7 +167,7 @@ export interface AbstractMachine {
      * @param shadowID of the return
      * @param description why and where the action occurred
      */
-    functionReturn: (input: [DynamicDescription, DynamicDescription[], StaticDescription]) => void;
+    functionReturn: (input: [DynamicDescription, StaticDescription]) => void;
 
     /**
      * Perform the specified builtin on the arguments from the top of the
@@ -425,4 +424,14 @@ export interface RunSpecification extends Object {
 
     // The list of sinks that are expected to be flowed into
     expectedFlows?: Array<StaticDescription>;
+}
+
+export class SourcedBoolean {
+    value: boolean;
+    source: Set<StaticDescription>; // Int 0000000000000000001000010
+
+    constructor(value: boolean, source: Set<StaticDescription>) {
+        this.value = value;
+        this.source = source;
+    }
 }

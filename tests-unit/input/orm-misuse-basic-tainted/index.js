@@ -42,11 +42,9 @@ Post.belongsTo(User);
         }
     });
 
-    users.forEach(async user => {
-        const posts = await Post.findAll({
-            where: {
-                userId: user.id
-            }
-        });
+    const posts = await Post.findAll({
+        where: {
+            userId: users[0].id
+        }
     });
 })();

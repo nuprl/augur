@@ -2,10 +2,13 @@
     "main": "index.js",
     "sources": [
         {
-            "type": "functionInvocation",
+            "type": "functionReturn",
             "name": "findAll",
             "location": {
                 "fileName": "index.js"
+            },
+            "config": {
+                "recursive": true
             }
         }
     ],
@@ -13,6 +16,15 @@
         {
             "type": "functionInvocation",
             "name": "findAll",
+            "location": {
+                "fileName": "index.js"
+            },
+            "config": {
+                "recursive": true
+            }
+        }, {
+            "type": "variable",
+            "name": "sink",
             "location": {
                 "fileName": "index.js"
             }
@@ -24,6 +36,9 @@
             "name": "findAll",
             "location": {
                 "fileName": "index.js"
+            },
+            "config": {
+                "recursive": true
             }
         }
     ]
