@@ -29,7 +29,7 @@ $ cd augur/ts
 
 Next, build NodeProf and Augur:
 ```
-$ ./docker-nodeprof/docker-pull.sh  # Build NodeProf
+$ ./docker-nodeprof/docker-pull.sh  # Pull NodeProf Docker image
 $ npm install                       # Install Augur deps
 $ npm run build                     # Build Augur
 ```
