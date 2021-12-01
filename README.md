@@ -21,7 +21,9 @@ on taint analysis.
 
 Let's walk through how to install Augur and use it to analyze a Node.js project.
 
-First, clone this project onto your machine:
+First, install Augur's dependencies if you don't already have them: `node`, `npm`, and `docker`.
+
+Clone this project onto your machine:
 ```
 $ git clone --recurse-submodules https://github.com/nuprl/augur
 $ cd augur/ts
@@ -29,7 +31,7 @@ $ cd augur/ts
 
 Next, build NodeProf and Augur:
 ```
-$ ./docker-nodeprof/docker-pull.sh  # Build NodeProf
+$ ./docker-nodeprof/docker-pull.sh  # Pull NodeProf Docker image
 $ npm install                       # Install Augur deps
 $ npm run build                     # Build Augur
 ```
