@@ -1,0 +1,36 @@
+{
+    "main": "index.js",
+    "sources": [
+        {
+            "type": "functionInvocation",
+            "name": "findOne",
+            "location": {
+                "fileName": "index.js"
+            },
+            "config": {
+                "recursive": true
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionInvocation",
+            "name": "findOne",
+            "location": {
+                "fileName": "index.js"
+            },
+            "config": {
+                "recursive": true
+            }
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "functionInvocation",
+            "name": "findOne",
+            "location": {
+                "fileName": "index.js"
+            }
+        }
+    ]
+}

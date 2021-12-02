@@ -1,0 +1,23 @@
+{
+    "main": "index.js",
+    "sources": [
+        {
+            "type": "functionInvocation",
+            "name": "findAll",
+            "location": {
+                "fileName": "index.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionInvocation",
+            "name": "findAll",
+            "location": {
+                "fileName": "index.js"
+            }
+        }
+    ],
+    "expectedFlows": [
+    ]
+}
