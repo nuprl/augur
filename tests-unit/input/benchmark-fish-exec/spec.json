@@ -1,5 +1,6 @@
 {
     "main": "fish-exec.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

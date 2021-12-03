@@ -1,5 +1,6 @@
 {
     "main": "modulify-eval.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

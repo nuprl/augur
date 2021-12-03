@@ -1,5 +1,6 @@
 {
     "main": "osenv.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

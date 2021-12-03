@@ -1,6 +1,7 @@
-import {RunSpecification, SourceSpan, Location, StaticDescription} from "./types";
+import {RunSpecification, SourceSpan, Location, StaticDescription, AbstractMachine} from "./types";
 import BooleanMachine from "./abstractMachine/BooleanMachine";
 import SourcedBooleanMachine from "./abstractMachine/SourcedBooleanMachine";
+import ExpressionMachine from "./abstractMachine/ExpressionMachine";
 
 // JALANGI DO NOT INSTRUMENT
 
@@ -114,12 +115,31 @@ export function parseIID(iid: number): Location {
     return parseJalangiLocationString(J$.iidToLocation(iid));
 }
 
+/**
+ * Creates an abstract machine to analyze a project in.
+ * Use this function whenever you want to make an AbstractMachine,
+ * as it is important to match the taint tracking type specified
+ * in the `spec.json` file.
+ */
+export function createAbstractMachine(options: RunSpecification, liveLogging: boolean = false, outputFilePath: string = ""): AbstractMachine {
+    switch (options.tracking) {
+        case "Boolean":
+            return new BooleanMachine(options, liveLogging, outputFilePath);
+
+        case "SourcedBoolean":
+            return new SourcedBooleanMachine(options, liveLogging, outputFilePath);
+
+        case "Expression":
+            return new ExpressionMachine(options, liveLogging, outputFilePath);
+    }
+}
+
 export function executeInstructionsFromFile(path: string, options: RunSpecification) {
     console.log("Executing instructions from",
         path,
         "with the specification:",
         options);
-    const abstractMachine = new SourcedBooleanMachine(options);
+    const abstractMachine = createAbstractMachine(options);
     const compiledOutput = require(path);
     compiledOutput.drive(abstractMachine);
     return abstractMachine.getTaint();

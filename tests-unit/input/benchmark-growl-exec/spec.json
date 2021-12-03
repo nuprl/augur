@@ -1,5 +1,6 @@
 {
     "main": "growl-exec.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

@@ -84,6 +84,8 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             // Run project using Docker
             ? TAINT_ANALYSIS_HOME + "/ts/docker-nodeprof/docker-analyze.sh" +
             ` --mxArg "--initParam outputFile:/root/program/${DOCKER_OUTPUT_FILENAME}"` +
+            ` --mxArg "--initParam live:${live}"` +
+            ` --mxArg "--initParam specPath:/root/program/spec.json"` +
             " --analysisDir " + TAINT_ANALYSIS_HOME + "/ts/" +
             " --analysisMain " + "dist/src/analysis/nodeprofAnalysis.js" +
             " --programDir " + projectDir + "/" +
@@ -100,6 +102,7 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             + inputFile);
 
     console.log("Source file: \t" + inputFile);
+    console.log("Command: \t" + command);
 
     let results;
     if (live) {

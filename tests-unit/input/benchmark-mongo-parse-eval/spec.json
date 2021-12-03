@@ -1,5 +1,6 @@
 {
     "main": "mongo-parse-eval.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "variable",

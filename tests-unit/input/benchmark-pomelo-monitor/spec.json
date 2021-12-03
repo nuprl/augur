@@ -1,5 +1,6 @@
 {
     "main": "pomelo-monitor.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

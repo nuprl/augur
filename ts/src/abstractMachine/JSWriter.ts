@@ -190,4 +190,9 @@ export default class JSWriter implements AbstractMachine {
         this.outputStr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
     }
 
+    public getTaint() {
+        throw new Error("JSWriter does not support the `getTaint` method, as JSWriter doesn't compute taint flows. " +
+            "Did you mean to use a different type of AbstractMachine, like BooleanMachine?.");
+    }
+
 }

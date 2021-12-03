@@ -16,7 +16,7 @@ import {
 } from "../types";
 import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
-import {parseIID} from "../utils";
+import {createAbstractMachine, parseIID} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
 import {useNativeRecorder, getModelledFunctionNames} from "../native/native";
 import SourcedBooleanMachine from "../abstractMachine/SourcedBooleanMachine";
@@ -38,10 +38,10 @@ export default class Analysis implements Analyzer {
     
     // The spec file, in case of live analysis.
     // @ts-ignore
-    private spec = JSON.parse(readFileSync(J$.initParams.specPath).toString());
+    private spec = J$.live? JSON.parse(readFileSync(J$.initParams.specPath).toString()) : undefined;
     
     // @ts-ignore
-    private state: AbstractMachine = J$.initParams.live === "true" ? new SourcedBooleanMachine(this.spec, true, J$.initParams.outputFile) : new JSWriter();
+    private state: AbstractMachine = J$.initParams.live === "true" ? createAbstractMachine(this.spec, true, J$.initParams.outputFile) : new JSWriter();
 
     public promiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
     public asyncPromiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
@@ -68,6 +68,8 @@ export default class Analysis implements Analyzer {
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
+	// @ts-ignore
+	console.error(`Analysis created. Live = ${J$.initParams.live}`);
     }
 
     public declare: NPCallbacks.declare = (iid, name: RawVariableDescription, type: string) => {

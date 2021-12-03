@@ -1,5 +1,6 @@
 {
     "main": "mongoosify-eval.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

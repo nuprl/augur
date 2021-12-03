@@ -1,5 +1,6 @@
 {
     "main": "index.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

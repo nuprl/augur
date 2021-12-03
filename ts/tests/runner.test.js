@@ -46,7 +46,7 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
 function runTest(testName, done) {
-    let results = run(INPUT_DIR + "/" + testName, testName, ACTUAL_OUT_DIR).then(([spec, results]) => {
+    let results = run(INPUT_DIR + "/" + testName, testName, ACTUAL_OUT_DIR, true, false).then(([spec, results]) => {
         expect(results).toEqual(spec.expectedFlows);
 
         done();

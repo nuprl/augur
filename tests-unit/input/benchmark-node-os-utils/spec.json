@@ -1,5 +1,6 @@
 {
     "main": "node-os-utils.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

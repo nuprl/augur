@@ -1,5 +1,6 @@
 {
     "main": "cocos-utils.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

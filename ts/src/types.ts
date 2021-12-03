@@ -279,6 +279,15 @@ export interface AbstractMachine {
      */
     promiseReject: (input: [number, any, DynamicDescription, StaticDescription]) => void;
 
+    /**
+     * Get the taint flows this AbstractMachine has detected so far.
+     *
+     * Note: this method only works for *real* AbstractMachine's, meaning
+     *       all AbstractMachine's except for JSWriter. Since JSWriter simply
+     *       writes the instructions out to a file, it isn't able to compute
+     *       taint flows itself.
+     */
+    getTaint(): any;
 }
 
 // an interface for associating shadow identifiers with arbitrary objects.
@@ -410,11 +419,41 @@ export type SourceSpan =
     {start: SourcePosition, end: SourcePosition}; // a range in source
 
 /**
+ * Different types of taint tracking Augur supports.
+ * The name refers to what information is available when a flow occurs.
+ *
+ * Boolean: a flow occurred into sink X
+ * SourcedBoolean: a flow occurred into sink X *from source Y*
+ * Expression: a flow occurred into sink X *and touched these expressions*
+ *
+ * These different tracking types incur different runtime overheads:
+ * 1. Boolean (fastest)
+ * 2. SourcedBoolean
+ * 3. Expression (slowest)
+ *
+ * They are implemented by using different `AbstractMachine`'s:
+ * 1. Boolean: `BooleanMachine`
+ * 2. SourcedBoolean: `SourcedBooleanMachine`
+ * 3. Expression: `ExpressionMachine`
+ *
+ * The main reason for using one tracking method over another is
+ * how much information you want about your flows. Sometimes, you might
+ * only care about seeing if a flow happened or not (Boolean). If you
+ * care about seeing which source the flow came from, use SourcedBoolean.
+ * If you need detailed information about every line of code a value passed
+ * through on its way to a sink, use Expression.
+ */
+export type TrackingType = "Boolean" | "SourcedBoolean" | "Expression";
+
+/**
  * The specification of a test to run. All fields are optional besides "main"
  */
 export interface RunSpecification extends Object {
     // The program to instrument
     main: string;
+
+    // The type of taint tracking to use for this analysis.
+    tracking: TrackingType;
 
     // The sources of taint
     sources?: Array<StaticDescription>;

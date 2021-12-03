@@ -1,5 +1,6 @@
 {
     "main": "index.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionReturn",
@@ -22,7 +23,8 @@
             "config": {
                 "recursive": true
             }
-        }, {
+        },
+        {
             "type": "variable",
             "name": "sink",
             "location": {
