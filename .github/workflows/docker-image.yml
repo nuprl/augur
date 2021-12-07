@@ -14,12 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: docker://mwaldrich/docker-nodeprof
     - uses: actions/javascript-action@v1
     - uses: actions/setup-node@v2
-    with:
-             working-directory: /home/runner/work/augur/augur/ts
-    - uses: docker://mwaldrich/docker-nodeprof
-    - run: npm install
+    - run: npm ci
     - run: npm run build
     - run: ./node_modules/.bin/jest
 
