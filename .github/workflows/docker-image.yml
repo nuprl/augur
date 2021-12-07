@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with: 
+        submodules: recursive
     - uses: docker://mwaldrich/docker-nodeprof
     - uses: actions/javascript-action@v1
     - uses: actions/setup-node@v2
