@@ -15,7 +15,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/javascript-action@v1
-    - run: cd /home/runner/work/augur/augur/ts
+    - uses: actions/setup-node@v2
+  with:
+    node-version: '14'
     - uses: docker://mwaldrich/docker-nodeprof
     - run: npm install
     - run: npm run build
