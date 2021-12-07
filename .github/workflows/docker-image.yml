@@ -11,6 +11,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./ts
 
     steps:
     - uses: actions/checkout@v2
@@ -20,7 +22,6 @@ jobs:
       with:
         node-version: '12'
         check-latest: true
-    - run: cd /home/runner/work/augur/augur/ts   
     - run: npm install
     - run: npm run build
     - run: ./node_modules/.bin/jest
