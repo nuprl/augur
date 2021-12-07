@@ -20,7 +20,6 @@ jobs:
       with:
         node-version: '12'
         check-latest: true
-    - run: cat /home/runner/.npm/_logs/2021-12-07T20_54_18_344Z-debug.log
     - run: npm install
     - run: npm run build
     - run: ./node_modules/.bin/jest
