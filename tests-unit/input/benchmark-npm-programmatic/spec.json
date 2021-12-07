@@ -1,5 +1,6 @@
 {
     "main": "npm-programmatic.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

@@ -109,7 +109,8 @@ let popArgs = <V, F>(machine: JSMachine<V, F>,
     // also be on the stack. pop this if necessary
     let receiverTaint;
     if (isMethod) {
-        receiverTaint = machine.taintStack.pop();
+        // receiverTaint = machine.taintStack.pop();
+        receiverTaint = machine.taintTree.get(machine.ROOTID).pop();
     } else {
         // if this isn't a method call, the base object is untainted
         receiverTaint = machine.getUntaintedValue();
@@ -117,11 +118,13 @@ let popArgs = <V, F>(machine: JSMachine<V, F>,
 
     // pop taint value of args
     for (let i = 0; i < actualArgs; i++) {
-        args[actualArgs - i - 1] = (machine.taintStack.pop());
+        // args[actualArgs - i - 1] = (machine.taintStack.pop());
+        args[actualArgs - i - 1] = (machine.taintTree.get(machine.ROOTID).pop());
     }
 
     // pop value of builtin
-    let builtinTaint = machine.taintStack.pop();
+    // let builtinTaint = machine.taintStack.pop();
+    let builtinTaint = machine.taintTree.get(machine.ROOTID).pop();
 
     return [builtinTaint, receiverTaint, args];
 };
@@ -145,7 +148,8 @@ let popArgsAndReportFlowsIntoBuiltin =
 
 let returnTaints = <V, F>(machine: JSMachine<V, F>,
                           taint: V) => {
-    machine.taintStack.push(taint);
+    // machine.taintStack.push(taint);
+    machine.taintTree.get(machine.ROOTID).push(taint);
 };
 
 let defaultImplementationPre: NativeModelImplementationPre<void, void> =
@@ -173,6 +177,61 @@ let defaultModel: NativeModel<void, void> = {
 };
 
 let models = asNativeModelMap({
+    "augur_testFunSkip": asNativeModel({
+        recorder: function(analysis: Analysis,
+                           name: DynamicDescription,
+                           receiverName: DynamicDescription,
+                           receiver: any,
+                           args: any[],
+                           description: StaticDescription): boolean {
+            return false;     
+        },
+        implementationPre: function <V, F>(machine: JSMachine<V, F>,
+                                           name: DynamicDescription,
+                                           receiverName: DynamicDescription,
+                                           actualArgs: number,
+                                           isArray: boolean,
+                                           isMethod: boolean,
+                                           description: StaticDescription): void {
+        },
+    }),
+    // "findOne": asNativeModel({
+    //     recorder: function(analysis: Analysis,
+    //                        name: DynamicDescription,
+    //                        receiverName: DynamicDescription,
+    //                        receiver: any,
+    //                        args: any[],
+    //                        description: StaticDescription): boolean {
+    //         console.log('[!!!!] in recorder...');
+    //         return false;     
+    //     },
+    //     implementationPre: function <V, F>(machine: JSMachine<V, F>,
+    //                                        name: DynamicDescription,
+    //                                        receiverName: DynamicDescription,
+    //                                        actualArgs: number,
+    //                                        isArray: boolean,
+    //                                        isMethod: boolean,
+    //                                        description: StaticDescription): number {
+    //         console.log('[!!!!] in implementationPre...');
+    //         return 2;
+    //     },
+    //     implementationPost: function<V, F>(machine: JSMachine<V, F>,
+    //         name: DynamicDescription,
+    //         returnValueName: DynamicDescription,
+    //         saved: number,
+    //         description: StaticDescription): void {
+    //             console.log('[!!!!] in implementationPost...');
+    //             console.log('[!!!!] returnValueName:', returnValueName);
+    //             // let [numSplits, stringTaint] = saved;
+    //             // let returnValueShadowObject = machine.getShadowObject(returnValueName);
+
+    //             // // propagate the taint value of the string (`saved`) to each
+    //             // // string in the split array
+    //             // for (let i = 0; i < numSplits; i++) {
+    //             //     returnValueShadowObject[i] = stringTaint;
+    //             // }
+    //         } 
+    // }),
     "toString": asNativeModel({
         recorder: function(analysis: Analysis,
                            name: DynamicDescription,
@@ -543,6 +602,38 @@ let models = asNativeModelMap({
             returnTaints(machine, argsTaint[extraRecords]);
         }
     }),
+    /*
+     *   Promises
+     */
+    // "then": asNativeModel({
+    //     recorder: (analysis: Analysis,
+    //                name: DynamicDescription,
+    //                receiverName: DynamicDescription,
+    //                receiver: any,
+    //                args: any[],
+    //                description: StaticDescription) => {
+    //         // This refers to .then called on the returns of async functions.
+    //         // Get the asyncID of the promise, and return it.
+    //         return analysis.getAsyncPromiseId(receiver);
+    //     },
+    //     implementationPre: function <V, F>(machine: JSMachine<V, F>,
+    //                                     name: DynamicDescription,
+    //                                     receiverName: DynamicDescription,
+    //                                     actualArgs: number,
+    //                                     idOfReactedUponPromise: DynamicDescription,
+    //                                     isMethod: boolean,
+    //                                     description: StaticDescription): void {
+    //         let [_, receiverTaint, argsTaint] =
+    //         popArgsAndReportFlowsIntoBuiltin(machine,
+    //             name,
+    //             receiverName,
+    //             actualArgs,
+    //             isMethod,
+    //             description);
+
+    //         returnTaints(machine, machine.getPromise(idOfReactedUponPromise).resolve);
+    //     }
+    // }),
 });
 
 // TODO: don't use string here; create a type for builtin names
@@ -608,4 +699,8 @@ export function useNativeImplementationPost<V, F, S>(machine: JSMachine<V, F>,
 
     // if there isn't an implementationPost, don't do anything. this is ok
     // because we don't need to return anything.
+}
+
+export function getModelledFunctionNames() : string[] {
+    return Object.keys(models);
 }

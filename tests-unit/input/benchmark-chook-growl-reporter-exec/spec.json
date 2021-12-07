@@ -1,5 +1,6 @@
 {
     "main": "chook-growl-reporter-exec.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "variable",

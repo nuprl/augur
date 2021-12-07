@@ -1,5 +1,6 @@
 {
     "main": "system-locale.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

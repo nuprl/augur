@@ -1,5 +1,6 @@
 {
     "main": "sequelize-sql.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

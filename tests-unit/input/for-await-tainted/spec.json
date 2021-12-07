@@ -1,0 +1,31 @@
+{
+    "main": "test.js",
+    "tracking": "Boolean",
+    "sources": [
+        {
+            "type": "variable",
+            "name": "src",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "variable",
+            "name": "num",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "variable",
+            "name": "num",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ]
+}

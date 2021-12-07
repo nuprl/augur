@@ -46,7 +46,7 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
 function runTest(testName, done) {
-    let results = run(INPUT_DIR + "/" + testName, testName, ACTUAL_OUT_DIR).then(([spec, results]) => {
+    let results = run(INPUT_DIR + "/" + testName, testName, ACTUAL_OUT_DIR, true, false).then(([spec, results]) => {
         expect(results).toEqual(spec.expectedFlows);
 
         done();
@@ -335,3 +335,13 @@ test('native-string-split-4-clean', (done) => runTest('native-string-split-4-cle
 test('native-string-split-4-tainted', (done) => runTest('native-string-split-4-tainted', done));
 test('simple-readFileSync-exec-clean', (done) => runTest('simple-readFileSync-exec-clean', done));
 test('simple-readFileSync-exec-tainted', (done) => runTest('simple-readFileSync-exec-tainted', done));
+
+// Tests for new async/await implementation
+test('async-await-2-tainted', (done) => runTest('async-await-2-tainted', done));
+test('async-await-3-tainted', (done) => runTest('async-await-3-tainted', done));
+test('async-await-interleave-tainted', (done) => runTest('async-await-interleave-tainted', done));
+test('async-await-interleave-2-tainted', (done) => runTest('async-await-interleave-2-tainted', done));
+test('basic-async', (done) => runTest('basic-async', done));
+test('multi-await', (done) => runTest('multi-await', done));
+test('promise-all-tainted', (done) => runTest('promise-all-tainted', done))
+test('for-await-tainted', (done) => runTest('for-await-tainted', done))

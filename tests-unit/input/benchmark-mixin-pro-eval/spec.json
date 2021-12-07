@@ -1,5 +1,6 @@
 {
     "main": "mixin-pro-eval.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

@@ -1,4 +1,4 @@
-import { Accessor } from "./nodeprof";
+import {Accessor, ExceptionVal, Invoked, Receiver} from "./nodeprof";
 
 // Various types used throughout the analysis.
 
@@ -52,9 +52,10 @@ export interface AbstractMachine {
      * @param o the object
      * @param s the property name
      * @param isMethod is this readProperty being used for a method call?
+     * @param isComputed is the property name computed?
      * @param description why and where the action occurred
      */
-    readProperty: (input: [DynamicDescription, PropertyDescription, boolean, StaticDescription]) => void;
+    readProperty: (input: [DynamicDescription, PropertyDescription, boolean, boolean, StaticDescription]) => void;
 
     /**
      * Write an abstract value to an object property from the top of the stack.
@@ -90,10 +91,10 @@ export interface AbstractMachine {
      * @param expectedNumArgs the number of arguments this function is
      *                         expecting
      * @param actualNumArgs the number of arguments actually given
-     * @param _this the object bound to `this` for this function call
+     * @param argShadowIDs the shadowIDs of the arguments themselves
      * @param description why and where the action occurred
      */
-    functionInvokeStart: (input: [DynamicDescription, number, number, StaticDescription]) => void;
+    functionInvokeStart: (input: [DynamicDescription, number, number, DynamicDescription[], StaticDescription]) => void;
 
     /**
      * This operation represents the return of a *function invocation
@@ -113,12 +114,10 @@ export interface AbstractMachine {
      * operation should push the returned value onto the stack.
      *
      * @param name the name of the function according to the caller
-     * @param expectedNumArgs the number of arguments this function is
-     *                         expecting
-     * @param actualNumArgs the number of arguments actually given
+     * @param returnedIDs the shadowIDs of the return value (for use in models)
      * @param description why and where the action occurred
      */
-    functionInvokeEnd: (input: [DynamicDescription, StaticDescription]) => void;
+    functionInvokeEnd: (input: [DynamicDescription, DynamicDescription[], StaticDescription]) => void;
 
     /**
      * This operation represents the execution of a *function*. This
@@ -165,6 +164,7 @@ export interface AbstractMachine {
      * onto the stack in `invokeFunEnd`.
      *
      * @param name the name of the function returning from
+     * @param shadowID of the return
      * @param description why and where the action occurred
      */
     functionReturn: (input: [DynamicDescription, StaticDescription]) => void;
@@ -236,6 +236,58 @@ export interface AbstractMachine {
      * @param description why and where the action occurred
      */
     initializeArgumentsObject: (input: [DynamicDescription, StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    asyncFunctionEnter: (input: [StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    asyncFunctionExit: (input: [number, DynamicDescription, any, ExceptionVal, StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    awaitPre: (input: [number, DynamicDescription, any, StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    awaitPost: (input: [number, DynamicDescription, any, any, StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    promiseReaction: (input: [number, any, DynamicDescription, StaticDescription]) => void;
+
+    /**
+     *
+     * @param input
+     */
+    promiseResolve: (input: [number, any, DynamicDescription, StaticDescription]) => void;
+
+    /**
+     * 
+     * @param input
+     */
+    promiseReject: (input: [number, any, DynamicDescription, StaticDescription]) => void;
+
+    /**
+     * Get the taint flows this AbstractMachine has detected so far.
+     *
+     * Note: this method only works for *real* AbstractMachine's, meaning
+     *       all AbstractMachine's except for JSWriter. Since JSWriter simply
+     *       writes the instructions out to a file, it isn't able to compute
+     *       taint flows itself.
+     */
+    getTaint(): any;
 }
 
 // an interface for associating shadow identifiers with arbitrary objects.
@@ -254,6 +306,10 @@ export interface ShadowMemory {
     functionEnter(f: Function): void;
 
     functionExit(): void;
+
+    awaitPre(id: number): void;
+
+    awaitPost(id: number): void;
 
     declare(name: RawVariableDescription): void;
 
@@ -286,7 +342,11 @@ export type TaintType = "function"
     | "functionEnter"
     | "functionReturn"
     | "literal"
-    | "declaration";
+    | "declaration"
+    | "asyncFunctionEnter"
+    | "asyncFunctionExit"
+    | "awaitPre"
+    | "awaitPost";
 
 // A unique identifier for a particular DYNAMIC OBJECT. This is *NOT* the
 // variable name. It is auto-generated, and has nothing to do with the
@@ -328,6 +388,11 @@ export interface StaticDescription extends Object {
     type?: TaintType;
     name?: string;
     location?: Location;
+    config?: TaintConfig;
+}
+
+export interface TaintConfig {
+    recursive?: boolean;
 }
 
 export interface Location extends Object {
@@ -354,11 +419,41 @@ export type SourceSpan =
     {start: SourcePosition, end: SourcePosition}; // a range in source
 
 /**
+ * Different types of taint tracking Augur supports.
+ * The name refers to what information is available when a flow occurs.
+ *
+ * Boolean: a flow occurred into sink X
+ * SourcedBoolean: a flow occurred into sink X *from source Y*
+ * Expression: a flow occurred into sink X *and touched these expressions*
+ *
+ * These different tracking types incur different runtime overheads:
+ * 1. Boolean (fastest)
+ * 2. SourcedBoolean
+ * 3. Expression (slowest)
+ *
+ * They are implemented by using different `AbstractMachine`'s:
+ * 1. Boolean: `BooleanMachine`
+ * 2. SourcedBoolean: `SourcedBooleanMachine`
+ * 3. Expression: `ExpressionMachine`
+ *
+ * The main reason for using one tracking method over another is
+ * how much information you want about your flows. Sometimes, you might
+ * only care about seeing if a flow happened or not (Boolean). If you
+ * care about seeing which source the flow came from, use SourcedBoolean.
+ * If you need detailed information about every line of code a value passed
+ * through on its way to a sink, use Expression.
+ */
+export type TrackingType = "Boolean" | "SourcedBoolean" | "Expression";
+
+/**
  * The specification of a test to run. All fields are optional besides "main"
  */
 export interface RunSpecification extends Object {
     // The program to instrument
     main: string;
+
+    // The type of taint tracking to use for this analysis.
+    tracking: TrackingType;
 
     // The sources of taint
     sources?: Array<StaticDescription>;
@@ -368,4 +463,14 @@ export interface RunSpecification extends Object {
 
     // The list of sinks that are expected to be flowed into
     expectedFlows?: Array<StaticDescription>;
+}
+
+export class SourcedBoolean {
+    value: boolean;
+    source: Set<StaticDescription>; // Int 0000000000000000001000010
+
+    constructor(value: boolean, source: Set<StaticDescription>) {
+        this.value = value;
+        this.source = source;
+    }
 }

@@ -1,5 +1,7 @@
 import { Analyzer, main, NPCallbacks, Sandbox } from "../nodeprof";
 
+require('../native/polyfill');
+
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 

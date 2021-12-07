@@ -1,5 +1,6 @@
 {
     "main": "gm-attack.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

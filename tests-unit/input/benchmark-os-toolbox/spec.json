@@ -1,5 +1,6 @@
 {
     "main": "os-toolbox.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",
