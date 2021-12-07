@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Tests Augur
+    - run: cd /ts
+    - run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - run: npm install
+    - run: npm run build
+    - run: ./node_modules/.bin/jest
+
