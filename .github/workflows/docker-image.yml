@@ -23,6 +23,9 @@ jobs:
         node-version: '12'
         check-latest: true
     - run: npm install
+      working-directory: ./ts
     - run: npm run build
+      working-directory: ./ts
     - run: ./node_modules/.bin/jest
+      working-directory: ./ts
 
