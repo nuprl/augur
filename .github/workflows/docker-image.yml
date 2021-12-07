@@ -18,9 +18,10 @@ jobs:
     - uses: actions/javascript-action@v1
     - uses: actions/setup-node@v2
       with:
-        node-version: 12.x
-    - run: sudo apt install npm
-    - run: npm install
+        node-version: '12'
+        check-latest: true
+    - run: rm -rf node_modules/
+    - run: npm ci
     - run: npm run build
     - run: ./node_modules/.bin/jest
 
