@@ -1,0 +1,47 @@
+{
+    "main": "index.js",
+    "tracking": "Boolean",
+    "sources": [
+        {
+            "type": "functionReturn",
+            "name": "findAll",
+            "location": {
+                "fileName": "index.js"
+            },
+            "config": {
+                "recursive": true
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "functionInvocation",
+            "name": "findAll",
+            "location": {
+                "fileName": "index.js"
+            },
+            "config": {
+                "recursive": true
+            }
+        },
+        {
+            "type": "variable",
+            "name": "sink",
+            "location": {
+                "fileName": "index.js"
+            }
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "functionInvocation",
+            "name": "findAll",
+            "location": {
+                "fileName": "index.js"
+            },
+            "config": {
+                "recursive": true
+            }
+        }
+    ]
+}

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ts/docker-nodeprof" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/ts/docker/nodeprof-clones/private/nodeprof" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/ts/docker/nodeprof-clones/public/nodeprof.js" vcs="Git" />
   </component>

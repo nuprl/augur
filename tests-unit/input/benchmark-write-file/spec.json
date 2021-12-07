@@ -1,5 +1,6 @@
 {
     "main": "write-file.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

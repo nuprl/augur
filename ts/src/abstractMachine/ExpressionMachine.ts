@@ -5,6 +5,7 @@ import {StaticDescription} from "../types";
 
 export default class ExpressionMachine
     extends JSMachine<Set<StaticDescription>, [Set<StaticDescription>, StaticDescription]> {
+        
     check(sink: StaticDescription, taint: Set<StaticDescription>): boolean {
         return true;
     }

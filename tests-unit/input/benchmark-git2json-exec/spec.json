@@ -1,5 +1,6 @@
 {
     "main": "git2json-exec.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

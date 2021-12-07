@@ -1,5 +1,6 @@
 {
     "main": "node-wos.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",

@@ -1,5 +1,6 @@
 {
     "main": "mongoosemask-eval.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "variable",

@@ -2,6 +2,7 @@
   "compileOnSave": true,
   "compilerOptions": {
     "target": "es6",
+    "allowJs": true,
     "module": "commonjs",
     "outDir": "dist",
     "moduleResolution": "node",
@@ -17,6 +18,7 @@
   },
   "include": [
     "src/**/*.ts",
+    "src/native/polyfill.js",
     "tests/*.ts",
   ],
   "exclude": [

@@ -1,7 +1,7 @@
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
-import { Accessor } from "../nodeprof";
+import {Accessor, ExceptionVal} from "../nodeprof";
 import {
     Instruction,
     AbstractMachine,
@@ -37,7 +37,7 @@ export default class JSWriter implements AbstractMachine {
     private outputStr : string[] = [];
 
     constructor() {
-         this.outputStr.push(this.preamble);
+        this.outputStr.push(this.preamble);
     }
 
     public literal([description]: [StaticDescription]) {
@@ -56,9 +56,9 @@ export default class JSWriter implements AbstractMachine {
         this.writeInstruction({ command: "writeVar", args: [s, description] });
     }
 
-    public readProperty([o, s, isMethod, description]: [DynamicDescription, Accessor, boolean, StaticDescription]) {
+    public readProperty([o, s, isMethod, isComputed, description]: [DynamicDescription, Accessor, boolean, boolean, StaticDescription]) {
         this.writeInstruction({ command: "readProperty",
-            args: [o, s, isMethod, description] });
+            args: [o, s, isMethod, isComputed, description] });
     }
 
     public writeProperty([o, s, description]: [DynamicDescription, Accessor, StaticDescription]) {
@@ -92,18 +92,18 @@ export default class JSWriter implements AbstractMachine {
         });
     }
 
-    public functionInvokeEnd([name, description]: [string, StaticDescription]) {
+    public functionInvokeEnd([name, shadowIDs, description]: [string, DynamicDescription[], StaticDescription]) {
         this.writeInstruction({
             command: "functionInvokeEnd",
-            args: [name, description]
+            args: [name, shadowIDs, description]
         });
     }
 
-    public functionInvokeStart([name, expectedArgs, actualArgs, description]:
-                                   [string, number, number, StaticDescription]) {
+    public functionInvokeStart([name, expectedArgs, actualArgs, argShadowIDs, description]:
+                                   [string, number, number, DynamicDescription[], StaticDescription]) {
         this.writeInstruction({
             command: "functionInvokeStart",
-            args: [name, expectedArgs, actualArgs, description]
+            args: [name, expectedArgs, actualArgs, argShadowIDs, description]
         });
     }
 
@@ -134,6 +134,7 @@ export default class JSWriter implements AbstractMachine {
 
     public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
+        
         // Once the analysis finishes then we write the output file string to the file location.
         this.outputStr.push(this.postamble);
         this.logger.log(this.outputStr.join("\n"));
@@ -144,16 +145,54 @@ export default class JSWriter implements AbstractMachine {
             args: [argumentsObject, description]});
     }
 
+    public asyncFunctionEnter([description]: [StaticDescription]) {
+        this.writeInstruction({command: "asyncFunctionEnter", args: [description]});
+    }
+
+    public asyncFunctionExit([iid, promiseId, result, exceptionVal, description]: [number, DynamicDescription, any, ExceptionVal, StaticDescription]) {
+        this.writeInstruction({command: "asyncFunctionExit", args: [result, promiseId, exceptionVal, description]});
+    }
+
+    public awaitPre([id, promiseId, promiseOrAwaitedVal, description]: [number, DynamicDescription, any, StaticDescription]) {
+        this.writeInstruction({command: "awaitPre", args: [id, promiseId, promiseOrAwaitedVal, description]});
+    }
+
+    public awaitPost([id, promiseId, promiseOrAwaitedVal, valResolveOrRejected, description]: [number, DynamicDescription, any, any, StaticDescription]) {
+        this.writeInstruction({command: "awaitPost", args: [id, promiseId, promiseOrAwaitedVal, valResolveOrRejected, description]});
+    }
+
+    public promiseReaction([id, promiseValue, promiseId, description]: [number, any, DynamicDescription, StaticDescription]) {
+        this.writeInstruction({command: "promiseReaction", args: [id, promiseValue, promiseId, description]});
+    }
+
+    public promiseResolve([id, promiseValue, promiseId, description]: [number, any, DynamicDescription, StaticDescription]) {
+        this.writeInstruction({command: "promiseResolve", args: [id, promiseValue, promiseId, description]});
+    }
+
+    public promiseReject([id, promiseValue, promiseId, description]: [number, any, DynamicDescription, StaticDescription]) {
+        this.writeInstruction({command: "promiseReject", args: [id, promiseValue, promiseId, description]});
+    }
+
     // Prepares an argument to a callback to appear in JS code.
-    private prepareArg(arg: any): string {
+    private prepareArg(arg: any): string[] | string {
         // Wrap strings in quotes, properly escape strings, etc.
-        return JSON.stringify(arg);
+        try {
+            return JSON.stringify(arg);
+        }
+        catch {
+            return arg;
+        }
     }
 
     // Actually write the instruction to the output file.
     private writeInstruction(instr: Instruction) {
         const delim = ", ";
         this.outputStr.push(`    m.${instr.command}([${instr.args.map(this.prepareArg).join(delim)}]);\n`);
+    }
+
+    public getTaint() {
+        throw new Error("JSWriter does not support the `getTaint` method, as JSWriter doesn't compute taint flows. " +
+            "Did you mean to use a different type of AbstractMachine, like BooleanMachine?.");
     }
 
 }

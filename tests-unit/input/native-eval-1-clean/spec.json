@@ -1,5 +1,6 @@
 {
     "main": "test.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "variable",

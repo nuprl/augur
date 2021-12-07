@@ -1,5 +1,6 @@
 {
     "main": "mol-proto-eval.js",
+    "tracking": "Boolean",
     "sources": [
         {
             "type": "functionInvocation",
