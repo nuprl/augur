@@ -17,8 +17,8 @@ jobs:
     - uses: docker://mwaldrich/docker-nodeprof
     - uses: actions/javascript-action@v1
     - uses: actions/setup-node@v2
-            with:
-          node-version: 12.x
+      with:
+        node-version: 12.x
     - run: npm ci
     - run: npm run build
     - run: ./node_modules/.bin/jest
