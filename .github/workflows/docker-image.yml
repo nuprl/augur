@@ -24,8 +24,6 @@ jobs:
       with:
         node-version: '12'
         check-latest: true
-    - run: sudo systemctl enable --now dockerd 
-    - run: sudo systemctl enable --now containerd
     - run: npm install
       working-directory: ./ts
     - run: npm run build
