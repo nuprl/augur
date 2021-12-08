@@ -11,6 +11,7 @@ jobs:
   build:
 
     runs-on: self-hosted
+    container: mwaldrich/docker-nodeprof
     env:
       working-directory: ./ts
 
@@ -18,7 +19,6 @@ jobs:
     - uses: actions/checkout@v2
       with: 
         submodules: recursive
-    - uses: docker://mwaldrich/docker-nodeprof
     - uses: actions/javascript-action@v1
     - uses: actions/setup-node@v2
       with:
