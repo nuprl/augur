@@ -28,6 +28,6 @@ jobs:
       working-directory: ./ts
     - run: npm run build
       working-directory: ./ts
-    - run: ./node_modules/.bin/jest
+    - run: /usr/bin/sudo ./node_modules/.bin/jest
       working-directory: ./ts
 
