@@ -1,4 +1,4 @@
-name: CI for Augur
+name: Augur Build Status
 
 on:
   push:
