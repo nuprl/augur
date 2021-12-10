@@ -1,4 +1,4 @@
-![example workflow](https://github.com/github/docs/actions/workflows/docker-image.yml/badge.svg)
+![Augur Build Status](https://github.com/trueblooda/augur/actions/workflows/docker-image.yml/badge.svg)
 <img src="./augur.png" align="left" height="100">
 
 **Augur** is a dynamic taint analysis for Node.js implemented in TypeScript
