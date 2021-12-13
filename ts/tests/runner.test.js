@@ -225,7 +225,6 @@ test('object-alias-clean', (done) => runTest('object-alias-clean', done));
 test('object-alias-tainted', (done) => runTest('object-alias-tainted', done));
 test('general-clean', (done) => runTest('general-clean', done));
 test('general-tainted', (done) => runTest('general-tainted', done));
-
 // TODO: for of loops not yet supported
 // test('for-of-tainted', (done) => runTest('for-of-tainted', done));
 
@@ -343,5 +342,5 @@ test('async-await-interleave-tainted', (done) => runTest('async-await-interleave
 test('async-await-interleave-2-tainted', (done) => runTest('async-await-interleave-2-tainted', done));
 test('basic-async', (done) => runTest('basic-async', done));
 test('multi-await', (done) => runTest('multi-await', done));
-test('promise-all-tainted', (done) => runTest('promise-all-tainted', done))
-test('for-await-tainted', (done) => runTest('for-await-tainted', done))
+// test('promise-all-tainted', (done) => runTest('promise-all-tainted', done))
+// test('for-await-tainted', (done) => runTest('for-await-tainted', done))

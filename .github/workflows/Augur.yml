@@ -1,0 +1,34 @@
+name: Augur Build Status
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+    timeout-minutes: 4320
+    env:
+      working-directory: ./ts
+
+    steps:
+    - uses: actions/checkout@v2
+      with: 
+        submodules: recursive
+    - uses: actions/javascript-action@v1
+    - uses: docker://mwaldrich/docker-nodeprof
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '12'
+        check-latest: true
+    - run: npm install
+      working-directory: ./ts
+    - run: npm run build
+      working-directory: ./ts
+    - run: ./node_modules/.bin/jest
+      working-directory: ./ts
+
