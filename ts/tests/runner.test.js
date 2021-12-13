@@ -225,8 +225,6 @@ test('object-alias-clean', (done) => runTest('object-alias-clean', done));
 test('object-alias-tainted', (done) => runTest('object-alias-tainted', done));
 test('general-clean', (done) => runTest('general-clean', done));
 test('general-tainted', (done) => runTest('general-tainted', done));
- ✕ promise-all-tainted (6140 ms)
-  ✕ for-await-tainted (100013 ms)
 // TODO: for of loops not yet supported
 // test('for-of-tainted', (done) => runTest('for-of-tainted', done));
 
