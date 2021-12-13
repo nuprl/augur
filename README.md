@@ -254,6 +254,8 @@ the dynamic analysis framework written by
 Augur also relies on Oracle's [GraalVM](https://www.graalvm.org/)
 and [GraalJS](https://github.com/graalvm/graaljs).
 
+Continuous integration for Augur was designed and implemented by [Adison Trueblood](https://github.com/trueblooda).
+
 This research was supported by the National Science Foundation under NSF grant 
 CCF-1715153 and REU supplement CCF-1930604.
 
