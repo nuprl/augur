@@ -6,6 +6,8 @@ const {run} = require('../runner/run')
 
 // The Jest test file.
 
+**
+
 // Calculate paths
 
 // If the user does not explicitly specify TAINT_ANALYSIS_HOME, assume it to
