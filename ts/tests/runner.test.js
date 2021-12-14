@@ -6,7 +6,7 @@ const {run} = require('../runner/run')
 
 // The Jest test file.
 
-**
+(&^#!$(&!3(&$^!(#&^!#$
 
 // Calculate paths
 
