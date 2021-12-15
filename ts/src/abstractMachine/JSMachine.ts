@@ -203,7 +203,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([name, expectedArgs, actualArgs, argShadowIDs, description]) => {
                 // 1. set up `arguments` variable in shadow memory.
                 let actualArgsValues = this.taintTree.get(this.ROOTID).slice(
-                    this.taintTree.get(this.ROOTID).length - actualArgs);
+                    this.taintTree.get(this.ROOTID).length - actualArgs).map(v => this.sanitize(v, description));
 
                 this.functionArgsTree.get(this.ROOTID).push(actualArgsValues);
 
@@ -211,13 +211,17 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // `taintStack`.
 
                 if (expectedArgs != actualArgs) {
+                    // What is the difference between # of expected and actual args?
                     let difference = Math.abs(expectedArgs - actualArgs);
+
+                    // Decide whether to add or subtract args
                     let operation = (actualArgs > expectedArgs)
                         ? (() => this.taintTree.get(this.ROOTID).pop())
                         : (() => {
                             return this.taintTree.get(this.ROOTID).push(this.getUntaintedValue())
                         });
 
+                    // Add or subtract until it matches
                     for (let i = 0; i < difference; i++) {
                         operation();
                     }
@@ -258,9 +262,14 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                         this.join(this.taintTree.get(this.ROOTID)[i], functionInvocationTaint);
                 }
 
+                // Take function args off stack
                 let args = this.taintTree.get(this.ROOTID).splice(
                     this.taintTree.get(this.ROOTID).length - expectedArgs);
+                // Reverse them
                 args.reverse();
+                // Sanitize them if necessary
+                args.map(v => this.sanitize(v, description))
+                // Push them back onto stack
                 this.taintTree.get(this.ROOTID).push(...args);
 
                 // prepare the machine to declare the named parameters to this function
@@ -286,7 +295,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // value needs to reflect that
                 if (this.returnValue) {
                     returnTaintValue =
-                        this.join(returnTaintValue, this.returnValue);
+                        this.sanitize(this.join(returnTaintValue, this.returnValue), description);
                 }
 
                 // We also need to check if we should apply taint differently.

@@ -358,3 +358,5 @@ test('sanitizer-complex-2-clean', (done) => runTest('sanitizer-complex-2-clean',
 test('sanitizer-complex-2-tainted', (done) => runTest('sanitizer-complex-2-tainted', done));
 test('sanitizer-complex-3-clean', (done) => runTest('sanitizer-complex-3-clean', done));
 test('sanitizer-complex-3-tainted', (done) => runTest('sanitizer-complex-3-tainted', done));
+test('sanitizer-varargs-clean', (done) => runTest('sanitizer-varargs-clean', done));
+test('sanitizer-varargs-tainted', (done) => runTest('sanitizer-varargs-tainted', done));
