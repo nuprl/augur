@@ -1,0 +1,40 @@
+{
+    "main": "test.js",
+    "tracking": "Boolean",
+    "sources": [
+        {
+            "type": "variable",
+            "name": "userInput",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "builtin",
+            "name": "eval",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "expectedFlows": [
+        {
+            "type": "builtin",
+            "name": "eval",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "sanitizers": [
+        {
+            "type": "functionInvocation",
+            "name": "sanitize",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ]
+}
