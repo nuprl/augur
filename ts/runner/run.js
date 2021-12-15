@@ -6,6 +6,7 @@ const child_process = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
 const {executeInstructionsFromFile} = require('../dist/src/utils');
+const {parseSpec} = require("../src/utils");
 
 /**
  * Fully-promsified exec implementation. This works well with await, and
@@ -64,9 +65,8 @@ const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.j
 exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live) {
     // Parse the spec to know the program to instrument, sources, sinks, and
     // expected taints
-    
-    const spec = JSON.parse(fs.readFileSync(projectDir + "/spec.json").toString());
-    
+    const spec = parseSpec(projectDir + "/spec.json");
+
     // Calculate input and output instruction file paths
     const outputFile = outputDir + "/" + projectName + '_out.js';
     const inputFile = projectDir + "/" + spec.main;

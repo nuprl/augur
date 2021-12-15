@@ -21,6 +21,7 @@
     "chalk": "^5.0.0",
     "dotenv": "^10.0.0",
     "get-stdin": "^9.0.0",
+    "json5": "^2.2.0",
     "prepend-file": "^2.0.0",
     "shelljs": "^0.8.4",
     "tslint": "^6.1.2",

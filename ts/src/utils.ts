@@ -3,6 +3,9 @@ import BooleanMachine from "./abstractMachine/BooleanMachine";
 import SourcedBooleanMachine from "./abstractMachine/SourcedBooleanMachine";
 import ExpressionMachine from "./abstractMachine/ExpressionMachine";
 
+import * as json5 from "json5";
+import * as fs from "fs";
+
 // JALANGI DO NOT INSTRUMENT
 
 // Do the given descriptions of a taint source/sink describe the same thing?
@@ -132,6 +135,17 @@ export function createAbstractMachine(options: RunSpecification, liveLogging: bo
         case "Expression":
             return new ExpressionMachine(options, liveLogging, outputFilePath);
     }
+}
+
+/**
+ * Parses an Augur spec, given the path in the filesystem.
+ * Use this function WHENEVER you need to parse a spec,
+ * as the spec needs to go through special processing
+ * before it can be used.
+ * @param specPath the path to the spec
+ */
+export function parseSpec(specPath: string): RunSpecification {
+    return json5.parse(fs.readFileSync(specPath).toString());
 }
 
 export function executeInstructionsFromFile(path: string, options: RunSpecification) {
