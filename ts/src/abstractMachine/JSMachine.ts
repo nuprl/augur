@@ -432,10 +432,21 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 if (advice != null) {
                     advice(s);
                 } else {
-                    const r = this.join(this.produceMark(description),
-                        this.varTaintMap.get(s));
-                    this.taintTree.get(this.ROOTID).push(r);
-                    logger.info("read", s, r);
+                    // Compute the taint value for this variable
+
+                    let taintValue: V;
+                    // If we should sanitize this value, do that instead of computing its taint value
+                    if (this.shouldSanitize(description)) {
+                        taintValue = this.getUntaintedValue();
+                    } else {
+                        // We're not sanitizing this value, so compute it normally
+                        taintValue = this.join(this.produceMark(description),
+                            this.varTaintMap.get(s));
+                    }
+
+                    // Push taint value to stack
+                    this.taintTree.get(this.ROOTID).push(taintValue);
+                    logger.info("read", s, taintValue);
                 }
 
                 if (debug) console.log("readVar: " + s + " " + this.taintTree.get(0))
@@ -447,14 +458,21 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([s, description]) => {
                 this.resetState();
-                const v = this.join(this.produceMark(description),
-                    this.taintTree.get(this.ROOTID)[
-                    this.taintTree.get(this.ROOTID).length - 1]);
+                let taintValue: V;
+
+                // If we should sanitize this value, do that instead of computing its taint value
+                if (this.shouldSanitize(description)) {
+                    taintValue = this.getUntaintedValue();
+                } else {
+                    taintValue = this.join(this.produceMark(description),
+                        this.taintTree.get(this.ROOTID)[
+                        this.taintTree.get(this.ROOTID).length - 1]);
+                }
                 // Do not pop off the stack for a write
-                logger.info("write", s, v);
-                this.varTaintMap.set(s, v);
-                this.reportPossibleFlow(description, v);
-                this.reportPossibleImplicitFlow(description, v);
+                logger.info("write", s, taintValue);
+                this.varTaintMap.set(s, taintValue);
+                this.reportPossibleFlow(description, taintValue);
+                this.reportPossibleImplicitFlow(description, taintValue);
 
                 if (debug) console.log("write var: " + s + " " + this.taintTree.get(0) )
             }
@@ -810,6 +828,15 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     protected isSink(description: StaticDescription): boolean {
         return this.spec.sinks.some((sink) => descriptionMatchesTaintSpec(sink, description));
+    }
+
+    /**
+     * Should we sanitize values for this operation?
+     * @param description the location this operation is happening in
+     * @private
+     */
+    private shouldSanitize(description: StaticDescription): boolean {
+        return this.spec.sanitizers.some((sanitizer) => descriptionMatchesTaintSpec(sanitizer, description));
     }
 
     public getPromise(promiseId : any) {
