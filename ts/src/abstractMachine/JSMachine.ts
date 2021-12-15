@@ -384,14 +384,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public literalOp: Operation<[StaticDescription], void> =
         this.adviceWrap(
             ([description]) => {
-                let taintValue;
-
-                // Should we sanitize this value?
-                if (this.shouldSanitize(description)) {
-                    taintValue = this.getUntaintedValue();
-                } else {
-                    taintValue = this.produceMark(description)
-                }
+                // Compute the taint for this literal
+                let taintValue: V = this.sanitize(this.produceMark(description), description);
 
                 this.push([taintValue, description]);
 
@@ -442,16 +436,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                     advice(s);
                 } else {
                     // Compute the taint value for this variable
-
-                    let taintValue: V;
-                    // If we should sanitize this value, do that instead of computing its taint value
-                    if (this.shouldSanitize(description)) {
-                        taintValue = this.getUntaintedValue();
-                    } else {
-                        // We're not sanitizing this value, so compute it normally
-                        taintValue = this.join(this.produceMark(description),
-                            this.varTaintMap.get(s));
-                    }
+                    const taintValue: V = this.sanitize(this.join(this.produceMark(description),
+                        this.varTaintMap.get(s)), description);
 
                     // Push taint value to stack
                     this.taintTree.get(this.ROOTID).push(taintValue);
@@ -467,16 +453,11 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([s, description]) => {
                 this.resetState();
-                let taintValue: V;
 
-                // If we should sanitize this value, do that instead of computing its taint value
-                if (this.shouldSanitize(description)) {
-                    taintValue = this.getUntaintedValue();
-                } else {
-                    taintValue = this.join(this.produceMark(description),
-                        this.taintTree.get(this.ROOTID)[
-                        this.taintTree.get(this.ROOTID).length - 1]);
-                }
+                const taintValue: V = this.sanitize(this.join(this.produceMark(description),
+                    this.taintTree.get(this.ROOTID)[
+                    this.taintTree.get(this.ROOTID).length - 1]), description);
+
                 // Do not pop off the stack for a write
                 logger.info("write", s, taintValue);
                 this.varTaintMap.set(s, taintValue);
@@ -846,6 +827,20 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
      */
     private shouldSanitize(description: StaticDescription): boolean {
         return this.spec.sanitizers.some((sanitizer) => descriptionMatchesTaintSpec(sanitizer, description));
+    }
+
+    /**
+     * Sanitize the given value, only if specified in the spec file.
+     * @param v the value
+     * @param description the description where this operation occurred
+     * @private
+     */
+    private sanitize(v: V, description: StaticDescription): V {
+        if (this.shouldSanitize(description)) {
+            return this.getUntaintedValue();
+        } else {
+            return v;
+        }
     }
 
     public getPromise(promiseId : any) {
