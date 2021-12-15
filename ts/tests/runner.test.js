@@ -1,7 +1,5 @@
-const { exec } = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
-const {executeInstructionsFromFile} = require('../dist/src/utils');
 const {run} = require('../runner/run')
 
 // The Jest test file.
