@@ -1,4 +1,4 @@
-import {RunSpecification, SourceSpan, Location, StaticDescription, AbstractMachine} from "./types";
+import {RunSpecification, SourceSpan, Location, StaticDescription, AbstractMachine, VALID_SPEC_FIELDS} from "./types";
 import BooleanMachine from "./abstractMachine/BooleanMachine";
 import SourcedBooleanMachine from "./abstractMachine/SourcedBooleanMachine";
 import ExpressionMachine from "./abstractMachine/ExpressionMachine";
@@ -145,7 +145,31 @@ export function createAbstractMachine(options: RunSpecification, liveLogging: bo
  * @param specPath the path to the spec
  */
 export function parseSpec(specPath: string): RunSpecification {
-    return json5.parse(fs.readFileSync(specPath).toString());
+    // Parse spec using JSON5. JSON5 allows more flexibility in JSON
+    // files, including comments.
+    let spec = json5.parse(fs.readFileSync(specPath).toString());
+
+    // Is this spec valid? Does it have the required fields? Does it have
+    // any unrecognized fields? Augur will terminate if the spec doesn't look right
+    // or has any extra fields.
+    let specFields = Object.keys(spec);
+
+    // Compute a list of "unknown" fields in the spec file.
+    // These are fields that aren't in `VALID_SPEC_FIELDS`
+    let unknownFields =
+        specFields.filter(field => VALID_SPEC_FIELDS.includes(field));
+
+    // Time to determine if we should crash or not.
+    if (unknownFields.length > 0) {
+        console.error(`Spec file at ${specPath} has invalid fields: ${JSON.stringify(unknownFields)}.
+        Valid fields are: ${JSON.stringify(VALID_SPEC_FIELDS)}`)
+    }
+    if (!spec.main) {
+        console.error(`Spec file at ${specPath} doesn't specify a "main" field! Augur doesn't know which JS program to run. Please add a "main" field to your spec and try again.`)
+    }
+
+    // All looks good!
+    return spec as RunSpecification;
 }
 
 export function executeInstructionsFromFile(path: string, options: RunSpecification) {
