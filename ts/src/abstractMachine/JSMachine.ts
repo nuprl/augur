@@ -568,8 +568,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public initVarOp: Operation<[VariableDescription, StaticDescription], void> =
         this.adviceWrap(
             ([s, description]) => {
-                let v = this.join(this.taintTree.get(this.ROOTID)[
-                this.taintTree.get(this.ROOTID).length - 1], this.produceMark(description));
+                let v = this.sanitize(this.join(this.taintTree.get(this.ROOTID)[
+                this.taintTree.get(this.ROOTID).length - 1], this.produceMark(description)), description);
 
                 if (this.argsLeftToProcess > 0) {
                     this.taintTree.get(this.ROOTID).pop();
