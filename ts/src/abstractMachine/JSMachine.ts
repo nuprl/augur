@@ -384,7 +384,16 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     public literalOp: Operation<[StaticDescription], void> =
         this.adviceWrap(
             ([description]) => {
-                this.push([this.produceMark(description), description]);
+                let taintValue;
+
+                // Should we sanitize this value?
+                if (this.shouldSanitize(description)) {
+                    taintValue = this.getUntaintedValue();
+                } else {
+                    taintValue = this.produceMark(description)
+                }
+
+                this.push([taintValue, description]);
 
                 if (debug) console.log("literal: " + this.taintTree.get(0))
             });
