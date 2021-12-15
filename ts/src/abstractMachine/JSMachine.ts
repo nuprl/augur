@@ -602,6 +602,16 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.resetState();
                 logger.info("builtin", name, actualArgs);
 
+                // Before we touch ANYTHING, sanitize the given arguments if necessary
+                if (this.shouldSanitize(description)) {
+                    let taintStack = this.taintTree.get(0);
+                    let top = taintStack.length - 1;
+
+                    for (let i = 0; i < actualArgs; i++) {
+                        taintStack[top - i] = this.getUntaintedValue();
+                    }
+                }
+
                 // if this is a method, push the value of the base object (that we saved earlier)
                 if (isMethod) {
                     this.push([this.lastObjectAccessed, description]);
