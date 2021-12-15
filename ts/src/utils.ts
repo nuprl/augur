@@ -138,7 +138,7 @@ export function createAbstractMachine(options: RunSpecification, liveLogging: bo
 }
 
 /**
- * Parses an Augur spec, given the path in the filesystem.
+ * Parses and validates an Augur spec, given the path in the filesystem.
  * Use this function WHENEVER you need to parse a spec,
  * as the spec needs to go through special processing
  * before it can be used.

@@ -463,6 +463,8 @@ export interface RunSpecification extends Object {
 
     // The list of sinks that are expected to be flowed into
     expectedFlows?: Array<StaticDescription>;
+
+    sanitizers?: Array<StaticDescription>;
 }
 
 /**
@@ -474,7 +476,8 @@ export const VALID_SPEC_FIELDS = [
     "tracking",
     "sources",
     "sinks",
-    "expectedFlows"
+    "expectedFlows",
+    "sanitizers"
 ]
 
 export class SourcedBoolean {
