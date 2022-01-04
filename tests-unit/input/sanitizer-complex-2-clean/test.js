@@ -12,10 +12,10 @@ function sanitize(string) {
 // Flattens an array of Strings to a single String by concatenating and sanitizing them.
 // Example: ["a", "b", "c"] => "abc"
 function strArrayFlatten(strArray) {
-    if (strArray.length() === 0) {
+    if (strArray.length === 0) {
         return "";
     } else {
-        return sanitize(strArray[0]) + " " + strArrayFlatten(strArray.shift())
+        return sanitize(strArray[0]) + " " + strArrayFlatten(strArray.slice(1));
     }
 }
 

@@ -290,3 +290,35 @@ Array.prototype.forEach = function (fun /*, thisp */) {
 // const p = new Promise((res, rej) => {
 //     res(2);
 // });
+
+// Array.slice
+Array.prototype.slice = function(start, end) {
+    // If args weren't given, use defaults
+    if (!start) {
+        start = 0;
+    }
+    if (!end) {
+        end = this.length;
+    }
+
+    // If given indices are negative, convert them to positive equivalences
+    if (start < 0) {
+        start = this.length + start;
+    }
+    if (end < 0) {
+        end = this.length + end;
+    }
+
+    // Is it a valid slice?
+    if (start > end) {
+        throw `Array.prototype.slice: start (${start}) > end (${end})!`;
+    }
+
+    // Slice and dice
+    let result = [];
+    for (let i = start; i < end; i++) {
+        result.push(this[i]);
+    }
+
+    return result;
+}

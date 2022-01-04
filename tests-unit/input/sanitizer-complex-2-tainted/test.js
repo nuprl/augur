@@ -9,13 +9,13 @@ function sanitize(string) {
 }
 
 // String[] -> String
-// Flattens an array of Strings to a single String by concatenating and sanitizing them.
+// Flattens an array of Strings to a single String by concatenating and NOT sanitizing them.
 // Example: ["a", "b", "c"] => "abc"
 function strArrayFlatten(strArray) {
-    if (strArray.length() === 0) {
+    if (strArray.length === 0) {
         return "";
     } else {
-        return strArray[0] + " " + strArrayFlatten(strArray.shift())
+        return strArray[0] + " " + strArrayFlatten(strArray.slice(1));
     }
 }
 
