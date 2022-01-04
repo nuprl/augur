@@ -268,7 +268,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // Reverse them
                 args.reverse();
                 // Sanitize them if necessary
-                args.map(v => this.sanitize(v, description))
+                args = args.map(v => this.sanitize(v, description))
                 // Push them back onto stack
                 this.taintTree.get(this.ROOTID).push(...args);
 
