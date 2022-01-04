@@ -12,10 +12,9 @@
     ],
     "sinks": [
         {
-            "type": "builtin",
-            "name": "eval",
+            "type": "functionEnter",
             "location": {
-                "fileName": "test.js"
+                "fileName": "eval"
             }
         }
     ],

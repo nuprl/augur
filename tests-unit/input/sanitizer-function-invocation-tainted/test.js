@@ -1,4 +1,4 @@
-const userInput = "console.log('you\'ve been hacked!!');";
+const userInput = "console.log(\"you\'ve been hacked!!\");";
 
 function sanitize(x) {
     return JSON.stringify(x);
