@@ -19,4 +19,8 @@ async function processUserInput(input) {
 }
 
 // Not tainted, because it passes through the `sanitize` function at some point
-const z = await processUserInput(a);
+async function run() {
+    const z = await processUserInput(a);
+}
+
+run();

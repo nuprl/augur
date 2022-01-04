@@ -19,4 +19,8 @@ async function processUserInput(input) {
 }
 
 // Tainted, because the line that sanitizes the input is commented out
-const z = await processUserInput(a);
+async function run() {
+    const z = await processUserInput(a);
+}
+
+run();
