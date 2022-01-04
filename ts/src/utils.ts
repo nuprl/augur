@@ -157,7 +157,7 @@ export function parseSpec(specPath: string): RunSpecification {
     // Compute a list of "unknown" fields in the spec file.
     // These are fields that aren't in `VALID_SPEC_FIELDS`
     let unknownFields =
-        specFields.filter(field => VALID_SPEC_FIELDS.includes(field));
+        specFields.filter(field => !VALID_SPEC_FIELDS.includes(field));
 
     // Time to determine if we should crash or not.
     if (unknownFields.length > 0) {
