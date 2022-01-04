@@ -168,6 +168,11 @@ export function parseSpec(specPath: string): RunSpecification {
         console.error(`Spec file at ${specPath} doesn't specify a "main" field! Augur doesn't know which JS program to run. Please add a "main" field to your spec and try again.`)
     }
 
+    // Add empty sanitizers array if the user didn't specify any
+    if (!spec.sanitizers) {
+        spec.sanitizers = [];
+    }
+
     // All looks good!
     return spec as RunSpecification;
 }
