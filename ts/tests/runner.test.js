@@ -95,14 +95,14 @@ test('for-in-tainted', (done) => runTest('for-in-tainted', done));
 test('init-destructure-obj-clean', (done) => runTest('init-destructure-obj-clean', done));
 
 // TODO: async-await/promises not yet supported
-// test('promise-await-clean', (done) => runTest('promise-await-clean', done));
-// test('promise-await-tainted', (done) => runTest('promise-await-tainted',
-// done));
-// test('promise-then-clean', (done) => runTest('promise-then-clean', done));
-// test('promise-then-tainted', (done) => runTest('promise-then-tainted',
-// done));
-// test('async-await-tainted', (done) => runTest('async-await-tainted', done));
-// test('async-then-tainted', (done) => runTest('async-then-tainted', done));
+test('promise-await-clean', (done) => runTest('promise-await-clean', done));
+test('promise-await-tainted', (done) => runTest('promise-await-tainted',
+done));
+test('promise-then-clean', (done) => runTest('promise-then-clean', done));
+test('promise-then-tainted', (done) => runTest('promise-then-tainted',
+done));
+test('async-await-tainted', (done) => runTest('async-await-tainted', done));
+test('async-then-tainted', (done) => runTest('async-then-tainted', done));
 test('init-destructure-obj-tainted', (done) => runTest('init-destructure-obj-tainted', done));
 
 // New tests
