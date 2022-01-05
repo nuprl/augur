@@ -35,13 +35,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     outputFilePath: string;
 
     /**
-     * The stack of taint values for the current execution context. Almost
-     * all AbstractMachine instructions will manipulate or read from this stack.
-     * Taint values involved in intermediate computations will be stored here.
-     */
-    taintStack: V[] = [];
-
-    /**
      * A mapping of all bound variables to their corresponding taint values.
      * For example, if a variable "x" is tainted, there will be an entry in
      * this map similar to:
@@ -136,6 +129,12 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     abstract produceMark(description: StaticDescription): V;
 
     functionTree: Map<number, StaticDescription[]> = new Map<number, StaticDescription[]>();
+
+    /**
+     * The tree of taint values for the current execution context. Almost
+     * all AbstractMachine instructions will manipulate or read from this stack.
+     * Taint values involved in intermediate computations will be stored here.
+     */
     taintTree: Map<number, V[]> = new Map<number, V[]>();
     functionArgsTree: Map<number, Array<Array<V>>> = new Map<number, Array<Array<V>>>();
     ROOTID: number = 0;
