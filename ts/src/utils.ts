@@ -160,12 +160,19 @@ export function parseSpec(specPath: string): RunSpecification {
         specFields.filter(field => !VALID_SPEC_FIELDS.includes(field));
 
     // Time to determine if we should crash or not.
+    let crash = false;
     if (unknownFields.length > 0) {
         console.error(`Spec file at ${specPath} has invalid fields: ${JSON.stringify(unknownFields)}.
         Valid fields are: ${JSON.stringify(VALID_SPEC_FIELDS)}`)
+        crash = true;
     }
     if (!spec.main) {
         console.error(`Spec file at ${specPath} doesn't specify a "main" field! Augur doesn't know which JS program to run. Please add a "main" field to your spec and try again.`)
+        crash = true;
+    }
+
+    if (crash) {
+        process.exit(1);
     }
 
     // Add empty sanitizers array if the user didn't specify any
