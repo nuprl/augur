@@ -28,7 +28,7 @@
             }
         }
     ],
-    "sanitized": [
+    "sanitizers": [
         {
             "type": "functionInvocation",
             "name": "sanitize",
