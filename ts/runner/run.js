@@ -6,6 +6,8 @@ const child_process = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
 const {executeInstructionsFromFile} = require('../dist/src/utils');
+const loadingSpinner = require('loading-spinner');
+const colors = require('colors/safe');
 
 /**
  * Fully-promsified exec implementation. This works well with await, and
@@ -104,6 +106,10 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
     console.log("Source file: \t" + inputFile);
     console.log("Command: \t" + command);
 
+    // Print status message
+    process.stdout.write(colors.yellow(`Instrumenting code...\n`));
+    loadingSpinner.start();
+
     let results;
     if (live) {
         // Online.
@@ -119,6 +125,9 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
         let [error, stdout, stderr] = await promise_exec(command,
             {maxBuffer: 10*10*1024*1024*10 /* 10*10*10 MB buffer for stdout/stderr */});
 
+        loadingSpinner.stop();
+        process.stdout.write(colors.green(`done!\n`));
+
         if (consoleFlag) {
             console.log(stdout);
             console.error(stderr);
@@ -128,7 +137,12 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             }
         }
 
+        process.stdout.write(colors.yellow(`Inspecting taints...\n`));
+        loadingSpinner.start();
+
         results = executeInstructionsFromFile(outputFile, spec);
+        loadingSpinner.stop();
+        process.stdout.write(colors.green(`done!\n`));
     }
 
     return [spec, results];
