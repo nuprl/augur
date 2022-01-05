@@ -29,6 +29,6 @@ jobs:
       working-directory: ./ts
     - run: npm run build
       working-directory: ./ts
-    - run: ./node_modules/.bin/jest
+    - run: ./node_modules/.bin/jest --colors
       working-directory: ./ts
 
