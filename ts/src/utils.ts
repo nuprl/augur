@@ -135,10 +135,6 @@ export function createAbstractMachine(options: RunSpecification, liveLogging: bo
 }
 
 export function executeInstructionsFromFile(path: string, options: RunSpecification) {
-    console.log("Executing instructions from",
-        path,
-        "with the specification:",
-        options);
     const abstractMachine = createAbstractMachine(options);
     const compiledOutput = require(path);
     compiledOutput.drive(abstractMachine);
