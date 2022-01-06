@@ -478,9 +478,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.varTaintMap.set(s, taintValue);
                 this.reportPossibleFlow(description, taintValue);
                 
-                logger.info("write", s, v);
-                this.varTaintMap.set(s, v);
-                this.reportPossibleFlow(description, v);
+                logger.info("write", s, taintValue);
+                this.varTaintMap.set(s, taintValue);
+                this.reportPossibleFlow(description, taintValue);
 
                 if (debug) console.log("write var: " + s + " " + this.taintTree.get(0) )
             }
