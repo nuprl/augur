@@ -7,6 +7,8 @@ const shell = require('shelljs');
 const fs = require('fs');
 const {executeInstructionsFromFile} = require('../dist/src/utils');
 const {parseSpec} = require("../src/utils");
+const loadingSpinner = require('loading-spinner');
+const colors = require('colors/safe');
 
 /**
  * Fully-promsified exec implementation. This works well with await, and
@@ -46,10 +48,10 @@ const SHOULD_USE_DOCKER = (NODEPROF_HOME === undefined)
 // Tell the user that Docker is being used because they did not specify
 // the necessary environment variables.
 if (SHOULD_USE_DOCKER) {
-    console.error("You did not set the 'NODEPROF_HOME', 'MX_HOME', and" +
-        " 'JAVA_HOME' environment variables. Docker will be used instead.");
+    process.stdout.write(colors.gray("You did not set the 'NODEPROF_HOME', 'MX_HOME', and" +
+        " 'JAVA_HOME' environment variables. Docker will be used instead.\n"));
 } else {
-    console.error("Using your native NodeProf install from:", NODEPROF_HOME);
+    process.stdout.write(colors.grey(`Using your native NodeProf install from: ${NODEPROF_HOME}\n`));
 }
 
 const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
@@ -63,9 +65,48 @@ const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.j
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
 exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live) {
+    // Print out a pretty augur logo
+    process.stdout.write("\n" + colors.red.bgBlack(`
+                                                         
+                                                         
+  #                                                      
+   #(                                                    
+    ###                                                  
+    ###%%     //                                         
+     ##%%%%%  *//*/                                      
+      (##%%&&%(((((@&&                                   
+      ###(&&%%####%%                                     
+         %%###%%#%%         _                            
+           %%%%%%          / \\  _   _  __ _ _   _ _ __   
+           &%%%&.         / _ \\| | | |/ _\` | | | | '__|  
+          #&&%%#%#%      / ___ \\ |_| | (_| | |_| | |     
+           %&&%. %% ,   /_/   \\_\\__,_|\\__, |\\__,_|_|     
+                                      |___/              
+                                                         
+                                                         
+          Analyzing information flows since 2019         
+                                                         
+                                                         
+`) + "\n\n");
+    loadingSpinner.setSequence(
+        [
+            "( ●    )",
+            "(  ●   )",
+            "(   ●  )",
+            "(    ● )",
+            "(     ●)",
+            "(    ● )",
+            "(   ●  )",
+            "(  ●   )",
+            "( ●    )",
+            "(●     )"
+        ]
+    );
+
     // Parse the spec to know the program to instrument, sources, sinks, and
     // expected taints
-    const spec = parseSpec(projectDir + "/spec.json");
+    const specPath = projectDir + "/spec.json";
+    const spec = parseSpec(specPath);
 
     // Calculate input and output instruction file paths
     const outputFile = outputDir + "/" + projectName + '_out.js';
@@ -101,8 +142,12 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             + " --analysis " + ANALYSIS + " "
             + inputFile);
 
-    console.log("Source file: \t" + inputFile);
-    console.log("Command: \t" + command);
+    // console.log("Source file: \t" + inputFile);
+    // console.log("Command: \t" + command);
+
+    // Print status message
+    process.stdout.write(`${colors.yellow("Instrumenting code")}\n  =>  ${inputFile}...\n`);
+    loadingSpinner.start();
 
     let results;
     if (live) {
@@ -119,16 +164,34 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
         let [error, stdout, stderr] = await promise_exec(command,
             {maxBuffer: 10*10*1024*1024*10 /* 10*10*10 MB buffer for stdout/stderr */});
 
+        loadingSpinner.stop();
+        process.stdout.write(colors.green(`done!\n\n`));
+
         if (consoleFlag) {
-            console.log(stdout);
-            console.error(stderr);
+            process.stdout.write(`${colors.yellow("stdout")} from program:\n`)
+            process.stdout.write(stdout + "\n");
+            process.stdout.write(`${colors.red("stderr")} from program:\n`)
+            process.stdout.write(stderr + "\n");
 
             if (error) {
                 console.error(error);
             }
         }
 
+        process.stdout.write(`${colors.yellow("Inspecting taints with the specification:")}\n  => ${specPath}...\n`);
+        loadingSpinner.start();
+
         results = executeInstructionsFromFile(outputFile, spec);
+        loadingSpinner.stop();
+        process.stdout.write(colors.green(`done!\n\n`));
+
+        if (results.length === 0) {
+            process.stdout.write(colors.green("No flows found.\n"));
+        } else {
+            process.stdout.write(`${colors.red("Flows found into the following sinks:")}
+${JSON.stringify(results, (key, value) =>
+    value instanceof Set ? [...value] : value, 4)}\n`);
+        }
     }
 
     return [spec, results];

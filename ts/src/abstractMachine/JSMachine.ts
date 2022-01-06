@@ -35,13 +35,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     outputFilePath: string;
 
     /**
-     * The stack of taint values for the current execution context. Almost
-     * all AbstractMachine instructions will manipulate or read from this stack.
-     * Taint values involved in intermediate computations will be stored here.
-     */
-    taintStack: V[] = [];
-
-    /**
      * A mapping of all bound variables to their corresponding taint values.
      * For example, if a variable "x" is tainted, there will be an entry in
      * this map similar to:
@@ -87,30 +80,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     lastObjectAccessed: V;
 
     /**
-     * Used to keep track of the initial arguments given to each function in
-     * the current call stack.
-     *
-     * Whenever a function is entered, the taint values of its arguments
-     * should be pushed to this stack. Whenever a function exits, this stack
-     * should be popped.
-     *
-     * ALL arguments given to the function should be pushed, not just ones
-     * that the argument maps to named parameters. For example, in this code:
-     *
-     *     function add(x) {
-     *         return arguments[0] + arguments[1]; // ignores named parameter x
-     *     }
-     *     add(1, 2); // returns 3
-     *
-     * The taint values for BOTH arguments should be pushed to this stack.
-     *
-     * It's necessary to keep track of these taint values in case the
-     * program accesses the "arguments" variable, which represents an
-     * indexable array into the function's arguments.
-     */
-    functionArgsStack: Array<Array<V>>;
-
-    /**
      * Returns the taint marking associated with a completely clean value.
      */
     abstract getUntaintedValue(): V;
@@ -135,12 +104,47 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
      */
     abstract produceMark(description: StaticDescription): V;
 
+    // TODO: Matt comment
     functionTree: Map<number, StaticDescription[]> = new Map<number, StaticDescription[]>();
+
+    /**
+     * The tree of taint values for the current execution context. Almost
+     * all AbstractMachine instructions will manipulate or read from this stack.
+     * Taint values involved in intermediate computations will be stored here.
+     */
     taintTree: Map<number, V[]> = new Map<number, V[]>();
+
+    /**
+     * Used to keep track of the initial arguments given to each function in
+     * the current call stack.
+     *
+     * Whenever a function is entered, the taint values of its arguments
+     * should be pushed to this stack. Whenever a function exits, this stack
+     * should be popped.
+     *
+     * ALL arguments given to the function should be pushed, not just ones
+     * that the argument maps to named parameters. For example, in this code:
+     *
+     *     function add(x) {
+     *         return arguments[0] + arguments[1]; // ignores named parameter x
+     *     }
+     *     add(1, 2); // returns 3
+     *
+     * The taint values for BOTH arguments should be pushed to this stack.
+     *
+     * It's necessary to keep track of these taint values in case the
+     * program accesses the "arguments" variable, which represents an
+     * indexable array into the function's arguments.
+     */
     functionArgsTree: Map<number, Array<Array<V>>> = new Map<number, Array<Array<V>>>();
+
+    // TODO: Matt comment
     ROOTID: number = 0;
 
+    // TODO: Matt comment
     promiseMap: Map<any, ShadowObject<V>> = new Map<any, ShadowObject<V>>()
+
+    // TODO: Matt comment
     asyncPromiseMap: Map<any, ShadowObject<V>> = new Map<any, ShadowObject<V>>()
 
     constructor(spec: RunSpecification, liveLogging = false, outputFilePath: string = "") {
@@ -184,7 +188,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     }
 
     public reportFlow(flow: F) {
-        // 
         if (this.liveLogging) {
             fs.appendFileSync(this.outputFilePath,
             JSON.stringify(flow, (key, value) =>
@@ -474,7 +477,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 logger.info("write", s, taintValue);
                 this.varTaintMap.set(s, taintValue);
                 this.reportPossibleFlow(description, taintValue);
-                this.reportPossibleImplicitFlow(description, taintValue);
+                
+                logger.info("write", s, v);
+                this.varTaintMap.set(s, v);
+                this.reportPossibleFlow(description, v);
 
                 if (debug) console.log("write var: " + s + " " + this.taintTree.get(0) )
             }
@@ -539,7 +545,6 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 objectTaintMap[s] = this.join(this.produceMark(description), storedTaint);
 
                 this.reportPossibleFlow(description, objectTaintMap[s]);
-                this.reportPossibleImplicitFlow(description, objectTaintMap[s]);
 
                 logger.info("writeprop", o, s, objectTaintMap[s]);
 
@@ -792,27 +797,15 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     }
 
     public getShadowObject(obj: DynamicDescription): ShadowObject<V> {
-        // ensure the shadow object is initialize
+        // ensure the shadow object is initialized
         this.initializeShadowObject(obj);
         return this.objects.get(obj);
-    }
-
-    private reportPossibleImplicitFlow(description: StaticDescription, taintMarking: V) {
-        // no sensitive upgrade check
-        // TODO: figure out how this should work generally
-        return;
     }
 
     private resetState() {
         // this.state = States.None;
         // this.stateCounter = 0;
     }
-
-    // Probably don't need this...
-    // protected isRecursive(description: StaticDescription): boolean {
-    //     return (this.spec.sources.some((source) => descriptionSubset(source, description) && source.config && source.config.recursive) ||
-    //     this.spec.sinks.some((sink) => descriptionSubset(sink, description) && sink.config && sink.config.recursive))
-    // }
 
     /**
      * This function will get the taint config options for the given description.
