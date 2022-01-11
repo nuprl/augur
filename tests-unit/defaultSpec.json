@@ -1,0 +1,50 @@
+// TODO: when to use recursive?
+
+{
+  "tracking": "SourcedBoolean",
+  "sources": [
+    // TODO: Recursive tainting on `fs`?
+    { // Calls to fs.readFileSync
+      "type": "functionReturn",
+      "name": "readFileSync"
+    },
+    { // Calls to fs.readFile
+      "type": "functionReturn",
+      "name": "readFile"
+    },
+    { // Process arguments
+      "type": "variable",
+      "name": "argv"
+    }
+    // TODO: HTTP requests with recursive tainting
+    // As seen here: https://nodejs.dev/learn/get-http-request-body-data-using-nodejs
+  ],
+  "sinks": [
+    { // Calls to exec
+      "type": "functionInvocation",
+      "name": "exec"
+    },
+    { // Calls to `eval` in JavaScript
+      "type": "functionEnter",
+      "location": {
+        "fileName": "eval"
+      }
+    },
+    { // Calls to fs.writeFileSync
+      "type": "functionInvocation",
+      "name": "writeFileSync"
+    },
+    { // Calls to fs.writeFile
+      "type": "functionInvocation",
+      "name": "writeFile"
+    },
+    { // Calls to fs.appendFileSync
+      "type": "functionInvocation",
+      "name": "appendFileSync"
+    },
+    { // Calls to fs.appendFile
+      "type": "functionInvocation",
+      "name": "appendFile"
+    }
+  ]
+}
