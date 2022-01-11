@@ -347,7 +347,7 @@ export default class Analysis implements Analyzer {
     }
 
     public asyncFunctionExit: NPCallbacks.asyncFunctionExit = (iid: number, result: any, exceptionVal: ExceptionVal) => {
-        this.state.asyncFunctionExit([iid, this.getAsyncPromiseId(result),  result, exceptionVal, {type: "asyncFunctionExit", location: parseIID(iid)}])
+        this.state.asyncFunctionExit([iid, this.getAsyncPromiseId(result), result, exceptionVal, {type: "asyncFunctionExit", location: parseIID(iid)}])
     }
 
     public awaitPre: NPCallbacks.awaitPre = (iid: number, promiseOrAwaitedVal: any) => {
