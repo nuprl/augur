@@ -37,12 +37,21 @@ The test specification file must be of the form:
 {
     // The script to execute
     main: string;
+    
+    // The type of taint tracking to use for this analysis
+    tracking?: TrackingType;
+    
     // The sources of taint
-    sources: Array<TaintDescription>;
+    sources?: Array<TaintDescription>;
+    
     // The sinks for taint
-    sinks: Array<TaintDescription>;
+    sinks?: Array<TaintDescription>;
+    
     // The sinks you expect taint to flow into
-    expectedFlows: Array<TaintDescription>;
+    expectedFlows?: Array<TaintDescription>;
+    
+    // Code locations at which taint should be sanitized
+    sanitizers?: Array<TaintDescription>
 }
 ```
 
