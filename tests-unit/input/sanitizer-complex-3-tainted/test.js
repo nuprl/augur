@@ -12,5 +12,6 @@ async function identity(x) {
 
 identity(a).then(Number.parseInt).then((int) => {
     // Tainted, because the `int` has not been sanitized
+    console.log(`arg: ${typeof(int)} = ${int}`)
     const z = int;
 })
