@@ -37,6 +37,8 @@ The test specification file must be of the form:
 {
     // The script to execute
     main: string;
+    // Enable verbose logging
+    verbose?: boolean;
     // The sources of taint
     sources: Array<TaintDescription>;
     // The sinks for taint
