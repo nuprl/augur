@@ -1,0 +1,300 @@
+exports.drive = (m) => {
+
+    m.initVar(["global^fun", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[44,26],"end":[69,2]}},"name":"fun"}]);
+
+    m.initVar(["global^thisPromiseId", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[44,26],"end":[69,2]}},"name":"thisPromiseId"}]);
+
+    m.initVar(["global^wrappedFun", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[44,26],"end":[69,2]}},"name":"wrappedFun"}]);
+
+    m.initVar(["global^p", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[44,26],"end":[69,2]}},"name":"p"}]);
+
+    m.initVar(["global^returnMe", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[44,26],"end":[69,2]}},"name":"returnMe"}]);
+
+    m.functionEnter(["global@0", 1, {"type":"functionEnter","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[44,11],"end":[69,2]}}}]);
+
+    m.readVar(["global^promiseCount", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[45,27],"end":[45,41]}},"name":"promiseCount"}]);
+
+    m.unary([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[45,27],"end":[45,41]}}}]);
+
+    m.writeVar(["global^promiseCount", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[45,27],"end":[45,41]}},"name":"promiseCount"}]);
+
+    m.writeVar(["global^thisPromiseId", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[45,5],"end":[45,41]}},"name":"thisPromiseId"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[45,5],"end":[45,41]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[46,22],"end":[60,6]}}}]);
+
+    m.writeVar(["global^wrappedFun", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[46,5],"end":[60,6]}},"name":"wrappedFun"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[46,5],"end":[60,6]}}}]);
+
+    m.readVar(["global^RealPromise", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[61,17],"end":[61,28]}},"name":"RealPromise"}]);
+
+    m.readVar(["global^wrappedFun", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[61,29],"end":[61,39]}},"name":"wrappedFun"}]);
+
+    m.builtin(["global@2", , 1, null, false, {"type":"functionInvocation","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[61,13],"end":[61,40]}},"name":"Promise"}]);
+
+    m.initVar(["global@2#3^resolve", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[46,49],"end":[60,6]}},"name":"resolve"}]);
+
+    m.initVar(["global@2#3^reject", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[46,49],"end":[60,6]}},"name":"reject"}]);
+
+    m.initVar(["global@2#3^wrappedResolve", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[46,49],"end":[60,6]}},"name":"wrappedResolve"}]);
+
+    m.initVar(["global@2#3^wrappedReject", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[46,49],"end":[60,6]}},"name":"wrappedReject"}]);
+
+    m.functionEnter(["global@2#3@5", 2, {"type":"functionEnter","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[46,22],"end":[60,6]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[47,30],"end":[52,10]}}}]);
+
+    m.writeVar(["global@2#3^wrappedResolve", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[47,9],"end":[52,10]}},"name":"wrappedResolve"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[47,9],"end":[52,10]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[53,29],"end":[58,10]}}}]);
+
+    m.writeVar(["global@2#3^wrappedReject", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[53,9],"end":[58,10]}},"name":"wrappedReject"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[53,9],"end":[58,10]}}}]);
+
+    m.readVar(["global^fun", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[59,9],"end":[59,12]}},"name":"fun"}]);
+
+    m.readVar(["global@2#3^wrappedResolve", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[59,13],"end":[59,27]}},"name":"wrappedResolve"}]);
+
+    m.readVar(["global@2#3^wrappedReject", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[59,29],"end":[59,42]}},"name":"wrappedReject"}]);
+
+    m.functionInvokeStart(["global@2#3@7", 0, 2, [], {"type":"functionInvocation","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[59,9],"end":[59,43]}}}]);
+
+    m.functionInvokeEnd(["global@2#3@7", [], {"type":"functionReturn","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[59,9],"end":[59,43]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[59,9],"end":[59,43]}}}]);
+
+    m.functionExit(["global@2#3@5", 12, {"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[46,22],"end":[60,6]}}}]);
+
+    m.builtinExit(["global@2", "global@2#3@10", {"type":"functionReturn","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[61,13],"end":[61,40]}},"name":"Promise"}]);
+
+    m.writeVar(["global^p", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[61,5],"end":[61,40]}},"name":"p"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[61,5],"end":[61,40]}}}]);
+
+    m.readVar(["global^PromiseWrapper", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[62,20],"end":[62,34]}},"name":"PromiseWrapper"}]);
+
+    m.readVar(["global^p", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[62,35],"end":[62,36]}},"name":"p"}]);
+
+    m.readVar(["global^thisPromiseId", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[62,38],"end":[62,51]}},"name":"thisPromiseId"}]);
+
+    m.functionInvokeStart(["global@12", 2, 2, ["global@2#3@10"], {"type":"functionInvocation","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[62,20],"end":[62,52]}},"name":"PromiseWrapper"}]);
+
+    m.initVar(["global@12#13^p", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[186,43],"end":[229,2]}},"name":"p"}]);
+
+    m.initVar(["global@12#13^currPromiseId", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[186,43],"end":[229,2]}},"name":"currPromiseId"}]);
+
+    m.initVar(["global@12#13^realThen", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[186,43],"end":[229,2]}},"name":"realThen"}]);
+
+    m.initVar(["global@12#13^realCatch", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[186,43],"end":[229,2]}},"name":"realCatch"}]);
+
+    m.initVar(["global@12#13^realFinally", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[186,43],"end":[229,2]}},"name":"realFinally"}]);
+
+    m.functionEnter(["global@12", 2, {"type":"functionEnter","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[186,1],"end":[229,2]}}}]);
+
+    m.readVar(["global@12#13^p", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[187,20],"end":[187,21]}},"name":"p"}]);
+
+    m.readProperty(["global@2#3@10", "then", false, false, {"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[187,20],"end":[187,26]}}}]);
+
+    m.writeVar(["global@12#13^realThen", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[187,5],"end":[187,26]}},"name":"realThen"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[187,5],"end":[187,26]}}}]);
+
+    m.readVar(["global@12#13^p", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[188,21],"end":[188,22]}},"name":"p"}]);
+
+    m.readProperty(["global@2#3@10", "catch", false, false, {"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[188,21],"end":[188,28]}}}]);
+
+    m.writeVar(["global@12#13^realCatch", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[188,5],"end":[188,28]}},"name":"realCatch"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[188,5],"end":[188,28]}}}]);
+
+    m.readVar(["global@12#13^p", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[189,23],"end":[189,24]}},"name":"p"}]);
+
+    m.readProperty(["global@2#3@10", "finally", false, false, {"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[189,23],"end":[189,32]}}}]);
+
+    m.writeVar(["global@12#13^realFinally", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[189,5],"end":[189,32]}},"name":"realFinally"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[189,5],"end":[189,32]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[193,15],"end":[201,10]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[202,16],"end":[214,10]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[215,18],"end":[227,10]}}}]);
+
+    m.writeProperty(["global@12#13@14", "finally", {}]);
+
+    m.writeProperty(["global@12#13@14", "catch", {}]);
+
+    m.writeProperty(["global@12#13@14", "then", {}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[192,12],"end":[228,6]}}}]);
+
+    m.functionReturn(["global@12", {"type":"functionReturn","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[192,5],"end":[228,7]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[192,5],"end":[228,7]}}}]);
+
+    m.functionExit(["global@12", 9, {"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[186,1],"end":[229,2]}}}]);
+
+    m.functionInvokeEnd(["global@12", [], {"type":"functionReturn","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[62,20],"end":[62,52]}},"name":"PromiseWrapper"}]);
+
+    m.writeVar(["global^returnMe", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[62,5],"end":[62,52]}},"name":"returnMe"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[62,5],"end":[62,52]}}}]);
+
+    m.readVar(["global^Object", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[63,5],"end":[63,11]}},"name":"Object"}]);
+
+    m.readProperty(["global@15", "defineProperty", false, false, {"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[63,5],"end":[63,26]}}}]);
+
+    m.readVar(["global^returnMe", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[63,27],"end":[63,35]}},"name":"returnMe"}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[63,37],"end":[63,48]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[64,21],"end":[64,26]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[65,19],"end":[65,23]}}}]);
+
+    m.writeProperty(["global@16", "writable", {}]);
+
+    m.writeProperty(["global@16", "enumerable", {}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[63,50],"end":[66,6]}}}]);
+
+    m.builtin(["global@17", "global@15", 3, {"obj":"global@12#13@14","prop":"augur_pid","descriptor":"global@16"}, true, {"type":"functionInvocation","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[63,5],"end":[66,7]}},"name":"defineProperty"}]);
+
+    m.builtinExit(["global@17", "global@12#13@14", {"type":"functionReturn","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[63,5],"end":[66,7]}},"name":"defineProperty"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[63,5],"end":[66,7]}}}]);
+
+    m.readVar(["global^returnMe", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[67,5],"end":[67,13]}},"name":"returnMe"}]);
+
+    m.readVar(["global^thisPromiseId", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[67,26],"end":[67,39]}},"name":"thisPromiseId"}]);
+
+    m.writeProperty(["global@12#13@14", "augur_pid", {"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[67,5],"end":[67,39]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[67,5],"end":[67,39]}}}]);
+
+    m.readVar(["global^returnMe", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[68,12],"end":[68,20]}},"name":"returnMe"}]);
+
+    m.functionReturn(["global@0", {"type":"functionReturn","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[68,5],"end":[68,21]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[68,5],"end":[68,21]}}}]);
+
+    m.functionExit(["global@0", 8, {"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[44,11],"end":[69,2]}}}]);
+
+    m.initVar(["global^augur_v", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[47,30],"end":[52,10]}},"name":"augur_v"}]);
+
+    m.functionEnter(["global@19", 1, {"type":"functionEnter","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[47,30],"end":[52,10]}}}]);
+
+    m.readVar(["global^debug", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[48,17],"end":[48,22]}},"name":"debug"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[48,13],"end":[49,57]}}}]);
+
+    m.readVar(["global^augur_getResolveFor", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[50,13],"end":[50,32]}},"name":"augur_getResolveFor"}]);
+
+    m.readVar(["global^thisPromiseId", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[50,33],"end":[50,46]}},"name":"thisPromiseId"}]);
+
+    m.readVar(["global^augur_v", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[50,48],"end":[50,55]}},"name":"augur_v"}]);
+
+    m.functionInvokeStart(["global@21", 2, 2, [], {"type":"functionInvocation","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[50,13],"end":[50,56]}},"name":"augur_getResolveFor"}]);
+
+    m.initVar(["global@21#22^p", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[15,1],"end":[18,2]}},"name":"p"}]);
+
+    m.initVar(["global@21#22^augur_v", {"type":"declaration","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[15,1],"end":[18,2]}},"name":"augur_v"}]);
+
+    m.functionEnter(["global@21", 2, {"type":"functionEnter","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[15,1],"end":[18,2]}}}]);
+
+    m.promiseResolve([168, "global@21#22^augur_v", "promise^0", {"type":"functionEnter","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[15,1],"end":[18,2]}}}]);
+
+    m.readVar(["global^debug", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[16,9],"end":[16,14]}},"name":"debug"}]);
+
+    m.functionExit(["global@21", 9, {"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[15,1],"end":[18,2]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[16,5],"end":[17,44]}}}]);
+
+    m.functionInvokeEnd(["global@21", [], {"type":"functionReturn","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[50,13],"end":[50,56]}},"name":"augur_getResolveFor"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[50,13],"end":[50,56]}}}]);
+
+    m.readVar(["global^resolve", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[51,13],"end":[51,20]}},"name":"resolve"}]);
+
+    m.readVar(["global^augur_v", {"type":"variable","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[51,21],"end":[51,28]}},"name":"augur_v"}]);
+
+    m.builtin(["global@25", , 1, null, false, {"type":"functionInvocation","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[51,13],"end":[51,29]}}}]);
+
+    m.builtinExit(["global@25", , {"type":"functionReturn","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[51,13],"end":[51,29]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[51,13],"end":[51,29]}}}]);
+
+    m.functionExit(["global@19", 9, {"type":"expr","location":{"fileName":"/root/analysis/dist/src/native/polyfill.js","pos":{"start":[47,30],"end":[52,10]}}}]);
+
+    m.functionEnter(["global@29", 0, {"type":"functionEnter","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}}}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}}}]);
+
+    m.functionExit(["global@29", 9, {"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}}}]);
+
+    m.initVar(["global^exports", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}},"name":"exports"}]);
+
+    m.initVar(["global^require", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}},"name":"require"}]);
+
+    m.initVar(["global^module", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}},"name":"module"}]);
+
+    m.initVar(["global^__filename", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}},"name":"__filename"}]);
+
+    m.initVar(["global^__dirname", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}},"name":"__dirname"}]);
+
+    m.initVar(["global^a", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}},"name":"a"}]);
+
+    m.initVar(["global^b", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}},"name":"b"}]);
+
+    m.initVar(["global^z", {"type":"declaration","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}},"name":"z"}]);
+
+    m.functionEnter(["global@30", 5, {"type":"functionEnter","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"test.js","pos":{"start":[1,9],"end":[1,10]}}}]);
+
+    m.writeVar(["global^a", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[1,10]}},"name":"a"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[1,10]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"test.js","pos":{"start":[2,15],"end":[2,16]}}}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"test.js","pos":{"start":[2,23],"end":[2,24]}}}]);
+
+    m.readVar(["global^a", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[2,32],"end":[2,33]}},"name":"a"}]);
+
+    m.writeProperty(["global@31", "2a", {}]);
+
+    m.writeProperty(["global@31", "y", {}]);
+
+    m.writeProperty(["global@31", "x", {}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"test.js","pos":{"start":[2,9],"end":[2,34]}}}]);
+
+    m.writeVar(["global^b", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[2,1],"end":[2,34]}},"name":"b"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"test.js","pos":{"start":[2,1],"end":[2,34]}}}]);
+
+    m.readVar(["global^b", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[3,9],"end":[3,10]}},"name":"b"}]);
+
+    m.literal([{"type":"literal","location":{"fileName":"test.js","pos":{"start":[3,11],"end":[3,14]}}}]);
+
+    m.readProperty(["global@31", "y", false, true, {"type":"expr","location":{"fileName":"test.js","pos":{"start":[3,9],"end":[3,15]}}}]);
+
+    m.writeVar(["global^z", {"type":"variable","location":{"fileName":"test.js","pos":{"start":[3,1],"end":[3,15]}},"name":"z"}]);
+
+    m.pop([{"type":"expr","location":{"fileName":"test.js","pos":{"start":[3,1],"end":[3,15]}}}]);
+
+    m.functionExit(["global@30", 9, {"type":"expr","location":{"fileName":"test.js","pos":{"start":[1,1],"end":[3,16]}}}]);
+
+    m.endExecution([]);
+
+};
+

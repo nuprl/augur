@@ -1,0 +1,32 @@
+{
+    "main": "test.js",
+    "tracking": "Boolean",
+    "sources": [
+        {
+            "type": "variable",
+            "name": "input",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "variable",
+            "name": "parsed",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "expectedFlows": [],
+    "sanitizers": [
+        {
+            "type": "builtin",
+            "name": "parse",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ]
+}

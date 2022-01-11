@@ -16,7 +16,7 @@ import {
 } from "../types";
 import JSWriter from "../abstractMachine/JSWriter";
 import logger from "./logger";
-import {createAbstractMachine, parseIID} from "../utils";
+import {createAbstractMachine, parseIID, parseSpec} from "../utils";
 import WeakMapShadow from "./shadow/weakMapShadow";
 import {useNativeRecorder, getModelledFunctionNames} from "../native/native";
 import SourcedBooleanMachine from "../abstractMachine/SourcedBooleanMachine";
@@ -38,7 +38,7 @@ export default class Analysis implements Analyzer {
     
     // The spec file, in case of live analysis.
     // @ts-ignore
-    private spec = J$.live? JSON.parse(readFileSync(J$.initParams.specPath).toString()) : undefined;
+    private spec = J$.live? parseSpec(J$.initParams.specPath) : undefined;
     
     // @ts-ignore
     private state: AbstractMachine = J$.initParams.live === "true" ? createAbstractMachine(this.spec, true, J$.initParams.outputFile) : new JSWriter();

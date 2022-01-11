@@ -1,0 +1,32 @@
+{
+    "main": "test.js",
+    "tracking": "Boolean",
+    "sources": [
+        {
+            "type": "variable",
+            "name": "a",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "sinks": [
+        {
+            "type": "variable",
+            "name": "z",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ],
+    "expectedFlows": [],
+    "sanitizers": [
+        {
+            "type": "functionInvocation",
+            "name": "sanitize",
+            "location": {
+                "fileName": "test.js"
+            }
+        }
+    ]
+}

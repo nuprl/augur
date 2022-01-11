@@ -344,3 +344,25 @@ test('basic-async', (done) => runTest('basic-async', done));
 test('multi-await', (done) => runTest('multi-await', done));
 // test('promise-all-tainted', (done) => runTest('promise-all-tainted', done))
 // test('for-await-tainted', (done) => runTest('for-await-tainted', done))
+test('sanitizer-variable-assignment-clean', (done) => runTest('sanitizer-variable-assignment-clean', done));
+test('sanitizer-variable-assignment-tainted', (done) => runTest('sanitizer-variable-assignment-tainted', done));
+test('sanitizer-function-invocation-clean', (done) => runTest('sanitizer-function-invocation-clean', done));
+test('sanitizer-function-invocation-tainted', (done) => runTest('sanitizer-function-invocation-tainted', done));
+test('sanitizer-built-in-clean', (done) => runTest('sanitizer-built-in-clean', done));
+test('sanitizer-built-in-tainted', (done) => runTest('sanitizer-built-in-tainted', done));
+test('sanitizer-function-return-clean', (done) => runTest('sanitizer-function-return-clean', done));
+test('sanitizer-function-return-tainted', (done) => runTest('sanitizer-function-return-tainted', done));
+test('sanitizer-complex-1-clean', (done) => runTest('sanitizer-complex-1-clean', done));
+test('sanitizer-complex-1-tainted', (done) => runTest('sanitizer-complex-1-tainted', done));
+test('sanitizer-complex-2-clean', (done) => runTest('sanitizer-complex-2-clean', done));
+test('sanitizer-complex-2-tainted', (done) => runTest('sanitizer-complex-2-tainted', done));
+test('sanitizer-complex-3-clean', (done) => runTest('sanitizer-complex-3-clean', done));
+
+// Currently broken. This test uses `.then(Number.parseInt)`, and NodeProf seems to not tell us that
+// `parseInt` was called.
+// test('sanitizer-complex-3-tainted', (done) => runTest('sanitizer-complex-3-tainted', done));
+
+test('sanitizer-varargs-clean', (done) => runTest('sanitizer-varargs-clean', done));
+test('sanitizer-varargs-tainted', (done) => runTest('sanitizer-varargs-tainted', done));
+test('sanitizer-complex-4-clean', (done) => runTest('sanitizer-complex-4-clean', done));
+test('sanitizer-complex-4-tainted', (done) => runTest('sanitizer-complex-4-tainted', done));

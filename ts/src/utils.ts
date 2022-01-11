@@ -1,7 +1,10 @@
-import {RunSpecification, SourceSpan, Location, StaticDescription, AbstractMachine} from "./types";
+import {RunSpecification, SourceSpan, Location, StaticDescription, AbstractMachine, VALID_SPEC_FIELDS} from "./types";
 import BooleanMachine from "./abstractMachine/BooleanMachine";
 import SourcedBooleanMachine from "./abstractMachine/SourcedBooleanMachine";
 import ExpressionMachine from "./abstractMachine/ExpressionMachine";
+
+import * as json5 from "json5";
+import * as fs from "fs";
 
 // JALANGI DO NOT INSTRUMENT
 
@@ -132,6 +135,53 @@ export function createAbstractMachine(options: RunSpecification, liveLogging: bo
         case "Expression":
             return new ExpressionMachine(options, liveLogging, outputFilePath);
     }
+}
+
+/**
+ * Parses and validates an Augur spec, given the path in the filesystem.
+ * Use this function WHENEVER you need to parse a spec,
+ * as the spec needs to go through special processing
+ * before it can be used.
+ * @param specPath the path to the spec
+ */
+export function parseSpec(specPath: string): RunSpecification {
+    // Parse spec using JSON5. JSON5 allows more flexibility in JSON
+    // files, including comments.
+    let spec = json5.parse(fs.readFileSync(specPath).toString());
+
+    // Is this spec valid? Does it have the required fields? Does it have
+    // any unrecognized fields? Augur will terminate if the spec doesn't look right
+    // or has any extra fields.
+    let specFields = Object.keys(spec);
+
+    // Compute a list of "unknown" fields in the spec file.
+    // These are fields that aren't in `VALID_SPEC_FIELDS`
+    let unknownFields =
+        specFields.filter(field => !VALID_SPEC_FIELDS.includes(field));
+
+    // Time to determine if we should crash or not.
+    let crash = false;
+    if (unknownFields.length > 0) {
+        console.error(`Spec file at ${specPath} has invalid fields: ${JSON.stringify(unknownFields)}.
+        Valid fields are: ${JSON.stringify(VALID_SPEC_FIELDS)}`)
+        crash = true;
+    }
+    if (!spec.main) {
+        console.error(`Spec file at ${specPath} doesn't specify a "main" field! Augur doesn't know which JS program to run. Please add a "main" field to your spec and try again.`)
+        crash = true;
+    }
+
+    if (crash) {
+        process.exit(1);
+    }
+
+    // Add empty sanitizers array if the user didn't specify any
+    if (!spec.sanitizers) {
+        spec.sanitizers = [];
+    }
+
+    // All looks good!
+    return spec as RunSpecification;
 }
 
 export function executeInstructionsFromFile(path: string, options: RunSpecification) {
