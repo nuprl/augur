@@ -605,7 +605,55 @@ let models = asNativeModelMap({
     /*
      *   Promises
      */
-    // "then": asNativeModel({
+    "then": asNativeModel({
+        recorder: (analysis: Analysis,
+                   name: DynamicDescription,
+                   receiverName: DynamicDescription,
+                   receiver: any,
+                   args: any[],
+                   description: StaticDescription) => {
+            // This refers to .then called on the returns of async functions.
+            // Get the asyncID of the promise, and return it.
+            return analysis.getAsyncPromiseId(receiver);
+        },
+        implementationPre: function <V, F>(machine: JSMachine<V, F>,
+                                        name: DynamicDescription,
+                                        receiverName: DynamicDescription,
+                                        actualArgs: number,
+                                        idOfReactedUponPromise: DynamicDescription,
+                                        isMethod: boolean,
+                                        description: StaticDescription): void {
+            let [_, receiverTaint, argsTaint] =
+            popArgsAndReportFlowsIntoBuiltin(machine,
+                name,
+                receiverName,
+                actualArgs,
+                isMethod,
+                description);
+
+            let promise = machine.getPromise(idOfReactedUponPromise);
+            let promiseTaint = machine.getUntaintedValue();
+            if (promise != undefined)
+                promiseTaint = machine.getPromise(idOfReactedUponPromise).resolve;
+
+            // install advice for initVar
+            // the next initVar will be for the argument to the callback passed to .then,
+            // so we should taint it according to the promise's resolve value taintedness
+            machine.installAdvice(machine.initVarAdvice,
+                (s : any, description : StaticDescription) => {
+                    let v = machine.join(promiseTaint, machine.produceMark(description));
+    
+                    if (machine.argsLeftToProcess > 0) {
+                        machine.taintTree.get(machine.ROOTID).pop();
+                        machine.argsLeftToProcess--;
+                    }
+    
+                    // actually set the taint value of the variable
+                    machine.varTaintMap.set(s, v);
+            });
+        }
+    }),
+    // "catch": asNativeModel({
     //     recorder: (analysis: Analysis,
     //                name: DynamicDescription,
     //                receiverName: DynamicDescription,
@@ -631,7 +679,26 @@ let models = asNativeModelMap({
     //             isMethod,
     //             description);
 
-    //         returnTaints(machine, machine.getPromise(idOfReactedUponPromise).resolve);
+    //         let promise = machine.getPromise(idOfReactedUponPromise);
+    //         let promiseTaint = machine.getUntaintedValue();
+    //         if (promise != undefined)
+    //             promiseTaint = machine.getPromise(idOfReactedUponPromise).reject;
+
+    //         // install advice for initVar
+    //         // the next initVar will be for the argument to the callback passed to .then,
+    //         // so we should taint it according to the promise's resolve value taintedness
+    //         machine.installAdvice(machine.initVarAdvice,
+    //             (s : any, description : StaticDescription) => {
+    //                 let v = machine.join(promiseTaint, machine.produceMark(description));
+    
+    //                 if (machine.argsLeftToProcess > 0) {
+    //                     machine.taintTree.get(machine.ROOTID).pop();
+    //                     machine.argsLeftToProcess--;
+    //                 }
+    
+    //                 // actually set the taint value of the variable
+    //                 machine.varTaintMap.set(s, v);
+    //         });
     //     }
     // }),
 });

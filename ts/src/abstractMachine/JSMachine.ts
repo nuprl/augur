@@ -184,7 +184,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     }
 
     public installAdvice(adviceStack: Array<Function>, f: Function): void {
-        adviceStack[adviceStack.length - 1] = f;
+        adviceStack.push(f);
     }
 
     public reportFlow(flow: F) {
@@ -582,9 +582,17 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public binary = this.binaryOp.wrapper;
 
+    public initVarAdvice: {(name : any, description: StaticDescription): void}[] = [];
     public initVarOp: Operation<[VariableDescription, StaticDescription], void> =
         this.adviceWrap(
             ([s, description]) => {
+                // Deal with advice, if there is any.
+                let advice = this.initVarAdvice.pop();
+                if (advice != undefined) {
+                    advice(s, description);
+                    return;
+                }
+
                 let v = this.sanitize(this.join(this.taintTree.get(this.ROOTID)[
                 this.taintTree.get(this.ROOTID).length - 1], this.produceMark(description)), description);
 
@@ -715,10 +723,11 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         });
     public asyncFunctionEnter = this.asyncFunctionEnterOp.wrapper;
 
+    // this.state.asyncFunctionExit([iid, this.getAsyncPromiseId(result), result, exceptionVal, {type: "asyncFunctionExit", location: parseIID(iid)}])
     public asyncFunctionExitOp: Operation<[number, DynamicDescription, any, ExceptionVal, StaticDescription], void> =
         this.adviceWrap(([iid, promiseId, result, exceptionVal, description]) => {
             let v = this.returnValue;
-            this.asyncPromiseMap.set(promiseId, {resolve: v , reject: v})
+            this.asyncPromiseMap.set(promiseId, {resolve: v , reject: exceptionVal.exception})
 
             if (promiseDebug || debug) console.log("asyncExit: " + this.taintTree.get(0))
         });
