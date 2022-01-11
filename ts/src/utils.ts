@@ -175,9 +175,12 @@ export function parseSpec(specPath: string): RunSpecification {
         process.exit(1);
     }
 
-    // Add empty sanitizers array if the user didn't specify any
+    // Add default values if user didn't specify them
     if (!spec.sanitizers) {
         spec.sanitizers = [];
+    }
+    if (!spec.verbose) {
+        spec.verbose = false;
     }
 
     // All looks good!

@@ -452,8 +452,11 @@ export interface RunSpecification extends Object {
     // The program to instrument
     main: string;
 
-    // The type of taint tracking to use for this analysis.
+    // The type of taint tracking to use for this analysis. Defaults to Boolean
     tracking?: TrackingType;
+
+    // Should we enable verbose logging?
+    verbose?: boolean;
 
     // The sources of taint
     sources?: Array<StaticDescription>;
@@ -474,6 +477,7 @@ export interface RunSpecification extends Object {
 export const VALID_SPEC_FIELDS = [
     "main",
     "tracking",
+    "verbose",
     "sources",
     "sinks",
     "expectedFlows",
