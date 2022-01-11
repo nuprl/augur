@@ -70,6 +70,7 @@ This file tells Augur the *sources* and *sinks* of the flows you want to
 track. The spec above tells Augur to alert you if any value returned from
 `readFileSync` flows into the function `exec`. It also tells Augur how to run
  your project: by executing the file `test.js`.
+[Here](./tests-unit/README.md) are all the options for `spec.json`.
 
 Let's say we analyze the following program, `test.js`:
 ```javascript
@@ -128,6 +129,14 @@ Flows found into the following sinks: [
 ```
 
 You've now analyzed your first application using Augur!
+
+## Augur Features
+1. Support for *any* piece of JavaScript code to act as a taint source
+2. Support for *any* piece of JavaScript code to act as a taint sink
+3. Support for taint sanitizers
+4. Support for different forms of taint tracking, from simple boolean tracking 
+to full dependency information between variables
+5. Support for tracking taint through native code (see below)
 
 ## Native function models
 Modern JavaScript relies on a wide variety of native functions to improve
@@ -203,7 +212,7 @@ To get the project fully up and running, simply:
 | Variable assignment            |         |             | x    | see #20 |
 | Function call                  |         |             | x    | see #21 |
 | Native functions               |         |             | x    | see #22 |
-| Async/await                    | x       |             |      | see #29 |
+| Async/await                    |         | x           |      | see #29 |
 | Function returns               |         |             | x    | see #30 |
 
 ## Support for Ichnaea Benchmarks
