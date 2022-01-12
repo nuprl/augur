@@ -41,7 +41,7 @@ outputDir = path.resolve(cwd, outputDir);
 run(projectDir, projectName, outputDir, consoleFlag, live, main).then(([spec, result]) => {
     if (live) {
         console.log('\n---\n');
-        console.log('Taint flows will be found in the output file.\n');
+        console.log(colors.green(`Taint flows have been written to: `) + `${outputDir}/${projectName}.js\n`);
         console.log();
         return;
     }

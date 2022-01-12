@@ -10,7 +10,7 @@ import {
     AbstractMachine,
     DynamicDescription, Location,
     PropertyDescription,
-    RawVariableDescription,
+    RawVariableDescription, RunSpecification,
     ShadowMemory, SourcePosition, SourceSpan,
     StaticDescription,
 } from "../types";
@@ -37,11 +37,10 @@ export default class Analysis implements Analyzer {
     private sandbox: Sandbox;
     
     // The spec file, in case of live analysis.
-    // @ts-ignore
-    private spec = J$.live? parseSpec(J$.initParams.specPath) : undefined;
-    
-    // @ts-ignore
-    private state: AbstractMachine = J$.initParams.live === "true" ? createAbstractMachine(this.spec, true, J$.initParams.outputFile) : new JSWriter();
+    private spec: RunSpecification;
+
+    // The state machine. A JSWriter in case of offline analysis, JSMachine in case of live analysis.
+    private state: AbstractMachine;
 
     public promiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
     public asyncPromiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
@@ -68,8 +67,16 @@ export default class Analysis implements Analyzer {
 
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
-	// @ts-ignore
-	console.error(`Analysis created. Live = ${J$.initParams.live}`);
+
+        // Parse spec and create abstract machine if we're running live
+
+        // @ts-ignore
+        this.spec = J$.initParams.live? parseSpec(J$.initParams.specPath) : undefined;
+        // @ts-ignore
+        this.state = J$.initParams.live === "true" ? createAbstractMachine(this.spec, true, J$.initParams.outputFile) : new JSWriter();
+
+        // @ts-ignore
+        console.error(`Analysis created. Live = ${J$.initParams.live}`);
     }
 
     public declare: NPCallbacks.declare = (iid, name: RawVariableDescription, type: string) => {

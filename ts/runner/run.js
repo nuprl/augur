@@ -197,6 +197,8 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             // Online.
             const [error, stdout, stderr] = await promise_exec(command, consoleFlag, {maxBuffer: 10 * 10 * 1024 * 1024 * 10 /* 10*10*10 MB buffer for stdout/stderr */});
             results = {};
+            loadingSpinner.stop();
+            return [spec, results];
         } else {
             // Offline.
             let [error, stdout, stderr] = await promise_exec(command, false,
