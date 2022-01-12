@@ -43,7 +43,7 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
-function runTest(testName, done) {
+function runTest(testName, done, defaultSpec) {
     let results = run(INPUT_DIR + "/" + testName,
         testName,
         ACTUAL_OUT_DIR,
@@ -51,7 +51,13 @@ function runTest(testName, done) {
         false,
         "test.js" /* if no spec exists, assume the test is test.js */)
         .then(([spec, results]) => {
-            expect(results).toEqual(spec.expectedFlows);
+            // If we're using the default spec, just expect there to be AT LEAST 1 FLOW.
+            // Otherwise, check the expected flows from the actual spec.
+            if (defaultSpec) {
+                expect(results.length).toBeGreaterThanOrEqual(1);
+            } else {
+                expect(results).toEqual(spec.expectedFlows);
+            }
 
             done();
         });
@@ -383,4 +389,4 @@ test('sanitizer-recursive-1-tainted', (done) => runTest('sanitizer-recursive-1-t
 // test('async-then-complex-1-clean', (done) => runTest('async-then-complex-1-clean', done));
 // test('async-then-complex-1-tainted', (done) => runTest('async-then-complex-1-tainted', done));
 
-test('default-spec-1-tainted', (done) => runTest('default-spec-1-tainted', done));
+test('default-spec-1-tainted', (done) => runTest('default-spec-1-tainted', done, true));
