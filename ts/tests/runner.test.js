@@ -366,3 +366,5 @@ test('sanitizer-varargs-clean', (done) => runTest('sanitizer-varargs-clean', don
 test('sanitizer-varargs-tainted', (done) => runTest('sanitizer-varargs-tainted', done));
 test('sanitizer-complex-4-clean', (done) => runTest('sanitizer-complex-4-clean', done));
 test('sanitizer-complex-4-tainted', (done) => runTest('sanitizer-complex-4-tainted', done));
+test('verbose-1-clean', (done) => runTest('verbose-1-clean', done));
+test('verbose-1-tainted', (done) => runTest('verbose-1-tainted', done));

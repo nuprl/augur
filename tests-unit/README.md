@@ -38,6 +38,9 @@ The test specification file must be of the form:
     // The script to execute
     main: string;
     
+    // Enable verbose logging
+    verbose?: boolean;
+    
     // The type of taint tracking to use for this analysis
     tracking?: TrackingType;
     
