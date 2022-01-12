@@ -14,37 +14,67 @@
     },
     { // Process arguments
       "type": "variable",
-      "name": "argv"
+      "name": "argv",
+      "config": {
+        "recursive": true
+      }
     }
+    // TODO: process.stdin (recursive)
+    // TODO: readline module (recursive)
     // TODO: HTTP requests with recursive tainting
     // As seen here: https://nodejs.dev/learn/get-http-request-body-data-using-nodejs
+
   ],
   "sinks": [
     { // Calls to exec
       "type": "functionInvocation",
-      "name": "exec"
+      "name": "exec",
+      "config": {
+        "recursive": true
+      }
     },
     { // Calls to `eval` in JavaScript
       "type": "functionEnter",
       "location": {
         "fileName": "eval"
+      },
+      "config": {
+        "recursive": true
       }
     },
     { // Calls to fs.writeFileSync
       "type": "functionInvocation",
-      "name": "writeFileSync"
+      "name": "writeFileSync",
+      "config": {
+        "recursive": true
+      }
     },
     { // Calls to fs.writeFile
       "type": "functionInvocation",
-      "name": "writeFile"
+      "name": "writeFile",
+      "config": {
+        "recursive": true
+      }
     },
     { // Calls to fs.appendFileSync
       "type": "functionInvocation",
-      "name": "appendFileSync"
+      "name": "appendFileSync",
+      "config": {
+        "recursive": true
+      }
     },
     { // Calls to fs.appendFile
       "type": "functionInvocation",
-      "name": "appendFile"
+      "name": "appendFile",
+      "config": {
+        "recursive": true
+      }
+    }
+  ],
+  "sanitizers": [
+    { // JSON.stringify
+      "type": "builtin",
+      "name": "stringify"
     }
   ]
 }

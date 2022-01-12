@@ -368,3 +368,7 @@ test('sanitizer-complex-4-clean', (done) => runTest('sanitizer-complex-4-clean',
 test('sanitizer-complex-4-tainted', (done) => runTest('sanitizer-complex-4-tainted', done));
 test('verbose-1-clean', (done) => runTest('verbose-1-clean', done));
 test('verbose-1-tainted', (done) => runTest('verbose-1-tainted', done));
+test('recursive-argv-1-clean', (done) => runTest('recursive-argv-1-clean', done));
+test('recursive-argv-1-tainted', (done) => runTest('recursive-argv-1-tainted', done));
+test('sanitizer-recursive-1-clean', (done) => runTest('sanitizer-recursive-1-clean', done));
+test('sanitizer-recursive-1-tainted', (done) => runTest('sanitizer-recursive-1-tainted', done));

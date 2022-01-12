@@ -1,0 +1,35 @@
+{
+    "main": "test.js",
+    "tracking": "Boolean",
+    "sources": [
+        {
+            "type": "variable",
+            "name": "process",
+            "config": {
+                "recursive": true
+            }
+        }
+    ],
+    "sinks": [
+        { // Calls to `eval` in JavaScript
+            "type": "functionEnter",
+            "location": {
+                "fileName": "eval"
+            },
+            "config": {
+                "recursive": true
+            }
+        }
+    ],
+    "expectedFlows": [
+        { // Calls to `eval` in JavaScript
+            "type": "functionEnter",
+            "location": {
+                "fileName": "eval"
+            },
+            "config": {
+                "recursive": true
+            }
+        }
+    ]
+}
