@@ -64,7 +64,20 @@ const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.j
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
-exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live) {
+/**
+ * Run the given project in Augur.
+ * @param projectDir the root directory of the project. The project cannot use any files above this dir, unless they're
+ *                   globally installed node files.
+ * @param projectName human readable name of the project, so Augur can name its output file accordingly.
+ * @param outputDir the directory to store its output files.
+ * @param consoleFlag should Augur pipe the instrumented program's stdout to your terminal?
+ * @param live should Augur run the analysis concurrently with the program?
+ * @param main OPTIONAL. If you don't have your own spec file in this project, Augur can use a default spec file.
+ *             However, in that case Augur still needs to know which JS file to execute.
+ *             Specify that here with a RELATIVE PATH from the projectDir.
+ * @returns {Promise<[RunSpecification, Array<Taint flows>]>}
+ */
+exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live, main) {
     // Print out a pretty augur logo
     process.stdout.write("\n" + colors.red.bgBlack(`
                                                          
@@ -105,8 +118,22 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
 
     // Parse the spec to know the program to instrument, sources, sinks, and
     // expected taints
-    const specPath = projectDir + "/spec.json";
-    const spec = parseSpec(specPath);
+    let spec;
+    let specPath = projectDir + "/spec.json";
+    try {
+        spec = parseSpec(specPath);
+    } catch (_) {
+        // Spec file doesn't exist. Use the default spec file.
+        specPath = `${TAINT_ANALYSIS_HOME}/tests-unit/defaultSpec.json`;
+        spec = parseSpec(specPath);
+        if (!main) {
+            console.error("There's no spec file in your project directory, but you also didn't specify a main file to use with the default spec!");
+            throw "no main file for default spec";
+        }
+
+        // All good, just patch in the given main file to the default spec
+        spec.main = main;
+    }
 
     // Calculate input and output instruction file paths
     const outputFile = outputDir + "/" + projectName + '_out.js';

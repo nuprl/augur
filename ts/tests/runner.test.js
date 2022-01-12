@@ -44,11 +44,17 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
 function runTest(testName, done) {
-    let results = run(INPUT_DIR + "/" + testName, testName, ACTUAL_OUT_DIR, true, false).then(([spec, results]) => {
-        expect(results).toEqual(spec.expectedFlows);
+    let results = run(INPUT_DIR + "/" + testName,
+        testName,
+        ACTUAL_OUT_DIR,
+        true,
+        false,
+        "test.js" /* if no spec exists, assume the test is test.js */)
+        .then(([spec, results]) => {
+            expect(results).toEqual(spec.expectedFlows);
 
-        done();
-    });
+            done();
+        });
 }
 
 // Register all tests with Jest
@@ -376,3 +382,5 @@ test('sanitizer-recursive-1-tainted', (done) => runTest('sanitizer-recursive-1-t
 // Broken due to native model for Promise.then
 // test('async-then-complex-1-clean', (done) => runTest('async-then-complex-1-clean', done));
 // test('async-then-complex-1-tainted', (done) => runTest('async-then-complex-1-tainted', done));
+
+test('default-spec-1-tainted', (done) => runTest('default-spec-1-tainted', done));
