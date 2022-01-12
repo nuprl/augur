@@ -5,8 +5,7 @@
 const child_process = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
-const {executeInstructionsFromFile} = require('../dist/src/utils');
-const {parseSpec} = require("../src/utils");
+const {executeInstructionsFromFile, parseSpec} = require('../dist/src/utils');
 const loadingSpinner = require('loading-spinner');
 const colors = require('colors/safe');
 
@@ -14,14 +13,20 @@ const colors = require('colors/safe');
  * Fully-promsified exec implementation. This works well with await, and
  * returns *all* the information returned by exec.
  * @param cmd the command to exec
+ * @param livePipe should we pipe the stdout and stderr while its running?
  * @param opts the options to give to exec
  * @returns {Promise}
  */
-const promise_exec = function(cmd, opts) {
+const promise_exec = function(cmd, livePipe, opts) {
     return new Promise((resolve, reject) => {
-        child_process.exec(cmd, opts, (error, stdout, stderr) => {
+        let child = child_process.exec(cmd, opts, (error, stdout, stderr) => {
             resolve([error, stdout, stderr]);
         })
+        if (livePipe) {
+            // Register redirection to stdout.
+            child.stdout.pipe(process.stdout);
+            child.stderr.pipe(process.stderr);
+        }
     })
 };
 
@@ -55,6 +60,8 @@ if (SHOULD_USE_DOCKER) {
 }
 
 const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
+const DEFAULT_SPEC_PATH = `${TAINT_ANALYSIS_HOME}/ts/src/defaultSpec.json`;
+
 // For debugging purposes, if you want to make sure NodeProf runs on the application.
 // const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/emptyAnalysis/emptyAnalysis.js";
 
@@ -78,8 +85,11 @@ const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.j
  * @returns {Promise<[RunSpecification, Array<Taint flows>]>}
  */
 exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live, main) {
+    let usingDefaultSpec = false;
     // Print out a pretty augur logo
-    process.stdout.write("\n" + colors.red.bgBlack(`
+
+    try {
+        process.stdout.write("\n" + colors.red.bgBlack(`
                                                          
                                                          
   #                                                      
@@ -101,125 +111,136 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
                                                          
                                                          
 `) + "\n\n");
-    loadingSpinner.setSequence(
-        [
-            "( ●    )",
-            "(  ●   )",
-            "(   ●  )",
-            "(    ● )",
-            "(     ●)",
-            "(    ● )",
-            "(   ●  )",
-            "(  ●   )",
-            "( ●    )",
-            "(●     )"
-        ]
-    );
+        loadingSpinner.setSequence(
+            [
+                "( ●    )",
+                "(  ●   )",
+                "(   ●  )",
+                "(    ● )",
+                "(     ●)",
+                "(    ● )",
+                "(   ●  )",
+                "(  ●   )",
+                "( ●    )",
+                "(●     )"
+            ]
+        );
 
-    // Parse the spec to know the program to instrument, sources, sinks, and
-    // expected taints
-    let spec;
-    let specPath = projectDir + "/spec.json";
-    try {
-        spec = parseSpec(specPath);
-    } catch (_) {
-        // Spec file doesn't exist. Use the default spec file.
-        specPath = `${TAINT_ANALYSIS_HOME}/tests-unit/defaultSpec.json`;
-        spec = parseSpec(specPath);
-        if (!main) {
-            console.error("There's no spec file in your project directory, but you also didn't specify a main file to use with the default spec!");
-            throw "no main file for default spec";
+        // Parse the spec to know the program to instrument, sources, sinks, and
+        // expected taints
+        let spec;
+        let specPath = projectDir + "/spec.json";
+        try {
+            spec = parseSpec(specPath);
+        } catch (_) {
+            // Spec file doesn't exist. Use the default spec file.
+            usingDefaultSpec = true;
+            spec = parseSpec(DEFAULT_SPEC_PATH);
+            if (!main) {
+                console.error("There's no spec file in your project directory, but you also didn't specify a main file to use with the default spec!");
+                throw "no main file for default spec";
+            }
+
+            // All good, just patch in the given main file to the default spec
+            spec.main = main;
+
+            // Now we write this patched spec file to the location it's
+            // supposed to be in: projectDir/spec.json
+            // This will help other parts of Augur which assume there is
+            // always a spec file in the project root
+            fs.writeFileSync(projectDir + "/" + "spec.json", JSON.stringify(spec));
         }
 
-        // All good, just patch in the given main file to the default spec
-        spec.main = main;
-    }
+        // Calculate input and output instruction file paths
+        const outputFile = outputDir + "/" + projectName + '_out.js';
+        const inputFile = projectDir + "/" + spec.main;
 
-    // Calculate input and output instruction file paths
-    const outputFile = outputDir + "/" + projectName + '_out.js';
-    const inputFile = projectDir + "/" + spec.main;
-    
-    if (!fs.existsSync(ANALYSIS)) {
-        throw new Error("analysis not found: " + ANALYSIS);
-    }
-    
-    const DOCKER_OUTPUT_FILENAME = "analysis.output";
-    
-    // The command to instrument the test's JS code
-    const command =
-        "rm -f " + outputFile + "; " +
-        (SHOULD_USE_DOCKER
-            // Run project using Docker
-            ? TAINT_ANALYSIS_HOME + "/ts/docker-nodeprof/docker-analyze.sh" +
-            ` --mxArg "--initParam outputFile:/root/program/${DOCKER_OUTPUT_FILENAME}"` +
-            ` --mxArg "--initParam live:${live}"` +
-            ` --mxArg "--initParam specPath:/root/program/spec.json"` +
-            " --analysisDir " + TAINT_ANALYSIS_HOME + "/ts/" +
-            " --analysisMain " + "dist/src/analysis/nodeprofAnalysis.js" +
-            " --programDir " + projectDir + "/" +
-            " --programMain " + spec.main + ";" +
-            "mv " + projectDir + "/" + DOCKER_OUTPUT_FILENAME +
-            " " + outputFile
-            // Run project using local NodeProf installation
-            : "cd " + NODEPROF_HOME + "; "
-            + `export OUTPUT_FILE=\"${outputFile}\";`
-            + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
-            + " --initParam specPath:" + (projectDir + "/spec.json")
-            + " --initParam live:" + live
-            + " --analysis " + ANALYSIS + " "
-            + inputFile);
-
-    // console.log("Source file: \t" + inputFile);
-    // console.log("Command: \t" + command);
-
-    // Print status message
-    process.stdout.write(`${colors.yellow("Instrumenting code")}\n  =>  ${inputFile}...\n`);
-    loadingSpinner.start();
-
-    let results;
-    if (live) {
-        // Online.
-        const runningAnalysis = child_process.exec(command, { maxBuffer: 10*10*1024*1024*10 /* 10*10*10 MB buffer for stdout/stderr */ });
-        if (consoleFlag) {
-            // Register redirection to stdout.
-            runningAnalysis.stdout.pipe(process.stdout);
-            runningAnalysis.stderr.pipe(process.stderr);
+        if (!fs.existsSync(ANALYSIS)) {
+            throw new Error("analysis not found: " + ANALYSIS);
         }
-        results = {};
-    } else {
-        // Offline.
-        let [error, stdout, stderr] = await promise_exec(command,
-            {maxBuffer: 10*10*1024*1024*10 /* 10*10*10 MB buffer for stdout/stderr */});
 
-        loadingSpinner.stop();
-        process.stdout.write(colors.green(`done!\n\n`));
+        const DOCKER_OUTPUT_FILENAME = "analysis.output";
 
-        if (consoleFlag) {
-            process.stdout.write(`${colors.yellow("stdout")} from program:\n`)
-            process.stdout.write(stdout + "\n");
-            process.stdout.write(`${colors.red("stderr")} from program:\n`)
-            process.stdout.write(stderr + "\n");
+        // The command to instrument the test's JS code
+        const command =
+            "rm -f " + outputFile + "; " +
+            (SHOULD_USE_DOCKER
+                // Run project using Docker
+                ? TAINT_ANALYSIS_HOME + "/ts/docker-nodeprof/docker-analyze.sh" +
+                ` --mxArg "--initParam outputFile:/root/program/${DOCKER_OUTPUT_FILENAME}"` +
+                ` --mxArg "--initParam live:${live}"` +
+                ` --mxArg "--initParam specPath:/root/program/spec.json"` +
+                " --analysisDir " + TAINT_ANALYSIS_HOME + "/ts/" +
+                " --analysisMain " + "dist/src/analysis/nodeprofAnalysis.js" +
+                " --programDir " + projectDir + "/" +
+                " --programMain " + spec.main + ";" +
+                "mv " + projectDir + "/" + DOCKER_OUTPUT_FILENAME +
+                " " + outputFile
+                // Run project using local NodeProf installation
+                : "cd " + NODEPROF_HOME + "; "
+                + `export OUTPUT_FILE=\"${outputFile}\";`
+                + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
+                + " --initParam specPath:" + (projectDir + "/spec.json")
+                + " --initParam live:" + live
+                + " --analysis " + ANALYSIS + " "
+                + inputFile);
 
-            if (error) {
-                console.error(error);
+        // console.log("Source file: \t" + inputFile);
+        // console.log("Command: \t" + command);
+
+        // Print status message
+        process.stdout.write(`${colors.yellow("Instrumenting code")}\n  =>  ${inputFile}...\n`);
+        loadingSpinner.start();
+
+        let results;
+        if (live) {
+            // Online.
+            const [error, stdout, stderr] = await promise_exec(command, consoleFlag, {maxBuffer: 10 * 10 * 1024 * 1024 * 10 /* 10*10*10 MB buffer for stdout/stderr */});
+            results = {};
+        } else {
+            // Offline.
+            let [error, stdout, stderr] = await promise_exec(command, false,
+                {maxBuffer: 10 * 10 * 1024 * 1024 * 10 /* 10*10*10 MB buffer for stdout/stderr */});
+
+            loadingSpinner.stop();
+            process.stdout.write(colors.green(`done!\n\n`));
+
+            if (consoleFlag) {
+                process.stdout.write(`${colors.yellow("stdout")} from program:\n`)
+                process.stdout.write(stdout + "\n");
+                process.stdout.write(`${colors.red("stderr")} from program:\n`)
+                process.stdout.write(stderr + "\n");
+
+                if (error) {
+                    console.error(error);
+                }
+            }
+
+            process.stdout.write(`${colors.yellow("Inspecting taints with the specification:")}\n  => ${specPath}...\n`);
+            loadingSpinner.start();
+
+            results = executeInstructionsFromFile(outputFile, spec);
+            loadingSpinner.stop();
+            process.stdout.write(colors.green(`done!\n\n`));
+
+            if (results.length === 0) {
+                process.stdout.write(colors.green("No flows found.\n"));
+            } else {
+                process.stdout.write(`${colors.red("Flows found into the following sinks:")}
+${JSON.stringify(results, (key, value) =>
+                    value instanceof Set ? [...value] : value, 4)}\n`);
             }
         }
 
-        process.stdout.write(`${colors.yellow("Inspecting taints with the specification:")}\n  => ${specPath}...\n`);
-        loadingSpinner.start();
+        return [spec, results];
+    } finally {
+        // Here, if the user was using the default spec file, we need to delete the auto-generated one
+        // before we crash.
 
-        results = executeInstructionsFromFile(outputFile, spec);
-        loadingSpinner.stop();
-        process.stdout.write(colors.green(`done!\n\n`));
-
-        if (results.length === 0) {
-            process.stdout.write(colors.green("No flows found.\n"));
-        } else {
-            process.stdout.write(`${colors.red("Flows found into the following sinks:")}
-${JSON.stringify(results, (key, value) =>
-    value instanceof Set ? [...value] : value, 4)}\n`);
+        if (usingDefaultSpec) {
+            try {
+                fs.unlinkSync(projectDir + "/spec.json")
+            } catch(e) {}
         }
     }
-
-    return [spec, results];
 }

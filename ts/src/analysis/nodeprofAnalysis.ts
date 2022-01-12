@@ -9,6 +9,8 @@ import Analysis from "./analysis";
 
 const main: main = (sandbox) => {
     // console.log("initializing...");
+    //@ts-ignore
+    console.error(`Creating analysis in Docker. Spec path => ${J$.initParams.specPath}`)
     sandbox.addAnalysis(new Analysis(sandbox));
     // console.log(sandbox);
 };
