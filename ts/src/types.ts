@@ -452,8 +452,11 @@ export interface RunSpecification extends Object {
     // The program to instrument
     main: string;
 
-    // The type of taint tracking to use for this analysis.
-    tracking: TrackingType;
+    // The type of taint tracking to use for this analysis. Defaults to Boolean
+    tracking?: TrackingType;
+
+    // Should we enable verbose logging?
+    verbose?: boolean;
 
     // The sources of taint
     sources?: Array<StaticDescription>;
@@ -463,7 +466,23 @@ export interface RunSpecification extends Object {
 
     // The list of sinks that are expected to be flowed into
     expectedFlows?: Array<StaticDescription>;
+
+    sanitizers?: Array<StaticDescription>;
 }
+
+/**
+ * A list of valid fields for a spec file. This is used
+ * to ensure that a loaded spec has the correct shape.
+ */
+export const VALID_SPEC_FIELDS = [
+    "main",
+    "tracking",
+    "verbose",
+    "sources",
+    "sinks",
+    "expectedFlows",
+    "sanitizers"
+]
 
 export class SourcedBoolean {
     value: boolean;

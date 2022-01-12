@@ -1,5 +1,8 @@
 import * as bunyan from "bunyan";
-export default bunyan.createLogger({
-    level: "fatal",
-    name: "execute-instrs",
-});
+import {RunSpecification} from "../types";
+export default function createLogger(spec: RunSpecification): bunyan {
+    return bunyan.createLogger({
+        level: spec.verbose? "info" : "fatal",
+        name: "augur-machine",
+    });
+}

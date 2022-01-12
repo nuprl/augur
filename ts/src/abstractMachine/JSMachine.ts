@@ -11,7 +11,8 @@ import {
     StaticDescription,
     VariableDescription
 } from "../types";
-import logger from "./logger";
+import * as bunyan from "bunyan";
+import createLogger from "./logger";
 import {descriptionMatchesTaintSpec, descriptionSubset} from "../utils";
 import Operation from "./operation";
 import {useNativeImplementationPost, useNativeImplementationPre} from "../native/native";
@@ -147,6 +148,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
     // TODO: Matt comment
     asyncPromiseMap: Map<any, ShadowObject<V>> = new Map<any, ShadowObject<V>>()
 
+    logger: bunyan;
+
     constructor(spec: RunSpecification, liveLogging = false, outputFilePath: string = "") {
         this.spec = spec;
         this.objects = new Map();
@@ -159,6 +162,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.functionTree.set(this.ROOTID, [{name: "program start"}])
         this.taintTree.set(this.ROOTID, []);
         this.functionArgsTree.set(this.ROOTID, [[]]);
+
+        this.logger = createLogger(spec);
     }
 
     private adviceWrap<I, O>(impl: (input: I) => O): Operation<I, O> {
@@ -194,10 +199,12 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             value instanceof Set ? [...value] : value)
             + "\n");
         }
-        if (debug) console.log("tainted value flowed into sink "
+
+        this.logger.info("tainted value flowed into sink "
             + JSON.stringify(flow, (key, value) =>
-            value instanceof Set ? [...value] : value)
+                value instanceof Set ? [...value] : value)
             + "!");
+
         this.flows.add(flow);
     }
 
@@ -206,7 +213,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([name, expectedArgs, actualArgs, argShadowIDs, description]) => {
                 // 1. set up `arguments` variable in shadow memory.
                 let actualArgsValues = this.taintTree.get(this.ROOTID).slice(
-                    this.taintTree.get(this.ROOTID).length - actualArgs);
+                    this.taintTree.get(this.ROOTID).length - actualArgs).map(v => this.sanitize(v, description));
 
                 this.functionArgsTree.get(this.ROOTID).push(actualArgsValues);
 
@@ -214,13 +221,17 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // `taintStack`.
 
                 if (expectedArgs != actualArgs) {
+                    // What is the difference between # of expected and actual args?
                     let difference = Math.abs(expectedArgs - actualArgs);
+
+                    // Decide whether to add or subtract args
                     let operation = (actualArgs > expectedArgs)
                         ? (() => this.taintTree.get(this.ROOTID).pop())
                         : (() => {
                             return this.taintTree.get(this.ROOTID).push(this.getUntaintedValue())
                         });
 
+                    // Add or subtract until it matches
                     for (let i = 0; i < difference; i++) {
                         operation();
                     }
@@ -261,15 +272,20 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                         this.join(this.taintTree.get(this.ROOTID)[i], functionInvocationTaint);
                 }
 
+                // Take function args off stack
                 let args = this.taintTree.get(this.ROOTID).splice(
                     this.taintTree.get(this.ROOTID).length - expectedArgs);
+                // Reverse them
                 args.reverse();
+                // Sanitize them if necessary
+                args = args.map(v => this.sanitize(v, description))
+                // Push them back onto stack
                 this.taintTree.get(this.ROOTID).push(...args);
 
                 // prepare the machine to declare the named parameters to this function
                 this.argsLeftToProcess = expectedArgs;
 
-                if (debug) console.log("func invoke start: " + this.taintTree.get(0))
+                this.logger.info("func invoke start: " + this.taintTree.get(0))
             }
         );
     public functionInvokeStart = this.functionInvokeStartOp.wrapper;
@@ -289,7 +305,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // value needs to reflect that
                 if (this.returnValue) {
                     returnTaintValue =
-                        this.join(returnTaintValue, this.returnValue);
+                        this.sanitize(this.join(returnTaintValue, this.returnValue), description);
                 }
 
                 // We also need to check if we should apply taint differently.
@@ -320,7 +336,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // clean out return value
                 this.returnValue = undefined;
 
-                if (debug) console.log("func invoke end: " + this.taintTree.get(0))
+                this.logger.info("func invoke end: " + this.taintTree.get(0))
             }
         );
     public functionInvokeEnd = this.functionInvokeEndOp.wrapper;
@@ -332,7 +348,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([name, actualArgs, description]) => {
 
                 if (description.location.fileName === "eval") {
-                    if (debug) console.log("eval time");
+                    this.logger.info("eval time");
                 }
                 let advice = this.functionEnterAdvice[this.functionEnterAdvice.length - 2];
                 if (advice != null) {
@@ -348,7 +364,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 // report possible flows from callee perspective
                 this.reportPossibleFlow(description, functionTaint);
 
-                if (debug) console.log("func enter: " + this.taintTree.get(0))
+                this.logger.info("func enter: " + this.taintTree.get(0))
             }
         );
     public functionEnter = this.functionEnterOp.wrapper;
@@ -365,7 +381,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
                 this.callstackPop();
 
-                if (debug) console.log("func exit: " + this.taintTree.get(0))
+                this.logger.info("func exit: " + this.taintTree.get(0))
             }
         );
     functionExit = this.functionExitOp.wrapper;
@@ -374,22 +390,28 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([name, description]) => {
                 // Save taint for return value in this.returnValue, which is read in functionInvokeEnd above.
-                this.returnValue = this.taintTree.get(this.ROOTID)[this.taintTree.get(this.ROOTID).length - 1];
+                this.returnValue =
+                    this.sanitize(
+                        this.taintTree.get(this.ROOTID)[this.taintTree.get(this.ROOTID).length - 1],
+                        description);
 
                 // we shouldn't pop this manually. a discardValue
                 // instruction should be generated by NodeProf right after
                 // the return callback.
 
-                if (debug) console.log("func return: " + this.taintTree.get(0));
+                this.logger.info("func return: " + this.taintTree.get(0));
             });
     public functionReturn = this.functionReturnOp.wrapper;
 
     public literalOp: Operation<[StaticDescription], void> =
         this.adviceWrap(
             ([description]) => {
-                this.push([this.produceMark(description), description]);
+                // Compute the taint for this literal
+                let taintValue: V = this.sanitize(this.produceMark(description), description);
 
-                if (debug) console.log("literal: " + this.taintTree.get(0))
+                this.push([taintValue, description]);
+
+                this.logger.info("literal: " + this.taintTree.get(0))
             });
 
     public literal = this.literalOp.wrapper;
@@ -398,7 +420,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([v, description]) => {
                 this.resetState();
-                logger.info("push", v);
+                this.logger.info("push", v);
                 this.taintTree.get(this.ROOTID).push(v);
             }
         );
@@ -409,7 +431,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([description]) => {
                 this.resetState();
-                logger.info("pop");
+                this.logger.info("pop");
                 this.taintTree.get(this.ROOTID).pop();
             }
         );
@@ -435,13 +457,16 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 if (advice != null) {
                     advice(s);
                 } else {
-                    const r = this.join(this.produceMark(description),
-                        this.varTaintMap.get(s));
-                    this.taintTree.get(this.ROOTID).push(r);
-                    logger.info("read", s, r);
+                    // Compute the taint value for this variable
+                    const taintValue: V = this.sanitize(this.join(this.produceMark(description),
+                        this.varTaintMap.get(s)), description);
+
+                    // Push taint value to stack
+                    this.taintTree.get(this.ROOTID).push(taintValue);
+                    this.logger.info("read", s, taintValue);
                 }
 
-                if (debug) console.log("readVar: " + s + " " + this.taintTree.get(0))
+                this.logger.info("readVar: " + s + " " + this.taintTree.get(0))
             });
 
     public readVar = this.readVarOp.wrapper;
@@ -450,15 +475,21 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([s, description]) => {
                 this.resetState();
-                const v = this.join(this.produceMark(description),
-                    this.taintTree.get(this.ROOTID)[
-                    this.taintTree.get(this.ROOTID).length - 1]);
-                // Do not pop off the stack for a write
-                logger.info("write", s, v);
-                this.varTaintMap.set(s, v);
-                this.reportPossibleFlow(description, v);
 
-                if (debug) console.log("write var: " + s + " " + this.taintTree.get(0) )
+                const taintValue: V = this.sanitize(this.join(this.produceMark(description),
+                    this.taintTree.get(this.ROOTID)[
+                    this.taintTree.get(this.ROOTID).length - 1]), description);
+
+                // Do not pop off the stack for a write
+                this.logger.info("write", s, taintValue);
+                this.varTaintMap.set(s, taintValue);
+                this.reportPossibleFlow(description, taintValue);
+                
+                this.logger.info("write", s, taintValue);
+                this.varTaintMap.set(s, taintValue);
+                this.reportPossibleFlow(description, taintValue);
+
+                this.logger.info("write var: " + s + " " + this.taintTree.get(0) )
             }
         );
 
@@ -503,10 +534,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 let r = this.join(this.produceMark(description),
                     propertyTaint);
 
-                logger.info("readprop", o, s, r);
+                this.logger.info("readprop", o, s, r);
                 this.taintTree.get(this.ROOTID).push(r);
-
-                if (debug) console.log("read property: " + this.taintTree.get(0))
             }
         );
     public readProperty = this.readPropertyOp.wrapper;
@@ -522,9 +551,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
                 this.reportPossibleFlow(description, objectTaintMap[s]);
 
-                logger.info("writeprop", o, s, objectTaintMap[s]);
-
-                if (debug) console.log("write prop: " + this.taintTree.get(0))
+                this.logger.info("writeprop", o, s, objectTaintMap[s]);
             }
         );
 
@@ -535,9 +562,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([description]) => {
                 this.resetState();
 
-                logger.info("unaryOp");
                 // no-op. Unary operations on values do not change their taint status.
-                if (debug) console.log("unary: " + this.taintTree.get(0))
+                this.logger.info("unary: " + this.taintTree.get(0))
             }
         );
 
@@ -551,8 +577,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 this.taintTree.get(this.ROOTID).push(this.join(
                     this.taintTree.get(this.ROOTID).pop(),
                     this.taintTree.get(this.ROOTID).pop()));
-                logger.info("binaryOp");
-                if (debug) console.log("binary: " + this.taintTree.get(0))
+                this.logger.info("binary: " + this.taintTree.get(0))
             }
         );
 
@@ -569,20 +594,18 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                     return;
                 }
 
-                let v = this.join(this.taintTree.get(this.ROOTID)[
-                this.taintTree.get(this.ROOTID).length - 1], this.produceMark(description));
+                let v = this.sanitize(this.join(this.taintTree.get(this.ROOTID)[
+                this.taintTree.get(this.ROOTID).length - 1], this.produceMark(description)), description);
 
                 if (this.argsLeftToProcess > 0) {
                     this.taintTree.get(this.ROOTID).pop();
                     this.argsLeftToProcess--;
                 }
 
-                logger.info("init var", s, v);
+                this.logger.info("init var", s, v);
 
                 // actually set the taint value of the variable
                 this.varTaintMap.set(s, v);
-
-                if (debug) console.log("initVar: " + this.taintTree.get(0))
             }
         );
 
@@ -592,7 +615,17 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([name, receiver, actualArgs, extraRecords, isMethod, description]) => {
                 this.resetState();
-                logger.info("builtin", name, actualArgs);
+                this.logger.info("builtin", name, actualArgs);
+
+                // Before we touch ANYTHING, sanitize the given arguments if necessary
+                if (this.shouldSanitize(description)) {
+                    let taintStack = this.taintTree.get(0);
+                    let top = taintStack.length - 1;
+
+                    for (let i = 0; i < actualArgs; i++) {
+                        taintStack[top - i] = this.getUntaintedValue();
+                    }
+                }
 
                 // if this is a method, push the value of the base object (that we saved earlier)
                 if (isMethod) {
@@ -603,7 +636,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
                 this.nativeModelSavedValues.push(saved);
 
-                if (debug) console.log("builtin enter: " + this.taintTree.get(0))
+                this.logger.info("builtin enter: " + this.taintTree.get(0))
             }
         );
 
@@ -613,14 +646,14 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(
             ([name, returnValueName, description]) => {
                 this.resetState();
-                logger.info("builtinExit", name);
+                this.logger.info("builtinExit", name);
 
                 // retrieve saved information from implementationPre
                 let saved = this.nativeModelSavedValues.pop();
 
                 useNativeImplementationPost(this, name, returnValueName, saved, description);
 
-                if (debug) console.log("builtin exit: " + this.taintTree.get(0))
+                this.logger.info("builtin exit: " + this.taintTree.get(0))
             }
         );
 
@@ -633,11 +666,9 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                 const abstractValue = this.taintTree.get(this.ROOTID)[
                 this.taintTree.get(this.ROOTID).length - 1];
 
-                logger.info("conditional", abstractValue);
+                this.logger.info("conditional", abstractValue);
 
                 this.pc = abstractValue;
-
-                if (debug) console.log("conditional start: " + this.taintTree.get(0))
             }
         );
 
@@ -648,7 +679,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             ([description]) => {
                 this.resetState();
 
-                if (debug) console.log("conditional end: " + this.taintTree.get(0))
+                this.logger.info("conditional end: " + this.taintTree.get(0))
             }
         );
 
@@ -674,7 +705,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
                    this.objects.set(argumentsObject, argsValues as unknown as ShadowObject<V>);
                }
 
-                if (debug) console.log("initializeArgObject: " + this.taintTree.get(0))
+                this.logger.info("initializeArgObject: " + this.taintTree.get(0))
             }
         );
     public initializeArgumentsObject = this.initializeArgumentsObjectOp.wrapper;
@@ -685,7 +716,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
     public asyncFunctionEnterOp: Operation<[StaticDescription], void> =
         this.adviceWrap(([description]) => {
-            if (promiseDebug || debug) console.log("asyncEnter: " + this.taintTree.get(0))
+            this.logger.info("asyncEnter: " + this.taintTree.get(0))
         });
     public asyncFunctionEnter = this.asyncFunctionEnterOp.wrapper;
 
@@ -695,7 +726,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             let v = this.returnValue;
             this.asyncPromiseMap.set(promiseId, {resolve: v , reject: exceptionVal.exception})
 
-            if (promiseDebug || debug) console.log("asyncExit: " + this.taintTree.get(0))
+            this.logger.info("asyncExit: " + this.taintTree.get(0))
         });
     public asyncFunctionExit = this.asyncFunctionExitOp.wrapper;
 
@@ -703,12 +734,10 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         this.adviceWrap(([id, promiseId, promiseOrValAwaited, description]) => {
             if (!this.hasPromise(promiseId)) {
                 let v = this.taintTree.get(this.ROOTID)[this.taintTree.get(this.ROOTID).length - 1];
-                if (promiseDebug || debug) console.log("AwaitPre Taint: " , v);
+                this.logger.info("AwaitPre Taint: " , v);
                 this.asyncPromiseMap.set(promiseId, {resolve: v , reject: v})
             }
             this.setMachineState(this.ROOTID, id);
-
-            if (promiseDebug || debug) console.log("awaitPre: " + this.taintTree.get(0))
         });
     public awaitPre = this.awaitPreOp.wrapper;
 
@@ -718,8 +747,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             let resolveField = Object.keys(this.getPromise(promiseId))[0]
             this.taintTree.get(this.ROOTID).push(this.getPromise(promiseId)[resolveField]);
 
-            if (promiseDebug || debug) console.log("awaitPost: " + this.taintTree.get(0))
-            if (promiseDebug || debug) console.log("awaitPost: " + JSON.stringify(shadowIDs));
+            this.logger.info("awaitPost: " + this.taintTree.get(0))
+            this.logger.info("awaitPost: " + JSON.stringify(shadowIDs));
         });
     public awaitPost = this.awaitPostOp.wrapper;
 
@@ -729,8 +758,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
 
             this.varTaintMap.set(promiseValue, promiseTaint);
 
-            if (promiseDebug || debug) console.log("PromiseReaction: " + promiseId + " " + promiseValue + " taint: " + this.varTaintMap.get(promiseValue));
-            if (promiseDebug || debug) console.log("PromiseReaction: " + this.taintTree.get(0))
+            this.logger.info("PromiseReaction: " + promiseId + " " + promiseValue + " taint: " + this.varTaintMap.get(promiseValue));
+            this.logger.info("PromiseReaction: " + this.taintTree.get(0))
 
         });
     public promiseReaction = this.promiseReactionOp.wrapper;
@@ -740,8 +769,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             this.promiseMap.set(promiseId, {resolve: this.varTaintMap.get(promiseValue),
                 reject: this.getUntaintedValue()});
 
-            if (promiseDebug || debug) console.log("PromiseResolve: " + promiseId + " " + promiseValue + " taint: " + this.varTaintMap.get(promiseValue));
-            if (promiseDebug || debug) console.log("PromiseResolve: " + this.taintTree.get(0) + " from Map: " +  JSON.stringify(this.getPromise(promiseId)))
+            this.logger.info("PromiseResolve: " + promiseId + " " + promiseValue + " taint: " + this.varTaintMap.get(promiseValue));
+            this.logger.info("PromiseResolve: " + this.taintTree.get(0) + " from Map: " +  JSON.stringify(this.getPromise(promiseId)))
         });
     public promiseResolve = this.promiseResolveOp.wrapper;
 
@@ -750,8 +779,8 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             this.promiseMap.set(promiseId, {resolve: this.getUntaintedValue(),
                 reject: this.varTaintMap.get(promiseValue)});
 
-            if (promiseDebug || debug) console.log("PromiseReject: " + promiseId + " " + promiseValue + " taint: " + this.varTaintMap.get(promiseValue));
-            if (promiseDebug || debug) console.log("PromiseReject: " + this.taintTree.get(0) + " from Map: " +  JSON.stringify(this.getPromise(promiseId)))
+            this.logger.info("PromiseReject: " + promiseId + " " + promiseValue + " taint: " + this.varTaintMap.get(promiseValue));
+            this.logger.info("PromiseReject: " + this.taintTree.get(0) + " from Map: " +  JSON.stringify(this.getPromise(promiseId)))
         });
     public promiseReject = this.promiseRejectOp.wrapper;
 
@@ -810,15 +839,38 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         return this.spec.sinks.some((sink) => descriptionMatchesTaintSpec(sink, description));
     }
 
+    /**
+     * Should we sanitize values for this operation?
+     * @param description the location this operation is happening in
+     * @private
+     */
+    private shouldSanitize(description: StaticDescription): boolean {
+        return this.spec.sanitizers.some((sanitizer) => descriptionMatchesTaintSpec(sanitizer, description));
+    }
+
+    /**
+     * Sanitize the given value, only if specified in the spec file.
+     * @param v the value
+     * @param description the description where this operation occurred
+     * @private
+     */
+    private sanitize(v: V, description: StaticDescription): V {
+        if (this.shouldSanitize(description)) {
+            return this.getUntaintedValue();
+        } else {
+            return v;
+        }
+    }
+
     public getPromise(promiseId : any) {
         if (promiseDebug) {
-            console.log('promiseId:', promiseId);
+            this.logger.info('promiseId:', promiseId);
         }
         if (promiseDebugMap) {
-            console.log("Async Promise Map:");
-            console.log(this.asyncPromiseMap);
-            console.log("Promise Map:");
-            console.log(this.promiseMap);
+            this.logger.info("Async Promise Map:");
+            this.logger.info(this.asyncPromiseMap);
+            this.logger.info("Promise Map:");
+            this.logger.info(this.promiseMap);
         }
         if (this.promiseMap.has(promiseId)) {
             return this.promiseMap.get(promiseId);
@@ -826,11 +878,11 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
             return this.asyncPromiseMap.get(promiseId);
         } else {
             // Error state.
-            console.log("[Error] Promise", promiseId, "doesn't exist.");
-            console.log("Async Promise Map:");
-            console.log(this.asyncPromiseMap);
-            console.log("Promise Map:");
-            console.log(this.promiseMap);
+            this.logger.error("[Error] Promise", promiseId, "doesn't exist.");
+            this.logger.error("Async Promise Map:");
+            this.logger.error(this.asyncPromiseMap);
+            this.logger.error("Promise Map:");
+            this.logger.error(this.promiseMap);
             return undefined;
         }
     }

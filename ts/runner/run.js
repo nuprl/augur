@@ -6,6 +6,7 @@ const child_process = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
 const {executeInstructionsFromFile} = require('../dist/src/utils');
+const {parseSpec} = require("../src/utils");
 const loadingSpinner = require('loading-spinner');
 const colors = require('colors/safe');
 
@@ -105,8 +106,8 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
     // Parse the spec to know the program to instrument, sources, sinks, and
     // expected taints
     const specPath = projectDir + "/spec.json";
-    const spec = JSON.parse(fs.readFileSync(specPath).toString());
-    
+    const spec = parseSpec(specPath);
+
     // Calculate input and output instruction file paths
     const outputFile = outputDir + "/" + projectName + '_out.js';
     const inputFile = projectDir + "/" + spec.main;

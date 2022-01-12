@@ -1,5 +1,4 @@
-import {executeInstructionsFromFile} from "../utils";
-import * as fs from "fs";
+import {executeInstructionsFromFile, parseSpec} from "../utils";
 
 // This script is responsible for executing JS abstract machine instructions
 // from the command line.
@@ -10,7 +9,7 @@ async function main() {
     process.stderr.write(
         JSON.stringify(
             executeInstructionsFromFile(instructionsPath,
-                JSON.parse(fs.readFileSync(runSpecificationPath).toString()))));
+                parseSpec(runSpecificationPath))));
 }
 
 main();
