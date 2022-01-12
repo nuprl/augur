@@ -372,3 +372,7 @@ test('recursive-argv-1-clean', (done) => runTest('recursive-argv-1-clean', done)
 test('recursive-argv-1-tainted', (done) => runTest('recursive-argv-1-tainted', done));
 test('sanitizer-recursive-1-clean', (done) => runTest('sanitizer-recursive-1-clean', done));
 test('sanitizer-recursive-1-tainted', (done) => runTest('sanitizer-recursive-1-tainted', done));
+
+// Broken due to native model for Promise.then
+// test('async-then-complex-1-clean', (done) => runTest('async-then-complex-1-clean', done));
+// test('async-then-complex-1-tainted', (done) => runTest('async-then-complex-1-tainted', done));
