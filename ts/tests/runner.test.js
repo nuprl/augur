@@ -43,6 +43,18 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
+/**
+ * Given a test name:
+ * - instrument its JS code;
+ * - compare the generated instructions with its expected instructions
+ * - execute these instructions
+ * - compare the result of executing these instructions with the taints
+ *   specified in the tests' `spec.json`.
+ *
+ * @param testName the name of the test, in the test-unit folder
+ * @param done the jest callback for completing the test
+ * @param defaultSpec should we use the default spec? leave empty for no
+ */
 function runTest(testName, done, defaultSpec) {
     let results = run(INPUT_DIR + "/" + testName,
         testName,
