@@ -5,7 +5,7 @@
 using
 [NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). Augur is a clean-room
 implementation of Ichnaea, the taint analysis described in the 
-[IEEE TSE paper: Platform-Independent Dynamic Taint Analysis for JavaScript](https://www.franktip.org/pubs/tse2018.pdf).
+[IEEE TSE paper: Platform-Independent Dynamic Taint Analysis for JavaScript](https://www.franktip.org/pubs/tse2020.pdf).
  
 ---
 
@@ -15,7 +15,7 @@ implementation of Ichnaea, the taint analysis described in the
 *data flows* through programs. It's useful in many domains, but the most
 common application of taint analysis is for detecting injection vulnerabilities.
 Read 
-[this paper](https://www.franktip.org/pubs/tse2018.pdf) for more background
+[this paper](https://www.franktip.org/pubs/tse2020.pdf) for more background
 on taint analysis.
 
 ## Getting started
@@ -216,7 +216,7 @@ To get the project fully up and running, simply:
 | Function returns               |         |             | x    | see #30 |
 
 ## Support for Ichnaea Benchmarks
-[Ichnaea](https://www.franktip.org/pubs/tse2018.pdf) was evaluated against a
+[Ichnaea](https://www.franktip.org/pubs/tse2020.pdf) was evaluated against a
 set of 22 benchmarks. Here is a table showing how Augur performs on these
 benchmarks:
 
