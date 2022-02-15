@@ -104,7 +104,6 @@ export function parseJalangiLocationString(loc: string): Location {
     // more useful locations, that are path-aware. E.g., we want to differentiate between dir1/foo.js and dir2/foo.js
     // @ts-ignore
     const projectRoot : string = fixRelativePath(J$.initParams.specPath.substr(0, J$.initParams.specPath.length - 9));
-    console.log("projectRoot: " + projectRoot);
 
     // TODO: make sure this is the case.
     if (loc.substring(0, 5) === "(eval") {
