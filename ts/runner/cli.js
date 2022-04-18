@@ -10,6 +10,7 @@ const yargs = require('yargs');
 
 let consoleFlag = "";
 let live = false;
+let main;
 
 const argv = yargs(process.argv.slice(2)).argv;
 
@@ -19,8 +20,11 @@ if (argv.printStack)
 if (argv.live) 
     live = true;
 
+if (argv.main)
+    main = argv.main;
+
 if (!argv.projectDir || !argv.projectName || !argv.outputDir) {
-    console.error('Usage: node /path/to/runner/cli.js [--printStack, --live] --projectDir <> --projectName <> --outputDir <>');
+    console.error('Usage: node /path/to/runner/cli.js [--printStack, --live, --main <>] --projectDir <> --projectName <> --outputDir <>');
     process.exit(1);
 }
 
@@ -34,24 +38,14 @@ let cwd = process.cwd();
 projectDir = path.resolve(cwd, projectDir);
 outputDir = path.resolve(cwd, outputDir);
 
-run(projectDir, projectName, outputDir, consoleFlag, live).then(([spec, result]) => {
+run(projectDir, projectName, outputDir, consoleFlag, live, main).then(([spec, result]) => {
     if (live) {
         console.log('\n---\n');
-        console.log('Taint flows will be found in the output file.\n');
+        console.log(colors.green(`Taint flows have been written to: `) + `${outputDir}/${projectName}.js\n`);
+        console.log();
         return;
     }
 
-    console.log();
-    console.log("---");
-    console.log();
-
-    if (result.length === 0) {
-        console.log(chalk.green("No flows found."));
-    } else {
-        console.log(chalk.red("Flows found into the following sinks:"),
-            JSON.stringify(result, (key, value) =>
-            value instanceof Set ? [...value] : value, 4));
-    }
 }).catch(err => {
     console.error('Error!');
     console.error(err);

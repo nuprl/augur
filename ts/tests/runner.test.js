@@ -43,12 +43,36 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
-function runTest(testName, done) {
-    let results = run(INPUT_DIR + "/" + testName, testName, ACTUAL_OUT_DIR, true, false).then(([spec, results]) => {
-        expect(results).toEqual(spec.expectedFlows);
+/**
+ * Given a test name:
+ * - instrument its JS code;
+ * - compare the generated instructions with its expected instructions
+ * - execute these instructions
+ * - compare the result of executing these instructions with the taints
+ *   specified in the tests' `spec.json`.
+ *
+ * @param testName the name of the test, in the test-unit folder
+ * @param done the jest callback for completing the test
+ * @param defaultSpec should we use the default spec? leave empty for no
+ */
+function runTest(testName, done, defaultSpec) {
+    let results = run(INPUT_DIR + "/" + testName,
+        testName,
+        ACTUAL_OUT_DIR,
+        true,
+        false,
+        "test.js" /* if no spec exists, assume the test is test.js */)
+        .then(([spec, results]) => {
+            // If we're using the default spec, just expect there to be AT LEAST 1 FLOW.
+            // Otherwise, check the expected flows from the actual spec.
+            if (defaultSpec) {
+                expect(results.length).toBeGreaterThanOrEqual(1);
+            } else {
+                expect(results).toEqual(spec.expectedFlows);
+            }
 
-        done();
-    });
+            done();
+        });
 }
 
 // Register all tests with Jest
@@ -368,3 +392,13 @@ test('sanitizer-complex-4-clean', (done) => runTest('sanitizer-complex-4-clean',
 test('sanitizer-complex-4-tainted', (done) => runTest('sanitizer-complex-4-tainted', done));
 test('verbose-1-clean', (done) => runTest('verbose-1-clean', done));
 test('verbose-1-tainted', (done) => runTest('verbose-1-tainted', done));
+test('recursive-argv-1-clean', (done) => runTest('recursive-argv-1-clean', done));
+test('recursive-argv-1-tainted', (done) => runTest('recursive-argv-1-tainted', done));
+test('sanitizer-recursive-1-clean', (done) => runTest('sanitizer-recursive-1-clean', done));
+test('sanitizer-recursive-1-tainted', (done) => runTest('sanitizer-recursive-1-tainted', done));
+
+// Broken due to native model for Promise.then
+// test('async-then-complex-1-clean', (done) => runTest('async-then-complex-1-clean', done));
+// test('async-then-complex-1-tainted', (done) => runTest('async-then-complex-1-tainted', done));
+
+test('default-spec-1-tainted', (done) => runTest('default-spec-1-tainted', done, true));

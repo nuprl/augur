@@ -187,10 +187,16 @@ export function parseSpec(specPath: string): RunSpecification {
     }
 
     if (crash) {
-        process.exit(1);
+        throw "Invalid spec file";
     }
 
     // Add default values if user didn't specify them
+    if (!spec.sources) {
+        spec.sources = [];
+    }
+    if (!spec.sinks) {
+        spec.sinks = [];
+    }
     if (!spec.sanitizers) {
         spec.sanitizers = [];
     }

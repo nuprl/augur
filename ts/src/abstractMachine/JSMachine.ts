@@ -196,7 +196,7 @@ export default abstract class JSMachine<V, F> implements AbstractMachine {
         if (this.liveLogging) {
             fs.appendFileSync(this.outputFilePath,
             JSON.stringify(flow, (key, value) =>
-            value instanceof Set ? [...value] : value)
+            value instanceof Set ? [...value] : value, 4)
             + "\n");
         }
 
