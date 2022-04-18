@@ -9,6 +9,7 @@ import Analysis from "./analysis";
 
 const main: main = (sandbox) => {
     // console.log("initializing...");
+    //@ts-ignore
     sandbox.addAnalysis(new Analysis(sandbox));
     // console.log(sandbox);
 };
