@@ -79,17 +79,31 @@ export function descriptionMatchesTaintSpec(sourceOrSink: StaticDescription, tar
     return namesMatch && typesMatch && locationsMatch;
 }
 
+// @arg path is always an abolute path with some `..` in it.
+function fixRelativePath(path: string) {
+    const pathItems = path.split("/");
+    const newPathItems = [];
+    for (let i = 0; i < pathItems.length; i++) {
+        if (pathItems[i] === "..") {
+            newPathItems.pop();
+        } else {
+            newPathItems.push(pathItems[i]);
+        }
+    }
+    return newPathItems.join("/");
+}
+
 export function parseJalangiLocationString(loc: string): Location {
     // Parse Jalangi location string
     // Rather than determining the location through a regex search we simply parse the provided loc string
     // If the location starts with (eval at [path location]) it's probably referencing an eval expression
-    
-    // TODO: There's a better place to put this. 
+
+    // TODO: [PERFORMANCE] There's a better place to put this. 
     // projectRoot is an absolute path specifying the root of the project directory.
     // We will use it to trim the path from the file name in the location string to make
     // more useful locations, that are path-aware. E.g., we want to differentiate between dir1/foo.js and dir2/foo.js
     // @ts-ignore
-    const projectRoot : string = J$.initParams.specPath.substr(0, J$.initParams.specPath.length - 9);
+    const projectRoot : string = fixRelativePath(J$.initParams.specPath.substr(0, J$.initParams.specPath.length - 9));
 
     // TODO: make sure this is the case.
     if (loc.substring(0, 5) === "(eval") {
@@ -147,6 +161,7 @@ export function createAbstractMachine(options: RunSpecification, liveLogging: bo
 export function parseSpec(specPath: string): RunSpecification {
     // Parse spec using JSON5. JSON5 allows more flexibility in JSON
     // files, including comments.
+
     let spec = json5.parse(fs.readFileSync(specPath).toString());
 
     // Is this spec valid? Does it have the required fields? Does it have

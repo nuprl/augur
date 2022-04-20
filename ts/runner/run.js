@@ -5,7 +5,8 @@
 const child_process = require('child_process');
 const shell = require('shelljs');
 const fs = require('fs');
-const {executeInstructionsFromFile, parseSpec} = require('../dist/src/utils');
+const {executeInstructionsFromFile} = require('../dist/src/utils');
+const {parseSpec} = require("../dist/src/utils");
 const loadingSpinner = require('loading-spinner');
 const colors = require('colors/safe');
 

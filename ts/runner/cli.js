@@ -2,7 +2,7 @@
 require('dotenv').config()
 
 const path = require('path');
-const colors = require('colors/safe');
+const chalk = import('chalk');
 
 const {run} = require('./run');
 
