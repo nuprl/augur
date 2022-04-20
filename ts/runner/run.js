@@ -54,7 +54,8 @@ if (SHOULD_USE_DOCKER) {
     process.stdout.write(colors.grey(`Using your native NodeProf install from: ${NODEPROF_HOME}\n`));
 }
 
-const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
+const ANALYSIS = "./ts/dist/src/analysis/nodeprofAnalysis.js";
+const SKIP_ANALYSIS = "./ts/dist/src/analysis/skipAnalysis.js";
 // For debugging purposes, if you want to make sure NodeProf runs on the application.
 // const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/emptyAnalysis/emptyAnalysis.js";
 
@@ -64,15 +65,10 @@ const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.j
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
-// 
-// 
-// If `benchmark` is true, this test run will be benchmarked using 
-// Augur's benchmarking system. Your code will be run with and 
-// without instrumentation over 1000 runs. 
-// 
-// For both the experiment (Augur) and the control (GraalVM), 
-// the code is first warmed up over an additional 1000 runs.
-exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live, benchmark) {
+//
+// If `skipAnalysis` is true, the code will be run
+// without Augur. This is for benchmarking against Augur.
+exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live, programArgs, skipAnalysis) {
     // Print out a pretty augur logo
     process.stdout.write("\n" + colors.red.bgBlack(`
                                                          
@@ -119,6 +115,11 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
     // Calculate input and output instruction file paths
     const outputFile = outputDir + "/" + projectName + '_out.js';
     const inputFile = projectDir + "/" + spec.main;
+
+    // Skip analysis if requested
+    const analysis = skipAnalysis? SKIP_ANALYSIS : ANALYSIS;
+
+    console.error(`Analysis chosen: ${analysis}`)
     
     if (!fs.existsSync(ANALYSIS)) {
         throw new Error("analysis not found: " + ANALYSIS);
@@ -127,35 +128,32 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
     const DOCKER_OUTPUT_FILENAME = "analysis.output";
     
     // The command to instrument the test's JS code.
-    // This command varies a lot depending on how Augur is configured.
-    // Augur's default mode is to instrument a project via Docker.
-    // However, it can also be configured to run on bare metal 
-    // (local NodeProf & GraalVM installation), or in benchmarking mode.
     const command =
         "rm -f " + outputFile + "; " +
-        (SHOULD_USE_DOCKER
-            // Run project using Docker
+            (SHOULD_USE_DOCKER
+            // Run project normally using Docker
             ? TAINT_ANALYSIS_HOME + "/ts/docker-nodeprof/docker-analyze.sh" +
             ` --mxArg "--initParam outputFile:/root/program/${DOCKER_OUTPUT_FILENAME}"` +
             ` --mxArg "--initParam live:${live}"` +
             ` --mxArg "--initParam specPath:/root/program/spec.json"` +
             " --analysisDir " + TAINT_ANALYSIS_HOME + "/ts/" +
-            " --analysisMain " + "dist/src/analysis/nodeprofAnalysis.js" +
+            " --analysisMain " + analysis +
             " --programDir " + projectDir + "/" +
-            " --programMain " + spec.main + ";" +
+            " --programMain " + spec.main +
+            ` -- ${programArgs}` + ";" +
             "mv " + projectDir + "/" + DOCKER_OUTPUT_FILENAME +
             " " + outputFile
-            // Run project using local NodeProf installation
+            // Run project normally using local NodeProf installation
             : "cd " + NODEPROF_HOME + "; "
             + `export OUTPUT_FILE=\"${outputFile}\";`
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
             + " --initParam specPath:" + (projectDir + "/spec.json")
             + " --initParam live:" + live
-            + " --analysis " + ANALYSIS + " "
-            + inputFile);
+            + " --analysis " + TAINT_ANALYSIS_HOME + "/" + analysis + " "
+            + inputFile + " " + programArgs);
 
-    // console.log("Source file: \t" + inputFile);
-    // console.log("Command: \t" + command);
+    // console.error("Source file: \t" + inputFile);
+    // console.error("Command: \t" + command);
 
     // Print status message
     process.stdout.write(`${colors.yellow("Instrumenting code")}\n  =>  ${inputFile}...\n`);

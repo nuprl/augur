@@ -18,7 +18,8 @@ const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual";
 const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected";
 
 // Are we benchmarking Augur today?
-const BENCHMARK = shell.env['BENCHMARK'] === 1
+console.error(`BENCHMARK=${shell.env['BENCHMARK']}`)
+const BENCHMARK = shell.env['BENCHMARK'] == 1
 
 function getFileContents(fileName){
     let result = fs.readFileSync(fileName).toString().split('\n'); // hack: use .split('\n') to ensure that the differences viewer shows line breaks
@@ -46,17 +47,47 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
+// 
+// If `BENCHMARK` is true, this test run will be benchmarked using 
+// Augur's benchmarking system. Your code will be run with and 
+// without instrumentation over 1000 runs. 
+// 
+// For both the experiment (Augur) and the control (GraalVM), 
+// the code is first warmed up over an additional 1000 runs.
 function runTest(testName, done) {
-    let results = 
+    if (!BENCHMARK) {
+
+        console.error("Benchmarking disabled");
+        let results = 
+            run(INPUT_DIR + "/" + testName, testName, 
+                ACTUAL_OUT_DIR, 
+                true, 
+                false,
+                "",
+                false).then(([spec, results]) => {
+            expect(results).toEqual(spec.expectedFlows);
+
+            done();
+        });
+    } else {
+        // Benchmark mode
+        // Run 2 analyses sequentially.
+        // Analysis #1 runs GraalVM without Augur and captures the results.
+        // Analysis #2 runs GraalVM with Augur and captures the results.
+        // We don't care about the results during benchmarkign.
+
+        console.error("Benchmarking enabled");
+
+        // Analysis #1
         run(INPUT_DIR + "/" + testName, testName, 
-            ACTUAL_OUT_DIR, 
+            ACTUAL_OUT_DIR,
             true, 
             false,
-            BENCHMARK).then(([spec, results]) => {
-        expect(results).toEqual(spec.expectedFlows);
-
-        done();
-    });
+            "--control",
+            true).then(_ => {
+                done();
+            })
+    }
 }
 
 // Register all tests with Jest
