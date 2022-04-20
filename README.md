@@ -187,6 +187,12 @@ Example:
 Augur will automatically use a local NodeProf installation if these environment
 variables are set; no flags or further configuration is needed.
 
+## Reproducing Benchmark Results
+Usage:
+```bash
+env BENCHMARK=1 ./node_modules/.bin/jest
+```
+
 ## Contributing to Augur
 If you're looking to dive into Augur's code, the structure and implementation of
 the analysis is documented with `README`s in folders inside [`src`](./ts/src).

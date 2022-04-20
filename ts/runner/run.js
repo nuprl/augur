@@ -64,7 +64,15 @@ const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.j
 // - execute these instructions
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
-exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live) {
+// 
+// 
+// If `benchmark` is true, this test run will be benchmarked using 
+// Augur's benchmarking system. Your code will be run with and 
+// without instrumentation over 1000 runs. 
+// 
+// For both the experiment (Augur) and the control (GraalVM), 
+// the code is first warmed up over an additional 1000 runs.
+exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live, benchmark) {
     // Print out a pretty augur logo
     process.stdout.write("\n" + colors.red.bgBlack(`
                                                          
@@ -118,7 +126,11 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
     
     const DOCKER_OUTPUT_FILENAME = "analysis.output";
     
-    // The command to instrument the test's JS code
+    // The command to instrument the test's JS code.
+    // This command varies a lot depending on how Augur is configured.
+    // Augur's default mode is to instrument a project via Docker.
+    // However, it can also be configured to run on bare metal 
+    // (local NodeProf & GraalVM installation), or in benchmarking mode.
     const command =
         "rm -f " + outputFile + "; " +
         (SHOULD_USE_DOCKER

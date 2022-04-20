@@ -17,6 +17,9 @@ const INPUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/input";
 const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual";
 const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected";
 
+// Are we benchmarking Augur today?
+const BENCHMARK = shell.env['BENCHMARK'] === 1
+
 function getFileContents(fileName){
     let result = fs.readFileSync(fileName).toString().split('\n'); // hack: use .split('\n') to ensure that the differences viewer shows line breaks
     return result.map((s)=>s.trim());
@@ -44,7 +47,12 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
 // - compare the result of executing these instructions with the taints
 //   specified in the tests' `spec.json`.
 function runTest(testName, done) {
-    let results = run(INPUT_DIR + "/" + testName, testName, ACTUAL_OUT_DIR, true, false).then(([spec, results]) => {
+    let results = 
+        run(INPUT_DIR + "/" + testName, testName, 
+            ACTUAL_OUT_DIR, 
+            true, 
+            false,
+            BENCHMARK).then(([spec, results]) => {
         expect(results).toEqual(spec.expectedFlows);
 
         done();
