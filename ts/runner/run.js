@@ -68,7 +68,9 @@ const SKIP_ANALYSIS = "./dist/src/analysis/skipAnalysis.js";
 //
 // If `skipAnalysis` is true, the code will be run
 // without Augur. This is for benchmarking against Augur.
-exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live, programArgs, skipAnalysis) {
+//
+// If `benchmark` is true, the code will be accurately timed.
+exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live, programArgs, skipAnalysis, benchmark) {
     // Print out a pretty augur logo
     process.stdout.write("\n" + colors.red.bgBlack(`
                                                          
@@ -139,10 +141,11 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             " --analysisDir " + TAINT_ANALYSIS_HOME + "/ts/" +
             " --analysisMain " + analysis +
             " --programDir " + projectDir + "/" +
-            " --programMain " + spec.main +
-            ` -- ${programArgs}` + ";" +
-            "mv " + projectDir + "/" + DOCKER_OUTPUT_FILENAME +
-            " " + outputFile
+            ` --programMain ${benchmark? "../analysis/src/benchmark/benchmarkProject.js" : spec.main} ` +
+            ` -- ${benchmark? "../program/" + spec.main : ""} ${programArgs}` + ";" +
+            (!benchmark? "mv " + projectDir + "/" + DOCKER_OUTPUT_FILENAME +
+                         " " + outputFile
+                         : "") // move output file if we're not benchmarking
             // Run project normally using local NodeProf installation
             : "cd " + NODEPROF_HOME + "; "
             + `export OUTPUT_FILE=\"${outputFile}\";`
@@ -153,7 +156,7 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             + inputFile + " " + programArgs);
 
     // console.error("Source file: \t" + inputFile);
-    // console.error("Command: \t" + command);
+    console.error("Command: \t" + command);
 
     // Print status message
     process.stdout.write(`${colors.yellow("Instrumenting code")}\n  =>  ${inputFile}...\n`);
@@ -188,19 +191,21 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             }
         }
 
-        process.stdout.write(`${colors.yellow("Inspecting taints with the specification:")}\n  => ${specPath}...\n`);
-        loadingSpinner.start();
+        if (!benchmark) {
+            process.stdout.write(`${colors.yellow("Inspecting taints with the specification:")}\n  => ${specPath}...\n`);
+            loadingSpinner.start();
 
-        results = executeInstructionsFromFile(outputFile, spec);
-        loadingSpinner.stop();
-        process.stdout.write(colors.green(`done!\n\n`));
+            results = executeInstructionsFromFile(outputFile, spec);
+            loadingSpinner.stop();
+            process.stdout.write(colors.green(`done!\n\n`));
 
-        if (results.length === 0) {
-            process.stdout.write(colors.green("No flows found.\n"));
-        } else {
-            process.stdout.write(`${colors.red("Flows found into the following sinks:")}
+            if (results.length === 0) {
+                process.stdout.write(colors.green("No flows found.\n"));
+            } else {
+                process.stdout.write(`${colors.red("Flows found into the following sinks:")}
 ${JSON.stringify(results, (key, value) =>
-    value instanceof Set ? [...value] : value, 4)}\n`);
+                    value instanceof Set ? [...value] : value, 4)}\n`);
+            }
         }
     }
 

@@ -78,14 +78,24 @@ function runTest(testName, done) {
 
         console.error("Benchmarking enabled");
 
-        // Analysis #1
-        run(INPUT_DIR + "/" + testName, testName, 
+        // Analysis #1: Control
+        run(INPUT_DIR + "/" + testName, testName,
             ACTUAL_OUT_DIR,
-            true, 
+            true,
             false,
-            "--control",
+            `--control`,
+            true,
             true).then(_ => {
-                done();
+                // Analysis #2: Experiment
+                run(INPUT_DIR + "/" + testName, testName,
+                    ACTUAL_OUT_DIR,
+                    true,
+                    false,
+                    `--experiment`,
+                    false,
+                    true).then(_ => {
+                        done();
+                    })
             })
     }
 }
