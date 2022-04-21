@@ -1,4 +1,4 @@
-name: Augur Build Status
+name: Augur Build Status test
 
 on:
   push:
