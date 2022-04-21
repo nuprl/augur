@@ -142,7 +142,7 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             " --analysisMain " + analysis +
             " --programDir " + projectDir + "/" +
             ` --programMain ${benchmark? "../analysis/src/benchmark/benchmarkProject.js" : spec.main} ` +
-            ` -- ${benchmark? "../program/" + spec.main : ""} ${programArgs}` + ";" +
+            ` -- ${benchmark? "../program/" + spec.main + " " + projectName : ""} ${programArgs}` + ";" +
             (!benchmark? "mv " + projectDir + "/" + DOCKER_OUTPUT_FILENAME +
                          " " + outputFile
                          : "") // move output file if we're not benchmarking
