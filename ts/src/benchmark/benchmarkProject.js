@@ -20,8 +20,10 @@ const testName = process.argv[3]
 const experiment = process.argv[4] === "--experiment"
 
 const experimentName = `benchmark-${testName}-${experiment? "experiment" : "control"}`
-const warmRuns = 1000
-const testRuns = 1000
+// const warmRuns = 1000
+const warmRuns = 0
+// const testRuns = 1000
+const testRuns = 1
 
 // Step 0: Set up Performance Observer
 const experimentResults = [] // Array<PerformanceEntry>
@@ -55,8 +57,14 @@ fs.writeFile(`${experimentName}.csv`, processOutput(experimentResults), err => {
 
 // Performs a single benchmark run. Log the results using `perf_hooks`.
 function benchmark(testFile, experiment, isWarmed, runNum) {
+    // require()'ing the same file over and over does nothing.
+    // This is because Node.js caches modules for better performance.
+    // The following line is a hack to delete the cache and 
+    // legitimately re-run the test.
+    delete require.cache[require.resolve(testFile)];
     performance.mark('start')
-    rewire(testFile)
+    // rewire(testFile)
+    require(testFile)
     performance.mark('stop')
     performance.measure(`${experimentName}, ${isWarmed? "warm" : "cold"}, ${runNum}`, 'start', 'stop')
 }
