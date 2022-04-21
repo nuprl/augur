@@ -54,8 +54,8 @@ if (SHOULD_USE_DOCKER) {
     process.stdout.write(colors.grey(`Using your native NodeProf install from: ${NODEPROF_HOME}\n`));
 }
 
-const ANALYSIS = "./ts/dist/src/analysis/nodeprofAnalysis.js";
-const SKIP_ANALYSIS = "./ts/dist/src/analysis/skipAnalysis.js";
+const ANALYSIS = "./dist/src/analysis/nodeprofAnalysis.js";
+const SKIP_ANALYSIS = "./dist/src/analysis/skipAnalysis.js";
 // For debugging purposes, if you want to make sure NodeProf runs on the application.
 // const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/emptyAnalysis/emptyAnalysis.js";
 
@@ -149,7 +149,7 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
             + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
             + " --initParam specPath:" + (projectDir + "/spec.json")
             + " --initParam live:" + live
-            + " --analysis " + TAINT_ANALYSIS_HOME + "/" + analysis + " "
+            + " --analysis " + TAINT_ANALYSIS_HOME + "/ts/" + analysis + " "
             + inputFile + " " + programArgs);
 
     // console.error("Source file: \t" + inputFile);
