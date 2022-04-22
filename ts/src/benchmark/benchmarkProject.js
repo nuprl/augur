@@ -23,7 +23,7 @@ const experimentName = `benchmark-${testName}-${experiment? "experiment" : "cont
 // const warmRuns = 1000
 const warmRuns = 0
 // const testRuns = 1000
-const testRuns = 100
+const testRuns = 200
 
 // Step 0: Set up Performance Observer
 const experimentResults = [] // Array<PerformanceEntry>
