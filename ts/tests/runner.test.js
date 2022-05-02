@@ -71,16 +71,17 @@ function runTest(testName, done, defaultSpec) {
         testName,
         ACTUAL_OUT_DIR,
         true,
-        false,
+        LIVE,
         "test.js" /* if no spec exists, assume the test is test.js */,
         "", /* no program args */
+        false,
         false)
         .then(([spec, results]) => {
             // If we're using the default spec, just expect there to be AT LEAST 1 FLOW.
             // Otherwise, check the expected flows from the actual spec.
             if (defaultSpec) {
                 expect(results.length).toBeGreaterThanOrEqual(1);
-            } else {
+            } else if (!LIVE) {
                 expect(results).toEqual(spec.expectedFlows);
             }
 
@@ -100,6 +101,7 @@ function runTest(testName, done, defaultSpec) {
             ACTUAL_OUT_DIR,
             true,
             LIVE,
+            "test.js",
             `--control`,
             true,
             true).then(_ => {
@@ -108,6 +110,7 @@ function runTest(testName, done, defaultSpec) {
                     ACTUAL_OUT_DIR,
                     true,
                     LIVE,
+                    "test.js",
                     `--experiment`,
                     false,
                     true).then(_ => {
