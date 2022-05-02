@@ -1,0 +1,81 @@
+// TODO: when to use recursive?
+
+{
+  "main": "REPLACE ME ONCE LOADED!!!!!",
+  "tracking": "SourcedBoolean",
+  "sources": [
+    // TODO: Recursive tainting on `fs`?
+    { // Calls to fs.readFileSync
+      "type": "functionReturn",
+      "name": "readFileSync"
+    },
+    { // Calls to fs.readFile
+      "type": "functionReturn",
+      "name": "readFile"
+    },
+    { // Process arguments
+      "type": "variable",
+      "name": "process",
+      "config": {
+        "recursive": true
+      }
+    }
+    // TODO: process.stdin (recursive)
+    // TODO: readline module (recursive)
+    // TODO: HTTP requests with recursive tainting
+    // As seen here: https://nodejs.dev/learn/get-http-request-body-data-using-nodejs
+
+  ],
+  "sinks": [
+    { // Calls to exec
+      "type": "functionInvocation",
+      "name": "exec",
+      "config": {
+        "recursive": true
+      }
+    },
+    { // Calls to `eval` in JavaScript
+      "type": "functionEnter",
+      "location": {
+        "fileName": "eval"
+      },
+      "config": {
+        "recursive": true
+      }
+    },
+    { // Calls to fs.writeFileSync
+      "type": "functionInvocation",
+      "name": "writeFileSync",
+      "config": {
+        "recursive": true
+      }
+    },
+    { // Calls to fs.writeFile
+      "type": "functionInvocation",
+      "name": "writeFile",
+      "config": {
+        "recursive": true
+      }
+    },
+    { // Calls to fs.appendFileSync
+      "type": "functionInvocation",
+      "name": "appendFileSync",
+      "config": {
+        "recursive": true
+      }
+    },
+    { // Calls to fs.appendFile
+      "type": "functionInvocation",
+      "name": "appendFile",
+      "config": {
+        "recursive": true
+      }
+    }
+  ],
+  "sanitizers": [
+    { // JSON.stringify
+      "type": "builtin",
+      "name": "stringify"
+    }
+  ]
+}

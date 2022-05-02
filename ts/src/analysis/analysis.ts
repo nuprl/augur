@@ -38,11 +38,10 @@ export default class Analysis implements Analyzer {
     private sandbox: Sandbox;
     
     // The spec file, in case of live analysis.
-    private spec
-    
+    private spec: RunSpecification;
 
-    // The Abstract machine we'll be using for this analysis
-    private state: AbstractMachine
+    // The state machine. A JSWriter in case of offline analysis, JSMachine in case of live analysis.
+    private state: AbstractMachine;
 
     public promiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
     public asyncPromiseMap: Map<any, DynamicDescription> = new Map<any, DynamicDescription>();
@@ -74,6 +73,7 @@ export default class Analysis implements Analyzer {
         process.stderr.write(`Parsing spec from specPath=${J$.initParams.specPath}\n`)
         // @ts-ignore
         process.stderr.write(`J$.initParams.live=${J$.initParams.live}\n`)
+        // Parse in spec if we're running live
         // @ts-ignore
         this.spec = J$.initParams.live? parseSpec(J$.initParams.specPath) : undefined;
         process.stderr.write(`Spec=${JSON.stringify(this.spec)}\n`)
