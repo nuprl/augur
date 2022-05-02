@@ -125,6 +125,7 @@ export function parseIID(iid: number): Location {
  * in the `spec.json` file.
  */
 export function createAbstractMachine(options: RunSpecification, liveLogging: boolean = false, outputFilePath: string = ""): AbstractMachine {
+    console.error(`creating abstract machine with spec: ${JSON.stringify(options)}`)
     switch (options.tracking) {
         case "Boolean":
             return new BooleanMachine(options, liveLogging, outputFilePath);
@@ -184,6 +185,7 @@ export function parseSpec(specPath: string): RunSpecification {
     }
 
     // All looks good!
+    console.error(`Spec parsed from ${specPath}: ${JSON.stringify(spec)}`)
     return spec as RunSpecification;
 }
 

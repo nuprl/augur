@@ -21,6 +21,10 @@ const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected";
 console.error(`BENCHMARK=${shell.env['BENCHMARK']}`)
 const BENCHMARK = shell.env['BENCHMARK'] == 1
 
+// Are we running Augur in live mode today?
+console.error(`LIVE=${shell.env['LIVE']}`)
+const LIVE = shell.env['LIVE'] == 1
+
 function getFileContents(fileName){
     let result = fs.readFileSync(fileName).toString().split('\n'); // hack: use .split('\n') to ensure that the differences viewer shows line breaks
     return result.map((s)=>s.trim());
@@ -62,11 +66,15 @@ function runTest(testName, done) {
             run(INPUT_DIR + "/" + testName, testName, 
                 ACTUAL_OUT_DIR, 
                 true, 
-                false,
+                LIVE,
                 "",
                 false,
                 false).then(([spec, results]) => {
-            expect(results).toEqual(spec.expectedFlows);
+            // Live mode doesn't output its results in the same
+            // way, so we can't compare it for accuracy
+            if (!LIVE) {
+                expect(results).toEqual(spec.expectedFlows);
+            }
 
             done();
         });
@@ -83,7 +91,7 @@ function runTest(testName, done) {
         run(INPUT_DIR + "/" + testName, testName,
             ACTUAL_OUT_DIR,
             true,
-            false,
+            LIVE,
             `--control`,
             true,
             true).then(_ => {
@@ -91,7 +99,7 @@ function runTest(testName, done) {
                 run(INPUT_DIR + "/" + testName, testName,
                     ACTUAL_OUT_DIR,
                     true,
-                    false,
+                    LIVE,
                     `--experiment`,
                     false,
                     true).then(_ => {
