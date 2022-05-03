@@ -134,47 +134,10 @@ export default class JSWriter implements AbstractMachine {
 
     public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
+        console.error("Program execution complete.")
         
         // Once the analysis finishes then we write the output file string to the file location.
         this.outputStr.push(this.postamble);
-
-        // Write the output in chunks.
-        // Sometimes, Augur produces over 1GB of log files,
-        // which exceeds the maximum string size in JavaScript.
-        console.error("Writing output")
-        // Copy output, so we dont receive new instructions to this array
-
-
-        // #### Approach #1: Fixed length.
-        // #### Result: Infinite loop on line 158
-        // console.error(`this.outputStr.length=${this.outputStr.length}`)
-        // // const output = this.outputStr.slice(0, this.outputStr.length);
-        // const length = this.outputStr.length;
-        // const chunkSize = Math.floor(length / 10) || 1;
-
-        // // Loop over chunks
-        // for (let i = 0; i < length; i += chunkSize) {
-        //     const chunk = this.outputStr.slice(i, i + chunkSize);
-        //     console.error(`i=${i} chunkSize=${chunkSize} length=${length}`)
-        //     console.error(`chunk=${chunk}`)
-        //     this.logger.log(chunk.join("\n"))
-        // }
-
-
-
-        // ###### Approach #2: 
-        // let output = this.outputStr.slice();
-        // // const length = this.outputStr.length;
-        // this.outputStr = [];
-        // const chunkSize = 100;
-        // for (let i = 0; i < this.outputStr.length; i += chunkSize) {
-        //     console.error(`i=${i} chunkSize=${chunkSize} length=${this.outputStr.length}`)
-        //     const chunk = output.slice(i, i + chunkSize);
-        //     console.error(`chunk=${chunk}`)
-        //     this.logger.log(chunk.join("\n"));
-        //     console.error(`Successfully logged chunk`)
-        // }
-
         this.logger.log(this.outputStr.join("\n"));
     }
 
