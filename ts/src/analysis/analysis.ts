@@ -70,14 +70,10 @@ export default class Analysis implements Analyzer {
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
 
-        // @ts-ignore
-        process.stderr.write(`Parsing spec from specPath=${J$.initParams.specPath}\n`)
-        // @ts-ignore
-        process.stderr.write(`J$.initParams.live=${J$.initParams.live}\n`)
         // Parse in spec if we're running live
         // @ts-ignore
         this.spec = J$.initParams.live? parseSpec(J$.initParams.specPath) : undefined;
-        process.stderr.write(`Spec=${JSON.stringify(this.spec)}\n`)
+
         // @ts-ignore
         this.state = J$.initParams.live === "true" ? createAbstractMachine(this.spec, true, J$.initParams.outputFile) : new JSWriter();
 
