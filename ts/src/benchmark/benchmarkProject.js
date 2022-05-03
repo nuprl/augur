@@ -7,9 +7,6 @@
 
 console.error(`benchmarkProject.js ${process.argv[2]} ${process.argv[3]} ${process.argv[4]}`)
 
-// `rewire` is a drop-in replacement for `require` that forces a fresh reload every time.
-var rewire = require("rewire");
-
 const fs = require('fs')
 const { performance, PerformanceObserver } =  require('perf_hooks');
 
@@ -62,10 +59,11 @@ function benchmark(testFile, experiment, isWarmed, runNum) {
     // The following line is a hack to delete the cache and 
     // legitimately re-run the test.
     delete require.cache[require.resolve(testFile)];
+
     performance.mark('start')
-    // rewire(testFile)
     require(testFile)
     performance.mark('stop')
+
     performance.measure(`${experimentName}, ${isWarmed? "warm" : "cold"}, ${runNum}`, 'start', 'stop')
 }
 

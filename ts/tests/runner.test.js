@@ -1,5 +1,7 @@
 const shell = require('shelljs');
 const fs = require('fs');
+const colors = require('colors/safe');
+
 const {run} = require('../runner/run')
 
 // The Jest test file.
@@ -18,11 +20,9 @@ const ACTUAL_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-actual";
 const EXPECTED_OUT_DIR = TAINT_ANALYSIS_HOME + "/tests-unit/output-expected";
 
 // Are we benchmarking Augur today?
-console.error(`BENCHMARK=${shell.env['BENCHMARK']}`)
 const BENCHMARK = shell.env['BENCHMARK'] == 1
 
 // Are we running Augur in live mode today?
-console.error(`LIVE=${shell.env['LIVE']}`)
 const LIVE = shell.env['LIVE'] == 1
 
 function getFileContents(fileName){
@@ -65,36 +65,32 @@ function compareOutput(testName, actualOutputDir, expectedOutputDir){
  */
 function runTest(testName, done, defaultSpec) {
     if (!BENCHMARK) {
+        let results = run(INPUT_DIR + "/" + testName,
+            testName,
+            ACTUAL_OUT_DIR,
+            true,
+            LIVE,
+            "test.js" /* if no spec exists, assume the test is test.js */,
+            "", /* no program args */
+            false,
+            false)
+            .then(([spec, results]) => {
+                // If we're using the default spec, just expect there to be AT LEAST 1 FLOW.
+                // Otherwise, check the expected flows from the actual spec.
+                if (defaultSpec) {
+                    expect(results.length).toBeGreaterThanOrEqual(1);
+                } else if (!LIVE) {
+                    expect(results).toEqual(spec.expectedFlows);
+                }
 
-        console.error("Benchmarking disabled");
-    let results = run(INPUT_DIR + "/" + testName,
-        testName,
-        ACTUAL_OUT_DIR,
-        true,
-        LIVE,
-        "test.js" /* if no spec exists, assume the test is test.js */,
-        "", /* no program args */
-        false,
-        false)
-        .then(([spec, results]) => {
-            // If we're using the default spec, just expect there to be AT LEAST 1 FLOW.
-            // Otherwise, check the expected flows from the actual spec.
-            if (defaultSpec) {
-                expect(results.length).toBeGreaterThanOrEqual(1);
-            } else if (!LIVE) {
-                expect(results).toEqual(spec.expectedFlows);
-            }
-
-            done();
-        });
+                done();
+            });
     } else {
         // Benchmark mode
         // Run 2 analyses sequentially.
         // Analysis #1 runs GraalVM without Augur and captures the results.
         // Analysis #2 runs GraalVM with Augur and captures the results.
         // We don't care about the results during benchmarkign.
-
-        console.error("Benchmarking enabled");
 
         // Analysis #1: Control
         run(INPUT_DIR + "/" + testName, testName,

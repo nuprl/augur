@@ -206,7 +206,6 @@ export function parseSpec(specPath: string): RunSpecification {
     }
 
     // All looks good!
-    console.error(`Spec parsed from ${specPath}: ${JSON.stringify(spec)}`)
     return spec as RunSpecification;
 }
 
