@@ -24,17 +24,14 @@ Let's walk through how to install Augur and use it to analyze a Node.js project.
 
 First, install Augur's dependencies if you don't already have them: `node`, `npm`, and `docker`.
 
-Clone this project onto your machine:
+Clone this project onto your machine, then build Augur:
 ```
-$ git clone --recurse-submodules https://github.com/nuprl/augur
-$ cd augur/ts
-```
+git clone --recurse-submodules https://github.com/nuprl/augur
+cd augur/ts
 
-Next, build NodeProf and Augur:
-```
-$ ./docker-nodeprof/docker-pull.sh  # Pull NodeProf Docker image
-$ npm install                       # Install Augur deps
-$ npm run build                     # Build Augur
+./docker-nodeprof/docker-pull.sh  # Pull NodeProf Docker image
+npm install                       # Install Augur deps
+npm run build                     # Build Augur
 ```
 
 Try running a basic test to make sure your installation succeeded:
@@ -107,14 +104,14 @@ project/
 
 To analyze this project with Augur, we run:
 ```
-$ cd augur/ts
-$ node ./runner/cli.js ~/project project .
-           #           ^^^^^^^^^ ^^^^^^^ ^
-           #     path to project    |    |
-           #                        |    |
-           #             project name    |
-           #                             |
-           # directory to store temp files
+cd augur/ts
+node ./runner/cli.js ~/project project .
+         #           ^^^^^^^^^ ^^^^^^^ ^
+         #     path to project    |    |
+         #                        |    |
+         #             project name    |
+         #                             |
+         # directory to store temp files
 ```
 
 Augur will alert us that the application does in fact have the flow we're
