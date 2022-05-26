@@ -209,7 +209,7 @@ To get the project fully up and running, simply:
 | Variable assignment            |         |             | x    | see #20 |
 | Function call                  |         |             | x    | see #21 |
 | Native functions               |         |             | x    | see #22 |
-| Async/await                    |         | x           |      | see #29 |
+| Async/await                    |         |             | X    | see #29 |
 | Function returns               |         |             | x    | see #30 |
 
 ## Support for Ichnaea Benchmarks
@@ -265,6 +265,6 @@ Continuous integration for Augur was designed and implemented by [Adison Trueblo
 This research was supported by the National Science Foundation under NSF grant 
 CCF-1715153 and REU supplement CCF-1930604.
 
-Copyright (c) 2019-2021 [Programming Research Lab](https://prl.ccs.neu.edu/) at 
+Copyright (c) 2019-2022 [Programming Research Lab](https://prl.ccs.neu.edu/) at 
 Northeastern University. Augur is licensed under the UPL. See the `LICENSE` file
 for more information.
