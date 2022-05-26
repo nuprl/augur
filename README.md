@@ -105,13 +105,13 @@ project/
 To analyze this project with Augur, we run:
 ```
 cd augur/ts
-node ./runner/cli.js ~/project project .
-         #           ^^^^^^^^^ ^^^^^^^ ^
-         #     path to project    |    |
-         #                        |    |
-         #             project name    |
-         #                             |
-         # directory to store temp files
+node ./runner/cli.js --projectDir ~/project --projectName project --outputDir .
+         #           ^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^
+         #     path to project                        |                 |
+         #                                            |                 |
+         #                                      project name            |
+         #                                                              |
+         #                                        directory to store temp files
 ```
 
 Augur will alert us that the application does in fact have the flow we're
