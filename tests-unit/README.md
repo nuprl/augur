@@ -80,6 +80,11 @@ and `TaintType` is of the form:
 | "functionReturn" | "literal" | "declaration";
 ```
 
+and `TrackingType` is of the form:
+```typescript
+"Boolean" | "SourcedBoolean" | "Expression"
+```
+
 ## `output-expected`
 
 For each unit test in `tests-unit/input` named `test`, there should be a
