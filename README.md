@@ -3,9 +3,9 @@
 
 **Augur** is a dynamic taint analysis for Node.js implemented in TypeScript
 using
-[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). Augur is a clean-room
-implementation of Ichnaea, the taint analysis described in the 
-[IEEE TSE paper: Platform-Independent Dynamic Taint Analysis for JavaScript](https://www.franktip.org/pubs/tse2020.pdf).
+[NodeProf](https://github.com/Haiyang-Sun/nodeprof.js). Check out the [paper](https://dl.acm.org/doi/pdf/10.1145/3551349.3559522)!
+
+Augur builds upon the technique described in [Ichnaea](https://www.franktip.org/pubs/tse2020.pdf). It is more performant, supports the latest version of JavaScript, and is highly configurable to support any type of dynamic data-flow analysis.
  
 ---
 
@@ -67,7 +67,7 @@ This file tells Augur the *sources* and *sinks* of the flows you want to
 track. The spec above tells Augur to alert you if any value returned from
 `readFileSync` flows into the function `exec`. It also tells Augur how to run
  your project: by executing the file `test.js`.
-[Here](./tests-unit/README.md) are all the options for `spec.json`.
+[Here](./tests-unit/README.md#specjson) are all the options for `spec.json`.
 
 Let's say we analyze the following program, `test.js`:
 ```javascript
@@ -134,6 +134,15 @@ You've now analyzed your first application using Augur!
 4. Support for different forms of taint tracking, from simple boolean tracking 
 to full dependency information between variables
 5. Support for tracking taint through native code (see below)
+
+## Tracking Type
+Augur supports *three* methods for tracking taint across your application:
+
+1. `Boolean`: the simplest (and fastest) tracker you can use. During your application's runtime, it simply determines whether a value came from *any* source. It doesn't keep track of which source it came from, or where the flow was introduced. This is not very useful in practice, because you will likely want to use...
+2. `SourcedBoolean`: a more practical tracker. For each value in your program, Augur determines if it came from a *source*, and if so, which source and on what line the taint was introduced.
+3. `Expression`: the most general tracker. In this mode, Augur will save all the information it finds during your application's runtime. For any given expression, its full set of dependent expressions is recorded. In other words, regardless your specified sources and sinks, Augur will save *every* flow between *every* expression. Expect slowdowns and large output files (on the order of MBs).
+
+The method you choose should be placed in your [`spec.json`](./tests-unit/README.md#specjson).
 
 ## Native function models
 Modern JavaScript relies on a wide variety of native functions to improve
