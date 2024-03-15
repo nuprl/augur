@@ -209,7 +209,7 @@ export function parseSpec(specPath: string): RunSpecification {
 }
 
 export function executeInstructionsFromFile(path: string, options: RunSpecification) {
-    const abstractMachine = createAbstractMachine(options);
+    const abstractMachine = createAbstractMachine(options, false, path);
     const compiledOutput = require(path);
     compiledOutput.drive(abstractMachine);
     return abstractMachine.getTaint();

@@ -10,26 +10,6 @@ const {parseSpec} = require("../dist/src/utils");
 const loadingSpinner = require('loading-spinner');
 const colors = require('colors/safe');
 
-/**
- * Fully-promsified exec implementation. This works well with await, and
- * returns *all* the information returned by exec.
- * @param cmd the command to exec
- * @param livePipe should we pipe the stdout and stderr while its running?
- * @param opts the options to give to exec
- * @returns {Promise}
- */
-const promise_exec = function(cmd, livePipe, opts) {
-    return new Promise((resolve, reject) => {
-        let child = child_process.exec(cmd, opts, (error, stdout, stderr) => {
-            resolve([error, stdout, stderr]);
-        })
-        if (livePipe) {
-            // Register redirection to stdout.
-            child.stdout.pipe(process.stdout);
-            child.stderr.pipe(process.stderr);
-        }
-    })
-};
 
 // `TAINT_ANALYSIS_HOME` is the root of this repo.
 // If the user does not explicitly specify TAINT_ANALYSIS_HOME, assume it to
@@ -45,6 +25,7 @@ const TAINT_ANALYSIS_HOME =
 const NODEPROF_HOME = shell.env['NODEPROF_HOME'];
 const MX_HOME = shell.env['MX_HOME'];
 const JAVA_HOME = shell.env['JAVA_HOME'];
+const VERBOSE = shell.env['VERBOSE'];
 
 // If no NODEPROF_HOME was specified, Docker will be used instead.
 const SHOULD_USE_DOCKER = (NODEPROF_HOME === undefined)
@@ -60,20 +41,21 @@ if (SHOULD_USE_DOCKER) {
     process.stdout.write(colors.grey(`Using your native NodeProf install from: ${NODEPROF_HOME}\n`));
 }
 
-const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/analysis/nodeprofAnalysis.js";
+const ANALYSIS = "./dist/src/analysis/nodeprofAnalysis.js";
+const SKIP_ANALYSIS = "./dist/src/analysis/skipAnalysis.js";
 const DEFAULT_SPEC_PATH = `${TAINT_ANALYSIS_HOME}/ts/src/defaultSpec.json`;
 
-// For debugging purposes, if you want to make sure NodeProf runs on the application.
-// const ANALYSIS = TAINT_ANALYSIS_HOME + "/ts/dist/src/emptyAnalysis/emptyAnalysis.js";
 
-// Given a test name:
-// - instrument its JS code;
-// - compare the generated instructions with its expected instructions
-// - execute these instructions
-// - compare the result of executing these instructions with the taints
-//   specified in the tests' `spec.json`.
 /**
  * Run the given project in Augur.
+ * Given a test name:
+ * - instrument its JS code;
+ * - compare the generated instructions with its expected instructions
+ * - execute these instructions
+ * - compare the result of executing these instructions with the taints
+ *   specified in the tests' `spec.json`.
+ * 
+ * 
  * @param projectDir the root directory of the project. The project cannot use any files above this dir, unless they're
  *                   globally installed node files.
  * @param projectName human readable name of the project, so Augur can name its output file accordingly.
@@ -83,9 +65,13 @@ const DEFAULT_SPEC_PATH = `${TAINT_ANALYSIS_HOME}/ts/src/defaultSpec.json`;
  * @param main OPTIONAL. If you don't have your own spec file in this project, Augur can use a default spec file.
  *             However, in that case Augur still needs to know which JS file to execute.
  *             Specify that here with a RELATIVE PATH from the projectDir.
+ * @param programArgs args for the program itself
+ * @param skipAnalysis the code will be run without Augur.
+ *                     This is for benchmarking purposes
+ * @param benchmark the code will be accurately timed
  * @returns {Promise<[RunSpecification, Array<Taint flows>]>}
  */
-exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live, main) {
+exports.run = async function(projectDir, projectName, outputDir, consoleFlag, live, main, programArgs, skipAnalysis, benchmark) {
     let usingDefaultSpec = false;
     // Print out a pretty augur logo
 
@@ -156,11 +142,24 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
         const outputFile = outputDir + "/" + projectName + '_out.js';
         const inputFile = projectDir + "/" + spec.main;
 
+        // Skip analysis if requested
+        const analysis = skipAnalysis? SKIP_ANALYSIS : ANALYSIS;
+
         if (!fs.existsSync(ANALYSIS)) {
             throw new Error("analysis not found: " + ANALYSIS);
         }
 
         const DOCKER_OUTPUT_FILENAME = "analysis.output";
+
+        if (benchmark) {
+            process.stderr.write(colors.yellow("Benchmarking enabled.\n"))
+        }
+        if (live) {
+            process.stderr.write(colors.yellow("Live analysis enabled.\n"))
+        }
+        if (analysis != ANALYSIS) {
+            process.stderr.write(colors.yellow(`Augur is running with a non-standard analysis: ${analysis}\n`))
+        }
 
         // The command to instrument the test's JS code
         const command =
@@ -172,22 +171,26 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
                 ` --mxArg "--initParam live:${live}"` +
                 ` --mxArg "--initParam specPath:/root/program/spec.json"` +
                 " --analysisDir " + TAINT_ANALYSIS_HOME + "/ts/" +
-                " --analysisMain " + "dist/src/analysis/nodeprofAnalysis.js" +
+                " --analysisMain " + analysis +
                 " --programDir " + projectDir + "/" +
-                " --programMain " + spec.main + ";" +
-                "mv " + projectDir + "/" + DOCKER_OUTPUT_FILENAME +
-                " " + outputFile
+                ` --programMain ${benchmark? "../analysis/src/benchmark/benchmarkProject.js" : spec.main} ` +
+                ` -- ${benchmark? "../program/" + spec.main + " " + projectName : ""} ${programArgs}` + ";" +
+                (!benchmark? "mv " + projectDir + "/" + DOCKER_OUTPUT_FILENAME +
+                             " " + outputFile
+                             : "") // move output file if we're not benchmarking
                 // Run project using local NodeProf installation
                 : "cd " + NODEPROF_HOME + "; "
                 + `export OUTPUT_FILE=\"${outputFile}\";`
                 + MX_HOME + "/mx jalangi --initParam outputFile:" + outputFile
                 + " --initParam specPath:" + (projectDir + "/spec.json")
                 + " --initParam live:" + live
-                + " --analysis " + ANALYSIS + " "
+                + " --analysis " + TAINT_ANALYSIS_HOME + "/ts/" + analysis + " "
                 + inputFile);
 
         // console.log("Source file: \t" + inputFile);
-        // console.log("Command: \t" + command);
+        if (VERBOSE) {
+            console.log("Command: \t" + command);
+        }
 
         // Print status message
         process.stdout.write(`${colors.yellow("Instrumenting code")}\n  =>  ${inputFile}...\n`);
@@ -219,19 +222,21 @@ exports.run = async function(projectDir, projectName, outputDir, consoleFlag, li
                 }
             }
 
-            process.stdout.write(`${colors.yellow("Inspecting taints with the specification:")}\n  => ${specPath}...\n`);
-            loadingSpinner.start();
+            if (!benchmark) {
+                process.stdout.write(`${colors.yellow("Inspecting taints with the specification:")}\n  => ${specPath}...\n`);
+                loadingSpinner.start();
 
-            results = executeInstructionsFromFile(outputFile, spec);
-            loadingSpinner.stop();
-            process.stdout.write(colors.green(`done!\n\n`));
+                results = executeInstructionsFromFile(outputFile, spec);
+                loadingSpinner.stop();
+                process.stdout.write(colors.green(`done!\n\n`));
 
-            if (results.length === 0) {
-                process.stdout.write(colors.green("No flows found.\n"));
-            } else {
-                process.stdout.write(`${colors.red("Flows found into the following sinks:")}
+                if (results.length === 0) {
+                    process.stdout.write(colors.green("No flows found.\n"));
+                } else {
+                    process.stdout.write(`${colors.red("Flows found into the following sinks:")}
 ${JSON.stringify(results, (key, value) =>
-                    value instanceof Set ? [...value] : value, 4)}\n`);
+                        value instanceof Set ? [...value] : value, 4)}\n`);
+                }
             }
         }
 
@@ -247,3 +252,25 @@ ${JSON.stringify(results, (key, value) =>
         }
     }
 }
+
+/**
+ * Fully-promsified exec implementation. This works well with await, and
+ * returns *all* the information returned by exec. This promise always
+ * *resolves*, never rejects.
+ * @param cmd the command to exec
+ * @param livePipe should we pipe the stdout and stderr while its running?
+ * @param opts the options to give to exec
+ * @returns {Promise}
+ */
+const promise_exec = function(cmd, livePipe, opts) {
+    return new Promise((resolve, reject) => {
+        let child = child_process.exec(cmd, opts, (error, stdout, stderr) => {
+            resolve([error, stdout, stderr]);
+        })
+        if (livePipe) {
+            // Register redirection to stdout.
+            child.stdout.pipe(process.stdout);
+            child.stderr.pipe(process.stderr);
+        }
+    })
+};

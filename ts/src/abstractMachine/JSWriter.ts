@@ -134,6 +134,7 @@ export default class JSWriter implements AbstractMachine {
 
     public endExecution([]) {
         this.writeInstruction({ command: "endExecution", args: [] });
+        console.error("Program execution complete.")
         
         // Once the analysis finishes then we write the output file string to the file location.
         this.outputStr.push(this.postamble);

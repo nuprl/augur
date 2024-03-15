@@ -1,3 +1,7 @@
+
+// do not remove the following comment
+// JALANGI DO NOT INSTRUMENT
+
 import * as bunyan from "bunyan";
 export default bunyan.createLogger({
     /**
