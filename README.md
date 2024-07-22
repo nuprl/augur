@@ -168,9 +168,9 @@ look at
 2. using *polyfills*. Polyfills are implementations of native functions written
 in JavaScript itself. While polyfills are traditionally used for providing
 missing functionality to older web browsers, they can also help the taint
-analysis understand data-flow. If you want to track data-flow through a native
-function that you can write a polyfill for, use it normally in
-[`src/native/polyfill.ts`](./ts/src/native/polyfill.ts).
+analysis understand data-flow. Simply define the polyfill to use it.
+Note that Augur already defines a couple of its own polyfills in
+[`src/native/polyfill.js`](./ts/src/native/polyfill.js).
 
 ## Optional: Installing NodeProf locally
 Augur normally runs your Node.js project in Docker. This is because NodeProf
