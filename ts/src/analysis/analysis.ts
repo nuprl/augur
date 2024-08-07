@@ -1,3 +1,8 @@
+// The actual "analysis" registered with NodeProf. This is the first stop for
+// all instrumentation callbacks. Most of these callbacks are passed literally
+// to an abstract machine, which is responsible for performing any actual
+// analysis.
+
 import {
     Analyzer,
     Receiver,
@@ -10,7 +15,8 @@ import {
     AbstractMachine,
     DynamicDescription, Location,
     PropertyDescription,
-    RawVariableDescription, RunSpecification,
+    RawVariableDescription,
+    RunSpecification,
     ShadowMemory, SourcePosition, SourceSpan,
     StaticDescription,
 } from "../types";
@@ -29,10 +35,6 @@ require("../native/polyfill");
 // do not remove the following comment
 // JALANGI DO NOT INSTRUMENT
 
-// The actual "analysis" registered with NodeProf. This is the first stop for
-// all instrumentation callbacks. Most of these callbacks are passed literally
-// to an abstract machine, which is responsible for performing any actual
-// analysis.
 export default class Analysis implements Analyzer {
     private sandbox: Sandbox;
     
@@ -68,10 +70,10 @@ export default class Analysis implements Analyzer {
     constructor(sandbox: Sandbox) {
         this.sandbox = sandbox;
 
-        // Parse spec and create abstract machine if we're running live
-
+        // Parse in spec if we're running live
         // @ts-ignore
         this.spec = J$.initParams.live? parseSpec(J$.initParams.specPath) : undefined;
+
         // @ts-ignore
         this.state = J$.initParams.live === "true" ? createAbstractMachine(this.spec, true, J$.initParams.outputFile) : new JSWriter();
 

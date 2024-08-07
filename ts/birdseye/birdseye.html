@@ -1,0 +1,309 @@
+<html>
+    <head>
+        <title>Augur -- Birdseye</title>
+        <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg bg-light navbar-light ">
+            <img style="height: 45px; padding: 0px 0px 0px 15px;" src="https://github.com/nuprl/augur/raw/main/augur.png">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+
+                <!-- Toggle button -->
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto pl-auto">
+
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <!-- Link -->
+                        <p class="nav-item">
+                            AUGUR REPLACE PROJECT NAME HERE
+                        </p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="nav-item">
+                            # of Instructions: AUGUR REPLACE INSTRUCTIONS HERE
+                        </p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p id="augur-num-variables" class="nav-item">
+                            # of Variables: 
+                        </p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p id="augur-num-dependencies" class="nav-item">
+                            # of Dependencies:
+                            <!-- Instrumentation Run @ Aug 24, 2022 2:34PM -->
+                        </p>
+
+                    </ul>
+
+                </div>
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+
+        <div id="network"></div>
+
+        <script>
+
+
+            // Do the given descriptions of a taint source/sink describe the same thing?
+            // Two descriptions are considered equal if all of the common taint source/sink
+            // properties they provide are equal.
+            // Does the description t1 describe a subset of t2? In other words, does t2
+            // describe each type of thing that t1 does, and do the common descriptions
+            // match?
+            function descriptionSubset(t1, t2) {
+                if (typeof t1 !== "object" || typeof t2 !== "object") {
+                    throw new Error("descriptionSubset was passed a non-object: "
+                        + t1.toString()
+                        + " & "
+                        + t2.toString());
+                }
+                // This function determines, RECURSIVELY, if each property of a is a subset
+                // of b. It does this by structurally breaking down the two objects.
+                function objectSubset(a, b) {
+                    // if they're primitively equal, they're subsets
+                    if (a === b) {
+                        return true;
+                    }
+                    // if they're both objects, check if a describes a subset of b's
+                    // properties, then recur.
+                    if (typeof a === "object" && typeof b === "object") {
+                        return Object.getOwnPropertyNames(a).every(prop => {
+                            return (
+                            // either the two properties are equal
+                            a[prop] === b[prop]
+                                // or they're subsets of each other
+                                || objectSubset(a[prop], b[prop]));
+                        });
+                    }
+                    return false;
+                }
+                return objectSubset(t1, t2);
+            }
+
+            const rawFlows = `AUGUR REPLACE ME HERE`
+            const rawSpec = `AUGUR REPLACE SPEC HERE`
+
+            // Parse raw flows into JSON.
+            const flows = JSON.parse(rawFlows)
+            const spec = JSON.parse(rawSpec)
+
+            // Map of label: String -> {id: Number, label: String}
+            let rawNodes = {}
+            // Number of nodes already allocated.
+            let rawNodeCount = 0
+            // The edges, as they will appear to vis.js.
+            let rawEdges = []
+            // Determine if this edge has already been added, or if it's a self-loop.
+            // This should be replaced with a O(1) lookup
+            // on a hash map.
+            function shouldSkipEdge(fromID, toID) {
+                return fromID == toID
+                    || rawEdges.some(edge => edge.from == fromID && edge.to == toID)
+            }
+
+            const skipList = ["hasOwnProperty", "undefined", "end", "result", "i", "start", "push", "promiseCount", "thisPromiseId", "wrappedFun", "Promise", "wrappedResolve", "wrappedReject", "p", "fun", "PromiseWrapper", "realThen", "realCatch", "realFinally", "returnMe", "defineProperty", "augur_getResolveFor", "augur_v"]
+            function shouldSkip(value) {
+
+                let ret = value == null
+                    || !value.hasOwnProperty("name")
+                    || skipList.includes(value.name)
+
+                if (ret) console.log(`Skipping ${value.name}`)
+                return ret
+            }
+
+            // Loop through flows
+            for (let flow of flows) {
+                // Log sources and sinks
+                const sources = flow[0]
+                const sink = flow[1]
+                console.log(`Sources = ${JSON.stringify(sources)}`)
+                console.log(`Sink = ${JSON.stringify(sink)}`)
+
+                if (sources == null || shouldSkip(sink)) continue
+
+                // And now try their names
+                console.log(`Sources ${sources.map(s => s.name).join(",")} flowed into ${sink.name}`)
+
+                // Initialize nodes for sources and sink
+                for (let location of sources.concat(sink)) {
+                    if (shouldSkip(location)) continue
+                    if (!rawNodes.hasOwnProperty(location.name)) {
+                        console.log(`Adding node with name ${location.name}. Corresponding location is: ${JSON.stringify(location)}`)
+                        const pos = location.location.pos
+
+                        const isSource = spec.sources.some(source => {
+                            console.error(`Determining if ${JSON.stringify(source)} is a subset of ${JSON.stringify(location)}`)
+                            let ret = descriptionSubset(source, location)
+                            if (ret) console.error("We found a source!")
+                            return ret
+                        })
+                        const isSink = spec.sinks.some(sink => descriptionSubset(sink, location))
+                        if (isSource || isSink) {
+                            console.log("We found a source/sink!")
+                        }
+
+                        // I want to add this node if:
+                        // 1. we don't have it
+                        // 2. we do have it, but the group is different.
+                        rawNodes[location.name] = { 
+                            id: rawNodeCount++, 
+                            label: location.name,
+                            title: `Type: ${location.type}\nLocation: ${location.location.fileName}:${pos.start[0]}:${pos.start[1]}:${pos.end[0]}:${pos.end[1]}`,
+                            group: isSource
+                                   ? "source" 
+                                   : isSink
+                                   ? "sink"
+                                   : location.type
+                        }
+                    }
+                }
+
+                // Add edges
+                for (let source of sources) {
+                    if (shouldSkip(source)) continue
+                    const fromID = rawNodes[source.name].id
+                    const toID = rawNodes[sink.name].id
+                    if (shouldSkipEdge(fromID, toID)) continue
+
+
+                    rawEdges.push({from: fromID, 
+                                   to: toID,
+                                   arrows: "to"})
+                }
+            }
+
+            // Update values in webpage.
+            document.getElementById('augur-num-variables').innerHTML = `# of Variables: ${Object.values(rawNodes).length}`
+            document.getElementById('augur-num-dependencies').innerHTML = `# of Dependencies: ${rawEdges.length}`
+
+
+
+            // create an array with nodes
+            //var nodes = new vis.DataSet([
+            //    { id: 1, label: "Node 1" },
+            //    { id: 2, label: "Node 2" },
+            //    { id: 3, label: "Node 3" },
+            //    { id: 4, label: "Node 4" },
+            //    { id: 5, label: "Node 5" },
+            //]);
+            var nodes = new vis.DataSet(Object.values(rawNodes))
+            var edges = new vis.DataSet(rawEdges)
+            console.log(`Nodes = ${JSON.stringify(rawNodes)}`)
+            console.log(`Edges = ${JSON.stringify(rawEdges)}`)
+
+            // create an array with edges
+            //var edges = new vis.DataSet([
+            //    { from: 1, to: 3 },
+            //    { from: 1, to: 2 },
+            //    { from: 2, to: 4 },
+            //    { from: 2, to: 5 },
+            //    { from: 3, to: 3 },
+            //]);
+
+            // create a network
+            var container = document.getElementById("network");
+
+            // Add nodes for legend
+            const legendX = -container.clientWidth / 2
+            const legendY = -container.clientHeight / 2
+            const step = 30
+            nodes.add({
+                id: -1,
+                x: legendX,
+                y: legendY,
+                value: 1,
+                label: "<b>Legend</b>",
+                group: "legend",
+                fixed: true,
+                physics: false,
+            });
+            nodes.add({
+                id: -2,
+                x: legendX,
+                y: legendY + step * 1,
+                value: 1,
+                label: "Variable",
+                group: "variable",
+                fixed: true,
+                physics: false,
+            });
+            nodes.add({
+                id: -3,
+                x: legendX,
+                y: legendY + step * 2,
+                value: 1,
+                label: "Function Invocation",
+                group: "functionInvocation",
+                fixed: true,
+                physics: false,
+            });
+            nodes.add({
+                id: -4,
+                x: legendX,
+                y: legendY + step * 3,
+                value: 1,
+                label: "Taint Source",
+                group: "source",
+                fixed: true,
+                physics: false,
+            });
+            nodes.add({
+                id: -5,
+                x: legendX,
+                y: legendY + step * 4,
+                value: 1,
+                label: "Taint Sink",
+                group: "sink",
+                fixed: true,
+                physics: false,
+            });
+
+            var data = {
+                nodes: nodes,
+                edges: edges,
+            };
+            var options = {
+                groups: {
+                    variable: {
+                        shape: "oval",
+                        color: "DeepSkyBlue"
+                    },
+                    functionInvocation: {
+                        shape: "box",
+                        color: "PaleGreen"
+                    },
+                    source: {
+                        shape: "box",
+                        color: "OrangeRed"
+                    },
+                    sink: {
+                        shape: "box",
+                        color: "Orange"
+                    },
+                    legend: {
+                        shape: "text",
+                        font: {
+                            size: 20,
+                            multi: true
+                        }
+                    }
+                }
+            };
+            var network = new vis.Network(container, data, options);
+
+        </script>
+    </body>
+</html>

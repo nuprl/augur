@@ -3,6 +3,10 @@
 import JSMachine from "./JSMachine";
 import {StaticDescription} from "../types";
 
+import * as fs from 'fs';
+import * as path from 'path';
+import generateBirdseyeHTML from "../birdseye/birdseye";
+
 export default class ExpressionMachine
     extends JSMachine<Set<StaticDescription>, [Set<StaticDescription>, StaticDescription]> {
         
@@ -21,10 +25,10 @@ export default class ExpressionMachine
         // add them separately, since one of them might not be defined.
         // TODO: this is a hack. they SHOULD always be defined. if they aren't
         // we are losing information.
-        if (a) {
+        if (a && a instanceof Set) {
             a.forEach((v) => set.add(v));
         }
-        if (b) {
+        if (b && b instanceof Set) {
             b.forEach((v) => set.add(v));
         }
         return set;
@@ -36,5 +40,20 @@ export default class ExpressionMachine
 
     getUntaintedValue(): Set<StaticDescription> {
         return new Set<StaticDescription>();
+    }
+
+    /**
+     * When execution ends in an ExpressionMachine,
+     * we will automatically generate a web page to
+     * visualize the resulting "program dependence graph".
+     */
+    endExecution() {
+        super.endExecution();
+
+        // Generate the Birdseye HTML.
+        let birdseyeHTML = generateBirdseyeHTML(this);
+
+        // Write it to the output directory.
+        fs.writeFileSync(path.dirname(fs.realpathSync(this.outputFilePath)) + `/${this.spec.main}.birdseye.html`, birdseyeHTML)
     }
 }

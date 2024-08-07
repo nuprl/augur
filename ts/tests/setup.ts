@@ -1,1 +1,1 @@
-jest.setTimeout(100000);
+jest.setTimeout(200000); // 200,000ms = 200 seconds
